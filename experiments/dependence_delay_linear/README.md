@@ -94,11 +94,20 @@ python run_budget_participation.py `
   --mc-replications 10000
 ```
 
+For the online probe-charging controller:
+
+```powershell
+python run_online_participation.py `
+  --output-dir results/online_participation `
+  --num-seeds 64 `
+  --bootstrap-replications 2000
+```
+
 Run deterministic implementation checks with:
 
 ```powershell
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
-  test_budget_participation.py
+  test_budget_participation.py test_online_participation.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -129,6 +138,12 @@ passed. Under the primary matched message budget, independent-noise cells
 selected \(q=32\), while the \(\rho=0.9\) cells selected \(q=1\) and attained
 about 26% of the best all-agent MSE. This is an oracle mechanism result, not
 yet an online-controller claim.
+
+EXP-005B writes `results/online_participation/`. Five of six registered gates
+passed. The controller selected many agents under independent noise and few
+under clustered/global/mixed noise, and achieved 34.4% of the all-agent MSE in
+correlated cells. It failed to beat fixed \(q=1\) after charging the 18%
+full-probe cost, so the full-probe controller is rejected.
 
 ## Scope
 
