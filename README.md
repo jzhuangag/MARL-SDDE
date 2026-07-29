@@ -42,10 +42,16 @@ Lyapunov equation.
 - In a separate fixed-step analysis with \(\eta=0.02\), all 32 agents were best
   at 25 iterations, whereas 4 agents were best from 100 iterations onward.
   The 32-agent stationary MSE was \(11.42\%\) above the 4-agent optimum.
+- In a 64-seed predictable stagewise experiment, dependence-aware control
+  reduced high-correlation MSE to 36.2% of an independence-based delay-only
+  controller. Jointly adapting participation did not improve MSE over retaining
+  all 32 agents and adapting only the scalar step size (ratio 1.001, bootstrap
+  95% interval 0.977–1.029).
 
-The last result motivates a predictable stagewise controller that adapts both
-the scalar step size and accepted-agent count without estimating a full
-cross-agent covariance matrix.
+The evidence therefore favors correlation-aware scalar step-size adaptation as
+the current main algorithmic mechanism. Participation control requires a
+communication- or wall-clock-aware objective before it can be claimed as an
+additional contribution.
 
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
@@ -68,7 +74,8 @@ Run the crossover analysis and deterministic tests:
 
 ```powershell
 python run_crossover_analysis.py
-python -m unittest -v test_linear_model.py
+python run_stagewise_controller.py --output-dir results/stagewise
+python -m unittest -v test_linear_model.py test_stagewise_controller.py
 ```
 
 No GPU is required for these linear experiments.
