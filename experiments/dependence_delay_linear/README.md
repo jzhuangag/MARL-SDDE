@@ -1,0 +1,109 @@
+# EXP-001: Dependence-limited speedup under delayed Markov updates
+
+This experiment is the first go/no-go test for the proposed research direction
+on delay- and dependence-adaptive learning from multi-agent Markov data.
+
+## Question
+
+Does cross-agent dependence fundamentally limit parallel speedup, and can
+heterogeneous staleness make accepting more agents suboptimal even when the
+step size is tuned?
+
+## Model
+
+The scalar server iterate obeys
+
+\[
+x_{k+1}
+=x_k-\eta a\sum_d w_d x_{k-d}
++\eta\sqrt{\rho}\sum_d w_d c_{k-d}
++\eta\sqrt{1-\rho}\,e_k .
+\]
+
+Here:
+
+- \(w_d\) is the fraction of accepted agents with delay \(d\);
+- \(c_k\) is a unit-variance AR(1) common factor;
+- \(e_k\) is the average of \(q\) independent AR(1) factors, so
+  \(\operatorname{Var}(e_k)=1/q\);
+- \(\rho\) controls the common-noise fraction.
+
+The registered baseline uses `sample_time` alignment: both the parameter and
+the common Markov factor are evaluated at the worker's sample time. A separate
+post-baseline sensitivity may use `server_time` alignment, in which parameter
+copies are stale but agents share the same current global Markov factor. The
+two mechanisms must not be pooled because sample-time staggering can itself
+decorrelate a persistent common factor.
+
+For deterministic delays, the recursion is represented as an augmented linear
+system. Stability is determined by its spectral radius, while finite-horizon
+and stationary mean-square errors are computed exactly using a discrete
+Lyapunov equation.
+
+## Pre-registered go/no-go checks
+
+1. **Correlation saturation:** the improvement from \(q=1\) to \(q=32\) at
+   \(\rho=0.9\) is less than half the improvement under independent noise.
+2. **Interior parallelism optimum:** with heterogeneous delays and
+   \(\rho=0.9\), the joint oracle selects fewer than all 32 agents.
+3. **Delay-only gap:** a controller selected under the independence assumption
+   has at least 20% larger finite-horizon MSE than the joint oracle at
+   \(\rho=0.9\).
+4. **Numerical verification:** Monte Carlo and exact finite-horizon MSE agree
+   within 5% at the selected validation points.
+
+These checks are exploratory feasibility gates, not paper-level hypothesis
+tests. The thresholds were fixed before examining the generated results.
+
+## Run
+
+From this directory:
+
+```powershell
+python run_experiment.py --output-dir results/baseline
+```
+
+For the shared-current-environment sensitivity:
+
+```powershell
+python run_experiment.py `
+  --common-noise-alignment server_time `
+  --output-dir results/server_time_sensitivity
+```
+
+For the post-baseline transient-to-stationary crossover analysis:
+
+```powershell
+python run_crossover_analysis.py
+```
+
+Run deterministic implementation checks with:
+
+```powershell
+python -m unittest -v test_linear_model.py
+```
+
+The default experiment uses 500 server iterations, \(q\in
+\{1,2,4,8,16,32\}\), seven common-noise fractions, 55 step sizes, and 4,000
+Monte Carlo replications for three exact-solution checks.
+
+## Outputs
+
+- `sweep.csv`: every exact parameter evaluation;
+- `best_by_setting.csv`: best step size for each scenario, correlation, and
+  agent count;
+- `policy_comparison.csv`: joint oracle, delay-only selection, and fixed-agent
+  baselines;
+- `monte_carlo_validation.csv`: exact versus simulated finite-horizon MSE;
+- `summary.json`: configuration, environment, and go/no-go outcomes;
+- four PNG figures used for diagnosis.
+
+The crossover analysis writes a separate `results/crossover/` directory. It is
+exploratory and does not alter the registered EXP-001 verdict.
+
+## Scope
+
+This first experiment intentionally uses a linear fixed-policy-style model. It
+tests whether the proposed mechanism exists before investing in a full
+multi-agent temporal-difference or deep reinforcement-learning implementation.
+No claim about nonlinear multi-agent reinforcement learning is made here.

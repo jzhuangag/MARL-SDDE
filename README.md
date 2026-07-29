@@ -1,0 +1,92 @@
+# MARL-SDDE
+
+Low-complexity experiments for studying dependence-limited speedup under
+delayed multi-agent Markov updates.
+
+This repository currently contains the first controlled feasibility study for
+a possible stochastic-approximation and reinforcement-learning theory project.
+It is research code, not a released implementation of a complete MARL
+algorithm.
+
+## Current question
+
+When agent updates contain a persistent common Markov factor, the effective
+variance reduction may saturate well before the nominal number of agents. If
+additional agents are also staler, the best participation level may depend on
+whether learning is in its transient or stationary regime.
+
+The scalar model is
+
+\[
+x_{k+1}
+=x_k-\eta a\sum_d w_d x_{k-d}
++\eta\sqrt{\rho}\sum_d w_d c_{k-d}
++\eta\sqrt{1-\rho}\,e_k,
+\]
+
+with an alternative shared-server-time alignment for the common factor.
+Deterministic delays allow exact finite-horizon and stationary mean-square
+errors to be computed through an augmented linear system and a discrete
+Lyapunov equation.
+
+## Initial findings
+
+- With synchronous agents, the finite-horizon improvement from 1 to 32 agents
+  was \(22.60\times\) under independent noise but only \(1.0034\times\) when
+  the common-noise fraction was \(\rho=0.9\).
+- A dependence-blind delay-only tuning rule had \(1.8745\times\) the MSE of the
+  joint oracle at \(\rho=0.9\).
+- The pre-registered 500-step joint oracle still selected all 32 agents, so the
+  stronger claim that jointly tuned learning should reject agents was not
+  supported in the baseline.
+- In a separate fixed-step analysis with \(\eta=0.02\), all 32 agents were best
+  at 25 iterations, whereas 4 agents were best from 100 iterations onward.
+  The 32-agent stationary MSE was \(11.42\%\) above the 4-agent optimum.
+
+The last result motivates a predictable stagewise controller that adapts both
+the scalar step size and accepted-agent count without estimating a full
+cross-agent covariance matrix.
+
+![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
+
+## Quick start
+
+Install the small CPU-only dependency set:
+
+```powershell
+python -m pip install -r experiments/dependence_delay_linear/requirements.txt
+```
+
+Run the registered baseline:
+
+```powershell
+Set-Location experiments/dependence_delay_linear
+python run_experiment.py --output-dir results/baseline
+```
+
+Run the crossover analysis and deterministic tests:
+
+```powershell
+python run_crossover_analysis.py
+python -m unittest -v test_linear_model.py
+```
+
+No GPU is required for these linear experiments.
+
+## Repository structure
+
+- `experiments/dependence_delay_linear/`: exact model, sweeps, Monte Carlo
+  checks, tests, and selected result artifacts;
+- `docs/`: experiment passports, registered decisions, and reproducibility
+  records.
+
+Unpublished manuscript drafts, PDFs, extracted review material, raw sweeps,
+runtime logs, and duplicate reproduction outputs are intentionally excluded
+from this public repository.
+
+## Reproducibility
+
+Four analytic implementation checks pass. At three selected points, the
+maximum discrepancy between exact MSE and 4,000-replication Monte Carlo was
+2.42%. A same-seed independent rerun produced byte-identical numerical CSV and
+JSON outputs. See `docs/reproducibility_exp001.md`.

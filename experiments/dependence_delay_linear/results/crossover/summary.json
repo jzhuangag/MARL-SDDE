@@ -1,0 +1,111 @@
+{
+  "experiment_id": "EXP-003-transient-stationary-crossover",
+  "status": "COMPLETED_EXPLORATORY",
+  "fixed_parameters": {
+    "eta": 0.02,
+    "rho": 0.9,
+    "max_delay": 16,
+    "horizons": [
+      25,
+      50,
+      100,
+      200,
+      500,
+      1000,
+      2000
+    ]
+  },
+  "server_time_stationary": {
+    "optimal_num_agents": 4,
+    "optimal_mse": 0.25478934925722646,
+    "all_agents_mse": 0.28389687386512946,
+    "all_agents_to_optimal_ratio": 1.114241528120224
+  },
+  "optimal_participation_by_horizon": [
+    {
+      "alignment": "sample_time",
+      "horizon": 25,
+      "optimal_num_agents": 32,
+      "finite_mse": 0.4282732530440041
+    },
+    {
+      "alignment": "sample_time",
+      "horizon": 50,
+      "optimal_num_agents": 32,
+      "finite_mse": 0.3099168336253486
+    },
+    {
+      "alignment": "sample_time",
+      "horizon": 100,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.2623437430041292
+    },
+    {
+      "alignment": "sample_time",
+      "horizon": 200,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.2549178560509589
+    },
+    {
+      "alignment": "sample_time",
+      "horizon": 500,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.2547893499552701
+    },
+    {
+      "alignment": "sample_time",
+      "horizon": 1000,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.25478934925722646
+    },
+    {
+      "alignment": "sample_time",
+      "horizon": 2000,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.25478934925722646
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 25,
+      "optimal_num_agents": 32,
+      "finite_mse": 0.4359499290645492
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 50,
+      "optimal_num_agents": 16,
+      "finite_mse": 0.31734772331736444
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 100,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.2623437430041292
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 200,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.2549178560509589
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 500,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.2547893499552701
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 1000,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.25478934925722646
+    },
+    {
+      "alignment": "server_time",
+      "horizon": 2000,
+      "optimal_num_agents": 4,
+      "finite_mse": 0.25478934925722646
+    }
+  ],
+  "interpretation": "Post-hoc mechanism analysis; it does not alter the EXP-001 pre-registered verdict."
+}

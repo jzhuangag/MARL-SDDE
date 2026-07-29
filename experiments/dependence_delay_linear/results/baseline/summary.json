@@ -1,0 +1,99 @@
+{
+  "experiment_id": "EXP-001-dependence-delay-linear",
+  "status": "COMPLETED",
+  "model": {
+    "curvature": 1.0,
+    "common_ar": 0.95,
+    "idiosyncratic_ar": 0.2,
+    "initial_error": 1.0,
+    "horizon": 500,
+    "common_noise_alignment": "sample_time"
+  },
+  "grid": {
+    "agent_counts": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "correlations": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      0.99
+    ],
+    "eta_min": 0.0025,
+    "eta_max": 0.35,
+    "eta_count": 55,
+    "heterogeneous_delays": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      2,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5,
+      6,
+      6,
+      7,
+      8,
+      8,
+      9,
+      9,
+      10,
+      11,
+      11,
+      12,
+      12,
+      13,
+      14,
+      14,
+      15,
+      16
+    ]
+  },
+  "go_no_go": {
+    "correlation_saturation": {
+      "pass": true,
+      "independent_q1_to_q32_gain": 22.603712098490057,
+      "rho_0p9_q1_to_q32_gain": 1.0034277416121793,
+      "criterion": "high-correlation gain is less than half the independent gain"
+    },
+    "interior_parallelism_optimum": {
+      "pass": false,
+      "rho_0p9_optimal_q": 32,
+      "criterion": "joint oracle chooses fewer than all 32 agents"
+    },
+    "delay_only_suboptimality": {
+      "pass": true,
+      "rho_0p9_risk_ratio": 1.8744879166818884,
+      "criterion": "delay-only risk is at least 20% above joint oracle"
+    },
+    "exact_mc_agreement": {
+      "pass": true,
+      "max_relative_error": 0.024210824384100178,
+      "all_exact_values_in_95pct_mc_intervals": true,
+      "criterion": "Monte Carlo relative error is at most 5%"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  }
+}
