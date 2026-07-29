@@ -1,0 +1,156 @@
+{
+  "experiment_id": "EXP-005B-online-probe-controller",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "num_paired_seeds": 64,
+  "base_seed": 20260729,
+  "bootstrap_replications": 2000,
+  "best_registered_fixed_policy": "fixed_q1_adaptive_eta",
+  "config": {
+    "num_agents": 32,
+    "agent_counts": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "total_budget": 16000,
+    "update_overhead": 4,
+    "probe_updates": 80,
+    "full_probe_cost": 2880,
+    "batch_size": 10,
+    "eta_grid": [
+      0.0025,
+      0.0031046445301837096,
+      0.0038555270635198514,
+      0.0047880164034928676,
+      0.005946035575013605,
+      0.007384130729697496,
+      0.009170040432046712,
+      0.011387886347566916,
+      0.01414213562373095,
+      0.017562521603732995,
+      0.021810154653305155,
+      0.027085110938737847,
+      0.03363585661014857,
+      0.04177095129709654,
+      0.05187358218604038,
+      0.06441961327797016,
+      0.08
+    ],
+    "scenarios": {
+      "independent": [
+        0.0,
+        0.0
+      ],
+      "clustered": [
+        0.0,
+        0.6
+      ],
+      "global": [
+        0.6,
+        0.0
+      ],
+      "mixed": [
+        0.3,
+        0.4
+      ]
+    },
+    "max_delays": [
+      4,
+      16
+    ]
+  },
+  "gates": {
+    "independent_participation": {
+      "pass": true,
+      "criterion": "median q >= 16 in both independent cells",
+      "cells": [
+        {
+          "scenario": "independent",
+          "max_delay": 4,
+          "median_q": 16.0
+        },
+        {
+          "scenario": "independent",
+          "max_delay": 16,
+          "median_q": 16.0
+        }
+      ]
+    },
+    "correlated_response": {
+      "pass": true,
+      "criterion": "median q <= 8 in at least 5/6 correlated cells",
+      "passing_cells": 6,
+      "total_cells": 6,
+      "cells": [
+        {
+          "scenario": "clustered",
+          "max_delay": 4,
+          "median_q": 4.0
+        },
+        {
+          "scenario": "clustered",
+          "max_delay": 16,
+          "median_q": 4.0
+        },
+        {
+          "scenario": "global",
+          "max_delay": 4,
+          "median_q": 2.0
+        },
+        {
+          "scenario": "global",
+          "max_delay": 16,
+          "median_q": 1.0
+        },
+        {
+          "scenario": "mixed",
+          "max_delay": 4,
+          "median_q": 4.0
+        },
+        {
+          "scenario": "mixed",
+          "max_delay": 16,
+          "median_q": 4.0
+        }
+      ]
+    },
+    "all_agent_resource_gain": {
+      "pass": true,
+      "criterion": "ratio <= 0.80 and 95% upper < 0.95",
+      "ratio": 0.34449448983409225,
+      "bootstrap_95_upper": 0.5348162205599444
+    },
+    "oracle_proximity": {
+      "pass": true,
+      "criterion": "ratio <= 1.25 and 95% upper < 1.40",
+      "ratio": 1.083306819643268,
+      "bootstrap_95_upper": 1.2698844095179136
+    },
+    "fixed_policy_adaptivity_gain": {
+      "pass": false,
+      "criterion": "ratio to best registered fixed-q policy <= 0.95",
+      "best_fixed_policy": "fixed_q1_adaptive_eta",
+      "ratio": 1.058370253590845,
+      "bootstrap_95_upper": 1.3573240062972132
+    },
+    "accounting_and_numerical_validity": {
+      "pass": true,
+      "criterion": "finite, within budget, and full probe cost exactly 2880",
+      "full_probe_cost": 2880
+    },
+    "overall": {
+      "pass": false,
+      "criterion": "all six registered gates pass"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  }
+}

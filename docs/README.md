@@ -29,6 +29,11 @@ the standard linear-speedup analysis.
    high-correlation cells selected one agent under the primary message budget.
 7. [`validation_exp005a.md`](validation_exp005a.md) records the numerical
    validation, 11/11 fallacy scan, scope warnings, and byte-identical rerun.
+8. [`experiment_005b_online_probe_controller.md`](experiment_005b_online_probe_controller.md)
+   records the charged online controller. It learned the correct participation
+   direction and beat all-agent control, but failed to beat fixed \(q=1\).
+9. [`validation_exp005b.md`](validation_exp005b.md) records the paired-bootstrap
+   audit, failed overall gate, 11/11 fallacy scan, and exact reproduction.
 
 ## Code and canonical outputs
 
@@ -44,6 +49,8 @@ the standard linear-speedup analysis.
   `experiments/dependence_delay_linear/results/stagewise/`
 - Budget-matched participation:
   `experiments/dependence_delay_linear/results/budget_participation/`
+- Online probe-charging controller:
+  `experiments/dependence_delay_linear/results/online_participation/`
 
 The `results/smoke/` directory is an implementation smoke test and must not be
 used as scientific evidence. The same-seed reproduction directory is retained
@@ -60,5 +67,7 @@ not improve MSE over retaining all agents and adapting only the step size.
 EXP-005A subsequently confirmed that participation can be a strong
 resource-control mechanism: the resource-matched optimum changes from all
 agents under independent noise to one agent under strong common noise. The
-next mandatory gate is an online controller that observes only participating
-agents and charges every exploration probe.
+next experiment tested an online controller that observes only participating
+agents and charges every exploration probe. It correctly reduced participation
+under correlated noise but its 18% full-probe cost prevented it from beating
+the best fixed-\(q\) policy. Sparse exploration is now the main design issue.
