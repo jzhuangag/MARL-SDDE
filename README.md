@@ -53,6 +53,14 @@ the current main algorithmic mechanism. Participation control requires a
 communication- or wall-clock-aware objective before it can be claimed as an
 additional contribution.
 
+EXP-005A then evaluated the correct resource-aware question. In its
+pre-registered matched-budget surface, the optimum changed from all 32 agents
+under independent noise to one agent under strong common noise. At
+\(\rho=0.9\), the optimal action used about 26% of the best all-agent MSE at
+the same message budget; the direction persisted under a wall-clock proxy and
+a non-fastest selection sensitivity. This is an oracle mechanism result; an
+online controller that pays for probing remains the next required gate.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -75,7 +83,9 @@ Run the crossover analysis and deterministic tests:
 ```powershell
 python run_crossover_analysis.py
 python run_stagewise_controller.py --output-dir results/stagewise
-python -m unittest -v test_linear_model.py test_stagewise_controller.py
+python run_budget_participation.py --output-dir results/budget_participation
+python -m unittest -v test_linear_model.py test_stagewise_controller.py `
+  test_budget_participation.py
 ```
 
 No GPU is required for these linear experiments.

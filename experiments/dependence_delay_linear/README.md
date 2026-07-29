@@ -86,10 +86,19 @@ python run_stagewise_controller.py `
   --bootstrap-replications 2000
 ```
 
+For the pre-registered budget-matched participation surface:
+
+```powershell
+python run_budget_participation.py `
+  --output-dir results/budget_participation `
+  --mc-replications 10000
+```
+
 Run deterministic implementation checks with:
 
 ```powershell
-python -m unittest -v test_linear_model.py test_stagewise_controller.py
+python -m unittest -v test_linear_model.py test_stagewise_controller.py `
+  test_budget_participation.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -114,6 +123,12 @@ EXP-004 writes `results/stagewise/`. Its pre-registered primary gate failed:
 joint step–participation adaptation strongly outperformed the independence-
 based delay-only controller, but did not improve MSE over dependence-aware
 step-size adaptation with all agents retained.
+
+EXP-005A writes `results/budget_participation/`. All five pre-registered gates
+passed. Under the primary matched message budget, independent-noise cells
+selected \(q=32\), while the \(\rho=0.9\) cells selected \(q=1\) and attained
+about 26% of the best all-agent MSE. This is an oracle mechanism result, not
+yet an online-controller claim.
 
 ## Scope
 

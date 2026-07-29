@@ -23,6 +23,12 @@ the standard linear-speedup analysis.
 5. [`validation_exp004.md`](validation_exp004.md) records the paired-bootstrap
    interpretation, 11/11 statistical fallacy scan, and incomplete reproduction
    status.
+6. [`experiment_005a_budget_participation_surface.md`](experiment_005a_budget_participation_surface.md)
+   records the pre-registered resource-matched participation surface. Its five
+   gates passed: independent-noise cells selected all 32 agents, whereas the
+   high-correlation cells selected one agent under the primary message budget.
+7. [`validation_exp005a.md`](validation_exp005a.md) records the numerical
+   validation, 11/11 fallacy scan, scope warnings, and byte-identical rerun.
 
 ## Code and canonical outputs
 
@@ -36,6 +42,8 @@ the standard linear-speedup analysis.
   `experiments/dependence_delay_linear/results/crossover/`
 - Stagewise controller:
   `experiments/dependence_delay_linear/results/stagewise/`
+- Budget-matched participation:
+  `experiments/dependence_delay_linear/results/budget_participation/`
 
 The `results/smoke/` directory is an implementation smoke test and must not be
 used as scientific evidence. The same-seed reproduction directory is retained
@@ -49,6 +57,8 @@ The project has strong evidence for correlation-limited speedup and
 dependence-aware scalar step-size tuning. EXP-004 showed that a controller can
 reduce its selected count from 32 to 4 after a common-noise shift, but this did
 not improve MSE over retaining all agents and adapting only the step size.
-Dynamic participation is therefore not currently supported as the main
-accuracy contribution. It may remain useful as a resource-control mechanism,
-which requires a communication-aware experiment.
+EXP-005A subsequently confirmed that participation can be a strong
+resource-control mechanism: the resource-matched optimum changes from all
+agents under independent noise to one agent under strong common noise. The
+next mandatory gate is an online controller that observes only participating
+agents and charges every exploration probe.
