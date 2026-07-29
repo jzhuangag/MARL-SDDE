@@ -75,6 +75,14 @@ performance and switch-response gates. However, the piecewise oracle also kept
 median \(q=32\) in every regime, so this rejects the implemented controller
 rather than the broader participation-adaptation hypothesis.
 
+EXP-006A resolves that mismatch with a 9,720-cell oracle phase diagram. It
+finds ten reproducible regions where optimal participation changes strongly
+with dependence and optimization state. The combined go/no-go still fails
+because delay changes pointwise optimal participation in only 5.31% of groups.
+The resulting research target is correlation/state-adaptive participation
+under SDDE-governed delay, not a controller that forces every source of
+heterogeneity to act through the agent count.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -99,9 +107,11 @@ python run_crossover_analysis.py
 python run_stagewise_controller.py --output-dir results/stagewise
 python run_budget_participation.py --output-dir results/budget_participation
 python run_online_participation.py --output-dir results/online_participation
+python run_sparse_dynamic.py --output-dir results/sparse_dynamic
+python run_oracle_phase.py --output-dir results/oracle_phase
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
-  test_sparse_dynamic.py
+  test_sparse_dynamic.py test_oracle_phase.py
 ```
 
 No GPU is required for these linear experiments.

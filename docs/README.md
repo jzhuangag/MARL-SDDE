@@ -42,6 +42,12 @@ the standard linear-speedup analysis.
 12. [`validation_exp005c.md`](validation_exp005c.md) records the completed
     64-seed result, exact reproduction, oracle-gate mismatch, and 11/11 fallacy
     scan.
+13. [`experiment_006a_oracle_phase_diagram.md`](experiment_006a_oracle_phase_diagram.md)
+    preregisters the oracle-first participation phase diagram used to decide
+    whether agent-number adaptation remains a viable main direction.
+14. [`validation_exp006a.md`](validation_exp006a.md) records the 9,720-cell
+    scan, exact reproduction, failed delay-relevance gate, ten actionable
+    correlation/state regions, and 11/11 fallacy scan.
 
 ## Code and canonical outputs
 
@@ -83,3 +89,7 @@ within-run regime shifts. Its authorized optimized execution was exactly
 reproduced but failed three scientific gates. The audit also showed that the
 piecewise oracle retained median \(q=32\) in every regime, so the current test
 rejects the controller without resolving the broader participation hypothesis.
+EXP-006A resolves the oracle surface: correlation/state adaptation has ten
+contiguous actionable regions, but delay changes pointwise optimal \(q\) in
+only 5.31% of groups. The combined gate fails, while a narrower
+correlation/state controller remains mechanistically supported.

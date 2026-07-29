@@ -116,12 +116,18 @@ Its first primary execution timed out. The authorized v2 execution below uses
 a semantics-checked Numba block kernel and completed within the original
 timeout.
 
+The EXP-006A oracle phase diagram is:
+
+```powershell
+python run_oracle_phase.py --output-dir results/oracle_phase
+```
+
 Run deterministic implementation checks with:
 
 ```powershell
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
-  test_sparse_dynamic.py
+  test_sparse_dynamic.py test_oracle_phase.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -166,6 +172,14 @@ artifacts byte-for-byte. The overall gate failed: adaptive/best-fixed was 2.619
 and switch response passed only 1/4 regimes. The piecewise oracle itself used
 median \(q=32\) in every regime, exposing a mismatch between the registered
 switch directions and the finite-budget proxy.
+
+EXP-006A scans 9,720 deterministic oracle cells over dependence, budget,
+current error, delay, and overhead. It passed five of six gates and reproduced
+all artifacts exactly. Correlation responsiveness covered 37.22% of tracks and
+ten contiguous actionable regions, but only 5.31% of groups changed optimal
+agent count across delay. The combined gate therefore failed; the supported
+target is state- and correlation-adaptive participation, with delay retained in
+the stability/rate model rather than forced to control \(q\) directly.
 
 ## Scope
 
