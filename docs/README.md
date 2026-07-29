@@ -16,6 +16,13 @@ the standard linear-speedup analysis.
    level changes between transient and stationary regimes.
 3. [`reproducibility_exp001.md`](reproducibility_exp001.md) records analytic
    implementation checks, Monte Carlo agreement, and the independent rerun.
+4. [`experiment_004_stagewise_controller.md`](experiment_004_stagewise_controller.md)
+   records the predictable low-complexity joint step–participation experiment.
+   The controller detected the dependence shift but did not improve MSE beyond
+   dependence-aware step-size adaptation.
+5. [`validation_exp004.md`](validation_exp004.md) records the paired-bootstrap
+   interpretation, 11/11 statistical fallacy scan, and incomplete reproduction
+   status.
 
 ## Code and canonical outputs
 
@@ -27,6 +34,8 @@ the standard linear-speedup analysis.
   `experiments/dependence_delay_linear/results/server_time_sensitivity/`
 - Transient/stationary crossover:
   `experiments/dependence_delay_linear/results/crossover/`
+- Stagewise controller:
+  `experiments/dependence_delay_linear/results/stagewise/`
 
 The `results/smoke/` directory is an implementation smoke test and must not be
 used as scientific evidence. The same-seed reproduction directory is retained
@@ -36,9 +45,10 @@ canonical outputs; its verification result is recorded in
 
 ## Current decision
 
-The project has strong evidence for correlation-limited speedup and for
-dependence-aware step-size tuning. It does not yet have evidence that the
-jointly tuned 500-step optimum rejects agents. The stronger, currently
-supported mechanism is stage-dependent participation at a fixed constant step:
-more agents help the early transient, while fewer agents lower the stationary
-error floor.
+The project has strong evidence for correlation-limited speedup and
+dependence-aware scalar step-size tuning. EXP-004 showed that a controller can
+reduce its selected count from 32 to 4 after a common-noise shift, but this did
+not improve MSE over retaining all agents and adapting only the step size.
+Dynamic participation is therefore not currently supported as the main
+accuracy contribution. It may remain useful as a resource-control mechanism,
+which requires a communication-aware experiment.

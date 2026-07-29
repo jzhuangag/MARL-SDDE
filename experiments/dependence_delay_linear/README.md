@@ -77,10 +77,19 @@ For the post-baseline transient-to-stationary crossover analysis:
 python run_crossover_analysis.py
 ```
 
+For the predictable stagewise controller:
+
+```powershell
+python run_stagewise_controller.py `
+  --output-dir results/stagewise `
+  --num-seeds 64 `
+  --bootstrap-replications 2000
+```
+
 Run deterministic implementation checks with:
 
 ```powershell
-python -m unittest -v test_linear_model.py
+python -m unittest -v test_linear_model.py test_stagewise_controller.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -100,6 +109,11 @@ Monte Carlo replications for three exact-solution checks.
 
 The crossover analysis writes a separate `results/crossover/` directory. It is
 exploratory and does not alter the registered EXP-001 verdict.
+
+EXP-004 writes `results/stagewise/`. Its pre-registered primary gate failed:
+joint step–participation adaptation strongly outperformed the independence-
+based delay-only controller, but did not improve MSE over dependence-aware
+step-size adaptation with all agents retained.
 
 ## Scope
 
