@@ -68,6 +68,11 @@ adaptive-step control and stayed within 8.3% of the same-cost information
 oracle. However, it did not beat fixed \(q=1\) after paying an 18% full-probe
 budget, so the pre-registered overall gate failed.
 
+EXP-005C replaces the full probe by 2.4% sparse probing and introduces
+within-run dependence shifts. Its first registered 64-seed execution exceeded
+the hard timeout and produced no primary artifacts, so no scientific
+participation decision is drawn from that run.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -93,7 +98,8 @@ python run_stagewise_controller.py --output-dir results/stagewise
 python run_budget_participation.py --output-dir results/budget_participation
 python run_online_participation.py --output-dir results/online_participation
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
-  test_budget_participation.py test_online_participation.py
+  test_budget_participation.py test_online_participation.py `
+  test_sparse_dynamic.py
 ```
 
 No GPU is required for these linear experiments.
