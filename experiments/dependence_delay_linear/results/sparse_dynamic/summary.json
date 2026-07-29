@@ -1,0 +1,120 @@
+{
+  "experiment_id": "EXP-005C-sparse-dynamic-controller",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "num_paired_seeds": 64,
+  "base_seed": 20260729,
+  "bootstrap_replications": 2000,
+  "execution_version": "v2",
+  "execution_engine": "numba_block_v2",
+  "best_registered_fixed_policy": "fixed_q32_oracle_eta",
+  "config": {
+    "total_budget": 32000,
+    "block_budget": 2000,
+    "num_blocks": 16,
+    "regime_sequence": [
+      "independent",
+      "clustered",
+      "global",
+      "mixed"
+    ],
+    "sparse_probe_q": 8,
+    "sparse_probe_updates": 4,
+    "sparse_probe_cost": 768,
+    "rolling_probe_snapshots": 12,
+    "max_delays": [
+      4,
+      16
+    ],
+    "eta_grid": [
+      0.0025,
+      0.0031046445301837096,
+      0.0038555270635198514,
+      0.0047880164034928676,
+      0.005946035575013605,
+      0.007384130729697496,
+      0.009170040432046712,
+      0.011387886347566916,
+      0.01414213562373095,
+      0.017562521603732995,
+      0.021810154653305155,
+      0.027085110938737847,
+      0.03363585661014857,
+      0.04177095129709654,
+      0.05187358218604038,
+      0.06441961327797016,
+      0.08
+    ]
+  },
+  "gates": {
+    "best_fixed_improvement": {
+      "pass": false,
+      "criterion": "ratio <= 0.90 and 95% upper < 1.0",
+      "best_fixed_policy": "fixed_q32_oracle_eta",
+      "ratio": 2.619217193849619,
+      "bootstrap_95_upper": 4.079835782487838
+    },
+    "oracle_proximity": {
+      "pass": false,
+      "criterion": "score <= 1.25 and 95% upper < 1.40",
+      "normalized_score": 8.22647902334235,
+      "bootstrap_95_upper": 10.579573869383648
+    },
+    "switch_response": {
+      "pass": false,
+      "criterion": "correct direction in at least 3/4 regimes",
+      "passing_regimes": 1,
+      "cells": [
+        {
+          "regime": "independent",
+          "block": 1,
+          "median_q": 32.0,
+          "criterion": "q >= 16",
+          "pass": true
+        },
+        {
+          "regime": "clustered",
+          "block": 5,
+          "median_q": 32.0,
+          "criterion": "q <= 8",
+          "pass": false
+        },
+        {
+          "regime": "global",
+          "block": 9,
+          "median_q": 32.0,
+          "criterion": "q <= 4",
+          "pass": false
+        },
+        {
+          "regime": "mixed",
+          "block": 13,
+          "median_q": 32.0,
+          "criterion": "q <= 8",
+          "pass": false
+        }
+      ]
+    },
+    "exploration_budget": {
+      "pass": true,
+      "criterion": "exactly 768 units and <= 5% total budget",
+      "probe_cost": 768,
+      "probe_fraction": 0.024
+    },
+    "accounting_and_numerical_validity": {
+      "pass": true,
+      "criterion": "finite, charged, within block and total budgets"
+    },
+    "overall": {
+      "pass": false,
+      "criterion": "all five final go/no-go gates pass"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1",
+    "numba": "0.54.1"
+  }
+}

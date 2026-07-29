@@ -13,6 +13,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import numba
 
 from online_participation import (
     FiniteBudgetProxyCache,
@@ -20,6 +21,7 @@ from online_participation import (
     generate_factor_paths,
 )
 from sparse_dynamic import (
+    EXECUTION_ENGINES,
     POLICIES,
     REGIME_SEQUENCE,
     DynamicConfig,
@@ -48,6 +50,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--num-seeds", type=int, default=64)
     parser.add_argument("--base-seed", type=int, default=20260729)
     parser.add_argument("--bootstrap-replications", type=int, default=2000)
+    parser.add_argument(
+        "--execution-engine",
+        choices=EXECUTION_ENGINES,
+        default="numba_block_v2",
+    )
     return parser.parse_args()
 
 
@@ -55,6 +62,7 @@ def run_experiment(
     config: DynamicConfig,
     num_seeds: int,
     base_seed: int,
+    execution_engine: str = "numba_block_v2",
 ) -> Tuple[np.ndarray, pd.DataFrame, pd.DataFrame]:
     errors = np.empty(
         (
@@ -92,6 +100,7 @@ def run_experiment(
                     noise_tables=noise_tables,
                     config=config,
                     proxy_cache=cache,
+                    execution_engine=execution_engine,
                 )
                 errors[policy_index, seed_index, delay_index] = np.asarray(
                     result["checkpoint_errors"], dtype=float
@@ -452,6 +461,7 @@ def main() -> None:
         config=config,
         num_seeds=args.num_seeds,
         base_seed=args.base_seed,
+        execution_engine=args.execution_engine,
     )
     metrics = build_regime_metrics(errors, config)
     trajectory = build_trajectory_summary(errors, config)
@@ -480,6 +490,8 @@ def main() -> None:
         "num_paired_seeds": args.num_seeds,
         "base_seed": args.base_seed,
         "bootstrap_replications": args.bootstrap_replications,
+        "execution_version": "v2",
+        "execution_engine": args.execution_engine,
         "best_registered_fixed_policy": best_fixed,
         "config": {
             "total_budget": config.total_budget,
@@ -500,6 +512,7 @@ def main() -> None:
             "numpy": np.__version__,
             "pandas": pd.__version__,
             "matplotlib": matplotlib.__version__,
+            "numba": numba.__version__,
         },
     }
     with (args.output_dir / "summary.json").open(

@@ -150,3 +150,41 @@ post-hoc longer timeout. A future execution requires an explicitly authorized
 new run after performance diagnosis, while preserving the registered
 scientific design and recording any computational change as a new execution
 version.
+
+## Execution version 2 authorization
+
+On 2026-07-29, the user explicitly authorized performance diagnosis,
+semantics-preserving optimization, and a new primary execution. Execution
+version 2 freezes every scientific element of preregistration version 1:
+
+- the 64 paired seeds beginning at 20260729 and their random-number streams;
+- both delay cells, all six policies, the regime sequence, and all budgets;
+- the controller observations, rolling window, candidate actions, and probes;
+- all 161 checkpoints, score definitions, bootstrap resampling, and gates.
+
+Permitted computational changes are limited to caching deterministic
+quantities, eliminating repeated array construction, vectorizing deterministic
+post-processing, and equivalent low-level acceleration. Before a primary run,
+version 2 must match version 1 on a paired deterministic equivalence fixture,
+including checkpoint errors, block actions, and budget accounting. The primary
+command remains unchanged, and the registered 15-minute hard timeout remains
+in force.
+
+## Execution version 2 outcome
+
+Execution version 2 completed the registered 64-seed command in 102.5 seconds.
+All expected artifacts were produced. A deterministic full rerun completed in
+83.6 seconds, and all eight artifacts matched byte-for-byte by SHA-256.
+
+Only the exploration-budget and accounting/numerical-validity gates passed.
+The adaptive-to-best-fixed ratio was 2.619 with paired-bootstrap 95% interval
+[1.628, 4.080]; the adaptive-to-piecewise-oracle normalized score was 8.226
+with interval [6.215, 10.580]; and only one of four switch-response cells
+passed. The registered overall decision is therefore **FAIL**.
+
+The validation audit also found that the piecewise oracle itself selected
+median \(q=32\) in every regime. Thus EXP-005C rejects the implemented sparse
+controller as the present main contribution, but its switch gate does not
+support a general conclusion against correlation-adaptive participation.
+Detailed statistics and the 11/11 fallacy scan are recorded in
+`validation_exp005c.md`.

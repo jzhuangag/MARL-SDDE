@@ -35,10 +35,13 @@ the standard linear-speedup analysis.
 9. [`validation_exp005b.md`](validation_exp005b.md) records the paired-bootstrap
    audit, failed overall gate, 11/11 fallacy scan, and exact reproduction.
 10. [`experiment_005c_sparse_dynamic_controller.md`](experiment_005c_sparse_dynamic_controller.md)
-    records the final sparse, nonstationary go/no-go design and its primary-run
-    timeout.
-11. [`validation_exp005c_timeout.md`](validation_exp005c_timeout.md) records
-    the `CANNOT_VERIFY` verdict and explains why smoke output is not evidence.
+    records the final sparse, nonstationary go/no-go design, its initial
+    timeout, authorized execution v2, and failed registered decision.
+11. [`validation_exp005c_timeout.md`](validation_exp005c_timeout.md) preserves
+    the initial `CANNOT_VERIFY` audit.
+12. [`validation_exp005c.md`](validation_exp005c.md) records the completed
+    64-seed result, exact reproduction, oracle-gate mismatch, and 11/11 fallacy
+    scan.
 
 ## Code and canonical outputs
 
@@ -76,5 +79,7 @@ next experiment tested an online controller that observes only participating
 agents and charges every exploration probe. It correctly reduced participation
 under correlated noise but its 18% full-probe cost prevented it from beating
 the best fixed-\(q\) policy. EXP-005C reduced exploration to 2.4% and introduced
-within-run regime shifts, but its 64-seed primary command timed out without
-artifacts. The sparse-controller go/no-go decision is therefore unresolved.
+within-run regime shifts. Its authorized optimized execution was exactly
+reproduced but failed three scientific gates. The audit also showed that the
+piecewise oracle retained median \(q=32\) in every regime, so the current test
+rejects the controller without resolving the broader participation hypothesis.

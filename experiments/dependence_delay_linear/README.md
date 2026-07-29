@@ -112,8 +112,9 @@ python run_sparse_dynamic.py `
   --bootstrap-replications 2000
 ```
 
-Its first primary execution timed out and must not be represented as a
-completed result.
+Its first primary execution timed out. The authorized v2 execution below uses
+a semantics-checked Numba block kernel and completed within the original
+timeout.
 
 Run deterministic implementation checks with:
 
@@ -158,9 +159,13 @@ under clustered/global/mixed noise, and achieved 34.4% of the all-agent MSE in
 correlated cells. It failed to beat fixed \(q=1\) after charging the 18%
 full-probe cost, so the full-probe controller is rejected.
 
-EXP-005C implements 2.4% sparse probing and within-run dependence shifts. The
-registered 64-seed execution timed out without producing primary artifacts;
-its current validation status is `CANNOT_VERIFY`.
+EXP-005C implements 2.4% sparse probing and within-run dependence shifts. Its
+authorized execution v2 completed 64 paired seeds and reproduced all eight
+artifacts byte-for-byte. The overall gate failed: adaptive/best-fixed was 2.619
+(95% interval [1.628, 4.080]), adaptive/oracle was 8.226 ([6.215, 10.580]),
+and switch response passed only 1/4 regimes. The piecewise oracle itself used
+median \(q=32\) in every regime, exposing a mismatch between the registered
+switch directions and the finite-budget proxy.
 
 ## Scope
 

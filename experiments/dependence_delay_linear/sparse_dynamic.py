@@ -16,6 +16,11 @@ from online_participation import (
     true_aggregate_lrv,
 )
 
+try:
+    import numba
+except ImportError:  # pragma: no cover - exercised only in minimal installs
+    numba = None
+
 
 POLICIES: Tuple[str, ...] = (
     "sparse_adaptive",
@@ -32,6 +37,50 @@ REGIME_SEQUENCE: Tuple[str, ...] = (
     "global",
     "mixed",
 )
+
+EXECUTION_ENGINES: Tuple[str, ...] = (
+    "numpy_reference",
+    "numba_block_v2",
+)
+
+
+def _compile_block_kernel():
+    if numba is None:
+        return None
+
+    @numba.njit(cache=True)
+    def kernel(
+        x_buffer: np.ndarray,
+        maximum_delay: int,
+        update_count: int,
+        delays: np.ndarray,
+        noise_table: np.ndarray,
+        q: int,
+        eta: float,
+        curvature: float,
+        num_updates: int,
+    ) -> np.ndarray:
+        squared = np.empty(num_updates, dtype=np.float64)
+        for local_update in range(num_updates):
+            global_update = update_count + local_update
+            time_index = maximum_delay + global_update
+            gradient_sum = 0.0
+            for agent in range(q):
+                gradient_sum += (
+                    curvature
+                    * x_buffer[time_index - delays[agent]]
+                    - noise_table[agent, global_update]
+                )
+            x_buffer[time_index + 1] = (
+                x_buffer[time_index] - eta * gradient_sum / q
+            )
+            squared[local_update] = x_buffer[time_index + 1] ** 2
+        return squared
+
+    return kernel
+
+
+_NUMBA_BLOCK_KERNEL = _compile_block_kernel()
 
 
 @dataclass(frozen=True)
@@ -142,9 +191,14 @@ def simulate_dynamic_policy(
     noise_tables: Dict[str, np.ndarray],
     config: DynamicConfig,
     proxy_cache: Optional[FiniteBudgetProxyCache] = None,
+    execution_engine: str = "numba_block_v2",
 ) -> Dict[str, object]:
     if policy not in POLICIES:
         raise ValueError("unknown policy")
+    if execution_engine not in EXECUTION_ENGINES:
+        raise ValueError("unknown execution engine")
+    if execution_engine == "numba_block_v2" and _NUMBA_BLOCK_KERNEL is None:
+        raise RuntimeError("numba_block_v2 requires numba")
     delays = make_agent_delays(
         max_agents=config.num_agents,
         max_delay=max_delay,
@@ -263,15 +317,47 @@ def simulate_dynamic_policy(
         selected_q = int(action["num_agents"])
         selected_eta = float(action["eta"])
         exploitation_cost = config.update_overhead + selected_q
-        while block_spent + exploitation_cost <= config.block_budget:
-            cost, _ = take_update(
+        exploitation_updates = (
+            config.block_budget - block_spent
+        ) // exploitation_cost
+        if execution_engine == "numpy_reference":
+            for _ in range(exploitation_updates):
+                cost, _ = take_update(
+                    selected_q,
+                    selected_eta,
+                    scenario,
+                    block_start,
+                    block_spent,
+                )
+                block_spent += cost
+        else:
+            squared_block = _NUMBA_BLOCK_KERNEL(
+                x_buffer,
+                maximum_delay,
+                update_count,
+                delays,
+                noise_tables[scenario],
                 selected_q,
                 selected_eta,
-                scenario,
-                block_start,
-                block_spent,
+                config.curvature,
+                exploitation_updates,
             )
-            block_spent += cost
+            update_numbers = np.arange(
+                1, exploitation_updates + 1, dtype=float
+            )
+            nominal_budgets.extend(
+                (
+                    block_start
+                    + block_spent
+                    + exploitation_cost * update_numbers
+                ).tolist()
+            )
+            squared_errors.extend(squared_block.tolist())
+            update_count += exploitation_updates
+            exploitation_spend = exploitation_updates * exploitation_cost
+            charged_budget += exploitation_spend
+            observed_messages += exploitation_updates * selected_q
+            block_spent += exploitation_spend
         per_block_valid = bool(
             per_block_valid and block_spent <= config.block_budget
         )
