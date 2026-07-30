@@ -1340,6 +1340,84 @@ When \(c_\pi\) is unknown, setting \(c_\pi^-=0\) remains valid but more
 conservative; estimating a useful lower bound for general state spaces is a
 separate statistical problem.
 
+### 7.5 Bounded-kernel certificate with unknown baseline
+
+Let \(k:{\cal Y}\times{\cal Y}\to[0,1]\) be a measurable kernel satisfying
+\(k(y,y)=1\).  Define the independent-source baseline
+
+\[
+c_k=\mathbb E_{E_1,E_2\stackrel{\rm iid}{\sim}\pi}k(E_1,E_2).
+\]
+
+Under the hidden pair-sharing model of Section 7.4, the same-time similarity
+\(X=k(Y_1,Y_2)\) satisfies
+
+\[
+\vartheta_k=\mathbb E X=c_k+(1-c_k)\rho.
+\tag{39}
+\]
+
+This follows from the same conditioning argument as Proposition 4 and covers
+continuous observations for which exact equality has probability zero.
+
+Suppose the learner also constructs a predictable control stream
+\(Z_j\in[0,1]\) whose stationary mean is \(c_k\).  Let
+\(\delta_j^X\) and \(\delta_j^Z\) upper-bound the conditional total-variation
+biases of the same-time and control observations.  Define
+
+\[
+\vartheta_{k,n}^+
+=
+\min\left\{
+1,\bar X_n+r_n(\alpha_X)
++\frac1n\sum_{j=1}^n\delta_j^X
+\right\}
+\]
+
+and
+
+\[
+c_{k,m}^-
+=
+\max\left\{
+0,\bar Z_m-r_m(\alpha_Z)
+-\frac1m\sum_{j=1}^m\delta_j^Z
+\right\}.
+\]
+
+**Theorem 8 (unknown-baseline kernel certificate).**  With probability at
+least \(1-\alpha_X-\alpha_Z\), simultaneously for all adaptive stream counts
+\(n,m\ge1\),
+
+\[
+\rho
+\le
+\left[
+\frac{\vartheta_{k,n}^+-c_{k,m}^-}
+{1-c_{k,m}^-}
+\right]_{[0,1]}.
+\tag{40}
+\]
+
+The result remains joint with a persistence confidence sequence after adding
+its failure probability.
+
+*Proof.*  Apply the time-uniform martingale Hoeffding construction in Theorem
+7 to upper-bound \(\vartheta_k\) from \(X_j\).  Apply it to \(-Z_j\) to
+lower-bound \(c_k\).  On their joint event,
+\(\vartheta_k\le\vartheta_{k,n}^+\) and
+\(c_k\ge c_{k,m}^-\).  The ratio
+\((\vartheta-c)/(1-c)\) is increasing in \(\vartheta\) and non-increasing in
+\(c\), proving (40). \(\square\)
+
+A concrete continuous-state construction uses the lazy-refresh chain on the
+unit circle and a translation-invariant periodic radial basis function
+kernel.  A current agent sample paired with a sufficiently separated past
+sample forms the control stream.  Translation invariance makes its stationary
+conditional kernel mean equal to \(c_k\) for every fixed past sample, while
+the predictable gap supplies \(\delta_j^Z\).  The estimator retains four
+running sums and requires one kernel evaluation per stream.
+
 ## 8. SDDE representation
 
 The matching stochastic delay differential equation must retain the
@@ -1420,6 +1498,7 @@ required.
 | Correlation-limited minimax lower bound | proved; exact Gaussian subclass |
 | Dual-anytime mixing/correlation certificate | proved for observable pair sharing |
 | Latent-collision correlation certificate | proved for hidden pair sharing |
+| Unknown-baseline bounded-kernel certificate | proved |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |

@@ -114,6 +114,11 @@ mixing-bias-corrected collision certificate infers latent correlation from two
 observed agent samples. It obtains 100% joint coverage and exact safety over
 1,152 fresh CPU trajectories; all core artifacts reproduce exactly.
 
+EXP-012B extends the same guarantee to continuous Markov observations using a
+bounded similarity kernel and a learned independent-source baseline. It
+passes all seven gates with 100% joint coverage and completes the controlled
+CPU theorem/certificate program.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -154,6 +159,8 @@ python run_dual_anytime_controller.py --num-seeds 32 `
   --base-seed 20261231 --output-dir results/dual_anytime_controller
 python run_latent_collision_certificate.py --num-seeds 128 `
   --base-seed 20270201 --output-dir results/latent_collision_certificate
+python run_kernel_latent_certificate.py --num-seeds 128 `
+  --base-seed 20270401 --output-dir results/kernel_latent_certificate
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py

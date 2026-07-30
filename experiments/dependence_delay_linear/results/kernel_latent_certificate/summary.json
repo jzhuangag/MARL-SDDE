@@ -1,0 +1,134 @@
+{
+  "experiment": "EXP-012B",
+  "num_seeds": 128,
+  "base_seed": 20270401,
+  "lengthscale": 0.35,
+  "gates": {
+    "joint_anytime_coverage": {
+      "value": 1.0,
+      "pass": true
+    },
+    "conditional_action_safety": {
+      "maximum_updating_radius": 0.9942860250766052,
+      "pass": true
+    },
+    "correlation_ordering": {
+      "pass": true
+    },
+    "fast_mixing_identification": {
+      "rho0_upper": 0.17090572610367546,
+      "rho05_upper": 0.6261670751689068,
+      "rho09_upper": 0.9941413701788149,
+      "pass": true
+    },
+    "baseline_learning": {
+      "true_baseline": 0.1419388762022846,
+      "minimum_fast_baseline_lower": 0.06124140912967506,
+      "maximum_baseline_lower": 0.06300376375691914,
+      "pass": true
+    },
+    "persistent_probe_nonvacuity": {
+      "minimum_median_probes": 85.0,
+      "pass": true
+    },
+    "participation_response": {
+      "by_delay": {
+        "0": {
+          "weak": 3,
+          "strict": 3
+        },
+        "2": {
+          "weak": 3,
+          "strict": 1
+        }
+      },
+      "pass": true
+    }
+  },
+  "validity_pass": true,
+  "scientific_passes": 5,
+  "overall_pass": true,
+  "scenario_summary": [
+    {
+      "mixing_eigenvalue": 0.0,
+      "rho": 0.0,
+      "rho_upper": 0.17090572610367546,
+      "baseline_lower": 0.06124140912967506,
+      "probes": 1637.0,
+      "q_d0": 8.0,
+      "q_d2": 2.0
+    },
+    {
+      "mixing_eigenvalue": 0.0,
+      "rho": 0.5,
+      "rho_upper": 0.6261670751689068,
+      "baseline_lower": 0.06300376375691914,
+      "probes": 1637.0,
+      "q_d0": 2.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.0,
+      "rho": 0.9,
+      "rho_upper": 0.9941413701788149,
+      "baseline_lower": 0.0620362865397949,
+      "probes": 1637.0,
+      "q_d0": 1.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.8,
+      "rho": 0.0,
+      "rho_upper": 0.2879468942855825,
+      "baseline_lower": 0.0,
+      "probes": 470.0,
+      "q_d0": 8.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.8,
+      "rho": 0.5,
+      "rho_upper": 0.7187702511348701,
+      "baseline_lower": 0.0,
+      "probes": 470.0,
+      "q_d0": 4.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.8,
+      "rho": 0.9,
+      "rho_upper": 1.0,
+      "baseline_lower": 0.0,
+      "probes": 470.0,
+      "q_d0": 1.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.96,
+      "rho": 0.0,
+      "rho_upper": 0.4475949653526726,
+      "baseline_lower": 0.0,
+      "probes": 85.0,
+      "q_d0": 8.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.96,
+      "rho": 0.5,
+      "rho_upper": 0.871809207517011,
+      "baseline_lower": 0.0,
+      "probes": 85.0,
+      "q_d0": 4.0,
+      "q_d2": 1.0
+    },
+    {
+      "mixing_eigenvalue": 0.96,
+      "rho": 0.9,
+      "rho_upper": 1.0,
+      "baseline_lower": 0.0,
+      "probes": 85.0,
+      "q_d0": 1.0,
+      "q_d2": 1.0
+    }
+  ]
+}

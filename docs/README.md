@@ -133,6 +133,10 @@ the standard linear-speedup analysis.
     and [`validation_exp012a.md`](validation_exp012a.md) remove access to
     hidden sharing masks and certify correlation from observable Markov-sample
     collisions.
+41. [`experiment_012b_kernel_latent_certificate.md`](experiment_012b_kernel_latent_certificate.md)
+    and [`validation_exp012b.md`](validation_exp012b.md) extend latent sharing
+    to continuous observations with a bounded kernel and an unknown
+    independent-similarity baseline.
 
 ## Code and canonical outputs
 
@@ -249,3 +253,10 @@ controller changes participation from \(8\) to \(2\) to \(1\) as true
 \(\rho\) moves from zero to .5 to .9. All six gates pass and all four core
 artifacts reproduce byte-for-byte. A bounded-kernel collision baseline is the
 remaining CPU generalization before nonlinear breadth.
+EXP-012B completes that bounded-kernel generalization. In 1,152 fresh
+continuous-state trajectories, joint coverage is 100%, the largest true
+updating radius is 0.994286, and all seven gates pass. Fast-mixing
+participation changes \(8\to2\to1\) at zero delay and \(2\to1\to1\) under
+delay. All four core artifacts reproduce byte-for-byte. The controlled CPU
+mainline is now frozen; nonlinear multi-agent Markov breadth is the next
+blocking ICML evidence.

@@ -329,6 +329,13 @@ participation changes from \(8\) to \(2\) to \(1\) as true correlation moves
 from zero to .5 to .9. Near-unit persistence remains conservative, as the
 theory predicts.
 
+EXP-012B replaces exact collision by a periodic radial basis function kernel
+on continuous lazy-refresh Markov states and learns the independent-similarity
+baseline from a lagged control stream. All seven formal gates pass over 1,152
+fresh trajectories. Fast-mixing participation changes from \(8\) to \(2\) to
+\(1\) at zero delay and from \(2\) to \(1\) to \(1\) at delay two. This
+finishes the controlled CPU certificate program.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It
