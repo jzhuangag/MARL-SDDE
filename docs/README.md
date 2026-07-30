@@ -62,6 +62,9 @@ the standard linear-speedup analysis.
 19. [`theory_program_icml2027.md`](theory_program_icml2027.md) narrows the
     proposed ICML contribution to correlation-limited speedup, finite-budget
     participation phase transitions, and an SDDE-to-discrete-time proof route.
+20. [`experiment_007a_linear_td_correlation.md`](experiment_007a_linear_td_correlation.md)
+    preregisters a delayed linear-TD test of effective participation and the
+    finite-budget agent-count phase transition under shared Markov trajectories.
 
 ## Code and canonical outputs
 
