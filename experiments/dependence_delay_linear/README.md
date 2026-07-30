@@ -148,6 +148,7 @@ python run_sharp_delay_bound.py
 python run_predictable_mixing_controller.py
 python run_finite_budget_controller.py
 python run_joint_qbe_controller.py
+python run_progressive_anytime_controller.py
 ```
 
 Run deterministic implementation checks with:
@@ -157,7 +158,8 @@ python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py
 python -m pytest -q test_markov_jump_ms.py `
-  test_predictable_mixing_controller.py
+  test_predictable_mixing_controller.py `
+  test_progressive_mixing_controller.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -274,6 +276,12 @@ low/medium-persistence cells, but the worst high-persistence delayed
 online/oracle expected-error ratio remains 10.46. These experiments reject a
 uniform near-oracle claim for the static-pilot controller and motivate an
 anytime progressive certificate.
+
+EXP-009D implements that time-uniform progressive certificate. Simultaneous
+coverage is 99.479%, all covered actions are exactly stable, and persistent
+gaps shrink across blocks. The worst online/oracle ratio improves to 7.57 but
+still fails the registered threshold five. This rules out a uniform
+near-oracle claim under finite-budget high-confidence mixing estimation.
 
 ## Scope
 

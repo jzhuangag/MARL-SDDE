@@ -110,6 +110,9 @@ the standard linear-speedup analysis.
     through [`validation_exp009c.md`](validation_exp009c.md) audit static
     high-confidence \((q,b,\eta)\) controllers, confirming safety and
     correlation response but rejecting uniform near-oracle efficiency.
+35. [`experiment_009d_progressive_anytime_controller.md`](experiment_009d_progressive_anytime_controller.md)
+    and [`validation_exp009d.md`](validation_exp009d.md) validate time-uniform
+    progressive safety and reject a uniform oracle ratio as mixing vanishes.
 
 ## Code and canonical outputs
 
@@ -191,3 +194,7 @@ much smaller \(q\) under high correlation, but cannot be uniformly near-oracle
 at \(p=0.98,D=2\). The next algorithmic step is a progressive anytime
 certificate that reuses transitions observed between updates; the static
 pilot must not be described as near-oracle.
+EXP-009D completes that progressive audit: simultaneous coverage and exact
+safety pass, and high-persistence gaps refine across blocks, but the worst
+oracle ratio remains 7.57. The manuscript must expose the resulting
+confidence/mixing penalty instead of promising a uniform near-oracle bound.

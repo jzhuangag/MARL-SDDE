@@ -3,10 +3,12 @@
 from typing import Dict, Optional, Tuple
 
 import numpy as np
+from scipy.optimize import minimize_scalar
 from scipy.stats import beta
 
 from markov_jump_ms import (
     AGENT_COUNTS_EXPANDING,
+    aggregate_same_time_curvature,
     covariance_operator_coefficients,
     homogeneous_delays,
     minimum_decorrelation_gap,
@@ -249,6 +251,7 @@ def select_joint_action(
     delay: int,
     pilot_cost: int,
     fixed_q: Optional[int] = None,
+    resource_budget: int = RESOURCE_BUDGET,
 ) -> Dict[str, float]:
     """Jointly optimize participation, decorrelation gap, and safe step."""
 
@@ -256,7 +259,7 @@ def select_joint_action(
     if persistence_upper >= 1.0:
         return {
             "persistence_upper": 1.0,
-            "gap": RESOURCE_BUDGET + 1,
+            "gap": int(resource_budget) + 1,
             "delta_upper": 0.5,
             "num_agents": int(fixed_q or 1),
             "eta": 0.0,
@@ -280,31 +283,61 @@ def select_joint_action(
         }
     )
     candidates = (fixed_q,) if fixed_q is not None else AGENT_COUNTS_EXPANDING
+    curvatures = {
+        int(num_agents): aggregate_same_time_curvature(
+            model, int(num_agents), rho
+        )[1]
+        for num_agents in candidates
+    }
     best = None
     for gap in gaps:
         delta_upper = mixing_tv_after_gap(persistence_upper, gap)
         for num_agents in candidates:
-            delays = homogeneous_delays(int(num_agents), delay)
-            theorem = sharp_theorem_steps(
-                model,
-                int(num_agents),
-                rho,
-                delays,
-                delta_upper,
+            effective_monotonicity = (
+                monotonicity - 2.0 * lipschitz * delta_upper
             )
+            effective_curvature = (
+                curvatures[int(num_agents)]
+                + 2.0 * lipschitz * lipschitz * delta_upper
+            )
+            rms_delay = float(delay)
+
+            delay_coefficient = (
+                lipschitz * lipschitz * rms_delay
+            )
+            if delay_coefficient == 0.0:
+                root = (
+                    2.0
+                    * effective_monotonicity
+                    / effective_curvature
+                )
+            else:
+                roots = np.roots(
+                    (
+                        delay_coefficient ** 2,
+                        0.0,
+                        -(effective_curvature + 2.0 * delay_coefficient),
+                        2.0 * effective_monotonicity,
+                    )
+                )
+                positive = sorted(
+                    float(value.real)
+                    for value in roots
+                    if abs(value.imag) <= 1e-9 and value.real > 0.0
+                )
+                if not positive:
+                    raise RuntimeError(
+                        "failed to solve the sharp delay boundary"
+                    )
+                root = positive[0]
+            root *= 1.0 - 1e-8
             update_cost = gap + SERVER_OVERHEAD + int(num_agents)
-            usable = max(0, RESOURCE_BUDGET - int(pilot_cost))
+            usable = max(0, int(resource_budget) - int(pilot_cost))
             updates = usable // update_cost
             blocks = updates // (2 * delay + 1)
             noise = ADDITIVE_SCALE ** 2 * (
                 rho + (1.0 - rho) / float(num_agents)
             )
-            root = theorem["sharp_root"] * (1.0 - 1e-8)
-            effective_monotonicity = theorem[
-                "effective_monotonicity"
-            ]
-            effective_curvature = theorem["effective_curvature"]
-            rms_delay = theorem["rms_delay"]
 
             def contraction(eta: float) -> float:
                 base = (
@@ -336,34 +369,44 @@ def select_joint_action(
                     )
                 )
 
-            grid = root * np.geomspace(1e-5, 1.0, 121)
-            values = np.asarray([risk(value) for value in grid])
+            grid = root * np.geomspace(1e-5, 1.0, 41)
+            base_grid = (
+                1.0
+                - 2.0 * grid * effective_monotonicity
+                + grid * grid * effective_curvature
+            )
+            factor_grid = (
+                np.sqrt(np.maximum(base_grid, 0.0))
+                + grid * grid * delay_coefficient
+            )
+            coefficient_grid = factor_grid * factor_grid
+            values = (
+                coefficient_grid ** blocks
+                + grid
+                * grid
+                * noise
+                / np.maximum(
+                    1.0 - coefficient_grid, np.finfo(float).eps
+                )
+            )
             index = int(np.argmin(values))
-            left = 0.0 if index == 0 else float(grid[index - 1])
+            left = (
+                float(root * 1e-8)
+                if index == 0
+                else float(grid[index - 1])
+            )
             right = (
                 root
                 if index == len(grid) - 1
                 else float(grid[index + 1])
             )
-            inverse_phi = (np.sqrt(5.0) - 1.0) / 2.0
-            first = right - inverse_phi * (right - left)
-            second = left + inverse_phi * (right - left)
-            first_value = risk(first)
-            second_value = risk(second)
-            for _ in range(60):
-                if first_value <= second_value:
-                    right = second
-                    second = first
-                    second_value = first_value
-                    first = right - inverse_phi * (right - left)
-                    first_value = risk(first)
-                else:
-                    left = first
-                    first = second
-                    first_value = second_value
-                    second = left + inverse_phi * (right - left)
-                    second_value = risk(second)
-            eta = 0.5 * (left + right)
+            optimized = minimize_scalar(
+                risk,
+                bounds=(left, right),
+                method="bounded",
+                options={"xatol": 1e-12, "maxiter": 80},
+            )
+            eta = float(optimized.x)
             coefficient = contraction(eta)
             row = {
                 "persistence_upper": persistence_upper,

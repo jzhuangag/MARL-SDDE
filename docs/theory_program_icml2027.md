@@ -470,6 +470,16 @@ larger. The paper must not claim a uniform near-oracle result for the static
 pilot. A progressive anytime-confidence controller is the justified next
 extension.
 
+EXP-009D tests that progressive extension with a time-uniform
+Clopper--Pearson sequence. Simultaneous coverage is 99.479%, every covered
+action is exactly stable, and high-persistence median gaps shrink from
+174--207 in the first updating block to 112--128 in the final block. The worst
+online/oracle ratio improves from 10.46 to 7.57 but still fails the registered
+constant-five gate. The defensible theorem target is therefore a safe adaptive
+bound with an explicit confidence-uncertainty penalty that deteriorates as
+the spectral gap vanishes, not a uniform near-oracle guarantee over all
+mixing rates.
+
 ## Preliminary prior-art boundary
 
 The following authoritative records were checked on 2026-07-30. A fresh
