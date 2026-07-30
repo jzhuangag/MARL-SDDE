@@ -117,6 +117,10 @@ the standard linear-speedup analysis.
     and [`validation_exp010a.md`](validation_exp010a.md) transfer the sharp
     homogeneous certificate to seven-state vector TD, while isolating the
     still-open affine Markov finite-time bound.
+37. [`experiment_010b_affine_finite_time_certificate.md`](experiment_010b_affine_finite_time_certificate.md)
+    and [`validation_exp010b.md`](validation_exp010b.md) close and calibrate
+    the finite-gap affine Markov-TD bound without conditional-centering or
+    Jacobian--innovation orthogonality assumptions.
 
 ## Code and canonical outputs
 
@@ -208,3 +212,8 @@ median gap by \(18.36\times\), and all artifacts reproduce. The controller is
 never worse than the better endpoint in mean, but its strict endpoint gate
 fails by equality in five cells. Generic affine Markov-TD finite-time risk
 remains a proof obligation.
+EXP-010B closes that finite-gap obligation. The affine theorem passes every
+registered validity, nonvacuity, response, calibration, and informativeness
+gate; its median bound/mean ratio is 20.77 and all eight artifacts reproduce.
+The unthinned Poisson-equation extension, a correlation-limited lower bound,
+and general mixing-certificate estimation remain distinct next steps.

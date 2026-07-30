@@ -710,11 +710,228 @@ and hence a residual of at most
 This corollary is not automatic for affine TD driven by finite-gap Markov
 data.  At the projected fixed point, the one-step TD innovation can have a
 nonzero conditional mean and can be conditionally correlated with the random
-Jacobian.  The homogeneous stability theorem remains valid, but a generic
-finite-sample affine-TD bound requires an additional martingale decomposition
-or Poisson-equation argument.  Until that argument is supplied, substituting
-the stationary TD-noise second moment into the displayed residual is a
-controller surrogate rather than a theorem.
+Jacobian.  The following result removes both requirements for the
+predictably decorrelated algorithm.
+
+**Theorem 4 (affine decorrelated delayed finite-time bound).**  In addition to
+the setting of Theorem 3, consider
+
+\[
+e_{k+1}
+=e_k-\frac{\eta}{q}\sum_{i=1}^q
+\left(H_{i,k}e_{k-\tau_i}-\xi_{i,k}\right).
+\tag{22}
+\]
+
+Assume \(\|\xi_{i,k}\|\le G\), and define the stationary aggregate innovation
+and its second moment by
+
+\[
+\bar\xi_k=\frac1q\sum_{i=1}^q\xi_{i,k},\qquad
+\mathbb E_{\pi_q}\bar\xi_k=0,\qquad
+\Omega_q=\mathbb E_{\pi_q}\|\bar\xi_k\|^2.
+\]
+
+No conditional centering or orthogonality between \(\bar H_k\) and
+\(\bar\xi_k\) is imposed.  Let
+
+\[
+\begin{aligned}
+a_\delta(\eta)
+&=1-\eta\mu_\delta
+  +\eta^2(2K_q+4L^2\delta),\\
+\beta_\delta(\eta)
+&=\frac{4\eta G^2\delta^2}{\mu_\delta}
+  +\eta^2(2\Omega_q+4G^2\delta),\\
+h_\tau(\eta)
+&=2\eta^4L^4\tau_{\rm rms}^2,\\
+g_\tau(\eta)
+&=2\eta^4L^2G^2\tau_{\rm rms}^2.
+\end{aligned}
+\tag{23}
+\]
+
+For \(\tau_{\rm rms}>0\), suppose \(a_\delta(\eta)>0\), set
+
+\[
+\lambda_\star(\eta)
+=\sqrt{\frac{h_\tau(\eta)}{a_\delta(\eta)}},
+\]
+
+and define
+
+\[
+\begin{aligned}
+c_{\rm aff}(\eta)
+&=(1+\lambda_\star)a_\delta(\eta)
+ +(1+\lambda_\star^{-1})h_\tau(\eta)\\
+&=\left[
+\sqrt{a_\delta(\eta)}
++\sqrt{2}\eta^2L^2\tau_{\rm rms}
+\right]^2,\\
+d_{\rm aff}(\eta)
+&=(1+\lambda_\star)\beta_\delta(\eta)
+ +(1+\lambda_\star^{-1})g_\tau(\eta).
+\end{aligned}
+\tag{24}
+\]
+
+When \(\tau_{\rm rms}=0\), use the continuous-limit definitions
+\(c_{\rm aff}=a_\delta\) and \(d_{\rm aff}=\beta_\delta\).
+If \(c_{\rm aff}(\eta)<1\), then for
+
+\[
+R_k=\max_{k-2D\le j\le k}\mathbb E\|e_j\|^2,\qquad
+m=2D+1,
+\]
+
+the block envelope satisfies
+
+\[
+R_{k+m}
+\le
+\frac{d_{\rm aff}}{1-c_{\rm aff}}
++c_{\rm aff}
+\left(
+R_k-\frac{d_{\rm aff}}{1-c_{\rm aff}}
+\right)_+.
+\tag{25}
+\]
+
+Consequently, for every integer \(n\ge0\),
+
+\[
+\boxed{
+R_{nm}
+\le
+c_{\rm aff}^nR_0
++\frac{d_{\rm aff}}{1-c_{\rm aff}}.
+}
+\tag{26}
+\]
+
+*Proof.*  Write
+
+\[
+v_k=e_k-\eta(\bar H_ke_k-\bar\xi_k),\qquad
+r_k=\frac1q\sum_{i=1}^qH_{i,k}
+(e_{k-\tau_i}-e_k).
+\]
+
+Total-variation duality and
+\(\mathbb E_{\pi_q}\bar\xi_k=0\) give
+
+\[
+\left\|
+\mathbb E[\bar\xi_k\mid\mathcal F_k]
+\right\|
+\le2G\delta.
+\tag{27}
+\]
+
+Moreover,
+
+\[
+\mathbb E_{\pi_q}
+\|\bar H_ke-\bar\xi_k\|^2
+\le2K_q\|e\|^2+2\Omega_q,
+\]
+
+and the integrand is bounded by \((L\|e\|+G)^2\).  Hence
+
+\[
+\mathbb E[
+\|\bar H_ke-\bar\xi_k\|^2
+\mid\mathcal F_k]
+\le
+(2K_q+4L^2\delta)\|e\|^2
++2\Omega_q+4G^2\delta.
+\tag{28}
+\]
+
+Using (27), Young's inequality with parameter \(\mu_\delta\), and the drift
+bound preceding Theorem 3 yields
+
+\[
+\mathbb E\|v_k\|^2
+\le
+a_\delta(\eta)R_k+\beta_\delta(\eta).
+\tag{29}
+\]
+
+The affine telescoping identity is
+
+\[
+e_{k-\tau_i}-e_k
+=\eta\sum_{s=k-\tau_i}^{k-1}
+\left[
+\frac1q\sum_{j=1}^qH_{j,s}e_{s-\tau_j}
+-\bar\xi_s
+\right].
+\]
+
+Unlike (20), this identity retains the innovation.  Jensen's inequality,
+\(\|H_{i,k}\|\le L\), and \(\|\bar\xi_s\|\le G\) imply
+
+\[
+\mathbb E\|r_k\|^2
+\le
+2\eta^2L^4\tau_{\rm rms}^2R_k
++2\eta^2L^2G^2\tau_{\rm rms}^2.
+\tag{30}
+\]
+
+For any \(\lambda>0\),
+
+\[
+\|v_k-\eta r_k\|^2
+\le
+(1+\lambda)\|v_k\|^2
++(1+\lambda^{-1})\eta^2\|r_k\|^2.
+\]
+
+Combining (29)--(30) gives the one-step inequality
+
+\[
+\mathbb E\|e_{k+1}\|^2
+\le
+c_\lambda R_k+d_\lambda,
+\]
+
+where
+
+\[
+c_\lambda=(1+\lambda)a_\delta
++(1+\lambda^{-1})h_\tau,\qquad
+d_\lambda=(1+\lambda)\beta_\delta
++(1+\lambda^{-1})g_\tau.
+\]
+
+The choice \(\lambda_\star=\sqrt{h_\tau/a_\delta}\) minimizes
+\(c_\lambda\) and gives (24).  Put
+\(R_\star=d_{\rm aff}/(1-c_{\rm aff})\).  If \(R_k\ge R_\star\), every new
+element entering the sliding envelope is at most
+\(c_{\rm aff}R_k+d_{\rm aff}\le R_k\).  After \(m=2D+1\) steps, all elements
+of the old envelope have been replaced, proving
+\(R_{k+m}\le c_{\rm aff}R_k+d_{\rm aff}\).  If \(R_k<R_\star\), the same
+one-step inequality keeps the enlarged envelope
+\(\max\{R_k,R_\star\}\) below \(R_\star\).  These two cases give (25), and
+iteration gives (26). \(\square\)
+
+For \(\delta=0\) and zero delay, (26) has
+
+\[
+c_{\rm aff}=1-\eta\mu+2\eta^2K_q,\qquad
+\frac{d_{\rm aff}}{1-c_{\rm aff}}
+=
+\frac{2\eta\Omega_q}{\mu-2\eta K_q}.
+\]
+
+Thus the stochastic residual decreases linearly with \(\eta\), while a
+finite decorrelation error contributes an additional
+\(O(G^2\delta^2/\mu_\delta^2)\) mixing-bias floor.  Cross-agent dependence
+enters both \(K_q\) and \(\Omega_q\); increasing \(q\) cannot remove their
+off-diagonal components.
 
 **Corollary 3.1 (geometric joint mixing).**  If the participating joint chain
 satisfies
@@ -819,6 +1036,7 @@ required.
 | Pair-sharing closed form and agent-count saturation | proved |
 | Fresh no-delay mean-square contraction | proved |
 | Additive-noise residual bound | proved under conditional centering and orthogonality |
+| Affine finite-gap Markov-TD bound | proved and tested |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |
@@ -826,7 +1044,7 @@ required.
 | Unthinned joint Markov mixing theorem | open |
 | Predictable two-state mixing certificate | proved/tested |
 | General finite-state anytime estimator | open |
-| Affine Markov-TD finite-time bound | open |
+| Unthinned affine Markov-TD finite-time bound | open |
 | SDDE-to-discrete approximation error | open |
 
 The next local-theory task is to prove a simultaneous confidence event for the

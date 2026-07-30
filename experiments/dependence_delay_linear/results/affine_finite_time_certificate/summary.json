@@ -1,0 +1,87 @@
+{
+  "experiment_id": "EXP-010B-affine-finite-time-certificate",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "num_paired_seeds": 32,
+  "base_seed": 20261130,
+  "bootstrap_replications": 2000,
+  "resource_budget": 128000,
+  "gates": {
+    "numerical": {
+      "certificate_validity": {
+        "pass": true,
+        "maximum_contraction": 0.9999968838928376,
+        "minimum_effective_monotonicity": 0.09001859123854217
+      },
+      "execution_validity": {
+        "pass": true,
+        "rows": 1152,
+        "expected_rows": 1152,
+        "divergences": 0
+      },
+      "algebraic_reproduction": {
+        "pass": true,
+        "maximum_delayed_difference": 2.220446049250313e-16,
+        "maximum_zero_delay_difference": 0.0
+      }
+    },
+    "scientific": {
+      "finite_time_nonvacuity": {
+        "pass": true,
+        "useful_scenarios": 12,
+        "minimum_updates": 106
+      },
+      "correlation_response": {
+        "pass": true,
+        "weak_decreases": 6,
+        "strict_decreases": 6
+      },
+      "mixing_response": {
+        "pass": true,
+        "median_gap_kappa_0": 53.0,
+        "median_gap_kappa_098": 980.0,
+        "ratio": 18.49056603773585
+      },
+      "delay_response": {
+        "pass": true,
+        "nonincreasing_cells": 6,
+        "total_cells": 6
+      },
+      "empirical_upper_calibration": {
+        "pass": true,
+        "covered_scenarios": 12,
+        "total_scenarios": 12,
+        "maximum_upper_to_bound": 0.30490504691328907
+      },
+      "bound_informativeness": {
+        "pass": true,
+        "informative_scenarios": 12,
+        "total_scenarios": 12,
+        "maximum_bound_to_mean_ratio": 228.98265818647258,
+        "median_bound_to_mean_ratio": 20.77074523426088
+      }
+    },
+    "overall": {
+      "pass": true,
+      "numerical_passes": 3,
+      "scientific_passes": 6,
+      "criterion": "3/3 numerical and at least 5/6 scientific gates"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  },
+  "artifacts": [
+    "candidate_actions.csv",
+    "selected_actions.csv",
+    "per_seed_metrics.csv",
+    "bound_calibration.csv",
+    "paired_bootstrap_comparisons.csv",
+    "fig1_affine_actions.png",
+    "fig2_bound_calibration.png",
+    "summary.json"
+  ]
+}

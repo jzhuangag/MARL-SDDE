@@ -490,13 +490,27 @@ six matched cells.  Joint selection is never worse than the better endpoint,
 although the frozen strict endpoint gate fails because the joint rule itself
 selects an endpoint in five scenarios.
 
-The audit also sharpens the proof boundary.  The homogeneous vector-TD
-stability certificate is rigorous.  The simple constant-step TD residual used
-for controller selection additionally assumes conditionally centered,
-orthogonal innovations and is not yet a generic finite-gap Markov-TD
-finite-time bound.  A martingale/Poisson-equation extension is therefore the
-next mandatory mathematical task; the paper must not hide it behind the
-empirical controller result.
+The audit also sharpened the proof boundary.  EXP-010B subsequently closes the
+finite-gap affine case without assuming conditionally centered innovations or
+orthogonality between the TD innovation and random Jacobian.  The new
+finite-time recursion retains the innovation inside the stale-iterate
+telescoping sum and yields an explicit stochastic residual plus a
+mixing-bias floor.
+
+On 32 fresh seeds, EXP-010B passes all three numerical and all six scientific
+gates.  Every one of 1,152 charged runs is finite, all twelve joint-action
+bounds beat no update, and every one-sided 99% upper empirical mean lies below
+the corresponding proved bound.  Bound/mean ratios have median 20.77 and
+maximum 228.98.  The selected count decreases in every high-sharing cell,
+strictly in all six, while the median paid mixing gap increases from 53 to
+980 as laziness reaches 0.98.
+
+This closes the affine finite-time theorem for the predictably decorrelated
+algorithm.  It does not close the aggressive unthinned recursion; that
+Poisson-equation extension is optional unless the paper claims update reuse
+without paid decorrelation.  The main remaining theory opportunity is now a
+correlation-limited speedup lower bound, followed by a decision between a
+supplied mixing certificate and a general predictable estimator.
 
 ## Preliminary prior-art boundary
 
