@@ -430,6 +430,15 @@ registered linear-TD family.  The remaining ICML bottleneck is now primarily
 the delayed Markov proof and external/nonlinear breadth, not whether the
 synthetic mechanism exists.
 
+EXP-008A provides the exact independent-time heterogeneous-delay benchmark.
+The scalar joint rule is strictly stable in all 12 registered lifted systems,
+but the formal experiment passes only four of seven gates because the scalar
+bound uses 13.3%--54.1% of the exact boundary.  The exact result also reveals
+two regimes: multiplicative correlation dominates at small delay, whereas the
+mean delay boundary becomes nearly exact at \(q=32,D=32,\rho=0\).  The main
+theorem must therefore express competing correlation and delay margins rather
+than universal dominance by either source.
+
 ## Preliminary prior-art boundary
 
 The following authoritative records were checked on 2026-07-30. A fresh

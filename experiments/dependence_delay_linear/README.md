@@ -139,6 +139,8 @@ python run_joint_mean_square_step.py `
   --output-dir results/joint_mean_square_step --num-seeds 32
 python run_joint_ms_confirmation.py `
   --output-dir results/joint_ms_confirmation --num-seeds 64
+python run_exact_lifted_boundary.py `
+  --output-dir results/exact_lifted_boundary
 ```
 
 Run deterministic implementation checks with:
@@ -234,6 +236,15 @@ Doubling \(q\) reduces multiplicative curvature by 22.46% under independence
 but only 0.32% at correlation 0.9. The correlation-blind/joint paired
 final-error ratio has a 99% lower limit of at least 8.19 in every
 high-correlation cell.
+
+EXP-008A constructs the exact heterogeneous-delay covariance operator without
+materializing its Kronecker matrix. The formal result passes four of seven
+gates. The scalar joint rule is strictly stable in all 12 exact cells, and the
+zero-delay agent-count effect saturates under high correlation as predicted.
+The rule is not uniformly tight: it uses 13.3%--54.1% of the independent-time
+exact boundary. The exact analysis also shows that delay dominates the
+independent \(q=32,D=32\) cell, whereas multiplicative correlation dominates
+the low-delay high-correlation cells.
 
 ## Scope
 

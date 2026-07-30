@@ -90,6 +90,12 @@ the standard linear-speedup analysis.
     exchangeable Jacobian identity and no-delay mean-square contraction,
     specifies the delayed Markov and SDDE proof obligations, and gives the
     \(O(d)\)-memory scalar estimator route.
+29. [`experiment_008a_exact_lifted_boundary.md`](experiment_008a_exact_lifted_boundary.md)
+    preregisters a deterministic comparison between the scalar joint rule and
+    the exact heterogeneous-delay covariance operator.
+30. [`validation_exp008a.md`](validation_exp008a.md) records the reproducible
+    4/7 result: scalar safety passes in all cells, exact agent-count saturation
+    is confirmed, and three overly strong tightness/dominance gates fail.
 
 ## Code and canonical outputs
 
