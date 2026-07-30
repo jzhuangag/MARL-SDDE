@@ -86,6 +86,10 @@ the standard linear-speedup analysis.
 27. [`validation_exp007d.md`](validation_exp007d.md) records the 7/7 pass,
     9,216-run result, exact reproduction, correlation/agent-count effect, and
     nonvacuous joint safe-step boundary.
+28. [`proof_program_joint_ms.md`](proof_program_joint_ms.md) proves the exact
+    exchangeable Jacobian identity and no-delay mean-square contraction,
+    specifies the delayed Markov and SDDE proof obligations, and gives the
+    \(O(d)\)-memory scalar estimator route.
 
 ## Code and canonical outputs
 

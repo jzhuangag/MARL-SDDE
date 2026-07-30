@@ -344,6 +344,10 @@ This result changes the theorem order:
    participation theorem;
 5. only then analyze an online estimator/controller.
 
+The proved propositions, delayed-Markov obligations, SDDE representation, and
+rank-one stochastic power estimator are developed in
+[`proof_program_joint_ms.md`](proof_program_joint_ms.md).
+
 For a low-complexity implementation, do not form or invert a preconditioner.
 The exact finite-MRP experiment uses a small eigendecomposition only to audit
 the theory.  An online algorithm can upper-bound or track \(K\) using a scalar
