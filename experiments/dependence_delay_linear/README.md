@@ -303,6 +303,15 @@ and the median bound/mean ratio is 20.77. The theorem-selected action remains
 conservative in one fast-mixing endpoint comparison, so empirical near-oracle
 participation is not claimed.
 
+EXP-011A supplies the complementary impossibility result. In an exact Gaussian
+one-step-mixing Markov subclass, the minimax speedup is
+\(q/[1+(q-1)\rho]\), so any positive shared-noise fraction caps the benefit of
+additional agents. Under a pathwise resource budget, even predictable adaptive
+participation cannot beat the best information-per-cost action. The
+deterministic audit passes all nine gates and reproduces all five core
+artifacts byte-for-byte. At \(\rho=.9\), 32 agents provide only
+\(1.1073\times\) speedup.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It

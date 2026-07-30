@@ -93,6 +93,15 @@ and treating correlated agents as independent increased paired final error by
 at least 8.19 times at the 99% lower-confidence level. The rule is scalar and
 does not use a preconditioner or actor--critic architecture.
 
+EXP-010B proves the affine finite-time bound for predictably decorrelated
+delayed Markov TD and validates it in a seven-state vector problem. EXP-011A
+adds a sharp minimax lower bound: exact speedup is
+\(q/[1+(q-1)\rho]\), and resource-optimal participation follows a
+correlation/overhead phase transition. With 32 agents, speedup is only
+\(1.1073\times\) at \(\rho=.9\). Together these results make
+*Beyond Linear Speedup* a theorem-backed mainline rather than an empirical
+slogan.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -127,6 +136,8 @@ python run_multistate_certificate_transfer.py `
   --output-dir results/multistate_certificate_transfer
 python run_affine_finite_time_certificate.py `
   --output-dir results/affine_finite_time_certificate
+python run_correlation_minimax_phase.py `
+  --output-dir results/correlation_minimax_phase
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py

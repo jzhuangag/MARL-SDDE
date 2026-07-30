@@ -960,6 +960,158 @@ Theorem 3 closes a rigorous delayed-Markov route for the decorrelated
 algorithm.  It does not close the more aggressive unthinned recursion in
 Section 7; that distinction must remain explicit in the paper.
 
+### 7.2 Correlation-limited minimax lower bound
+
+The phrase *beyond linear speedup* requires an impossibility result, not only
+an upper bound whose constants saturate.  The following Gaussian location
+experiment is a zero-delay, one-step-mixing, sub-Gaussian Markov-learning
+subclass.  Hence its lower bound applies to every claimed broader class that
+includes such additive sub-Gaussian observations.  The bounded-innovation
+assumption used for the affine upper bound is a separate sufficient condition.
+
+At round \(t\), the learner requests \(q_t\in\{1,\ldots,N\}\) observations
+
+\[
+Y_{i,t}=\theta+C_t+\varepsilon_{i,t},\qquad i=1,\ldots,q_t,
+\tag{27}
+\]
+
+where \(C_t\stackrel{\rm iid}{\sim}{\cal N}(0,\sigma_c^2)\),
+\(\varepsilon_{i,t}\stackrel{\rm iid}{\sim}{\cal N}(0,\sigma_e^2)\), and all
+innovations are independent across rounds.  The common innovation \(C_t\)
+models state or environment correlation and the private innovations model
+agent-specific sampling noise.  Put
+
+\[
+\rho=\frac{\sigma_c^2}{\sigma_c^2+\sigma_e^2}.
+\]
+
+**Theorem 5 (correlation-limited speedup and adaptive-budget lower bound).**
+For a fixed participation level \(q\), the minimax squared-error risk after
+\(T\) rounds in (27) is
+
+\[
+\inf_{\widehat\theta}\sup_{\theta\in\mathbb R}
+\mathbb E_\theta(\widehat\theta-\theta)^2
+=
+\frac1T\left(\sigma_c^2+\frac{\sigma_e^2}{q}\right).
+\tag{28}
+\]
+
+Relative to a single agent, the exact speedup is
+
+\[
+S(q,\rho)
+=
+\frac{q}{1+(q-1)\rho}
+\le \min\{q,\rho^{-1}\},
+\tag{29}
+\]
+
+where the second term is omitted at \(\rho=0\).  Consequently, for every
+\(\rho>0\), speedup is bounded even as the number of available agents tends to
+infinity.
+
+More generally, let \(q_t\) be predictable from observations strictly before
+round \(t\), let a round with \(q_t\) agents cost \(h+q_t\), and impose the
+pathwise budget
+
+\[
+\sum_t(h+q_t)\le B.
+\]
+
+Then every adaptive participation rule and estimator obeys
+
+\[
+\sup_{\theta\in\mathbb R}
+\mathbb E_\theta(\widehat\theta-\theta)^2
+\ge
+\frac{1}{
+B\displaystyle\max_{1\le q\le N}
+\frac{1}{(h+q)(\sigma_c^2+\sigma_e^2/q)}
+}
+=
+\frac1B\min_{1\le q\le N}
+(h+q)\left(\sigma_c^2+\frac{\sigma_e^2}{q}\right).
+\tag{30}
+\]
+
+For continuous \(q\in[1,N]\), the minimizer is
+
+\[
+q_{\rm cont}^\star
+=
+\left[
+\sqrt{\frac{h\sigma_e^2}{\sigma_c^2}}
+\right]_{[1,N]}
+=
+\left[
+\sqrt{\frac{h(1-\rho)}{\rho}}
+\right]_{[1,N]},
+\tag{31}
+\]
+
+with \(q_{\rm cont}^\star=N\) when \(\rho=0\).  The integer optimum is one of
+the two feasible integers adjacent to (31).
+
+*Proof.*  Conditional on \(q\), a round has covariance
+
+\[
+\Sigma_q=\sigma_e^2I_q+\sigma_c^2\mathbf 1\mathbf 1^\top.
+\]
+
+Sherman--Morrison gives the Fisher information
+
+\[
+I(q)=\mathbf 1^\top\Sigma_q^{-1}\mathbf 1
+=\frac{q}{\sigma_e^2+q\sigma_c^2}
+=\frac{1}{\sigma_c^2+\sigma_e^2/q}.
+\tag{32}
+\]
+
+For fixed \(q\), generalized least squares over \(T\) independent rounds is
+unbiased with constant risk \(1/[TI(q)]\).  Conversely, under the prior
+\(\theta\sim{\cal N}(0,\tau^2)\), posterior variance is
+\((\tau^{-2}+TI(q))^{-1}\).  Bayes risk lower-bounds minimax risk; sending
+\(\tau\) to infinity proves (28).  Dividing the \(q=1\) risk by (28) proves
+(29).
+
+For a predictable adaptive rule, its decision kernel contributes no
+\(\theta\)-dependent likelihood term conditional on the observed history.
+Conditional on the realized decisions and observations, the Gaussian
+likelihood remains quadratic in \(\theta\), with total precision
+\(\sum_t I(q_t)\).  Under the same Gaussian prior, its posterior variance is
+
+\[
+\left(\tau^{-2}+\sum_t I(q_t)\right)^{-1}.
+\]
+
+The pathwise budget yields
+
+\[
+\sum_t I(q_t)
+\le
+B\max_{1\le q\le N}\frac{I(q)}{h+q}.
+\]
+
+Therefore the Bayes risk is at least
+\(\{\tau^{-2}+B\max_q I(q)/(h+q)\}^{-1}\).  Taking
+\(\tau\to\infty\) proves (30).  Finally,
+
+\[
+(h+q)\left(\sigma_c^2+\frac{\sigma_e^2}{q}\right)
+=h\sigma_c^2+\sigma_e^2+q\sigma_c^2+\frac{h\sigma_e^2}{q}
+\]
+
+is convex in \(q>0\); its derivative vanishes at (31). \(\square\)
+
+The lower bound is deliberately independent of the affine upper-bound
+certificate.  The two results meet at the same structural conclusion:
+off-diagonal correlation imposes a non-vanishing noise component, and the
+optimal participation level balances that component against per-round
+overhead.  Mixing gaps and communication latency may be included in \(h\);
+they can only strengthen the impossibility statement.
+
 ## 8. SDDE representation
 
 The matching stochastic delay differential equation must retain the
@@ -1037,6 +1189,7 @@ required.
 | Fresh no-delay mean-square contraction | proved |
 | Additive-noise residual bound | proved under conditional centering and orthogonality |
 | Affine finite-gap Markov-TD bound | proved and tested |
+| Correlation-limited minimax lower bound | proved; exact Gaussian subclass |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |
@@ -1047,7 +1200,8 @@ required.
 | Unthinned affine Markov-TD finite-time bound | open |
 | SDDE-to-discrete approximation error | open |
 
-The next local-theory task is to prove a simultaneous confidence event for the
-mixing and curvature probes, then test the predictable \((q,b,\eta)\)
-controller.  A Poisson-equation argument for unthinned data remains a
-strictly stronger optional extension.
+The next local-theory task is to connect the minimax lower bound to a
+simultaneous confidence event for the mixing, correlation, and curvature
+probes, then test the predictable \((q,b,\eta)\) controller.  A
+Poisson-equation argument for unthinned data remains a strictly stronger
+optional extension.

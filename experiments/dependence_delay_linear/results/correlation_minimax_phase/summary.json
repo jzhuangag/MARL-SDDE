@@ -1,0 +1,63 @@
+{
+  "experiment": "EXP-011A",
+  "design": {
+    "agent_counts": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "correlations": [
+      0.0,
+      0.01,
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      0.99
+    ],
+    "overheads": [
+      1.0,
+      4.0,
+      16.0,
+      64.0
+    ],
+    "budget": 128000.0,
+    "random_seeds": null
+  },
+  "gates": {
+    "numerical": {
+      "fisher_matrix_identity": true,
+      "risk_speedup_identity": true,
+      "adaptive_budget_identity": true
+    },
+    "scientific": {
+      "independent_linear_speedup": true,
+      "correlation_speedup_ceiling": true,
+      "optimal_q_nonincreasing_in_rho": true,
+      "optimal_q_nondecreasing_in_overhead": true,
+      "endpoint_phase_transition": true,
+      "high_correlation_twofold_ceiling": true
+    },
+    "numerical_passes": 3,
+    "scientific_passes": 6,
+    "overall_pass": true,
+    "metrics": {
+      "maximum_fisher_relative_error": 2.831068712794149e-16,
+      "maximum_speedup_relative_error": 2.2759572004815707e-16,
+      "maximum_budget_identity_relative_error": 0.0,
+      "q32_speedup_at_rho_0_5": 1.9393939393939394,
+      "q32_speedup_at_rho_0_9": 1.107266435986159
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1"
+  }
+}

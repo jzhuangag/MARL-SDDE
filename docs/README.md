@@ -121,6 +121,10 @@ the standard linear-speedup analysis.
     and [`validation_exp010b.md`](validation_exp010b.md) close and calibrate
     the finite-gap affine Markov-TD bound without conditional-centering or
     Jacobian--innovation orthogonality assumptions.
+38. [`experiment_011a_correlation_minimax_phase.md`](experiment_011a_correlation_minimax_phase.md)
+    and [`validation_exp011a.md`](validation_exp011a.md) prove and audit the
+    exact correlation-limited minimax speedup ceiling and the
+    resource-optimal participation phase.
 
 ## Code and canonical outputs
 
@@ -215,5 +219,11 @@ remains a proof obligation.
 EXP-010B closes that finite-gap obligation. The affine theorem passes every
 registered validity, nonvacuity, response, calibration, and informativeness
 gate; its median bound/mean ratio is 20.77 and all eight artifacts reproduce.
-The unthinned Poisson-equation extension, a correlation-limited lower bound,
-and general mixing-certificate estimation remain distinct next steps.
+EXP-011A then closes the lower-bound obligation. In a Gaussian
+one-step-mixing subclass, the exact speedup is
+\(q/[1+(q-1)\rho]\), and no predictable adaptive participation rule can beat
+the best Fisher-information-per-cost action under a pathwise budget. All nine
+registered gates pass and all five core artifacts reproduce byte-for-byte.
+The next blocking step is a simultaneous correlation/mixing/curvature
+confidence theorem and end-to-end predictable controller; the unthinned
+Poisson-equation and SDDE approximation extensions are non-blocking.
