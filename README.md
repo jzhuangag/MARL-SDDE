@@ -102,6 +102,13 @@ correlation/overhead phase transition. With 32 agents, speedup is only
 *Beyond Linear Speedup* a theorem-backed mainline rather than an empirical
 slogan.
 
+EXP-011B adds an end-to-end predictable controller when both mixing and
+observable cross-agent sharing are unknown. Optional-stopping-valid mixture
+confidence sequences feed the same scalar \((q,b,\eta)\) search. Across 576
+formal dual-controller runs, joint coverage is 100%, all covered updating
+actions are exactly stable, and median participation falls from 9.5 at
+\(\rho=0\) to one at \(\rho=.9\).
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -138,6 +145,8 @@ python run_affine_finite_time_certificate.py `
   --output-dir results/affine_finite_time_certificate
 python run_correlation_minimax_phase.py `
   --output-dir results/correlation_minimax_phase
+python run_dual_anytime_controller.py --num-seeds 32 `
+  --base-seed 20261231 --output-dir results/dual_anytime_controller
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py

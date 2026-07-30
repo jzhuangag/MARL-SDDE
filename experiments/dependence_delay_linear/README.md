@@ -312,6 +312,15 @@ deterministic audit passes all nine gates and reproduces all five core
 artifacts byte-for-byte. At \(\rho=.9\), 32 agents provide only
 \(1.1073\times\) speedup.
 
+EXP-011B makes both mixing and observable pair sharing unknown. Two
+beta-binomial mixture e-processes provide joint optional-stopping-valid
+confidence sequences, and the next block uses only their past-data upper
+bounds. The formal CPU run has 100% simultaneous coverage and no unsafe
+covered action. Median participation falls from 9.5 at zero sharing to one at
+\(\rho=.9\). Four of five scientific gates pass; correlation adaptation does
+not strictly improve two delayed cells in which delay already reduces both
+policies to effectively single-agent behavior.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It

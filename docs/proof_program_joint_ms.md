@@ -1112,6 +1112,103 @@ optimal participation level balances that component against per-round
 overhead.  Mixing gaps and communication latency may be included in \(h\);
 they can only strengthen the impossibility statement.
 
+### 7.3 Predictable dual-anytime certification
+
+The registered pair-sharing model permits a rigorous online controller without
+treating either mixing or cross-agent correlation as known.  Let
+\(\{X_j^{(p)}\}\) be observed stay indicators with conditional mean \(p\), and
+let \(\{X_j^{(\rho)}\}\) be observed pair-sharing indicators with conditional
+mean \(\rho\).  Whether the next observation from either stream is acquired
+must be predictable.  This allows the number of observations at a decision
+time to depend arbitrarily on past data and actions.
+
+For either Bernoulli stream, write \(S_n=\sum_{j=1}^nX_j\) and define the
+beta-binomial mixture likelihood ratio
+
+\[
+M_n(u)
+=
+\frac{
+B(S_n+\tfrac12,n-S_n+\tfrac12)
+}{
+B(\tfrac12,\tfrac12)
+u^{S_n}(1-u)^{n-S_n}
+}.
+\tag{33}
+\]
+
+**Theorem 6 (dual-anytime safe adaptation).**  Assign
+\(\alpha_p+\alpha_\rho=\alpha\), and let \(u_{p,n}^+\) and
+\(u_{\rho,n}^+\) be the upper endpoints of
+
+\[
+{\cal C}_{s,n}
+=
+\{u\in(0,1):M_{s,n}(u)<1/\alpha_s\},
+\qquad s\in\{p,\rho\}.
+\tag{34}
+\]
+
+Round both endpoints upward on any deterministic grids.  Suppose:
+
+1. \(p\in[1/2,1)\), and the joint mixing certificate
+   \(\delta(p,b)\) is non-decreasing in \(p\);
+2. the aggregate curvature \(K_q(\rho)\) and aggregate additive-noise proxy
+   \(\Omega_q(\rho)\) are non-decreasing in \(\rho\);
+3. every block action is measurable with respect to data available before the
+   block and satisfies Theorem 3 or Theorem 4 after substituting
+   \(u_p^+\) and \(u_\rho^+\).
+
+Then, with probability at least \(1-\alpha\), every selected action at every
+decision time satisfies its corresponding true-parameter stability
+condition.  The statement remains valid when the observation counts are
+adaptive stopping times.
+
+*Proof.*  Under parameter \(u\), (33) is the likelihood under a
+\({\rm Beta}(1/2,1/2)\) mixture alternative divided by the likelihood under
+\({\rm Bernoulli}(u)\).  It is therefore a nonnegative martingale with initial
+value one.  Ville's inequality gives
+
+\[
+\mathbb P_u\{\exists n:M_n(u)\ge1/\alpha_s\}\le\alpha_s.
+\]
+
+This is indexed by intrinsic sample count, so predictably skipping
+observations or evaluating at an adaptive stopping time does not change the
+guarantee.  Applying the result to both streams and taking a union bound gives
+simultaneous coverage \(p\le u_p^+\) and \(\rho\le u_\rho^+\) at all decisions
+with probability at least \(1-\alpha\).  Upward rounding preserves coverage.
+On this event, monotonicity gives
+
+\[
+\delta(p,b)\le\delta(u_p^+,b),\qquad
+K_q(\rho)\le K_q(u_\rho^+),\qquad
+\Omega_q(\rho)\le\Omega_q(u_\rho^+).
+\]
+
+Thus each action certified with the upper endpoints satisfies the same
+inequalities at the true parameters.  Predictability prevents current-block
+data from leaking into its action. \(\square\)
+
+For the symmetric two-state chain,
+\(\delta(p,b)=\tfrac12(2p-1)^b\).  In the pair-sharing model,
+
+\[
+K_q(\rho)
+=\lambda_{\max}\left[
+\frac{Q_{\rm diag}}q
++\frac{q-1}{q}
+\{Q_{\rm mean}+\rho(Q_{\rm diag}-Q_{\rm mean})\}
+\right],
+\]
+
+and \(Q_{\rm diag}-Q_{\rm mean}\succeq0\) is a conditional covariance, proving
+the required Loewner monotonicity.  Updating the two success/trial counters is
+\(O(1)\); the rank-one TD curvature aggregation and finite candidate search
+remain \(O(qd)\) time and \(O(d)\) memory.  The theorem covers observable
+sharing or collision indicators.  A confidence sequence for latent,
+general-purpose cross-agent dependence is a separate extension.
+
 ## 8. SDDE representation
 
 The matching stochastic delay differential equation must retain the
@@ -1190,6 +1287,7 @@ required.
 | Additive-noise residual bound | proved under conditional centering and orthogonality |
 | Affine finite-gap Markov-TD bound | proved and tested |
 | Correlation-limited minimax lower bound | proved; exact Gaussian subclass |
+| Dual-anytime mixing/correlation certificate | proved for observable pair sharing |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |
@@ -1200,8 +1298,7 @@ required.
 | Unthinned affine Markov-TD finite-time bound | open |
 | SDDE-to-discrete approximation error | open |
 
-The next local-theory task is to connect the minimax lower bound to a
-simultaneous confidence event for the mixing, correlation, and curvature
-probes, then test the predictable \((q,b,\eta)\) controller.  A
-Poisson-equation argument for unthinned data remains a strictly stronger
-optional extension.
+The next local-theory task is to validate the dual-anytime
+\((q,b,\eta)\) controller and extend its observable-sharing certificate to a
+latent correlation probe.  A Poisson-equation argument for unthinned data
+remains a strictly stronger optional extension.

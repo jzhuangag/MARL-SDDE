@@ -125,6 +125,10 @@ the standard linear-speedup analysis.
     and [`validation_exp011a.md`](validation_exp011a.md) prove and audit the
     exact correlation-limited minimax speedup ceiling and the
     resource-optimal participation phase.
+39. [`experiment_011b_dual_anytime_controller.md`](experiment_011b_dual_anytime_controller.md)
+    and [`validation_exp011b.md`](validation_exp011b.md) replace
+    fixed-sample intervals with optional-stopping-valid mixture confidence
+    sequences and validate unknown-\((p,\rho)\) predictable control.
 
 ## Code and canonical outputs
 
@@ -224,6 +228,13 @@ one-step-mixing subclass, the exact speedup is
 \(q/[1+(q-1)\rho]\), and no predictable adaptive participation rule can beat
 the best Fisher-information-per-cost action under a pathwise budget. All nine
 registered gates pass and all five core artifacts reproduce byte-for-byte.
-The next blocking step is a simultaneous correlation/mixing/curvature
-confidence theorem and end-to-end predictable controller; the unthinned
-Poisson-equation and SDDE approximation extensions are non-blocking.
+EXP-011B closes the observable-sharing version of the online-certificate
+obligation. Proof audit replaced an invalid adaptive-sample use of
+fixed-sample Clopper--Pearson intervals with beta-binomial mixture e-processes.
+The 32-seed formal run obtains 100% joint time-uniform coverage, exact safety,
+and a median participation change from 9.5 at \(\rho=0\) to one at
+\(\rho=.9\). It passes four of five scientific gates; the strict performance
+advantage fails in two delayed cells where both policies already choose
+single-agent behavior. Latent-correlation estimation and nonlinear breadth
+remain; the unthinned Poisson-equation and SDDE approximation extensions are
+non-blocking.
