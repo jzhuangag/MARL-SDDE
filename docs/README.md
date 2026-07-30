@@ -68,6 +68,9 @@ the standard linear-speedup analysis.
 21. [`validation_exp007a.md`](validation_exp007a.md) records the formal 6/6
     pass, exact reproduction, exchangeable-LRV fit, held-out-half diagnostic,
     and the critical finding that the delay gate passed only by equality.
+22. [`experiment_007b_delay_stability.md`](experiment_007b_delay_stability.md)
+    preregisters an exact spectral-boundary and Monte Carlo stress test for the
+    delayed TD/SDDE stability layer.
 
 ## Code and canonical outputs
 
