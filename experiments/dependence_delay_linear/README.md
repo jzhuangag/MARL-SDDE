@@ -135,6 +135,10 @@ python run_linear_td_correlation.py `
   --num-seeds 32 --bootstrap-replications 2000 --workers 4
 python run_td_delay_stability.py `
   --output-dir results/td_delay_stability --num-seeds 16
+python run_joint_mean_square_step.py `
+  --output-dir results/joint_mean_square_step --num-seeds 32
+python run_joint_ms_confirmation.py `
+  --output-dir results/joint_ms_confirmation --num-seeds 64
 ```
 
 Run deterministic implementation checks with:
@@ -220,9 +224,22 @@ spectral boundary, especially under strong cross-agent correlation. This
 motivates a correlation-aware mean-square Lyapunov bound for random delayed
 Jacobians.
 
+EXP-007C combines the exact mean boundary with the analytic aggregate-Jacobian
+second moment through a scalar parallel-sum step. It contracts in all eight
+cells, but formally fails three crossing-based gates because the blind rules
+remain finite despite very large error. EXP-007D freezes the formula and uses
+64 fresh seeds with 99% bootstrap mean-square endpoints. All seven gates pass,
+all 9,216 rows are valid, and all ten artifacts reproduce byte-for-byte.
+Doubling \(q\) reduces multiplicative curvature by 22.46% under independence
+but only 0.32% at correlation 0.9. The correlation-blind/joint paired
+final-error ratio has a 99% lower limit of at least 8.19 in every
+high-correlation cell.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It
 tests whether the proposed mechanism exists before investing in a full
 multi-agent temporal-difference or deep reinforcement-learning implementation.
 No claim about nonlinear multi-agent reinforcement learning is made here.
+The current CPU evidence establishes a controlled linear-TD mechanism and an
+algorithmic prototype; nonlinear MARL remains a later GPU-backed validation.

@@ -32,7 +32,7 @@ low-complexity controller with a near-oracle guarantee.
 
 Primary working title:
 
-**Beyond Linear Speedup: Correlation-Limited Collaboration in Delayed
+**Beyond Linear Speedup: Correlation-Limited Mean-Square Stability in Delayed
 Multi-Agent Markov Learning**
 
 Algorithm-focused alternative:
@@ -282,6 +282,74 @@ The minimum theoretically credible ICML package is Theorems 1--3 plus a
 matched estimator and strong experiments. Theorem 4 would materially raise the
 ceiling, but a weak or incorrect adaptive theorem is worse than omitting it.
 
+## Confirmed low-complexity joint step prototype
+
+EXP-007C and EXP-007D identify a sharper scalar quantity for random-Jacobian
+TD.  Write
+
+\[
+H=\phi(S)[\phi(S)-\gamma\phi(S')]^\top,\qquad
+B=\mathbb E[H^\top H].
+\]
+
+Under the registered exchangeable pair-sharing model, the aggregate
+second-moment operator is exactly
+
+\[
+\mathbb E[\bar H_q^\top\bar H_q]
+=
+\alpha(q,\rho)B+[1-\alpha(q,\rho)]A^\top A,\qquad
+\alpha(q,\rho)=\rho+\frac{1-\rho}{q}.
+\]
+
+Define
+
+\[
+K(q,\rho)=
+\lambda_{\max}\!\left(\mathbb E[\bar H_q^\top\bar H_q]\right),
+\qquad
+\mu=\lambda_{\min}\!\left(\frac{A+A^\top}{2}\right).
+\]
+
+For temporally independent, zero-delay homogeneous updates, the elementary
+Euclidean calculation gives the sufficient contraction condition
+\(\eta<2\mu/K(q,\rho)\).  For delayed Markov TD, the currently confirmed
+prototype combines this threshold with the exact delayed mean boundary:
+
+\[
+\eta_{\rm joint}(q,D,\rho)
+=
+\left[
+\eta_{\rm mean}(q,D)^{-1}
++K(q,\rho)/(2\mu)
+\right]^{-1}.
+\]
+
+The parallel-sum form remains an empirical/theorem-inspired design until a
+delayed Markov Lyapunov--Krasovskii proof supplies explicit constants.
+EXP-007D nevertheless gives a strong target: on 64 new paired seeds it passed
+all seven preregistered gates, had zero crossings, and kept the largest 99%
+bootstrap upper mean error at 0.649.  Treating correlated agents as independent
+increased paired final error by at least 8.19 times at the 99% lower-confidence
+level across all high-correlation cells.  Doubling participation reduced
+\(K\) by 22.46% under independence but only 0.32% at \(\rho=0.9\).
+
+This result changes the theorem order:
+
+1. prove the exact exchangeable aggregate-Jacobian second-moment identity;
+2. prove the zero-delay independent-time contraction proposition;
+3. derive a delayed Markov Lyapunov--Krasovskii sufficient condition with
+   additive inverse stability margins;
+4. combine the resulting safe step with the finite-budget effective
+   participation theorem;
+5. only then analyze an online estimator/controller.
+
+For a low-complexity implementation, do not form or invert a preconditioner.
+The exact finite-MRP experiment uses a small eigendecomposition only to audit
+the theory.  An online algorithm can upper-bound or track \(K\) using a scalar
+directional-energy/power iteration on rank-one TD Jacobians, requiring
+\(O(d)\) memory and work per probe, followed by an \(O(1)\) table lookup.
+
 ## SDDE role
 
 Use the stochastic delay differential equation
@@ -349,11 +417,14 @@ narrower claim. It does not lower the remaining bar: a fresh-seed confirmation,
 an active delay-stability experiment, and at least one nonlinear benchmark are
 still required.
 
-EXP-007B activates delay but rejects a mean-spectral delay controller. Its
-positive theoretical consequence is sharper: correlation changes the
-mean-square stability region of delayed TD through random Jacobians. The ICML
-ceiling rises if this interaction can be proved with a usable scalar bound;
-the proof difficulty also rises from medium to high.
+EXP-007B activates delay but rejects a mean-spectral delay controller.
+EXP-007C shows that catastrophic divergence is too coarse an endpoint for
+auditing a conservative mean-square rule.  EXP-007D then confirms, on 64 new
+seeds and continuous squared-error endpoints, that the unchanged joint scalar
+rule is safe, nonvacuous, correlation-sensitive, and delay-sensitive on the
+registered linear-TD family.  The remaining ICML bottleneck is now primarily
+the delayed Markov proof and external/nonlinear breadth, not whether the
+synthetic mechanism exists.
 
 ## Preliminary prior-art boundary
 

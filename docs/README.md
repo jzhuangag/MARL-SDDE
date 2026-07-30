@@ -74,6 +74,18 @@ the standard linear-speedup analysis.
 23. [`validation_exp007b.md`](validation_exp007b.md) records the reproducible
     4/6 failure, the mean-versus-mean-square stability gap, and the newly
     exposed correlation--delay interaction through random TD Jacobians.
+24. [`experiment_007c_joint_mean_square_step.md`](experiment_007c_joint_mean_square_step.md)
+    preregisters a scalar parallel-sum step rule combining the delayed mean
+    boundary with the correlation-dependent Jacobian second moment.
+25. [`validation_exp007c.md`](validation_exp007c.md) preserves its formal 3/6
+    failure and shows that catastrophic crossing was too coarse to identify
+    finite but noncontracting blind policies.
+26. [`experiment_007d_joint_ms_confirmation.md`](experiment_007d_joint_ms_confirmation.md)
+    preregisters an unchanged-rule confirmation with 64 new seeds and
+    mean-square confidence limits.
+27. [`validation_exp007d.md`](validation_exp007d.md) records the 7/7 pass,
+    9,216-run result, exact reproduction, correlation/agent-count effect, and
+    nonvacuous joint safe-step boundary.
 
 ## Code and canonical outputs
 
@@ -136,3 +148,13 @@ but rejects mean-spectral step-size control: high cross-agent correlation can
 make stochastic TD diverge even below the exact mean boundary. The retained
 theory must therefore establish correlation-aware mean-square delayed
 stability, not only mean convergence or additive-noise diffusion.
+EXP-007C introduces an analytic aggregate-Jacobian second moment and a scalar
+joint correlation--delay step. Its formal crossing-based verdict fails because
+finite blind policies can remain far above the initial error without crossing
+the catastrophic threshold. EXP-007D corrects only the endpoint, not the
+algorithm, and confirms the unchanged rule on 64 new seeds. All seven gates
+pass: the largest 99% upper mean-error limit is 0.649, the weakest
+correlation-aware paired advantage is 8.19 at the 99% lower limit, and the
+joint step is at least 54.5% of the useful fixed-grid boundary. The active
+mainline is now a theorem for correlation-limited mean-square stability under
+delay, followed by an online scalar estimator and nonlinear breadth.

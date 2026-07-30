@@ -83,6 +83,16 @@ The resulting research target is correlation/state-adaptive participation
 under SDDE-governed delay, not a controller that forces every source of
 heterogeneity to act through the agent count.
 
+EXP-007A--D move this mechanism into delayed linear TD. Independent paths give
+effective participation 30.996 at \(q=32\), while correlation 0.9 gives only
+1.111. An exact delayed mean boundary is insufficient for stochastic
+stability, so the current algorithm combines it with the aggregate random-
+Jacobian second moment. In a preregistered 64-seed confirmation, all seven
+mean-square gates passed: the largest 99% upper mean-error limit was 0.649,
+and treating correlated agents as independent increased paired final error by
+at least 8.19 times at the 99% lower-confidence level. The rule is scalar and
+does not use a preconditioner or actor--critic architecture.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -109,6 +119,9 @@ python run_budget_participation.py --output-dir results/budget_participation
 python run_online_participation.py --output-dir results/online_participation
 python run_sparse_dynamic.py --output-dir results/sparse_dynamic
 python run_oracle_phase.py --output-dir results/oracle_phase
+python run_linear_td_correlation.py --output-dir results/linear_td_correlation
+python run_td_delay_stability.py --output-dir results/td_delay_stability
+python run_joint_ms_confirmation.py --output-dir results/joint_ms_confirmation
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py
