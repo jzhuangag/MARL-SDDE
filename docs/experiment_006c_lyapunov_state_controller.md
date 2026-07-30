@@ -154,3 +154,17 @@ thresholds.
 - `paired_bootstrap_ratios.csv`;
 - `summary.json`;
 - MSE, participation, and surrogate-calibration figures.
+
+## Execution outcome
+
+The registered 64-seed run completed all 4,096 policy trajectories and failed
+three scientific gates. The Lyapunov controller improved on the raw-state
+controller (ratio 0.705) and correlation-only controller (ratio 0.819), but was
+worse than fixed \(q=4\) (ratio 1.204), reached only 1.887 times the oracle
+score, and agreed with the oracle action in 26.67% of post-warm-up cases. Probe
+budget and all accounting checks passed. The overall verdict is **FAIL**.
+
+A deterministic full rerun reproduced all nine artifacts byte-for-byte.
+The root-cause audit distinguishes a calibration error from a comparator
+mismatch: the recursion predicts ensemble risk, while the registered oracle
+knows the current realized delayed error. See `validation_exp006c.md`.

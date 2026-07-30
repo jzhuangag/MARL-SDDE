@@ -122,6 +122,16 @@ The EXP-006A oracle phase diagram is:
 python run_oracle_phase.py --output-dir results/oracle_phase
 ```
 
+The EXP-006B raw observable-state controller and EXP-006C scalar
+Lyapunov-surrogate controller are:
+
+```powershell
+python run_state_correlation.py --output-dir results/state_correlation `
+  --num-seeds 64 --bootstrap-replications 2000
+python run_lyapunov_state.py --output-dir results/lyapunov_state `
+  --num-seeds 64 --bootstrap-replications 2000
+```
+
 Run deterministic implementation checks with:
 
 ```powershell
@@ -180,6 +190,15 @@ ten contiguous actionable regions, but only 5.31% of groups changed optimal
 agent count across delay. The combined gate therefore failed; the supported
 target is state- and correlation-adaptive participation, with delay retained in
 the stability/rate model rather than forced to control \(q\) directly.
+
+EXP-006B rejects the raw gradient-magnitude state proxy. EXP-006C replaces it
+with a scalar Lyapunov risk recursion and passes four of seven gates: it
+improves on both raw-state and correlation-only controllers but remains 20.4%
+worse than the strongest fixed \(q=4\) baseline and agrees with the
+clairvoyant oracle in only 26.67% of post-warm-up actions. All nine outputs
+reproduce byte-for-byte. The next work therefore moves to a theorem-first
+correlation-limited speedup result and a linear TD benchmark rather than
+further proxy tuning.
 
 ## Scope
 

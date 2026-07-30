@@ -56,6 +56,12 @@ the standard linear-speedup analysis.
 17. [`experiment_006c_lyapunov_state_controller.md`](experiment_006c_lyapunov_state_controller.md)
     preregisters an independent-seed test of a scalar Lyapunov-surrogate
     controller that replaces the failed raw gradient-magnitude state proxy.
+18. [`validation_exp006c.md`](validation_exp006c.md) records the 4/7 failed
+    result, exact reproduction, improved but conservative state surrogate, and
+    the information mismatch with a clairvoyant realized-state oracle.
+19. [`theory_program_icml2027.md`](theory_program_icml2027.md) narrows the
+    proposed ICML contribution to correlation-limited speedup, finite-budget
+    participation phase transitions, and an SDDE-to-discrete-time proof route.
 
 ## Code and canonical outputs
 
@@ -101,3 +107,10 @@ EXP-006A resolves the oracle surface: correlation/state adaptation has ten
 contiguous actionable regions, but delay changes pointwise optimal \(q\) in
 only 5.31% of groups. The combined gate fails, while a narrower
 correlation/state controller remains mechanistically supported.
+EXP-006B then rejected a raw gradient-magnitude state proxy. EXP-006C replaced
+it with a scalar Lyapunov recursion and obtained clear improvements over both
+raw-state and correlation-only controllers, but still lost to fixed \(q=4\)
+and a clairvoyant realized-state oracle. The online state-controller line is
+therefore stopped. The retained ICML direction is a theorem-first account of
+how cross-agent Markov correlation invalidates linear speedup and induces an
+optimal finite participation level under delay and communication budgets.
