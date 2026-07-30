@@ -141,6 +141,13 @@ python run_joint_ms_confirmation.py `
   --output-dir results/joint_ms_confirmation --num-seeds 64
 python run_exact_lifted_boundary.py `
   --output-dir results/exact_lifted_boundary
+python run_markov_jump_boundary.py
+python run_expanding_markov_td.py
+python run_decorrelated_theorem.py
+python run_sharp_delay_bound.py
+python run_predictable_mixing_controller.py
+python run_finite_budget_controller.py
+python run_joint_qbe_controller.py
 ```
 
 Run deterministic implementation checks with:
@@ -149,6 +156,8 @@ Run deterministic implementation checks with:
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py
+python -m pytest -q test_markov_jump_ms.py `
+  test_predictable_mixing_controller.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -245,6 +254,26 @@ The rule is not uniformly tight: it uses 13.3%--54.1% of the independent-time
 exact boundary. The exact analysis also shows that delay dominates the
 independent \(q=32,D=32\) cell, whereas multiplicative correlation dominates
 the low-delay high-correlation cells.
+
+EXP-008B validates the mode-conditioned Markov-jump covariance construction
+but retains its weak temporal effect as a negative control. EXP-008C activates
+a locally expanding conditional TD regime: at persistence 0.98, every exact
+boundary is only 1.9%--4.0% of its i.i.d. counterpart, and the uninflated rule
+is unstable in all 24 high-persistence cells.
+
+EXP-008D validates a coarse proof-derived decorrelation rule and identifies a
+delay-constant loss. EXP-008E replaces that loss with a sharp \(L_2\) bound;
+all five gates pass in 72 exact cells. The online computation is a scalar
+search using aggregate curvature, a total-variation certificate, and RMS
+delay. It does not form a covariance matrix or preconditioner.
+
+EXP-009A--C test predictable one-shot mixing certificates. Coverage and exact
+safety pass, and participation falls sharply under high sharing. Finite-budget
+and joint \((q,b,\eta)\) search beat the worst-mixing baseline in all
+low/medium-persistence cells, but the worst high-persistence delayed
+online/oracle expected-error ratio remains 10.46. These experiments reject a
+uniform near-oracle claim for the static-pilot controller and motivate an
+anytime progressive certificate.
 
 ## Scope
 

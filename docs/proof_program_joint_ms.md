@@ -408,7 +408,7 @@ Theorem 2 is exact for finite joint Markov modes.  Its direct dimension can
 grow exponentially with agent count, so it is a proof benchmark rather than
 the proposed controller.
 
-## 7. General mixing main theorem: proof obligations
+## 7. General unthinned mixing theorem: remaining obligations
 
 For heterogeneous delays, the homogeneous recursion is
 
@@ -479,6 +479,261 @@ c_D\eta_{\rm delay}^{-1}
 with every constant derived from the preceding recursion.  EXP-007D validates
 the parallel-sum geometry as a proof target, not its constants as a theorem.
 
+### 7.1 A proved low-complexity route: predictable decorrelation gaps
+
+The unrestricted unthinned recursion above remains open, but a closely related
+algorithm admits a direct finite-time proof.  Before update \(k\), advance the
+joint data chain by a predictable decorrelation gap \(b_k\), without changing
+the parameter.  Let \(\mathcal F_k\) contain the parameter history, delay
+profile, participation decision, and all data before the fresh block.  Assume
+the conditional law \(\nu_k\) of the participating agents' joint sample obeys
+
+\[
+\|\nu_k-\pi_{q_k}\|_{\rm TV}\le\delta_k
+\quad\text{almost surely},
+\]
+
+where \(\pi_q\) is the stationary joint law.  This property follows, for
+example, from a uniform joint-chain mixing bound evaluated at \(b_k\).  It does
+not assert that the new sample is independent of the iterate.
+
+For a fixed \(q\), define
+
+\[
+\bar H_k=\frac1q\sum_{i=1}^q H_{i,k},\qquad
+A=\mathbb E_{\pi_q}\bar H_k,\qquad
+K_q=\lambda_{\max}
+\left(\mathbb E_{\pi_q}[\bar H_k^\top\bar H_k]\right).
+\]
+
+Assume
+
+\[
+\|H_{i,k}\|_2\le L,\qquad
+\lambda_{\min}\!\left(\frac{A+A^\top}{2}\right)\ge\mu>0.
+\]
+
+Total-variation duality gives the conditional bounds
+
+\[
+\begin{aligned}
+\mathbb E[\langle e,\bar H_ke\rangle\mid\mathcal F_k]
+&\ge \mu_\delta\|e\|^2,\\
+\mathbb E[\|\bar H_ke\|^2\mid\mathcal F_k]
+&\le K_\delta\|e\|^2,
+\end{aligned}
+\]
+
+where
+
+\[
+\mu_\delta=\mu-2L\delta,\qquad
+K_\delta=K_q+2L^2\delta.
+\]
+
+The first quantity is positive whenever \(\delta<\mu/(2L)\).
+
+**Theorem 3 (decorrelated delayed mean-square contraction).**  Fix \(q\),
+\(\eta\), and delays \(0\le\tau_i\le D\).  Let
+
+\[
+\tau_{\rm rms}
+=\left(\frac1q\sum_{i=1}^q\tau_i^2\right)^{1/2}.
+\]
+
+Suppose the conditional total-variation bound above holds with
+\(\delta_k\le\delta<\mu/(2L)\).  For the homogeneous recursion
+
+\[
+e_{k+1}
+=e_k-\frac{\eta}{q}\sum_{i=1}^qH_{i,k}e_{k-\tau_i},
+\]
+
+define
+
+\[
+c(\eta)
+=1-2\eta\mu_\delta
++\eta^2\left(K_\delta+4L^2\tau_{\rm rms}\right)
++\eta^4L^4\tau_{\rm rms}^2.
+\]
+
+If
+
+\[
+\eta L\le1,\qquad
+\eta\left(K_\delta+4L^2\tau_{\rm rms}\right)
++\eta^3L^4\tau_{\rm rms}^2
+<2\mu_\delta,
+\tag{T3}
+\]
+
+then \(c(\eta)<1\) and
+
+\[
+\max_{k-2D\le j\le k}\mathbb E\|e_j\|^2
+\le
+c(\eta)^{\lfloor k/(2D+1)\rfloor}
+\max_{-2D\le j\le0}\mathbb E\|e_j\|^2.
+\]
+
+*Proof.*  Write
+
+\[
+a_k=\bar H_ke_k,\qquad
+r_k=\frac1q\sum_{i=1}^qH_{i,k}
+(e_{k-\tau_i}-e_k).
+\]
+
+For
+\(R_k=\max_{k-2D\le j\le k}\mathbb E\|e_j\|^2\), the identity
+
+\[
+e_{k-\tau_i}-e_k
+=\eta\sum_{s=k-\tau_i}^{k-1}
+\frac1q\sum_{j=1}^qH_{j,s}e_{s-\tau_j}
+\]
+
+and two applications of Jensen's inequality imply
+
+\[
+\mathbb E\|r_k\|^2
+\le
+\eta^2L^4\tau_{\rm rms}^2R_k.
+\tag{20}
+\]
+
+The conditional drift and second-moment bounds give
+
+\[
+\mathbb E\|e_k-\eta a_k\|^2
+\le
+(1-2\eta\mu_\delta+\eta^2K_\delta)
+\mathbb E\|e_k\|^2.
+\tag{21}
+\]
+
+Moreover, \(\eta L\le1\) gives
+\(\|e_k-\eta a_k\|\le2\|e_k\|\) pathwise.  Combining (20), (21), and
+Cauchy--Schwarz,
+
+\[
+\begin{aligned}
+\mathbb E\|e_{k+1}\|^2
+&=
+\mathbb E\|e_k-\eta a_k-\eta r_k\|^2\\
+&\le
+\left[
+1-2\eta\mu_\delta
++\eta^2(K_\delta+4L^2\tau_{\rm rms})
++\eta^4L^4\tau_{\rm rms}^2
+\right]R_k\\
+&=c(\eta)R_k.
+\end{aligned}
+\]
+
+Condition (T3) makes \(c(\eta)<1\).  The sliding envelope cannot increase,
+and after \(2D+1\) updates every element of the old window has been replaced
+by an element bounded by \(c(\eta)R_k\).  Iteration proves the claim.
+\(\square\)
+
+The largest safe step in (T3) is obtained by solving a monotone scalar cubic
+and clipping at \(1/L\).  It requires neither a preconditioner nor a matrix
+inverse.  Agent count enters through \(K_q\), and the complete delay profile
+enters through \(\tau_{\rm rms}\), rather than only through \(D\).
+
+The preceding coefficient is convenient but not tight because it bounds the
+cross term after expanding the square.  A direct \(L_2\) triangle inequality
+gives a stronger result.  Define
+
+\[
+c_0(\eta)=1-2\eta\mu_\delta+\eta^2K_\delta,\qquad
+d_\tau(\eta)=\eta^2L^2\tau_{\rm rms}.
+\]
+
+The same estimates (20)--(21) imply
+
+\[
+\begin{aligned}
+\{\mathbb E\|e_{k+1}\|^2\}^{1/2}
+&\le
+\{\mathbb E\|e_k-\eta a_k\|^2\}^{1/2}
++\eta\{\mathbb E\|r_k\|^2\}^{1/2}\\
+&\le
+\left[
+\sqrt{c_0(\eta)}+d_\tau(\eta)
+\right]\sqrt{R_k}.
+\end{aligned}
+\]
+
+Therefore the sharper sufficient condition is
+
+\[
+\boxed{
+\sqrt{1-2\eta\mu_\delta+\eta^2K_\delta}
++\eta^2L^2\tau_{\rm rms}<1
+}
+\tag{T3-sharp}
+\]
+
+with contraction coefficient
+
+\[
+c_{\rm sharp}(\eta)
+=
+\left[
+\sqrt{1-2\eta\mu_\delta+\eta^2K_\delta}
++\eta^2L^2\tau_{\rm rms}
+\right]^2.
+\]
+
+For \(\tau_{\rm rms}=0\), (T3-sharp) recovers the fresh-sample sufficient
+condition \(\eta<2\mu_\delta/K_\delta\) exactly.  Its boundary and its
+rate-optimal interior step are both one-dimensional scalar solves.  The
+rate-optimal step minimizes \(c_{\rm sharp}(\eta)\); selecting the largest
+stable root would give vanishing theorem slack and is not the recommended
+controller.
+
+If the recursion additionally contains a conditionally centered innovation
+\(\xi_k\) satisfying
+\(\mathbb E[\|\xi_k\|^2\mid\mathcal F_k]\le\Omega_q\) and orthogonal to the
+homogeneous update conditional on \(\mathcal F_k\), the same proof gives the
+block recursion
+
+\[
+R_{k+2D+1}\le c(\eta)R_k+\eta^2\Omega_q
+\]
+
+and hence a residual of at most
+\(\eta^2\Omega_q/[1-c(\eta)]\).
+
+**Corollary 3.1 (geometric joint mixing).**  If the participating joint chain
+satisfies
+
+\[
+\sup_z\|P_q^b(z,\cdot)-\pi_q\|_{\rm TV}
+\le C_qr_q^b,\qquad 0<r_q<1,
+\]
+
+then Theorem 3 applies with
+\(\delta=C_qr_q^b\).  Choosing
+
+\[
+b\ge
+\frac{\log(C_q/\delta_{\rm target})}{-\log r_q},
+\qquad
+0<\delta_{\rm target}<\frac{\mu}{2L},
+\]
+
+is sufficient.  A predictable upper confidence bound on \(C_qr_q^b\) may be
+substituted on its simultaneous confidence event.  This separates three
+low-dimensional controls: participation \(q\), decorrelation gap \(b\), and
+step size \(\eta\).
+
+Theorem 3 closes a rigorous delayed-Markov route for the decorrelated
+algorithm.  It does not close the more aggressive unthinned recursion in
+Section 7; that distinction must remain explicit in the paper.
+
 ## 8. SDDE representation
 
 The matching stochastic delay differential equation must retain the
@@ -530,23 +785,20 @@ v_{m+1}
 \]
 
 while an upper-confidence exponential average of \(\|y_m\|^2\) tracks
-\(K_{\rm mix}(q)\).  Because a TD Jacobian is rank one, this probe requires
+\(K_q\).  A separate predictable mixing certificate selects the smallest
+decorrelation gap \(b_m\) for which
+\(\widehat\delta_m^+(b_m)<\widehat\mu_m^-/(2\widehat L_m^+)\).
+Because a TD Jacobian is rank one, the curvature probe requires
 \(O(qd)\) arithmetic and \(O(d)\) memory, matching the order of aggregating the
-agent updates.  The control decision is then the scalar lookup
-
-\[
-\eta_k
-=
-\left[
-\widehat\eta_{\rm delay}^{-1}
-+\widehat K_{\rm mix}^{+}(q_k)/(2\widehat\mu)
-\right]^{-1}.
-\]
+agent updates.  The safe step is the positive scalar root of (T3), clipped at
+\(1/\widehat L_m^+\).  The control decision uses only scalar lookup or
+bisection.
 
 Participation \(q_k\) is selected over a finite candidate set by substituting
-this safe step and the correlation-limited additive noise estimate into the
-finite-budget risk bound.  No actor--critic, inverse Hessian, covariance
-matrix, or preconditioner is required.
+this safe root, its decorrelation cost \(b_k\), and the correlation-limited
+additive noise estimate into the finite-budget risk bound.  All decisions for
+block \(m+1\) use probes completed by block \(m\).  No actor--critic, inverse
+Hessian, covariance matrix, or preconditioner is required.
 
 ## 10. Proof status
 
@@ -559,11 +811,13 @@ matrix, or preconditioner is required.
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |
-| Tractable joint Markov mixing bound | open |
-| Predictable online estimator guarantee | open |
+| Decorrelated delayed Markov theorem | proved |
+| Unthinned joint Markov mixing theorem | open |
+| Predictable two-state mixing certificate | proved/tested |
+| General finite-state anytime estimator | open |
 | SDDE-to-discrete approximation error | open |
 
-The next local-theory task is to compare the scalar joint rule with the exact
-lifted boundary, then extend the lifted construction to a Markov jump operator.
-The latter isolates the finite-state dependence exactly before a
-Poisson-equation argument addresses general geometrically mixing data.
+The next local-theory task is to prove a simultaneous confidence event for the
+mixing and curvature probes, then test the predictable \((q,b,\eta)\)
+controller.  A Poisson-equation argument for unthinned data remains a
+strictly stronger optional extension.

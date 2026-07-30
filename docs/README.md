@@ -96,6 +96,20 @@ the standard linear-speedup analysis.
 30. [`validation_exp008a.md`](validation_exp008a.md) records the reproducible
     4/7 result: scalar safety passes in all cells, exact agent-count saturation
     is confirmed, and three overly strong tightness/dominance gates fail.
+31. [`experiment_008b_markov_jump_boundary.md`](experiment_008b_markov_jump_boundary.md)
+    and [`validation_exp008b.md`](validation_exp008b.md) validate the exact
+    Markov-jump operator and retain a weak-persistence negative control.
+32. [`experiment_008c_expanding_markov_td.md`](experiment_008c_expanding_markov_td.md)
+    and [`validation_exp008c.md`](validation_exp008c.md) show that a persistent
+    locally expanding TD regime collapses the boundary and defeats an i.i.d.
+    step rule.
+33. [`experiment_008d_decorrelated_theorem.md`](experiment_008d_decorrelated_theorem.md)
+    through [`validation_exp008e.md`](validation_exp008e.md) derive and verify
+    the sharp predictable-decorrelation/RMS-delay theorem.
+34. [`experiment_009a_predictable_mixing_controller.md`](experiment_009a_predictable_mixing_controller.md)
+    through [`validation_exp009c.md`](validation_exp009c.md) audit static
+    high-confidence \((q,b,\eta)\) controllers, confirming safety and
+    correlation response but rejecting uniform near-oracle efficiency.
 
 ## Code and canonical outputs
 
@@ -168,3 +182,12 @@ correlation-aware paired advantage is 8.19 at the 99% lower limit, and the
 joint step is at least 54.5% of the useful fixed-grid boundary. The active
 mainline is now a theorem for correlation-limited mean-square stability under
 delay, followed by an online scalar estimator and nonlinear breadth.
+EXP-008B--E complete the first theorem layer. The exact finite-state
+Markov-jump operator distinguishes benign persistence from persistent local
+expansion, and the sharp decorrelated theorem passes all exact safety and
+envelope gates while using only \(K_q\), a mixing certificate, and RMS delay.
+EXP-009A--C show that a one-shot 99% mixing certificate is safe and selects
+much smaller \(q\) under high correlation, but cannot be uniformly near-oracle
+at \(p=0.98,D=2\). The next algorithmic step is a progressive anytime
+certificate that reuses transitions observed between updates; the static
+pilot must not be described as near-oracle.

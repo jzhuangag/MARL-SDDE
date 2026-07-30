@@ -32,12 +32,12 @@ low-complexity controller with a near-oracle guarantee.
 
 Primary working title:
 
-**Beyond Linear Speedup: Correlation-Limited Mean-Square Stability in Delayed
-Multi-Agent Markov Learning**
+**Beyond Linear Speedup: Correlation- and Mixing-Adaptive Participation in
+Delayed Multi-Agent Markov Learning**
 
 Algorithm-focused alternative:
 
-**Correlation- and State-Adaptive Participation for Delayed Multi-Agent
+**Correlation- and State-Adaptive Decorrelation for Delayed Multi-Agent
 Markov Learning**
 
 The first is stronger if the theorem is completed; the second should be used
@@ -48,12 +48,16 @@ cover more than centralized policy evaluation.
 ## Model
 
 Let a predictable subset \(S_k\subseteq[N]\) contribute delayed stochastic
-directions:
+directions after a predictable decorrelation gap \(b_k\):
 
 \[
 \theta_{k+1}=\theta_k-\eta_k\frac{1}{|S_k|}
 \sum_{i\in S_k}G_i(\theta_{k-\tau_{i,k}},Z_{i,k}).
 \]
+
+Between used samples, the joint chain advances \(b_k\) transitions while the
+parameter is frozen. This controlled thinning is the current rigorous route;
+the fully unthinned recursion remains a stronger open extension.
 
 Assume:
 
@@ -116,50 +120,40 @@ linear speedup transparent.
 
 ## Theorem ladder
 
-### Theorem 1: delayed Lyapunov recursion
+### Theorem 1: decorrelated delayed mean-square contraction
 
-Construct a Lyapunov--Krasovskii functional
+For joint-chain total-variation error \(\delta\), define
 
 \[
-\mathcal V_k=
-\|\theta_k-\theta^\star\|_P^2+
-\lambda\sum_{j=k-D}^{k-1}
-\|\theta_{j+1}-\theta_j\|^2.
+\mu_\delta=\mu-2L\delta,\qquad
+K_\delta=K_q+2L^2\delta,\qquad
+\tau_{\rm rms}^2=q^{-1}\sum_i\tau_i^2.
 \]
 
-The target conditional recursion is
+The proved sharp sufficient condition is
 
 \[
-\mathbb E_k[\mathcal V_{k+1}]
-\le
-(1-c_1\mu\eta_k)\mathcal V_k
-+c_2\eta_k^2\Omega(S_k)
-+c_3L^2\eta_k^2\Psi(\tau_k)\mathcal V_k
-+R_{\rm mix}(k),
+\sqrt{1-2\eta\mu_\delta+\eta^2K_\delta}
++\eta^2L^2\tau_{\rm rms}<1.
 \]
 
-under an explicit stability condition on \(\eta_k,D,L,\mu\). The proof must
-handle subset choice using only past data; otherwise selection bias invalidates
-the martingale/mixing step.
-
-EXP-007B shows that \(\Omega(S_k)\) cannot represent only additive TD noise.
-The contraction coefficient must also contain a multiplicative-noise term:
+It yields contraction once every \(2D+1\) updates with coefficient
 
 \[
-\mathbb E_k[\mathcal V_{k+1}]
-\le
+c_{\rm sharp}(\eta)=
 \left[
-1-c_1\mu\eta_k+
-c_2\eta_k^2\Lambda_{\rm mult}(S_k)+
-c_3L^2\eta_k^2\Psi(\tau_k)
-\right]\mathcal V_k
-+c_4\eta_k^2\Omega_{\rm add}(S_k)+R_{\rm mix}(k).
+\sqrt{1-2\eta\mu_\delta+\eta^2K_\delta}
++\eta^2L^2\tau_{\rm rms}
+\right]^2<1.
 \]
 
-Here \(\Lambda_{\rm mult}(S)\) is a long-run covariance or conservative
-operator bound for the random sample Jacobian. Cross-agent correlation can
-prevent this term from shrinking with \(q\), reducing the mean-square stable
-step size even when the mean drift is unchanged.
+This result uses conditional total-variation mixing rather than an
+independence substitution, retains the full RMS delay profile, and requires
+only a scalar solve. It recovers \(\eta<2\mu_\delta/K_\delta\) when delay is
+zero. The exact proof is in
+[`proof_program_joint_ms.md`](proof_program_joint_ms.md). A conditionally
+centered additive innovation gives residual
+\(\eta^2\Omega_q/[1-c(\eta)]\).
 
 ### Theorem 2: correlation-limited speedup
 
@@ -245,17 +239,18 @@ Substituting
 zero as common correlation \(\rho\) approaches one. This gives a clean,
 reviewer-checkable phase-transition statement before the delayed generalization.
 
-### Theorem 4: observable controller
+### Theorem 4: observable \((q,b,\eta)\) controller
 
 Maintain scalar upper surrogate \(U_k\) and an upper confidence estimate
-\(\widehat\Omega_k^+(S)\) from charged probes. Select the registered
-\((q,\eta)\) minimizing the blockwise bound. The desired result is
+\(\widehat\Omega_k^+(S)\) from charged probes. A simultaneous upper mixing
+certificate selects \(b\); the scalar cubic selects \(\eta\). Select the
+registered \((q,b,\eta)\) minimizing the blockwise bound. The desired result is
 
 \[
-\mathcal R_k(\widehat q_k,\widehat\eta_k)
+\mathcal R_k(\widehat q_k,\widehat b_k,\widehat\eta_k)
 \le
 (1+\varepsilon_k)
-\min_{q,\eta}\mathcal R_k(q,\eta)
+\min_{q,b,\eta}\mathcal R_k(q,b,\eta)
 +\Delta_k,
 \]
 
@@ -268,9 +263,9 @@ confidence inflation so that \(U_k\) is actually an upper surrogate.
 
 - The exact scalar phase transition is low difficulty and should be completed
   first; it is also an algebraic unit test for every later bound.
-- The fixed-subset delayed recursion with joint Markov mixing is medium-to-high
-  difficulty. The main technical risk is controlling delayed iterate/noise
-  dependence without accidentally reintroducing cross-agent independence.
+- The fixed-subset theorem with a predictable decorrelation gap is now proved.
+  The fully unthinned delayed recursion remains medium-to-high difficulty
+  because delayed iterates and Markov modes are endogenous.
 - The predictable adaptive-subset theorem is high difficulty because the
   selected sample is endogenous. A sample-splitting probe/exploitation design
   is the safest proof route.
@@ -278,9 +273,10 @@ confidence inflation so that \(U_k\) is actually an upper surrogate.
   additional work and should not be promised until the strongly monotone/linear
   result is closed.
 
-The minimum theoretically credible ICML package is Theorems 1--3 plus a
-matched estimator and strong experiments. Theorem 4 would materially raise the
-ceiling, but a weak or incorrect adaptive theorem is worse than omitting it.
+The minimum theoretically credible ICML package is now the proved
+decorrelated theorem, correlation-limited phase transition, a matched
+predictable estimator, and strong experiments. A fully unthinned theorem would
+raise the ceiling but is no longer required for a correct base result.
 
 ## Confirmed low-complexity joint step prototype
 
@@ -325,8 +321,8 @@ prototype combines this threshold with the exact delayed mean boundary:
 \right]^{-1}.
 \]
 
-The parallel-sum form remains an empirical/theorem-inspired design until a
-delayed Markov Lyapunov--Krasovskii proof supplies explicit constants.
+The parallel-sum form remains an empirical benchmark for unthinned data. The
+proved decorrelated algorithm instead uses the scalar cubic condition above.
 EXP-007D nevertheless gives a strong target: on 64 new paired seeds it passed
 all seven preregistered gates, had zero crossings, and kept the largest 99%
 bootstrap upper mean error at 0.649.  Treating correlated agents as independent
@@ -438,6 +434,41 @@ two regimes: multiplicative correlation dominates at small delay, whereas the
 mean delay boundary becomes nearly exact at \(q=32,D=32,\rho=0\).  The main
 theorem must therefore express competing correlation and delay margins rather
 than universal dominance by either source.
+
+EXP-008B then validates the finite-state Markov-jump implementation on 36
+cells but serves as a negative control: persistence changes the exact boundary
+by only about 3.1% in the adverse direction. Markov persistence is therefore
+not universally harmful.
+
+EXP-008C activates a locally expanding conditional TD regime while retaining
+a positive stationary mean. At \(p=0.98\), all 24 high-persistence cells have
+only 1.9%--4.0% of their i.i.d. boundary, and the uninflated rule is unstable
+in 24/24 cells. Under high conditional sharing, the \(q=32\)-to-\(q=16\)
+boundary gain is at most 1.0008. The unit spectral-gap inflation captures the
+scale but exceeds the exact boundary by up to 5.6%, so it is rejected as a
+safety theorem. These paired positive/negative controls justify adapting the
+decorrelation gap without claiming that persistence always reduces stability.
+
+EXP-008D validates the first proof-derived decorrelation rule in 72/72 exact
+Markov cells but rejects its delayed nonvacuity: delayed theorem steps use only
+4.3%--9.1% of the exact boundary. Applying an \(L_2\) triangle inequality
+before expanding the delay term yields the sharp condition above. EXP-008E
+then passes all five preregistered gates: every sharp boundary and rate-optimal
+step is exactly stable, the sharp boundary uses 8.1%--100% of the exact
+boundary, and every exact \(2D+1\)-step contraction lies inside the theorem
+envelope.
+
+EXP-009A--C audit predictable mixing estimation. A one-shot 2,048-transition
+Clopper--Pearson pilot attains 98.893% coverage, gives exact safety on every
+covered run, and changes median participation from \(q=6\) or \(18\) under
+independence to \(q=1\) or \(2\) under high sharing. Finite-budget and joint
+\((q,b,\eta)\) optimization beat the worst-mixing policy in all eight
+low/medium-persistence scenarios. However, the static-pilot near-oracle gate
+fails at \(p=0.98,D=2\): the best registered joint controller remains 10.46
+times the oracle in the worst scenario because its high-confidence gap is much
+larger. The paper must not claim a uniform near-oracle result for the static
+pilot. A progressive anytime-confidence controller is the justified next
+extension.
 
 ## Preliminary prior-art boundary
 
