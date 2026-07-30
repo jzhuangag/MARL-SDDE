@@ -480,6 +480,24 @@ bound with an explicit confidence-uncertainty penalty that deteriorates as
 the spectral gap vanishes, not a uniform near-oracle guarantee over all
 mixing rates.
 
+EXP-010A transfers the exact-TV/sharp-delay certificate to a seven-state,
+four-feature TD family.  All three numerical gates and four of five scientific
+gates pass on 32 fresh seeds, and eight artifacts reproduce byte-for-byte.
+Selected participation falls in every matched cell under high cross-agent
+sharing (mean \(q\) 18 to 1.67), the median certified gap increases from 53
+to 973 as laziness reaches 0.98, and delayed steps are nonincreasing in all
+six matched cells.  Joint selection is never worse than the better endpoint,
+although the frozen strict endpoint gate fails because the joint rule itself
+selects an endpoint in five scenarios.
+
+The audit also sharpens the proof boundary.  The homogeneous vector-TD
+stability certificate is rigorous.  The simple constant-step TD residual used
+for controller selection additionally assumes conditionally centered,
+orthogonal innovations and is not yet a generic finite-gap Markov-TD
+finite-time bound.  A martingale/Poisson-equation extension is therefore the
+next mandatory mathematical task; the paper must not hide it behind the
+empirical controller result.
+
 ## Preliminary prior-art boundary
 
 The following authoritative records were checked on 2026-07-30. A fresh

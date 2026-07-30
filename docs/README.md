@@ -113,6 +113,10 @@ the standard linear-speedup analysis.
 35. [`experiment_009d_progressive_anytime_controller.md`](experiment_009d_progressive_anytime_controller.md)
     and [`validation_exp009d.md`](validation_exp009d.md) validate time-uniform
     progressive safety and reject a uniform oracle ratio as mixing vanishes.
+36. [`experiment_010a_multistate_certificate_transfer.md`](experiment_010a_multistate_certificate_transfer.md)
+    and [`validation_exp010a.md`](validation_exp010a.md) transfer the sharp
+    homogeneous certificate to seven-state vector TD, while isolating the
+    still-open affine Markov finite-time bound.
 
 ## Code and canonical outputs
 
@@ -198,3 +202,9 @@ EXP-009D completes that progressive audit: simultaneous coverage and exact
 safety pass, and high-persistence gaps refine across blocks, but the worst
 oracle ratio remains 7.57. The manuscript must expose the resulting
 confidence/mixing penalty instead of promising a uniform near-oracle bound.
+EXP-010A then validates multistate transfer: all homogeneous certificates are
+strict, correlation changes \(q\) in every matched cell, mixing changes the
+median gap by \(18.36\times\), and all artifacts reproduce. The controller is
+never worse than the better endpoint in mean, but its strict endpoint gate
+fails by equality in five cells. Generic affine Markov-TD finite-time risk
+remains a proof obligation.

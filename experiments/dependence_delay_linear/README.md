@@ -283,6 +283,17 @@ gaps shrink across blocks. The worst online/oracle ratio improves to 7.57 but
 still fails the registered threshold five. This rules out a uniform
 near-oracle claim under finite-budget high-confidence mixing estimation.
 
+EXP-010A transfers the sharp homogeneous certificate to a seven-state,
+four-feature TD family. All numerical gates and four of five scientific gates
+pass, with zero divergences in 1,152 charged runs. Correlation reduces the
+selected participation in every matched cell, temporal persistence increases
+the median certified separation by \(18.36\times\), and all eight primary
+artifacts reproduce byte-for-byte. The joint action is never worse than the
+better endpoint in mean, but the frozen strict endpoint gate fails because the
+joint optimizer selects an endpoint in five cells. The stationary-noise
+finite-budget expression remains a controller surrogate until a generic
+affine Markov-TD finite-time argument is proved.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It

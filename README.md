@@ -123,6 +123,8 @@ python run_linear_td_correlation.py --output-dir results/linear_td_correlation
 python run_td_delay_stability.py --output-dir results/td_delay_stability
 python run_joint_ms_confirmation.py --output-dir results/joint_ms_confirmation
 python run_exact_lifted_boundary.py --output-dir results/exact_lifted_boundary
+python run_multistate_certificate_transfer.py `
+  --output-dir results/multistate_certificate_transfer
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py

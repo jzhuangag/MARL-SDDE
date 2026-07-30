@@ -707,6 +707,15 @@ R_{k+2D+1}\le c(\eta)R_k+\eta^2\Omega_q
 and hence a residual of at most
 \(\eta^2\Omega_q/[1-c(\eta)]\).
 
+This corollary is not automatic for affine TD driven by finite-gap Markov
+data.  At the projected fixed point, the one-step TD innovation can have a
+nonzero conditional mean and can be conditionally correlated with the random
+Jacobian.  The homogeneous stability theorem remains valid, but a generic
+finite-sample affine-TD bound requires an additional martingale decomposition
+or Poisson-equation argument.  Until that argument is supplied, substituting
+the stationary TD-noise second moment into the displayed residual is a
+controller surrogate rather than a theorem.
+
 **Corollary 3.1 (geometric joint mixing).**  If the participating joint chain
 satisfies
 
@@ -796,9 +805,11 @@ bisection.
 
 Participation \(q_k\) is selected over a finite candidate set by substituting
 this safe root, its decorrelation cost \(b_k\), and the correlation-limited
-additive noise estimate into the finite-budget risk bound.  All decisions for
-block \(m+1\) use probes completed by block \(m\).  No actor--critic, inverse
-Hessian, covariance matrix, or preconditioner is required.
+additive noise estimate into a finite-budget risk surrogate.  It is a bound
+only under the conditional centering and orthogonality conditions above.  All
+decisions for block \(m+1\) use probes completed by block \(m\).  No
+actor--critic, inverse Hessian, covariance matrix, or preconditioner is
+required.
 
 ## 10. Proof status
 
@@ -807,7 +818,7 @@ Hessian, covariance matrix, or preconditioner is required.
 | Exchangeable aggregate-Jacobian identity | proved |
 | Pair-sharing closed form and agent-count saturation | proved |
 | Fresh no-delay mean-square contraction | proved |
-| Additive-noise residual bound | proved |
+| Additive-noise residual bound | proved under conditional centering and orthogonality |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |
@@ -815,6 +826,7 @@ Hessian, covariance matrix, or preconditioner is required.
 | Unthinned joint Markov mixing theorem | open |
 | Predictable two-state mixing certificate | proved/tested |
 | General finite-state anytime estimator | open |
+| Affine Markov-TD finite-time bound | open |
 | SDDE-to-discrete approximation error | open |
 
 The next local-theory task is to prove a simultaneous confidence event for the
