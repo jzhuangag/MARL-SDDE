@@ -1418,6 +1418,69 @@ conditional kernel mean equal to \(c_k\) for every fixed past sample, while
 the predictable gap supplies \(\delta_j^Z\).  The estimator retains four
 running sums and requires one kernel evaluation per stream.
 
+### 7.6 Nonlinear semi-gradient variance saturation
+
+The correlation-limited speedup mechanism does not require linear function
+approximation.  Fix an arbitrary parameter \(\theta\) and let
+
+\[
+G(\theta;Z)\in\mathbb R^p,\qquad
+m_\theta=\mathbb E G(\theta;Z),\qquad
+\Sigma_\theta=\operatorname{Cov}(G(\theta;Z))
+\]
+
+be any square-integrable stochastic update, including a neural TD
+semi-gradient.  Draw \(G_0,G_1',\ldots,G_q'\) independently from the marginal
+law of \(G(\theta;Z)\).  Independently draw
+\(B_i\sim\operatorname{Bernoulli}(\sqrt\rho)\), and define the hidden-sharing
+agent update
+
+\[
+G_i=B_iG_0+(1-B_i)G_i',
+\qquad
+\bar G_q=\frac1q\sum_{i=1}^qG_i.
+\tag{41}
+\]
+
+**Theorem 9 (nonlinear correlation-limited variance identity).**  For every
+\(q\ge1\) and \(\rho\in[0,1]\),
+
+\[
+\operatorname{Cov}(\bar G_q)
+=
+\left\{\rho+\frac{1-\rho}{q}\right\}\Sigma_\theta,
+\tag{42}
+\]
+
+and hence
+
+\[
+\mathbb E\|\bar G_q-m_\theta\|^2
+=
+\left\{\rho+\frac{1-\rho}{q}\right\}
+\operatorname{tr}(\Sigma_\theta).
+\tag{43}
+\]
+
+If \(\operatorname{tr}(\Sigma_\theta)>0\), the exact variance speedup over one
+agent is \(q/[1+(q-1)\rho]\).
+
+*Proof.*  Each \(G_i\) has mean \(m_\theta\), covariance
+\(\Sigma_\theta\), and the same marginal law as \(G(\theta;Z)\).  For
+\(i\ne j\), condition on \(B_i,B_j\).  The centered updates share the common
+draw only on the event \(B_i=B_j=1\), which has probability \(\rho\); all
+other cross-products contain independent centered draws.  Therefore
+\(\operatorname{Cov}(G_i,G_j)=\rho\Sigma_\theta\).  Summing the \(q\)
+diagonal and \(q(q-1)\) off-diagonal covariance terms and dividing by \(q^2\)
+gives (42).  Taking the trace proves (43). \(\square\)
+
+The theorem is a fixed-parameter stochastic-gradient identity, not a nonlinear
+TD convergence theorem.  It rigorously transfers the *Beyond Linear Speedup*
+mechanism to nonlinear updates while keeping the affine Markov-TD finite-time
+result as the current convergence theorem.  An end-to-end neural experiment
+must separately handle parameter drift, optimization bias, temporal mixing,
+and delayed application.
+
 ## 8. SDDE representation
 
 The matching stochastic delay differential equation must retain the
@@ -1499,6 +1562,7 @@ required.
 | Dual-anytime mixing/correlation certificate | proved for observable pair sharing |
 | Latent-collision correlation certificate | proved for hidden pair sharing |
 | Unknown-baseline bounded-kernel certificate | proved |
+| Nonlinear fixed-parameter variance saturation | proved |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |
@@ -1509,7 +1573,9 @@ required.
 | Unthinned affine Markov-TD finite-time bound | open |
 | SDDE-to-discrete approximation error | open |
 
-The next local-theory task is to validate the dual-anytime
-\((q,b,\eta)\) controller and extend its observable-sharing certificate to a
-latent correlation probe.  A Poisson-equation argument for unthinned data
+The controlled CPU theorem/certificate program is complete through latent
+continuous observations and nonlinear fixed-parameter updates.  The next
+empirical gate is an independently preregistered nonlinear Markov-TD study
+that separates update-matched variance reduction from resource-matched
+end-to-end performance.  A Poisson-equation argument for unthinned data
 remains a strictly stronger optional extension.

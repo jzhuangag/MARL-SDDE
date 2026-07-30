@@ -119,6 +119,16 @@ bounded similarity kernel and a learned independent-source baseline. It
 passes all seven gates with 100% joint coverage and completes the controlled
 CPU theorem/certificate program.
 
+The nonlinear feasibility stage freezes a two-hidden-layer tanh TD model and
+checks the underlying variance mechanism without training-budget confounds.
+At \(q=32\), the normalized gradient covariance trace is 0.0318 for
+independent agents (theory: 0.03125) but 0.9418 at correlation 0.9 (theory:
+0.9031). The accompanying theorem proves the exact
+\(\rho+(1-\rho)/q\) covariance factor for any square-integrable nonlinear
+stochastic update under hidden pair sharing. These are implementation-smoke
+numbers, not formal empirical evidence; a preregistered nonlinear study is the
+next gate.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -168,10 +178,19 @@ python -m unittest -v test_linear_model.py test_stagewise_controller.py `
 
 No GPU is required for these linear experiments.
 
+The nonlinear smoke test is also CPU-compatible:
+
+```powershell
+python experiments/nonlinear_markov_td/run_gradient_variance_smoke.py
+python experiments/nonlinear_markov_td/run_nonlinear_td_smoke.py
+```
+
 ## Repository structure
 
 - `experiments/dependence_delay_linear/`: exact model, sweeps, Monte Carlo
   checks, tests, and selected result artifacts;
+- `experiments/nonlinear_markov_td/`: CPU-only nonlinear feasibility and
+  gradient-variance mechanism checks;
 - `docs/`: experiment passports, registered decisions, and reproducibility
   records.
 
