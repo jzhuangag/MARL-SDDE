@@ -133,6 +133,8 @@ python run_lyapunov_state.py --output-dir results/lyapunov_state `
 python run_linear_td_correlation.py `
   --output-dir results/linear_td_correlation `
   --num-seeds 32 --bootstrap-replications 2000 --workers 4
+python run_td_delay_stability.py `
+  --output-dir results/td_delay_stability --num-seeds 16
 ```
 
 Run deterministic implementation checks with:
@@ -210,6 +212,13 @@ Independent paths give median \(N_{\rm eff}(32)=30.996\); shared paths at
 \(q=16\) to \(q=1\), with strong paired endpoint improvements. The audit also
 finds that registered delays do not alter the selected count or step size, so
 EXP-007A supports correlation-limited participation but not delay adaptivity.
+
+EXP-007B activates the exact delayed mean-TD stability boundary. It passes four
+of six gates and reproduces all seven artifacts exactly, but rejects the
+mean-boundary step-size controller: stochastic TD can diverge below the mean
+spectral boundary, especially under strong cross-agent correlation. This
+motivates a correlation-aware mean-square Lyapunov bound for random delayed
+Jacobians.
 
 ## Scope
 

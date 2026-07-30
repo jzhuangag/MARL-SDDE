@@ -1,0 +1,77 @@
+{
+  "experiment_id": "EXP-007B-td-delay-stability",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "num_paired_seeds": 16,
+  "base_seed": 20261030,
+  "horizon": 4000,
+  "divergence_threshold": 1000000000000.0,
+  "multipliers": [
+    0.5,
+    0.8,
+    0.95,
+    1.05,
+    1.2
+  ],
+  "agent_counts": [
+    8,
+    16,
+    32
+  ],
+  "max_delays": [
+    0,
+    8,
+    32
+  ],
+  "correlations": [
+    0.0,
+    0.9
+  ],
+  "gates": {
+    "active_boundary": {
+      "pass": true,
+      "critical_eta_ratio_d32_to_d0": {
+        "16": 0.3071834845335188,
+        "32": 0.1269851489101698
+      }
+    },
+    "exact_spectral_separation": {
+      "pass": true,
+      "stable_cells": 27,
+      "unstable_cells": 18
+    },
+    "monte_carlo_boundary_agreement": {
+      "pass": false,
+      "stable_runs_no_crossing": false,
+      "all_stable_cell_medians_below_initial": false,
+      "delayed_m1p2_crossing_fraction": 0.9322916666666666
+    },
+    "delay_adaptive_value": {
+      "pass": false,
+      "adaptive_runs_no_crossing": false,
+      "delay_blind_crossing_fraction": 1.0
+    },
+    "correlation_stability_separation": {
+      "pass": true,
+      "high_correlation_error_not_smaller_fraction": 1.0,
+      "comparison_count": 9
+    },
+    "accounting_determinism_numerical_validity": {
+      "pass": true,
+      "observed_runs": 1632,
+      "expected_runs": 1632,
+      "divergence_threshold": 1000000000000.0,
+      "horizon": 4000
+    },
+    "overall": {
+      "pass": false,
+      "criterion": "all six active delay-stability gates pass"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  }
+}

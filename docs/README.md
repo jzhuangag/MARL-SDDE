@@ -71,6 +71,9 @@ the standard linear-speedup analysis.
 22. [`experiment_007b_delay_stability.md`](experiment_007b_delay_stability.md)
     preregisters an exact spectral-boundary and Monte Carlo stress test for the
     delayed TD/SDDE stability layer.
+23. [`validation_exp007b.md`](validation_exp007b.md) records the reproducible
+    4/6 failure, the mean-versus-mean-square stability gap, and the newly
+    exposed correlation--delay interaction through random TD Jacobians.
 
 ## Code and canonical outputs
 
@@ -128,3 +131,8 @@ falls from 30.996 under independent paths to 1.111 at correlation 0.9, while
 the long-budget optimal count falls from 16 to 1. The formal experiment passes
 all gates and reproduces exactly, but delay is empirically inactive; the next
 stage must separately stress the SDDE stability mechanism.
+EXP-007B performs that stress test. It activates a strong mean delay boundary
+but rejects mean-spectral step-size control: high cross-agent correlation can
+make stochastic TD diverge even below the exact mean boundary. The retained
+theory must therefore establish correlation-aware mean-square delayed
+stability, not only mean convergence or additive-noise diffusion.

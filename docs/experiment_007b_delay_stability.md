@@ -99,3 +99,16 @@ made.
   `python run_td_delay_stability.py --output-dir results/td_delay_stability --num-seeds 16`;
 - exact reproduction uses an isolated output directory;
 - hard timeout: 20 minutes.
+
+## Execution outcome
+
+The 16-seed primary run completed all 1,632 stochastic trajectories and passed
+four of six gates. Exact mean-system delay boundaries were active and all
+spectral classifications were correct, but the nominally stable 0.8-boundary
+rule still produced stochastic TD divergence. The delay-blind rule crossed the
+threshold in every target run, yet the mean-boundary delay-adaptive rule also
+crossed under strong correlation. The overall verdict is **FAIL**.
+
+The full rerun reproduced all seven artifacts byte-for-byte. The failure
+identifies a mean-versus-mean-square stability gap and a correlation-dependent
+random-Jacobian effect. See `validation_exp007b.md`.
