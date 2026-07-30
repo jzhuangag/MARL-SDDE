@@ -109,6 +109,11 @@ formal dual-controller runs, joint coverage is 100%, all covered updating
 actions are exactly stable, and median participation falls from 9.5 at
 \(\rho=0\) to one at \(\rho=.9\).
 
+EXP-012A removes access to hidden sharing masks. An anytime,
+mixing-bias-corrected collision certificate infers latent correlation from two
+observed agent samples. It obtains 100% joint coverage and exact safety over
+1,152 fresh CPU trajectories; all core artifacts reproduce exactly.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -147,6 +152,8 @@ python run_correlation_minimax_phase.py `
   --output-dir results/correlation_minimax_phase
 python run_dual_anytime_controller.py --num-seeds 32 `
   --base-seed 20261231 --output-dir results/dual_anytime_controller
+python run_latent_collision_certificate.py --num-seeds 128 `
+  --base-seed 20270201 --output-dir results/latent_collision_certificate
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py

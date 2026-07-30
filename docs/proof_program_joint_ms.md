@@ -1206,8 +1206,139 @@ and \(Q_{\rm diag}-Q_{\rm mean}\succeq0\) is a conditional covariance, proving
 the required Loewner monotonicity.  Updating the two success/trial counters is
 \(O(1)\); the rank-one TD curvature aggregation and finite candidate search
 remain \(O(qd)\) time and \(O(d)\) memory.  The theorem covers observable
-sharing or collision indicators.  A confidence sequence for latent,
-general-purpose cross-agent dependence is a separate extension.
+sharing or collision indicators.
+
+### 7.4 Latent sharing from observable collisions
+
+Direct sharing metadata is unnecessary when shared agents reuse the same
+observable Markov sample.  Let \(C,E_1,E_2\) be independent draws from a
+stationary distribution \(\pi\), and let
+\(B_1,B_2\stackrel{\rm iid}{\sim}{\rm Bernoulli}(\sqrt\rho)\).  The learner
+observes
+
+\[
+Y_i=B_iC+(1-B_i)E_i,\qquad i\in\{1,2\},
+\]
+
+where the expression denotes sample selection rather than numerical
+interpolation.  The masks \(B_i\) are hidden.  Define
+
+\[
+c_\pi=\mathbb P(E_1=E_2)=\sum_y\pi(y)^2,\qquad
+X=\mathbf 1\{Y_1=Y_2\}.
+\]
+
+**Proposition 4 (latent-collision identity).**  The stationary collision
+probability is
+
+\[
+\vartheta
+=\mathbb E_\pi X
+=c_\pi+(1-c_\pi)\rho.
+\tag{35}
+\]
+
+*Proof.*  With probability \(\rho\), both agents select \(C\) and collide
+surely.  On the complementary event, every remaining pair of selected sources
+is independent with marginal \(\pi\), and collides with probability
+\(c_\pi\). \(\square\)
+
+The identity also holds for a bounded similarity kernel after replacing one
+and \(c_\pi\) by its shared-source and independent-source expectations.
+
+Suppose collision probe \(j\) is taken after a predictable gap \(b_j\), and
+the conditional law of its latent sources is within total variation
+\(\delta_j\) of their stationary joint law.  Put
+\(\mu_j=\mathbb E[X_j\mid{\cal F}_{j-1}]\).  Since
+\(X_j\in[0,1]\),
+
+\[
+|\mu_j-\vartheta|\le\delta_j.
+\tag{36}
+\]
+
+For \(\alpha_\rho\in(0,1)\), define
+
+\[
+r_n(\alpha_\rho)
+=
+\sqrt{
+\frac{
+\log\{\pi^2n^2/(6\alpha_\rho)\}
+}{2n}
+}
+\]
+
+and
+
+\[
+\vartheta_n^+
+=
+\min\left\{
+1,\,
+\frac1n\sum_{j=1}^nX_j
++r_n(\alpha_\rho)
++\frac1n\sum_{j=1}^n\delta_j
+\right\}.
+\tag{37}
+\]
+
+**Theorem 7 (anytime latent-correlation certificate).**  If
+\(c_\pi^-\le c_\pi<1\), then with probability at least
+\(1-\alpha_\rho\), simultaneously for every adaptive collision-probe count
+\(n\ge1\),
+
+\[
+\rho
+\le
+\rho_n^+
+:=
+\left[
+\frac{\vartheta_n^+-c_\pi^-}{1-c_\pi^-}
+\right]_{[0,1]}.
+\tag{38}
+\]
+
+If the persistence confidence sequence in Theorem 6 is assigned failure
+probability \(\alpha_p\), and every \(\delta_j\) is computed from its
+pre-probe upper endpoint, then (38) and the mixing sequence hold jointly with
+probability at least \(1-\alpha_p-\alpha_\rho\).
+
+*Proof.*  For fixed \(n\), the martingale Hoeffding inequality gives
+
+\[
+\mathbb P\left\{
+\frac1n\sum_{j=1}^n(\mu_j-X_j)
+>
+\sqrt{\frac{\log(1/\alpha_n)}{2n}}
+\right\}
+\le\alpha_n.
+\]
+
+Set \(\alpha_n=6\alpha_\rho/(\pi^2n^2)\) and take a union bound over all
+\(n\).  Combining the resulting event with
+\(\vartheta\le\mu_j+\delta_j\) proves
+\(\vartheta\le\vartheta_n^+\) simultaneously.  From (35),
+\((\vartheta-c)/(1-c)\) is non-increasing in \(c\) for
+\(\vartheta\le1\); hence substituting \(c_\pi^-\) yields (38).  The final
+claim follows from Theorem 6 and a second union bound. \(\square\)
+
+For three independent symmetric two-state latent chains,
+
+\[
+\delta_j
+\le
+\min\left\{
+1,\frac32(2p_j^+-1)^{b_j}
+\right\}.
+\]
+
+The certificate stores only collision, probe-count, and cumulative-bias
+scalars.  Computing a collision is \(O(1)\) once two agent samples are
+available.  No hidden mask, covariance matrix, or preconditioner is used.
+When \(c_\pi\) is unknown, setting \(c_\pi^-=0\) remains valid but more
+conservative; estimating a useful lower bound for general state spaces is a
+separate statistical problem.
 
 ## 8. SDDE representation
 
@@ -1288,6 +1419,7 @@ required.
 | Affine finite-gap Markov-TD bound | proved and tested |
 | Correlation-limited minimax lower bound | proved; exact Gaussian subclass |
 | Dual-anytime mixing/correlation certificate | proved for observable pair sharing |
+| Latent-collision correlation certificate | proved for hidden pair sharing |
 | Heterogeneous-delay independent-time theorem | proved |
 | Matrix-free exact lifted operator | verified to machine precision |
 | Finite-state Markov jump theorem | proved |

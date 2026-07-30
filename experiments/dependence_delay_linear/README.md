@@ -321,6 +321,14 @@ covered action. Median participation falls from 9.5 at zero sharing to one at
 not strictly improve two delayed cells in which delay already reduces both
 policies to effectively single-agent behavior.
 
+EXP-012A hides the pair-sharing masks and observes only whether two agent
+Markov samples collide. Theorem 7 corrects the natural independent collision
+rate and adds a time-uniform mixing-bias term. All six formal gates pass over
+1,152 fresh trajectories. At fast mixing and zero delay, certified
+participation changes from \(8\) to \(2\) to \(1\) as true correlation moves
+from zero to .5 to .9. Near-unit persistence remains conservative, as the
+theory predicts.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It

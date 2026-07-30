@@ -129,6 +129,10 @@ the standard linear-speedup analysis.
     and [`validation_exp011b.md`](validation_exp011b.md) replace
     fixed-sample intervals with optional-stopping-valid mixture confidence
     sequences and validate unknown-\((p,\rho)\) predictable control.
+40. [`experiment_012a_latent_collision_certificate.md`](experiment_012a_latent_collision_certificate.md)
+    and [`validation_exp012a.md`](validation_exp012a.md) remove access to
+    hidden sharing masks and certify correlation from observable Markov-sample
+    collisions.
 
 ## Code and canonical outputs
 
@@ -238,3 +242,10 @@ advantage fails in two delayed cells where both policies already choose
 single-agent behavior. Latent-correlation estimation and nonlinear breadth
 remain; the unthinned Poisson-equation and SDDE approximation extensions are
 non-blocking.
+EXP-012A closes the discrete pair-sharing version of that latent-correlation
+step. Across 1,152 fresh formal trajectories, joint coverage is 100%, every
+covered updating action is exactly stable, and the fast-mixing \(D=0\)
+controller changes participation from \(8\) to \(2\) to \(1\) as true
+\(\rho\) moves from zero to .5 to .9. All six gates pass and all four core
+artifacts reproduce byte-for-byte. A bounded-kernel collision baseline is the
+remaining CPU generalization before nonlinear breadth.
