@@ -129,6 +129,17 @@ stochastic update under hidden pair sharing. These are implementation-smoke
 numbers, not formal empirical evidence; a preregistered nonlinear study is the
 next gate.
 
+EXP-013B executed that gate with 1,024 fresh, preregistered realizable neural-TD
+runs. The overall result is a recorded failure (3/5 gates). Independent agents
+strongly benefit from participation: the \(q=32/q=1\) geometric MSE ratio is
+0.0622 with a 99% upper limit of 0.1119. Median resource-oracle participation
+also moves from 32 at correlation zero to four at correlation .9. However,
+fixed \(q=4\) does not reliably beat \(q=32\) at high correlation (ratio
+0.8319; 99% upper limit 1.2935). A descriptive interaction audit shows that
+the \(q=32/q=1\) ratio deteriorates by 18.48 times from correlation zero to
+.9, with a 99% lower limit of 8.51. Thus nonlinear correlation-limited
+parallelism is supported, while correlation-only participation is not.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -184,6 +195,10 @@ The nonlinear smoke test is also CPU-compatible:
 python experiments/nonlinear_markov_td/run_gradient_variance_smoke.py
 python experiments/nonlinear_markov_td/run_nonlinear_td_smoke.py
 ```
+
+The 1,024-run nonlinear confirmation is CPU-compatible but took roughly
+45 minutes in the recorded environment. Richer multi-environment neural
+experiments should use a GPU.
 
 ## Repository structure
 

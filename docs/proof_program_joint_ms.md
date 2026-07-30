@@ -1574,8 +1574,10 @@ required.
 | SDDE-to-discrete approximation error | open |
 
 The controlled CPU theorem/certificate program is complete through latent
-continuous observations and nonlinear fixed-parameter updates.  The next
-empirical gate is an independently preregistered nonlinear Markov-TD study
-that separates update-matched variance reduction from resource-matched
-end-to-end performance.  A Poisson-equation argument for unthinned data
-remains a strictly stronger optional extension.
+continuous observations and nonlinear fixed-parameter updates.  EXP-013B
+confirmed the loss of nonlinear parallel speedup but failed its
+correlation-only fixed-participation claim: high-correlation neural TD has
+heavy seed-to-seed optimization tails.  The next empirical gate is therefore
+a state- and risk-aware controller that separates update-matched variance
+reduction from resource-matched progress.  A Poisson-equation argument for
+unthinned data remains a strictly stronger optional extension.
