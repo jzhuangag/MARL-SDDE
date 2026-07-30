@@ -48,6 +48,11 @@ the standard linear-speedup analysis.
 14. [`validation_exp006a.md`](validation_exp006a.md) records the 9,720-cell
     scan, exact reproduction, failed delay-relevance gate, ten actionable
     correlation/state regions, and 11/11 fallacy scan.
+15. [`experiment_006b_state_correlation_controller.md`](experiment_006b_state_correlation_controller.md)
+    preregisters an observable, low-complexity state-and-correlation controller
+    evaluated only on the oracle-supported domain.
+16. [`validation_exp006b.md`](validation_exp006b.md) records the exact
+    reproduction, failed 2/6 overall result, and state-proxy root cause.
 
 ## Code and canonical outputs
 
