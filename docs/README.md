@@ -53,6 +53,9 @@ the standard linear-speedup analysis.
     evaluated only on the oracle-supported domain.
 16. [`validation_exp006b.md`](validation_exp006b.md) records the exact
     reproduction, failed 2/6 overall result, and state-proxy root cause.
+17. [`experiment_006c_lyapunov_state_controller.md`](experiment_006c_lyapunov_state_controller.md)
+    preregisters an independent-seed test of a scalar Lyapunov-surrogate
+    controller that replaces the failed raw gradient-magnitude state proxy.
 
 ## Code and canonical outputs
 
