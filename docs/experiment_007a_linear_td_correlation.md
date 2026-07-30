@@ -156,9 +156,19 @@ grid, seeds, cell weights, or threshold.
 - local Windows CPU with Numba;
 - smoke uses two seeds and is excluded from scientific evidence;
 - primary command:
-  `python run_linear_td_correlation.py --output-dir results/linear_td_correlation --num-seeds 32 --bootstrap-replications 2000`;
+  `python run_linear_td_correlation.py --output-dir results/linear_td_correlation --num-seeds 32 --bootstrap-replications 2000 --workers 4`;
 - exact reproduction uses the same command and an isolated output directory;
 - hard timeout: 30 minutes per run.
+
+### Execution-only amendment after smoke
+
+The two-seed smoke required 116.5 seconds, projecting beyond the registered
+30-minute primary timeout. Before the primary run, the 13 step sizes were
+batched inside one Numba call and seed evaluation was assigned to four CPU
+threads with ordered result collection. A direct test requires the batched and
+original scalar kernels to match exactly for errors, updates, and charged
+budgets. This amendment changes no MRP, path, seed, update, grid, metric, or
+gate; `--workers 4` is now explicit in both primary and reproduction commands.
 
 ## Decision after EXP-007A
 
