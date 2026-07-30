@@ -142,6 +142,25 @@ under an explicit stability condition on \(\eta_k,D,L,\mu\). The proof must
 handle subset choice using only past data; otherwise selection bias invalidates
 the martingale/mixing step.
 
+EXP-007B shows that \(\Omega(S_k)\) cannot represent only additive TD noise.
+The contraction coefficient must also contain a multiplicative-noise term:
+
+\[
+\mathbb E_k[\mathcal V_{k+1}]
+\le
+\left[
+1-c_1\mu\eta_k+
+c_2\eta_k^2\Lambda_{\rm mult}(S_k)+
+c_3L^2\eta_k^2\Psi(\tau_k)
+\right]\mathcal V_k
++c_4\eta_k^2\Omega_{\rm add}(S_k)+R_{\rm mix}(k).
+\]
+
+Here \(\Lambda_{\rm mult}(S)\) is a long-run covariance or conservative
+operator bound for the random sample Jacobian. Cross-agent correlation can
+prevent this term from shrinking with \(q\), reducing the mean-square stable
+step size even when the mean drift is unchanged.
+
 ### Theorem 2: correlation-limited speedup
 
 For fixed \(q\) and constant stable step size, derive
@@ -279,6 +298,12 @@ as a principled diffusion representation, with
 process. A Lyapunov--Krasovskii functional explains stability and the
 state/correlation participation tradeoff.
 
+For TD and other stochastic-approximation operators with random Jacobians,
+the diffusion should be written with state-dependent
+\(\Sigma_S(\Theta(t-\tau(t)))\), or accompanied by a discrete-time
+multiplicative-noise remainder. EXP-007B empirically falsifies the simpler
+additive-noise/mean-stability reduction at aggressive step sizes.
+
 For ICML, the SDDE cannot be the only guarantee. The paper must return from the
 diffusion model to a discrete-time finite-sample bound or provide an explicit
 approximation error. Otherwise reviewers can reasonably object that the
@@ -323,6 +348,12 @@ EXP-007A now supplies the first non-scalar linear-TD confirmation of that
 narrower claim. It does not lower the remaining bar: a fresh-seed confirmation,
 an active delay-stability experiment, and at least one nonlinear benchmark are
 still required.
+
+EXP-007B activates delay but rejects a mean-spectral delay controller. Its
+positive theoretical consequence is sharper: correlation changes the
+mean-square stability region of delayed TD through random Jacobians. The ICML
+ceiling rises if this interaction can be proved with a usable scalar bound;
+the proof difficulty also rises from medium to high.
 
 ## Preliminary prior-art boundary
 
