@@ -42,10 +42,46 @@ Lyapunov equation.
 - In a separate fixed-step analysis with \(\eta=0.02\), all 32 agents were best
   at 25 iterations, whereas 4 agents were best from 100 iterations onward.
   The 32-agent stationary MSE was \(11.42\%\) above the 4-agent optimum.
+- In a 64-seed predictable stagewise experiment, dependence-aware control
+  reduced high-correlation MSE to 36.2% of an independence-based delay-only
+  controller. Jointly adapting participation did not improve MSE over retaining
+  all 32 agents and adapting only the scalar step size (ratio 1.001, bootstrap
+  95% interval 0.977–1.029).
 
-The last result motivates a predictable stagewise controller that adapts both
-the scalar step size and accepted-agent count without estimating a full
-cross-agent covariance matrix.
+The evidence therefore favors correlation-aware scalar step-size adaptation as
+the current main algorithmic mechanism. Participation control requires a
+communication- or wall-clock-aware objective before it can be claimed as an
+additional contribution.
+
+EXP-005A then evaluated the correct resource-aware question. In its
+pre-registered matched-budget surface, the optimum changed from all 32 agents
+under independent noise to one agent under strong common noise. At
+\(\rho=0.9\), the optimal action used about 26% of the best all-agent MSE at
+the same message budget; the direction persisted under a wall-clock proxy and
+a non-fastest selection sensitivity. This is an oracle mechanism result; an
+online controller that pays for probing remains the next required gate.
+
+EXP-005B tested that gate. The charged controller selected median \(q=16\)
+under independent noise and \(q\in\{1,2,4\}\) under clustered, global, and
+mixed dependence. It reduced correlated-cell MSE to 34.4% of all-agent
+adaptive-step control and stayed within 8.3% of the same-cost information
+oracle. However, it did not beat fixed \(q=1\) after paying an 18% full-probe
+budget, so the pre-registered overall gate failed.
+
+EXP-005C replaces the full probe by 2.4% sparse probing and introduces
+within-run dependence shifts. After a semantics-checked execution optimization,
+the 64-seed run completed and reproduced exactly. The controller failed the
+performance and switch-response gates. However, the piecewise oracle also kept
+median \(q=32\) in every regime, so this rejects the implemented controller
+rather than the broader participation-adaptation hypothesis.
+
+EXP-006A resolves that mismatch with a 9,720-cell oracle phase diagram. It
+finds ten reproducible regions where optimal participation changes strongly
+with dependence and optimization state. The combined go/no-go still fails
+because delay changes pointwise optimal participation in only 5.31% of groups.
+The resulting research target is correlation/state-adaptive participation
+under SDDE-governed delay, not a controller that forces every source of
+heterogeneity to act through the agent count.
 
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
@@ -68,7 +104,14 @@ Run the crossover analysis and deterministic tests:
 
 ```powershell
 python run_crossover_analysis.py
-python -m unittest -v test_linear_model.py
+python run_stagewise_controller.py --output-dir results/stagewise
+python run_budget_participation.py --output-dir results/budget_participation
+python run_online_participation.py --output-dir results/online_participation
+python run_sparse_dynamic.py --output-dir results/sparse_dynamic
+python run_oracle_phase.py --output-dir results/oracle_phase
+python -m unittest -v test_linear_model.py test_stagewise_controller.py `
+  test_budget_participation.py test_online_participation.py `
+  test_sparse_dynamic.py test_oracle_phase.py
 ```
 
 No GPU is required for these linear experiments.

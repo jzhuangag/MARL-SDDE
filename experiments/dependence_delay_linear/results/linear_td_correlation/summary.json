@@ -1,0 +1,104 @@
+{
+  "experiment_id": "EXP-007A-linear-td-correlation",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "num_paired_seeds": 32,
+  "base_seed": 20260930,
+  "bootstrap_replications": 2000,
+  "workers": 4,
+  "endpoint_actions": {
+    "independent_oracle_q": 16,
+    "correlated_oracle_q": 1
+  },
+  "config": {
+    "num_states": 7,
+    "num_features": 4,
+    "num_agents": 32,
+    "gamma": 0.9,
+    "update_overhead": 4,
+    "correlations": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      1.0
+    ],
+    "max_delays": [
+      0,
+      8,
+      32
+    ],
+    "budgets": [
+      2000,
+      8000,
+      32000
+    ],
+    "agent_counts": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "eta_grid": [
+      0.001,
+      0.0014407573116637057,
+      0.0020757816311124263,
+      0.002990697562442441,
+      0.004308869380063765,
+      0.006208035064330728,
+      0.008944271909999161,
+      0.012886525151839582,
+      0.018566355334451116,
+      0.026749612199056874,
+      0.03853969935995983,
+      0.05552635364218317,
+      0.08
+    ],
+    "lrv_batch_size": 64
+  },
+  "gates": {
+    "independent_speedup": {
+      "pass": true,
+      "median_neff_q32": 30.99599917825881
+    },
+    "correlation_saturation": {
+      "pass": true,
+      "median_neff_q32": 1.1108963878687512
+    },
+    "participation_transition": {
+      "pass": true,
+      "independent_oracle_q": 16,
+      "correlated_oracle_q": 1,
+      "max_delay": 8,
+      "budget": 32000
+    },
+    "material_resource_value": {
+      "pass": true,
+      "independent_ratio": 0.2327425120256924,
+      "correlated_ratio": 0.3189059541617063
+    },
+    "delay_step_size_consistency": {
+      "pass": true,
+      "fraction": 1.0,
+      "comparison_count": 108
+    },
+    "accounting_and_numerical_validity": {
+      "pass": true,
+      "observed_rows": 134784,
+      "expected_rows": 134784
+    },
+    "overall": {
+      "pass": true,
+      "criterion": "all six linear-TD mechanism gates pass"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  }
+}

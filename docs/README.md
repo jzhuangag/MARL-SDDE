@@ -16,6 +16,58 @@ the standard linear-speedup analysis.
    level changes between transient and stationary regimes.
 3. [`reproducibility_exp001.md`](reproducibility_exp001.md) records analytic
    implementation checks, Monte Carlo agreement, and the independent rerun.
+4. [`experiment_004_stagewise_controller.md`](experiment_004_stagewise_controller.md)
+   records the predictable low-complexity joint step–participation experiment.
+   The controller detected the dependence shift but did not improve MSE beyond
+   dependence-aware step-size adaptation.
+5. [`validation_exp004.md`](validation_exp004.md) records the paired-bootstrap
+   interpretation, 11/11 statistical fallacy scan, and incomplete reproduction
+   status.
+6. [`experiment_005a_budget_participation_surface.md`](experiment_005a_budget_participation_surface.md)
+   records the pre-registered resource-matched participation surface. Its five
+   gates passed: independent-noise cells selected all 32 agents, whereas the
+   high-correlation cells selected one agent under the primary message budget.
+7. [`validation_exp005a.md`](validation_exp005a.md) records the numerical
+   validation, 11/11 fallacy scan, scope warnings, and byte-identical rerun.
+8. [`experiment_005b_online_probe_controller.md`](experiment_005b_online_probe_controller.md)
+   records the charged online controller. It learned the correct participation
+   direction and beat all-agent control, but failed to beat fixed \(q=1\).
+9. [`validation_exp005b.md`](validation_exp005b.md) records the paired-bootstrap
+   audit, failed overall gate, 11/11 fallacy scan, and exact reproduction.
+10. [`experiment_005c_sparse_dynamic_controller.md`](experiment_005c_sparse_dynamic_controller.md)
+    records the final sparse, nonstationary go/no-go design, its initial
+    timeout, authorized execution v2, and failed registered decision.
+11. [`validation_exp005c_timeout.md`](validation_exp005c_timeout.md) preserves
+    the initial `CANNOT_VERIFY` audit.
+12. [`validation_exp005c.md`](validation_exp005c.md) records the completed
+    64-seed result, exact reproduction, oracle-gate mismatch, and 11/11 fallacy
+    scan.
+13. [`experiment_006a_oracle_phase_diagram.md`](experiment_006a_oracle_phase_diagram.md)
+    preregisters the oracle-first participation phase diagram used to decide
+    whether agent-number adaptation remains a viable main direction.
+14. [`validation_exp006a.md`](validation_exp006a.md) records the 9,720-cell
+    scan, exact reproduction, failed delay-relevance gate, ten actionable
+    correlation/state regions, and 11/11 fallacy scan.
+15. [`experiment_006b_state_correlation_controller.md`](experiment_006b_state_correlation_controller.md)
+    preregisters an observable, low-complexity state-and-correlation controller
+    evaluated only on the oracle-supported domain.
+16. [`validation_exp006b.md`](validation_exp006b.md) records the exact
+    reproduction, failed 2/6 overall result, and state-proxy root cause.
+17. [`experiment_006c_lyapunov_state_controller.md`](experiment_006c_lyapunov_state_controller.md)
+    preregisters an independent-seed test of a scalar Lyapunov-surrogate
+    controller that replaces the failed raw gradient-magnitude state proxy.
+18. [`validation_exp006c.md`](validation_exp006c.md) records the 4/7 failed
+    result, exact reproduction, improved but conservative state surrogate, and
+    the information mismatch with a clairvoyant realized-state oracle.
+19. [`theory_program_icml2027.md`](theory_program_icml2027.md) narrows the
+    proposed ICML contribution to correlation-limited speedup, finite-budget
+    participation phase transitions, and an SDDE-to-discrete-time proof route.
+20. [`experiment_007a_linear_td_correlation.md`](experiment_007a_linear_td_correlation.md)
+    preregisters a delayed linear-TD test of effective participation and the
+    finite-budget agent-count phase transition under shared Markov trajectories.
+21. [`validation_exp007a.md`](validation_exp007a.md) records the formal 6/6
+    pass, exact reproduction, exchangeable-LRV fit, held-out-half diagnostic,
+    and the critical finding that the delay gate passed only by equality.
 
 ## Code and canonical outputs
 
@@ -27,6 +79,12 @@ the standard linear-speedup analysis.
   `experiments/dependence_delay_linear/results/server_time_sensitivity/`
 - Transient/stationary crossover:
   `experiments/dependence_delay_linear/results/crossover/`
+- Stagewise controller:
+  `experiments/dependence_delay_linear/results/stagewise/`
+- Budget-matched participation:
+  `experiments/dependence_delay_linear/results/budget_participation/`
+- Online probe-charging controller:
+  `experiments/dependence_delay_linear/results/online_participation/`
 
 The `results/smoke/` directory is an implementation smoke test and must not be
 used as scientific evidence. The same-seed reproduction directory is retained
@@ -36,9 +94,34 @@ canonical outputs; its verification result is recorded in
 
 ## Current decision
 
-The project has strong evidence for correlation-limited speedup and for
-dependence-aware step-size tuning. It does not yet have evidence that the
-jointly tuned 500-step optimum rejects agents. The stronger, currently
-supported mechanism is stage-dependent participation at a fixed constant step:
-more agents help the early transient, while fewer agents lower the stationary
-error floor.
+The project has strong evidence for correlation-limited speedup and
+dependence-aware scalar step-size tuning. EXP-004 showed that a controller can
+reduce its selected count from 32 to 4 after a common-noise shift, but this did
+not improve MSE over retaining all agents and adapting only the step size.
+EXP-005A subsequently confirmed that participation can be a strong
+resource-control mechanism: the resource-matched optimum changes from all
+agents under independent noise to one agent under strong common noise. The
+next experiment tested an online controller that observes only participating
+agents and charges every exploration probe. It correctly reduced participation
+under correlated noise but its 18% full-probe cost prevented it from beating
+the best fixed-\(q\) policy. EXP-005C reduced exploration to 2.4% and introduced
+within-run regime shifts. Its authorized optimized execution was exactly
+reproduced but failed three scientific gates. The audit also showed that the
+piecewise oracle retained median \(q=32\) in every regime, so the current test
+rejects the controller without resolving the broader participation hypothesis.
+EXP-006A resolves the oracle surface: correlation/state adaptation has ten
+contiguous actionable regions, but delay changes pointwise optimal \(q\) in
+only 5.31% of groups. The combined gate fails, while a narrower
+correlation/state controller remains mechanistically supported.
+EXP-006B then rejected a raw gradient-magnitude state proxy. EXP-006C replaced
+it with a scalar Lyapunov recursion and obtained clear improvements over both
+raw-state and correlation-only controllers, but still lost to fixed \(q=4\)
+and a clairvoyant realized-state oracle. The online state-controller line is
+therefore stopped. The retained ICML direction is a theorem-first account of
+how cross-agent Markov correlation invalidates linear speedup and induces an
+optimal finite participation level under delay and communication budgets.
+EXP-007A validates this narrower mechanism in linear TD: \(N_{\rm eff}(32)\)
+falls from 30.996 under independent paths to 1.111 at correlation 0.9, while
+the long-budget optimal count falls from 16 to 1. The formal experiment passes
+all gates and reproduces exactly, but delay is empirically inactive; the next
+stage must separately stress the SDDE stability mechanism.

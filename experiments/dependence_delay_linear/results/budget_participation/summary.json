@@ -1,0 +1,147 @@
+{
+  "experiment_id": "EXP-005A-budget-participation-surface",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "mc_replications": 10000,
+  "base_seed": 20260729,
+  "config": {
+    "agent_counts": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "rho_values": [
+      0.0,
+      0.3,
+      0.6,
+      0.9
+    ],
+    "max_delays": [
+      4,
+      16
+    ],
+    "alignments": [
+      "server_time",
+      "sample_time"
+    ],
+    "selection_rules": [
+      "fastest",
+      "uniform_rank"
+    ],
+    "eta_grid": [
+      0.0025,
+      0.0031046445301837096,
+      0.0038555270635198514,
+      0.0047880164034928676,
+      0.005946035575013605,
+      0.007384130729697496,
+      0.009170040432046712,
+      0.011387886347566916,
+      0.01414213562373095,
+      0.017562521603732995,
+      0.021810154653305155,
+      0.027085110938737847,
+      0.03363585661014857,
+      0.04177095129709654,
+      0.05187358218604038,
+      0.06441961327797016,
+      0.08
+    ],
+    "resource_specs": {
+      "message_overhead_4": {
+        "kind": "message",
+        "budget": 6400.0,
+        "overhead": 4.0
+      },
+      "wallclock": {
+        "kind": "wallclock",
+        "budget": 800.0,
+        "delay_weight": 0.25,
+        "message_weight": 0.02
+      },
+      "message_overhead_0": {
+        "kind": "message",
+        "budget": 6400.0,
+        "overhead": 0.0
+      },
+      "message_overhead_16": {
+        "kind": "message",
+        "budget": 6400.0,
+        "overhead": 16.0
+      }
+    }
+  },
+  "gates": {
+    "participation_regime_change": {
+      "pass": true,
+      "criterion": "primary message q>=16 at rho=0 and q<=8 at rho=0.9",
+      "independent_q": [
+        {
+          "configured_max_delay": 4,
+          "optimal_num_agents": 32
+        },
+        {
+          "configured_max_delay": 16,
+          "optimal_num_agents": 32
+        }
+      ],
+      "high_correlation_q": [
+        {
+          "configured_max_delay": 4,
+          "optimal_num_agents": 1
+        },
+        {
+          "configured_max_delay": 16,
+          "optimal_num_agents": 1
+        }
+      ]
+    },
+    "material_high_correlation_gain": {
+      "pass": true,
+      "criterion": "both rho=0.9 ratios <= 0.90",
+      "cells": [
+        {
+          "configured_max_delay": 4,
+          "optimal_num_agents": 1,
+          "optimal_to_all_agents_ratio": 0.259795263317647
+        },
+        {
+          "configured_max_delay": 16,
+          "optimal_num_agents": 1,
+          "optimal_to_all_agents_ratio": 0.2580976588477309
+        }
+      ]
+    },
+    "wallclock_relevance": {
+      "pass": true,
+      "criterion": "at least 3/4 hard cells have q<=8 and ratio<=0.90",
+      "passing_cells": 4,
+      "total_cells": 4
+    },
+    "not_only_straggler_deletion": {
+      "pass": true,
+      "criterion": "at least one uniform-rank rho=0.9 cell q<=8, ratio<=0.95",
+      "passing_cells": 2,
+      "total_cells": 2
+    },
+    "numerical_validity": {
+      "pass": true,
+      "criterion": "stable finite optima and all MC checks pass",
+      "mc_passes": 8,
+      "mc_total": 8
+    },
+    "overall": {
+      "pass": true,
+      "criterion": "all five pre-registered gates pass"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  }
+}

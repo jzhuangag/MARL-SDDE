@@ -1,0 +1,95 @@
+{
+  "experiment_id": "EXP-006A-oracle-participation-phase",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "expected_rows": 9720,
+  "grid": {
+    "paths": [
+      "global",
+      "clustered",
+      "balanced"
+    ],
+    "strengths": [
+      0.0,
+      0.1,
+      0.2,
+      0.30000000000000004,
+      0.4,
+      0.5,
+      0.6000000000000001,
+      0.7000000000000001,
+      0.8
+    ],
+    "budgets": [
+      250,
+      500,
+      1000,
+      2000,
+      4000,
+      8000
+    ],
+    "error_amplitudes": [
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0
+    ],
+    "max_delays": [
+      0,
+      4,
+      16,
+      32
+    ],
+    "overheads": [
+      0,
+      4,
+      16
+    ]
+  },
+  "gates": {
+    "non_degenerate_surface": {
+      "pass": true,
+      "occupied_q_values": 6,
+      "largest_q_share": 0.43117283950617286
+    },
+    "correlation_responsiveness": {
+      "pass": true,
+      "responsive_fraction": 0.37222222222222223,
+      "path_fractions": {
+        "balanced": 0.33055555555555555,
+        "clustered": 0.4305555555555556,
+        "global": 0.35555555555555557
+      },
+      "paths_at_least_ten_percent": 3
+    },
+    "decision_margin": {
+      "pass": true,
+      "well_separated_fraction": 0.7960199004975125,
+      "responsive_track_count": 402
+    },
+    "delay_relevance": {
+      "pass": false,
+      "delay_sensitive_fraction": 0.05308641975308642
+    },
+    "actionable_region": {
+      "pass": true,
+      "rectangle_count": 10
+    },
+    "numerical_validity": {
+      "pass": true,
+      "observed_rows": 9720,
+      "expected_rows": 9720
+    },
+    "overall": {
+      "pass": false,
+      "criterion": "all six oracle-viability gates pass"
+    }
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  }
+}
