@@ -94,6 +94,26 @@ Thus global common noise is irreducible, balanced cluster selection controls
 the cluster term, and only the idiosyncratic component gives linear variance
 reduction.
 
+More generally, exchangeability alone gives the exact trace-LRV identity
+
+\[
+\Omega(q)=
+\Omega_{\rm off}
++\frac{\Omega_{\rm diag}-\Omega_{\rm off}}{q},
+\qquad
+N_{\rm eff}(q)=
+\frac{\Omega_{\rm diag}}{
+\Omega_{\rm off}+(\Omega_{\rm diag}-\Omega_{\rm off})/q
+}.
+\]
+
+Here \(\Omega_{\rm diag}\) is the integrated autocovariance trace of one
+agent and \(\Omega_{\rm off}\) is the integrated cross-covariance trace of two
+distinct agents. EXP-007A fits the affine \(1/q\) law with \(R^2>0.9993\) at
+every nondegenerate registered correlation level. This identity should be the
+first theorem/corollary readers see because it makes the failure of nominal
+linear speedup transparent.
+
 ## Theorem ladder
 
 ### Theorem 1: delayed Lyapunov recursion
@@ -298,6 +318,11 @@ ICML main claim should be the correlation-limited speedup theorem and
 participation phase transition, not adaptive control. That version can still
 be strong, but it needs an exact or near-exact optimizer of the theoretical
 bound and broader empirical confirmation.
+
+EXP-007A now supplies the first non-scalar linear-TD confirmation of that
+narrower claim. It does not lower the remaining bar: a fresh-seed confirmation,
+an active delay-stability experiment, and at least one nonlinear benchmark are
+still required.
 
 ## Preliminary prior-art boundary
 

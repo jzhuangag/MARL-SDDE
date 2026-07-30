@@ -65,6 +65,9 @@ the standard linear-speedup analysis.
 20. [`experiment_007a_linear_td_correlation.md`](experiment_007a_linear_td_correlation.md)
     preregisters a delayed linear-TD test of effective participation and the
     finite-budget agent-count phase transition under shared Markov trajectories.
+21. [`validation_exp007a.md`](validation_exp007a.md) records the formal 6/6
+    pass, exact reproduction, exchangeable-LRV fit, held-out-half diagnostic,
+    and the critical finding that the delay gate passed only by equality.
 
 ## Code and canonical outputs
 
@@ -117,3 +120,8 @@ and a clairvoyant realized-state oracle. The online state-controller line is
 therefore stopped. The retained ICML direction is a theorem-first account of
 how cross-agent Markov correlation invalidates linear speedup and induces an
 optimal finite participation level under delay and communication budgets.
+EXP-007A validates this narrower mechanism in linear TD: \(N_{\rm eff}(32)\)
+falls from 30.996 under independent paths to 1.111 at correlation 0.9, while
+the long-budget optimal count falls from 16 to 1. The formal experiment passes
+all gates and reproduces exactly, but delay is empirically inactive; the next
+stage must separately stress the SDDE stability mechanism.

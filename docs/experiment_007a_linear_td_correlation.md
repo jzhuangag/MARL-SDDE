@@ -179,3 +179,17 @@ gate; `--workers 4` is now explicit in both primary and reproduction commands.
   model before further adaptive-control work.
 - If either effective-participation gate fails, reject the current shared-chain
   construction as evidence for the proposed mechanism.
+
+## Execution outcome
+
+The 32-seed primary run completed in approximately 673 seconds. All six
+registered gates passed: median \(N_{\rm eff}(32)\) was 30.996 for independent
+paths and 1.111 at \(\rho=0.9\); the \(B=32000,D=8\) oracle moved from
+\(q=16\) to \(q=1\); endpoint error ratios were 0.233 and 0.319; and all
+134,784 rows were finite and budget-valid.
+
+The full reproduction also completed in approximately 673 seconds and all 13
+artifacts matched byte-for-byte. A critical audit qualifies the formal delay
+gate: best \(q\) and step size were identical across \(D=0,8,32\), so the gate
+passed by equality rather than a measurable delay response. See
+`validation_exp007a.md`.

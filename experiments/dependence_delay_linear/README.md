@@ -130,6 +130,9 @@ python run_state_correlation.py --output-dir results/state_correlation `
   --num-seeds 64 --bootstrap-replications 2000
 python run_lyapunov_state.py --output-dir results/lyapunov_state `
   --num-seeds 64 --bootstrap-replications 2000
+python run_linear_td_correlation.py `
+  --output-dir results/linear_td_correlation `
+  --num-seeds 32 --bootstrap-replications 2000 --workers 4
 ```
 
 Run deterministic implementation checks with:
@@ -199,6 +202,14 @@ clairvoyant oracle in only 26.67% of post-warm-up actions. All nine outputs
 reproduce byte-for-byte. The next work therefore moves to a theorem-first
 correlation-limited speedup result and a linear TD benchmark rather than
 further proxy tuning.
+
+EXP-007A evaluates actual linear TD(0) on a seven-state Markov reward process.
+All six formal gates pass and all 13 artifacts reproduce byte-for-byte.
+Independent paths give median \(N_{\rm eff}(32)=30.996\); shared paths at
+\(\rho=0.9\) give 1.111. At the long budget, the optimal count moves from
+\(q=16\) to \(q=1\), with strong paired endpoint improvements. The audit also
+finds that registered delays do not alter the selected count or step size, so
+EXP-007A supports correlation-limited participation but not delay adaptivity.
 
 ## Scope
 
