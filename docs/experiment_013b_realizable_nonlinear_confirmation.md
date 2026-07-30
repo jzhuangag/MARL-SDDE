@@ -4,7 +4,7 @@
 
 - Artifact: confirmatory experiment protocol
 - Status at registration: no confirmatory outcomes observed
-- Registration commit: to be recorded before execution
+- Registration commit: `3bb903f386b24e69b4e2b6ceb20aa046bdacee88`
 - Pilot provenance: EXP-013A, explicitly excluded from confirmatory evidence
 - Hardware: local CPU
 
@@ -90,4 +90,3 @@ global neural-TD convergence, performance in a standard MARL benchmark, or
 online estimation of \(\rho\).  Theorem 9 supplies the fixed-parameter
 nonlinear variance identity; the affine Markov-TD theorem remains the rigorous
 finite-time convergence result.
-
