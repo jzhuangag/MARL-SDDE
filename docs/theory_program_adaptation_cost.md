@@ -7,9 +7,13 @@ Participation under Correlated Markov Data**.
 
 This document contains a proved fixed-design Gaussian lower-bound route, a
 proved fixed-design testing upper bound, and a horizon-aware paid
-explore-then-commit algorithm. It does **not** yet contain a matching theorem
-for arbitrary adaptive probe schedules with unknown mixing. That extension is
-listed as a proof obligation rather than implied.
+explore-then-commit algorithm. T-016 additionally proves the adaptive
+known-mixing change of measure and controlled-belief Pareto lower bound in
+`adaptive_change_of_measure.md` and `adaptive_pareto_lower_bound.md`.
+The theorem-derived fallback guarantees are in
+`theorem_derived_fallback.md`. A matching adaptive algorithm and fully
+unknown-mixing theorem remain open; `unknown_mixing_identifiability.md`
+records the required claim restriction.
 
 EXP-014A and EXP-014B remain honest pilot failures. In particular, EXP-014B's
 strict controller fell back in every cell because its time-uniform interval
@@ -279,4 +283,3 @@ threshold or remaining horizon. However, the strongest ICML claim is not
 closed until the adaptive, unknown-mixing change-of-measure obligation is
 proved. Current status is therefore **theory route retained, main theorem not
 yet submission-ready**.
-
