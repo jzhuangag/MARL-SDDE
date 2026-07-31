@@ -40,10 +40,25 @@ two-arm bandit: the covariance eigenvalues depend jointly on \(q\theta\) and
 \(\lambda^b\), while the feasible sample count depends on both
 \(n(h+q)\) and \(nb+D\). This is a real structural distinction.
 
-The full paper novelty gate is nevertheless only **provisionally passed**.
-The literature already contains cost-aware BAI, conservative exploration,
-and Markov-arm identification separately. Without AC-7--AC-9 (adaptive,
-unknown-mixing lower and upper bounds), the current result should be framed as
-a precise mechanism theorem and negative/phase-transition study, not as a
-completed ICML-level matching theory.
+T-017 replaces the earlier provisional assessment with the fully audited
+theorem matrix in `t017_novelty_confrontation.md`. In particular, the earlier
+table omitted three decisive overlaps: controlled Markov sensing with causal
+control cost (Nitinawarat--Veeravalli), covariance-adaptive simultaneous
+subset queries (Saad--Blanchard--Verzelen), and factored multi-agent BAI
+matching (Vannella--Proutiere--Jeong).
 
+The generic AC-7 machinery and covariance-adaptive dimension claim are now
+marked **inherited**. The novelty gate passes only for the narrower joint
+claim: a correlation-learning-value threshold with dual costs, delayed usable
+horizon, downstream oracle regret and safety, together with the unrestricted
+unknown-mixing impossibility. The positive threshold result requires the
+compact separated class; full controlled-belief occupation matching remains
+open.
+
+Additional primary links:
+
+- https://www.tandfonline.com/doi/full/10.1080/07474946.2014.961864
+- https://proceedings.mlr.press/v49/garivier16a.html
+- https://papers.neurips.cc/paper_files/paper/2019/hash/71887f62f073a78511cbac56f8cab53f-Abstract.html
+- https://papers.neurips.cc/paper_files/paper/2023/hash/e82ef7865f29b40640f486bbbe7959a7-Abstract-Conference.html
+- https://proceedings.mlr.press/v202/vannella23a.html

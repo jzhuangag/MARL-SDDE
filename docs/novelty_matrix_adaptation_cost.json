@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "columns": [
     "markov_data",
     "agent_correlation",
@@ -8,6 +8,18 @@
     "uniform_safety",
     "adaptation_identification_lower_bound",
     "matching_algorithm"
+  ],
+  "t017_extended_columns": [
+    "controlled_markov",
+    "changing_observation_dimension",
+    "unknown_covariance",
+    "q_information_and_downstream_learning",
+    "dual_budgets",
+    "delay_usable_horizon",
+    "objective_identification_or_learning",
+    "finite_budget_worthwhile_threshold",
+    "baseline_safety",
+    "asymptotic_matching"
   ],
   "works": [
     {
@@ -130,12 +142,71 @@
       "uniform_safety": "explicit baseline safety deficit",
       "adaptation_identification_lower_bound": "fixed-design exact; adaptive open",
       "matching_algorithm": "fixed-design horizon-aware ETC"
+    },
+    {
+      "key": "nitinawarat_veeravalli_2015",
+      "url": "https://www.tandfonline.com/doi/full/10.1080/07474946.2014.961864",
+      "controlled_markov": true,
+      "changing_observation_dimension": false,
+      "unknown_covariance": false,
+      "q_information_and_downstream_learning": false,
+      "dual_budgets": false,
+      "delay_usable_horizon": false,
+      "objective_identification_or_learning": "sequential hypothesis identification",
+      "finite_budget_worthwhile_threshold": false,
+      "baseline_safety": false,
+      "asymptotic_matching": "expected accumulated control cost as risks vanish",
+      "inheritance": "causal control factorization, action-kernel cancellation, information per control cost"
+    },
+    {
+      "key": "garivier_kaufmann_2016",
+      "url": "https://proceedings.mlr.press/v49/garivier16a.html",
+      "controlled_markov": false,
+      "changing_observation_dimension": false,
+      "unknown_covariance": false,
+      "q_information_and_downstream_learning": false,
+      "dual_budgets": false,
+      "delay_usable_horizon": false,
+      "objective_identification_or_learning": "fixed-confidence best-arm identification",
+      "finite_budget_worthwhile_threshold": false,
+      "baseline_safety": false,
+      "asymptotic_matching": true
+    },
+    {
+      "key": "saad_blanchard_verzelen_2023",
+      "url": "https://papers.neurips.cc/paper_files/paper/2023/hash/e82ef7865f29b40640f486bbbe7959a7-Abstract-Conference.html",
+      "controlled_markov": false,
+      "changing_observation_dimension": true,
+      "unknown_covariance": true,
+      "q_information_and_downstream_learning": "subset changes identification information only",
+      "dual_budgets": false,
+      "delay_usable_horizon": false,
+      "objective_identification_or_learning": "best-arm identification",
+      "finite_budget_worthwhile_threshold": false,
+      "baseline_safety": false,
+      "asymptotic_matching": "near-optimal for specified classes up to logarithmic factors"
+    },
+    {
+      "key": "vannella_proutiere_jeong_2023",
+      "url": "https://proceedings.mlr.press/v202/vannella23a.html",
+      "controlled_markov": false,
+      "changing_observation_dimension": false,
+      "unknown_covariance": false,
+      "q_information_and_downstream_learning": false,
+      "dual_budgets": false,
+      "delay_usable_horizon": false,
+      "objective_identification_or_learning": "factored multi-agent best joint-action identification",
+      "finite_budget_worthwhile_threshold": false,
+      "baseline_safety": false,
+      "asymptotic_matching": "MF-TaS matches an approximated lower bound"
     }
   ],
   "gate": {
     "fixed_design_not_generic_two_arm": true,
     "full_icml_matching_theory_closed": false,
-    "decision": "provisional_pass_with_AC-7_to_AC-9_open"
+    "generic_AC7_machinery_inherited": true,
+    "unknown_covariance_changing_dimension_inherited": true,
+    "defensible_joint_contribution": "learning-value threshold with dual costs, delay, safety, and unrestricted unknown-mixing impossibility",
+    "decision": "pass_only_for_compact_separated_threshold_claim"
   }
 }
-

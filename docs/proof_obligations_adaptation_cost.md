@@ -9,8 +9,10 @@
 | AC-5 | Dual-budget and delay threshold for a fixed probe block | **proved** by accounting identity | none |
 | AC-6 | All-agent individual feedback has positive regime information, so strict no-harm is not universally incompatible with adaptation | **proved** for the registered Gaussian model | rules out an overbroad impossibility claim |
 | AC-7 | Adaptive chain-rule lower bound for history-dependent \((q_t,b_t)\) with dimension-changing observations | **proved in T-016** for the stationary Gaussian model with known \(\lambda\) | exact controlled-belief information functional is available |
-| AC-8 | Composite test with unknown \(\lambda\), rather than public \(\lambda\) or a separately certified bound | **open; boundary obstruction proved** | claim narrowed to known mixing or a separately certified upper bound bounded away from one |
-| AC-9 | Near-matching regret/safety Pareto upper bound under adaptive probes | **partially proved, matching open** | theorem-derived fallback/error/regret/safety bounds hold, but no uniform constant/log comparison to the adaptive occupation optimum |
+| AC-8 | Uniform composite test over unknown \(\lambda\) reaching arbitrarily close to one | **closed negatively in T-017** for positive distinct \(\theta_0,\theta_1\); compact separated positive route open | unrestricted unknown-mixing wording is impossible; require known mixing or \(\lambda\leq1-\gamma\) certificate |
+| AC-9a | Universal constant/log safe-adaptation matching without separation | **closed negatively in T-017** | oracle-gap degeneration makes \(B_S/B_N\to\infty\) |
+| AC-9b | Finite-budget necessary/sufficient adaptation-threshold sandwich | **proved in T-017** on the declared compact separated class | permits the narrow threshold theorem, not global adaptive optimality |
+| AC-9c | Match an adaptive controller to the entire controlled-belief occupation optimum | **open** | no Track-and-Stop-style global matching claim |
 | AC-10 | Intersect information-optimal probes with the full matrix delayed-stability region without scalarization loss | **open** | delay enters exactly through budgets here, but general matrix stability coupling is incomplete |
 | AC-11 | Extend the Gaussian common-factor result to latent collisions or bounded kernels with unknown baseline | **conjectured route via Theorems 7--8** | nonlinear/general-observation scope remains open |
 | AC-12 | SDDE-to-discrete approximation error | **open, inherited** | SDDE remains interpretation, not a discrete approximation theorem |
@@ -18,8 +20,10 @@
 No open item is silently used in the EXP-015A gate. The pilot tests the
 fixed-design mechanism and the horizon transition only.
 
-T-016 therefore triggers stop gates **B** and **D**. It does not authorize an
-EXP-016A preregistration or experiment. See
+T-017 supersedes the T-016 AC-8/AC-9 status. Its decision is **A under D**:
+retain the separated-class threshold theory and permanently narrow
+unknown-mixing scope. T-017 itself does not authorize an EXP-016A
+preregistration or experiment. See
 `adaptive_change_of_measure.md`, `adaptive_pareto_lower_bound.md`,
-`theorem_derived_fallback.md`, `unknown_mixing_identifiability.md`, and the
-machine-readable `theorem_dependencies_t016.json`.
+`unknown_mixing_impossibility.md`, `adaptation_threshold_sandwich.md`, and the
+machine-readable `theorem_dependencies_t017.json`.

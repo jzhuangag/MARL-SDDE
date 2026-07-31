@@ -11,9 +11,12 @@ explore-then-commit algorithm. T-016 additionally proves the adaptive
 known-mixing change of measure and controlled-belief Pareto lower bound in
 `adaptive_change_of_measure.md` and `adaptive_pareto_lower_bound.md`.
 The theorem-derived fallback guarantees are in
-`theorem_derived_fallback.md`. A matching adaptive algorithm and fully
-unknown-mixing theorem remain open; `unknown_mixing_identifiability.md`
-records the required claim restriction.
+`theorem_derived_fallback.md`. T-017 closes unrestricted unknown mixing
+negatively, proves a finite-budget threshold sandwich on a compact separated
+class, and shows unrestricted uniform matching impossible; see
+`unknown_mixing_impossibility.md`, `adaptation_threshold_sandwich.md`, and
+`ac9_uniform_matching_audit.md`. Matching the entire adaptive
+controlled-belief optimum remains open.
 
 EXP-014A and EXP-014B remain honest pilot failures. In particular, EXP-014B's
 strict controller fell back in every cell because its time-uniform interval
@@ -276,10 +279,11 @@ every cell.
 
 ## Autonomous theory decision
 
-The fixed-design result passes the requested non-generic novelty sanity
-check: correlation, Markov persistence, stride, participation-dependent
-information, message cost, environment cost, and delay all enter the
-threshold or remaining horizon. However, the strongest ICML claim is not
-closed until the adaptive, unknown-mixing change-of-measure obligation is
-proved. Current status is therefore **theory route retained, main theorem not
-yet submission-ready**.
+T-017's mandatory primary-literature confrontation rejects generic
+controlled-sensing, change-of-measure, covariance-adaptive querying, and
+multi-agent BAI machinery as novelty. The retained non-generic claim is the
+coupled learning-value threshold: correlation, Markov persistence, stride,
+participation-dependent information and terminal risk, both costs, delay,
+wrong-oracle regret, and safety all enter. The unrestricted unknown-mixing
+route is impossible. Current status is therefore **separated-class threshold
+theory retained; full adaptive occupation matching remains open**.

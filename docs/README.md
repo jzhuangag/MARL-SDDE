@@ -260,3 +260,14 @@ participation changes \(8\to2\to1\) at zero delay and \(2\to1\to1\) under
 delay. All four core artifacts reproduce byte-for-byte. The controlled CPU
 mainline is now frozen; nonlinear multi-agent Markov breadth is the next
 blocking ICML evidence.
+
+T-017 is a theory-only novelty audit of the later adaptation-cost route. It
+fixes two missing addition signs in the documented Gaussian AR/Kalman
+recursion, closes unrestricted unknown mixing negatively by a Le Cam
+boundary theorem, and replaces global AC-9 matching with a compact-separated
+finite-budget threshold sandwich. Generic controlled-sensing and
+covariance-adaptive BAI machinery is explicitly inherited. See
+`t017_final_decision.md`, `t017_novelty_confrontation.md`,
+`unknown_mixing_impossibility.md`, and
+`adaptation_threshold_sandwich.md`. No experiment or EXP-016A
+preregistration was started.

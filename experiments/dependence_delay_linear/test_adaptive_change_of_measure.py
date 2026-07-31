@@ -5,9 +5,11 @@ import unittest
 
 import mpmath
 import numpy as np
+from pathlib import Path
 
 from adaptive_change_of_measure import (
     AdaptiveAction,
+    GaussianFilter,
     adaptive_log_likelihood,
     adaptive_log_likelihood_ratio,
     conditional_gaussian_kl,
@@ -30,6 +32,36 @@ def threshold_rule(history, _actions):
 
 
 class AdaptiveChangeOfMeasureTests(unittest.TestCase):
+    def test_stationary_initialization_and_additive_prediction_variance(self):
+        state = GaussianFilter(theta=2.0, mixing=0.8)
+        self.assertEqual(state.mean, 0.0)
+        self.assertEqual(state.variance, 2.0)
+        state.mean = 1.25
+        state.variance = 0.3
+        state.propagate(3)
+        coefficient = 0.8**3
+        self.assertAlmostEqual(state.mean, coefficient * 1.25, places=15)
+        self.assertAlmostEqual(
+            state.variance,
+            coefficient**2 * 0.3 + (1.0 - coefficient**2) * 2.0,
+            places=15,
+        )
+
+    def test_documented_state_recursion_contains_additive_innovation(self):
+        document = (
+            Path(__file__).resolve().parents[2]
+            / "docs"
+            / "adaptive_change_of_measure.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            "C_{S_t}=\\lambda^{b_t}C_{S_{t-1}}\n+ \\sqrt{1-\\lambda^{2b_t}}",
+            document,
+        )
+        self.assertIn(
+            "P^-_{j,t}&=\\lambda^{2b_t}P^+_{j,t-1}\n+ (1-\\lambda^{2b_t})\\theta_j",
+            document,
+        )
+
     def test_conditional_kl_matches_high_precision_scalar_identity(self):
         got = conditional_gaussian_kl(0.3, 0.7, -0.2, 1.4, 5)
         mpmath.mp.dps = 70

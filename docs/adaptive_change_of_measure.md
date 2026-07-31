@@ -13,7 +13,7 @@ Let \(S_t\) be physical observation time, with
 
 \[
 C_{S_t}=\lambda^{b_t}C_{S_{t-1}}
- \sqrt{1-\lambda^{2b_t}}\,\xi_{j,t},\qquad
++ \sqrt{1-\lambda^{2b_t}}\,\xi_{j,t},\qquad
 \xi_{j,t}\sim N(0,\theta_j).
 \]
 
@@ -51,7 +51,7 @@ Before observation \(t\), let the filter under \(H_j\) have
 \begin{aligned}
 m^-_{j,t}&=\lambda^{b_t}m^+_{j,t-1},\\
 P^-_{j,t}&=\lambda^{2b_t}P^+_{j,t-1}
- (1-\lambda^{2b_t})\theta_j .
++ (1-\lambda^{2b_t})\theta_j .
 \end{aligned}
 \]
 
@@ -85,9 +85,11 @@ Assume:
 2. \(A_t\) is selected by a common, possibly randomized, predictable kernel;
 3. \(q_t,b_t\) are finite positive integers and \(\eta_t\) does not change
    the observation kernel;
-4. \(\tau\) is a stopping time bounded by the pathwise dual budgets, or is a
-   localizable stopping time for which the stopped log likelihood ratios are
-   uniformly integrable.
+4. \(\tau\) is a stopping time bounded by the pathwise dual budgets. A
+   sufficient extension to an unbounded almost-surely finite \(\tau\) is that
+   the stopped likelihood-ratio martingale is uniformly integrable under the
+   denominator law and the stopped log likelihood ratios are uniformly
+   integrable under the numerator law.
 
 Then
 
@@ -118,9 +120,12 @@ cancel pointwise, including when the kernel selected \(q_t,b_t\) from earlier
 observations. Lemma 1 reduces each observation ratio to the scalar innovation
 ratio (AC7-LR). Conditional expectation under \(P_0\) gives the Gaussian KL
 (1), including the posterior-mean difference. Tonelli applies to the
-nonnegative conditional KL terms for bounded \(\tau\). Localization and
-uniform integrability give the stated unbounded extension. The reverse
-direction is identical. \(\square\)
+nonnegative conditional KL terms for bounded \(\tau\). For the optional
+unbounded extension, likelihood-ratio uniform integrability identifies the
+Radon--Nikodym derivative on \({\cal H}_\tau\), while log-likelihood uniform
+integrability permits passage of its expectation through localization. The
+reverse direction requires the corresponding assumptions with 0 and 1
+exchanged. \(\square\)
 
 Selection bias is therefore not ignored: it changes the distribution of
 \(Z_t,A_t\) inside the expectation. It simply does not create a separate

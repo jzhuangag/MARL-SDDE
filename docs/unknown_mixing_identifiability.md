@@ -1,5 +1,10 @@
 # T-016: unknown-mixing identifiability audit
 
+> **Superseded status (T-017):** `unknown_mixing_impossibility.md` upgrades
+> the boundary warning below to a formal uniform negative theorem. Fully
+> unrestricted unknown mixing is closed negatively; only the separated
+> \(\lambda\leq1-\gamma\) positive route remains open.
+
 ## Population identifiability
 
 For fixed \(q,b\) and \(n\ge2\), the common-direction covariance is
@@ -67,12 +72,13 @@ profile/mixture likelihood must then establish uniform coverage over this
 compact separated set and charge the certification samples and both budgets.
 No such composite stopping/matching proof is supplied here.
 
-Accordingly AC-8 remains open for fully unknown mixing. The valid mainline
+Accordingly the T-016 audit left AC-8 open for fully unknown mixing. T-017
+now closes that unrestricted statement negatively. The valid mainline
 wording is:
 
 > adaptive participation with known mixing, or with a separately certified
 > upper bound bounded away from non-mixing.
 
-The project is not currently qualified to use “unknown-mixing adaptive” as
-an unqualified title or main theorem claim. This is stop-gate **D**, in
-addition to the AC-9 stop-gate **B**.
+The project is not qualified to use unrestricted unknown-mixing adaptation
+as a title or main theorem claim. T-017 makes this scope restriction **D**
+permanent and separately repairs AC-9 on a compact separated class.
