@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "columns": [
+    "markov_data",
+    "agent_correlation",
+    "q_controls_information_and_cost",
+    "delay",
+    "uniform_safety",
+    "adaptation_identification_lower_bound",
+    "matching_algorithm"
+  ],
+  "works": [
+    {
+      "key": "khodadadian2022federated",
+      "url": "https://proceedings.mlr.press/v162/khodadadian22a.html",
+      "markov_data": true,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": false,
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": false,
+      "matching_algorithm": "federated TD/Q convergence upper bounds"
+    },
+    {
+      "key": "yin2018gradient",
+      "url": "https://proceedings.mlr.press/v84/yin18a.html",
+      "markov_data": false,
+      "agent_correlation": "gradient similarity rather than a Markov common factor",
+      "q_controls_information_and_cost": "batch size controls scaling but not paid regime identification",
+      "delay": false,
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": "convergence lower bound from low diversity",
+      "matching_algorithm": false
+    },
+    {
+      "key": "alfarra2020batch",
+      "url": "https://arxiv.org/abs/2005.01097",
+      "markov_data": false,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": true,
+      "delay": false,
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": false,
+      "matching_algorithm": "adaptive batch strategy"
+    },
+    {
+      "key": "wu2016conservative",
+      "url": "https://proceedings.mlr.press/v48/wu16.html",
+      "markov_data": false,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": false,
+      "uniform_safety": true,
+      "adaptation_identification_lower_bound": "conservative regret lower bound",
+      "matching_algorithm": true
+    },
+    {
+      "key": "gangrade2024safe",
+      "url": "https://proceedings.mlr.press/v247/gangrade24a.html",
+      "markov_data": false,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": false,
+      "uniform_safety": "smooth roundwise safety violations",
+      "adaptation_identification_lower_bound": true,
+      "matching_algorithm": "near Pareto-optimal"
+    },
+    {
+      "key": "kanarios2024cost",
+      "url": "https://rlj.cs.umass.edu/2024/papers/Paper193.html",
+      "markov_data": false,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": "arm-dependent cost, not participation",
+      "delay": false,
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": true,
+      "matching_algorithm": true
+    },
+    {
+      "key": "kaufmann2016complexity",
+      "url": "https://www.jmlr.org/papers/v17/kaufman16a.html",
+      "markov_data": false,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": false,
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": true,
+      "matching_algorithm": "two-arm Gaussian and Bernoulli cases"
+    },
+    {
+      "key": "carpentier2016fixed",
+      "url": "https://proceedings.mlr.press/v49/carpentier16.html",
+      "markov_data": false,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": false,
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": true,
+      "matching_algorithm": false
+    },
+    {
+      "key": "moulos2019markov",
+      "url": "https://papers.nips.cc/paper/8798-optimal-best-markovian-arm-identification-with-fixed-confidence",
+      "markov_data": true,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": "rested arm dynamics",
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": true,
+      "matching_algorithm": "within factor four"
+    },
+    {
+      "key": "karthik2022restless",
+      "url": "https://arxiv.org/abs/2203.15236",
+      "markov_data": true,
+      "agent_correlation": false,
+      "q_controls_information_and_cost": false,
+      "delay": "restless evolution",
+      "uniform_safety": false,
+      "adaptation_identification_lower_bound": true,
+      "matching_algorithm": "special cases"
+    },
+    {
+      "key": "exp015a",
+      "url": "docs/theory_program_adaptation_cost.md",
+      "markov_data": true,
+      "agent_correlation": true,
+      "q_controls_information_and_cost": true,
+      "delay": true,
+      "uniform_safety": "explicit baseline safety deficit",
+      "adaptation_identification_lower_bound": "fixed-design exact; adaptive open",
+      "matching_algorithm": "fixed-design horizon-aware ETC"
+    }
+  ],
+  "gate": {
+    "fixed_design_not_generic_two_arm": true,
+    "full_icml_matching_theory_closed": false,
+    "decision": "provisional_pass_with_AC-7_to_AC-9_open"
+  }
+}
+
