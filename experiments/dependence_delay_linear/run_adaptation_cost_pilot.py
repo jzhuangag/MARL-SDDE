@@ -13,6 +13,7 @@ import math
 import platform
 import time
 from dataclasses import asdict, dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -97,14 +98,114 @@ def gaussian_covariance_kl(
 ) -> float:
     """Exact KL for q-agent Gaussian common-factor Markov probes."""
 
-    source = common_direction_eigenvalues(
-        theta_from, q, samples, coefficient
+    return float(
+        _directional_kl_sequence(
+            theta_from, theta_to, q, samples, coefficient
+        )[-1]
     )
-    target = common_direction_eigenvalues(
-        theta_to, q, samples, coefficient
+
+
+def _logdet_sequence(
+    theta: float,
+    q: int,
+    maximum_samples: int,
+    coefficient: float,
+) -> np.ndarray:
+    """Log determinants of I + q theta R_n via Kalman innovations."""
+
+    variance = theta
+    cumulative = 0.0
+    values = np.empty(maximum_samples, dtype=float)
+    for index in range(maximum_samples):
+        innovation_variance = 1.0 + q * variance
+        cumulative += math.log(innovation_variance)
+        values[index] = cumulative
+        gain = variance * math.sqrt(q) / innovation_variance
+        posterior = max(
+            0.0, variance - gain * math.sqrt(q) * variance
+        )
+        variance = (
+            coefficient * coefficient * posterior
+            + (1.0 - coefficient * coefficient) * theta
+        )
+    return values
+
+
+def _directional_kl_sequence(
+    theta_from: float,
+    theta_to: float,
+    q: int,
+    maximum_samples: int,
+    coefficient: float,
+) -> np.ndarray:
+    """KL prefixes using expected target-filter innovations under source."""
+
+    root_q = math.sqrt(q)
+    target_filter_variance = theta_to
+    source_state_variance = theta_from
+    target_mean_variance = 0.0
+    state_mean_covariance = 0.0
+    source_logdet = _logdet_sequence(
+        theta_from, q, maximum_samples, coefficient
     )
-    ratio = source / target
-    return float(0.5 * np.sum(ratio - 1.0 - np.log(ratio)))
+    target_logdet = _logdet_sequence(
+        theta_to, q, maximum_samples, coefficient
+    )
+    normalized_innovation_sum = 0.0
+    values = np.empty(maximum_samples, dtype=float)
+    for index in range(maximum_samples):
+        target_innovation_variance = 1.0 + q * target_filter_variance
+        source_innovation_variance = (
+            1.0
+            + q * source_state_variance
+            + q * target_mean_variance
+            - 2.0 * q * state_mean_covariance
+        )
+        normalized_innovation_sum += (
+            source_innovation_variance / target_innovation_variance
+        )
+        values[index] = 0.5 * (
+            target_logdet[index]
+            - source_logdet[index]
+            + normalized_innovation_sum
+            - (index + 1)
+        )
+        gain = (
+            target_filter_variance * root_q
+            / target_innovation_variance
+        )
+        alpha = 1.0 - gain * root_q
+        posterior_mean_variance = (
+            alpha * alpha * target_mean_variance
+            + gain * gain * (q * source_state_variance + 1.0)
+            + 2.0
+            * alpha
+            * gain
+            * root_q
+            * state_mean_covariance
+        )
+        posterior_state_mean_covariance = (
+            alpha * state_mean_covariance
+            + gain * root_q * source_state_variance
+        )
+        target_mean_variance = (
+            coefficient * coefficient * posterior_mean_variance
+        )
+        state_mean_covariance = (
+            coefficient
+            * coefficient
+            * posterior_state_mean_covariance
+        )
+        target_posterior_variance = max(
+            0.0,
+            target_filter_variance
+            - gain * root_q * target_filter_variance,
+        )
+        target_filter_variance = (
+            coefficient * coefficient * target_posterior_variance
+            + (1.0 - coefficient * coefficient) * theta_to
+        )
+    return values
 
 
 def bhattacharyya_distance(
@@ -116,17 +217,15 @@ def bhattacharyya_distance(
 ) -> float:
     """Exact zero-mean Gaussian Bhattacharyya distance."""
 
-    first = common_direction_eigenvalues(
-        theta0, q, samples, coefficient
-    )
-    second = common_direction_eigenvalues(
-        theta1, q, samples, coefficient
-    )
-    middle = 0.5 * (first + second)
     return float(
-        0.5 * np.sum(np.log(middle))
-        - 0.25 * np.sum(np.log(first))
-        - 0.25 * np.sum(np.log(second))
+        0.5
+        * _logdet_sequence(
+            0.5 * (theta0 + theta1), q, samples, coefficient
+        )[-1]
+        - 0.25
+        * _logdet_sequence(theta0, q, samples, coefficient)[-1]
+        - 0.25
+        * _logdet_sequence(theta1, q, samples, coefficient)[-1]
     )
 
 
@@ -137,6 +236,7 @@ def binary_kl(one_minus_delta: float, delta: float) -> float:
     )
 
 
+@lru_cache(maxsize=None)
 def identification_threshold(
     theta0: float,
     theta1: float,
@@ -153,26 +253,37 @@ def identification_threshold(
     coefficient = mixing ** b
     sufficient_target = math.log(0.5 / delta)
     necessary_target = binary_kl(1.0 - delta, delta)
-    sufficient = None
-    necessary = None
-    for samples in range(1, maximum_samples + 1):
-        if necessary is None:
-            directional = min(
-                gaussian_covariance_kl(
-                    theta0, theta1, q, samples, coefficient
-                ),
-                gaussian_covariance_kl(
-                    theta1, theta0, q, samples, coefficient
-                ),
-            )
-            if directional >= necessary_target:
-                necessary = samples
-        if sufficient is None and bhattacharyya_distance(
-            theta0, theta1, q, samples, coefficient
-        ) >= sufficient_target:
-            sufficient = samples
-        if sufficient is not None and necessary is not None:
-            return sufficient, necessary
+    forward = _directional_kl_sequence(
+        theta0, theta1, q, maximum_samples, coefficient
+    )
+    reverse = _directional_kl_sequence(
+        theta1, theta0, q, maximum_samples, coefficient
+    )
+    first_logdet = _logdet_sequence(
+        theta0, q, maximum_samples, coefficient
+    )
+    second_logdet = _logdet_sequence(
+        theta1, q, maximum_samples, coefficient
+    )
+    middle_logdet = _logdet_sequence(
+        0.5 * (theta0 + theta1),
+        q,
+        maximum_samples,
+        coefficient,
+    )
+    bhattacharyya = (
+        0.5 * middle_logdet
+        - 0.25 * first_logdet
+        - 0.25 * second_logdet
+    )
+    sufficient_indices = np.flatnonzero(
+        bhattacharyya >= sufficient_target
+    )
+    necessary_indices = np.flatnonzero(
+        np.minimum(forward, reverse) >= necessary_target
+    )
+    if sufficient_indices.size and necessary_indices.size:
+        return int(sufficient_indices[0] + 1), int(necessary_indices[0] + 1)
     raise RuntimeError("identification threshold exceeds search limit")
 
 
@@ -218,10 +329,23 @@ def scheduled_updates(
 def ar1_mean_factor(samples: int, coefficient: float) -> float:
     if samples < 1:
         return float("inf")
-    lags = np.arange(1, samples, dtype=float)
-    numerator = samples + 2.0 * np.sum(
-        (samples - lags) * coefficient ** lags
+    if coefficient == 0.0:
+        return 1.0 / samples
+    count = samples - 1
+    geometric = (
+        coefficient * (1.0 - coefficient**count)
+        / (1.0 - coefficient)
     )
+    weighted = (
+        coefficient
+        * (
+            1.0
+            - samples * coefficient**count
+            + count * coefficient**samples
+        )
+        / (1.0 - coefficient) ** 2
+    )
+    numerator = samples + 2.0 * (samples * geometric - weighted)
     return float(numerator / (samples * samples))
 
 

@@ -98,6 +98,21 @@ class AdaptationCostTests(unittest.TestCase):
             ar1_mean_factor(100, 0.95**8),
         )
 
+    def test_closed_form_mean_factor_matches_direct_sum(self) -> None:
+        samples = 37
+        coefficient = 0.83
+        direct = (
+            samples
+            + 2.0
+            * sum(
+                (samples - lag) * coefficient**lag
+                for lag in range(1, samples)
+            )
+        ) / samples**2
+        self.assertAlmostEqual(
+            ar1_mean_factor(samples, coefficient), direct, places=12
+        )
+
     def test_oracle_participation_changes_with_correlation(self) -> None:
         low, _ = oracle_action(0.0, 0.0, 100000, 100000, 4, 0, 32)
         high, _ = oracle_action(8.0, 0.0, 100000, 100000, 4, 0, 32)
