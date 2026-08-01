@@ -50,3 +50,11 @@ width is median 88, IQR 51--156, p90 238, p99 478.59, maximum 749. Decision
 **A** now means only that the corrected direction permits a prospective,
 independently committed EXP-016B preregistration; it is not a confirmatory
 empirical gate and does not authorize a trajectory run.
+
+The independent EXP-016B preregistration freezes the prospective test of that
+direction. Its Gaussian layer is primary for the finite-horizon mechanism;
+its affine delayed Markov-TD layer is a transfer gate, not assumed theorem
+scope. P11 forbids a Markov-learning transfer claim if registered aggregate
+TD strata lack directional consistency. All censored T-018 scenarios remain
+descriptive and cannot enter finite-threshold gates, and any P1--P12 failure
+forbids formal execution.

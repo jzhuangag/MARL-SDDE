@@ -301,3 +301,16 @@ gate. The corrected decision **A** permits only a separate prospective
 EXP-016B preregistration. See `t018_erratum.md`,
 `t018_corrected_scan_results.md`, and
 `learning_value_separation_theorem.md`.
+
+EXP-016B, *Premature Adaptation under Finite Learning Horizons*, is now
+prospectively preregistered after the T-018 erratum. Deterministic marginal
+stratification plus SHA-256 ordering selects 96 finite scenarios for the
+Gaussian mechanism layer and a 48-scenario nested affine Markov-TD transfer
+layer; all eight censored scenarios remain a separate descriptive population.
+The design freezes six finite budget points, eight policies, 96 fresh CRN
+pilot seeds, gates P1--P12, and both practical and neutral `Z` populations.
+Static accounting recommends a future local-CPU pilot (5.263 hours, 8 GB peak
+memory, 1.101 GB disk). This preregistration generates no trajectory and does
+not authorize HPC4, GPU, `/project`, or a formal run. See
+`exp016b_preregistration.md`, `exp016b_scenario_manifest.json`, and
+`exp016b_analysis_plan.md`.
