@@ -314,3 +314,14 @@ memory, 1.101 GB disk). This preregistration generates no trajectory and does
 not authorize HPC4, GPU, `/project`, or a formal run. See
 `exp016b_preregistration.md`, `exp016b_scenario_manifest.json`, and
 `exp016b_analysis_plan.md`.
+
+The authorized local-CPU EXP-016B pilot is complete. All 1,376,256 registered
+rows are finite and dual-budget valid. The Layer-A practical-Z paired risk
+difference is 55.5126% of always-all risk with a positive simultaneous
+one-sided lower bound; 77/96 scenario families meet the directional and 3%
+practical criteria. The nested affine delayed-TD layer has the same positive
+direction at 10.1985%, and all delay-active and resource-binding contrasts
+pass. A clean same-seed rerun reproduces the raw metrics and three aggregate
+artifacts byte-for-byte, so P1--P12 all pass. The pilot permits a separate
+formal preregistration but is not itself promoted to formal evidence; see
+`validation_exp016b_pilot.md` and `exp016b_reproduction_audit.json`.
