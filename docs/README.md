@@ -337,6 +337,20 @@ frozen negative-result rule therefore stops formal registration and execution.
 See `validation_exp017a_pilot.md`, `exp017a_pilot_summary.json`, and
 `exp017a_pilot_reproduction_audit.json`.
 
+T-019 then proves that the EXP-017A uncertainty-driven controller has a q=1
+absorbing state: zero pairwise trials sets the planning upper bound to one,
+making q=1 weakly dominate every same-b larger-q action, while q=1 creates no
+new pairwise trial. A read-only CPU audit of the existing endpoint table finds
+systematic but descriptive fixed-q structure across 72 cells: the best q is
+1/4/16/32 in 23/20/11/18 cells, the expected rho and delay directions hold in
+22/24 and 21/24 matched paths, and the environment-binding q is at least the
+message-binding q in all 36 pairs. The cellwise fixed envelope improves only
+1.6473% over the global best fixed arm, so this motivates an independently
+preregistered EXP-017B design but is not formal evidence. See
+`t019_absorbing_state_phase_audit.md`, `t019_fixed_q_phase_diagram.csv`, and
+`exp017b_static_design.md`; machine-readable provenance is in
+`t019_reproduction_audit.json`. No GPU job or new seed was created.
+
 The authorized local-CPU EXP-016B pilot is complete. All 1,376,256 registered
 rows are finite and dual-budget valid. The Layer-A practical-Z paired risk
 difference is 55.5126% of always-all risk with a positive simultaneous
