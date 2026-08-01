@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "task": "T-018",
+  "starting_commit": "3bdca34c4c5f0f55e3534f64f47042790d8a3daf",
+  "history_freeze": {
+    "exp015a_status": "7/8 failure, threshold 0.80, observed 0.777778",
+    "exp016a_original_hash": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+    "exp016a_amendment_1_hash": "a6312a4769457c3d73aedea60f9c3523a2860d6fc0499ad1ccdb6124188412d0",
+    "exp016a_run_allowed": false
+  },
+  "claims": [
+    {
+      "id": "SM-1",
+      "status": "aligned",
+      "statement": "theorem_derived_fallback.md controls S_mean, not S_path",
+      "depends_on": [
+        "expected finite-budget risk definitions",
+        "positive-part convexity",
+        "no CRN equality shortcut"
+      ],
+      "verified_by": "test_t018_static_scan.py"
+    },
+    {
+      "id": "LV-1",
+      "status": "conditional_theorem_preregistered",
+      "statement": "if B_id < B_value, Z={B:B_id<=B<B_value} is a learning-value separation zone",
+      "depends_on": [
+        "known public mixing or separated mixing certificate",
+        "finite action catalogue",
+        "statistically reliable identification threshold",
+        "downstream-worthwhile and S_mean-safe value threshold"
+      ],
+      "verified_by": "test_t018_static_scan.py"
+    },
+    {
+      "id": "TAINT-1",
+      "status": "static_api_audit_passed",
+      "statement": "information_only_score has no downstream-risk, wrong-commit, epsilon_safe, oracle-action, or hidden-regime input",
+      "verified_by": "test_t018_static_scan.py"
+    },
+    {
+      "id": "SCAN-1",
+      "status": "grid_preregistered_not_executed",
+      "grid_hash": "c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db",
+      "scenario_count": 3456,
+      "budget_points_per_scenario": 10
+    }
+  ],
+  "scientific_outcomes_present": false
+}

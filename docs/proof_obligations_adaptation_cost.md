@@ -27,3 +27,13 @@ preregistration or experiment. See
 `adaptive_change_of_measure.md`, `adaptive_pareto_lower_bound.md`,
 `unknown_mixing_impossibility.md`, `adaptation_threshold_sandwich.md`, and the
 machine-readable `theorem_dependencies_t017.json`.
+
+T-018 adds a safety-metric alignment obligation and a preregistered
+learning-value separation scan. The theorem-facing safety metric is `S_mean`;
+`S_path` is only a stronger descriptive tail metric unless a separate
+Gaussian quadratic-loss tail bound is proved. The conditional separation
+claim is formulated through `B_id < B_value` and the zone
+`Z={B:B_id<=B<B_value}`. The frozen scan grid hash is
+`c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db`.
+At the preregistration point, no scan result or experiment is authorized; see
+`theorem_dependencies_t018.json`.
