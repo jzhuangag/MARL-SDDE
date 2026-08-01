@@ -38,9 +38,15 @@ claim is formulated through `B_id < B_value` and the zone
 At the preregistration point, no scan result or experiment is authorized; see
 `theorem_dependencies_t018.json`.
 
-The second T-018 commit executes only that outcome-free analytic scan. The
-grid has nonempty `Z` in all 3,448 nondegenerate scenarios, 69.9978% of
-registered `Z` cells meet the 3% practical-effect threshold, and the scan
-contains both message-binding and environment-binding mechanism cells. The
-final decision is **A**: a future EXP-016B preregistration stage is permitted,
-but no EXP-016A revival or pilot is authorized.
+The second T-018 commit executes only that outcome-free analytic scan. A
+subsequent bookkeeping erratum preserves that record but corrects eight
+search-censored `B_value` cases that had been encoded as the finite sentinel
+`2000001`. The corrected finite population contains 3,448 scenarios; all have
+nonempty `Z`, and 70.1022% of their registered `Z` cells meet the frozen 3%
+cell-level practical-effect definition. That coverage proportion is
+descriptive: it was not preregistered as a pass gate. Both message- and
+environment-binding mechanisms remain present, and the robust finite `Z`
+width is median 88, IQR 51--156, p90 238, p99 478.59, maximum 749. Decision
+**A** now means only that the corrected direction permits a prospective,
+independently committed EXP-016B preregistration; it is not a confirmatory
+empirical gate and does not authorize a trajectory run.

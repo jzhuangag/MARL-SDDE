@@ -289,13 +289,15 @@ current EXP-016A pilot is not authorized; see
 
 T-018 then keeps EXP-016A stopped and audits the learning-value route before
 any new experiment. It aligns the safety theorem to `S_mean` rather than the
-stronger pathwise `S_path`, freezes a 3,456-scenario outcome-free static scan
-with grid hash
+stronger descriptive `S_path`, freezes a 3,456-scenario outcome-free static
+scan with grid hash
 `c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db`,
-and executes only analytic calculations. The scan finds nonempty separation
-zones in all nondegenerate scenarios, 69.9978% practical-effect coverage
-among `Z` cells, 1,772 message-binding scenarios, and 1,404
-environment-binding scenarios. Final decision **A** permits only a future
-separate EXP-016B preregistration stage; it does not authorize EXP-016A or a
-pilot. See `t018_final_decision.md`, `t018_static_scan_results.md`, and
+and executes only analytic calculations. The bookkeeping erratum records
+3,448 finite `B_value` scenarios and eight search-censored cases instead of
+treating `2000001` as a threshold. Finite active-zone coverage remains 100%;
+70.1022% of finite `Z` cells meet the frozen 3% cell-level effect definition,
+but this coverage proportion is descriptive and was never a preregistered
+gate. The corrected decision **A** permits only a separate prospective
+EXP-016B preregistration. See `t018_erratum.md`,
+`t018_corrected_scan_results.md`, and
 `learning_value_separation_theorem.md`.

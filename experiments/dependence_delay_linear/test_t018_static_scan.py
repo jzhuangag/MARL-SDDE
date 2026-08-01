@@ -10,6 +10,10 @@ from t018_static_scan import (
     BROAD_PREVALENCE_GATE,
     ORIGINAL_EXP016A_HASH,
     PRACTICAL_EFFECT_THRESHOLD,
+    T018_ORIGINAL_RESULTS_JSON_SHA256,
+    T018_ORIGINAL_RESULTS_MD_SHA256,
+    T018_ORIGINAL_SCAN_COMMIT,
+    T018_PREREG_COMMIT,
     build_manifest,
     build_safety_alignment,
     config_hash,
@@ -93,6 +97,103 @@ class T018StaticScanPreregistrationTests(unittest.TestCase):
         self.assertTrue(all(result["novelty_gates"].values()))
         self.assertEqual(result["final_decision"], "A")
         self.assertFalse(result["scientific_outcomes_present"])
+
+    def test_corrected_scan_censoring_and_populations(self):
+        result = json.loads(
+            (ROOT / "docs/t018_corrected_scan_results.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        finite = [
+            row for row in result["scenario_records"]
+            if row["B_value_status"] == "finite"
+        ]
+        censored = [
+            row for row in result["scenario_records"]
+            if row["B_value_status"] == "search_censored"
+        ]
+        self.assertEqual(len(finite), result["finite_B_value_scenario_count"])
+        self.assertEqual(len(censored), result["search_censored_scenario_count"])
+        self.assertEqual(len(finite) + len(censored), result["scenario_count"])
+        self.assertEqual(len(censored), 8)
+        self.assertNotIn(2_000_001, [row["B_value"] for row in finite])
+        for row in censored:
+            self.assertIsNone(row["B_value"])
+            self.assertIsNone(row["Z_width"])
+            self.assertIsNone(row["value_probe"]["q"])
+            self.assertIsNone(row["value_probe"]["b"])
+            self.assertIsNone(row["value_probe"]["n"])
+            self.assertIsNone(row["value_probe"]["safety_relative"])
+        for row in finite:
+            self.assertGreater(row["value_probe"]["q"], 0)
+            self.assertGreater(row["value_probe"]["b"], 0)
+            self.assertGreater(row["value_probe"]["n"], 0)
+            self.assertTrue(math.isfinite(row["value_probe"]["safety_relative"]))
+
+    def test_censored_scenarios_do_not_generate_value_derived_cells(self):
+        result = json.loads(
+            (ROOT / "docs/t018_corrected_scan_results.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        censored_ids = {
+            row["scenario_id"] for row in result["censored_scenarios"]
+        }
+        allowed = {"half_BN", "near_BN", "at_BN", "at_Bid"}
+        censored_cells = [
+            cell for cell in result["cell_records"]
+            if cell["scenario_id"] in censored_ids
+        ]
+        self.assertEqual(len(censored_cells), 8 * 4 * 2)
+        self.assertTrue(censored_cells)
+        self.assertTrue(all(cell["budget_point"] in allowed for cell in censored_cells))
+        self.assertTrue(all(not cell["in_Z"] for cell in censored_cells))
+
+    def test_effect_coverage_uses_one_finite_z_population(self):
+        result = json.loads(
+            (ROOT / "docs/t018_corrected_scan_results.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        z_cells = [
+            cell for cell in result["cell_records"]
+            if cell["B_value_status"] == "finite" and cell["in_Z"]
+        ]
+        effect_cells = [
+            cell for cell in z_cells
+            if cell["relative_risk_difference"] >= PRACTICAL_EFFECT_THRESHOLD
+        ]
+        self.assertEqual(len(z_cells), result["Z_cell_count"])
+        self.assertEqual(len(effect_cells), result["effect_Z_cell_count"])
+        self.assertAlmostEqual(
+            len(effect_cells) / len(z_cells), result["effect_Z_cell_fraction"]
+        )
+        self.assertEqual(
+            result["robust_Z_width_summary"]["count"],
+            result["finite_B_value_scenario_count"],
+        )
+        self.assertLess(result["robust_Z_width_summary"]["maximum"], 2_000_001)
+        self.assertNotIn("N3_practical_effect_present", result["novelty_gates"])
+        self.assertTrue(result["novelty_gates"]["N3_practical_effect_descriptive_only"])
+
+    def test_erratum_preserves_original_provenance(self):
+        result = json.loads(
+            (ROOT / "docs/t018_corrected_scan_results.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        provenance = result["provenance"]
+        self.assertEqual(provenance["preregistration_commit"], T018_PREREG_COMMIT)
+        self.assertEqual(provenance["original_scan_commit"], T018_ORIGINAL_SCAN_COMMIT)
+        self.assertEqual(
+            provenance["original_results_json_sha256"],
+            T018_ORIGINAL_RESULTS_JSON_SHA256,
+        )
+        self.assertEqual(
+            provenance["original_results_md_sha256"],
+            T018_ORIGINAL_RESULTS_MD_SHA256,
+        )
+        self.assertTrue(provenance["original_results_preserved"])
 
 
 if __name__ == "__main__":
