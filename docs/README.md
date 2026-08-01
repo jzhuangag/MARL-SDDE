@@ -326,6 +326,17 @@ outcome-free code/analysis hashes in `exp017a_pilot_registry.json`, and any
 failed G1--G12 gate stops formal. See `exp017a_nonlinear_preregistration.md`
 and `exp017a_nonlinear_audit.md`.
 
+The EXP-017A A30 pilot is complete as a reproducible negative result. Both
+registered seed jobs completed with exit 0 and all 1,584 endpoints were
+finite and budget-valid, but mandatory gates G7, G9, G11, and G12 failed. The
+learning-aware controller selected median `q=1` at both low and high
+correlation, improved only 0.00725% over information-only in the primary
+slice, was about 5.00x the pilot-selected fixed-q geometric error (25.05x in
+CVaR90), and used 50.14% of measured wall time in controller logic. The
+frozen negative-result rule therefore stops formal registration and execution.
+See `validation_exp017a_pilot.md`, `exp017a_pilot_summary.json`, and
+`exp017a_pilot_reproduction_audit.json`.
+
 The authorized local-CPU EXP-016B pilot is complete. All 1,376,256 registered
 rows are finite and dual-budget valid. The Layer-A practical-Z paired risk
 difference is 55.5126% of always-all risk with a positive simultaneous
