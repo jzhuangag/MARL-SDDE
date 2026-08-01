@@ -501,7 +501,13 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-def run(output_dir: Path, seeds: Sequence[int], workers: int) -> dict[str, object]:
+def run(
+    output_dir: Path,
+    seeds: Sequence[int],
+    workers: int,
+    *,
+    mode: str | None = None,
+) -> dict[str, object]:
     bundle = load_frozen_bundle()
     if output_dir.exists():
         raise FileExistsError(f"refusing to overwrite existing output: {output_dir}")
@@ -516,10 +522,15 @@ def run(output_dir: Path, seeds: Sequence[int], workers: int) -> dict[str, objec
             completed.append({"seed": seed, "rows": rows, "path": path})
             print(f"completed seed {seed}: {rows} rows", flush=True)
     metrics = combine_parts(output_dir, seeds)
+    registered_mode = mode or (
+        "pilot" if tuple(seeds) == tuple(bundle["seeds"]["pilot_seeds"]) else "smoke"
+    )
+    if registered_mode not in {"smoke", "pilot", "formal"}:
+        raise ValueError(f"unsupported execution mode: {registered_mode}")
     metadata = {
         "task": TASK,
         "configuration_sha256": EXPECTED_CONFIGURATION_SHA256,
-        "mode": "pilot" if tuple(seeds) == tuple(bundle["seeds"]["pilot_seeds"]) else "smoke",
+        "mode": registered_mode,
         "seeds": list(seeds),
         "seed_count": len(seeds),
         "workers": workers,
@@ -528,7 +539,7 @@ def run(output_dir: Path, seeds: Sequence[int], workers: int) -> dict[str, objec
         "metrics_sha256": sha256_file(metrics),
         "python": platform.python_version(),
         "platform": platform.platform(),
-        "scientific_outcomes_generated": tuple(seeds) == tuple(bundle["seeds"]["pilot_seeds"]),
+        "scientific_outcomes_generated": registered_mode in {"pilot", "formal"},
     }
     (output_dir / "run_metadata.json").write_text(
         json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8"

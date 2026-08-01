@@ -7,7 +7,7 @@ import json
 import math
 from functools import lru_cache
 from pathlib import Path
-from typing import Mapping
+from typing import Mapping, Sequence
 
 import numpy as np
 import pandas as pd
@@ -150,11 +150,20 @@ def validate_safety(manifest: Mapping[str, object]) -> dict[str, object]:
     }
 
 
-def analyze(metrics_path: Path, output_dir: Path) -> dict[str, object]:
+def analyze(
+    metrics_path: Path,
+    output_dir: Path,
+    *,
+    expected_seeds: Sequence[int] | None = None,
+    task_label: str = "EXP-016B-pilot",
+) -> dict[str, object]:
     bundle = load_frozen_bundle()
     manifest = bundle["manifest"]
     frame = pd.read_csv(metrics_path)
-    expected_rows = 1_376_256
+    registered_seeds = tuple(int(seed) for seed in bundle["seeds"]["pilot_seeds"])
+    required_seeds = registered_seeds if expected_seeds is None else tuple(expected_seeds)
+    rows_per_seed = 1_376_256 // len(registered_seeds)
+    expected_rows = rows_per_seed * len(required_seeds)
     required = {
         "configuration_sha256",
         "finite",
@@ -170,6 +179,8 @@ def analyze(metrics_path: Path, output_dir: Path) -> dict[str, object]:
         raise RuntimeError(f"metrics columns missing: {missing}")
     if set(frame["configuration_sha256"].astype(str)) != {EXPECTED_CONFIGURATION_SHA256}:
         raise RuntimeError("metrics configuration hash mismatch")
+    if set(frame["seed"].astype(int).unique()) != set(required_seeds):
+        raise RuntimeError("metrics seed set differs from the registered analysis seed set")
 
     policy_counts = frame.groupby("policy", sort=True).size().to_dict()
     complete_policy_grid = set(policy_counts) == set(POLICIES) and len(set(policy_counts.values())) == 1
@@ -325,7 +336,7 @@ def analyze(metrics_path: Path, output_dir: Path) -> dict[str, object]:
     scenario_frame.to_csv(scenario_path, index=False, float_format="%.17g", lineterminator="\n")
 
     summary = {
-        "task": "EXP-016B-pilot",
+        "task": task_label,
         "configuration_sha256": EXPECTED_CONFIGURATION_SHA256,
         "metrics_path": str(metrics_path),
         "metrics_sha256": sha256_file(metrics_path),
