@@ -315,6 +315,17 @@ not authorize HPC4, GPU, `/project`, or a formal run. See
 `exp016b_preregistration.md`, `exp016b_scenario_manifest.json`, and
 `exp016b_analysis_plan.md`.
 
+EXP-017A prospectively freezes the first external nonlinear GPU benchmark.
+It uses fixed-policy neural TD on Gymnasium `CartPole-v1` and `Acrobot-v1`,
+public joint-regeneration mixing certificates, exact marginal-preserving
+common/private trajectory coupling, three correlation levels, three frozen
+delay traces, two dual-budget regimes, and eleven communication-matched
+policies. Pilot seeds `20550101--20550102` are implementation-only; formal
+seeds are intentionally unassigned. The A30 pilot is permitted only from the
+outcome-free code/analysis hashes in `exp017a_pilot_registry.json`, and any
+failed G1--G12 gate stops formal. See `exp017a_nonlinear_preregistration.md`
+and `exp017a_nonlinear_audit.md`.
+
 The authorized local-CPU EXP-016B pilot is complete. All 1,376,256 registered
 rows are finite and dual-budget valid. The Layer-A practical-Z paired risk
 difference is 55.5126% of always-all risk with a positive simultaneous
