@@ -1,9 +1,7 @@
 """EXP-016A preregistered runner and static configuration auditor.
 
-The default command is static validation.  Scientific execution is available
-only through the explicit ``pilot`` subcommand and must not be invoked before
-the preregistration commit exists.  There is intentionally no formal-run
-entry point in this file.
+The default command is static validation.  This preregistration-stage runner
+intentionally exposes no pilot or formal scientific-run command.
 """
 
 from __future__ import annotations

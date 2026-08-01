@@ -279,4 +279,10 @@ information-only controlled-sensing baseline, 64 fresh pilot seeds, all
 G1--G12 gates, and configuration hash
 `bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5`.
 Static validation recommends local CPU. No scientific trajectory or outcome
-was generated; see `exp016a_preregistration.md`.
+was generated; see `exp016a_preregistration.md`. Amendment 1 then performs a
+static feasibility audit without running trajectories. It marks the original
+per-cell G6 rare-event CI as design-infeasible at 64 seeds and finds an empty
+G8 learning-value-active subset under the frozen policy definitions, so the
+current EXP-016A pilot is not authorized; see
+`exp016a_preregistration_amendment_1.md`, `exp016a_feasibility_audit.md`,
+`exp016a_analysis_plan_v2.md`, and `exp016a_gate_table_v2.json`.
