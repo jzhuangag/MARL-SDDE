@@ -271,3 +271,12 @@ covariance-adaptive BAI machinery is explicitly inherited. See
 `unknown_mixing_impossibility.md`, and
 `adaptation_threshold_sandwich.md`. No experiment or EXP-016A
 preregistration was started.
+
+EXP-016A now has an independent preregistration commit for the permitted
+design stage only. It freezes 54 compact-separated positive scenarios, two
+out-of-scope negative-control families, ten policies including the mandatory
+information-only controlled-sensing baseline, 64 fresh pilot seeds, all
+G1--G12 gates, and configuration hash
+`bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5`.
+Static validation recommends local CPU. No scientific trajectory or outcome
+was generated; see `exp016a_preregistration.md`.

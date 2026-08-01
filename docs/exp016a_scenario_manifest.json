@@ -1,0 +1,6018 @@
+{
+  "budget_rounding": {
+    "above_B_S": "ceil",
+    "below_B_N": "floor",
+    "budget_from_scale": "floor(scale * beta) independently for message and environment",
+    "gray_zone": "floor midpoint of ceil(B_N) and B_S"
+  },
+  "configuration_sha256": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+  "experiment": "EXP-016A",
+  "negative_controls": [
+    {
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 32,
+        "name": "balanced"
+      },
+      "control_id": "nc-mixing-boundary",
+      "delay": 12,
+      "frozen_scales": [
+        10,
+        20,
+        50,
+        100,
+        200
+      ],
+      "lambda": 0.9999,
+      "maximum_agents": 16,
+      "overhead": 16,
+      "positive_gate_eligible": false,
+      "purpose": "illustrate the AC-8 near-nonmixing failure trend; never empirical proof",
+      "theorem_scope": false,
+      "theta_high": 2.0,
+      "theta_low": 0.05
+    },
+    {
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 20,
+        "name": "balanced"
+      },
+      "control_id": "nc-oracle-gap",
+      "delay": 4,
+      "frozen_scales": [
+        10,
+        20,
+        50,
+        100,
+        200
+      ],
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "oracle_gap_target": 0.001,
+      "overhead": 4,
+      "positive_gate_eligible": false,
+      "purpose": "illustrate AC-9 threshold-ratio degeneration; never a positive matching cell",
+      "theorem_scope": false,
+      "theta_high": 0.205,
+      "theta_low": 0.2
+    }
+  ],
+  "policies": [
+    "oracle",
+    "always_all",
+    "fixed_small_q",
+    "exp015a_paid_etc_frozen",
+    "learning_aware",
+    "information_only",
+    "no_delay_ablation",
+    "ignore_message_budget",
+    "ignore_environment_budget",
+    "no_mixing_correction"
+  ],
+  "positive_scenarios": [
+    {
+      "B_N_ceil": 13,
+      "B_N_raw": 13.0,
+      "B_S": 396,
+      "B_oracle": 113,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 12,
+          "message_budget": 72,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 22,
+          "message_budget": 132,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 11
+        },
+        {
+          "environment_budget": 408,
+          "message_budget": 2448,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 204
+        },
+        {
+          "environment_budget": 872,
+          "message_budget": 5232,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 436
+        },
+        {
+          "environment_budget": 1584,
+          "message_budget": 9504,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 792
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 12,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.2,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.28571428571428564,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.21472778699083825,
+        "safety_relative": 0.09978683097166852
+      },
+      "scenario_id": "p000-Q8-th0.5-l0.2-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 16,
+      "B_N_raw": 15.6,
+      "B_S": 243,
+      "B_oracle": 139,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 56,
+          "message_budget": 140,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 112,
+          "message_budget": 280,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 14
+        },
+        {
+          "environment_budget": 1032,
+          "message_budget": 2580,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 129
+        },
+        {
+          "environment_budget": 2144,
+          "message_budget": 5360,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 268
+        },
+        {
+          "environment_budget": 3888,
+          "message_budget": 9720,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 486
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.2,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.28571184761280594,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.1413361086301371,
+        "safety_relative": 0.1999291065997586
+      },
+      "scenario_id": "p001-Q8-th0.5-l0.2-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 17,
+      "B_N_raw": 16.666666666666668,
+      "B_S": 374,
+      "B_oracle": 135,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 12,
+          "message_budget": 96,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 8
+        },
+        {
+          "environment_budget": 22,
+          "message_budget": 180,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 15
+        },
+        {
+          "environment_budget": 292,
+          "message_budget": 2340,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 195
+        },
+        {
+          "environment_budget": 618,
+          "message_budget": 4944,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 412
+        },
+        {
+          "environment_budget": 1122,
+          "message_budget": 8976,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 748
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 12,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.2,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.23809523809523805,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.14059978623629216,
+        "safety_relative": 0.0998299137983032
+      },
+      "scenario_id": "p002-Q8-th0.5-l0.2-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 15,
+      "B_N_raw": 15.0,
+      "B_S": 193,
+      "B_oracle": 81,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 14,
+          "message_budget": 168,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 26,
+          "message_budget": 312,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 13
+        },
+        {
+          "environment_budget": 208,
+          "message_budget": 2496,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 104
+        },
+        {
+          "environment_budget": 426,
+          "message_budget": 5112,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 213
+        },
+        {
+          "environment_budget": 772,
+          "message_budget": 9264,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 386
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 24,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.7,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 15,
+        "n_sufficient": 37,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.463960231980116,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 15,
+        "n_sufficient": 37,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.1722465870035782,
+        "safety_relative": 0.19900958554332226
+      },
+      "scenario_id": "p003-Q8-th0.5-l0.7-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 14,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 20,
+      "B_N_raw": 19.5,
+      "B_S": 473,
+      "B_oracle": 64,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 72,
+          "message_budget": 72,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 136,
+          "message_budget": 136,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 17
+        },
+        {
+          "environment_budget": 1968,
+          "message_budget": 1968,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 246
+        },
+        {
+          "environment_budget": 4168,
+          "message_budget": 4168,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 521
+        },
+        {
+          "environment_budget": 7568,
+          "message_budget": 7568,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 946
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.8172000891956414,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.7730216585102362,
+        "safety_relative": 0.09998936304406092
+      },
+      "scenario_id": "p004-Q8-th0.5-l0.7-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 21,
+      "B_N_raw": 20.666666666666668,
+      "B_S": 232,
+      "B_oracle": 136,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 15,
+          "message_budget": 240,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 27,
+          "message_budget": 432,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 18
+        },
+        {
+          "environment_budget": 189,
+          "message_budget": 3024,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 126
+        },
+        {
+          "environment_budget": 384,
+          "message_budget": 6144,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 256
+        },
+        {
+          "environment_budget": 696,
+          "message_budget": 11136,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 464
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 24,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.7,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 19,
+        "n_sufficient": 46,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.28528030930682124,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 19,
+        "n_sufficient": 46,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.04789690275847776,
+        "safety_relative": 0.19936275756415722
+      },
+      "scenario_id": "p005-Q8-th0.5-l0.7-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 15,
+        "n_sufficient": 37,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 29,
+      "B_N_raw": 29.0,
+      "B_S": 415,
+      "B_oracle": 148,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 28,
+          "message_budget": 168,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 14
+        },
+        {
+          "environment_budget": 52,
+          "message_budget": 312,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 26
+        },
+        {
+          "environment_budget": 444,
+          "message_budget": 2664,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 222
+        },
+        {
+          "environment_budget": 914,
+          "message_budget": 5484,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 457
+        },
+        {
+          "environment_budget": 1660,
+          "message_budget": 9960,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 830
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 12,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.94,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 29,
+        "n_sufficient": 73,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.4956890869301551,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 29,
+        "n_sufficient": 73,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.15348991132003817,
+        "safety_relative": 0.09980000940246803
+      },
+      "scenario_id": "p006-Q8-th0.5-l0.94-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 17,
+        "n_sufficient": 41,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 21,
+      "B_N_raw": 20.4,
+      "B_S": 254,
+      "B_oracle": 62,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 80,
+          "message_budget": 200,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 144,
+          "message_budget": 360,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 18
+        },
+        {
+          "environment_budget": 1096,
+          "message_budget": 2740,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 137
+        },
+        {
+          "environment_budget": 2240,
+          "message_budget": 5600,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 280
+        },
+        {
+          "environment_budget": 4064,
+          "message_budget": 10160,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 508
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 17,
+        "n_sufficient": 41,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.881776387367592,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 17,
+        "n_sufficient": 41,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8156360819657216,
+        "safety_relative": 0.19964380443076757
+      },
+      "scenario_id": "p007-Q8-th0.5-l0.94-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 17,
+        "n_sufficient": 41,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 40,
+      "B_N_raw": 40.0,
+      "B_S": 572,
+      "B_oracle": 298,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 30,
+          "message_budget": 240,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 20
+        },
+        {
+          "environment_budget": 54,
+          "message_budget": 432,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 36
+        },
+        {
+          "environment_budget": 459,
+          "message_budget": 3672,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 306
+        },
+        {
+          "environment_budget": 945,
+          "message_budget": 7560,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 630
+        },
+        {
+          "environment_budget": 1716,
+          "message_budget": 13728,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 1144
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 12,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 40,
+        "n_sufficient": 101,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.32821824381926684,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 29,
+        "n_sufficient": 73,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.09606959402419443,
+        "safety_relative": 0.09981260384500534
+      },
+      "scenario_id": "p008-Q8-th0.5-l0.94-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 22,
+        "n_sufficient": 54,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 5,
+      "B_N_raw": 5.0,
+      "B_S": 60,
+      "B_oracle": 39,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 4,
+          "message_budget": 48,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 2
+        },
+        {
+          "environment_budget": 8,
+          "message_budget": 96,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 64,
+          "message_budget": 768,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 32
+        },
+        {
+          "environment_budget": 132,
+          "message_budget": 1584,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 66
+        },
+        {
+          "environment_budget": 240,
+          "message_budget": 2880,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 120
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 24,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.2,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.26666666666666644,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.10759060402684542,
+        "safety_relative": 0.19632114882506513
+      },
+      "scenario_id": "p009-Q8-th2-l0.2-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 7,
+      "B_N_raw": 7.0,
+      "B_S": 172,
+      "B_oracle": 25,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 24,
+          "message_budget": 24,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 48,
+          "message_budget": 48,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 712,
+          "message_budget": 712,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 89
+        },
+        {
+          "environment_budget": 1520,
+          "message_budget": 1520,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 190
+        },
+        {
+          "environment_budget": 2752,
+          "message_budget": 2752,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 344
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 4,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.2,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "oracle_gap_relative": 0.5989743589743589,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.5536895397165106,
+        "safety_relative": 0.0985206347745935
+      },
+      "scenario_id": "p010-Q8-th2-l0.2-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 12,
+      "B_N_raw": 11.333333333333334,
+      "B_S": 82,
+      "B_oracle": 58,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 7,
+          "message_budget": 120,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 15,
+          "message_budget": 240,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 70,
+          "message_budget": 1128,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 47
+        },
+        {
+          "environment_budget": 136,
+          "message_budget": 2184,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 91
+        },
+        {
+          "environment_budget": 246,
+          "message_budget": 3936,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 164
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 24,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.2,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.1599999999999999,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.05952266922094519,
+        "safety_relative": 0.19706686552324149
+      },
+      "scenario_id": "p011-Q8-th2-l0.2-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 5,
+      "B_N_raw": 5.0,
+      "B_S": 111,
+      "B_oracle": 23,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 4,
+          "message_budget": 24,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 2
+        },
+        {
+          "environment_budget": 8,
+          "message_budget": 48,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 116,
+          "message_budget": 696,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 58
+        },
+        {
+          "environment_budget": 246,
+          "message_budget": 1476,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 123
+        },
+        {
+          "environment_budget": 444,
+          "message_budget": 2664,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 222
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 12,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.7,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.48363636363636364,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.35218449234094906,
+        "safety_relative": 0.09928048078257135
+      },
+      "scenario_id": "p012-Q8-th2-l0.7-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 6,
+      "B_N_raw": 6.0,
+      "B_S": 72,
+      "B_oracle": 20,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 24,
+          "message_budget": 60,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 40,
+          "message_budget": 100,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 312,
+          "message_budget": 780,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 39
+        },
+        {
+          "environment_budget": 640,
+          "message_budget": 1600,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 80
+        },
+        {
+          "environment_budget": 1152,
+          "message_budget": 2880,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 144
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.818567387870737,
+      "oracle_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.7472242408345315,
+        "safety_relative": 0.19726528393674325
+      },
+      "scenario_id": "p013-Q8-th2-l0.7-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 12,
+      "B_N_raw": 12.0,
+      "B_S": 121,
+      "B_oracle": 41,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 9,
+          "message_budget": 72,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 15,
+          "message_budget": 120,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 99,
+          "message_budget": 792,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 66
+        },
+        {
+          "environment_budget": 201,
+          "message_budget": 1608,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 134
+        },
+        {
+          "environment_budget": 363,
+          "message_budget": 2904,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 242
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 12,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 13,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.32606060606060605,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 13,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.1362287547725022,
+        "safety_relative": 0.09932012872450646
+      },
+      "scenario_id": "p014-Q8-th2-l0.7-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 9,
+      "B_N_raw": 9.0,
+      "B_S": 64,
+      "B_oracle": 43,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 8,
+          "message_budget": 96,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 16,
+          "message_budget": 192,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 8
+        },
+        {
+          "environment_budget": 72,
+          "message_budget": 864,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 36
+        },
+        {
+          "environment_budget": 142,
+          "message_budget": 1704,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 71
+        },
+        {
+          "environment_budget": 256,
+          "message_budget": 3072,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 128
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 24,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.94,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.49855802698312707,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.03227099014598197,
+        "safety_relative": 0.1980579423520088
+      },
+      "scenario_id": "p015-Q8-th2-l0.94-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 15,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 9,
+      "B_N_raw": 8.5,
+      "B_S": 138,
+      "B_oracle": 25,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 32,
+          "message_budget": 32,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 56,
+          "message_budget": 56,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 584,
+          "message_budget": 584,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 73
+        },
+        {
+          "environment_budget": 1216,
+          "message_budget": 1216,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 152
+        },
+        {
+          "environment_budget": 2208,
+          "message_budget": 2208,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 276
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "oracle_gap_relative": 0.9125907497584124,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8553487954961363,
+        "safety_relative": 0.09974494881031015
+      },
+      "scenario_id": "p016-Q8-th2-l0.94-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 16,
+      "B_N_raw": 16.0,
+      "B_S": 115,
+      "B_oracle": 85,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "budget_points": [
+        {
+          "environment_budget": 12,
+          "message_budget": 192,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 8
+        },
+        {
+          "environment_budget": 21,
+          "message_budget": 336,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 14
+        },
+        {
+          "environment_budget": 97,
+          "message_budget": 1560,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 65
+        },
+        {
+          "environment_budget": 190,
+          "message_budget": 3048,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 127
+        },
+        {
+          "environment_budget": 345,
+          "message_budget": 5520,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 230
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 24,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.94,
+      "maximum_agents": 8,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 12,
+        "n_sufficient": 29,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.33141070264416944,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 12,
+        "n_sufficient": 29,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.014330821667335339,
+        "safety_relative": 0.19904310976008488
+      },
+      "scenario_id": "p017-Q8-th2-l0.94-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 8,
+      "B_N_raw": 7.8,
+      "B_S": 230,
+      "B_oracle": 42,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 6,
+          "message_budget": 60,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 14,
+          "message_budget": 140,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 238,
+          "message_budget": 2380,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 119
+        },
+        {
+          "environment_budget": 508,
+          "message_budget": 5080,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 254
+        },
+        {
+          "environment_budget": 920,
+          "message_budget": 9200,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 460
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 20,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.2,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.3846153846153846,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.32564453371537616,
+        "safety_relative": 0.09960968368978307
+      },
+      "scenario_id": "p018-Q16-th0.5-l0.2-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 15,
+      "B_N_raw": 14.4,
+      "B_S": 218,
+      "B_oracle": 81,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 56,
+          "message_budget": 140,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 96,
+          "message_budget": 240,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 12
+        },
+        {
+          "environment_budget": 928,
+          "message_budget": 2320,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 116
+        },
+        {
+          "environment_budget": 1920,
+          "message_budget": 4800,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 240
+        },
+        {
+          "environment_budget": 3488,
+          "message_budget": 8720,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 436
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.2,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.4230749538411125,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.3083557631863537,
+        "safety_relative": 0.19915015024855975
+      },
+      "scenario_id": "p019-Q16-th0.5-l0.2-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 14,
+      "B_N_raw": 14.0,
+      "B_S": 230,
+      "B_oracle": 59,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 10,
+          "message_budget": 140,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 18,
+          "message_budget": 240,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 12
+        },
+        {
+          "environment_budget": 183,
+          "message_budget": 2440,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 122
+        },
+        {
+          "environment_budget": 381,
+          "message_budget": 5080,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 254
+        },
+        {
+          "environment_budget": 690,
+          "message_budget": 9200,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 460
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 20,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.2,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.28205128205128205,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.20904106713164258,
+        "safety_relative": 0.09980972785162368
+      },
+      "scenario_id": "p020-Q16-th0.5-l0.2-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 10,
+      "B_N_raw": 10.0,
+      "B_S": 127,
+      "B_oracle": 52,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 10,
+          "message_budget": 160,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 18,
+          "message_budget": 288,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 136,
+          "message_budget": 2176,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 68
+        },
+        {
+          "environment_budget": 280,
+          "message_budget": 4480,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 140
+        },
+        {
+          "environment_budget": 508,
+          "message_budget": 8128,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 254
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 32,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 10,
+        "n_sufficient": 24,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.4739737621667372,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 10,
+        "n_sufficient": 24,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.18012816733451717,
+        "safety_relative": 0.1980626650949553
+      },
+      "scenario_id": "p021-Q16-th0.5-l0.7-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 22,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 20,
+      "B_N_raw": 19.5,
+      "B_S": 456,
+      "B_oracle": 59,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 72,
+          "message_budget": 72,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 136,
+          "message_budget": 136,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 17
+        },
+        {
+          "environment_budget": 1904,
+          "message_budget": 1904,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 238
+        },
+        {
+          "environment_budget": 4016,
+          "message_budget": 4016,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 502
+        },
+        {
+          "environment_budget": 7296,
+          "message_budget": 7296,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 912
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.8879528604278321,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8499116889027274,
+        "safety_relative": 0.09971450302041784
+      },
+      "scenario_id": "p022-Q16-th0.5-l0.7-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 17,
+      "B_N_raw": 16.666666666666668,
+      "B_S": 152,
+      "B_oracle": 95,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 12,
+          "message_budget": 256,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 8
+        },
+        {
+          "environment_budget": 22,
+          "message_budget": 480,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 15
+        },
+        {
+          "environment_budget": 126,
+          "message_budget": 2688,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 84
+        },
+        {
+          "environment_budget": 252,
+          "message_budget": 5376,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 168
+        },
+        {
+          "environment_budget": 456,
+          "message_budget": 9728,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 304
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 32,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 30,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.2986316828889829,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 30,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.04627919978925278,
+        "safety_relative": 0.19993563236607437
+      },
+      "scenario_id": "p023-Q16-th0.5-l0.7-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 10,
+        "n_sufficient": 24,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 20,
+      "B_N_raw": 20.0,
+      "B_S": 266,
+      "B_oracle": 99,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 20,
+          "message_budget": 200,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 36,
+          "message_budget": 360,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 18
+        },
+        {
+          "environment_budget": 286,
+          "message_budget": 2860,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 143
+        },
+        {
+          "environment_budget": 586,
+          "message_budget": 5860,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 293
+        },
+        {
+          "environment_budget": 1064,
+          "message_budget": 10640,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 532
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 20,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.94,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 20,
+        "n_sufficient": 49,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.497598030782261,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 20,
+        "n_sufficient": 49,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.13905077594117773,
+        "safety_relative": 0.09963966348498143
+      },
+      "scenario_id": "p024-Q16-th0.5-l0.94-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 18,
+      "B_N_raw": 17.6,
+      "B_S": 208,
+      "B_oracle": 54,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 64,
+          "message_budget": 160,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 8
+        },
+        {
+          "environment_budget": 120,
+          "message_budget": 300,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 15
+        },
+        {
+          "environment_budget": 904,
+          "message_budget": 2260,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 113
+        },
+        {
+          "environment_budget": 1832,
+          "message_budget": 4580,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 229
+        },
+        {
+          "environment_budget": 3328,
+          "message_budget": 8320,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 416
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.9109908230951126,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8454495997216137,
+        "safety_relative": 0.19974619385310244
+      },
+      "scenario_id": "p025-Q16-th0.5-l0.94-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 27,
+      "B_N_raw": 27.0,
+      "B_S": 366,
+      "B_oracle": 174,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 19,
+          "message_budget": 260,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 13
+        },
+        {
+          "environment_budget": 36,
+          "message_budget": 480,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 24
+        },
+        {
+          "environment_budget": 294,
+          "message_budget": 3920,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 196
+        },
+        {
+          "environment_budget": 604,
+          "message_budget": 8060,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 403
+        },
+        {
+          "environment_budget": 1098,
+          "message_budget": 14640,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 732
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 20,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.94,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 27,
+        "n_sufficient": 69,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.3307659392383398,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 27,
+        "n_sufficient": 69,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.09501542992952298,
+        "safety_relative": 0.09979169691836653
+      },
+      "scenario_id": "p026-Q16-th0.5-l0.94-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 14,
+        "n_sufficient": 35,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 4,
+      "B_N_raw": 3.75,
+      "B_S": 58,
+      "B_oracle": 23,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 2,
+          "message_budget": 32,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 1
+        },
+        {
+          "environment_budget": 6,
+          "message_budget": 96,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 62,
+          "message_budget": 992,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 31
+        },
+        {
+          "environment_budget": 128,
+          "message_budget": 2048,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 64
+        },
+        {
+          "environment_budget": 232,
+          "message_budget": 3712,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 116
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 32,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.2,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.3571428571428571,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.24265734469845796,
+        "safety_relative": 0.19864511780424943
+      },
+      "scenario_id": "p027-Q16-th2-l0.2-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 7,
+      "B_N_raw": 7.0,
+      "B_S": 182,
+      "B_oracle": 20,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 24,
+          "message_budget": 24,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 48,
+          "message_budget": 48,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 752,
+          "message_budget": 752,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 94
+        },
+        {
+          "environment_budget": 1608,
+          "message_budget": 1608,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 201
+        },
+        {
+          "environment_budget": 2912,
+          "message_budget": 2912,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 364
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 4,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.2,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "oracle_gap_relative": 0.7544740973312402,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.7249003814356014,
+        "safety_relative": 0.08312260252481618
+      },
+      "scenario_id": "p028-Q16-th2-l0.2-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 11,
+      "B_N_raw": 10.666666666666666,
+      "B_S": 63,
+      "B_oracle": 22,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 7,
+          "message_budget": 160,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 13,
+          "message_budget": 288,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 55,
+          "message_budget": 1184,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 37
+        },
+        {
+          "environment_budget": 105,
+          "message_budget": 2240,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 70
+        },
+        {
+          "environment_budget": 189,
+          "message_budget": 4032,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 126
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 32,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.2,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 4,
+        "n_sufficient": 8,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.292517006802721,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.23551893970011514,
+        "safety_relative": 0.19741958015550964
+      },
+      "scenario_id": "p029-Q16-th2-l0.2-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 4,
+      "B_N_raw": 3.6,
+      "B_S": 65,
+      "B_oracle": 14,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 2,
+          "message_budget": 20,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 1
+        },
+        {
+          "environment_budget": 6,
+          "message_budget": 60,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 68,
+          "message_budget": 680,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 34
+        },
+        {
+          "environment_budget": 144,
+          "message_budget": 1440,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 72
+        },
+        {
+          "environment_budget": 260,
+          "message_budget": 2600,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 130
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 20,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 13,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.49177330895795246,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 13,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.24774429824372338,
+        "safety_relative": 0.09861283811495558
+      },
+      "scenario_id": "p030-Q16-th2-l0.7-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 6,
+      "B_N_raw": 6.0,
+      "B_S": 73,
+      "B_oracle": 19,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 24,
+          "message_budget": 60,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 40,
+          "message_budget": 100,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 312,
+          "message_budget": 780,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 39
+        },
+        {
+          "environment_budget": 648,
+          "message_budget": 1620,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 81
+        },
+        {
+          "environment_budget": 1168,
+          "message_budget": 2920,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 146
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.8631792458805831,
+      "oracle_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8061166776997668,
+        "safety_relative": 0.17852192683924173
+      },
+      "scenario_id": "p031-Q16-th2-l0.7-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 12,
+      "B_N_raw": 11.333333333333334,
+      "B_S": 82,
+      "B_oracle": 27,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 7,
+          "message_budget": 100,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 15,
+          "message_budget": 200,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 70,
+          "message_budget": 940,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 47
+        },
+        {
+          "environment_budget": 136,
+          "message_budget": 1820,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 91
+        },
+        {
+          "environment_budget": 246,
+          "message_budget": 3280,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 164
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 20,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.7,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.3296770262035344,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.005457229848923849,
+        "safety_relative": 0.0923492720535406
+      },
+      "scenario_id": "p032-Q16-th2-l0.7-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 6,
+      "B_N_raw": 6.0,
+      "B_S": 45,
+      "B_oracle": 29,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 6,
+          "message_budget": 96,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 10,
+          "message_budget": 160,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 50,
+          "message_budget": 800,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 25
+        },
+        {
+          "environment_budget": 100,
+          "message_budget": 1600,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 50
+        },
+        {
+          "environment_budget": 180,
+          "message_budget": 2880,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 90
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 32,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.94,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 14,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.49903941548681213,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 14,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.00525002712353131,
+        "safety_relative": 0.16880380082597712
+      },
+      "scenario_id": "p033-Q16-th2-l0.94-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 9,
+      "B_N_raw": 8.5,
+      "B_S": 93,
+      "B_oracle": 24,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 32,
+          "message_budget": 32,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 56,
+          "message_budget": 56,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 408,
+          "message_budget": 408,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 51
+        },
+        {
+          "environment_budget": 824,
+          "message_budget": 824,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 103
+        },
+        {
+          "environment_budget": 1488,
+          "message_budget": 1488,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 186
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "oracle_gap_relative": 0.9475038104439,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8714072788848604,
+        "safety_relative": 0.09946340734667913
+      },
+      "scenario_id": "p034-Q16-th2-l0.94-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 12,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 14,
+      "B_N_raw": 13.333333333333334,
+      "B_S": 84,
+      "B_oracle": 67,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "budget_points": [
+        {
+          "environment_budget": 9,
+          "message_budget": 192,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 18,
+          "message_budget": 384,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 12
+        },
+        {
+          "environment_budget": 73,
+          "message_budget": 1568,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 49
+        },
+        {
+          "environment_budget": 139,
+          "message_budget": 2976,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 93
+        },
+        {
+          "environment_budget": 252,
+          "message_budget": 5376,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 168
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 32,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.94,
+      "maximum_agents": 16,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 20,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.3320525539824162,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 20,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.012742499375658179,
+        "safety_relative": 0.1633415690601443
+      },
+      "scenario_id": "p035-Q16-th2-l0.94-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 14,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 5,
+      "B_N_raw": 5.0,
+      "B_S": 121,
+      "B_oracle": 24,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 4,
+          "message_budget": 72,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 2
+        },
+        {
+          "environment_budget": 8,
+          "message_budget": 144,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 126,
+          "message_budget": 2268,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 63
+        },
+        {
+          "environment_budget": 268,
+          "message_budget": 4824,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 134
+        },
+        {
+          "environment_budget": 484,
+          "message_budget": 8712,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 242
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 36,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.2,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.44,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.3392856263465682,
+        "safety_relative": 0.09952921917945057
+      },
+      "scenario_id": "p036-Q32-th0.5-l0.2-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 15,
+      "B_N_raw": 14.4,
+      "B_S": 216,
+      "B_oracle": 57,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 56,
+          "message_budget": 140,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 96,
+          "message_budget": 240,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 12
+        },
+        {
+          "environment_budget": 920,
+          "message_budget": 2300,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 115
+        },
+        {
+          "environment_budget": 1904,
+          "message_budget": 4760,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 238
+        },
+        {
+          "environment_budget": 3456,
+          "message_budget": 8640,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 432
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.2,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.5999986346631713,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.5158265604374159,
+        "safety_relative": 0.1980277277532767
+      },
+      "scenario_id": "p037-Q32-th0.5-l0.2-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 21,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 13,
+      "B_N_raw": 12.666666666666666,
+      "B_S": 131,
+      "B_oracle": 39,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 9,
+          "message_budget": 216,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 16,
+          "message_budget": 396,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 11
+        },
+        {
+          "environment_budget": 108,
+          "message_budget": 2592,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 72
+        },
+        {
+          "environment_budget": 217,
+          "message_budget": 5220,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 145
+        },
+        {
+          "environment_budget": 393,
+          "message_budget": 9432,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 262
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 36,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.2,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 16,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.30666666666666664,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 16,
+        "q": 32
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.17269773332890054,
+        "safety_relative": 0.09955583683238611
+      },
+      "scenario_id": "p038-Q32-th0.5-l0.2-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 33,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 8,
+      "B_N_raw": 8.0,
+      "B_S": 91,
+      "B_oracle": 38,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 8,
+          "message_budget": 192,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 14,
+          "message_budget": 336,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 98,
+          "message_budget": 2352,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 49
+        },
+        {
+          "environment_budget": 202,
+          "message_budget": 4848,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 101
+        },
+        {
+          "environment_budget": 364,
+          "message_budget": 8736,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 182
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 48,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.7,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.48363636363636364,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 32
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.2788682671979836,
+        "safety_relative": 0.1982823181659641
+      },
+      "scenario_id": "p039-Q32-th0.5-l0.7-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 10,
+        "n_sufficient": 24,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 20,
+      "B_N_raw": 19.5,
+      "B_S": 462,
+      "B_oracle": 56,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 72,
+          "message_budget": 72,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 136,
+          "message_budget": 136,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 17
+        },
+        {
+          "environment_budget": 1928,
+          "message_budget": 1928,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 241
+        },
+        {
+          "environment_budget": 4072,
+          "message_budget": 4072,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 509
+        },
+        {
+          "environment_budget": 7392,
+          "message_budget": 7392,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 924
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.9370725155534086,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.9043887242573122,
+        "safety_relative": 0.08856701793228972
+      },
+      "scenario_id": "p040-Q32-th0.5-l0.7-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 32,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 14,
+      "B_N_raw": 14.0,
+      "B_S": 104,
+      "B_oracle": 62,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 10,
+          "message_budget": 336,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 18,
+          "message_budget": 576,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 12
+        },
+        {
+          "environment_budget": 88,
+          "message_budget": 2832,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 59
+        },
+        {
+          "environment_budget": 172,
+          "message_budget": 5520,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 115
+        },
+        {
+          "environment_budget": 312,
+          "message_budget": 9984,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 208
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 48,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.7,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 9,
+        "n_sufficient": 22,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.32606060606060605,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 13,
+        "n_sufficient": 30,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.023868502909099754,
+        "safety_relative": 0.19983279231174156
+      },
+      "scenario_id": "p041-Q32-th0.5-l0.7-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 10,
+        "n_sufficient": 24,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 14,
+      "B_N_raw": 14.0,
+      "B_S": 188,
+      "B_oracle": 67,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 14,
+          "message_budget": 252,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 24,
+          "message_budget": 432,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 12
+        },
+        {
+          "environment_budget": 202,
+          "message_budget": 3636,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 101
+        },
+        {
+          "environment_budget": 414,
+          "message_budget": 7452,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 207
+        },
+        {
+          "environment_budget": 752,
+          "message_budget": 13536,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 376
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 36,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 32
+      },
+      "lambda": 0.94,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 14,
+        "n_sufficient": 33,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.49855802698312707,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 14,
+        "n_sufficient": 33,
+        "q": 32
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.1783206412804096,
+        "safety_relative": 0.09984140330585389
+      },
+      "scenario_id": "p042-Q32-th0.5-l0.94-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 14,
+        "n_sufficient": 35,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 18,
+      "B_N_raw": 17.6,
+      "B_S": 180,
+      "B_oracle": 52,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 64,
+          "message_budget": 160,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 8
+        },
+        {
+          "environment_budget": 120,
+          "message_budget": 300,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 15
+        },
+        {
+          "environment_budget": 792,
+          "message_budget": 1980,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 99
+        },
+        {
+          "environment_budget": 1592,
+          "message_budget": 3980,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 199
+        },
+        {
+          "environment_budget": 2880,
+          "message_budget": 7200,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 360
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.9405460674736058,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8742685136990431,
+        "safety_relative": 0.1981273823067642
+      },
+      "scenario_id": "p043-Q32-th0.5-l0.94-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 11,
+        "n_sufficient": 27,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 21,
+      "B_N_raw": 20.666666666666668,
+      "B_S": 258,
+      "B_oracle": 107,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 15,
+          "message_budget": 360,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 27,
+          "message_budget": 648,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 18
+        },
+        {
+          "environment_budget": 208,
+          "message_budget": 5004,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 139
+        },
+        {
+          "environment_budget": 426,
+          "message_budget": 10224,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 284
+        },
+        {
+          "environment_budget": 774,
+          "message_budget": 18576,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 516
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 36,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.94,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 19,
+        "n_sufficient": 47,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.3320471596998928,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 19,
+        "n_sufficient": 47,
+        "q": 32
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.09196055624885552,
+        "safety_relative": 0.09982137402036906
+      },
+      "scenario_id": "p044-Q32-th0.5-l0.94-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 10,
+        "n_sufficient": 25,
+        "q": 32
+      },
+      "theorem_scope": true,
+      "theta_gap": 0.45,
+      "theta_high": 0.5,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 3,
+      "B_N_raw": 2.5,
+      "B_S": 30,
+      "B_oracle": 11,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 2,
+          "message_budget": 48,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 1
+        },
+        {
+          "environment_budget": 4,
+          "message_budget": 96,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 2
+        },
+        {
+          "environment_budget": 32,
+          "message_budget": 768,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 16
+        },
+        {
+          "environment_budget": 66,
+          "message_budget": 1584,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 33
+        },
+        {
+          "environment_budget": 120,
+          "message_budget": 2880,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 60
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 48,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.2,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.4845360824742268,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.3634773519163763,
+        "safety_relative": 0.19610891089108895
+      },
+      "scenario_id": "p045-Q32-th2-l0.2-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 7,
+      "B_N_raw": 7.0,
+      "B_S": 158,
+      "B_oracle": 18,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 24,
+          "message_budget": 24,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 48,
+          "message_budget": 48,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 656,
+          "message_budget": 656,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 82
+        },
+        {
+          "environment_budget": 1392,
+          "message_budget": 1392,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 174
+        },
+        {
+          "environment_budget": 2528,
+          "message_budget": 2528,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 316
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 4,
+        "eta": 1.0,
+        "q": 2
+      },
+      "lambda": 0.2,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "oracle_gap_relative": 0.8621905013657591,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8376362121109301,
+        "safety_relative": 0.09990627712587696
+      },
+      "scenario_id": "p046-Q32-th2-l0.2-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 7,
+        "n_sufficient": 14,
+        "q": 4
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 11,
+      "B_N_raw": 10.666666666666666,
+      "B_S": 41,
+      "B_oracle": 18,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 7,
+          "message_budget": 240,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 13,
+          "message_budget": 432,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 39,
+          "message_budget": 1248,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 26
+        },
+        {
+          "environment_budget": 69,
+          "message_budget": 2208,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 46
+        },
+        {
+          "environment_budget": 123,
+          "message_budget": 3936,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 82
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 48,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.2,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 4,
+        "n_sufficient": 8,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.3264604810996563,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 4,
+        "n_sufficient": 8,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.23461887138185375,
+        "safety_relative": 0.1997723917115639
+      },
+      "scenario_id": "p047-Q32-th2-l0.2-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 3,
+      "B_N_raw": 2.7777777777777777,
+      "B_S": 40,
+      "B_oracle": 11,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 2,
+          "message_budget": 36,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 1
+        },
+        {
+          "environment_budget": 4,
+          "message_budget": 72,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 2
+        },
+        {
+          "environment_budget": 42,
+          "message_budget": 756,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 21
+        },
+        {
+          "environment_budget": 88,
+          "message_budget": 1584,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 44
+        },
+        {
+          "environment_budget": 160,
+          "message_budget": 2880,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 80
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 36,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 8
+      },
+      "lambda": 0.7,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 16
+      },
+      "oracle_gap_relative": 0.49587534372135655,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 16
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.27874969447477743,
+        "safety_relative": 0.09847378856925926
+      },
+      "scenario_id": "p048-Q32-th2-l0.7-D0-h4-balanced-e0.1",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 6,
+      "B_N_raw": 6.0,
+      "B_S": 70,
+      "B_oracle": 18,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 24,
+          "message_budget": 60,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 3
+        },
+        {
+          "environment_budget": 40,
+          "message_budget": 100,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 304,
+          "message_budget": 760,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 38
+        },
+        {
+          "environment_budget": 616,
+          "message_budget": 1540,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 77
+        },
+        {
+          "environment_budget": 1120,
+          "message_budget": 2800,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 140
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 20,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.7,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "oracle_gap_relative": 0.908535346772599,
+      "oracle_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8586525439736874,
+        "safety_relative": 0.19792005192959294
+      },
+      "scenario_id": "p049-Q32-th2-l0.7-D4-h16-message_limited-e0.2",
+      "sufficient_probe": {
+        "b": 4,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 10,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 11,
+      "B_N_raw": 10.666666666666666,
+      "B_S": 53,
+      "B_oracle": 20,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 7,
+          "message_budget": 180,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 5
+        },
+        {
+          "environment_budget": 13,
+          "message_budget": 324,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 9
+        },
+        {
+          "environment_budget": 48,
+          "message_budget": 1152,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 32
+        },
+        {
+          "environment_budget": 88,
+          "message_budget": 2124,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 59
+        },
+        {
+          "environment_budget": 159,
+          "message_budget": 3816,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 106
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 36,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.7,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 4,
+        "n_sufficient": 8,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.33150015276504735,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 4,
+        "n_sufficient": 8,
+        "q": 32
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.07591124176577775,
+        "safety_relative": 0.0982257513988436
+      },
+      "scenario_id": "p050-Q32-th2-l0.7-D12-h4-environment_limited-e0.1",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 8
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 5,
+      "B_N_raw": 5.0,
+      "B_S": 29,
+      "B_oracle": 23,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 4,
+          "message_budget": 96,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 2
+        },
+        {
+          "environment_budget": 8,
+          "message_budget": 192,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 34,
+          "message_budget": 816,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 17
+        },
+        {
+          "environment_budget": 64,
+          "message_budget": 1536,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 32
+        },
+        {
+          "environment_budget": 116,
+          "message_budget": 2784,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 58
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 2.0,
+        "beta_message": 48,
+        "name": "balanced"
+      },
+      "delay": 0,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 2,
+        "eta": 1.0,
+        "q": 32
+      },
+      "lambda": 0.94,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.49928045851474007,
+      "oracle_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 32
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.007055256108618027,
+        "safety_relative": 0.18288990937523497
+      },
+      "scenario_id": "p051-Q32-th2-l0.94-D0-h16-balanced-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 14,
+        "q": 16
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 9,
+      "B_N_raw": 8.5,
+      "B_S": 63,
+      "B_oracle": 24,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 32,
+          "message_budget": 32,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 4
+        },
+        {
+          "environment_budget": 56,
+          "message_budget": 56,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 7
+        },
+        {
+          "environment_budget": 288,
+          "message_budget": 288,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 36
+        },
+        {
+          "environment_budget": 560,
+          "message_budget": 560,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 70
+        },
+        {
+          "environment_budget": 1008,
+          "message_budget": 1008,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 126
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 8.0,
+        "beta_message": 8,
+        "name": "message_limited"
+      },
+      "delay": 4,
+      "delta": 0.025,
+      "epsilon_safe": 0.1,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 8,
+        "eta": 1.0,
+        "q": 4
+      },
+      "lambda": 0.94,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "oracle_gap_relative": 0.9708213633605606,
+      "oracle_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "overhead": 4,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.8562137077259611,
+        "safety_relative": 0.0998008006104103
+      },
+      "scenario_id": "p052-Q32-th2-l0.94-D4-h4-message_limited-e0.1",
+      "sufficient_probe": {
+        "b": 8,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 18,
+        "q": 4
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    },
+    {
+      "B_N_ceil": 12,
+      "B_N_raw": 12.0,
+      "B_S": 46,
+      "B_oracle": 42,
+      "baseline_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 32
+      },
+      "budget_points": [
+        {
+          "environment_budget": 9,
+          "message_budget": 288,
+          "name": "half_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 6
+        },
+        {
+          "environment_budget": 15,
+          "message_budget": 480,
+          "name": "near_bn",
+          "reference": "B_N",
+          "region": "below_bn",
+          "rounding": "floor",
+          "scale": 10
+        },
+        {
+          "environment_budget": 43,
+          "message_budget": 1392,
+          "name": "gray_mid",
+          "reference": "bracket",
+          "region": "gray_zone",
+          "rounding": "midpoint",
+          "scale": 29
+        },
+        {
+          "environment_budget": 76,
+          "message_budget": 2448,
+          "name": "above_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 51
+        },
+        {
+          "environment_budget": 138,
+          "message_budget": 4416,
+          "name": "double_bs",
+          "reference": "B_S",
+          "region": "above_bs",
+          "rounding": "ceil",
+          "scale": 92
+        }
+      ],
+      "budget_ray": {
+        "beta_environment": 1.5,
+        "beta_message": 48,
+        "name": "environment_limited"
+      },
+      "delay": 12,
+      "delta": 0.025,
+      "epsilon_safe": 0.2,
+      "gamma": 0.05,
+      "high_oracle_action": {
+        "b": 1,
+        "eta": 1.0,
+        "q": 16
+      },
+      "lambda": 0.94,
+      "maximum_agents": 32,
+      "necessary_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 6,
+        "n_sufficient": 14,
+        "q": 32
+      },
+      "oracle_gap_relative": 0.3330113239950625,
+      "oracle_probe": {
+        "b": 1,
+        "eta": 1.0,
+        "n_necessary": 8,
+        "n_sufficient": 20,
+        "q": 16
+      },
+      "overhead": 16,
+      "qualification_margins_at_B_S": {
+        "high_gain_relative": 0.008597593101655211,
+        "safety_relative": 0.18925291953648915
+      },
+      "scenario_id": "p053-Q32-th2-l0.94-D12-h16-environment_limited-e0.2",
+      "sufficient_probe": {
+        "b": 2,
+        "eta": 1.0,
+        "n_necessary": 5,
+        "n_sufficient": 11,
+        "q": 32
+      },
+      "theorem_scope": true,
+      "theta_gap": 1.95,
+      "theta_high": 2.0,
+      "theta_low": 0.05,
+      "transition_sides": {
+        "high": "adaptive_side",
+        "low": "baseline_side"
+      }
+    }
+  ],
+  "prereg_parent": "41bd4c696b49c9876cff537d3fb03c571393a7b2",
+  "schema_version": 1,
+  "scientific_outcomes_present": false
+}
