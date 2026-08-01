@@ -325,3 +325,12 @@ pass. A clean same-seed rerun reproduces the raw metrics and three aggregate
 artifacts byte-for-byte, so P1--P12 all pass. The pilot permits a separate
 formal preregistration but is not itself promoted to formal evidence; see
 `validation_exp016b_pilot.md` and `exp016b_reproduction_audit.json`.
+
+EXP-016B now also has an implementation-frozen independent formal replication.
+Commit `cc4877a` fixed all implementation/input hashes and 192 new CRN seeds
+before any formal outcome. Both 2,752,512-row CPU runs are byte-identical on
+the raw metrics and three core aggregate artifacts. P1--P12 all pass: Layer A
+improves registered finite-Z risk by 54.4267% with simultaneous lower bound
+0.1612; Layer B improves it by 10.8523% with lower bound 0.0577; 77/96 scenario
+families pass the directional/practical gate. See
+`validation_exp016b_formal.md` and `exp016b_formal_reproduction_audit.json`.
