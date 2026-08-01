@@ -286,3 +286,16 @@ G8 learning-value-active subset under the frozen policy definitions, so the
 current EXP-016A pilot is not authorized; see
 `exp016a_preregistration_amendment_1.md`, `exp016a_feasibility_audit.md`,
 `exp016a_analysis_plan_v2.md`, and `exp016a_gate_table_v2.json`.
+
+T-018 then keeps EXP-016A stopped and audits the learning-value route before
+any new experiment. It aligns the safety theorem to `S_mean` rather than the
+stronger pathwise `S_path`, freezes a 3,456-scenario outcome-free static scan
+with grid hash
+`c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db`,
+and executes only analytic calculations. The scan finds nonempty separation
+zones in all nondegenerate scenarios, 69.9978% practical-effect coverage
+among `Z` cells, 1,772 message-binding scenarios, and 1,404
+environment-binding scenarios. Final decision **A** permits only a future
+separate EXP-016B preregistration stage; it does not authorize EXP-016A or a
+pilot. See `t018_final_decision.md`, `t018_static_scan_results.md`, and
+`learning_value_separation_theorem.md`.

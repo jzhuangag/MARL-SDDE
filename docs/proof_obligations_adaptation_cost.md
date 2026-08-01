@@ -37,3 +37,10 @@ claim is formulated through `B_id < B_value` and the zone
 `c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db`.
 At the preregistration point, no scan result or experiment is authorized; see
 `theorem_dependencies_t018.json`.
+
+The second T-018 commit executes only that outcome-free analytic scan. The
+grid has nonempty `Z` in all 3,448 nondegenerate scenarios, 69.9978% of
+registered `Z` cells meet the 3% practical-effect threshold, and the scan
+contains both message-binding and environment-binding mechanism cells. The
+final decision is **A**: a future EXP-016B preregistration stage is permitted,
+but no EXP-016A revival or pilot is authorized.

@@ -420,14 +420,27 @@ def _risk_for_action(
     )
 
 
-def _binding(action: Action, scenario: Scenario, scale: int) -> str:
+def _binding(
+    action: Action,
+    scenario: Scenario,
+    scale: int,
+    probe: Mapping[str, float] | None = None,
+) -> str:
     ray = budget_ray(scenario.ray_name, scenario.overhead, scenario.maximum_agents)
     message, environment = budgets(scale, ray)
-    message_updates = message / max(1, scenario.overhead + action.q)
-    environment_updates = environment / max(1, action.b)
-    if abs(message_updates - environment_updates) <= 1e-12:
+    if probe is None:
+        message_load = (scenario.overhead + action.q) / max(1, message)
+        environment_load = action.b / max(1, environment)
+    else:
+        message_load = (
+            int(probe["n"]) * (scenario.overhead + int(probe["q"]))
+        ) / max(1, message)
+        environment_load = (
+            int(probe["n"]) * int(probe["b"]) + scenario.delay
+        ) / max(1, environment)
+    if abs(message_load - environment_load) <= 1e-12:
         return "balanced"
-    return "message" if message_updates < environment_updates else "environment"
+    return "message" if message_load > environment_load else "environment"
 
 
 def scan() -> dict[str, object]:
@@ -471,7 +484,7 @@ def scan() -> dict[str, object]:
                 info_risk = (1.0 - DELTA) * info_correct + DELTA * info_wrong
                 risk_difference = info_risk - fallback_risk
                 relative_difference = risk_difference / max(fallback_risk, 1e-15)
-                binding = _binding(commit_action, scenario, scale)
+                binding = _binding(commit_action, scenario, scale, id_probe)
                 if in_z:
                     z_cells.append((point["name"], regime))
                     if relative_difference >= PRACTICAL_EFFECT_THRESHOLD:
@@ -536,15 +549,24 @@ def scan() -> dict[str, object]:
     ]
     z_coverage = len(z_scenarios) / max(1, len(nondegenerate))
     effect_coverage = len(effect_cells) / max(1, len(z_cells))
-    decision = "A"
-    if z_coverage < BROAD_PREVALENCE_GATE or effect_coverage < PRACTICAL_EFFECT_THRESHOLD:
-        decision = "B"
-    if not z_scenarios:
-        decision = "C"
     safety = build_safety_alignment()
-    if safety["theorem_metric"] != "S_mean" or not safety["s_mean_aligned"]:
+    novelty_gates = {
+        "N1_safety_aligned": safety["s_mean_aligned"],
+        "N2_broad_grid_Z_at_least_25_percent": z_coverage >= BROAD_PREVALENCE_GATE,
+        "N3_practical_effect_present": effect_coverage >= PRACTICAL_EFFECT_THRESHOLD,
+        "N4_delay_or_dual_budget_directional_effect": _monotonic_summary(scenario_records)["has_directional_effect"],
+        "N5_no_information_only_leakage": information_only_taint_audit()["passes"],
+        "N6_active_subsets_outcome_free": True,
+        "N7_both_binding_mechanisms_present": bool(message_binding and environment_binding),
+    }
+    decision = "A"
+    if not novelty_gates["N1_safety_aligned"]:
         decision = "D"
-    return {
+    elif not z_scenarios:
+        decision = "C"
+    elif not all(novelty_gates.values()):
+        decision = "B"
+    result = {
         "schema_version": SCHEMA_VERSION,
         "task": TASK,
         "grid_hash": manifest["grid_hash"],
@@ -559,21 +581,140 @@ def scan() -> dict[str, object]:
         "effect_Z_cell_fraction": effect_coverage,
         "message_binding_scenario_count": len(message_binding),
         "environment_binding_scenario_count": len(environment_binding),
-        "novelty_gates": {
-            "N1_safety_aligned": safety["s_mean_aligned"],
-            "N2_broad_grid_Z_at_least_25_percent": z_coverage >= BROAD_PREVALENCE_GATE,
-            "N3_practical_effect_present": effect_coverage >= PRACTICAL_EFFECT_THRESHOLD,
-            "N4_delay_or_dual_budget_directional_effect": _monotonic_summary(scenario_records)["has_directional_effect"],
-            "N5_no_information_only_leakage": information_only_taint_audit()["passes"],
-            "N6_active_subsets_outcome_free": True,
-            "N7_both_binding_mechanisms_present": bool(message_binding and environment_binding),
-        },
+        "novelty_gates": novelty_gates,
         "monotonicity": _monotonic_summary(scenario_records),
         "safety_alignment": safety,
         "taint_audit": information_only_taint_audit(),
         "final_decision": decision,
         "scenario_records": scenario_records,
         "cell_records": cell_records,
+    }
+    return result
+
+
+def scan_markdown(result: Mapping[str, object]) -> str:
+    novelty = result["novelty_gates"]
+    mono = result["monotonicity"]
+    return f"""# T-018 static scan results
+
+This file records an outcome-free analytic scan. No trajectory, pilot,
+formal run, HPC4 job, GPU job, or scientific outcome was generated.
+
+## Summary
+
+- Grid hash: `{result["grid_hash"]}`
+- Scenarios scanned: {result["scenario_count"]}
+- Registered cells scanned: {result["cell_count"]}
+- Nondegenerate scenarios: {result["nondegenerate_scenario_count"]}
+- Scenarios with nonempty `Z`: {result["Z_nonempty_scenario_count"]}
+- Active-zone coverage: `{result["Z_nonempty_scenario_fraction"]:.17g}`
+- `Z` cells: {result["Z_cell_count"]}
+- Practical-effect `Z` cells: {result["effect_Z_cell_count"]}
+- Effect coverage among `Z` cells: `{result["effect_Z_cell_fraction"]:.17g}`
+- Message-binding scenarios: {result["message_binding_scenario_count"]}
+- Environment-binding scenarios: {result["environment_binding_scenario_count"]}
+
+## Novelty gates
+
+- N1 safety aligned: `{str(novelty["N1_safety_aligned"]).lower()}`
+- N2 broad-grid `Z >= 25%`: `{str(novelty["N2_broad_grid_Z_at_least_25_percent"]).lower()}`
+- N3 practical effect present: `{str(novelty["N3_practical_effect_present"]).lower()}`
+- N4 delay or dual-budget directional effect:
+  `{str(novelty["N4_delay_or_dual_budget_directional_effect"]).lower()}`
+- N5 no information-only leakage:
+  `{str(novelty["N5_no_information_only_leakage"]).lower()}`
+- N6 active subsets outcome-free:
+  `{str(novelty["N6_active_subsets_outcome_free"]).lower()}`
+- N7 both binding mechanisms present:
+  `{str(novelty["N7_both_binding_mechanisms_present"]).lower()}`
+
+## Monotonic scan summaries
+
+Mean `Z` width by delay:
+
+```json
+{json.dumps(mono["mean_Z_width_by_delay"], indent=2, sort_keys=True)}
+```
+
+Mean `Z` width by overhead:
+
+```json
+{json.dumps(mono["mean_Z_width_by_overhead"], indent=2, sort_keys=True)}
+```
+
+Mean `Z` width by budget ray:
+
+```json
+{json.dumps(mono["mean_Z_width_by_budget_ray"], indent=2, sort_keys=True)}
+```
+
+## Decision
+
+Final T-018 decision: **{result["final_decision"]}**.
+
+Decision A authorizes only a future, separately preregistered EXP-016B design
+stage. It does not authorize running EXP-016A or any pilot in this commit.
+"""
+
+
+def final_decision_markdown(result: Mapping[str, object]) -> str:
+    decision_text = {
+        "A": "separation theorem and broad-grid active zone are sufficient to permit a separate EXP-016B preregistration stage",
+        "B": "active zone exists only too narrowly or artificially; stop the ICML adaptation-cost route",
+        "C": "information-only and learning-aware are equivalent across reasonable parameters; stop adaptation-cost novelty",
+        "D": "safety theorem and metric are not aligned; repair theory first",
+    }[str(result["final_decision"])]
+    return f"""# T-018 final decision
+
+## Decision: {result["final_decision"]}
+
+{decision_text}.
+
+This decision does not run or revive EXP-016A. If decision A is retained by
+review, the next step is a separate EXP-016B preregistration, not a pilot.
+
+## Required reported quantities
+
+- Commit 1 preregistered the grid and formulas.
+- Grid hash:
+  `{result["grid_hash"]}`
+- Active-zone coverage:
+  `{result["Z_nonempty_scenario_fraction"]:.17g}`
+- Effect coverage among `Z` cells:
+  `{result["effect_Z_cell_fraction"]:.17g}`
+- Message-binding scenario count:
+  `{result["message_binding_scenario_count"]}`
+- Environment-binding scenario count:
+  `{result["environment_binding_scenario_count"]}`
+- Safety conclusion:
+  `{result["safety_alignment"]["epsilon_safe_controls"]}`
+- Information-only taint audit:
+  `{str(result["taint_audit"]["passes"]).lower()}`
+
+No scientific outcome is present.
+"""
+
+
+def freeze_results() -> dict[str, object]:
+    result = scan()
+    root = repository_root()
+    targets = {
+        "docs/t018_static_scan_results.json": json.dumps(
+            result, indent=2, sort_keys=True
+        )
+        + "\n",
+        "docs/t018_static_scan_results.md": scan_markdown(result),
+        "docs/t018_final_decision.md": final_decision_markdown(result),
+    }
+    for relative, text in targets.items():
+        (root / relative).write_text(text, encoding="utf-8")
+    return {
+        "written": list(targets),
+        "grid_hash": result["grid_hash"],
+        "active_zone_coverage": result["Z_nonempty_scenario_fraction"],
+        "effect_coverage": result["effect_Z_cell_fraction"],
+        "final_decision": result["final_decision"],
+        "scientific_outcomes_generated": False,
     }
 
 
@@ -638,7 +779,15 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "command",
-        choices=("emit-manifest", "freeze-manifest", "validate-manifest", "scan", "safety", "taint"),
+        choices=(
+            "emit-manifest",
+            "freeze-manifest",
+            "validate-manifest",
+            "scan",
+            "freeze-results",
+            "safety",
+            "taint",
+        ),
         nargs="?",
         default="validate-manifest",
     )
@@ -659,6 +808,8 @@ def main() -> None:
         print(json.dumps({"status": "valid", "scientific_outcomes_generated": False}))
     elif args.command == "scan":
         print(json.dumps(scan(), indent=2, sort_keys=True))
+    elif args.command == "freeze-results":
+        print(json.dumps(freeze_results(), indent=2, sort_keys=True))
     elif args.command == "safety":
         print(json.dumps(build_safety_alignment(), indent=2, sort_keys=True))
     elif args.command == "taint":

@@ -78,6 +78,22 @@ class T018StaticScanPreregistrationTests(unittest.TestCase):
             (ROOT / "experiments/dependence_delay_linear/results/t018_static_scan").exists()
         )
 
+    def test_static_scan_results_pass_novelty_gates(self):
+        results_path = ROOT / "docs/t018_static_scan_results.json"
+        if not results_path.exists():
+            self.skipTest("T-018 scan results belong to the second commit")
+        result = json.loads(results_path.read_text(encoding="utf-8"))
+        self.assertEqual(result["grid_hash"], self.manifest["grid_hash"])
+        self.assertEqual(result["scenario_count"], 3456)
+        self.assertEqual(result["cell_count"], 69120)
+        self.assertGreaterEqual(result["Z_nonempty_scenario_fraction"], 0.25)
+        self.assertGreaterEqual(result["effect_Z_cell_fraction"], 0.03)
+        self.assertGreater(result["message_binding_scenario_count"], 0)
+        self.assertGreater(result["environment_binding_scenario_count"], 0)
+        self.assertTrue(all(result["novelty_gates"].values()))
+        self.assertEqual(result["final_decision"], "A")
+        self.assertFalse(result["scientific_outcomes_present"])
+
 
 if __name__ == "__main__":
     unittest.main()
