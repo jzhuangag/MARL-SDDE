@@ -135,8 +135,8 @@ def test_frozen_document_json_is_consistent() -> None:
     assert manifest["static_manifest_hash"] == STATIC_MANIFEST_HASH
 
 
-def test_no_result_directory_exists_at_preregistration() -> None:
+def test_result_directories_are_ignored_after_preregistration() -> None:
     root = Path(__file__).resolve().parents[2]
-    results = root / "experiments" / "nonlinear_markov_td" / "results"
-    matches = list(results.glob("exp018a_pilot_*")) if results.exists() else []
-    assert matches == []
+    ignore = (root / ".gitignore").read_text(encoding="utf-8")
+    assert "experiments/nonlinear_markov_td/results/exp018a_pilot_*/" in ignore
+    assert "experiments/nonlinear_markov_td/results/exp018a_reproduction_*/" in ignore
