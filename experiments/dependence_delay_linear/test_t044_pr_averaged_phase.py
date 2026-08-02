@@ -7,6 +7,7 @@ from experiments.dependence_delay_linear.t037_vector_markov_phase import (
 )
 from experiments.dependence_delay_linear.t044_pr_averaged_phase import (
     discrete_pr_proxy_optimum,
+    exact_pr_averaged_scalar_risk,
     exact_pr_averaged_vector_risk,
     pr_message_proxy,
 )
@@ -128,3 +129,42 @@ def test_asymptotic_proxy_has_participation_transition() -> None:
     assert pr_message_proxy(q=16, rho=1.0, overhead=2.0) > pr_message_proxy(
         q=1, rho=1.0, overhead=2.0
     )
+
+
+@pytest.mark.parametrize("delay", [0, 1, 3])
+def test_fast_scalar_pr_risk_matches_vector_identity(delay: int) -> None:
+    updates = 11
+    q = 4
+    rho = 0.35
+    markov_lambda = 0.72
+    single_variance = 1.8
+    lags = equicorrelated_ar_lag_covariances(
+        horizon=updates,
+        single_agent_covariance=np.array([[single_variance]]),
+        q=q,
+        rho=rho,
+        markov_lambda=markov_lambda,
+    )
+    vector = exact_pr_averaged_vector_risk(
+        initial_history=np.full((delay + 1, 1), 0.7),
+        drift=np.array([[0.9]]),
+        step_size=0.06,
+        delay=delay,
+        updates=updates,
+        burn_in=4,
+        lag_covariances=lags,
+    )
+    scalar = exact_pr_averaged_scalar_risk(
+        initial_error=0.7,
+        mu=0.9,
+        step_size=0.06,
+        delay=delay,
+        updates=updates,
+        burn_in=4,
+        single_variance=single_variance,
+        q=q,
+        rho=rho,
+        markov_lambda=markov_lambda,
+    )
+    assert scalar["risk"] == pytest.approx(vector["risk"], abs=1e-12)
+    assert scalar["noise_variance"] == pytest.approx(vector["noise_risk"], abs=1e-12)

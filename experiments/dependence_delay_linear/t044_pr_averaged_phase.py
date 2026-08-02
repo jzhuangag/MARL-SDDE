@@ -4,6 +4,10 @@ from __future__ import annotations
 
 import numpy as np
 
+from experiments.dependence_delay_linear.t035_scalar_phase_theorem import (
+    aggregate_variance,
+    delayed_companion,
+)
 from experiments.dependence_delay_linear.t037_vector_markov_phase import (
     delayed_vector_companion,
 )
@@ -106,6 +110,60 @@ def pr_message_proxy(*, q: int, rho: float, overhead: float) -> float:
     if q < 1 or overhead < 0.0 or not 0.0 <= rho <= 1.0:
         raise ValueError("invalid q, overhead, or rho")
     return float((rho + (1.0 - rho) / q) * (overhead + q))
+
+
+def exact_pr_averaged_scalar_risk(
+    *,
+    initial_error: float,
+    mu: float,
+    step_size: float,
+    delay: int,
+    updates: int,
+    burn_in: int,
+    single_variance: float,
+    q: int,
+    rho: float,
+    markov_lambda: float,
+) -> dict[str, float]:
+    """Efficient scalar specialization of the exact PR identity."""
+
+    if updates < 1 or burn_in < 0 or burn_in >= updates:
+        raise ValueError("require updates >= 1 and 0 <= burn_in < updates")
+    if not 0.0 <= markov_lambda < 1.0:
+        raise ValueError("markov_lambda must lie in [0,1)")
+    companion = delayed_companion(mu, step_size, delay)
+    initial = np.full(delay + 1, float(initial_error))
+    powers = [np.eye(delay + 1)]
+    for _ in range(updates):
+        powers.append(powers[-1] @ companion)
+    averaged_count = updates - burn_in
+    mean = float(
+        np.mean(
+            [(powers[time] @ initial)[0] for time in range(burn_in + 1, updates + 1)]
+        )
+    )
+    impulse_response = np.asarray(
+        [step_size * powers[lag][0, 0] for lag in range(updates)]
+    )
+    coefficients = np.zeros(updates)
+    for innovation_time in range(updates):
+        lower = max(burn_in - innovation_time, 0)
+        upper = updates - 1 - innovation_time
+        if upper >= lower:
+            coefficients[innovation_time] = (
+                np.sum(impulse_response[lower : upper + 1]) / averaged_count
+            )
+    indices = np.arange(updates)
+    autocorrelation = markov_lambda ** np.abs(indices[:, None] - indices[None, :])
+    variance = aggregate_variance(single_variance, q, rho)
+    noise_risk = float(variance * coefficients @ autocorrelation @ coefficients)
+    return {
+        "mean_squared": mean**2,
+        "noise_variance": noise_risk,
+        "risk": mean**2 + noise_risk,
+        "averaged_count": float(averaged_count),
+        "spectral_radius": float(np.max(np.abs(np.linalg.eigvals(companion)))),
+    }
 
 
 def discrete_pr_proxy_optimum(
