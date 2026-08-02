@@ -1,0 +1,17 @@
+{
+  "experiment": "EXP-018A",
+  "evidence": "descriptive_cpu_implementation_pilot",
+  "mandatory_gates": {
+    "G1_shape_finite_unique": {"expected_rows": 6144, "all_finite": true, "unique_seed_cells": 6144},
+    "G2_manifest_and_parameter_freeze": {"manifest_hash": "421b3f433671ee7f35920eeac20746786893bfe10fe598140cbc84cd8dc4fc0d", "parameters_unchanged": true},
+    "G3_pairwise_share_calibration": {"maximum_absolute_error": 0.10},
+    "G4_variance_factor_calibration": {"median_relative_error_maximum": 0.20, "p90_relative_error_maximum": 0.50},
+    "G5_q1_marginal_invariance": {"median_spread_maximum": 0.30, "p90_spread_maximum": 0.75},
+    "G6_monotone_q_paths": {"minimum_fraction": 0.80},
+    "G7_scope_boundary": {"delay_or_dual_budget_claim": false, "online_controller_claim": false, "nonlinear_convergence_claim": false}
+  },
+  "all_mandatory_gates_required": true,
+  "failed_gate_action": "stop_before_formal_preregistration",
+  "gpu_authorized": false,
+  "formal_seeds": null
+}
