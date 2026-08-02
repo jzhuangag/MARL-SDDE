@@ -411,3 +411,11 @@ mechanism evidence; new confirmatory work must use frozen theoretical
 predictions and fresh seeds.  No new mechanism or GPU run is authorized.  See
 `t034_icml_mainline.md`, `t034_proof_obligations.json`, and
 `t034_prospective_experiments.md`.
+
+T-035 proves and tests the scalar Gaussian base case of the T-034 phase law.
+It gives an exact finite-horizon risk for equicorrelated AR(1) innovations,
+discrete parameter delay, and a resource-determined update count, recovering
+speedup, saturation, and reversal without a variance-only proxy.  This closes
+only the scalar base case; the matrix affine Markov and predictable-policy
+extensions remain T-034 obligations.  See `t035_scalar_phase_theorem.md` and
+`t035_scalar_phase_theorem.py`.
