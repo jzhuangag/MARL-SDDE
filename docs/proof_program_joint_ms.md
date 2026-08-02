@@ -1481,6 +1481,14 @@ result as the current convergence theorem.  An end-to-end neural experiment
 must separately handle parameter drift, optimization bias, temporal mixing,
 and delayed application.
 
+**Prospective mechanism validation.**  EXP-018B tested (42) at frozen neural
+TD parameters using 192 outcome-free formal seeds and seed-cluster inference.
+The registered median and p90 relative calibration-error upper bounds were
+0.161906 and 0.403933, below their 0.20 and 0.50 tolerances.  An independent
+CPU rerun reproduced the raw projections, manifest, and scientific summary
+byte-for-byte.  This evidence supports (42) as a nonlinear-gradient mechanism;
+it does not enlarge the theorem to optimization or online learning.
+
 ## 8. SDDE representation
 
 The matching stochastic delay differential equation must retain the
