@@ -11,7 +11,8 @@ not yet an ICML-ready submission. T-037--T-039 remove three earlier blockers:
 3. first-order downstream-risk adaptation on a separated class.
 
 The remaining headline blocker is the multiplicative Markov-TD remainder.
-The remaining empirical blocker is a fresh prospective standard learning task
+T-041A subsequently passes the prospective exact phase-map gate. The
+remaining empirical blocker is a fresh prospective standard learning task
 that contains both a theorem-predicted positive participation regime and a
 theorem-predicted no-value/reversal regime.
 
@@ -91,7 +92,7 @@ Existing evidence is useful but not sufficient as a final ICML package:
 The next prospective sequence is:
 
 1. exact CPU phase map from T-037 and T-038, with predictions frozen before
-   calculation;
+   calculation (**completed by T-041A, P1--P10 pass**);
 2. fresh-seed tabular/linear-TD task with unchanged per-agent marginals and
    controlled common randomness;
 3. only if both gates pass, one nonlinear GPU transfer with a precomputed

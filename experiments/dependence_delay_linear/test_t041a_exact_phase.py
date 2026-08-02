@@ -1,5 +1,3 @@
-from pathlib import Path
-
 import numpy as np
 
 from experiments.dependence_delay_linear.run_t041a_exact_phase import (
@@ -34,9 +32,10 @@ def test_static_estimate_remains_cpu_only() -> None:
     assert result["largest_horizon"] <= 96
 
 
-def test_registered_result_directory_does_not_exist_at_preregistration() -> None:
-    result = Path(__file__).resolve().parent / "results" / "t041a_exact_phase"
-    assert not result.exists()
+def test_registered_result_directory_is_not_a_required_source_input() -> None:
+    config = load_config()
+    assert "result" not in config
+    assert config["kind"] == "prospective_exact_cpu_phase_map"
 
 
 def test_unregistered_toy_action_is_finite_and_scalar_consistent() -> None:
