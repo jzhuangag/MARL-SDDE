@@ -382,3 +382,12 @@ shaping are explicitly excluded as headline claims.  No new scientific
 trajectory is created and GPU is not authorized.  See
 `t031_icml_reframe.md`, `t031_theory_program.md`,
 `t031_cpu_falsification_design.md`, and `citation_verification_t031.json`.
+
+T-032 executes the prospectively frozen exact full-risk falsification and
+permanently stops fresh-diversity subset selection.  The oracle ceiling gains
+only 0.629% in aggregate, only 6/144 active cells reach 5%, and message- and
+environment-binding rays have zero value.  The isolated CPU reproduction is
+byte-identical.  No sampled pilot, formal seeds, GPU, or HPC4 run is
+authorized.  See `validation_t032_exact_full_risk.md`,
+`t032_exact_full_risk_summary.json`, `t032_reproduction_audit.json`, and
+`t032_final_decision.md`.
