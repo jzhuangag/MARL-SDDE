@@ -10,12 +10,13 @@ not yet an ICML-ready submission. T-037--T-039 remove three earlier blockers:
    and delay;
 3. first-order downstream-risk adaptation on a separated class.
 
-T-042 subsequently closes the exact weighted Poisson--martingale--coboundary
-decomposition of the multiplicative Markov-TD term. The remaining headline
-theory blocker is narrower: nonvacuously absorbing its impulse-response and
-iterate-increment remainders into delayed Lyapunov contraction without
-erasing the participation phase. T-041A passes the prospective exact
-phase-map gate. The remaining empirical blocker is a fresh prospective
+T-042 closes the exact weighted Poisson--martingale--coboundary decomposition
+of the multiplicative Markov-TD term. T-046 adds a rigorous robust
+finite-horizon extension whenever its explicit bounded-multiplicative
+small-gain envelope is nonvacuous and preserves the phase margin. A sharper
+unrestricted Poisson mean-square rate remains open and is excluded from the
+headline. T-041A passes the prospective exact phase-map gate. The remaining
+empirical blocker is a fresh prospective
 standard learning task that contains both a theorem-predicted positive
 participation regime and a theorem-predicted no-value/reversal regime.
 T-043A's outcome-free standard-task terminal-risk screen subsequently fails
@@ -73,7 +74,8 @@ finite-budget cost of learning which regime applies.
 | T-037 additive vector phase identity | exact | main theorem if scope says additive Markov innovations |
 | T-044 PR-averaged additive phase identity | exact finite horizon; classical estimator | preferred upper-bound estimator aligned with T-038, not a novelty claim |
 | T-036 finite-state affine TD recursion | exact, state-enumerating | transfer theorem / proof benchmark |
-| General multiplicative Markov TD | T-042 weighted Poisson identity and MDS constant exact; small-gain absorption open | headline blocker narrowed |
+| Bounded multiplicative Markov TD | T-042 weighted Poisson identity plus T-046 robust finite-horizon small-gain envelope | conditional theorem; requires a nonvacuity certificate |
+| Unrestricted/sharp multiplicative Markov TD | Poisson increment absorption remains open when the robust envelope overlaps | excluded from headline |
 | T-038 Gaussian Markov minimax | exact equality, predictable actions | main lower-bound theorem; classical machinery must be acknowledged |
 | T-017 finite-budget threshold | proved on compact separated class | main adaptation threshold |
 | T-039 oracle matching | first order, \(1+O(\log B/B)\) | main asymptotic adaptation result |
@@ -89,14 +91,15 @@ e_{t+1}=e_t-\eta\bar A e_{t-D}+\eta\xi(Z_t)
          -\eta(A(Z_t)-\bar A)e_{t-D}.
 \]
 
-T-037 handles the first three terms exactly. T-042 now keeps the final
+T-037 handles the first three terms exactly. T-042 keeps the final
 sample--iterate-coupled term intact and proves its weighted Poisson
-decomposition with exact finite-state martingale constants. Replacing it by
-independent additive noise remains a methodology error. The next proof task
-must absorb the exposed impulse-response and iterate-increment remainders with
-explicit mixing and delay constants. If that step is vacuous or loses the
-phase dependence, the paper must retain the narrower additive theorem rather
-than relabel it as general TD.
+decomposition with exact finite-state martingale constants. T-046 separately
+controls that term by a worst-case finite-horizon small-gain envelope. This
+is valid but can be conservative because it does not exploit Markov
+cancellation. Replacing the term by independent additive noise remains a
+methodology error. Whenever the T-046 envelope overlaps, the paper must retain
+the narrower additive theorem rather than relabel the result as sharp general
+TD.
 
 ## Experiment audit
 

@@ -175,10 +175,12 @@ generic client selection are outside the claimed theorem class. T-042 exactly
 decomposes the general multiplicative Markov term into a weighted martingale
 transform, boundary terms, an impulse-response increment, and a
 delayed-iterate increment with computable finite-state constants. General
-multiplicative Markov TD is headline scope only if the last two terms can be
-absorbed by a nonvacuous delayed small-gain argument without erasing the
-participation phase; otherwise the paper states the exact finite-state result
-and keeps the main dimension-free theorem additive.
+multiplicative Markov TD is covered by T-046 only on the explicit bounded
+class whose finite-horizon robust small gain is below one and whose risk
+envelopes preserve the claimed phase ordering. When that certificate is
+vacuous or overlaps, the paper states the exact finite-state result and keeps
+the main dimension-free theorem additive; it does not claim a sharp
+unrestricted multiplicative-TD rate.
 
 ## Final hard stop
 
