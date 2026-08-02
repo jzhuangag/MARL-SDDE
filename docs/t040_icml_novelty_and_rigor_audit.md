@@ -10,11 +10,14 @@ not yet an ICML-ready submission. T-037--T-039 remove three earlier blockers:
    and delay;
 3. first-order downstream-risk adaptation on a separated class.
 
-The remaining headline blocker is the multiplicative Markov-TD remainder.
-T-041A subsequently passes the prospective exact phase-map gate. The
-remaining empirical blocker is a fresh prospective standard learning task
-that contains both a theorem-predicted positive participation regime and a
-theorem-predicted no-value/reversal regime.
+T-042 subsequently closes the exact weighted Poisson--martingale--coboundary
+decomposition of the multiplicative Markov-TD term. The remaining headline
+theory blocker is narrower: nonvacuously absorbing its impulse-response and
+iterate-increment remainders into delayed Lyapunov contraction without
+erasing the participation phase. T-041A passes the prospective exact
+phase-map gate. The remaining empirical blocker is a fresh prospective
+standard learning task that contains both a theorem-predicted positive
+participation regime and a theorem-predicted no-value/reversal regime.
 
 No GPU is authorized by this audit. The next experiment is an exact CPU phase
 map and must be preregistered separately before execution.
@@ -53,7 +56,7 @@ finite-budget cost of learning which regime applies.
 |---|---|---|
 | T-037 additive vector phase identity | exact | main theorem if scope says additive Markov innovations |
 | T-036 finite-state affine TD recursion | exact, state-enumerating | transfer theorem / proof benchmark |
-| General multiplicative Markov TD | open Poisson/martingale remainder | headline blocker |
+| General multiplicative Markov TD | T-042 weighted Poisson identity and MDS constant exact; small-gain absorption open | headline blocker narrowed |
 | T-038 Gaussian Markov minimax | exact equality, predictable actions | main lower-bound theorem; classical machinery must be acknowledged |
 | T-017 finite-budget threshold | proved on compact separated class | main adaptation threshold |
 | T-039 oracle matching | first order, \(1+O(\log B/B)\) | main asymptotic adaptation result |
@@ -69,13 +72,14 @@ e_{t+1}=e_t-\eta\bar A e_{t-D}+\eta\xi(Z_t)
          -\eta(A(Z_t)-\bar A)e_{t-D}.
 \]
 
-T-037 handles the first three terms exactly but not the final
-sample--iterate-coupled term. Replacing it by independent additive noise
-would be a methodology error. The next proof task must use a Poisson
-decomposition and bound its martingale, coboundary, and iterate-increment
-remainders with explicit mixing and delay constants. If that proof is
-vacuous or loses the phase dependence, the paper must retain the narrower
-additive theorem rather than relabel it as general TD.
+T-037 handles the first three terms exactly. T-042 now keeps the final
+sample--iterate-coupled term intact and proves its weighted Poisson
+decomposition with exact finite-state martingale constants. Replacing it by
+independent additive noise remains a methodology error. The next proof task
+must absorb the exposed impulse-response and iterate-increment remainders with
+explicit mixing and delay constants. If that step is vacuous or loses the
+phase dependence, the paper must retain the narrower additive theorem rather
+than relabel it as general TD.
 
 ## Experiment audit
 
@@ -104,7 +108,7 @@ The next prospective sequence is:
 |---|---|---|
 | Citation hallucination | pass for T-040 sources | primary proceedings/arXiv records and secondary metadata cross-checks recorded in citation_verification_t040.json |
 | Implementation bug | no known issue | 36 focused theorem tests, including independent scalar/dense identities |
-| Shortcut reliance | contained | additive theorem is not called general TD; multiplicative remainder is explicit |
+| Shortcut reliance | contained | additive theorem is not called general TD; T-042 exposes rather than suppresses both multiplicative increment terms |
 | Bug treated as insight | pass | no new sampled outcome; prior negative experiments remain negative |
 | Methodology fabrication | pass | no scientific trajectory or retrospective gate change |
 | Result hallucination | pass | theorem status and unresolved boundaries are separated |
@@ -114,7 +118,7 @@ The next prospective sequence is:
 
 Continue toward ICML only if:
 
-1. the multiplicative TD remainder is nonvacuous on the frozen exact grid, or
+1. the multiplicative TD small-gain absorption is nonvacuous on the frozen exact grid, or
    the paper is deliberately narrowed and still passes a fresh novelty review;
 2. the exact phase map classifies at least 95% of preregistered cells;
 3. a standard task supplies both at least 5% positive oracle value and at

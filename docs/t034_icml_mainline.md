@@ -161,9 +161,13 @@ information unless rerun prospectively under T-034.
 The contribution is a sharp characterization and a regime-aware threshold
 policy, not a universally superior multi-agent controller.  Strategic Markov
 games, unrestricted unknown mixing, general actor--critic convergence, and
-generic client selection are outside the claimed theorem class.  General
-multiplicative Markov TD is headline scope only if its Poisson/martingale
-remainder is closed; otherwise the paper states the exact finite-state result
+generic client selection are outside the claimed theorem class. T-042 exactly
+decomposes the general multiplicative Markov term into a weighted martingale
+transform, boundary terms, an impulse-response increment, and a
+delayed-iterate increment with computable finite-state constants. General
+multiplicative Markov TD is headline scope only if the last two terms can be
+absorbed by a nonvacuous delayed small-gain argument without erasing the
+participation phase; otherwise the paper states the exact finite-state result
 and keeps the main dimension-free theorem additive.
 
 ## Final hard stop
