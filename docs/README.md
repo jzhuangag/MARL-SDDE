@@ -391,3 +391,13 @@ byte-identical.  No sampled pilot, formal seeds, GPU, or HPC4 run is
 authorized.  See `validation_t032_exact_full_risk.md`,
 `t032_exact_full_risk_summary.json`, `t032_reproduction_audit.json`, and
 `t032_final_decision.md`.
+
+T-033 audits the only remaining selector-adjacent pivot, low-rank shared-factor
+correction, before opening an experiment.  Exact cancellation is feasible
+only when the target intercept is outside the factor-loading span, is weakly
+dominated by the full-covariance BLUE/GLS oracle, and generally ceases to be
+pathwise feasible when different agents deliver different factor times.
+Negative weights can also shrink the delayed stability region.  The route is
+therefore stopped as an ICML algorithm headline; no scientific trajectory or
+GPU run is authorized.  See `t033_factor_correction_audit.md`,
+`t033_factor_correction_audit.json`, and `citation_verification_t033.json`.
