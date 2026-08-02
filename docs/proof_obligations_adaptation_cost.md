@@ -12,7 +12,7 @@
 | AC-8 | Uniform composite test over unknown \(\lambda\) reaching arbitrarily close to one | **closed negatively in T-017** for positive distinct \(\theta_0,\theta_1\); compact separated positive route open | unrestricted unknown-mixing wording is impossible; require known mixing or \(\lambda\leq1-\gamma\) certificate |
 | AC-9a | Universal constant/log safe-adaptation matching without separation | **closed negatively in T-017** | oracle-gap degeneration makes \(B_S/B_N\to\infty\) |
 | AC-9b | Finite-budget necessary/sufficient adaptation-threshold sandwich | **proved in T-017** on the declared compact separated class | permits the narrow threshold theorem, not global adaptive optimality |
-| AC-9c | Match an adaptive controller to the entire controlled-belief occupation optimum | **open** | no Track-and-Stop-style global matching claim |
+| AC-9c | Match downstream learning risk in oracle-normalized minimax risk over common unknown-regime policies on a separated class | **proved to first order in T-039** | relative gap is \(O(\log s/s)\); second-order finite-budget occupation matching remains open |
 | AC-10 | Intersect information-optimal probes with the full matrix delayed-stability region without scalarization loss | **open** | delay enters exactly through budgets here, but general matrix stability coupling is incomplete |
 | AC-11 | Extend the Gaussian common-factor result to latent collisions or bounded kernels with unknown baseline | **conjectured route via Theorems 7--8** | nonlinear/general-observation scope remains open |
 | AC-12 | SDDE-to-discrete approximation error | **open, inherited** | SDDE remains interpretation, not a discrete approximation theorem |

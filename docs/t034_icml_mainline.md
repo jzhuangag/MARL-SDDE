@@ -26,21 +26,23 @@ the number and age of usable updates.
 
 Parallel reinforcement learning analyses commonly equate the number of agents
 with the number of independent samples.  We characterize how this conclusion
-changes when agents observe temporally mixing Markov streams with shared
-randomness and delayed updates.  For affine stochastic approximation and
-linear temporal-difference learning, we derive a finite-horizon risk
-decomposition whose stochastic term is governed by the long-run covariance of
-the aggregated innovations.  The resulting effective-agent quantity yields
-three resource-dependent regimes: linear speedup, correlation-induced
-saturation, and delay-induced reversal.  A matching Gaussian Markov lower
-bound shows that the dependence on correlation, mixing, delay, and dual
-budgets is unavoidable.  We further characterize the cost of learning the
-regime itself: below an explicit identification threshold, conservative
-fallback is minimax optimal, whereas above it a predictable policy approaches
-the oracle on a separated mixing class.  Exact calculations, formal affine
-experiments, and fixed-parameter nonlinear temporal-difference gradients
-verify the predicted phase boundaries, including regimes where adding agents
-has negligible value.  These results replace agent count by
+changes when agents observe temporally mixing streams with shared randomness
+and delayed updates.  For delayed vector linear stochastic approximation with
+additive Markov innovations, we derive an exact finite-horizon risk identity
+governed by the full cross-agent lag-covariance sequence; for finite-state
+affine temporal-difference systems, we give an exact mode-conditioned moment
+recursion that retains sample--iterate dependence.  The resulting phase law
+has three resource-dependent regimes: linear speedup, correlation-induced
+saturation, and delay-induced reversal.  An exact Gaussian Markov minimax
+theorem shows that predictable data-dependent participation cannot remove the
+dependence on correlation, mixing, delay, and dual budgets.  We further
+characterize the cost of learning the regime itself: below an explicit
+identification threshold, conservative fallback is justified, whereas above
+it an explore-then-commit policy reaches oracle-normalized minimax ratio
+\(1+O(\log B/B)\) on a separated mixing class.  Exact calculations, formal
+affine experiments, and fixed-parameter nonlinear temporal-difference
+gradients test the predicted phase boundaries, including regimes where adding
+agents has negligible value.  These results replace raw agent count by
 dependence-adjusted effective parallelism and delineate when adaptive
 participation is statistically worthwhile.
 
@@ -51,32 +53,32 @@ approximation; delayed updates; minimax adaptation.
 
 ### Main Theorem: sharp finite-resource phase law
 
-Let a predictable policy aggregate a subset \(S_t\) of agent innovations at
-update \(t\), and define their long-run covariance
+For a fixed resource-feasible participation/stride design, aggregate the
+agent innovations and define their lag and long-run covariances
 
 \[
-\Gamma_{S_t}=\sum_{k\in\mathbb Z}
-\operatorname{Cov}(\bar\xi_{S_t,0},\bar\xi_{S_t,k}).
+K_k(q,b)=\operatorname{Cov}(\bar\xi_0,\bar\xi_k),
+\qquad
+\Gamma(q,b)=\sum_{k\in\mathbb Z}K_k(q,b).
 \]
 
-For strongly monotone affine Markov stochastic approximation with bounded
-predictable delay, the main result must give a finite-horizon risk expression
-or two-sided bound
+For delayed vector linear stochastic approximation with additive stationary
+Markov innovations, T-037 gives an exact finite-horizon risk expression
 
 \[
-R_B(\pi)=R_{\rm transient}(\pi)
-       +R_{\rm Markov}(\Gamma_{S_{0:T-1}})
-       +R_{\rm delay}(\pi),
+R_B(q,b,D)=R_{\rm transient}
+ \eta^2\sum_{s,r<T(B,q,b,D)}
+ \operatorname{tr}(QH_sK_{s-r}(q,b)H_r^\top),
 \]
 
 with explicit message, environment, and wall-clock budgets.  Its corollaries
-must locate three computable regimes:
+locate three computable regimes:
 
 1. **speedup:** added agents reduce risk at the resource-matched horizon;
 2. **saturation:** dependence caps the effective number of samples;
 3. **reversal:** extra cost or staleness raises finite-horizon risk.
 
-For equicorrelated simultaneous innovations, the result must recover
+For equicorrelated simultaneous innovations, the result recovers
 
 \[
 n_{\rm eff}(q,\rho)=\frac{q}{1+(q-1)\rho}
@@ -86,30 +88,34 @@ as a special case, rather than assuming it as a proxy.
 
 ### Theorem 2: matching predictable-policy lower bound
 
-On a Gaussian joint-Markov subclass, prove a minimax lower bound for every
-predictable participation and aggregation policy.  The upper and lower bounds
-must match, up to universal constants or logarithmic terms, in \(q\),
-long-run dependence, temporal mixing, delay, and both message and environment
-budgets.  None of these quantities may be absorbed into an unspecified
-constant.
+On the Gaussian common-factor Markov location subclass, T-038 proves the
+exact minimax value for every predictable participation/stride policy.  A
+deterministic covariance design and generalized least squares attain it, so
+data-dependent action selection cannot improve the value.  The expression
+retains \(q\), temporal mixing, delay, and both message and environment
+budgets; none is absorbed into an unspecified constant.  Comparing a
+particular constant-step SA iterate with this GLS value remains a separate
+algorithmic-efficiency question.
 
 ### Theorem 3: cost of adaptation
 
 On a certified-mixing separated class, define an explicit identification
 threshold \(B_{\rm id}\) using the downstream learning-risk gap, observation
-information, delay, and remaining dual budgets.  The target result is
+information, delay, and remaining dual budgets.  T-017 and T-039 give
 
 \[
 B<cB_{\rm id}\Longrightarrow
 \text{fallback is minimax optimal},
 \qquad
 B>CB_{\rm id}\Longrightarrow
-R_{\rm adapt}\le C'R_{\rm oracle}+\widetilde O(B^{-1}).
+\max_j\frac{R_j^{\rm adapt}}{R_j^{\rm oracle}}
+\le1+O(\log B/B).
 \]
 
 The unrestricted unknown-mixing result remains negative.  The positive result
-must not claim uniformity as the mixing coefficient approaches one or the
-oracle gap approaches zero.
+does not claim uniformity as the mixing coefficient approaches one or the
+oracle gap approaches zero, nor second-order equality to the finite-budget
+controlled-belief occupation value.
 
 ## SDDE result
 
@@ -154,9 +160,11 @@ information unless rerun prospectively under T-034.
 
 The contribution is a sharp characterization and a regime-aware threshold
 policy, not a universally superior multi-agent controller.  Strategic Markov
-games, unrestricted unknown mixing, dense covariance inversion, general
-actor--critic convergence, and generic client selection are outside the
-claimed theorem class.
+games, unrestricted unknown mixing, general actor--critic convergence, and
+generic client selection are outside the claimed theorem class.  General
+multiplicative Markov TD is headline scope only if its Poisson/martingale
+remainder is closed; otherwise the paper states the exact finite-state result
+and keeps the main dimension-free theorem additive.
 
 ## Final hard stop
 

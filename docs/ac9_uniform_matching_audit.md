@@ -28,19 +28,24 @@ These are theorem-level degeneracies, not tuning failures.
 
 ## Repaired AC-9
 
-AC-9 is split into three statements:
+AC-9 is split into four statements:
 
 1. **Unrestricted uniform matching:** closed negatively by (8), reinforced
    by the AC-8 boundary theorem.
 2. **Compact separated finite-budget threshold sandwich:** proved under the
    explicit \(\Delta_{\min},\gamma,g_{\min}\), finite-catalogue, positive-cost,
    bounded-delay assumptions in `adaptation_threshold_sandwich.md`.
-3. **Matching a history-dependent information-directed controller to the
-   entire controlled-Kalman-belief occupation optimum:** still open.
+3. **First-order downstream-risk matching in oracle-normalized minimax risk
+   over common unknown-regime predictable policies on the separated class:**
+   proved in T-039 with relative gap \(O(\log s/s)\).
+4. **Second-order/finite-budget matching to the controlled-Kalman-belief
+   identification-opportunity occupation value:** still open.
 
 Thus “AC-9 proved” is allowed only when followed by “finite-budget threshold
 sandwich on the declared separated class.” It must not be shortened to a
-global adaptive-optimality claim.
+global adaptive-optimality claim. T-039 later adds a first-order
+downstream-risk matching result on the separated class; it does not alter the
+prohibition on finite-budget occupation-optimality wording.
 
 ## What remains distinct from existing controlled sensing
 
