@@ -54,8 +54,10 @@ commit establishes all of the following:
 - standard intrinsically stochastic fixed-policy dynamics with unchanged
   per-agent marginals under controlled coupling;
 - public budget rays with an internal fixed-q optimum;
-- at least 5% aggregate strong-baseline oracle value and directional value in
-  at least 60% of cells after all communication/probe costs;
+- at least 5% aggregate strong-baseline oracle value after all costs;
+- strict directional value in at least 60% of an outcome-free,
+  prospectively declared adaptation-active population, with all inactive
+  cells retained under a separate expected-tie and budget-direction gate;
 - a frozen observable risk surrogate and nontrivial comparator;
 - exact budget, delay, marginal-invariance, and taint tests;
 - new pilot seeds and runner/analyzer hashes.
