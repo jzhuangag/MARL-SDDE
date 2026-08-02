@@ -66,7 +66,7 @@ These equations retain transient bias, batch variance, cross-agent
 correlation, scalar step size, and discrete delay.  They also show why a
 variance-only score cannot be a finite-time learning bound.
 
-## Critical Markov gap
+## Markov route already available, and its practical limitation
 
 The displayed recurrence is exact only when the current batch is independent
 of the lifted error history.  EXP-019A uses thinned Markov streams, so replacing
@@ -83,6 +83,13 @@ following without changing the registered marginal task law:
    dependence between the Markov sample and all delayed error blocks; or
 2. a proved mixing perturbation bound with explicit constants that is added
    to, rather than substituted for, the iid full-risk recurrence.
+
+The repository's audited Theorem 4 already supplies route 2 for the
+predictably decorrelated affine algorithm: it retains finite-time bias,
+innovation forcing, total-variation mixing error, scalar step size, and
+delay.  Therefore a new Poisson proof is not required merely to obtain a
+valid conservative selector.  T-030 must first instantiate that theorem on
+Blackjack and audit whether its Euclidean-norm constants are informative.
 
 The lifted delay state has `D+1` parameter blocks.  Merely constructing the
 full dense covariance is not an acceptable algorithm: it scales as
@@ -148,10 +155,20 @@ impossibility.
 - exact iid D=0/delayed lifted algebra: specified above; its common/private
   batch coefficients are exhaustively checked in a scalar finite-support base
   case by `test_t030_iid_full_risk.py`;
-- full Markov sample/error conditioning: open;
-- low-memory scalar reduction with explicit constants: open;
-- bias-aware Blackjack analytic ceiling: blocked on the preceding proof,
-  therefore not run;
+- full Markov exact-moment conditioning: open, but not required for the
+  existing conservative Theorem 4 route;
+- low-memory scalar Theorem 4 certificate: proved previously and now requires
+  a Blackjack nonvacuity audit;
+- bias-aware exact Blackjack analytic ceiling: still open beyond the
+  conservative certificate;
 - new sampled CPU/GPU experiments: prohibited.
+
+The first conservative instantiation is now complete.  Even after setting
+mixing error, innovation forcing, and delay to zero and combining the most
+favorable curvature with the largest update count, the Euclidean Theorem 4
+bound can decrease by at most 0.0105612%.  It therefore fails the 5%
+nonvacuity gate.  The next admissible proof target is a stationary-weighted
+MSVE certificate; the current Euclidean certificate cannot be used as the
+practical selector.
 
 This is a genuine theory blocker, not a request for more compute.
