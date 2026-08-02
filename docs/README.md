@@ -419,3 +419,12 @@ speedup, saturation, and reversal without a variance-only proxy.  This closes
 only the scalar base case; the matrix affine Markov and predictable-policy
 extensions remain T-034 obligations.  See `t035_scalar_phase_theorem.md` and
 `t035_scalar_phase_theorem.py`.
+
+T-036 extends the exact base to affine finite-state Markov jump systems with
+parameter delay.  Mode-conditioned first and second moments propagate without
+declaring the current sample independent of the iterate, and a two-state AR
+chain exactly reproduces T-035.  The joint-mode representation is a rigorous
+finite-state benchmark but can grow exponentially with agent count; a
+dimension-free Poisson/martingale bound remains open.  See
+`t036_affine_markov_moment_theorem.md` and
+`t036_affine_markov_moments.py`.
