@@ -24,9 +24,18 @@
     {
       "id": "FQ-3",
       "source": "proof_program_joint_ms.md Theorem 5",
-      "status": "proved_and_formally_supported",
-      "scope": "Gaussian common-factor exact speedup and finite dual-budget participation threshold",
+      "status": "proved",
+      "scope": "Gaussian common-factor exact speedup and single additive round-cost participation lower bound",
+      "evidence": ["analytic Gaussian subclass checks"],
+      "main_text": true
+    },
+    {
+      "id": "DB-1",
+      "source": "adaptive_change_of_measure.md, adaptive_pareto_lower_bound.md, and learning_value_separation_theorem.md",
+      "status": "proved_and_formally_supported_in_registered_model",
+      "scope": "known or separately certified mixing, stopped dual budgets, delay opportunity cost, and compact separated regimes",
       "evidence": ["EXP-016B Layer A formal, exact reproduction"],
+      "does_not_imply": "uniform unrestricted-unknown-mixing online adaptation",
       "main_text": true
     },
     {
@@ -91,4 +100,3 @@
   "submission_ready": false,
   "gpu_execution_authorized": false
 }
-

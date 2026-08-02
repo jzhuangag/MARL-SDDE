@@ -22,7 +22,8 @@ factor `q/[1+(q-1)rho]`; it never means superlinear acceleration.
 |---|---|---|---|
 | delayed mean-square contraction | Theorem 3 | affine tests/EXP-007B--D | defensible in stated thinned/decorrelated scope |
 | affine delayed finite-time error | Theorem 4 | EXP-016B Layer B formal | defensible in stated affine scope |
-| correlation-limited speedup and dual-budget threshold | Theorem 5 | EXP-016B Layer A formal | defensible |
+| correlation-limited speedup and additive-cost threshold | Theorem 5 | Gaussian subclass checks | defensible for one additive resource cost |
+| dual-budget identification/opportunity threshold | AC-7, controlled-occupation lower bound, learning-value separation theorem | EXP-016B Layer A formal | defensible for the registered known/certified-mixing model |
 | finite-horizon adaptation/opportunity cost | adaptive lower bound and threshold sandwich | EXP-016B formal | defensible for certified separated regimes |
 | nonlinear gradient variance transfer | Theorem 9 | EXP-018B formal, exact reproduction | defensible as fixed-parameter identity only |
 | unrestricted unknown mixing | impossibility theorem | negative-boundary simulations/design audits | defensible negative result |
@@ -77,4 +78,3 @@ claim gap.
 The online controller is not a headline contribution. SDDE remains a
 Lyapunov--Krasovskii interpretation layer, while the discrete theorem supplies
 the convergence statement.
-

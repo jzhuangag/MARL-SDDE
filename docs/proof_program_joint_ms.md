@@ -986,7 +986,8 @@ agent-specific sampling noise.  Put
 \rho=\frac{\sigma_c^2}{\sigma_c^2+\sigma_e^2}.
 \]
 
-**Theorem 5 (correlation-limited speedup and adaptive-budget lower bound).**
+**Theorem 5 (correlation-limited speedup and additive-cost adaptive lower
+bound).**
 For a fixed participation level \(q\), the minimax squared-error risk after
 \(T\) rounds in (27) is
 
@@ -1109,8 +1110,12 @@ The lower bound is deliberately independent of the affine upper-bound
 certificate.  The two results meet at the same structural conclusion:
 off-diagonal correlation imposes a non-vanishing noise component, and the
 optimal participation level balances that component against per-round
-overhead.  Mixing gaps and communication latency may be included in \(h\);
-they can only strengthen the impossibility statement.
+overhead.  A fixed, participation-independent latency may be represented in
+\(h\).  Participation-dependent mixing gaps, heterogeneous delays, and
+separate message/environment budgets are not covered by Theorem 5; their
+valid treatment is the stopped change-of-measure and controlled-occupation
+program in `adaptive_change_of_measure.md` and
+`adaptive_pareto_lower_bound.md`.
 
 ### 7.3 Predictable dual-anytime certification
 
