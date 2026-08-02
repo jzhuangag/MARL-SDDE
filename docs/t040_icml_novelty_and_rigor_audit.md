@@ -22,6 +22,11 @@ T-043A's outcome-free standard-task terminal-risk screen subsequently fails
 its reversal and adaptation-value gates: the strongest fixed q is already the
 oracle in every registered message cell. EXP-020A is therefore forbidden.
 This does not satisfy the separate T-034 Stage-B AUC gate.
+Its post-failure AUC alignment diagnostic also has zero adaptation value for
+the same constant-step last-iterate family. T-044 replaces that estimator in
+the theorem program with exact finite-horizon PR averaging; this is an
+estimator correction, not a new correlation mechanism or a positive task
+result.
 
 No GPU is authorized by this audit. The next experiment is an exact CPU phase
 map and must be preregistered separately before execution.
@@ -59,6 +64,7 @@ finite-budget cost of learning which regime applies.
 | Component | Current status | ICML use |
 |---|---|---|
 | T-037 additive vector phase identity | exact | main theorem if scope says additive Markov innovations |
+| T-044 PR-averaged additive phase identity | exact finite horizon; classical estimator | preferred upper-bound estimator aligned with T-038, not a novelty claim |
 | T-036 finite-state affine TD recursion | exact, state-enumerating | transfer theorem / proof benchmark |
 | General multiplicative Markov TD | T-042 weighted Poisson identity and MDS constant exact; small-gain absorption open | headline blocker narrowed |
 | T-038 Gaussian Markov minimax | exact equality, predictable actions | main lower-bound theorem; classical machinery must be acknowledged |
