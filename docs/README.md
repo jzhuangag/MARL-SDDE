@@ -401,3 +401,13 @@ Negative weights can also shrink the delayed stability region.  The route is
 therefore stopped as an ICML algorithm headline; no scientific trajectory or
 GPU run is authorized.  See `t033_factor_correction_audit.md`,
 `t033_factor_correction_audit.json`, and `citation_verification_t033.json`.
+
+T-034 fixes the final ICML 2027 research direction as a theory-first
+characterization of parallel Markov learning under cross-agent dependence,
+temporal mixing, delay, and finite resources.  The paper is organized around
+a sharp three-regime speedup law, a matching lower bound, and a downstream-
+learning-risk adaptation threshold.  Existing experiments supply narrow
+mechanism evidence; new confirmatory work must use frozen theoretical
+predictions and fresh seeds.  No new mechanism or GPU run is authorized.  See
+`t034_icml_mainline.md`, `t034_proof_obligations.json`, and
+`t034_prospective_experiments.md`.

@@ -1,0 +1,54 @@
+{
+  "decision": "proceed_theory_first_icml_characterization",
+  "gpu_authorized": false,
+  "mainline": "Beyond Linear Speedup: Sharp Limits of Parallel Markov Learning under Correlation and Delay",
+  "obligations": [
+    {
+      "id": "P1",
+      "status": "proved_special_case",
+      "statement": "Exact equicorrelated speedup q/[1+(q-1)rho] and nonlinear fixed-parameter covariance identity",
+      "required_extension": "long-run cross-agent covariance in finite-horizon delayed affine risk"
+    },
+    {
+      "id": "P2",
+      "status": "proved_predictably_thinned_scope",
+      "statement": "Finite-time affine delayed Markov-TD upper bound",
+      "required_extension": "sharp nonvacuous constants and unthinned Poisson/martingale route"
+    },
+    {
+      "id": "P3",
+      "status": "proved_gaussian_location_subclass",
+      "statement": "Correlation-limited minimax lower bound",
+      "required_extension": "match mixing, delay, predictable actions, and both budgets to P2"
+    },
+    {
+      "id": "P4",
+      "status": "proved",
+      "statement": "Adaptive stopped change of measure under known mixing"
+    },
+    {
+      "id": "P5",
+      "status": "proved_negative",
+      "statement": "No uniform unknown-mixing adaptation as lambda approaches one"
+    },
+    {
+      "id": "P6",
+      "status": "proved_compact_threshold_sandwich",
+      "statement": "Finite-budget necessary/sufficient threshold on a separated class",
+      "required_extension": "close downstream-learning-risk oracle matching (AC-9c)"
+    },
+    {
+      "id": "P7",
+      "status": "open_mandatory",
+      "statement": "Sharp three-regime speedup/saturation/reversal theorem under full resource accounting"
+    },
+    {
+      "id": "P8",
+      "status": "open_optional_headline",
+      "statement": "Quantitative discrete-to-SDDE bridge with matching Lyapunov-Krasovskii phase boundary",
+      "fallback": "appendix interpretation only"
+    }
+  ],
+  "scientific_experiment_authorized": false,
+  "theory_work_authorized": true
+}
