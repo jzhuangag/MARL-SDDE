@@ -27,9 +27,16 @@ the same constant-step last-iterate family. T-044 replaces that estimator in
 the theorem program with exact finite-horizon PR averaging; this is an
 estimator correction, not a new correlation mechanism or a positive task
 result.
+T-045A is the frozen final standard-task screen. It recovers the intended
+phase direction on CliffWalking but obtains only 1.404% task-level and 0.704%
+aggregate oracle value; FrozenLake has zero adaptation value. M4, M7, and M8
+fail, so the T-034 empirical hard stop is triggered. The current line is no
+longer an authorized ICML experimental program; theory work may continue for
+a sharply scoped theorem/TSP paper.
 
-No GPU is authorized by this audit. The next experiment is an exact CPU phase
-map and must be preregistered separately before execution.
+No GPU or further standard-task/nonlinear experiment is authorized by this
+audit. The remaining permitted work is theory closure, manuscript
+reorganization, and audit of already completed evidence.
 
 ## Primary-literature collision
 

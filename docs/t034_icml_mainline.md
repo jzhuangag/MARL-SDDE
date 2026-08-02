@@ -1,5 +1,15 @@
 # T-034 ICML 2027 main line
 
+## Final gate status after T-045A
+
+The current ICML experimental line is stopped. T-045A was the final
+standard-task feasibility attempt: its strongest task has only 1.404% oracle
+adaptation value and the aggregate value is 0.704%, below the frozen 5%
+threshold. This triggers hard-stop item 5 below. No further controller pivot,
+standard-task redesign, nonlinear transfer, or GPU experiment is authorized
+under T-034. The proved theory and already completed evidence remain active
+for a theory-appropriate or signal-processing submission.
+
 ## Publication thesis
 
 ### Working title
