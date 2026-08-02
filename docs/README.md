@@ -370,3 +370,15 @@ improves registered finite-Z risk by 54.4267% with simultaneous lower bound
 0.1612; Layer B improves it by 10.8523% with lower bound 0.0577; 77/96 scenario
 families pass the directional/practical gate. See
 `validation_exp016b_formal.md` and `exp016b_formal_reproduction_audit.json`.
+
+T-031 stops the homogeneous scalar-q practical-selector line after the
+EXP-019A/T-030 transfer and nonvacuity failures, and opens a separate ICML
+research program: fresh-diversity selection among equal-cost subsets of
+jointly dependent delayed Markov streams.  The required contribution is a
+dependence-adjusted effective-parallelism law with matching upper/lower
+bounds, a count-only impossibility result, and an exact low-complexity block
+selector.  Generic client selection, transient batch scheduling, and reset
+shaping are explicitly excluded as headline claims.  No new scientific
+trajectory is created and GPU is not authorized.  See
+`t031_icml_reframe.md`, `t031_theory_program.md`,
+`t031_cpu_falsification_design.md`, and `citation_verification_t031.json`.
