@@ -18,6 +18,10 @@ erasing the participation phase. T-041A passes the prospective exact
 phase-map gate. The remaining empirical blocker is a fresh prospective
 standard learning task that contains both a theorem-predicted positive
 participation regime and a theorem-predicted no-value/reversal regime.
+T-043A's outcome-free standard-task terminal-risk screen subsequently fails
+its reversal and adaptation-value gates: the strongest fixed q is already the
+oracle in every registered message cell. EXP-020A is therefore forbidden.
+This does not satisfy the separate T-034 Stage-B AUC gate.
 
 No GPU is authorized by this audit. The next experiment is an exact CPU phase
 map and must be preregistered separately before execution.
@@ -98,7 +102,8 @@ The next prospective sequence is:
 1. exact CPU phase map from T-037 and T-038, with predictions frozen before
    calculation (**completed by T-041A, P1--P10 pass**);
 2. fresh-seed tabular/linear-TD task with unchanged per-agent marginals and
-   controlled common randomness;
+   controlled common randomness (**still blocked after T-043A's terminal-risk
+   feasibility failure**);
 3. only if both gates pass, one nonlinear GPU transfer with a precomputed
    oracle-value ceiling of at least 5%.
 
