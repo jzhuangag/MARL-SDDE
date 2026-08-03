@@ -1,0 +1,83 @@
+{
+  "experiment_id": "T-052A-exact-fingerprint-static",
+  "classification": "outcome-free exact-binomial leading-risk gate",
+  "supersedes_for_future_design_only": "T-051A remains a permanent 11/12 failure",
+  "source_task_config": "docs/t049a_exact_schedule_static_preregistration.json",
+  "tasks": [
+    "frozenlake8x8",
+    "cliffwalking",
+    "taxi"
+  ],
+  "grid": {
+    "participation_catalogue": [
+      1,
+      4,
+      16
+    ],
+    "message_overheads": [
+      8,
+      32
+    ],
+    "correlations": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      1.0
+    ],
+    "delays": [
+      0,
+      4,
+      8
+    ]
+  },
+  "learning_horizon_rule": {
+    "pr_burn_fraction": 0.5,
+    "contraction_target": 0.0001,
+    "message_budget_rule": "N_contraction * (overhead + max_q)"
+  },
+  "probe": {
+    "blocks": 96,
+    "q_probe": 2,
+    "maximum_independent_path_collision": 0.01,
+    "decision_law": "exact Binomial(n, c_L + (1-c_L) rho)",
+    "message_cost_per_block": "overhead + 2",
+    "environment_cost_per_block": "minimum task-specific fingerprint transitions"
+  },
+  "analysis": {
+    "primary_metric": "geometric exact expected leading-risk ratio to strong fixed q after all probe messages",
+    "active_cell": "cellwise asymptotic oracle q differs from overhead-specific strong fixed q",
+    "uses_t049a_outcome_rows": false,
+    "uses_t051a_result_rows": false,
+    "uses_t052_exact_binomial_theorem": true
+  },
+  "mandatory_gates": {
+    "B1": "public kernel, stationarity, and marginal-invariance checks pass",
+    "B2": "every minimal fingerprint has exact independent-path collision <= 0.01",
+    "B3": "every delayed recursion is stable and the post-probe q=16 learning horizon meets the 1e-4 contraction rule",
+    "B4": "aggregate geometric exact expected full-cost improvement >= 0.05",
+    "B5": "geometric exact expected full-cost improvement >= 0.05 for each message overhead",
+    "B6": "exact expected ratio < 1 in at least 0.70 of oracle-active cells",
+    "B7": "maximum exact expected ratio over every cell <= 1.05",
+    "B8": "exact action distributions are normalized and plug-in participation is nonincreasing in the sufficient statistic",
+    "B9": "probe messages, probe environment transitions, learning messages, learning transitions, and delay satisfy separate budgets",
+    "B10": "no sampled trajectory, seed, GPU, HPC4 job, T-049A row, or T-051A row is used",
+    "B11": "all result values are finite",
+    "B12": "clean rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 126,
+    "sampled_trajectories": 0,
+    "seeds": 0,
+    "recommended_hardware": "local CPU"
+  },
+  "authorization": {
+    "execute_static_after_independent_commit": true,
+    "sampled_cpu_pilot": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}
