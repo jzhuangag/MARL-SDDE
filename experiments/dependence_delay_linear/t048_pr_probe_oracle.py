@@ -177,19 +177,91 @@ def scheduled_pr_risk_affine_coefficients(
 ) -> AffineRisk:
     """Return exact coefficients of the scheduled PR risk in ``rho``."""
 
-    arguments = {
-        "initial_history": initial_history,
-        "drift": drift,
-        "step_size": step_size,
-        "delay": delay,
-        "q_schedule": q_schedule,
-        "burn_in": burn_in,
-        "base_lag_covariances": base_lag_covariances,
-        "risk_matrix": risk_matrix,
-    }
-    at_zero = exact_scheduled_pr_averaged_vector_risk(rho=0.0, **arguments)["risk"]
-    at_one = exact_scheduled_pr_averaged_vector_risk(rho=1.0, **arguments)["risk"]
-    return AffineRisk(float(at_zero), float(at_one) - float(at_zero))
+    matrix = np.asarray(drift, dtype=float)
+    if matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
+        raise ValueError("drift must be square")
+    dimension = matrix.shape[0]
+    history = np.asarray(initial_history, dtype=float)
+    if delay < 0 or history.shape != (delay + 1, dimension):
+        raise ValueError("initial_history must have shape (delay+1, dimension)")
+    if step_size <= 0.0:
+        raise ValueError("step_size must be positive")
+    schedule = tuple(int(q) for q in q_schedule)
+    updates = len(schedule)
+    if updates < 1 or any(q < 1 for q in schedule):
+        raise ValueError("q_schedule must be nonempty and positive")
+    if burn_in < 0 or burn_in >= updates:
+        raise ValueError("require 0 <= burn_in < len(q_schedule)")
+    weight = (
+        np.eye(dimension)
+        if risk_matrix is None
+        else np.asarray(risk_matrix, dtype=float)
+    )
+    if weight.shape != (dimension, dimension) or not np.allclose(weight, weight.T):
+        raise ValueError("risk_matrix must be symmetric with drift dimension")
+    lags = np.asarray(base_lag_covariances, dtype=float)
+    expected_shape = (2 * updates - 1, dimension, dimension)
+    if lags.shape != expected_shape:
+        raise ValueError(f"base_lag_covariances must have shape {expected_shape}")
+
+    companion = delayed_vector_companion(matrix, step_size, delay)
+    selector = np.zeros((dimension, dimension * (delay + 1)))
+    selector[:, :dimension] = np.eye(dimension)
+    injector = selector.T
+    lifted_initial = history.reshape(-1)
+    averaged_count = updates - burn_in
+    power = np.eye(companion.shape[0])
+    state_values = [selector @ power @ lifted_initial]
+    responses = []
+    for _ in range(updates):
+        responses.append(selector @ power @ injector)
+        power = power @ companion
+        state_values.append(selector @ power @ lifted_initial)
+    mean = np.mean(state_values[burn_in + 1 :], axis=0)
+
+    response_prefix = np.zeros((updates + 1, dimension, dimension))
+    for index, response in enumerate(responses):
+        response_prefix[index + 1] = response_prefix[index] + response
+    impulses = []
+    for innovation_time in range(updates):
+        lower_lag = max(burn_in - innovation_time, 0)
+        upper_lag = updates - 1 - innovation_time
+        impulses.append(
+            step_size
+            * (response_prefix[upper_lag + 1] - response_prefix[lower_lag])
+            / averaged_count
+        )
+    impulse_array = np.asarray(impulses)
+    weighted_impulses = np.einsum(
+        "ab,nbc->nac", weight, impulse_array, optimize=True
+    )
+    schedule_array = np.asarray(schedule, dtype=float)
+
+    intercept = float(mean @ weight @ mean)
+    slope = 0.0
+    center = updates - 1
+    for lag in range(-(updates - 1), updates):
+        if lag >= 0:
+            left_indices = np.arange(lag, updates)
+            right_indices = np.arange(0, updates - lag)
+        else:
+            left_indices = np.arange(0, updates + lag)
+            right_indices = np.arange(-lag, updates)
+        transformed = (
+            weighted_impulses[left_indices] @ lags[center + lag]
+        )
+        pair_risks = np.einsum(
+            "nij,nij->n",
+            transformed,
+            impulse_array[right_indices],
+            optimize=True,
+        )
+        private_overlap = 1.0 / np.maximum(
+            schedule_array[left_indices], schedule_array[right_indices]
+        )
+        intercept += float(private_overlap @ pair_risks)
+        slope += float((1.0 - private_overlap) @ pair_risks)
+    return AffineRisk(float(intercept), float(slope))
 
 
 def _squared_interval(interval: tuple[float, float]) -> tuple[float, float]:

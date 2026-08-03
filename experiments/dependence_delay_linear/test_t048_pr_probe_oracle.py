@@ -82,6 +82,49 @@ def test_scheduled_pr_risk_is_affine_in_rho() -> None:
     assert np.isclose(affine.evaluate(0.43), exact["risk"], atol=1e-13)
 
 
+def test_fast_affine_coefficients_match_both_direct_endpoints() -> None:
+    rng = np.random.default_rng(4801)
+    for delay in (0, 1, 3):
+        for dimension in (1, 2, 3):
+            updates = 6
+            raw = rng.normal(size=(dimension, dimension))
+            drift = 0.15 * np.eye(dimension) + 0.02 * (raw + raw.T)
+            minimum = np.min(np.linalg.eigvalsh(drift))
+            if minimum <= 0.05:
+                drift += (0.06 - minimum) * np.eye(dimension)
+            weight_raw = rng.normal(size=(dimension, dimension))
+            weight = weight_raw.T @ weight_raw + np.eye(dimension)
+            base = np.asarray(
+                [
+                    (0.3 ** abs(lag)) * np.eye(dimension)
+                    for lag in range(-(updates - 1), updates)
+                ]
+            )
+            arguments = {
+                "initial_history": rng.normal(
+                    size=(delay + 1, dimension)
+                ),
+                "drift": drift,
+                "step_size": 0.04,
+                "delay": delay,
+                "q_schedule": [1, 3, 2, 8, 4, 1],
+                "burn_in": 2,
+                "base_lag_covariances": base,
+                "risk_matrix": weight,
+            }
+            affine = scheduled_pr_risk_affine_coefficients(**arguments)
+            at_zero = exact_scheduled_pr_averaged_vector_risk(
+                rho=0.0, **arguments
+            )["risk"]
+            at_one = exact_scheduled_pr_averaged_vector_risk(
+                rho=1.0, **arguments
+            )["risk"]
+            assert np.isclose(affine.intercept, at_zero, atol=2e-12)
+            assert np.isclose(
+                affine.intercept + affine.slope, at_one, atol=2e-12
+            )
+
+
 def test_monte_carlo_scheduled_pr_matches_exact_risk() -> None:
     rng = np.random.default_rng(20260803)
     repetitions = 100_000
