@@ -1,0 +1,129 @@
+{
+  "audit_id": "T-050-stationary-audit",
+  "plan_sha256": "e4936afbfc09211eb7124d9aa85826e8e3862ed5a1e866dfce8493cf40343fd1",
+  "sampled_trajectories": 0,
+  "stationary_phase": [
+    {
+      "message_overhead": 8,
+      "oracle_geometric_improvement": 0.16503524115311252,
+      "oracle_support": [
+        16,
+        16,
+        4,
+        4,
+        1,
+        1,
+        1
+      ],
+      "strict_improvement_fraction": 0.7142857142857143,
+      "strong_fixed_q": 4
+    },
+    {
+      "message_overhead": 32,
+      "oracle_geometric_improvement": 0.13168965362595553,
+      "oracle_support": [
+        16,
+        16,
+        16,
+        4,
+        4,
+        1,
+        1
+      ],
+      "strict_improvement_fraction": 0.5714285714285714,
+      "strong_fixed_q": 16
+    }
+  ],
+  "task_results": {
+    "cliffwalking": {
+      "delays": {
+        "0": {
+          "contraction_horizons": {
+            "0.0001": 5396,
+            "0.001": 4046
+          },
+          "spectral_radius": 0.9965908947945217
+        },
+        "4": {
+          "contraction_horizons": {
+            "0.0001": 5320,
+            "0.001": 3990
+          },
+          "spectral_radius": 0.9965433482687954
+        },
+        "8": {
+          "contraction_horizons": {
+            "0.0001": 5246,
+            "0.001": 3934
+          },
+          "spectral_radius": 0.9964937425899467
+        }
+      },
+      "kernel_sha256": "55a3c9a49f29e2a9142e41f66c3134073e56626dbe43c192a9b1bf1f25acb90a",
+      "long_run_covariance_minimum_eigenvalue": 3.491305505259388,
+      "long_run_covariance_trace": 7929.996968105947,
+      "pr_task_constant": 37884.03246791317,
+      "step_size": 0.026783627392693143
+    },
+    "frozenlake8x8": {
+      "delays": {
+        "0": {
+          "contraction_horizons": {
+            "0.0001": 5278,
+            "0.001": 3958
+          },
+          "spectral_radius": 0.9965152597837487
+        },
+        "4": {
+          "contraction_horizons": {
+            "0.0001": 5204,
+            "0.001": 3902
+          },
+          "spectral_radius": 0.9964655548707235
+        },
+        "8": {
+          "contraction_horizons": {
+            "0.0001": 5128,
+            "0.001": 3846
+          },
+          "spectral_radius": 0.9964136466884351
+        }
+      },
+      "kernel_sha256": "93dcc787c7d551f2c620d4bed29dc9245cd61bcade3cecde96bc99e85ae04dc3",
+      "long_run_covariance_minimum_eigenvalue": 0.00011931000857954152,
+      "long_run_covariance_trace": 0.1080957096687373,
+      "pr_task_constant": 1.8315201977055813,
+      "step_size": 0.050386619799920554
+    },
+    "taxi": {
+      "delays": {
+        "0": {
+          "contraction_horizons": {
+            "0.0001": 5396,
+            "0.001": 4048
+          },
+          "spectral_radius": 0.996591649725921
+        },
+        "4": {
+          "contraction_horizons": {
+            "0.0001": 5322,
+            "0.001": 3992
+          },
+          "spectral_radius": 0.9965441244965821
+        },
+        "8": {
+          "contraction_horizons": {
+            "0.0001": 5246,
+            "0.001": 3936
+          },
+          "spectral_radius": 0.9964945415190717
+        }
+      },
+      "kernel_sha256": "0aad06a53cf55b339137944bfd38db65214cea99f36cd900603a0e88d78ae14f",
+      "long_run_covariance_minimum_eigenvalue": 3.8782524133834713,
+      "long_run_covariance_trace": 414.99135502804126,
+      "pr_task_constant": 2555.2886462177457,
+      "step_size": 0.030174809165813884
+    }
+  }
+}
