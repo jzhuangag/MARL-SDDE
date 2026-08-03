@@ -1,6 +1,6 @@
 {
   "experiment_line": "T-047 / EXP-021",
-  "status": "theory_core_implemented_experiments_not_preregistered",
+  "status": "scheduled_pr_and_probe_oracle_core_implemented_static_design_pending",
   "old_results_unchanged": [
     "EXP-017A",
     "T-020",
@@ -23,26 +23,28 @@
     {
       "id": "P47-3",
       "claim": "Tail Polyak-Ruppert exact risk for a time-varying schedule",
-      "status": "open",
-      "blocks": ["EXP-021A preregistration"]
+      "status": "proved_and_tested",
+      "artifact": "docs/t048_pr_probe_oracle_theorem.md"
     },
     {
       "id": "P47-4",
       "claim": "Mixing-corrected confidence sequence for observable gradient-correlation probes",
-      "status": "open",
-      "blocks": ["learned-controller guarantee", "EXP-021A preregistration"]
+      "status": "proved_for_registered_checkpoints_with_certified_geometric_beta_mixing",
+      "artifact": "experiments/dependence_delay_linear/t048_pr_probe_oracle.py"
     },
     {
       "id": "P47-5",
       "claim": "Finite-budget oracle inequality including probe opportunity cost",
-      "status": "open",
-      "blocks": ["main adaptive theorem"]
+      "status": "proved_for_finite_affine_schedule_library",
+      "artifact": "docs/t048_pr_probe_oracle_theorem.md"
     },
     {
       "id": "P47-6",
       "claim": "Matching lower/upper dependence on correlation, mixing, delay, message budget, and environment budget",
-      "status": "open",
-      "blocks": ["ICML sharpness claim"]
+      "status": "partial_logarithmic_mixing_gap",
+      "proved": "separated-class correlation gap and confidence dependence; exact finite-table delay and dual-budget accounting",
+      "open": "constant-factor controlled-belief occupation matching",
+      "blocks": ["sharp constant-factor matching claim"]
     },
     {
       "id": "P47-7",
