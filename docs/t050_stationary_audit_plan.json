@@ -1,0 +1,42 @@
+{
+  "audit_id": "T-050-stationary-audit",
+  "classification": "outcome-free theorem corollary; not sampled evidence",
+  "source_task_config": "docs/t049a_exact_schedule_static_preregistration.json",
+  "tasks": [
+    "frozenlake8x8",
+    "cliffwalking",
+    "taxi"
+  ],
+  "participation_catalogue": [
+    1,
+    4,
+    16
+  ],
+  "message_overheads": [
+    8,
+    32
+  ],
+  "correlations": [
+    0.0,
+    0.1,
+    0.3,
+    0.5,
+    0.7,
+    0.9,
+    1.0
+  ],
+  "delays": [
+    0,
+    4,
+    8
+  ],
+  "pr_burn_fraction": 0.5,
+  "contraction_targets": [
+    0.001,
+    0.0001
+  ],
+  "uses_t049a_outcome_rows": false,
+  "sampled_trajectories": 0,
+  "gpu_authorized": false,
+  "hpc4_authorized": false
+}
