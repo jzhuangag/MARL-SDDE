@@ -8,8 +8,10 @@ from experiments.nonlinear_markov_td.run_t061a_reward_free_controller_pilot impo
     analyze,
     estimate,
     load_config,
+    run_endpoint,
     validate,
 )
+from experiments.nonlinear_markov_td.t059_minatar_fixed_encoder import ReferenceMoments
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -65,3 +67,41 @@ def test_analyzer_accepts_a_broad_reward_free_effect() -> None:
     assert summary["gates"]["P1_complete_unique"]
     assert summary["gates"]["P8_participation_direction"]
     assert np.isfinite(summary["fingerprint_standardized_rmse"])
+
+
+def test_run_endpoint_reuses_fixed_comparator_without_split_registry() -> None:
+    config = load_config(CONFIG)
+    mini = {
+        **config,
+        "learning": {**config["learning"], "target_updates_qmax": 8},
+        "probe": {**config["probe"], "blocks": 4, "length": 1},
+    }
+    dimension = 3
+    reference = ReferenceMoments(
+        drift=np.eye(dimension),
+        reward_vector=np.zeros(dimension),
+        feature_covariance=np.eye(dimension),
+        fixed_point=np.zeros(dimension),
+        symmetric_min_eigenvalue=1.0,
+        spectral_norm=1.0,
+    )
+    phi = np.zeros((64, dimension))
+    phi[:, 0] = 1.0
+    successors = np.zeros_like(phi)
+    rewards = np.ones(64)
+    bank = [(phi, successors, rewards) for _ in range(17)]
+    row = run_endpoint(
+        config=mini,
+        reference=reference,
+        diagnostics={"step_size": 0.01, "encoder_sha256": "test"},
+        bank=bank,
+        game="asterix",
+        master_seed=123,
+        rho=0.5,
+        match_count=2,
+        overhead=8,
+        delay=0,
+    )
+    assert row["selected_q"] in (1, 4, 16)
+    assert row["controller_risk"] >= 0.0
+    assert row["strong_risk"] >= 0.0

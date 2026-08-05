@@ -178,10 +178,11 @@ def run_endpoint(
         q=selected_q,
     )
     fixed_cache = {}
+    fixed_config = {**config, "selection_seeds": config.get("selection_seeds", [])}
     for label, q in (("strong", strong_q), ("theory", theory_q)):
         if q not in fixed_cache:
             fixed_cache[q] = run_fixed_q(
-                config=config,
+                config=fixed_config,
                 reference=reference,
                 diagnostics=diagnostics,
                 bank=bank,
