@@ -21,6 +21,12 @@ GAMES = ("asterix", "breakout", "seaquest")
 FULL_ACTIONS = 6
 
 
+def legacy_numpy_seed(seed: int) -> int:
+    """Map a provenance seed deterministically into RandomState's uint32 domain."""
+
+    return int(int(seed) % (2**32))
+
+
 @dataclass(frozen=True)
 class StreamBatch:
     states: np.ndarray
@@ -162,8 +168,8 @@ def sample_stream(
         sticky_action_prob=sticky_action_probability,
         difficulty_ramping=difficulty_ramping,
     )
-    environment.seed(int(environment_seed))
-    policy = np.random.RandomState(int(policy_seed))
+    environment.seed(legacy_numpy_seed(environment_seed))
+    policy = np.random.RandomState(legacy_numpy_seed(policy_seed))
     environment.reset()
     shape = environment.state_shape()
     states = np.empty((transitions, *shape), dtype=np.bool_)
@@ -276,4 +282,3 @@ def stationary_cost_coefficient(*, overhead: float, q: int, rho: float) -> float
     if overhead <= 0.0 or q < 1 or not 0.0 <= rho <= 1.0:
         raise ValueError("invalid phase-law arguments")
     return float((overhead + q) * (rho + (1.0 - rho) / q))
-

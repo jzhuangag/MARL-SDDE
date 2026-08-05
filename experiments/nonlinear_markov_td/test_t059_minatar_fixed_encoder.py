@@ -9,6 +9,7 @@ from experiments.nonlinear_markov_td.t059_minatar_fixed_encoder import (
     coupled_prefix_indices,
     encode_numpy,
     encoded_stream,
+    legacy_numpy_seed,
     reference_moments,
     sample_stream,
     stationary_cost_coefficient,
@@ -46,6 +47,19 @@ def test_stream_and_encoder_are_exactly_reproducible() -> None:
         encode_numpy(encoder_a, first.states, first.previous_actions),
         encode_numpy(encoder_b, second.states, second.previous_actions),
     )
+
+
+def test_large_provenance_seed_has_a_reproducible_uint32_mapping() -> None:
+    seed = 202608050101
+    assert 0 <= legacy_numpy_seed(seed) < 2**32
+    first = sample_stream(
+        "breakout", transitions=32, environment_seed=seed, policy_seed=seed + 1
+    )
+    second = sample_stream(
+        "breakout", transitions=32, environment_seed=seed, policy_seed=seed + 1
+    )
+    assert np.array_equal(first.states, second.states)
+    assert np.array_equal(first.rewards, second.rewards)
 
 
 def test_reference_moments_recover_a_constructed_fixed_point() -> None:
