@@ -1,0 +1,82 @@
+{
+  "cells": 84,
+  "configuration_sha256": "2a8b9b5f80174a2440c21d7c9a62c1bc372495188569596cc560eda9542604c1",
+  "controller_pilot_authorized": false,
+  "endpoints": 8064,
+  "experiment_id": "T-060A",
+  "gates": {
+    "V1_complete_unique": true,
+    "V2_finite_dual_budget": true,
+    "V3_reference_stable": true,
+    "V4_heldout_oracle_gain": true,
+    "V5_heldout_directional_breadth": false,
+    "V6_taskwise_value": false,
+    "V7_rho_direction": false,
+    "V8_split_isolation": true,
+    "V9_no_controller": true
+  },
+  "heldout_oracle_improvement": 0.20333930801818,
+  "heldout_oracle_strong_geometric_ratio": 0.79666069198182,
+  "heldout_strict_cell_fraction": 0.39285714285714285,
+  "pre_reproduction_value_gate_pass": false,
+  "reference_diagnostics": [
+    {
+      "drift_condition_number": 2.4914432921109113,
+      "drift_relative_disagreement": 0.002715878347789073,
+      "encoder_sha256": "3f4859c5e27e416ab37853c9c1d575234e58e18abcc7bf092b869157960e6b2f",
+      "fixed_point_prediction_relative_disagreement": 0.07454463808728327,
+      "fixed_point_prediction_rms": 0.039759988664765024,
+      "game": "asterix",
+      "lifted_spectral_radius": {
+        "0": 0.9959999920785437,
+        "8": 0.9958651813650384
+      },
+      "step_size": 0.05,
+      "symmetric_min_eigenvalue": 0.08000015707628018
+    },
+    {
+      "drift_condition_number": 2.4461724195979135,
+      "drift_relative_disagreement": 0.004009612790258967,
+      "encoder_sha256": "6c3869c803a48cd9e520a4c06b6a0c22580338dba337748124010a0ad0cb9410",
+      "fixed_point_prediction_relative_disagreement": 0.005872564602245121,
+      "fixed_point_prediction_rms": 0.18389408936409918,
+      "game": "breakout",
+      "lifted_spectral_radius": {
+        "0": 0.9959999989315864,
+        "8": 0.9958651886924377
+      },
+      "step_size": 0.05,
+      "symmetric_min_eigenvalue": 0.0800000204363452
+    },
+    {
+      "drift_condition_number": 2.13142311453972,
+      "drift_relative_disagreement": 0.003973364469125191,
+      "encoder_sha256": "5f137a239e0a6b1c8568edc2557a08cbc06ac9cb9a8c33bcf157053b80d91715",
+      "fixed_point_prediction_relative_disagreement": 0.0442927245527235,
+      "fixed_point_prediction_rms": 0.017829160921591477,
+      "game": "seaquest",
+      "lifted_spectral_radius": {
+        "0": 0.9959999964175805,
+        "8": 0.9958651860044188
+      },
+      "step_size": 0.05,
+      "symmetric_min_eigenvalue": 0.08000007045417405
+    }
+  ],
+  "rho_directional_paths": "5/12",
+  "selection_seeds": 16,
+  "strong_fixed_q": {
+    "asterix|32": 4,
+    "asterix|8": 4,
+    "breakout|32": 4,
+    "breakout|8": 4,
+    "seaquest|32": 16,
+    "seaquest|8": 4
+  },
+  "task_ratios": {
+    "asterix": 0.7070270662693189,
+    "breakout": 0.6994984312303254,
+    "seaquest": 1.022344778006951
+  },
+  "validation_seeds": 16
+}
