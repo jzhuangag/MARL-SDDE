@@ -1,0 +1,127 @@
+{
+  "experiment_id": "T-061A",
+  "stage": "prospective reward-free controller CPU pilot",
+  "configuration_sha256": "e5794fb53e9016302ece72d4bd5d450b90145b8aba36165daf0a98bc2c24b2aa",
+  "design_provenance": {
+    "T060A_decision": "failed and unchanged",
+    "T060A_role": "post-result discovery/power information only",
+    "algorithm_source": "T-050 stationary phase plus T-051/T-052 fingerprint rule",
+    "new_seed_confirmation": true
+  },
+  "source_sha256": {
+    "fingerprint_controller": "37fde4c9567b90b7dd0ed3c25bac27889e2b3b634d248741edaa477c7e8ef412",
+    "runner_analyzer": "d9321a583fedf7346ba7aa04cfbb3912dbb6dd0c2377602dc1f9640594753030",
+    "fingerprint_tests": "607137a5b9f92a3fe5f772728dd62ab43d2f4fd8a80464ebbb105ef2eb526b9c",
+    "pilot_tests": "ab8faf30db50d79f9ffb0848182ed30a0ab51513374976e490770f8a324485d0",
+    "validator": "4175f9bf6c044bae983d166686246295d0783dba2ca665cf7ef22d3708fcf909",
+    "validator_tests": "b31eeec01a7ccd27ab51a3887644df172b27b1d5aead85ae2343b30c54fb4e7e"
+  },
+  "reference": {
+    "path": "experiments/nonlinear_markov_td/results/t060a_minatar_fixed_q_pilot/reference_moments.json",
+    "sha256": "54f7d139202a46cb7c6264ba888d07ad213a596dcfcc330cdea9f2eb7f73e59a",
+    "frozen_before_T061A": true
+  },
+  "environment": {
+    "package": "MinAtar==1.0.15",
+    "policy": "uniform full six-action policy",
+    "sticky_action_probability": 0.1,
+    "difficulty_ramping": false
+  },
+  "tasks": {
+    "asterix": {"channels": 4, "encoder_seed": 590101},
+    "breakout": {"channels": 4, "encoder_seed": 590102},
+    "seaquest": {"channels": 10, "encoder_seed": 590103}
+  },
+  "encoder": {
+    "filters": 8,
+    "output_features": 32,
+    "feature_dimension_with_constant": 33,
+    "batch_size": 8192,
+    "torch_threads": 4,
+    "parameters_trainable": 0
+  },
+  "learning": {
+    "discount": 0.97,
+    "regularization": 0.08,
+    "target_updates_qmax": 8192,
+    "pr_burn_fraction": 0.5,
+    "initial_head": "zero",
+    "risk": "frozen reference feature-covariance-weighted PR prediction error"
+  },
+  "probe": {
+    "blocks": 96,
+    "q": 2,
+    "length": 4,
+    "fingerprint": "SHA-256 of state, previous executed action, requested action, reward, and terminal tuples",
+    "independent_collision_upper_bound": 0.0007716049382716049,
+    "correlation_estimate": "match_count / 96",
+    "independent_of_learning_bank": true,
+    "uses_rewards_for_participation_decision": false
+  },
+  "grid": {
+    "participation": [1, 4, 16],
+    "overheads": [8, 32],
+    "correlations": [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+    "delays": [0, 8]
+  },
+  "pilot_seeds": [
+    202608056101, 202608056102, 202608056103, 202608056104,
+    202608056105, 202608056106, 202608056107, 202608056108,
+    202608056109, 202608056110, 202608056111, 202608056112,
+    202608056113, 202608056114, 202608056115, 202608056116,
+    202608056117, 202608056118, 202608056119, 202608056120,
+    202608056121, 202608056122, 202608056123, 202608056124,
+    202608056125, 202608056126, 202608056127, 202608056128,
+    202608056129, 202608056130, 202608056131, 202608056132
+  ],
+  "controller": {
+    "rule": "q minimizes (overhead+q)*(rho_hat+(1-rho_hat)/q) with smaller-q tie break",
+    "reward_free": true,
+    "online_complexity": "O(1) match counter plus O(3) action scan; TD aggregation O(qd)",
+    "online_memory": "O(1) probe statistic plus O((delay+1)d) TD head"
+  },
+  "comparators": {
+    "strong_fixed_q_source": "T060A selection half, frozen before T061A seeds",
+    "strong_fixed_q": {
+      "asterix|8": 4,
+      "asterix|32": 4,
+      "breakout|8": 4,
+      "breakout|32": 4,
+      "seaquest|8": 4,
+      "seaquest|32": 16
+    },
+    "strong_probe_cost": 0,
+    "true_rho_rule": "descriptive no-probe full-budget comparator"
+  },
+  "costs": {
+    "total_message_budget": "(overhead+16)*8192",
+    "total_environment_budget": "16*8192 actor transitions",
+    "probe_message": "96*(overhead+2)",
+    "probe_environment": "96*2*4 actor transitions",
+    "controller_updates": "min(floor((B_msg-probe_msg)/(overhead+q)), floor((B_env-probe_env)/q))-delay",
+    "strong_fixed_receives_full_budget": true
+  },
+  "gates": {
+    "maximum_aggregate_ratio": 0.95,
+    "maximum_task_ratio": 0.98,
+    "maximum_delay_ratio": 0.97,
+    "minimum_strict_cell_fraction": 0.60,
+    "maximum_true_rho_ratio": 1.15,
+    "minimum_directional_path_fraction": 0.75,
+    "maximum_fingerprint_rmse": 1.5,
+    "maximum_seed_level_rho0_match_rate": 0.02,
+    "all_P1_through_P11_required": true,
+    "byte_exact_clean_rerun_required": true,
+    "failure_stops_formal": true
+  },
+  "expected": {
+    "tasks": 3,
+    "cells": 84,
+    "pilot_seeds": 32,
+    "endpoints": 2688,
+    "device": "local CPU",
+    "formal_seeds_registered": false,
+    "gpu_authorized": false,
+    "hpc4_authorized": false
+  }
+}
