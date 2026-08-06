@@ -92,6 +92,18 @@ formal sample or used to relax any gate.
 
 ## Decision tree after T-063A
 
+The primary T-063A run has now completed.  Its efficacy gates pass, but the
+mandatory maximum-per-seed rho=0 collision gate misses by one two-match block
+(`2/96=0.0208333` versus `0.02`).  It is therefore not formal-passed
+evidence.  The post-result audit shows that this maximum statistic was not
+family-wise calibrated over 1,536 blocks; this diagnosis does not alter T-063A.
+
+T-063B is a separate prospective confirmation with all-new seeds and an exact
+aggregate binomial collision gate.  It is authorized only after clean T-063A
+reproduction and the static audit; any T-063B gate failure remains a failure.
+Until T-063B passes, the paper must describe the nonlinear result as strong
+but qualified evidence, not as unconditional formal validation.
+
 - **All formal gates pass:** freeze the formal result, write the theorem
   package and main/appendix tables, then consider one new GPU-only learned-
   encoder robustness experiment.  That experiment is optional for the first
