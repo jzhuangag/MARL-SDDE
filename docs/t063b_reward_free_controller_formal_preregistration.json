@@ -1,0 +1,50 @@
+{
+  "experiment_id": "T-063B-formal-reward-free-correlation-adaptive-MinAtar-TD",
+  "classification": "prospective confirmatory validation under the unchanged fixed-policy delayed nonlinear-feature Markov-TD scope",
+  "configuration_sha256": "f145c7101524448f71357abfe23b0803320e2ce2b865d752a05f12c8a2381a49",
+  "base_preregistration": {
+    "path": "docs/t063a_reward_free_controller_formal_preregistration.json",
+    "sha256": "8eb39bc62b1aea8940e6452bf7c4942e44354200a1bed42130b09b68e551d0e9",
+    "inheritance": "all tasks, encoder, policy, controller, budgets, efficacy gates, bootstrap, and software semantics are unchanged"
+  },
+  "formal_seed_registry": {
+    "inclusive_start": 202608057201,
+    "inclusive_end": 202608057712,
+    "derivation": "every integer in the closed interval",
+    "count": 512
+  },
+  "seed_isolation": {
+    "excluded_intervals": [
+      [202608056001, 202608056032],
+      [202608056101, 202608056132],
+      [202608056201, 202608056712]
+    ],
+    "excludes_T060A_T061A_and_T063A": true
+  },
+  "collision_gate": {
+    "kind": "aggregate_exact_binomial_upper_confidence",
+    "alpha": 0.05,
+    "independent_path_probability_upper_bound": 0.0007716049382716049,
+    "probe_blocks_per_seed_task": 96,
+    "statistic": "sum of rho=0 match counts over every formal seed-task block",
+    "rule": "Clopper-Pearson one-sided upper bound <= independent_path_probability_upper_bound",
+    "blockwise_maximum": "descriptive_only",
+    "rationale": "the T-063A maximum-per-block rule was not family-wise calibrated for 1536 blocks"
+  },
+  "authorization": {
+    "outcome_free_static_audit_required": true,
+    "local_cpu": true,
+    "gpu": false,
+    "hpc4": false,
+    "project_storage": false,
+    "formal_run_authorized_after_static_audit": false,
+    "no_T063A_result_retroactive_reclassification": true
+  },
+  "new_artifacts": {
+    "runner": "experiments/nonlinear_markov_td/run_t063b_reward_free_controller_formal.py",
+    "analyzer": "experiments/nonlinear_markov_td/analyze_t063b_reward_free_controller_formal.py",
+    "tests": "experiments/nonlinear_markov_td/test_t063b_reward_free_controller_formal.py",
+    "primary_output": "experiments/nonlinear_markov_td/results/t063b_reward_free_controller_formal",
+    "reproduction_output": "experiments/nonlinear_markov_td/results/t063b_reward_free_controller_formal_reproduction"
+  }
+}
