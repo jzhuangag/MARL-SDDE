@@ -1,7 +1,7 @@
 {
   "experiment_id": "T-063B-formal-reward-free-correlation-adaptive-MinAtar-TD",
   "classification": "prospective confirmatory validation under the unchanged fixed-policy delayed nonlinear-feature Markov-TD scope",
-  "configuration_sha256": "007dc9effa5030b870979b46804f3bf8bf2a6c6f1d6337a7b86dab3202faab99",
+  "configuration_sha256": "75f4bc8bc9daf4560134264f22d26731e54fdd1f401424ad5e8bb890d6a3176f",
   "base_preregistration": {
     "path": "docs/t063a_reward_free_controller_formal_preregistration.json",
     "sha256": "8eb39bc62b1aea8940e6452bf7c4942e44354200a1bed42130b09b68e551d0e9",
@@ -31,13 +31,20 @@
     "blockwise_maximum": "descriptive_only",
     "rationale": "the T-063A maximum-per-block rule was not family-wise calibrated for 1536 blocks"
   },
+  "replay_gate": {
+    "kind": "recursive_numeric_replay",
+    "absolute_tolerance": 1e-12,
+    "relative_tolerance": 1e-12,
+    "artifact_bytes_still_required": true,
+    "rationale": "T-063A CSV decimal round-trip changed summary floating-point values by about 1e-14"
+  },
   "authorization": {
     "outcome_free_static_audit_required": true,
     "local_cpu": true,
     "gpu": false,
     "hpc4": false,
     "project_storage": false,
-    "formal_run_authorized_after_static_audit": true,
+    "formal_run_authorized_after_static_audit": false,
     "no_T063A_result_retroactive_reclassification": true
   },
   "new_artifacts": {

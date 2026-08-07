@@ -8,6 +8,7 @@ from experiments.nonlinear_markov_td.run_t063b_reward_free_controller_formal imp
     aggregate_collision_gate,
     load_config,
 )
+from experiments.nonlinear_markov_td.analyze_t063b_reward_free_controller_formal import replay_equal
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -67,3 +68,8 @@ def test_t063b_spec_contains_no_outcome_adaptive_fields() -> None:
     assert "controller_risk" not in text
     assert "endpoint" not in text
     assert "pilot" not in text.split("base_preregistration", 1)[-1]
+
+
+def test_t063b_replay_gate_allows_only_serialization_scale_error() -> None:
+    assert replay_equal({"x": 1.0}, {"x": 1.0 + 1e-14}, atol=1e-12, rtol=1e-12)
+    assert not replay_equal({"x": 1.0}, {"x": 1.0 + 1e-6}, atol=1e-12, rtol=1e-12)

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -29,6 +30,20 @@ DEFAULT_TEST_MANIFEST = ROOT / "docs" / "t063b_test_manifest.json"
 ARTIFACTS = ("endpoints.csv", "cells.csv", "summary.json")
 
 
+def replay_equal(left: Any, right: Any, *, atol: float, rtol: float) -> bool:
+    if isinstance(left, dict) and isinstance(right, dict):
+        return left.keys() == right.keys() and all(
+            replay_equal(left[key], right[key], atol=atol, rtol=rtol) for key in left
+        )
+    if isinstance(left, list) and isinstance(right, list):
+        return len(left) == len(right) and all(
+            replay_equal(a, b, atol=atol, rtol=rtol) for a, b in zip(left, right)
+        )
+    if isinstance(left, (int, float)) and isinstance(right, (int, float)):
+        return math.isclose(float(left), float(right), rel_tol=rtol, abs_tol=atol)
+    return left == right
+
+
 def execute(
     *,
     config_path: Path = DEFAULT_SPEC,
@@ -45,7 +60,13 @@ def execute(
         test_manifest = json.load(handle)
     replay = point_analyze(config, endpoints.to_dict("records"))
     replay.pop("cell_rows")
-    exact_replay = replay == stored
+    replay_gate = spec["replay_gate"]
+    exact_replay = replay_equal(
+        replay,
+        stored,
+        atol=float(replay_gate["absolute_tolerance"]),
+        rtol=float(replay_gate["relative_tolerance"]),
+    )
     hashes = {
         name: {
             "primary": file_sha256(primary / name),

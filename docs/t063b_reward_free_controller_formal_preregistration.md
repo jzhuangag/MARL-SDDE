@@ -7,6 +7,11 @@ T-063A and does not reclassify the T-063A formal failure.  No T-063B scientific
 trajectory is authorized until the static audit, tests, hashes, and a separate
 commit are complete.
 
+Amendment 1 adds a recursive `1e-12` numeric replay tolerance while retaining
+mandatory byte-exact artifact equality; see
+`docs/t063b_amendment_1_replay_gate.md`.  Authorization is reset until the
+amended files pass a new static audit.
+
 ## Unchanged scientific claim
 
 T-063B keeps the T-063A tasks (Asterix, Breakout, Seaquest), fixed uniform
