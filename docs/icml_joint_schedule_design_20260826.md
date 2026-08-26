@@ -1,5 +1,11 @@
 # ICML 2027 joint participation--gain schedule design
 
+> **Status note (2026-08-26):** this offline schedule-library proposal is
+> retained as design provenance and as a comparator. The recommended mainline
+> is now the fully online joint controller in
+> `docs/icml_online_joint_controller_design_20260826.md`, where offline work
+> certifies a safe action region but does not select the executed `(q,eta)`.
+
 ## Decision
 
 The current reward-free fingerprint controller is a strong and experimentally
