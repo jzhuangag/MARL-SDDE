@@ -275,6 +275,14 @@ covariance matrix, catalogue scan, or mixed-integer solver.
 
 ## SDDE interpretation and role
 
+**Updated T-065 decision.**  SDDE is not part of the claim-critical route.
+The primary stability certificate is now the common quadratic Lyapunov
+certificate for the executed lifted discrete recursion.  This directly covers
+every online gain in the certified interval and avoids an unclosed
+continuous-to-discrete approximation.  The material below is optional and
+must not be used to justify the executable algorithm unless a separate limit
+theorem is completed.
+
 On round time, the controlled delay diffusion is
 
 \[
