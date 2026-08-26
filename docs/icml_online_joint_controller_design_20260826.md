@@ -83,7 +83,21 @@ would make the controller an oracle. Replacing it by a raw squared TD residual
 would mix Bellman signal and sampling noise and create selection bias.
 
 The proposed solution is orthogonal sensing with disjoint, fully charged short
-blocks.
+blocks. These are statistical probes, not physical sensors. "Fully charged"
+means that every probe actor transition, message, mixing gap, delay round, and
+decision-time opportunity is deducted from the same budgets used by learning.
+If sensor block `s` uses `q_s` actors for `L_s` transitions, then it contributes
+`q_s L_s` actor transitions and its registered summary-message cost. Thus
+
+\[
+B_e^{\rm learn}=B_e-\sum_s q_sL_s,
+\qquad
+B_m^{\rm learn}=B_m-\sum_s c_m^{\rm sensor}(q_s,L_s).
+\]
+
+Probe samples declared independent cannot also be credited as free learning
+updates. Cross-fitting or sample reuse is a possible later extension, but it
+requires a different dependence proof.
 
 ### Structural sensor
 
@@ -145,16 +159,30 @@ Offline analysis finds `P` and public constants for a safe gain interval
 `[eta_min,eta_max(D)]`. Offline certification restricts the action region; it
 does not decide the online gain.
 
-Introduce message and environment virtual queues `Q_t^m,Q_t^e`, and define
+Introduce message and environment virtual queues `Q_t^m,Q_t^e`. If the target
+per-block expenditures are `bar_c_m` and `bar_c_e`, update
 
 \[
-\Phi_t=V_t+rac{\gamma_m}{2}(Q_t^m)^2
+Q_{t+1}^m=[Q_t^m+c_t^m-\bar c_m]_+,
+\qquad
+Q_{t+1}^e=[Q_t^e+c_t^e-\bar c_e]_+,
+\]
+
+where `c_t^m,c_t^e` include any sensor cost at block `t`. Define
+
+\[
+\Phi_t=V_t+\frac{\gamma_m}{2}(Q_t^m)^2
 +\frac{\gamma_e}{2}(Q_t^e)^2.
 \]
 
-The virtual queues price resource scarcity, while an explicit residual-budget
-shield prevents pathwise overspending. A theorem-facing one-step bound should
-have the form
+The parameter term measures learning stability. The two queue terms measure
+accumulated overspending relative to the planned rates: a large message queue
+raises the price of `h+q`, and a large environment queue raises the price of
+`q`. Queue stability alone gives an average-budget statement, not a finite
+pathwise guarantee. Therefore an explicit residual-budget shield restricts the
+safe action set to actions that leave enough resources for the delay pipeline
+and the registered fallback. A theorem-facing one-step bound should have the
+form
 
 \[
 \mathbb E[\Delta\Phi_t\mid\mathcal F_t]
@@ -179,18 +207,71 @@ For each candidate q, the quadratic part admits the closed-form safe gain
 g(q,\overline\rho_t)\overline N_t\}},
 \]
 
-with a predefined fallback when the signal lower bound is zero. The controller
-then scans the finite participation catalogue:
+with a predefined fallback when the signal lower bound is zero.
+
+## Exact joint optimization rather than a heuristic catalogue scan
+
+Define the observable robust coefficients
 
 \[
-q_t\in\arg\min_{q\in\mathcal Q_t^{\rm safe}}
-\widehat{\Delta\Phi}_t(q,\eta_t^\star(q)).
+r=a_D\underline V_t,
+\quad
+u=b_D\overline V_t+c_D\overline N_t\overline\rho_t,
+\quad
+v=c_D\overline N_t(1-\overline\rho_t),
+\quad
+\lambda_t=\gamma_m Q_t^m+\gamma_e Q_t^e.
 \]
 
-Thus q and eta are both selected online. The per-decision arithmetic is
-`O(d+|Q|)`, or `O(qd+|Q|)` including the short trajectory summaries. There is
-no online LMI, Hessian inverse, covariance matrix, or nested hyperparameter
-optimization.
+Ignoring q-independent constants, the joint drift score is
+
+\[
+J_t(q,\eta)
+=\left(u+\frac{v}{q}\right)\eta^2-r\eta+\lambda_t q.
+\]
+
+For `q>0`, `eta^2/q` is a convex quadratic-over-linear perspective. Hence
+`J_t` is jointly convex in the continuous relaxation `(q,eta)`. It is not a
+quadratic program because of `eta^2/q`; with an epigraph variable `z` and the
+rotated-cone constraint `eta^2 <= zq`, it is an exact small second-order cone
+program.
+
+The special scalar structure makes a solver unnecessary. Eliminating eta by
+its exact conditional minimizer gives
+
+\[
+\eta_t^\star(q)=
+\Pi_{[\eta_{\min},\eta_{\max}(D)]}
+\frac{r}{2(u+v/q)}.
+\]
+
+This is analytical variable elimination in a jointly convex problem, not a
+greedy choice of eta before q. The profiled derivative is
+
+\[
+\frac{dJ_t^\star(q)}{dq}
+=\lambda_t-\frac{v[\eta_t^\star(q)]^2}{q^2}.
+\]
+
+It is monotone. The continuous optimum is obtained by a scalar root or, in the
+unclipped interior with `u,v,lambda_t>0`, by
+
+\[
+q_t^{\rm cont}
+=\frac{r\sqrt{v/\lambda_t}/2-v}{u},
+\]
+
+followed by projection onto the residual-budget safe interval. Since the
+profiled objective is convex and the integer feasible set is contiguous, the
+exact integer optimum is one of `floor(q_cont)` and `ceil(q_cont)`. Evaluating
+those at most two actions gives the global integer minimizer.
+
+The earlier catalogue `{1,4,16}` was exact only relative to that catalogue and
+its sparsity was a design approximation. The recommended mainline admits every
+integer `q` from 1 to the currently feasible maximum and uses continuous
+optimization plus exact integer recovery. Per-decision optimization is `O(1)`
+after the `O(d)` sensor summaries. There is no online LMI, Hessian inverse,
+covariance matrix, catalogue scan, or mixed-integer solver.
 
 ## SDDE interpretation and role
 
