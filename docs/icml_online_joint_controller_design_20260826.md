@@ -408,3 +408,21 @@ work item is a CPU theory prototype for the observable residual identities,
 the robust one-step drift minimizer, and the common delayed Lyapunov
 certificate. Failure of observability or joint-action value should stop the
 upgrade and preserve the current q-only result rather than weaken the gates.
+
+## T-065/T-066 evidence update
+
+T-065 closed the initial discrete foundation gates and its independently
+preregistered mechanism pilot passed all twelve gates.  T-066 then replaced
+the controller score by exact delayed-affine terminal MSE with sensing costs
+deducted from both learning horizons.  The joint oracle improved 23.35% over
+strong task-by-budget fixed pairs and improved 80.86% of cells, but strict
+separation from both one-dimensional restrictions reached only 16.36%, below
+the frozen 30% gate.  The stationary sampled successor is therefore stopped.
+
+The upgraded research question is endogenous phase control, documented in
+`docs/t067_endogenous_phase_control_program.md`: a single stationary learning
+trajectory moves from high mean-field signal to a correlation-limited noise
+floor.  A new experiment is allowed only if an exact, fully charged dynamic
+schedule scan first establishes nontrivial separation from strong adaptive-q
+and adaptive-eta schedule classes.  This is not a retrospective rescue of the
+failed T-066 gate.
