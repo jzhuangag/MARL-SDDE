@@ -31,7 +31,13 @@ def feasible_fixed_horizon(
     probe_environment: int = 0,
     delay: int = 0,
 ) -> tuple[int, ResourceUse]:
-    """Largest update horizon satisfying both charged budgets and delay."""
+    """Largest update horizon satisfying both charged budgets and delay.
+
+    The environment budget counts actor transitions.  A synchronized round at
+    participation ``q`` therefore costs ``q`` environment transitions, not one
+    server update.  The returned update horizon excludes the ``delay`` rounds
+    that must remain in flight, while ``ResourceUse`` charges those rounds.
+    """
 
     values = (
         message_budget,
@@ -47,15 +53,19 @@ def feasible_fixed_horizon(
     if participation < 1 or overhead + participation < 1:
         raise ValueError("participation must be positive")
     message_remaining = message_budget - probe_message
-    environment_remaining = environment_budget - probe_environment - delay
+    environment_remaining = environment_budget - probe_environment
     if message_remaining < 0 or environment_remaining < 0:
-        raise ValueError("probe and delay reserve exceed the available budgets")
-    updates = min(
-        message_remaining // (overhead + participation), environment_remaining
+        raise ValueError("probe costs exceed the available budgets")
+    completed_rounds = min(
+        message_remaining // (overhead + participation),
+        environment_remaining // participation,
     )
+    if completed_rounds < delay:
+        raise ValueError("probe and delay reserve exceed the available budgets")
+    updates = completed_rounds - delay
     use = ResourceUse(
-        message=probe_message + updates * (overhead + participation),
-        environment=probe_environment + updates + delay,
+        message=probe_message + completed_rounds * (overhead + participation),
+        environment=probe_environment + completed_rounds * participation,
         delay_reserve=delay,
     )
     return int(updates), use

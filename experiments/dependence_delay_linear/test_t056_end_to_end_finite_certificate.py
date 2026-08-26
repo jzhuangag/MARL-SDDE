@@ -25,10 +25,27 @@ def test_dual_budget_horizon_charges_probe_and_delay():
         probe_environment=10,
         delay=8,
     )
-    assert updates == min((1000 - 100) // 12, 100 - 10 - 8) == 75
-    assert use.message == 1000
-    assert use.environment == 93
+    completed_rounds = min((1000 - 100) // 12, (100 - 10) // 4)
+    assert updates == completed_rounds - 8 == 14
+    assert use.message == 100 + completed_rounds * 12 == 364
+    assert use.environment == 10 + completed_rounds * 4 == 98
     assert use.delay_reserve == 8
+
+    # A larger participation level consumes more actor transitions per round
+    # and therefore has a shorter horizon under the same environment budget.
+    larger_q_updates, larger_q_use = feasible_fixed_horizon(
+        message_budget=1000,
+        environment_budget=100,
+        overhead=8,
+        participation=10,
+        probe_message=100,
+        probe_environment=10,
+        delay=8,
+    )
+    assert larger_q_updates == min(900 // 18, 90 // 10) - 8 == 1
+    assert larger_q_updates < updates
+    assert larger_q_use.environment == 100
+
     with pytest.raises(ValueError, match="exceed"):
         feasible_fixed_horizon(
             message_budget=50,
@@ -36,6 +53,14 @@ def test_dual_budget_horizon_charges_probe_and_delay():
             overhead=8,
             participation=4,
             probe_message=51,
+        )
+    with pytest.raises(ValueError, match="delay reserve"):
+        feasible_fixed_horizon(
+            message_budget=100,
+            environment_budget=10,
+            overhead=8,
+            participation=4,
+            delay=3,
         )
 
 

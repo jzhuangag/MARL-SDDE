@@ -19,17 +19,29 @@ cross-time multiplier
 \]
 
 For message/environment budgets `(B_m,B_e)`, probe costs `(C_m,C_e)`, overhead
-`h`, and fixed delay `D`, the post-probe horizon for action `q` is
+`h`, and fixed delay `D`, `B_e` and `C_e` count individual actor transitions.
+A synchronized round at participation `q` therefore costs `h+q` message units
+and `q` environment transitions. Define the number of affordable synchronized
+rounds after probing by
 
 \[
- N_q=\min\left\{
+ H_q=\min\left\{
  \left\lfloor\frac{B_m-C_m}{h+q}\right\rfloor,
- B_e-C_e-D
- \right\}_+ .                                         \tag{1}
+ \left\lfloor\frac{B_e-C_e}{q}\right\rfloor
+ \right\}_+,
+ \qquad
+ N_q=[H_q-D]_+.                                        \tag{1}
 \]
 
-Thus the two budgets, integer packing, probe, and delay reserve are all
-charged before learning.
+Thus the two budgets, integer packing, probe, and `q` actor transitions for
+each of the `D` in-flight delay rounds are all charged before learning.  For a
+feasible positive-horizon action this is equivalent to
+
+\[
+ C_m+(N_q+D)(h+q)\le B_m,
+ \qquad
+ C_e+(N_q+D)q\le B_e.
+\]
 
 ## Theorem 1: exact finite risk of each commit action
 
@@ -84,7 +96,12 @@ Let the strong fixed baseline `q_0` receive the complete no-probe budgets and
 therefore horizon
 
 \[
- N_{q_0}^{0}=\min\{\lfloor B_m/(h+q_0)\rfloor,B_e-D\}.
+ H_{q_0}^{0}=\min\left\{
+ \left\lfloor\frac{B_m}{h+q_0}\right\rfloor,
+ \left\lfloor\frac{B_e}{q_0}\right\rfloor
+ \right\},
+ \qquad
+ N_{q_0}^{0}=[H_{q_0}^{0}-D]_+.
 \]
 
 The exact finite ratio is
@@ -121,3 +138,12 @@ or arbitrary cross-agent dependence. Formal experiments must estimate
 expected risks with independent master-seed clusters and may not treat cell
 rows as independent replicates.
 
+## Accounting correction (2026-08-26)
+
+The original version of (1) and Corollary 1 charged one environment unit per
+synchronized server round. The registered nonlinear runner has always
+charged `q` individual actor transitions per round. Equations (1) and the
+full-budget baseline horizon above now use the same actor-transition unit as
+the implementation. The correction changes the theorem-facing horizons and
+the standalone T-056 helper; it does not change any previously generated
+trajectory or experimental endpoint.
