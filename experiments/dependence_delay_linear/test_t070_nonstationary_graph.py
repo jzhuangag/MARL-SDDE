@@ -97,3 +97,66 @@ def test_batched_local_graph_matches_scalar_propagation():
         path.append(np.mean(result.personalized_risk))
     assert np.allclose(auc[0], np.mean(path), rtol=2e-12, atol=2e-12)
     assert np.allclose(terminal[0], path[-1], rtol=2e-12, atol=2e-12)
+
+
+def test_batched_nonlocal_graph_matches_scalar_under_target_switch():
+    agents = 4
+    schedule = np.asarray(
+        [
+            [-1.0, -1.0, 1.0, 1.0],
+            [-1.0, -1.0, 1.0, 1.0],
+            [-1.0, 1.0, -1.0, 1.0],
+            [-1.0, 1.0, -1.0, 1.0],
+        ]
+    )
+    # Catalogue indices are recipient-specific because the self donor is omitted.
+    graph = np.asarray([[1, 1, 5, 5]], dtype=np.int16)
+    components = static_graph_components(
+        graphs=graph,
+        agents=agents,
+        delay=1,
+        blocks=4,
+        decision_blocks=[0, 2],
+        gain=0.04,
+        curvature=1.0,
+        local_steps=10,
+        alpha_grid=[0.5, 1.0],
+        unit_target_schedule=schedule,
+    )
+    auc, terminal = static_graph_risks(
+        components,
+        initial_parameter=0.5,
+        target_scale=0.3,
+        gain=0.04,
+        curvature=1.0,
+        local_steps=10,
+        noise_scale=0.5,
+        spatial_correlation=0.9,
+        temporal_correlation=0.6,
+    )
+    scaled = 0.3 * schedule
+    state = initial_moment_state(scaled[0], np.repeat(0.5, agents), delay=1)
+    path = []
+    previous = scaled[0]
+    for block in range(4):
+        target = scaled[block]
+        if block > 0 and not np.array_equal(previous, target):
+            state = retarget_state(state, previous, target)
+        indices = graph[0] if block in {0, 2} else np.zeros(agents, dtype=int)
+        result = propagate_graph_block(
+            state,
+            targets=target,
+            gain=0.04,
+            curvature=1.0,
+            local_steps=10,
+            noise_scale=0.5,
+            spatial_correlation=0.9,
+            temporal_correlation=0.6,
+            alpha_grid=[0.5, 1.0],
+            fixed_action_indices=indices,
+        )
+        state = result.state
+        path.append(np.mean(result.personalized_risk))
+        previous = target
+    assert np.allclose(auc[0], np.mean(path), rtol=2e-12, atol=2e-12)
+    assert np.allclose(terminal[0], path[-1], rtol=2e-12, atol=2e-12)
