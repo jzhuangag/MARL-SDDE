@@ -1,0 +1,27 @@
+{
+  "experiment_id": "T-075-safeguarded-warm-start-QP-solver-audit",
+  "verification_status": "PERFORMANCE_GATE_FAILURE",
+  "decision": "stop_solver_without_grid_outcome",
+  "unit_audit": {
+    "tests_passed": 4,
+    "random_QP_fixtures": 64,
+    "risk_path_tolerance": 0.00002,
+    "rollback_path_exact": true,
+    "fixture_frozen_iterations": 155,
+    "fixture_accelerated_iterations": 137
+  },
+  "runtime_audit": {
+    "scope": "four old T-071A seeds; outcome-informed design subset",
+    "frozen_T074_reference_seconds": 53.14818700001342,
+    "T075_elapsed_before_stop_seconds_lower_bound": 120,
+    "output_created": false,
+    "reason": "safeguard, objective and projection overhead outweighed iteration reduction"
+  },
+  "authorization": {
+    "use_T075_solver_in_pilot": false,
+    "retry_T075": false,
+    "parallelize_unchanged_T074_algorithm_under_new_identifier": true,
+    "gpu": false,
+    "hpc4": false
+  }
+}
