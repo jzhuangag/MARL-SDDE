@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 import time
@@ -31,12 +32,26 @@ def completed_chunk(output: Path, index: int, expected_cells: int) -> bool:
     )
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Resume frozen T-080 chunks in an isolated output directory."
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=DEFAULT_OUTPUT,
+        help="Output root; defaults to the original T-080 execution directory.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     config = load_config()
     validation = validate(config)
     print(json.dumps({"event": "validated", **validation}, sort_keys=True), flush=True)
     execution = config["execution"]
-    output = DEFAULT_OUTPUT
+    output = args.output.resolve()
     for index in range(int(execution["chunks"])):
         if completed_chunk(output, index, int(execution["cells_per_chunk"])):
             print(json.dumps({"event": "skip_verified_chunk", "chunk": index}), flush=True)
