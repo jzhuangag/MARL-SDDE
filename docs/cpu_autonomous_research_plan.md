@@ -10,4 +10,6 @@ Hourly in-thread heartbeat `sdde-cpu` is ACTIVE. It checks current processes bef
 
 6. Latest completed: fixed_end_block_moments_audit.py integrates deterministic end-block mixing, oldest-first delayed history and local shadow with continuous AR(1) moments. Twelve cases match exact symmetric-basis risk integration through the unchanged frozen simulator; see fixed_end_block_moment_integration_audit.md. Next analyze public-bound shield nontriviality/width before designing any efficacy registration. No old weights or formal outputs changed.
 
+7. Latest: cumulative_shield_feasibility_audit.md derives a prefix-wise cumulative excess bound using certified credit, its scalar acceptance rule, and the zero-credit cold-start obstruction. Eleven deterministic tests pass. This is accounting, not a completed Lyapunov convergence theorem. Next implement the analytic shadow/interval activation-probability diagnostic and its covariance checks, then define a bounded outcome-free feasibility protocol. No efficacy pilot authorized yet.
+
 Unifying question: when can causal time-varying collaboration improve personalized finite-time learning under resource and delay constraints? The current small affine simulator is not an ICML-ready full experimental package. No acceptance or positive-outcome guarantee is made.
