@@ -12,4 +12,6 @@ Hourly in-thread heartbeat `sdde-cpu` is ACTIVE. It checks current processes bef
 
 7. Latest: cumulative_shield_feasibility_audit.md derives a prefix-wise cumulative excess bound using certified credit, its scalar acceptance rule, and the zero-credit cold-start obstruction. Eleven deterministic tests pass. This is accounting, not a completed Lyapunov convergence theorem. Next implement the analytic shadow/interval activation-probability diagnostic and its covariance checks, then define a bounded outcome-free feasibility protocol. No efficacy pilot authorized yet.
 
+8. Latest: public-model activation diagnostic and 108-scenario/1,728-block analytic scan frozen at ca33223, executed twice with identical outputs. See shield_activation_scan_validation.md. Strict interval-shield availability is sparse (maximum scenario mean 0.153826); not efficacy or a formal gate. No pilot authorized. Next bounded task: derive a direct paired-risk certificate exploiting shared-noise cancellation; explicitly audit predictability, Markov bias and failure-event risk before proposing another controller.
+
 Unifying question: when can causal time-varying collaboration improve personalized finite-time learning under resource and delay constraints? The current small affine simulator is not an ICML-ready full experimental package. No acceptance or positive-outcome guarantee is made.
