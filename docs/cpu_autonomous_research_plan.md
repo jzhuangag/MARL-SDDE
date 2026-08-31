@@ -1,8 +1,9 @@
 # Autonomous CPU research plan — 2026-08-31
 
-## Current decision: change the interface, preserve the evidence
+## Current decision: certify training consequences, not readout alone
 
-Read causal_collaboration_closure_decision.md before further work.
+Read rl_collaboration_integration_decision.md before further work; the earlier
+reference remains in causal_collaboration_closure_decision.md.
 This integration plan supersedes the chronological audit-only to-do list;
 complete historical versions remain in Git.
 
@@ -10,23 +11,35 @@ Stop treating the frozen post-hoc debt penalty as a proved safety controller.
 The independent-local-bank, predictable-readout reference has an exact
 post-update contrast identity, finite-time comparison, composite Lyapunov
 learning bound and realized all-prefix allowance under explicit known-mixing
-scalar AR assumptions. It is NOT the final ICML algorithm: ordinary online
-aggregation does not establish novelty, and general RL/TD is still missing.
+scalar AR assumptions. The integration gate is now complete: retain that
+reference as a baseline, reject readout alone as the final candidate. Direct
+TD-target substitution is biased; same-history graph comparisons cannot
+certify counterfactual training trajectories.
+
+The selected problem is useful transfer during personalized TD training,
+judged by its effect on subsequent learning risk relative to actual local
+training. Exact Markov-jump Lyapunov risk recursions and baseline advantage
+telescoping close the known-model/oracle contract. They do NOT supply a
+model-free, low-complexity controller or a new performance-difference lemma.
 
 ## Next bounded integration package
 
-1. Interface and novelty gate: determine whether a useful fixed-policy RL
-   estimator fits this causal risk contract and yields a contribution beyond
-   existing online/multitask aggregation. An AR location statistic is not a
-   bootstrapped TD target. Specify the trained object, objective and actual
-   comparator histories. Produce either a justified final candidate or a
-   documented rejection. Do not accumulate disconnected algebra tests.
+1. One central feasibility decision: can fully charged observable data give
+   an affordable, useful upper bound on the projected future-risk advantage
+   of delayed transfers? Derive the projected quadratic and linear terms,
+   accounting for the unknown target, continuous Markov dependence, horizon
+   tail and sensing resources. If only full-model/oracle access or permanent
+   no-transfer is justified, reject that implementation. Do not silently
+   substitute Bellman residual for value risk or ignore comparator history.
+   The current exact oracle witness is NOT a development benchmark or a
+   source of performance-tuning data. Do not accumulate disconnected audits.
 2. Only if step 1 and outcome-free feasibility pass: freeze ONE CPU
    development protocol, its source/public config, fresh development seeds,
-   accounting and decision rules. Include correct static graphs for this
-   architecture, plain online aggregation, nonzero temporal correlation,
-   heterogeneity/change, delay, allowance tightness and scaling. Passing
-   implementation tests is not an efficacy gate. Preserve failures.
+   accounting and decision rules. Include actual local and strong static
+   training histories, immediate-risk transfer and other matched baselines,
+   nonzero temporal correlation, heterogeneity/change, delay, safety cost
+   and scaling. A guarantee relative to local training is not automatically
+   best-static-graph matching. Tests are not an efficacy gate. Preserve failures.
 3. Only if unchanged development succeeds: freeze final implementation and
    unused independent confirmation seeds. Preserve all comparison scopes.
    Do not use T-083A formal outcomes for tuning or recycle them as evidence.
@@ -37,15 +50,22 @@ aggregation does not establish novelty, and general RL/TD is still missing.
 No efficacy preregistration or scientific trajectory is authorized by the
 reference qualification alone. No new experiment number bypasses failure.
 
-## Completed in this integration turn
+## Completed integration qualification
 
-- Derived causal timing, comparator, stationary/change Lyapunov and
-  all-prefix risk statements in causal_collaboration_closure_decision.md.
-- Implemented two-phase reference and 24 qualification tests.
-- Full experiments regression: 749 passed, 7 skipped, 107.09 seconds.
-- Source verification records inherited methods and one unresolved
-  bibliographic page-range conflict. No submission-ready novelty claim.
-- No new efficacy run, no old formal regeneration, no GPU/remote operation.
+- Earlier reference: causal timing, restricted finite-time Lyapunov and
+  all-prefix allowance; 24 tests. Its controller and provenance are unchanged.
+- New interface decision: ordinary-TD bias, recursive-comparator mismatch,
+  current versus future value-risk distinction, exact Markov-jump risk metric
+  and full-trajectory oracle advantage identity; 20 deterministic tests.
+- Positive oracle qualification is conditional on privileged model/error
+  access. It is not an observable controller or benchmark efficacy result.
+- Full experiments regression: 769 passed, 7 skipped, 108.86 seconds.
+- Exact audit CLI output reproduced byte for byte in two executions.
+- Four source records cross-checked with primary records, DOI redirects and
+  OpenAlex; Semantic Scholar returned 429. See the new source-verification
+  JSON for version boundaries. No final bibliography or novelty claim.
+- No sampled scientific trajectory, old formal regeneration, GPU or remote
+  storage operation. No new efficacy protocol or formal seeds registered.
 
 ## Non-negotiable preserved results
 
