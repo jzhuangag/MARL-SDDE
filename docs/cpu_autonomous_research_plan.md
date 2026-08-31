@@ -1,6 +1,6 @@
 # Autonomous CPU research plan — 2026-08-31
 
-## Current decision: reject the absolute-tail shield, retain the training problem
+## Current decision: no final algorithm yet; do not turn generic safety into the paper
 
 Read collaboration_paper_thesis.md for the single paper-level contribution
 contract, then rl_collaboration_integration_decision.md; the earlier
@@ -19,6 +19,14 @@ absolute-tail shields return zero in all 30 declared perfect-donor analytic
 cells, even with statistical uncertainty removed. Reject them as the current
 inexpensive algorithm candidate. A valid contraction certificate alone is not
 a useful collaboration controller; more samples do not resolve this example.
+The subsequent delayed-training-risk interface is COMPLETE in
+delayed_training_risk_decision.md. A fixed-law continuing-stream reference now
+controls cumulative PRE-UPDATE VISITED-STATE risk with actual shadow restoration,
+fully reserved delayed labels and a chronological martingale argument. Reject
+the generic ledger as the final algorithm: it does not certify full-state MSE,
+does not establish reflected-debt/Lyapunov convergence or useful learning gain,
+and budget/rollback/delay primitives already have close prior counterparts.
+No new efficacy protocol is authorized by this narrower reference theorem.
 This integration plan supersedes the chronological audit-only to-do list;
 complete historical versions remain in Git.
 
@@ -70,25 +78,30 @@ affordable long-horizon learning benefit has not been established.
    proves impossibility of every long-horizon estimator. The absolute-tail
    design is also the matched certified short-unroll baseline, not a distinct
    algorithmic novelty. No new pilot is authorized by this package.
-   The next bounded integration decision is whether an executed recursive
-   learner can instead control cumulative negative transfer against its OWN
-   independently updated local shadow, using safe restoration and delayed
-   observable evidence. This is not yet an adopted or novel mechanism.
-   FIRST read T-071A/T-072's designs and immutable outcomes and the relevant
-   Conservative Bandits algorithm/proofs. T-071A already resets to shadow;
-   cumulative baseline credit is inherited. Neither component alone supplies
-   the needed paper-level contribution. Do not recycle either as a new idea.
-   Fix the exact risk and timing before deriving a ledger: visited-state risk
-   is not full-state MSE, delayed overlapping returns are not iid labels,
-   and past training damage is not erased by merely stopping further mixing.
-   Charge pending labels, the final action, sensor/learning transitions and
-   donor messages, and state any initial safety allowance explicitly. Check
-   cold-start/nontriviality, not only a retrospective queue inequality.
-   Deliver one actual-trajectory risk identity, executable controller rule,
-   finite-time allowance/cost argument and go/no-go novelty/feasibility
-   decision. If it reduces to an inherited budget rule or cannot certify
-   nontrivial benefit at matched costs, stop that proposal before an efficacy
-   run. Do not add experiment identifiers or erase old negative decisions.
+   The executed-risk/credit question has now been resolved at its attainable
+   scope. T-071A/T-072 source and immutable outcomes were read; shadow rollback
+   and dual-use data are already present. Conservative UCB's algorithm and
+   safety proof, and Prudent-Banker's displayed delay/baseline mechanism were
+   checked. Do not claim generic credit, rollback or delayed safety as new.
+   The new reference freezes actual predictions before rewards, colors
+   overlapping finite returns, retains previous valid certificates when noisy
+   feedback arrives, and reserves every pending/final action. Its scalar
+   admission is closed form. It is not a general affine-TD Lyapunov proof.
+   Deterministic counterexamples establish that visited risk does not imply
+   full-state MSE safety and cumulative credit does not bound reflected debt.
+   These are design boundaries, not a new negative-results paper mainline.
+   The NEXT bounded deliverable is ONE paper-level model/claim/mechanism
+   decision memo, not another generic wrapper or additional audit test suite.
+   Compare the expensive full-state future-risk references with this cheaper
+   visited-risk reference. Determine which missing observable information a
+   learning-specific mechanism needs, its permitted access and total cost.
+   Require a single contribution contract: precise primary learning risk,
+   differentiated mechanism versus closest methods, actual executed algorithm,
+   finite-time theory chain, strong matched baselines, and one decisive CPU
+   feasibility test. State any proposed weakening of safety or change of model
+   openly; do not silently relabel the risk. If no differentiated feasible
+   route emerges, report the necessary choices rather than launching more
+   experiments or promising an ICML paper. Frozen evidence cannot select it.
 2. Only if this replacement interface AND novelty/feasibility pass: freeze ONE CPU
    development protocol, its source/public config, fresh development seeds,
    accounting and decision rules. Include actual local and strong static
@@ -144,6 +157,17 @@ reference qualification alone. No new experiment number bypasses failure.
   identities. Its Lyapunov quantity controls a difference of coupled training
   trajectories; it is not a general affine-TD convergence theorem. See
   td_contraction_execution_record.json for commands, JUnit and SHA-256 records.
+- Delayed actual-risk ledger: 19 deterministic tests; correct fixed-law
+  continuing-stream visited-risk allowance, explicit tail-label reservations,
+  one-use accounting and cold-start condition. Full-state MSE and reflected
+  queue implications both have explicit counterexamples. Retain as a reference,
+  reject as a sufficient paper mechanism. Full regression before the last
+  numerical guard: 853 passed, 7 skipped in 746.96 seconds. The bounded
+  rounding guard and its nineteenth test were subsequently verified by 105
+  final-source dependency tests and a 19-test standalone run; do not label
+  the earlier full regression as testing this last change. Two final CLI
+  executions are byte-identical. Commands, version boundaries and hashes
+  are recorded in delayed_training_risk_execution.json.
 
 ## Non-negotiable preserved results
 
