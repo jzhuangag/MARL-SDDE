@@ -2,7 +2,8 @@
 
 ## Current decision: certify training consequences, not readout alone
 
-Read rl_collaboration_integration_decision.md before further work; the earlier
+Read collaboration_paper_thesis.md for the single paper-level contribution
+contract, then rl_collaboration_integration_decision.md; the earlier
 reference remains in causal_collaboration_closure_decision.md.
 This integration plan supersedes the chronological audit-only to-do list;
 complete historical versions remain in Git.
@@ -24,6 +25,13 @@ model-free, low-complexity controller or a new performance-difference lemma.
 
 ## Next bounded integration package
 
+The user requires one coherent problem-mechanism-theorem-evidence narrative.
+The prospective contribution is affordable, certified long-horizon credit
+assignment for collaborative training, not a list of QP/graph/delay/queue
+features. Five directly overlapping method families are recorded in
+collaboration_paper_thesis_sources.json. Dynamic graphs and meta-learning
+alone do not establish novelty; current future-risk results remain oracle-only.
+
 1. One central feasibility decision: can fully charged observable data give
    an affordable, useful upper bound on the projected future-risk advantage
    of delayed transfers? Derive the projected quadratic and linear terms,
@@ -33,6 +41,11 @@ model-free, low-complexity controller or a new performance-difference lemma.
    substitute Bellman residual for value risk or ignore comparator history.
    The current exact oracle witness is NOT a development benchmark or a
    source of performance-tuning data. Do not accumulate disconnected audits.
+   Produce one estimator/controller/error-and-cost-bound/CPU-qualification
+   package, with a concrete pass/reject decision. Include comparison to a
+   matched short-unroll/meta-gradient alternative. If that alternative supplies
+   the same guarantee and benefit at comparable cost, reconsider the mechanism
+   rather than adding system assumptions or new experimental labels.
 2. Only if step 1 and outcome-free feasibility pass: freeze ONE CPU
    development protocol, its source/public config, fresh development seeds,
    accounting and decision rules. Include actual local and strong static
