@@ -1,10 +1,22 @@
-# Autonomous CPU research plan — 2026-08-31
+# Autonomous CPU research plan — 2026-09-01
 
-## Current decision: no final algorithm yet; do not turn generic safety into the paper
+## Current decision: retain full-state learning, revise the safety-first mechanism
 
-Read collaboration_paper_thesis.md for the single paper-level contribution
-contract, then rl_collaboration_integration_decision.md; the earlier
-reference remains in causal_collaboration_closure_decision.md.
+Read collaboration_paper_level_decision.md FIRST. The paper-level decision is
+COMPLETE: the current generic safety-first parameter-mixing architecture is
+not the final mainline. The selected research candidate is calibration-limited
+collaboration: learn recipient-corrected update information from the same
+delayed Markov stream and require a net benefit after calibration cost.
+It remains a candidate, NOT an established new algorithm. In particular,
+AffPCL (ICLR 2026) is a newly verified close baseline with personalized
+correction, a TD application and its own Lyapunov analysis. A routine
+Markov/delay extension or generic control variates do not pass novelty.
+The original full-state risk goal remains. Exact all-prefix no-harm is no
+longer a mandatory prospective claim; finite-time risk with an explicit
+calibration penalty is the proposed replacement. This changes NO old gate.
+The new decision supersedes the method ambition in collaboration_paper_thesis.md;
+the latter, rl_collaboration_integration_decision.md and
+causal_collaboration_closure_decision.md remain historical references.
 The completed observable-estimator feasibility decision is now recorded in
 observable_transfer_feasibility.md: the direct coupled-probe implementation
 is a valid reset-access reference but is rejected as the inexpensive final
@@ -48,12 +60,12 @@ model-free, low-complexity controller or a new performance-difference lemma.
 ## Next bounded integration package
 
 The user requires one coherent problem-mechanism-theorem-evidence narrative.
-The prospective contribution is affordable, certified long-horizon credit
-assignment for collaborative training, not a list of QP/graph/delay/queue
-features. Five directly overlapping method families are recorded in
-collaboration_paper_thesis_sources.json. Dynamic graphs and meta-learning
-alone do not establish novelty. Correct observable references now exist, but
-affordable long-horizon learning benefit has not been established.
+The candidate contribution is net personalized learning acceleration after
+learning the correction required to reuse heterogeneous data. Its proposed
+Lyapunov risk bound and calibration cost must explain that same mechanism.
+The new nearest-method/source record is collaboration_paper_level_sources.json;
+earlier graph/meta-learning comparisons remain historical. Neither novelty
+nor an end-to-end affordable learning benefit has yet been established.
 
 1. The direct-probe branch has been resolved: exact observed-data coefficients,
    finite-return bias, fixed-n uniform confidence, scalar/joint robust QP and
@@ -90,22 +102,23 @@ affordable long-horizon learning benefit has not been established.
    Deterministic counterexamples establish that visited risk does not imply
    full-state MSE safety and cumulative credit does not bound reflected debt.
    These are design boundaries, not a new negative-results paper mainline.
-   The NEXT bounded deliverable is ONE paper-level model/claim/mechanism
-   decision memo, not another generic wrapper or additional audit test suite.
-   Compare the expensive full-state future-risk references with this cheaper
-   visited-risk reference. Determine which missing observable information a
-   learning-specific mechanism needs, its permitted access and total cost.
-   Require a single contribution contract: precise primary learning risk,
-   differentiated mechanism versus closest methods, actual executed algorithm,
-   finite-time theory chain, strong matched baselines, and one decisive CPU
-   feasibility test. State any proposed weakening of safety or change of model
-   openly; do not silently relabel the risk. If no differentiated feasible
-   route emerges, report the necessary choices rather than launching more
-   experiments or promising an ICML paper. Frozen evidence cannot select it.
+   The paper-level decision is now COMPLETE, not another pending memo.
+   Read collaboration_paper_level_decision.md Sections 3-6 for the NEXT bounded
+   deliverable: one completely specified finite-MRP calibration/learning
+   construction with observable reward/data access, birth/delivery filtration,
+   update rule, attainable calibration bound and fully charged cost. Close
+   its coupled learning/calibration/delay Lyapunov recursion and establish
+   a nonempty net-benefit condition. The displayed drift identity and scalar
+   examples are algebraic interfaces, NOT that completed proof. Confront
+   AffPCL's correction and density-ratio assumptions and the earlier
+   importance-weighted transfer baseline. If it requires privileged true
+   models, unpriced data, vacuous bounds or merely duplicates these methods,
+   reject it and report that no qualified successor has been found; do not
+   enqueue a new wrapper or experiment identifier. No formal-data tuning.
 2. Only if this replacement interface AND novelty/feasibility pass: freeze ONE CPU
    development protocol, its source/public config, fresh development seeds,
    accounting and decision rules. Include actual local and strong static
-   training histories, immediate-risk transfer and other matched baselines,
+   training histories, AffPCL/corrected-update and other matched baselines,
    nonzero temporal correlation, heterogeneity/change, delay, safety cost
    and scaling. A guarantee relative to local training is not automatically
    best-static-graph matching. Tests are not an efficacy gate. Preserve failures.
@@ -168,6 +181,16 @@ reference qualification alone. No new experiment number bypasses failure.
   the earlier full regression as testing this last change. Two final CLI
   executions are byte-identical. Commands, version boundaries and hashes
   are recorded in delayed_training_risk_execution.json.
+- Paper-level decision: retain personalized full-state learning, reject a
+  generic exact-safe mixing wrapper as the final algorithm, and select the
+  calibration-cost construction for one bounded feasibility decision. Three
+  primary sources were freshly cross-checked, including AffPCL as a close
+  personalized/Lyapunov baseline. No completed novelty or algorithm theorem
+  is claimed. Final-source full regression now closes the previous numerical-
+  guard version gap: 854 passed, 7 skipped in 752.63 seconds. No experimental
+  source changed in this decision turn. Exact scalar drift/covariance checks
+  are algebra, not new efficacy evidence. See collaboration_paper_level_decision.md,
+  collaboration_paper_level_sources.json and collaboration_paper_level_execution.json.
 
 ## Non-negotiable preserved results
 
