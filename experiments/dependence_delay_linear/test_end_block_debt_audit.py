@@ -61,3 +61,20 @@ def test_pre_mix_debt_does_not_bound_final_mix():
     mixed = 10.  # A feasible donor-only mix in a graph with such a donor.
     assert q == 0
     assert (mixed-theta)**2-(shadow-theta)**2 == 100
+
+
+def test_shield_minimum_and_closed_form_segment():
+    for s in [-2., -.2, 0., .4, 2.]:
+        h, r = .1, .5
+        optimum = -np.sign(s-h)*max(abs(s-h)-r,0.)
+        objective = lambda d: d*d+2*d*(s-h)+2*r*abs(d)
+        np.testing.assert_allclose(objective(optimum),-max(abs(s-h)-r,0.)**2,atol=1e-14)
+        for p in [-3.,0.,3.]:
+            v = p-s
+            if v == 0:
+                continue
+            c = v*(s-h)+r*abs(v)
+            beta = min(1.,max(0.,-2*c/v**2))
+            assert objective(beta*v) <= 1e-12
+            if beta < 1:
+                assert objective((beta+1e-4)*v) > 0
