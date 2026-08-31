@@ -1,8 +1,29 @@
 # Autonomous CPU research plan — 2026-09-01
 
-## Current decision: retain full-state learning, revise the safety-first mechanism
+## Current decision: bounded calibrated-sharing construction rejected; no pilot
 
-Read collaboration_paper_level_decision.md FIRST. The paper-level decision is
+Read calibrated_flip_construction_decision.md FIRST. The one concrete successor
+construction requested below is now COMPLETE, and is rejected as the paper
+candidate. Its fully charged, delayed two-state-MRP protocol has an exact
+full-value Lyapunov/moment analysis and a nonempty gain region against
+constant-step local TD. A same-information, O(1)-work local plug-in learner,
+however, has O(log T) cumulative risk while this fixed-calibration/fixed-step
+construction retains a linear risk floor. Its informative flip sequence is
+iid despite correlated raw states; it does not solve the hard general Markov
+calibration problem. Independent novelty against AffPCL is unqualified.
+
+No new performance experiment, formal seed or automatically selected successor
+is queued. This closes the bounded construction gate negatively, not the
+entire possibility of collaborative learning. After completing verification
+and writing the decision record, the hourly sdde-cpu follow-up was PAUSED at
+this stop boundary. Resuming requires a substantive new information/structure premise
+and research decision, not another weight/window sweep of this construction.
+The original goal and every prior result remain preserved; no ICML-ready
+algorithm or manuscript is claimed.
+
+## Prior paper-level decision and preserved reference branches
+
+Read collaboration_paper_level_decision.md for the preceding decision. It is
 COMPLETE: the current generic safety-first parameter-mixing architecture is
 not the final mainline. The selected research candidate is calibration-limited
 collaboration: learn recipient-corrected update information from the same
@@ -57,7 +78,7 @@ training. Exact Markov-jump Lyapunov risk recursions and baseline advantage
 telescoping close the known-model/oracle contract. They do NOT supply a
 model-free, low-complexity controller or a new performance-difference lemma.
 
-## Next bounded integration package
+## Completed bounded integration package and conditional future stages
 
 The user requires one coherent problem-mechanism-theorem-evidence narrative.
 The candidate contribution is net personalized learning acceleration after
@@ -103,18 +124,17 @@ nor an end-to-end affordable learning benefit has yet been established.
    full-state MSE safety and cumulative credit does not bound reflected debt.
    These are design boundaries, not a new negative-results paper mainline.
    The paper-level decision is now COMPLETE, not another pending memo.
-   Read collaboration_paper_level_decision.md Sections 3-6 for the NEXT bounded
-   deliverable: one completely specified finite-MRP calibration/learning
-   construction with observable reward/data access, birth/delivery filtration,
-   update rule, attainable calibration bound and fully charged cost. Close
-   its coupled learning/calibration/delay Lyapunov recursion and establish
-   a nonempty net-benefit condition. The displayed drift identity and scalar
-   examples are algebraic interfaces, NOT that completed proof. Confront
-   AffPCL's correction and density-ratio assumptions and the earlier
-   importance-weighted transfer baseline. If it requires privileged true
-   models, unpriced data, vacuous bounds or merely duplicates these methods,
-   reject it and report that no qualified successor has been found; do not
-   enqueue a new wrapper or experiment identifier. No formal-data tuning.
+   The requested finite-MRP construction is now COMPLETE in
+   calibrated_flip_construction_decision.md. Observable updates, fixed-lag
+   birth-order timing, fully charged dual-use calibration, its exact error
+   law, the real value-error Lyapunov drift and finite-resource-horizon gain
+   against constant-step TD are specified. A strong local O(log T) cumulative
+   risk bound rejects that comparator-limited gain as the desired mainline.
+   Same-window empirical correction cancels donor information; disjoint-window
+   unbiased correction does not evade full-data local variance accounting.
+   These are scoped mathematical results, not an impossibility theorem for
+   every adaptive collaboration mechanism. No qualified successor was found.
+   Do not enqueue a new wrapper or experiment identifier. No formal-data tuning.
 2. Only if this replacement interface AND novelty/feasibility pass: freeze ONE CPU
    development protocol, its source/public config, fresh development seeds,
    accounting and decision rules. Include actual local and strong static
@@ -191,6 +211,17 @@ reference qualification alone. No new experiment number bypasses failure.
   source changed in this decision turn. Exact scalar drift/covariance checks
   are algebra, not new efficacy evidence. See collaboration_paper_level_decision.md,
   collaboration_paper_level_sources.json and collaboration_paper_level_execution.json.
+- Calibrated flip construction: complete observable two-agent reference,
+  exact full-value moments including warm-up/calibration dependence, fixed-lag
+  resource clock, and strictly positive finite-horizon gain against fixed-step
+  local TD. Strong local learning and the iid-innovation reduction reject it
+  as the paper candidate. One exact rational audit checks 1,024 enumerated
+  five-tick paths, not pilot seeds. Two normalized stdout replays are identical;
+  independent variance/derivative checks pass. Full regression: 854 passed,
+  7 artifact-dependent tests skipped, 729.07 seconds. The standalone proof
+  audit runs separately; it is not counted as an extra pytest test. See
+  calibrated_flip_construction_execution.json. No qualified successor or
+  performance protocol is automatically queued at this stop boundary.
 
 ## Non-negotiable preserved results
 
