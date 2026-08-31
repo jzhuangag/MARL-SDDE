@@ -1,19 +1,73 @@
 # Autonomous CPU research plan — 2026-08-31
 
-Hourly in-thread heartbeat `sdde-cpu` is ACTIVE. It checks current processes before starting work; this is periodic continuation, not an always-running scientific process. Local machine and app must remain available.
+## Current decision: change the interface, preserve the evidence
 
-1. Completed: T-083A result/reproduction audit and full regression (663 passed, 7 skipped). Frozen decision FAIL: reproduction F12 and strict F13. See validation_t083a_formal_end_block_confirmation.md.
-2. In progress: certificate double counting confirmed by source inspection and a deterministic four-row counterexample; see end_block_certificate_audit_20260831.md. Next audit coverage, empirical debt versus true risk, Markov block law and scaling. Do not modify frozen controller/results.
-3. In progress: end_block_debt_theory_audit_20260831.md derives the exact pre-mix paired-loss identity, nonzero AR(1) conditional bias, queue telescoping/drift, and a conditional convex target-interval shield. Five deterministic algebra tests pass. Cross-block noise is continuous, not reset. Post-mix risk and queue stability are not yet covered. Next inspect exact-moment baseline law alignment, then target coverage under explicit noise/mixing assumptions. Formal outcomes must not tune parameters.
-4. Current next task: implement a separate augmented AR(1) moment audit evaluator and compare against direct covariance. The static optimizer's omitted cross-block covariance is confirmed; see markov_baseline_law_and_target_coverage_audit.md. A public variance/mixing-bound target interval and simultaneous coverage argument are derived there; practical width/nontriviality and expected-risk guarantees remain open. Eleven combined deterministic audit tests pass. Only after theory/interface and feasibility checks, preregister a separate CPU validation with fresh seeds; execute once, reproduce, retain every gate failure.
-5. Latest: independent augmented covariance primitive verified against direct Toeplitz covariance (continuous_ar1_audit_and_shield_geometry.md); 25 combined audit tests pass. Derived strict interval-shield nontriviality condition and O(1) per-recipient interpolation shield; not integrated or efficacy-tested. Next integrate exact deterministic block-end/history maps separately and check direct linear responses, then assess public-bound feasibility. Commit/push reviewed changes. Do not start GPU/HPC4 or remote storage cleanup; pause heartbeat at genuine user-input or completion boundary.
+Read causal_collaboration_closure_decision.md before further work.
+This integration plan supersedes the chronological audit-only to-do list;
+complete historical versions remain in Git.
 
-6. Latest completed: fixed_end_block_moments_audit.py integrates deterministic end-block mixing, oldest-first delayed history and local shadow with continuous AR(1) moments. Twelve cases match exact symmetric-basis risk integration through the unchanged frozen simulator; see fixed_end_block_moment_integration_audit.md. Next analyze public-bound shield nontriviality/width before designing any efficacy registration. No old weights or formal outputs changed.
+Stop treating the frozen post-hoc debt penalty as a proved safety controller.
+The independent-local-bank, predictable-readout reference has an exact
+post-update contrast identity, finite-time comparison, composite Lyapunov
+learning bound and realized all-prefix allowance under explicit known-mixing
+scalar AR assumptions. It is NOT the final ICML algorithm: ordinary online
+aggregation does not establish novelty, and general RL/TD is still missing.
 
-7. Latest: cumulative_shield_feasibility_audit.md derives a prefix-wise cumulative excess bound using certified credit, its scalar acceptance rule, and the zero-credit cold-start obstruction. Eleven deterministic tests pass. This is accounting, not a completed Lyapunov convergence theorem. Next implement the analytic shadow/interval activation-probability diagnostic and its covariance checks, then define a bounded outcome-free feasibility protocol. No efficacy pilot authorized yet.
+## Next bounded integration package
 
-8. Latest: public-model activation diagnostic and 108-scenario/1,728-block analytic scan frozen at ca33223, executed twice with identical outputs. See shield_activation_scan_validation.md. Strict interval-shield availability is sparse (maximum scenario mean 0.153826); not efficacy or a formal gate. No pilot authorized. Next bounded task: derive a direct paired-risk certificate exploiting shared-noise cancellation; explicitly audit predictability, Markov bias and failure-event risk before proposing another controller.
+1. Interface and novelty gate: determine whether a useful fixed-policy RL
+   estimator fits this causal risk contract and yields a contribution beyond
+   existing online/multitask aggregation. An AR location statistic is not a
+   bootstrapped TD target. Specify the trained object, objective and actual
+   comparator histories. Produce either a justified final candidate or a
+   documented rejection. Do not accumulate disconnected algebra tests.
+2. Only if step 1 and outcome-free feasibility pass: freeze ONE CPU
+   development protocol, its source/public config, fresh development seeds,
+   accounting and decision rules. Include correct static graphs for this
+   architecture, plain online aggregation, nonzero temporal correlation,
+   heterogeneity/change, delay, allowance tightness and scaling. Passing
+   implementation tests is not an efficacy gate. Preserve failures.
+3. Only if unchanged development succeeds: freeze final implementation and
+   unused independent confirmation seeds. Preserve all comparison scopes.
+   Do not use T-083A formal outcomes for tuning or recycle them as evidence.
+4. Then design matched standard RL validation, requesting GPU/HPC4 handoff
+   only if necessary. Write a unified paper and proof appendix around the
+   verified mechanism, not the historical participation manuscript.
 
-9. Latest: paired_innovation_risk_certificate_audit.md derives an observable within-block innovation estimator, predictable pre-mix paired-error martingale and all-prefix Gaussian-mixture certificate under known lambda and valid variance bound. Nine algebra tests pass. Not applicable directly to adaptive post-mix errors; not a controller guarantee. Next derive the exact prior-post-mix/next-pre-mix risk bridge including target changes, AR boundary dependence and terminal action, then assess a prospective finite reserve. No efficacy run authorized.
+No efficacy preregistration or scientific trajectory is authorized by the
+reference qualification alone. No new experiment number bypasses failure.
 
-Unifying question: when can causal time-varying collaboration improve personalized finite-time learning under resource and delay constraints? The current small affine simulator is not an ICML-ready full experimental package. No acceptance or positive-outcome guarantee is made.
+## Completed in this integration turn
+
+- Derived causal timing, comparator, stationary/change Lyapunov and
+  all-prefix risk statements in causal_collaboration_closure_decision.md.
+- Implemented two-phase reference and 24 qualification tests.
+- Full experiments regression: 749 passed, 7 skipped, 107.09 seconds.
+- Source verification records inherited methods and one unresolved
+  bibliographic page-range conflict. No submission-ready novelty claim.
+- No new efficacy run, no old formal regeneration, no GPU/remote operation.
+
+## Non-negotiable preserved results
+
+T-083A endpoints/cells, original/reproduction summaries and frozen gates
+remain untouched. Reproduction F12 timeout and strict F13 summary mismatch
+retain FAIL. Primary temporal correlation was zero; stationary versus local
+had a cost. Continuous-AR fixed-baseline covariance omission and duplicate
+NoiseCertificate evidence remain documented, not silently repaired.
+
+Audit trail: validation_t083a_formal_end_block_confirmation.md,
+end_block_certificate_audit_20260831.md,
+end_block_debt_theory_audit_20260831.md,
+markov_baseline_law_and_target_coverage_audit.md,
+fixed_end_block_moment_integration_audit.md,
+shield_activation_scan_validation.md,
+paired_innovation_risk_certificate_audit.md.
+
+## Execution rules
+
+Hourly heartbeat sdde-cpu is periodic continuation, not a continuously
+running experiment. Check Git/processes/logs before CPU work; never duplicate
+a running job. Record commands, hashes, outcomes and stop decisions, then
+commit/push reviewed changes. No GPU/HPC4, remote storage operation or
+destructive cleanup is authorized. No guarantee of a one-day finish,
+positive experiments or acceptance.
