@@ -5,6 +5,10 @@
 Read collaboration_paper_thesis.md for the single paper-level contribution
 contract, then rl_collaboration_integration_decision.md; the earlier
 reference remains in causal_collaboration_closure_decision.md.
+The completed observable-estimator feasibility decision is now recorded in
+observable_transfer_feasibility.md: the direct coupled-probe implementation
+is a valid reset-access reference but is rejected as the inexpensive final
+method. No efficacy run is authorized by that qualification.
 This integration plan supersedes the chronological audit-only to-do list;
 complete historical versions remain in Git.
 
@@ -32,13 +36,20 @@ features. Five directly overlapping method families are recorded in
 collaboration_paper_thesis_sources.json. Dynamic graphs and meta-learning
 alone do not establish novelty; current future-risk results remain oracle-only.
 
-1. One central feasibility decision: can fully charged observable data give
-   an affordable, useful upper bound on the projected future-risk advantage
-   of delayed transfers? Derive the projected quadratic and linear terms,
-   accounting for the unknown target, continuous Markov dependence, horizon
-   tail and sensing resources. If only full-model/oracle access or permanent
-   no-transfer is justified, reject that implementation. Do not silently
-   substitute Bellman residual for value risk or ignore comparator history.
+1. The direct-probe branch has been resolved: exact observed-data coefficients,
+   finite-return bias, fixed-n uniform confidence, scalar/joint robust QP and
+   full cost are derived and implemented. Its O(n H k) tabular propagation
+   and conditional reset access do not solve inexpensive long-horizon credit.
+   A projection-only TD recursion also fails due to off-subspace leakage.
+   Do not rerun this branch seeking a passing performance result.
+   The remaining central feasibility question is whether directional
+   information can be reused/amortized with a proved context-change/leakage
+   error and enough remaining benefit after all costs. Specify the actual
+   permitted data access first; fresh resets are not a continuing Markov
+   stream. A new mechanism must reduce work relative to the reference, not
+   just tighten a worst-case constant. If only oracle access or permanent
+   no-transfer is justified, reject it. Do not silently substitute Bellman
+   residual for value risk or ignore comparator history.
    The current exact oracle witness is NOT a development benchmark or a
    source of performance-tuning data. Do not accumulate disconnected audits.
    Produce one estimator/controller/error-and-cost-bound/CPU-qualification
@@ -79,6 +90,13 @@ reference qualification alone. No new experiment number bypasses failure.
   JSON for version boundaries. No final bibliography or novelty claim.
 - No sampled scientific trajectory, old formal regeneration, GPU or remote
   storage operation. No new efficacy protocol or formal seeds registered.
+- Observable reference qualification: 20 additional deterministic tests;
+  current full regression 789 passed, 7 skipped in 117.95 seconds. Exact CLI
+  replay is byte-identical. General QP has a stated optimization error bound;
+  confidence is fixed-n and conditional on fresh reset-access replicates.
+- Known-model moment identity now has a correct observable, fully charged
+  reference estimator. It still lacks the computational advantage required
+  by the paper thesis, and same-dual-budget no-harm is not proved.
 
 ## Non-negotiable preserved results
 
