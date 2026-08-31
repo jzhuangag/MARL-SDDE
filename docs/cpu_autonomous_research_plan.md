@@ -9,6 +9,10 @@ The completed observable-estimator feasibility decision is now recorded in
 observable_transfer_feasibility.md: the direct coupled-probe implementation
 is a valid reset-access reference but is rejected as the inexpensive final
 method. No efficacy run is authorized by that qualification.
+The subsequent reusable_transfer_cache_feasibility.md closes fixed-law
+parameter/direction/horizon reuse with explicit residual errors. Retain it as
+a reference, not the final low-cost mechanism. Its up-front collection cost
+and same-total-budget comparison remain unresolved; no pilot is authorized.
 This integration plan supersedes the chronological audit-only to-do list;
 complete historical versions remain in Git.
 
@@ -34,7 +38,8 @@ The prospective contribution is affordable, certified long-horizon credit
 assignment for collaborative training, not a list of QP/graph/delay/queue
 features. Five directly overlapping method families are recorded in
 collaboration_paper_thesis_sources.json. Dynamic graphs and meta-learning
-alone do not establish novelty; current future-risk results remain oracle-only.
+alone do not establish novelty. Correct observable references now exist, but
+affordable long-horizon learning benefit has not been established.
 
 1. The direct-probe branch has been resolved: exact observed-data coefficients,
    finite-return bias, fixed-n uniform confidence, scalar/joint robust QP and
@@ -42,14 +47,28 @@ alone do not establish novelty; current future-risk results remain oracle-only.
    and conditional reset access do not solve inexpensive long-horizon credit.
    A projection-only TD recursion also fails due to off-subspace leakage.
    Do not rerun this branch seeking a passing performance result.
-   The remaining central feasibility question is whether directional
-   information can be reused/amortized with a proved context-change/leakage
-   error and enough remaining benefit after all costs. Specify the actual
-   permitted data access first; fresh resets are not a continuing Markov
-   stream. A new mechanism must reduce work relative to the reference, not
-   just tighten a worst-case constant. If only oracle access or permanent
-   no-transfer is justified, reject it. Do not silently substitute Bellman
-   residual for value risk or ignore comparator history.
+   That fixed-law reuse question is now mathematically resolved: one
+   precollected all-prefix anchor cache supports changing v,D,s,h under a
+   joint coverage event, with explicit e/F residual penalties and an actual
+   local-trajectory finite-T guarantee AFTER collection. It does not justify
+   nonstationary-law reuse, unobserved cross-agent common noise, or giving
+   the baseline fewer resources. Caching alone is rejected as a sufficient
+   final mechanism; do not run it against only an uncached weak comparator.
+   The next bounded question is an observable integrated-sensitivity tail
+   certificate that avoids unrolling to the entire learning horizon. Start
+   from tabular nonnegative B products: their infinity operator norm is
+   exactly ||B_(m-1)...B_0 1||_infinity, observable with one d-vector, not a
+   full d-by-d Gramian. Test whether independent state-conditioned m-step
+   probes can certify max_s E[that norm|s] < 1 at an affordable cost. The
+   conditional block-iteration/tail derivation is now specified in Section
+   7 of the reuse note. Implement and challenge it, including failure,
+   label and sensing costs. Never assume
+   uniform contraction merely from gamma<1: states may remain unvisited.
+   Compare with cached short unrolling using the SAME justified tail bounds;
+   distinguish a genuinely new certificate from the routine optimizer/cache.
+   Give a pass/reject decision on costs and non-vacuity before any pilot.
+   Fresh resets are not a continuing Markov stream. Do not silently
+   substitute Bellman residual for value risk or ignore comparator history.
    The current exact oracle witness is NOT a development benchmark or a
    source of performance-tuning data. Do not accumulate disconnected audits.
    Produce one estimator/controller/error-and-cost-bound/CPU-qualification
@@ -97,6 +116,14 @@ reference qualification alone. No new experiment number bypasses failure.
 - Known-model moment identity now has a correct observable, fully charged
   reference estimator. It still lacks the computational advantage required
   by the paper thesis, and same-dual-budget no-harm is not proved.
+- Reusable cache: all-state/all-prefix normalization, exact affine reuse,
+  out-of-anchor residual and convex robust QP are derived and implemented.
+  Its global once-built-cache event supports a conditional fixed-law
+  expected cumulative comparison, not per-query conditional coverage.
+  Cached short unrolling is explicitly included as a reference; its omitted
+  tail is charged. Current qualification uses deterministic enumeration only.
+  Full current test/replay results and source hashes are recorded in
+  reusable_transfer_cache_execution_record.json.
 
 ## Non-negotiable preserved results
 
