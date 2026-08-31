@@ -1,6 +1,6 @@
 # Autonomous CPU research plan — 2026-08-31
 
-## Current decision: certify training consequences, not readout alone
+## Current decision: reject the absolute-tail shield, retain the training problem
 
 Read collaboration_paper_thesis.md for the single paper-level contribution
 contract, then rl_collaboration_integration_decision.md; the earlier
@@ -13,6 +13,12 @@ The subsequent reusable_transfer_cache_feasibility.md closes fixed-law
 parameter/direction/horizon reuse with explicit residual errors. Retain it as
 a reference, not the final low-cost mechanism. Its up-front collection cost
 and same-total-budget comparison remain unresolved; no pilot is authorized.
+The bounded contraction implementation/qualification is COMPLETE in
+td_contraction_feasibility_decision.md. Both global and direction-specific
+absolute-tail shields return zero in all 30 declared perfect-donor analytic
+cells, even with statistical uncertainty removed. Reject them as the current
+inexpensive algorithm candidate. A valid contraction certificate alone is not
+a useful collaboration controller; more samples do not resolve this example.
 This integration plan supersedes the chronological audit-only to-do list;
 complete historical versions remain in Git.
 
@@ -54,29 +60,36 @@ affordable long-horizon learning benefit has not been established.
    nonstationary-law reuse, unobserved cross-agent common noise, or giving
    the baseline fewer resources. Caching alone is rejected as a sufficient
    final mechanism; do not run it against only an uncached weak comparator.
-   The next bounded question is an observable integrated-sensitivity tail
-   certificate that avoids unrolling to the entire learning horizon. Start
-   from tabular nonnegative B products: their infinity operator norm is
-   exactly ||B_(m-1)...B_0 1||_infinity, observable with one d-vector, not a
-   full d-by-d Gramian. Test whether independent state-conditioned m-step
-   probes can certify max_s E[that norm|s] < 1 at an affordable cost. The
-   conditional block-iteration/tail derivation is now specified in Section
-   7 of the reuse note. Implement and challenge it, including failure,
-   label and sensing costs. Never assume
-   uniform contraction merely from gamma<1: states may remain unvisited.
-   Compare with cached short unrolling using the SAME justified tail bounds;
-   distinguish a genuinely new certificate from the routine optimizer/cache.
-   Give a pass/reject decision on costs and non-vacuity before any pilot.
-   Fresh resets are not a continuing Markov stream. Do not silently
-   substitute Bellman residual for value risk or ignore comparator history.
-   The current exact oracle witness is NOT a development benchmark or a
-   source of performance-tuning data. Do not accumulate disconnected audits.
-   Produce one estimator/controller/error-and-cost-bound/CPU-qualification
-   package, with a concrete pass/reject decision. Include comparison to a
-   matched short-unroll/meta-gradient alternative. If that alternative supplies
-   the same guarantee and benefit at comparable cost, reconsider the mechanism
-   rather than adding system assumptions or new experimental labels.
-2. Only if step 1 and outcome-free feasibility pass: freeze ONE CPU
+   The one-vector and directional contraction package is now resolved too:
+   first/second-moment bounds, Markov block iteration, convex head-plus-tail
+   QP, residuals and full costs are implemented and derived. The necessary
+   activation-and-cost screen passes 5/30 cells, but both finite-radius and
+   zero-uncertainty perfect-donor QPs activate in 0/30. This is a deterministic
+   diagnostic, not a sampled certificate or efficacy experiment. Preserve all
+   rows. Do not rerun the declared grid looking for a pass or claim that this
+   proves impossibility of every long-horizon estimator. The absolute-tail
+   design is also the matched certified short-unroll baseline, not a distinct
+   algorithmic novelty. No new pilot is authorized by this package.
+   The next bounded integration decision is whether an executed recursive
+   learner can instead control cumulative negative transfer against its OWN
+   independently updated local shadow, using safe restoration and delayed
+   observable evidence. This is not yet an adopted or novel mechanism.
+   FIRST read T-071A/T-072's designs and immutable outcomes and the relevant
+   Conservative Bandits algorithm/proofs. T-071A already resets to shadow;
+   cumulative baseline credit is inherited. Neither component alone supplies
+   the needed paper-level contribution. Do not recycle either as a new idea.
+   Fix the exact risk and timing before deriving a ledger: visited-state risk
+   is not full-state MSE, delayed overlapping returns are not iid labels,
+   and past training damage is not erased by merely stopping further mixing.
+   Charge pending labels, the final action, sensor/learning transitions and
+   donor messages, and state any initial safety allowance explicitly. Check
+   cold-start/nontriviality, not only a retrospective queue inequality.
+   Deliver one actual-trajectory risk identity, executable controller rule,
+   finite-time allowance/cost argument and go/no-go novelty/feasibility
+   decision. If it reduces to an inherited budget rule or cannot certify
+   nontrivial benefit at matched costs, stop that proposal before an efficacy
+   run. Do not add experiment identifiers or erase old negative decisions.
+2. Only if this replacement interface AND novelty/feasibility pass: freeze ONE CPU
    development protocol, its source/public config, fresh development seeds,
    accounting and decision rules. Include actual local and strong static
    training histories, immediate-risk transfer and other matched baselines,
@@ -102,7 +115,7 @@ reference qualification alone. No new experiment number bypasses failure.
   and full-trajectory oracle advantage identity; 20 deterministic tests.
 - Positive oracle qualification is conditional on privileged model/error
   access. It is not an observable controller or benchmark efficacy result.
-- Full experiments regression: 769 passed, 7 skipped, 108.86 seconds.
+- Earlier interface regression: 769 passed, 7 skipped, 108.86 seconds.
 - Exact audit CLI output reproduced byte for byte in two executions.
 - Four source records cross-checked with primary records, DOI redirects and
   OpenAlex; Semantic Scholar returned 429. See the new source-verification
@@ -110,7 +123,7 @@ reference qualification alone. No new experiment number bypasses failure.
 - No sampled scientific trajectory, old formal regeneration, GPU or remote
   storage operation. No new efficacy protocol or formal seeds registered.
 - Observable reference qualification: 20 additional deterministic tests;
-  current full regression 789 passed, 7 skipped in 117.95 seconds. Exact CLI
+  then-current full regression 789 passed, 7 skipped in 117.95 seconds. Exact CLI
   replay is byte-identical. General QP has a stated optimization error bound;
   confidence is fixed-n and conditional on fresh reset-access replicates.
 - Known-model moment identity now has a correct observable, fully charged
@@ -124,6 +137,13 @@ reference qualification alone. No new experiment number bypasses failure.
   tail is charged. Current qualification uses deterministic enumeration only.
   Full current test/replay results and source hashes are recorded in
   reusable_transfer_cache_execution_record.json.
+- Contraction/tail package: 25 deterministic tests, 86 dependency tests;
+  full final-source regression 835 passed, 7 skipped in 107.82 seconds.
+  Exact qualification replay is byte-identical; all 30 rows are preserved.
+  Reject the implemented absolute-tail controller, not the fixed-law moment
+  identities. Its Lyapunov quantity controls a difference of coupled training
+  trajectories; it is not a general affine-TD convergence theorem. See
+  td_contraction_execution_record.json for commands, JUnit and SHA-256 records.
 
 ## Non-negotiable preserved results
 
