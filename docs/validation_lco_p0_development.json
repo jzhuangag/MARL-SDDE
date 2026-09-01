@@ -1,0 +1,57 @@
+{
+  "artifact": {
+    "path": "experiments/clocked_async_mpg/results/lco_p0_passive_secant_development/summary.json",
+    "sha256": "24f10369f2a5e54b90466700559060c18d889e4cb58140097fb69673005132b2",
+    "size_bytes": 2133360
+  },
+  "config_sha256": "fb467ec266003718fc6885a8fa909ffdce83c940e5911bf1cb8c54b09f32bad0",
+  "decision": "stop_geometry_sensing_mainline",
+  "development_survives": false,
+  "execution_commit": "c83177b",
+  "formal_evidence": false,
+  "gates": {
+    "P1_finite_and_accounted": true,
+    "P2_each_noise_gain": false,
+    "P3_each_noise_capture": false,
+    "P4_each_noise_cells": false,
+    "P5_each_arrival": false,
+    "P6_low_persistence": false,
+    "P7_low_budget": false,
+    "P8_phase_accuracy": false,
+    "P9_informative_coverage": false,
+    "P10_stationary_potential": false,
+    "P11_budget": true,
+    "P12_development_only": true
+  },
+  "primary_metrics": {
+    "low_budget_mean_dynamic_gain": -0.006911588774197084,
+    "low_persistence_mean_dynamic_gain": 0.002147734909892266,
+    "maximum_budget_overshoot": 0,
+    "noise_0": {
+      "dynamic_improvement_fraction": 0.84375,
+      "mean_dynamic_gain": 0.04016347648468002,
+      "mean_informative_fraction": 0.7588014723851417,
+      "mean_phase_accuracy": 0.9703213224381599,
+      "median_exact_gain_capture": 0.7155314810105537
+    },
+    "noise_0_05": {
+      "dynamic_improvement_fraction": 0.40625,
+      "mean_dynamic_gain": -0.03755135253443895,
+      "mean_informative_fraction": 0.7910519000488758,
+      "mean_phase_accuracy": 0.703485601158203,
+      "median_exact_gain_capture": -0.4099003209495274
+    },
+    "stationary_potential_max_log_rate_loss": 0.22493268194232652
+  },
+  "reanalysis": {
+    "budget_violations": 0,
+    "semantic_summary_exact": true,
+    "unique_specifications": 1920
+  },
+  "scope": {
+    "cells": 240,
+    "coordinate_events": 1966080,
+    "paths": 1920,
+    "seeds": 8
+  }
+}
