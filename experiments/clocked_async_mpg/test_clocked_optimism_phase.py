@@ -5,6 +5,9 @@ import pytest
 
 from .clocked_optimism_phase import (
     choose_clocked_optimism,
+    heterogeneous_clock_metric,
+    heterogeneous_potential_drift_coefficient,
+    heterogeneous_rotational_drift_coefficient,
     potential_coordinate_factors,
     randomized_factor,
     rotational_coordinate_factors,
@@ -76,3 +79,76 @@ def test_invalid_normalized_step_is_rejected() -> None:
     for step in (0.0, 1.0, np.inf):
         with pytest.raises(ValueError):
             rotational_coordinate_factors(step)
+
+
+@pytest.mark.parametrize("arrival", [0.05, 0.2, 0.5, 0.8, 0.95])
+@pytest.mark.parametrize("step", [0.2, 0.5, 0.8])
+def test_clock_balanced_metric_preserves_rotational_phase_boundary(
+    arrival: float, step: float
+) -> None:
+    threshold = rotational_optimism_threshold(step)
+    assert heterogeneous_rotational_drift_coefficient(
+        step,
+        first_agent_probability=arrival,
+        optimism_probability=threshold - 1e-8,
+    ) > 0.0
+    assert heterogeneous_rotational_drift_coefficient(
+        step,
+        first_agent_probability=arrival,
+        optimism_probability=threshold + 1e-8,
+    ) < 0.0
+
+
+@pytest.mark.parametrize("arrival", [0.05, 0.2, 0.5, 0.8, 0.95])
+def test_potential_plain_update_has_more_negative_clock_balanced_drift(
+    arrival: float,
+) -> None:
+    plain = heterogeneous_potential_drift_coefficient(
+        0.4, first_agent_probability=arrival, use_optimism=False
+    )
+    optimistic = heterogeneous_potential_drift_coefficient(
+        0.4, first_agent_probability=arrival, use_optimism=True
+    )
+    assert plain < optimistic < 0.0
+
+
+def test_clock_metric_penalizes_the_rare_agent_coordinate() -> None:
+    first, second = heterogeneous_clock_metric(0.1)
+    assert first / second == pytest.approx(9.0)
+
+
+@pytest.mark.parametrize("arrival", [0.1, 0.37, 0.8])
+@pytest.mark.parametrize("step", [0.2, 0.7])
+@pytest.mark.parametrize("optimism_probability", [0.0, 0.3, 1.0])
+def test_heterogeneous_rotational_matrix_identity(
+    arrival: float, step: float, optimism_probability: float
+) -> None:
+    rotation = np.asarray([[0.0, 1.0], [-1.0, 0.0]])
+    metric = np.diag(heterogeneous_clock_metric(arrival))
+    expected_matrices = []
+    for use_optimism in (False, True):
+        expected = np.zeros((2, 2))
+        for probability, agent in ((arrival, 0), (1.0 - arrival, 1)):
+            selector = np.zeros((2, 2))
+            selector[agent, agent] = 1.0
+            matrix = np.eye(2) - step * selector @ rotation
+            if use_optimism:
+                matrix = (
+                    np.eye(2)
+                    - step
+                    * selector
+                    @ rotation
+                    @ (np.eye(2) - step * rotation)
+                )
+            expected += probability * matrix.T @ metric @ matrix
+        expected_matrices.append(expected)
+    mixed = (
+        (1.0 - optimism_probability) * expected_matrices[0]
+        + optimism_probability * expected_matrices[1]
+    )
+    coefficient = heterogeneous_rotational_drift_coefficient(
+        step,
+        first_agent_probability=arrival,
+        optimism_probability=optimism_probability,
+    )
+    np.testing.assert_allclose(mixed - metric, coefficient * np.eye(2), atol=1e-14)

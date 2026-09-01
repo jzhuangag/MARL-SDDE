@@ -63,6 +63,28 @@ This is a phase boundary and a resource lower bound: below this optimism
 frequency, no scheduling arrangement independent of the current state can
 stabilize the rotational subclass in mean square.
 
+This boundary survives heterogeneous asynchronous clocks.  If agent one is
+selected with any probability \(r\in(0,1)\), use the diagonal Lyapunov metric
+
+\[
+P_r=\operatorname{diag}\!\left(\frac{1-r}{r},1\right).
+\]
+
+For the randomized plain/optimistic update, direct matrix multiplication gives
+
+\[
+\mathbb E[M_k^\top P_rM_k-P_r]
+=(1-r)s^2\{1-p(2-s^2)\}I.
+\]
+
+Thus clock heterogeneity changes the conditioning and noise sensitivity of the
+energy, but not the exact optimism-frequency phase boundary.  In particular,
+the rare agent's coordinate receives weight proportional to its inverse
+arrival probability.  This is the first concrete role of *clock debt*: an
+online rate estimate or debt process must track this metric when arrival rates
+are unknown or time-varying; pretending the Euclidean metric is valid produces
+a false instability conclusion.
+
 Now consider a local quadratic potential with normalized curvature
 \(s=\eta\mu\in(0,1)\).  The uniform-coordinate factors are
 

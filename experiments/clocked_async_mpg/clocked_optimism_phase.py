@@ -74,6 +74,62 @@ def randomized_factor(factors: PhaseFactors, optimism_probability: float) -> flo
     )
 
 
+def heterogeneous_clock_metric(first_agent_probability: float) -> tuple[float, float]:
+    """Diagonal Lyapunov metric that balances two asynchronous arrival clocks."""
+
+    if (
+        not math.isfinite(first_agent_probability)
+        or not 0.0 < first_agent_probability < 1.0
+    ):
+        raise ValueError("arrival probability must lie in (0, 1)")
+    return ((1.0 - first_agent_probability) / first_agent_probability, 1.0)
+
+
+def heterogeneous_rotational_drift_coefficient(
+    normalized_step: float,
+    *,
+    first_agent_probability: float,
+    optimism_probability: float,
+) -> float:
+    """Exact coefficient in E[V+ - V] for the clock-balanced metric.
+
+    The drift equals this coefficient times the Euclidean state energy.
+    Its sign boundary is independent of the nonzero arrival probability.
+    """
+
+    rotational_coordinate_factors(normalized_step)
+    heterogeneous_clock_metric(first_agent_probability)
+    if (
+        not math.isfinite(optimism_probability)
+        or not 0.0 <= optimism_probability <= 1.0
+    ):
+        raise ValueError("optimism_probability must lie in [0, 1]")
+    square = normalized_step * normalized_step
+    return (
+        (1.0 - first_agent_probability)
+        * square
+        * (1.0 - optimism_probability * (2.0 - square))
+    )
+
+
+def heterogeneous_potential_drift_coefficient(
+    normalized_step: float,
+    *,
+    first_agent_probability: float,
+    use_optimism: bool,
+) -> float:
+    """Exact quadratic-potential drift coefficient in the balanced metric."""
+
+    potential_coordinate_factors(normalized_step)
+    heterogeneous_clock_metric(first_agent_probability)
+    updated = (
+        1.0 - normalized_step + normalized_step * normalized_step
+        if use_optimism
+        else 1.0 - normalized_step
+    )
+    return (1.0 - first_agent_probability) * (updated * updated - 1.0)
+
+
 def choose_clocked_optimism(
     *,
     energy: float,
