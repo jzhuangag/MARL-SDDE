@@ -27,6 +27,27 @@ critic error, vector policy blocks, Nash-gap conversion and wall-clock
 separation remain mandatory stop gates; no efficacy run is authorized by this
 intermediate result.
 
+The first bounded Markov-data interface is also closed at the lemma level:
+fixed-length fully charged joint rollouts from fresh environment replicas are
+conditionally unbiased for a truncated Markov-game objective, and have
+explicit infinite-horizon truncation bias and packet second-moment envelopes.
+The resulting bias can be inserted into the same Krasovskii drift with an
+inflated history coefficient.  This does not cover a continuing Markov chain,
+critic learning or informative completion, and it still provides only an
+event-count stationarity bound.  The next kill gates are Nash-gap conversion
+and a physically consistent elapsed-time/separation theorem, not another
+performance experiment.
+
+A heterogeneous-step extension now removes the avoidable common-step
+`p_min` loss by setting `p_i*alpha_i=c`.  Cross-agent delay stability then
+reduces to `n` explicit quadratic roots, so the maximal rate-balanced steps
+cost `O(n^2)` and require no scan or numerical optimizer.  The zero-delay
+wall-clock coefficient is nevertheless `min_i lambda_i/L_ii`: an essential
+slow actor remains information-theoretically unavoidable.  The unified story
+is therefore a service-rate--coupling phase boundary for removing repeated
+barriers, not unconditional aggregate-compute speedup.  A strong synchronous
+comparator that uses rather than discards waiting-time work is mandatory.
+
 ## Latest bounded decision: compatible-update scheduling stopped
 
 Read `compatible_schedule_headroom_validation.md` before proposing another

@@ -58,3 +58,12 @@ tracking, vector policy geometry, a potential-to-Nash conversion or a
 wall-clock service model.  Until these interfaces close without reducing to a
 generic delayed stochastic-approximation corollary, the candidate fails the
 ICML novelty/completeness gate and no efficacy experiment is authorized.
+
+## Second bounded checkpoint
+
+After adding the exact fixed-horizon Markov packet, bias-aware drift and
+closed-form rate-balanced heterogeneous steps, the theorem-facing package
+passed 25 tests in 0.30 seconds.  The complete registered regression passed
+949 tests with 7 skips in 119.95 seconds.  This checkpoint changes neither the
+scope nor the stop boundary above: the new checks are algebraic and contain no
+scientific trajectory.

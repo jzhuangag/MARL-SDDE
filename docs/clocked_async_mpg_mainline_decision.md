@@ -32,7 +32,8 @@ stochastic-approximation and synchronous Markov-potential-game theorems.
 When heterogeneous agents in a common Markov game finish policy-gradient and
 critic work at different random times, can they learn without a global barrier
 and retain a finite-time convergence guarantee whose **elapsed-time** rate
-reflects useful aggregate compute rather than the slowest agent?
+reflects useful barrier-free compute while respecting the unavoidable service
+rate of every essential policy block?
 
 The tension is intrinsic.  Waiting for every actor gives fresh joint-policy
 data but pays the straggler clock.  Applying updates on arrival uses aggregate
@@ -155,7 +156,9 @@ The candidate must be distinguished from the following primary lines.
 
 Consequently the defensible novelty is the *finite-time wall-clock theorem for
 distinct policy blocks under joint Markov data and stale teammate policies*,
-including a nontrivial delay--coupling phase boundary.  If that proof reduces
+including a nontrivial service-rate--delay--coupling phase boundary and the
+slow-essential-block limit.  It must not claim that aggregate throughput can
+erase a strategically essential slow actor.  If that proof reduces
 to any item above after notation changes, stop the candidate.
 
 ## Experimental ladder
@@ -210,4 +213,3 @@ negative results remain frozen and cannot be used to tune the new population.
   barrier under real heterogeneity; unknown versus strong async correction.
 - ICML readiness: **not ready**.  No acceptance probability is asserted, and
   no paper should be drafted as if the theorem already exists.
-

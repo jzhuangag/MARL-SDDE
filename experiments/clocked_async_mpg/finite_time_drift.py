@@ -45,19 +45,83 @@ def interaction_history_weights(
     return np.asarray((probabilities*row_sums)@matrix, dtype=float)
 
 
-def maximum_constant_step(
+def rate_balanced_steps(
     cross_lipschitz: Array,
     activation_probabilities: Array,
     maximum_delay: int,
-) -> float:
-    """Largest constant step satisfying every block drift condition.
+    history_inflation: float = 1.0,
+) -> dict[str, Array | float]:
+    """Closed-form heterogeneous steps with ``p_i*alpha_i`` equalized.
 
-    The condition is ``L_ii*alpha + D^2*w_i*alpha^2 <= 1``.  A zero-curvature,
-    zero-history block imposes no finite restriction.
+    For ``alpha_i=c/p_i``, the block stability condition is a scalar quadratic
+    in ``c``.  The smallest positive block root is returned together with the
+    steps and realized condition values.
     """
 
     if maximum_delay < 0:
         raise ValueError("maximum_delay must be nonnegative")
+    if history_inflation <= 0.0 or not math.isfinite(history_inflation):
+        raise ValueError("history_inflation must be finite and positive")
+    matrix, probabilities = validate_cross_lipschitz(
+        cross_lipschitz, activation_probabilities
+    )
+    row_sums = np.sum(matrix, axis=1)
+    interaction_columns = row_sums@matrix
+    roots: list[float] = []
+    for block in range(matrix.shape[0]):
+        linear = float(matrix[block, block]/probabilities[block])
+        quadratic = float(
+            history_inflation
+            *maximum_delay**2
+            *interaction_columns[block]
+            /probabilities[block]
+        )
+        if quadratic > 0.0:
+            root = (
+                -linear+math.sqrt(linear*linear+4.0*quadratic)
+            )/(2.0*quadratic)
+        elif linear > 0.0:
+            root = 1.0/linear
+        else:
+            root = math.inf
+        roots.append(root)
+    descent_scale = float(min(roots))
+    steps = descent_scale/probabilities
+    history_weights = np.asarray(
+        (probabilities*steps*row_sums)@matrix, dtype=float
+    )
+    conditions = (
+        np.diag(matrix)*steps
+        +history_inflation
+        *maximum_delay**2
+        *history_weights
+        *steps
+    )
+    return {
+        "conditions": np.asarray(conditions, dtype=float),
+        "descent_scale": descent_scale,
+        "history_weights": history_weights,
+        "step_sizes": np.asarray(steps, dtype=float),
+    }
+
+
+def maximum_constant_step(
+    cross_lipschitz: Array,
+    activation_probabilities: Array,
+    maximum_delay: int,
+    history_inflation: float = 1.0,
+) -> float:
+    """Largest constant step satisfying every block drift condition.
+
+    The condition is
+    ``L_ii*alpha + history_inflation*D^2*w_i*alpha^2 <= 1``.  A
+    zero-curvature, zero-history block imposes no finite restriction.
+    """
+
+    if maximum_delay < 0:
+        raise ValueError("maximum_delay must be nonnegative")
+    if history_inflation <= 0.0 or not math.isfinite(history_inflation):
+        raise ValueError("history_inflation must be finite and positive")
     matrix, probabilities = validate_cross_lipschitz(
         cross_lipschitz, activation_probabilities
     )
@@ -65,7 +129,9 @@ def maximum_constant_step(
     bounds: list[float] = []
     for block in range(matrix.shape[0]):
         linear = float(matrix[block, block])
-        quadratic = float(maximum_delay**2*weights[block])
+        quadratic = float(
+            history_inflation*maximum_delay**2*weights[block]
+        )
         if quadratic > 0.0:
             root = (
                 -linear+math.sqrt(linear*linear+4.0*quadratic)
@@ -264,4 +330,198 @@ def expected_noisy_quadratic_lyapunov_step(
         "slack": certified_upper-expected_next,
         "variance_penalty": variance_penalty,
         "weighted_stationarity": stationarity,
+    }
+
+
+def expected_biased_noisy_quadratic_lyapunov_step(
+    state_path: Array,
+    delays: NDArray[np.int_],
+    curvature: Array,
+    activation_probabilities: Array,
+    step_size: float,
+    conditional_biases: Array,
+    noise_standard_deviations: Array,
+    young_parameter: float,
+) -> dict[str, float]:
+    """Enumerate the bias-aware drift bound using two-point innovations.
+
+    The stale scalar-block estimator is ``grad_i(x_stale)+bias_i+/-sigma_i``.
+    ``young_parameter`` is the positive ``delta`` used to separate the stale
+    gradient mismatch from the conditional bias.
+    """
+
+    path = np.asarray(state_path, dtype=float)
+    curvature = np.asarray(curvature, dtype=float)
+    probabilities = np.asarray(activation_probabilities, dtype=float)
+    delays = np.asarray(delays, dtype=int)
+    bias = np.asarray(conditional_biases, dtype=float)
+    sigma = np.asarray(noise_standard_deviations, dtype=float)
+    if path.ndim != 2 or path.shape[0] < 1:
+        raise ValueError("state_path must contain at least one state")
+    dimension = path.shape[1]
+    maximum_delay = path.shape[0]-1
+    if curvature.shape != (dimension, dimension):
+        raise ValueError("curvature shape does not match the state dimension")
+    if not np.allclose(curvature, curvature.T, atol=1e-12, rtol=0.0):
+        raise ValueError("curvature must be symmetric")
+    if float(np.min(np.linalg.eigvalsh(curvature))) < -1e-12:
+        raise ValueError("curvature must be positive semidefinite")
+    if delays.shape != (dimension,) or (delays < 0).any() or (
+        delays > maximum_delay
+    ).any():
+        raise ValueError("delays must provide one valid delay per block")
+    if bias.shape != (dimension,) or not np.isfinite(bias).all():
+        raise ValueError("conditional biases must be finite")
+    if (
+        sigma.shape != (dimension,)
+        or (sigma < 0.0).any()
+        or not np.isfinite(sigma).all()
+    ):
+        raise ValueError("noise standard deviations must be finite and nonnegative")
+    if young_parameter <= 0.0 or not math.isfinite(young_parameter):
+        raise ValueError("young_parameter must be finite and positive")
+    if step_size < 0.0 or not math.isfinite(step_size):
+        raise ValueError("step_size must be finite and nonnegative")
+    matrix, probabilities = validate_cross_lipschitz(
+        np.abs(curvature), probabilities
+    )
+
+    inflation = 1.0+young_parameter
+    current = path[-1]
+    past_steps = np.diff(path, axis=0)
+    history_weights = interaction_history_weights(matrix, probabilities)
+    history = weighted_history_energy(past_steps, history_weights)
+    coefficient = 0.5*step_size*maximum_delay*inflation
+    objective = 0.5*float(current@curvature@current)
+    current_lyapunov = objective+coefficient*history
+    current_gradient = curvature@current
+
+    next_by_block: list[float] = []
+    for block in range(dimension):
+        stale = path[maximum_delay-int(delays[block])]
+        stale_gradient = float(curvature[block]@stale)
+        next_by_noise: list[float] = []
+        for innovation in (-float(sigma[block]), float(sigma[block])):
+            estimator = stale_gradient+float(bias[block])+innovation
+            step = np.zeros(dimension, dtype=float)
+            step[block] = -step_size*estimator
+            updated = current+step
+            next_steps = (
+                np.vstack((past_steps[1:], step))
+                if maximum_delay
+                else np.empty((0, dimension), dtype=float)
+            )
+            next_history = weighted_history_energy(next_steps, history_weights)
+            next_objective = 0.5*float(updated@curvature@updated)
+            next_by_noise.append(next_objective+coefficient*next_history)
+        next_by_block.append(float(np.mean(next_by_noise)))
+
+    expected_next = float(probabilities@np.asarray(next_by_block))
+    stationarity = float(probabilities@(current_gradient*current_gradient))
+    bias_penalty = 0.5*step_size*(1.0+1.0/young_parameter)*float(
+        probabilities@(bias*bias)
+    )
+    variance_coefficient = (
+        np.diag(matrix)*step_size**2
+        +inflation*step_size**3*maximum_delay**2*history_weights
+    )
+    variance_penalty = 0.5*float(
+        probabilities@(variance_coefficient*(sigma*sigma))
+    )
+    certified_upper = (
+        current_lyapunov
+        -0.5*step_size*stationarity
+        +bias_penalty
+        +variance_penalty
+    )
+    return {
+        "bias_penalty": bias_penalty,
+        "certified_upper": certified_upper,
+        "current": current_lyapunov,
+        "expected_next": expected_next,
+        "slack": certified_upper-expected_next,
+        "variance_penalty": variance_penalty,
+        "weighted_stationarity": stationarity,
+    }
+
+
+def expected_rate_balanced_quadratic_lyapunov_step(
+    state_path: Array,
+    delays: NDArray[np.int_],
+    curvature: Array,
+    activation_probabilities: Array,
+    step_sizes: Array,
+    history_inflation: float = 1.0,
+) -> dict[str, float]:
+    """Enumerate one exact-gradient step with heterogeneous block steps."""
+
+    path = np.asarray(state_path, dtype=float)
+    curvature = np.asarray(curvature, dtype=float)
+    probabilities = np.asarray(activation_probabilities, dtype=float)
+    delays = np.asarray(delays, dtype=int)
+    steps = np.asarray(step_sizes, dtype=float)
+    if path.ndim != 2 or path.shape[0] < 1:
+        raise ValueError("state_path must contain at least one state")
+    dimension = path.shape[1]
+    maximum_delay = path.shape[0]-1
+    if curvature.shape != (dimension, dimension):
+        raise ValueError("curvature shape does not match the state dimension")
+    if not np.allclose(curvature, curvature.T, atol=1e-12, rtol=0.0):
+        raise ValueError("curvature must be symmetric")
+    if float(np.min(np.linalg.eigvalsh(curvature))) < -1e-12:
+        raise ValueError("curvature must be positive semidefinite")
+    if delays.shape != (dimension,) or (delays < 0).any() or (
+        delays > maximum_delay
+    ).any():
+        raise ValueError("delays must provide one valid delay per block")
+    if (
+        steps.shape != (dimension,)
+        or (steps < 0.0).any()
+        or not np.isfinite(steps).all()
+    ):
+        raise ValueError("step_sizes must be finite and nonnegative")
+    if history_inflation <= 0.0 or not math.isfinite(history_inflation):
+        raise ValueError("history_inflation must be finite and positive")
+    matrix, probabilities = validate_cross_lipschitz(
+        np.abs(curvature), probabilities
+    )
+
+    row_sums = np.sum(matrix, axis=1)
+    history_weights = np.asarray(
+        (probabilities*steps*row_sums)@matrix, dtype=float
+    )
+    current = path[-1]
+    past_steps = np.diff(path, axis=0)
+    history = weighted_history_energy(past_steps, history_weights)
+    coefficient = 0.5*maximum_delay*history_inflation
+    objective = 0.5*float(current@curvature@current)
+    current_lyapunov = objective+coefficient*history
+    current_gradient = curvature@current
+
+    next_values: list[float] = []
+    for block in range(dimension):
+        stale = path[maximum_delay-int(delays[block])]
+        stale_gradient = float(curvature[block]@stale)
+        step = np.zeros(dimension, dtype=float)
+        step[block] = -float(steps[block])*stale_gradient
+        updated = current+step
+        next_steps = (
+            np.vstack((past_steps[1:], step))
+            if maximum_delay
+            else np.empty((0, dimension), dtype=float)
+        )
+        next_history = weighted_history_energy(next_steps, history_weights)
+        next_objective = 0.5*float(updated@curvature@updated)
+        next_values.append(next_objective+coefficient*next_history)
+    expected_next = float(probabilities@np.asarray(next_values))
+    weighted_stationarity = float(
+        (probabilities*steps)@(current_gradient*current_gradient)
+    )
+    certified_upper = current_lyapunov-0.5*weighted_stationarity
+    return {
+        "certified_upper": certified_upper,
+        "current": current_lyapunov,
+        "expected_next": expected_next,
+        "slack": certified_upper-expected_next,
+        "weighted_stationarity": weighted_stationarity,
     }

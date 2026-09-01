@@ -1,0 +1,116 @@
+from __future__ import annotations
+
+import math
+
+import numpy as np
+import pytest
+
+from .trajectory_interface import (
+    enumerate_reinforce_expectation,
+    exact_policy_gradient,
+    reinforce_packet_norm_bound,
+    truncation_gradient_bias_bound,
+)
+
+
+def _random_game(seed: int = 90701) -> tuple[np.ndarray, ...]:
+    rng = np.random.default_rng(seed)
+    agents, states, actions = 2, 2, 2
+    profiles = actions**agents
+    transition = rng.uniform(0.1, 1.0, size=(states, profiles, states))
+    transition /= np.sum(transition, axis=-1, keepdims=True)
+    reward = rng.uniform(-1.0, 1.0, size=(states, profiles))
+    start = np.asarray([0.35, 0.65])
+    logits = rng.normal(scale=0.4, size=(agents, states, actions))
+    return transition, reward, start, logits
+
+
+def _finite_difference(
+    transition: np.ndarray,
+    reward: np.ndarray,
+    start: np.ndarray,
+    logits: np.ndarray,
+    discount: float,
+    horizon: int | None,
+) -> np.ndarray:
+    result = np.zeros_like(logits)
+    epsilon = 2e-6
+    for index in np.ndindex(logits.shape):
+        positive = logits.copy()
+        negative = logits.copy()
+        positive[index] += epsilon
+        negative[index] -= epsilon
+        plus, _ = exact_policy_gradient(
+            transition, reward, start, positive, discount, horizon=horizon
+        )
+        minus, _ = exact_policy_gradient(
+            transition, reward, start, negative, discount, horizon=horizon
+        )
+        result[index] = (plus-minus)/(2.0*epsilon)
+    return result
+
+
+@pytest.mark.parametrize("horizon", [3, None])
+def test_exact_markov_game_gradient_matches_finite_difference(
+    horizon: int | None,
+) -> None:
+    transition, reward, start, logits = _random_game()
+    _, gradient = exact_policy_gradient(
+        transition, reward, start, logits, 0.83, horizon=horizon
+    )
+    finite = _finite_difference(
+        transition, reward, start, logits, 0.83, horizon
+    )
+    assert gradient == pytest.approx(finite, abs=2e-8)
+
+
+def test_exact_trajectory_enumeration_is_conditionally_unbiased() -> None:
+    transition, reward, start, logits = _random_game(90702)
+    dynamic_value, dynamic_gradient = exact_policy_gradient(
+        transition, reward, start, logits, 0.77, horizon=3
+    )
+    enumerated_value, enumerated_gradient = enumerate_reinforce_expectation(
+        transition, reward, start, logits, 0.77, horizon=3
+    )
+    assert enumerated_value == pytest.approx(dynamic_value, abs=1e-12)
+    assert enumerated_gradient == pytest.approx(dynamic_gradient, abs=1e-12)
+
+
+def test_truncation_bias_bound_covers_exact_gradient_gap() -> None:
+    transition, reward, start, logits = _random_game(90703)
+    discount = 0.72
+    infinite = exact_policy_gradient(
+        transition, reward, start, logits, discount, horizon=None
+    )[1]
+    reward_bound = float(np.max(np.abs(reward)))
+    # The Euclidean norm of a categorical-softmax score is at most sqrt(2).
+    score_bound = math.sqrt(2.0)
+    for horizon in (1, 2, 4, 8):
+        truncated = exact_policy_gradient(
+            transition, reward, start, logits, discount, horizon=horizon
+        )[1]
+        bound = truncation_gradient_bias_bound(
+            horizon, discount, reward_bound, score_bound
+        )
+        for agent in range(logits.shape[0]):
+            assert np.linalg.norm(infinite[agent]-truncated[agent]) <= bound+1e-12
+
+
+def test_packet_bound_is_finite_and_below_universal_infinite_bound() -> None:
+    horizon, discount = 7, 0.8
+    bound = reinforce_packet_norm_bound(
+        horizon, discount, reward_bound=1.5, score_norm_bound=math.sqrt(2.0)
+    )
+    universal = math.sqrt(2.0)*1.5/(1.0-discount)**2
+    assert 0.0 < bound < universal
+
+
+def test_trajectory_interface_rejects_invalid_inputs() -> None:
+    transition, reward, start, logits = _random_game(90704)
+    transition[0, 0, 0] += 0.2
+    with pytest.raises(ValueError):
+        exact_policy_gradient(
+            transition, reward, start, logits, 0.9, horizon=3
+        )
+    with pytest.raises(ValueError):
+        truncation_gradient_bias_bound(0, 0.9, 1.0, 1.0)
