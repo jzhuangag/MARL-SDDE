@@ -48,6 +48,35 @@ is therefore a service-rate--coupling phase boundary for removing repeated
 barriers, not unconditional aggregate-compute speedup.  A strong synchronous
 comparator that uses rather than discards waiting-time work is mandatory.
 
+An exact best-response audit also closes the algebraic stationarity-to-Nash
+link for finite softmax Markov potential games: each unilateral gap is bounded
+by the corresponding logit-gradient norm times occupancy mismatch, state-size
+and inverse minimum action probability.  The conversion is only conditional;
+plain softmax learning does not guarantee a uniform interiority constant.  Do
+not add projection or regularization without re-proving the same asynchronous
+drift.  The remaining paper-level gate is now dominated by the physically
+consistent wall-clock/separation theorem and its strong comparator.
+
+The marked-Poisson delayed-oracle conversion is now explicit: `K` applied
+events take expected time `K/Lambda`, and a symmetric interaction model yields
+an analytic delay--coupling phase against a one-packet-per-agent barrier.  That
+comparison is not yet strong enough.  A fully utilized synchronous learner can
+turn waiting time into extra frozen-policy batch samples and erase pure
+throughput gains on separable quadratic problems.  The final kill gate is now
+sharply stated: prove a fresh-query adaptivity separation or beat a declared
+shadow-batching comparator under identical service and sample accounting.  No
+CPU efficacy or GPU benchmark is authorized before that gate passes.
+
+That bounded gate now passes: a two-instance smooth potential family proves
+that any amount of deterministic shadow batching at one frozen policy has a
+positive one-round minimax gradient floor, while two fresh queries using the
+same fixed safe step cross a strictly lower threshold.  The service-time
+calculation gives a strict advantage for two fast-agent queries plus one slow-
+agent query over two full barriers.  This authorizes only a separately frozen
+small CPU theory confirmation on multi-state games.  It does not authorize
+formal seeds, standard MARL benchmarks or GPU work, and it does not claim to
+beat partially asynchronous or speculative off-policy algorithms.
+
 ## Latest bounded decision: compatible-update scheduling stopped
 
 Read `compatible_schedule_headroom_validation.md` before proposing another

@@ -67,3 +67,10 @@ passed 25 tests in 0.30 seconds.  The complete registered regression passed
 949 tests with 7 skips in 119.95 seconds.  This checkpoint changes neither the
 scope nor the stop boundary above: the new checks are algebraic and contain no
 scientific trajectory.
+
+After adding the conditional softmax Nash certificate, marked-Poisson clock
+identities and fresh-query separation witness, the theorem-facing package
+passed 37 tests in 0.43 seconds.  The complete registered regression passed
+961 tests with 7 skips in 121.04 seconds.  The lower/separation gate now
+authorizes a separately frozen multi-state CPU theory confirmation only; it
+does not authorize formal evidence or a GPU benchmark.

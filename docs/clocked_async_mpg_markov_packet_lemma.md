@@ -200,3 +200,66 @@ following are proved for the same update rule:
 Continuing-chain sampling, learned critics and trajectory-dependent completion
 remain outside this first theorem.  They may be extensions only after the
 bounded theorem closes; they cannot be claimed now.
+
+## Conditional softmax stationarity-to-Nash conversion
+
+For completeness, the infinite-horizon softmax gradient can be converted to a
+unilateral Nash gap without treating a stationary point as automatically Nash.
+Let `d_rho^pi` be the normalized discounted state occupancy and let
+`pi_i^BR` be an exact best response to `pi_-i`.  Define
+
+\[
+M_i(\pi)=\left\|
+\frac{d_\rho^{(\pi_i^{\rm BR},\pi_{-i})}}
+     {d_\rho^\pi}
+\right\|_\infty,
+\qquad
+\underline\pi_i=\min_{s,a_i}\pi_i(a_i\mid s).
+\]
+
+The performance-difference identity and the softmax policy-gradient formula
+give
+
+\[
+\operatorname{Gap}_i(\pi)
+\le
+\frac{M_i(\pi)\sqrt{|\mathcal S|}}{\underline\pi_i}
+\|\nabla_iJ_i(\theta)\|_2. \tag{9}
+\]
+
+Indeed, the logit-gradient component is
+
+\[
+\nabla_{\theta_i(s,a_i)}J_i
+=\frac{d_\rho^\pi(s)}{1-\gamma}
+\pi_i(a_i\mid s)\,\overline A_i^\pi(s,a_i).
+\]
+
+Substitution into the performance-difference identity cancels both
+`d_rho^pi(s)` and `1-gamma`; summing the largest absolute logit component over
+states and applying Cauchy--Schwarz proves (9).
+
+If, along the analyzed trajectory, `M_i(pi)<=M_bar` and
+`pi_i(a_i|s)>=pi_bar>0`, then for a uniformly sampled event iterate `R`,
+
+\[
+\mathbb E\max_i\operatorname{Gap}_i(\pi_{\theta^R})
+\le
+\frac{\overline M\sqrt{|\mathcal S|}}{\underline\pi}
+\sqrt{\frac1K\sum_{k=0}^{K-1}
+\mathbb E\|\nabla\Phi(\theta^k)\|_2^2}. \tag{10}
+\]
+
+This is a valid conditional Nash conversion, not a uniform global guarantee.
+Plain softmax updates do not themselves ensure a horizon-independent
+`pi_bar`; the constant can become vacuous under probability collapse.  The
+project will not silently add a projection or barrier regularizer because that
+would change the executable update and reopen the Lyapunov drift.  A final
+paper may either state the interiority/mismatch assumptions explicitly or use
+first-order potential stationarity as its primary criterion.  Claiming an
+unconditional Nash rate is not authorized.
+
+The exact validator solves each agent's best-response MDP, computes its
+discounted occupancy mismatch and confirms (9) on 20 random two-agent finite
+Markov games.  This checks the algebra; it does not establish uniform coverage
+for learned neural policies.

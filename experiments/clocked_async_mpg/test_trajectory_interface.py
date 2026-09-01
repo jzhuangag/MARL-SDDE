@@ -9,6 +9,7 @@ from .trajectory_interface import (
     enumerate_reinforce_expectation,
     exact_policy_gradient,
     reinforce_packet_norm_bound,
+    softmax_nash_gap_certificate,
     truncation_gradient_bias_bound,
 )
 
@@ -103,6 +104,22 @@ def test_packet_bound_is_finite_and_below_universal_infinite_bound() -> None:
     )
     universal = math.sqrt(2.0)*1.5/(1.0-discount)**2
     assert 0.0 < bound < universal
+
+
+def test_softmax_gradient_certificate_covers_exact_unilateral_nash_gaps() -> None:
+    for seed in range(90710, 90730):
+        transition, reward, start, logits = _random_game(seed)
+        certificate = softmax_nash_gap_certificate(
+            transition, reward, start, logits, discount=0.78
+        )
+        assert (
+            np.asarray(certificate["nash_gaps"])
+            <= np.asarray(certificate["nash_gap_bounds"])+2e-11
+        ).all()
+        assert (np.asarray(certificate["occupancy_mismatch"]) >= 1.0-1e-12).all()
+        assert (
+            np.asarray(certificate["minimum_action_probabilities"]) > 0.0
+        ).all()
 
 
 def test_trajectory_interface_rejects_invalid_inputs() -> None:

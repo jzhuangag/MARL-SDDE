@@ -147,6 +147,107 @@ def exact_policy_gradient(
     return float(start@values[0]), gradients
 
 
+def softmax_nash_gap_certificate(
+    transition: Array,
+    reward: Array,
+    start_distribution: Array,
+    logits: Array,
+    discount: float,
+) -> dict[str, Array]:
+    """Compute exact unilateral gaps and a softmax-gradient certificate.
+
+    This helper treats ``reward`` as an identical-interest reward.  For each
+    agent, it solves the exact best-response MDP against fixed teammate
+    policies and evaluates the occupancy-mismatch/softmax-interiority bound.
+    """
+
+    transition, reward, start, logits, profiles = _validate_game(
+        transition, reward, start_distribution, logits, discount
+    )
+    policies, joint = _joint_policy(logits, profiles)
+    agents, states, actions = policies.shape
+    current_value, gradient = exact_policy_gradient(
+        transition,
+        reward,
+        start,
+        logits,
+        discount,
+        horizon=None,
+    )
+    current_transition = np.einsum("sa,san->sn", joint, transition)
+    current_occupancy = (1.0-discount)*np.linalg.solve(
+        (np.eye(states)-discount*current_transition).T, start
+    )
+
+    gaps = np.zeros(agents, dtype=float)
+    mismatch = np.zeros(agents, dtype=float)
+    bounds = np.zeros(agents, dtype=float)
+    minimum_probability = np.min(policies, axis=(1, 2))
+    for agent in range(agents):
+        unilateral_reward = np.zeros((states, actions), dtype=float)
+        unilateral_transition = np.zeros((states, actions, states), dtype=float)
+        for state in range(states):
+            for profile_index, profile in enumerate(profiles):
+                teammate_probability = 1.0
+                for teammate in range(agents):
+                    if teammate != agent:
+                        teammate_probability *= policies[
+                            teammate, state, profile[teammate]
+                        ]
+                action = profile[agent]
+                unilateral_reward[state, action] += (
+                    teammate_probability*reward[state, profile_index]
+                )
+                unilateral_transition[state, action] += (
+                    teammate_probability*transition[state, profile_index]
+                )
+
+        value = np.zeros(states, dtype=float)
+        for _ in range(100_000):
+            q_value = unilateral_reward+discount*np.einsum(
+                "san,n->sa", unilateral_transition, value
+            )
+            updated = np.max(q_value, axis=1)
+            if float(np.max(np.abs(updated-value))) <= 1e-14:
+                value = updated
+                break
+            value = updated
+        else:
+            raise RuntimeError("best-response value iteration did not converge")
+        q_value = unilateral_reward+discount*np.einsum(
+            "san,n->sa", unilateral_transition, value
+        )
+        best_actions = np.argmax(q_value, axis=1)
+        best_transition = unilateral_transition[
+            np.arange(states), best_actions
+        ]
+        best_occupancy = (1.0-discount)*np.linalg.solve(
+            (np.eye(states)-discount*best_transition).T, start
+        )
+        if np.any((current_occupancy <= 0.0)&(best_occupancy > 0.0)):
+            mismatch[agent] = math.inf
+            bounds[agent] = math.inf
+        else:
+            positive = current_occupancy > 0.0
+            mismatch[agent] = float(
+                np.max(best_occupancy[positive]/current_occupancy[positive])
+            )
+            bounds[agent] = float(
+                mismatch[agent]
+                *math.sqrt(states)
+                /minimum_probability[agent]
+                *np.linalg.norm(gradient[agent])
+            )
+        gaps[agent] = max(0.0, float(start@value-current_value))
+    return {
+        "gradient_norms": np.linalg.norm(gradient, axis=(1, 2)),
+        "minimum_action_probabilities": minimum_probability,
+        "nash_gap_bounds": bounds,
+        "nash_gaps": gaps,
+        "occupancy_mismatch": mismatch,
+    }
+
+
 def enumerate_reinforce_expectation(
     transition: Array,
     reward: Array,
