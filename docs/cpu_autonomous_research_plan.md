@@ -1,5 +1,25 @@
 # Autonomous CPU research plan — 2026-09-01
 
+## Latest bounded decision: Policy Backpressure construction stopped
+
+Read `policy_backpressure_feasibility_decision.md` before proposing an
+asynchronous cooperative-MARL successor.  A substantive new premise was tested:
+agent-wise asynchronous policy proposals in a common-payoff Markov game, with
+joint-policy path length as interaction staleness.  The stale unilateral-policy
+performance lower bound passed 1,080 exact checks, but the 144-cell deterministic
+development scan found no material dynamic scheduling value against a per-cell
+best fixed trust radius and fresh serial learner.  Median non-myopic wall-clock
+headroom was -1.3834%, the maximum was 2.2939%, and zero cells reached 5%.
+The safe path-bound rule had no harmful update but was 47.78% below the strong
+endpoint baseline at the median.
+
+Stop this construction before a debt-queue theorem, sampled controller, formal
+seed or GPU benchmark.  Do not rescue it by changing the completed grid,
+threshold or metric.  This does not prove all asynchronous MARL impossible; a
+future direction must supply a different intrinsic state or constraint and pass
+its own bounded novelty and oracle-value screen.  T-083A and every prior result
+remain unchanged.
+
 ## Current decision: bounded calibrated-sharing construction rejected; no pilot
 
 Read calibrated_flip_construction_decision.md FIRST. The one concrete successor
