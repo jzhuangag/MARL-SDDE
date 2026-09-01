@@ -1,8 +1,10 @@
 """CPU development runner for commit-barrier LSFF on HARL's MPE interface.
 
-The runner is intentionally development-only.  It uses paired, fully charged
-birth trajectories, optionally buys a paired current-policy measurement while
-parameter commits are frozen, and applies the closed-form fused owner update.
+The runner is intentionally development-only.  It uses batched, fully charged
+birth trajectories, optionally buys a same-size current-policy measurement
+while parameter commits are frozen, and applies the closed-form fused owner
+update.  Equal-cost controls can instead buy the same extra batch at packet
+birth, so an ordinary batching gain cannot be mislabeled as freshness value.
 """
 
 from __future__ import annotations
@@ -52,10 +54,15 @@ MODES = (
     "lsff_transition",
     "never_refresh",
     "always_refresh",
+    "always_extra_birth",
     "periodic_phase_0",
     "periodic_phase_1",
     "periodic_phase_2",
     "periodic_phase_3",
+    "birth_periodic_phase_0",
+    "birth_periodic_phase_1",
+    "birth_periodic_phase_2",
+    "birth_periodic_phase_3",
 )
 PROFILE_NAMES = ("balanced", "heterogeneous")
 
@@ -70,6 +77,7 @@ class _FreshPacket:
     reference_observations: list[np.ndarray]
     birth_step: np.ndarray
     birth_variance: float
+    birth_augmented: bool
     charged_environment_steps: int
     charged_actor_transitions: int
 
@@ -99,18 +107,20 @@ def _clip(vector: np.ndarray, maximum_norm: float) -> np.ndarray:
     return result
 
 
-def _paired_step(
+def _batched_step(
     *,
     environment: Any,
     policies: list[Any],
     target_agent: int,
-    seeds: tuple[int, int],
+    seeds: tuple[int, ...],
     episode_length: int,
     gamma: float,
     learning_rate: float,
     maximum_step_norm: float,
     frozen_baseline: np.ndarray,
 ) -> tuple[np.ndarray, float, list[np.ndarray], int]:
+    if len(seeds) < 2:
+        raise ValueError("at least two trajectories are required")
     trajectories = [
         _collect_on_reused_environment(
             environment=environment,
@@ -130,8 +140,13 @@ def _paired_step(
             frozen_baseline=frozen_baseline,
         )
         steps.append(_clip(learning_rate * gradient, maximum_step_norm))
-    mean_step = 0.5 * (steps[0] + steps[1])
-    variance = 0.25 * float(np.sum((steps[0] - steps[1]) ** 2))
+    stacked = np.stack(steps, axis=0)
+    mean_step = np.mean(stacked, axis=0)
+    centered = stacked - mean_step
+    # Unbiased trace estimate of the covariance of the sample mean.
+    variance = float(np.sum(centered * centered)) / (
+        len(steps) * (len(steps) - 1)
+    )
     environment_steps = sum(trajectory.steps for trajectory in trajectories)
     return mean_step, variance, trajectories[1].observations, environment_steps
 
@@ -140,6 +155,21 @@ def _periodic_phase(mode: str) -> int | None:
     if mode.startswith("periodic_phase_"):
         return int(mode.rsplit("_", 1)[1])
     return None
+
+
+def _birth_periodic_phase(mode: str) -> int | None:
+    if mode.startswith("birth_periodic_phase_"):
+        return int(mode.rsplit("_", 1)[1])
+    return None
+
+
+def _requests_birth_augmentation(
+    mode: str, *, completion_index: int, period: int
+) -> bool:
+    if mode == "always_extra_birth":
+        return True
+    phase = _birth_periodic_phase(mode)
+    return phase is not None and completion_index % period == phase
 
 
 def _service_bases(profile: str, num_agents: int) -> tuple[float, ...]:
@@ -234,7 +264,12 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
     )
     charged_environment_steps = baseline_environment_steps
     charged_actor_transitions = baseline_environment_steps * num_agents
-    birth_actor_cost = 2 * specification["episode_length"] * num_agents
+    trajectories_per_estimate = int(specification["trajectories_per_estimate"])
+    if trajectories_per_estimate < 2:
+        raise ValueError("trajectories_per_estimate must be at least two")
+    birth_actor_cost = (
+        trajectories_per_estimate * specification["episode_length"] * num_agents
+    )
     refresh_count = 0
     applied_packets = 0
     fused_weight_sum = 0.0
@@ -250,6 +285,16 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
     selected_bias_square_sum = 0.0
     selected_birth_variance_upper_sum = 0.0
     per_agent_refresh_counts = [0] * num_agents
+    birth_augmentation_count = 0
+    per_agent_birth_augmentation_counts = [0] * num_agents
+
+    def batch_seeds(stream_offset: int, packet_ticket: int) -> tuple[int, ...]:
+        first = (
+            seed
+            + stream_offset
+            + trajectories_per_estimate * packet_ticket
+        )
+        return tuple(range(first, first + trajectories_per_estimate))
 
     def can_launch() -> bool:
         return (
@@ -259,18 +304,46 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
 
     def launch(agent_id: int) -> None:
         nonlocal ticket, charged_environment_steps, charged_actor_transitions
+        nonlocal birth_augmentation_count
         birth_policies = [copy.deepcopy(policy) for policy in policies]
-        birth_step, birth_variance, observations, environment_steps = _paired_step(
+        birth_step, birth_variance, observations, environment_steps = _batched_step(
             environment=environment,
             policies=birth_policies,
             target_agent=agent_id,
-            seeds=(seed + 100_000 + 2 * ticket, seed + 100_001 + 2 * ticket),
+            seeds=batch_seeds(100_000, ticket),
             episode_length=specification["episode_length"],
             gamma=specification["gamma"],
             learning_rate=specification["learning_rate"],
             maximum_step_norm=specification["maximum_step_norm"],
             frozen_baseline=frozen_baseline,
         )
+        wants_augmentation = _requests_birth_augmentation(
+            mode,
+            completion_index=per_agent_completions[agent_id],
+            period=specification["period"],
+        )
+        birth_augmented = bool(
+            wants_augmentation
+            and charged_actor_transitions + 2 * birth_actor_cost
+            <= specification["actor_transition_budget"]
+        )
+        if birth_augmented:
+            extra_step, extra_variance, _, extra_environment_steps = _batched_step(
+                environment=environment,
+                policies=birth_policies,
+                target_agent=agent_id,
+                seeds=batch_seeds(200_000, ticket),
+                episode_length=specification["episode_length"],
+                gamma=specification["gamma"],
+                learning_rate=specification["learning_rate"],
+                maximum_step_norm=specification["maximum_step_norm"],
+                frozen_baseline=frozen_baseline,
+            )
+            birth_step = 0.5 * (birth_step + extra_step)
+            birth_variance = 0.25 * (birth_variance + extra_variance)
+            environment_steps += extra_environment_steps
+            birth_augmentation_count += 1
+            per_agent_birth_augmentation_counts[agent_id] += 1
         actor_cost = environment_steps * num_agents
         if charged_actor_transitions + actor_cost > specification["actor_transition_budget"]:
             raise RuntimeError("launch exceeded the hard actor-transition budget")
@@ -279,7 +352,10 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
             birth_event=event,
             charged_transitions=actor_cost,
         )
-        duration = _service_duration(service_bases, agent_id, ticket)
+        batch_duration = _service_duration(service_bases, agent_id, ticket) * (
+            trajectories_per_estimate / 2.0
+        )
+        duration = batch_duration * (2.0 if birth_augmented else 1.0)
         packet = _FreshPacket(
             ticket=ticket,
             agent_id=agent_id,
@@ -289,6 +365,7 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
             reference_observations=observations,
             birth_step=birth_step,
             birth_variance=birth_variance,
+            birth_augmented=birth_augmented,
             charged_environment_steps=environment_steps,
             charged_actor_transitions=actor_cost,
         )
@@ -360,7 +437,7 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
         refresh_value_sum += certificate.refresh_value
         refresh_duration = _service_duration(
             service_bases, packet.agent_id, packet.ticket
-        )
+        ) * (trajectories_per_estimate / 2.0)
         refresh_actor_cost = birth_actor_cost
         hard_feasible = (
             charged_actor_transitions + refresh_actor_cost
@@ -406,7 +483,9 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
             should_refresh = decision.refresh
         elif mode == "always_refresh":
             should_refresh = hard_feasible
-        elif mode == "never_refresh":
+        elif mode == "never_refresh" or mode == "always_extra_birth":
+            should_refresh = False
+        elif _birth_periodic_phase(mode) is not None:
             should_refresh = False
         else:
             phase = _periodic_phase(mode)
@@ -420,14 +499,11 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
         update_step = packet.birth_step
         incurred_risk = certificate.no_refresh_mse_upper
         if should_refresh:
-            fresh_step, fresh_variance, _, environment_steps = _paired_step(
+            fresh_step, fresh_variance, _, environment_steps = _batched_step(
                 environment=environment,
                 policies=policies,
                 target_agent=packet.agent_id,
-                seeds=(
-                    seed + 300_000 + 2 * packet.ticket,
-                    seed + 300_001 + 2 * packet.ticket,
-                ),
+                seeds=batch_seeds(300_000, packet.ticket),
                 episode_length=specification["episode_length"],
                 gamma=specification["gamma"],
                 learning_rate=specification["learning_rate"],
@@ -497,6 +573,9 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
         "applied_packets": applied_packets,
         "refresh_count": refresh_count,
         "refresh_fraction": refresh_count / max(applied_packets, 1),
+        "birth_augmentation_count": birth_augmentation_count,
+        "birth_augmentation_fraction": birth_augmentation_count
+        / max(applied_packets, 1),
         "mean_fresh_weight_when_refreshed": fused_weight_sum
         / max(refresh_count, 1),
         "mean_certified_step_mse": risk_sum / max(applied_packets, 1),
@@ -523,6 +602,7 @@ def _run_one(specification: dict[str, Any]) -> dict[str, Any]:
         "mean_selected_birth_variance_upper": selected_birth_variance_upper_sum
         / max(refresh_count, 1),
         "per_agent_refresh_counts": per_agent_refresh_counts,
+        "per_agent_birth_augmentation_counts": per_agent_birth_augmentation_counts,
     }
 
 
@@ -550,6 +630,11 @@ def _summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "mean_refresh_fraction": float(
                     np.mean([row["refresh_fraction"] for row in mode_rows])
                 ),
+                "mean_birth_augmentation_fraction": float(
+                    np.mean(
+                        [row["birth_augmentation_fraction"] for row in mode_rows]
+                    )
+                ),
                 "mean_certified_step_mse": float(
                     np.mean([row["mean_certified_step_mse"] for row in mode_rows])
                 ),
@@ -564,15 +649,30 @@ def _summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         periodic_modes = [
             mode for mode in present_modes if mode.startswith("periodic_phase_")
         ]
+        birth_periodic_modes = [
+            mode
+            for mode in present_modes
+            if mode.startswith("birth_periodic_phase_")
+        ]
         if periodic_modes:
             best_periodic = max(
                 periodic_modes, key=lambda key: modes[key]["mean_final_return"]
             )
             cell["development_best_periodic_mode"] = best_periodic
+        if birth_periodic_modes:
+            best_birth_periodic = max(
+                birth_periodic_modes,
+                key=lambda key: modes[key]["mean_final_return"],
+            )
+            cell["development_best_birth_periodic_mode"] = best_birth_periodic
         for controller in ("lsff", "lsff_transition"):
             if controller not in modes:
                 continue
-            for baseline in ("never_refresh", "always_refresh"):
+            for baseline in (
+                "never_refresh",
+                "always_refresh",
+                "always_extra_birth",
+            ):
                 if baseline in modes:
                     cell[f"{controller}_minus_{baseline}_mean_return"] = (
                         modes[controller]["mean_final_return"]
@@ -582,6 +682,11 @@ def _summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 cell[f"{controller}_minus_best_periodic_mean_return"] = (
                     modes[controller]["mean_final_return"]
                     - modes[best_periodic]["mean_final_return"]
+                )
+            if birth_periodic_modes:
+                cell[f"{controller}_minus_best_birth_periodic_mean_return"] = (
+                    modes[controller]["mean_final_return"]
+                    - modes[best_birth_periodic]["mean_final_return"]
                 )
         cells[profile] = cell
     return cells
@@ -621,6 +726,7 @@ def main() -> None:
     parser.add_argument("--baseline-episodes", type=int, default=6)
     parser.add_argument("--actor-transition-budget", type=int, default=30000)
     parser.add_argument("--num-agents", type=int, default=3)
+    parser.add_argument("--trajectories-per-estimate", type=int, default=2)
     parser.add_argument("--profiles", nargs="+", default=list(PROFILE_NAMES))
     parser.add_argument("--modes", nargs="+", default=list(MODES))
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -633,6 +739,7 @@ def main() -> None:
         "baseline_episodes": args.baseline_episodes,
         "actor_transition_budget": args.actor_transition_budget,
         "num_agents": args.num_agents,
+        "trajectories_per_estimate": args.trajectories_per_estimate,
         "gamma": 0.99,
         "learning_rate": 5e-4,
         "maximum_step_norm": 0.05,
