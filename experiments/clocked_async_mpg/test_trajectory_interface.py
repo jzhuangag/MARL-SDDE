@@ -8,7 +8,9 @@ import pytest
 from .trajectory_interface import (
     enumerate_reinforce_expectation,
     exact_policy_gradient,
+    finite_horizon_teammate_gradient_change_bound,
     reinforce_packet_norm_bound,
+    softmax_total_variation_lipschitz,
     softmax_nash_gap_certificate,
     truncation_gradient_bias_bound,
 )
@@ -131,3 +133,54 @@ def test_trajectory_interface_rejects_invalid_inputs() -> None:
         )
     with pytest.raises(ValueError):
         truncation_gradient_bias_bound(0, 0.9, 1.0, 1.0)
+
+
+def test_softmax_tv_lipschitz_covers_random_finite_logit_changes() -> None:
+    rng = np.random.default_rng(90801)
+    for actions in (2, 3, 7):
+        coefficient = softmax_total_variation_lipschitz(actions)
+        for _ in range(200):
+            first = rng.normal(size=actions)
+            second = rng.normal(size=actions)
+            first_policy = np.exp(first-np.max(first))
+            first_policy /= np.sum(first_policy)
+            second_policy = np.exp(second-np.max(second))
+            second_policy /= np.sum(second_policy)
+            total_variation = 0.5*float(np.sum(np.abs(first_policy-second_policy)))
+            assert total_variation <= coefficient*np.linalg.norm(first-second)+1e-12
+
+
+def test_teammate_logit_bound_covers_exact_owner_gradient_change() -> None:
+    discount, horizon = 0.78, 4
+    for seed in range(90810, 90830):
+        transition, reward, start, logits = _random_game(seed)
+        shifted = logits.copy()
+        rng = np.random.default_rng(seed+10_000)
+        shifted[1] += rng.normal(scale=0.35, size=shifted[1].shape)
+        first = exact_policy_gradient(
+            transition, reward, start, logits, discount, horizon=horizon
+        )[1][0]
+        second = exact_policy_gradient(
+            transition, reward, start, shifted, discount, horizon=horizon
+        )[1][0]
+        maximum_state_shift = float(
+            np.max(np.linalg.norm(shifted[1]-logits[1], axis=-1))
+        )
+        bound = finite_horizon_teammate_gradient_change_bound(
+            horizon,
+            discount,
+            float(np.max(np.abs(reward))),
+            math.sqrt(2.0),
+            teammate_actions=logits.shape[-1],
+            maximum_state_logit_shift=maximum_state_shift,
+        )
+        assert np.linalg.norm(first-second) <= bound+1e-12
+
+
+def test_cross_sensitivity_helpers_reject_malformed_arguments() -> None:
+    with pytest.raises(ValueError):
+        softmax_total_variation_lipschitz(0)
+    with pytest.raises(ValueError):
+        finite_horizon_teammate_gradient_change_bound(
+            4, 0.8, 1.0, 1.0, 2, -0.1
+        )

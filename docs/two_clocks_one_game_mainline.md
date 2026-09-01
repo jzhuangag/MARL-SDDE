@@ -157,8 +157,9 @@ gates and are not components of this mainline.
    theorem chain;
 2. sharpen the lower result enough to state which dependence on service,
    coupling and delay is matched and which remains only qualitative;
-3. define a conservative neural cross-sensitivity interface, or clearly split
-   the theorem-facing bound from the practical measured proxy;
+3. instantiate the now-derived finite-horizon softmax cross-sensitivity bound
+   on the frozen actor architecture, and clearly split the theorem-facing
+   bound from any practical measured proxy if the uniform bound is vacuous;
 4. run standard nonlinear CTDE benchmarks against a fully utilized barrier,
    raw asynchronous learning, a strong delay-adaptive asynchronous baseline,
    HAPPO/HARL and MAPPO, reporting return versus wall-clock, transitions and
@@ -170,6 +171,10 @@ gates and are not components of this mainline.
 
 Items 1--3 are CPU/theory work.  Item 4 will require GPU/HPC4 and a separate
 frozen preregistration.  No GPU job is authorized by this document.
+
+The finite-horizon factorized-softmax interface for item 3 is derived and
+validated in `clocked_async_mpg_neural_cross_sensitivity.md`; architecture-
+specific nonvacuity remains open.
 
 ## Stop rules
 

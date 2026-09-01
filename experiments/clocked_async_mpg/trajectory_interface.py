@@ -362,3 +362,51 @@ def reinforce_packet_norm_bound(
         *(discounted_sum-horizon*discount**horizon)
         /(1.0-discount)
     )
+
+
+def softmax_total_variation_lipschitz(actions: int) -> float:
+    """Global l2-logit to total-variation Lipschitz constant.
+
+    The categorical softmax Jacobian is ``diag(p)-p p^T`` and has spectral
+    norm at most ``1/2``.  Combining l1/l2 norm conversion with the factor
+    ``1/2`` in total variation gives ``sqrt(actions)/4``.
+    """
+
+    if actions <= 0:
+        raise ValueError("actions must be positive")
+    return math.sqrt(actions)/4.0
+
+
+def finite_horizon_teammate_gradient_change_bound(
+    horizon: int,
+    discount: float,
+    reward_bound: float,
+    owner_score_norm_bound: float,
+    teammate_actions: int,
+    maximum_state_logit_shift: float,
+) -> float:
+    """Bound owner-gradient drift caused by one teammate's logit change.
+
+    A uniform teammate-policy TV shift ``delta`` changes an ``H``-step
+    trajectory law by at most ``H*delta``.  Expectations of a vector bounded
+    in norm by ``C`` then differ by at most ``2*C*TV``.  The result deliberately
+    uses the uncapped linear envelope so it is a global cross-Lipschitz bound
+    in the maximum per-state teammate logit displacement.
+    """
+
+    if not math.isfinite(maximum_state_logit_shift) or maximum_state_logit_shift < 0.0:
+        raise ValueError("maximum_state_logit_shift must be finite and nonnegative")
+    packet_bound = reinforce_packet_norm_bound(
+        horizon,
+        discount,
+        reward_bound,
+        owner_score_norm_bound,
+    )
+    policy_lipschitz = softmax_total_variation_lipschitz(teammate_actions)
+    return float(
+        2.0
+        *packet_bound
+        *horizon
+        *policy_lipschitz
+        *maximum_state_logit_shift
+    )
