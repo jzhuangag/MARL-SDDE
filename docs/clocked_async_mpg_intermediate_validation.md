@@ -74,3 +74,11 @@ passed 37 tests in 0.43 seconds.  The complete registered regression passed
 961 tests with 7 skips in 121.04 seconds.  The lower/separation gate now
 authorizes a separately frozen multi-state CPU theory confirmation only; it
 does not authorize formal evidence or a GPU benchmark.
+
+The later single-flight structural correction and frozen exact multi-state
+confirmation passed all C1--C10 gates and reproduced byte-for-byte.  On that
+validation source state, the theorem-facing package passed 46 tests in 0.91
+seconds and the complete registered regression passed 970 tests with 7 skips
+in 119.81 seconds.  See
+`clocked_async_mpg_exact_confirmation_validation.md` for the phase result and
+its exact-value/sample-accounting limits.

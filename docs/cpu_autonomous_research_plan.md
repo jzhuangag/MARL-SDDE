@@ -86,6 +86,15 @@ correct zero-coupling limit and yields `O(n^2)` local-curvature steps.  The
 exact multi-state confirmation is now separately frozen; its 64-seed namespace
 and C1--C10 gates cannot be changed after the design commit.
 
+The frozen exact confirmation at commit `d55c736` has now passed C1--C10:
+2,048 endpoints, 12/12 faster primary cells, geometric target-time ratio
+0.44456, geometric final-gap ratio 0.52815 and byte-exact reproduction.  The
+homogeneous controls include losses, so the claim remains phase-conditioned.
+This authorizes only a new stochastic CPU packet preregistration.  Before that
+run, the runner must explicitly account for completed, partial/cancelled and
+discarded trajectory work; the exact-value result cannot claim sample
+efficiency.  Formal/GPU work remains unauthorized.
+
 ## Latest bounded decision: compatible-update scheduling stopped
 
 Read `compatible_schedule_headroom_validation.md` before proposing another
