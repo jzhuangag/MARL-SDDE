@@ -1,5 +1,23 @@
 # Autonomous CPU research plan — 2026-09-01
 
+## Latest bounded decision: compatible-update scheduling stopped
+
+Read `compatible_schedule_headroom_validation.md` before proposing another
+asynchronous MARL scheduler.  The frozen 48-scenario deterministic ceiling is
+complete and byte-exact reproducible.  Compatible parallel service achieves a
+7.6147x geometric completed-update ratio over sequential service, but the
+paper-critical comparison against a per-scenario strong compatible scheduler
+fails: geometric queue-cost ratio 1.02676, only 18.75% of cells obtain 10%
+improvement, and 20/48 cells are worse.  Three of six mandatory gates fail.
+
+Stop `compatible_maxweight` before the stochastic potential-game pilot,
+formal seeds or GPU benchmark.  Preserve the smoothness/independent-set and
+queue-drift algebra as structural tools, not efficacy evidence.  Do not rescue
+the candidate with a new potential weight, workload or relaxed gate.  The next
+paper-level decision must identify a substantively different endogenous
+learning constraint or information structure and pass novelty plus oracle-value
+screens before a new efficacy protocol.  No stochastic or GPU run is queued.
+
 ## Latest bounded decision: Policy Backpressure construction stopped
 
 Read `policy_backpressure_feasibility_decision.md` before proposing an
