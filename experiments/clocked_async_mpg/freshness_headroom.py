@@ -32,6 +32,17 @@ class EqualCostHeadroom:
     relative_oracle_improvement: float
 
 
+@dataclass(frozen=True)
+class CausalSchedule:
+    incurred_risk: float
+    refresh_count: int
+    refresh_fraction: float
+    final_resource_debt: float
+    maximum_resource_debt: float
+    selected_refresh_value: float
+    refresh_events: tuple[bool, ...]
+
+
 def markov_regime_path(
     *,
     horizon: int,
@@ -171,4 +182,133 @@ def equal_cost_headroom(
         oracle_refresh_value=oracle_value,
         oracle_over_periodic_ratio=float(ratio),
         relative_oracle_improvement=float(improvement),
+    )
+
+
+def causal_resource_schedule(
+    stale_risk: Array,
+    *,
+    fresh_variance: float,
+    maximum_refresh_count: int,
+    average_refresh_budget: float,
+    risk_tradeoff: float,
+) -> CausalSchedule:
+    """Run the scalar resource-debt policy using only current-event risk.
+
+    The finite-horizon cap guarantees at most ``maximum_refresh_count`` costly
+    measurements.  The virtual queue prices the declared average refresh rate.
+    No future risk value is inspected by the action loop.
+    """
+
+    from .freshness_sensing import (
+        choose_budgeted_freshness_refresh,
+        optimal_fusion_certificate,
+    )
+
+    risk = np.asarray(stale_risk, dtype=float)
+    if risk.ndim != 1 or not np.isfinite(risk).all() or (risk < 0.0).any():
+        raise ValueError("stale_risk must be a finite nonnegative vector")
+    if maximum_refresh_count < 0 or maximum_refresh_count > len(risk):
+        raise ValueError("maximum_refresh_count is invalid")
+    if not 0.0 <= average_refresh_budget <= 1.0:
+        raise ValueError("average_refresh_budget must lie in [0, 1]")
+    debt = np.zeros(1, dtype=float)
+    used = 0
+    maximum_debt = 0.0
+    total_risk = 0.0
+    total_value = 0.0
+    refresh_events: list[bool] = []
+    for stale in risk:
+        certificate = optimal_fusion_certificate(
+            birth_variance=float(stale),
+            fresh_variance=fresh_variance,
+            birth_bias_upper=0.0,
+        )
+        decision = choose_budgeted_freshness_refresh(
+            certificate,
+            resource_debts=debt,
+            refresh_costs=np.ones(1),
+            average_budgets=np.asarray([average_refresh_budget]),
+            risk_tradeoff=risk_tradeoff,
+            hard_budget_feasible=used < maximum_refresh_count,
+        )
+        debt = np.asarray(decision.resource_debts_after)
+        maximum_debt = max(maximum_debt, float(debt[0]))
+        total_risk += decision.incurred_mse_upper
+        refresh_events.append(decision.refresh)
+        if decision.refresh:
+            used += 1
+            total_value += decision.refresh_value
+    return CausalSchedule(
+        incurred_risk=float(total_risk),
+        refresh_count=used,
+        refresh_fraction=used / len(risk),
+        final_resource_debt=float(debt[0]),
+        maximum_resource_debt=maximum_debt,
+        selected_refresh_value=float(total_value),
+        refresh_events=tuple(refresh_events),
+    )
+
+
+def causal_resource_schedule_fast(
+    stale_risk: Array,
+    *,
+    fresh_variance: float,
+    maximum_refresh_count: int,
+    average_refresh_budget: float,
+    risk_tradeoff: float,
+) -> CausalSchedule:
+    """Scalar-equivalent implementation for large research grids.
+
+    This avoids allocating NumPy arrays and dataclasses at every event.  It is
+    required to match :func:`causal_resource_schedule` field for field.
+    """
+
+    risk = np.asarray(stale_risk, dtype=float)
+    variance = float(fresh_variance)
+    tradeoff = float(risk_tradeoff)
+    if risk.ndim != 1 or not np.isfinite(risk).all() or (risk < 0.0).any():
+        raise ValueError("stale_risk must be a finite nonnegative vector")
+    if not math.isfinite(variance) or variance < 0.0:
+        raise ValueError("fresh_variance must be finite and nonnegative")
+    if not math.isfinite(tradeoff) or tradeoff < 0.0:
+        raise ValueError("risk_tradeoff must be finite and nonnegative")
+    if maximum_refresh_count < 0 or maximum_refresh_count > len(risk):
+        raise ValueError("maximum_refresh_count is invalid")
+    if not 0.0 <= average_refresh_budget <= 1.0:
+        raise ValueError("average_refresh_budget must lie in [0, 1]")
+    debt = 0.0
+    used = 0
+    maximum_debt = 0.0
+    total_risk = 0.0
+    total_value = 0.0
+    refresh_events: list[bool] = []
+    for stale in risk:
+        denominator = float(stale) + variance
+        if denominator == 0.0:
+            refresh_risk = 0.0
+        else:
+            refresh_risk = float(stale) * variance / denominator
+        value = float(stale) - refresh_risk
+        refresh = bool(
+            used < maximum_refresh_count and tradeoff * value > debt
+        )
+        if refresh:
+            used += 1
+            total_risk += refresh_risk
+            total_value += value
+            debt = max(0.0, debt + 1.0 - average_refresh_budget)
+        else:
+            total_risk += float(stale)
+            debt = max(0.0, debt - average_refresh_budget)
+        maximum_debt = max(maximum_debt, debt)
+        refresh_events.append(refresh)
+    return CausalSchedule(
+        incurred_risk=float(total_risk),
+        refresh_count=used,
+        refresh_fraction=used / len(risk),
+        final_resource_debt=float(debt),
+        maximum_resource_debt=float(maximum_debt),
+        selected_refresh_value=float(total_value),
+        refresh_events=tuple(refresh_events),
     )

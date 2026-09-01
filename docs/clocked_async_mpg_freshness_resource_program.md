@@ -168,6 +168,36 @@ cost-optimality gap against a stationary randomized refresh policy additionally
 requires a stated exogeneity/ergodicity condition and a Slater action; it is
 not yet claimed for fully endogenous MARL trajectories.
 
+## Budget-facing dual formulation
+
+The research question is more naturally stated as minimizing estimation risk
+under actor-transition and wall-clock refresh budgets.  Let resource `r` have
+per-refresh cost `c_r,k` and allowed average `c_bar_r`.  Define
+
+```
+Z_r,k+1 = [Z_r,k + c_r,k u_k-c_bar_r]_+.
+```
+
+Minimizing multi-resource drift plus `V U_k(u_k)` gives
+
+```
+u_k = 1  iff  V R_k > sum_r Z_r,k c_r,k.
+```
+
+Thus `V` selects a point on the risk--resource frontier, while each queue is an
+online shadow price for a physical budget.  A finite-horizon remaining-budget
+check can veto the action without invalidating the resource certificate.  For
+every realized sequence,
+
+```
+sum_{k<K} c_r,k u_k <= K c_bar_r + Z_r,K.
+```
+
+This is the primary implementation interface because it represents the two
+resources in the problem statement directly.  The risk-debt formulation is
+the dual orientation of the same frontier: minimize refresh cost subject to a
+declared MSE budget.  They are not two unrelated controllers.
+
 ## Theorem 2: from sensing risk to potential convergence
 
 Suppose `Phi` is upper bounded and `L`-smooth and the owner applies

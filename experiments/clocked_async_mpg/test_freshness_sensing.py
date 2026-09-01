@@ -4,12 +4,14 @@ import numpy as np
 import pytest
 
 from .freshness_sensing import (
+    choose_budgeted_freshness_refresh,
     choose_freshness_refresh,
     cross_policy_bias_upper,
     fuse_gradient_estimates,
     optimal_fusion_certificate,
     smooth_potential_progress_lower_bound,
     update_risk_debt,
+    update_resource_debts,
 )
 
 
@@ -108,3 +110,58 @@ def test_virtual_queue_certifies_sample_path_average_risk() -> None:
             debt, incurred_mse_upper=value, mse_budget=budget
         )
     assert sum(incurred) <= len(incurred) * budget + debt + 1e-15
+
+
+def test_resource_queue_prices_refresh_and_certifies_cost() -> None:
+    certificate = optimal_fusion_certificate(
+        birth_variance=1.0,
+        fresh_variance=1.0,
+        birth_bias_upper=2.0,
+    )
+    decision = choose_budgeted_freshness_refresh(
+        certificate,
+        resource_debts=np.asarray([0.1, 0.2]),
+        refresh_costs=np.asarray([1.0, 0.5]),
+        average_budgets=np.asarray([0.25, 0.125]),
+        risk_tradeoff=1.0,
+    )
+    assert decision.refresh is True
+    assert decision.resource_price == pytest.approx(0.2)
+    assert decision.resource_debts_after == pytest.approx((0.85, 0.575))
+
+
+def test_hard_budget_can_veto_an_economically_valuable_refresh() -> None:
+    certificate = optimal_fusion_certificate(
+        birth_variance=1.0,
+        fresh_variance=1.0,
+        birth_bias_upper=2.0,
+    )
+    decision = choose_budgeted_freshness_refresh(
+        certificate,
+        resource_debts=np.zeros(1),
+        refresh_costs=np.ones(1),
+        average_budgets=np.asarray([0.25]),
+        risk_tradeoff=10.0,
+        hard_budget_feasible=False,
+    )
+    assert decision.refresh is False
+    assert decision.incurred_costs == (0.0,)
+
+
+def test_resource_queue_sample_path_certificate() -> None:
+    average_budget = np.asarray([0.25, 0.5])
+    debt = np.zeros(2)
+    cumulative = np.zeros(2)
+    for costs in (
+        np.asarray([1.0, 0.5]),
+        np.asarray([0.0, 0.0]),
+        np.asarray([1.0, 0.5]),
+        np.asarray([0.0, 0.0]),
+    ):
+        cumulative += costs
+        debt = update_resource_debts(
+            debt,
+            incurred_costs=costs,
+            average_budgets=average_budget,
+        )
+    assert np.all(cumulative <= 4 * average_budget + debt + 1e-15)

@@ -6,6 +6,8 @@ import pytest
 from .freshness_headroom import (
     balanced_periodic_indicator,
     best_periodic_refresh_value,
+    causal_resource_schedule,
+    causal_resource_schedule_fast,
     equal_cost_headroom,
     markov_regime_path,
     oracle_refresh_value,
@@ -63,3 +65,57 @@ def test_stationary_risk_has_no_schedule_headroom() -> None:
     )
     assert result.oracle_risk == pytest.approx(result.periodic_risk)
     assert result.relative_oracle_improvement == pytest.approx(0.0, abs=1e-14)
+
+
+def test_causal_schedule_respects_hard_refresh_cap() -> None:
+    result = causal_resource_schedule(
+        np.asarray([8.0, 1.0, 8.0, 1.0, 8.0, 1.0]),
+        fresh_variance=1.0,
+        maximum_refresh_count=2,
+        average_refresh_budget=2 / 6,
+        risk_tradeoff=2.0,
+    )
+    assert result.refresh_count <= 2
+    assert result.incurred_risk > 0.0
+    assert result.maximum_resource_debt >= result.final_resource_debt
+
+
+def test_causal_schedule_uses_no_future_values() -> None:
+    prefix = np.asarray([1.0, 8.0, 1.0, 8.0])
+    left = causal_resource_schedule(
+        np.concatenate([prefix, np.ones(4)]),
+        fresh_variance=1.0,
+        maximum_refresh_count=4,
+        average_refresh_budget=0.25,
+        risk_tradeoff=1.0,
+    )
+    right = causal_resource_schedule(
+        np.concatenate([prefix, np.full(4, 100.0)]),
+        fresh_variance=1.0,
+        maximum_refresh_count=4,
+        average_refresh_budget=0.25,
+        risk_tradeoff=1.0,
+    )
+    # Future values change final totals but cannot alter prefix actions.
+    common = causal_resource_schedule(
+        prefix,
+        fresh_variance=1.0,
+        maximum_refresh_count=4,
+        average_refresh_budget=0.25,
+        risk_tradeoff=1.0,
+    )
+    assert left.refresh_events[: len(prefix)] == common.refresh_events
+    assert right.refresh_events[: len(prefix)] == common.refresh_events
+
+
+def test_fast_causal_schedule_is_fieldwise_identical() -> None:
+    risk = np.asarray([1.0, 8.0, 2.0, 1.0, 4.0, 8.0, 1.0])
+    kwargs = {
+        "fresh_variance": 1.3,
+        "maximum_refresh_count": 3,
+        "average_refresh_budget": 3 / 7,
+        "risk_tradeoff": 2.0,
+    }
+    reference = causal_resource_schedule(risk, **kwargs)
+    fast = causal_resource_schedule_fast(risk, **kwargs)
+    assert fast == reference

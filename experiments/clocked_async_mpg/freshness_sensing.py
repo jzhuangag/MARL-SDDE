@@ -48,6 +48,19 @@ class FreshnessDecision:
     fresh_weight: float
 
 
+@dataclass(frozen=True)
+class BudgetedFreshnessDecision:
+    refresh: bool
+    refresh_value: float
+    risk_weighted_value: float
+    resource_price: float
+    resource_debts_before: tuple[float, ...]
+    resource_debts_after: tuple[float, ...]
+    incurred_costs: tuple[float, ...]
+    incurred_mse_upper: float
+    fresh_weight: float
+
+
 def cross_policy_bias_upper(
     teammate_mean_kls: Array,
     *,
@@ -130,6 +143,80 @@ def update_risk_debt(
     incurred = _nonnegative("incurred_mse_upper", incurred_mse_upper)
     budget = _nonnegative("mse_budget", mse_budget)
     return float(max(0.0, debt + incurred - budget))
+
+
+def update_resource_debts(
+    debts: Array,
+    *,
+    incurred_costs: Array,
+    average_budgets: Array,
+) -> Array:
+    """Update nonnegative virtual queues for multiple refresh resources."""
+
+    queue = np.asarray(debts, dtype=float)
+    costs = np.asarray(incurred_costs, dtype=float)
+    budgets = np.asarray(average_budgets, dtype=float)
+    if queue.ndim != 1 or queue.shape != costs.shape or queue.shape != budgets.shape:
+        raise ValueError("resource vectors must be matching one-dimensional arrays")
+    if not all(np.isfinite(value).all() for value in (queue, costs, budgets)):
+        raise ValueError("resource vectors must be finite")
+    if (queue < 0.0).any() or (costs < 0.0).any() or (budgets < 0.0).any():
+        raise ValueError("resource vectors must be nonnegative")
+    return np.maximum(0.0, queue + costs - budgets)
+
+
+def choose_budgeted_freshness_refresh(
+    certificate: FusionCertificate,
+    *,
+    resource_debts: Array,
+    refresh_costs: Array,
+    average_budgets: Array,
+    risk_tradeoff: float,
+    hard_budget_feasible: bool = True,
+) -> BudgetedFreshnessDecision:
+    """Minimize resource drift plus weighted conditional estimation risk.
+
+    For resource queues ``Z_r`` and refresh costs ``c_r``, the action-dependent
+    drift-plus-risk term is ``u * (sum_r Z_r c_r - V R)``.  A refresh is
+    purchased iff its risk-weighted value exceeds its resource shadow price
+    and a finite-horizon hard budget permits it.
+    """
+
+    debts = np.asarray(resource_debts, dtype=float)
+    costs = np.asarray(refresh_costs, dtype=float)
+    budgets = np.asarray(average_budgets, dtype=float)
+    tradeoff = _nonnegative("risk_tradeoff", risk_tradeoff)
+    if debts.ndim != 1 or debts.shape != costs.shape or debts.shape != budgets.shape:
+        raise ValueError("resource vectors must be matching one-dimensional arrays")
+    if not all(np.isfinite(value).all() for value in (debts, costs, budgets)):
+        raise ValueError("resource vectors must be finite")
+    if (debts < 0.0).any() or (costs < 0.0).any() or (budgets < 0.0).any():
+        raise ValueError("resource vectors must be nonnegative")
+    resource_price = float(debts @ costs)
+    risk_weighted_value = tradeoff * certificate.refresh_value
+    refresh = bool(hard_budget_feasible and risk_weighted_value > resource_price)
+    incurred_costs = costs if refresh else np.zeros_like(costs)
+    debts_after = update_resource_debts(
+        debts,
+        incurred_costs=incurred_costs,
+        average_budgets=budgets,
+    )
+    incurred_risk = (
+        certificate.refresh_mse_upper
+        if refresh
+        else certificate.no_refresh_mse_upper
+    )
+    return BudgetedFreshnessDecision(
+        refresh=refresh,
+        refresh_value=certificate.refresh_value,
+        risk_weighted_value=float(risk_weighted_value),
+        resource_price=resource_price,
+        resource_debts_before=tuple(float(value) for value in debts),
+        resource_debts_after=tuple(float(value) for value in debts_after),
+        incurred_costs=tuple(float(value) for value in incurred_costs),
+        incurred_mse_upper=float(incurred_risk),
+        fresh_weight=certificate.fresh_weight if refresh else 0.0,
+    )
 
 
 def choose_freshness_refresh(
