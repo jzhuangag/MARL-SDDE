@@ -161,17 +161,42 @@ def _best_static_vector(
     def gradient(alpha: np.ndarray) -> np.ndarray:
         return 2.0 * matrix @ alpha - 2.0 * linear
 
+    bounds = [(0.0, 1.0)] * sensitivities.shape[1]
     result = minimize(
         objective,
         np.full(sensitivities.shape[1], 0.5),
         jac=gradient,
-        bounds=[(0.0, 1.0)] * sensitivities.shape[1],
+        bounds=bounds,
         method="L-BFGS-B",
-        options={"ftol": 1e-15, "gtol": 1e-12, "maxiter": 1000},
+        options={"ftol": 1e-12, "gtol": 1e-10, "maxiter": 1000, "maxls": 50},
     )
     if not result.success:
-        raise RuntimeError(f"static box QP failed: {result.message}")
-    return np.clip(np.asarray(result.x, dtype=float), 0.0, 1.0)
+        result = minimize(
+            objective,
+            np.clip(np.asarray(result.x, dtype=float), 0.0, 1.0),
+            jac=gradient,
+            bounds=bounds,
+            method="SLSQP",
+            options={"ftol": 1e-12, "maxiter": 2000},
+        )
+    candidate = np.clip(np.asarray(result.x, dtype=float), 0.0, 1.0)
+    candidate_gradient = gradient(candidate)
+    kkt_residual = np.max(
+        np.where(
+            candidate <= 1e-8,
+            np.maximum(0.0, -candidate_gradient),
+            np.where(
+                candidate >= 1.0 - 1e-8,
+                np.maximum(0.0, candidate_gradient),
+                np.abs(candidate_gradient),
+            ),
+        )
+    )
+    if not result.success or kkt_residual > 1e-6:
+        raise RuntimeError(
+            f"static box QP failed: {result.message}; KKT={kkt_residual}"
+        )
+    return candidate
 
 
 def _schedule_risks(

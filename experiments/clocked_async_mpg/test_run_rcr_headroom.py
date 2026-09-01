@@ -52,6 +52,19 @@ def test_static_box_qp_dominates_uncorrected_and_full_when_available() -> None:
     assert selected <= min(no, full) + 1e-10
 
 
+def test_static_box_qp_is_robust_across_frozen_profiles() -> None:
+    config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    for specification in _specifications(config)[:64]:
+        d, v = _generate_certificates(specification, config)
+        alpha = _best_static_vector(
+            d,
+            v,
+            config["integrand_second_moment"],
+            specification.effective_batch_size,
+        )
+        assert np.all((alpha >= 0.0) & (alpha <= 1.0))
+
+
 def test_schedulers_respect_exact_refresh_allowance() -> None:
     risks = np.asarray([0.3, 0.1, 0.8, 0.2] * 8)
     schedules = _schedule_risks(
