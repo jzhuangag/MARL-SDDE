@@ -335,3 +335,20 @@ further controller variant is authorized merely by changing a step, graph,
 participation, transport or shrinkage parameter.  A new successor must change
 the task-level research premise and demonstrate paper-level oracle value before
 any sampled experiment.
+
+## 2026-09-01 compatible-update scheduling gate
+
+A substantively different premise is now frozen for an outcome-free gate in
+`compatible_async_updates_mainline.md`.  HAPPO/HATRPO/HAML obtain monotonic
+improvement through sequential heterogeneous-actor policy updates; the new
+question is whether a sparse certified interaction graph permits compatible
+ready actor updates to be committed concurrently, while Lyapunov MaxWeight
+scheduling removes the sequential barrier under heterogeneous completion.
+
+The current algebra verifies additive gain on independent blocks, a harmful
+pair of individually beneficial conflicting updates, exact path
+maximum-weight independent-set scheduling and queue-drift bookkeeping.  The
+pending static ceiling must beat both sequential service and a strong
+best-color compatible scheduler.  No stochastic learner or GPU benchmark is
+authorized unless every frozen scheduling gate and the later Markov causal-cone
+theorem pass.
