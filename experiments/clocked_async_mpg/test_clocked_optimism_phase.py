@@ -5,6 +5,9 @@ import pytest
 
 from .clocked_optimism_phase import (
     choose_clocked_optimism,
+    choose_log_drift_anchor,
+    expected_quadratic_multiplier,
+    fresh_anchor_lyapunov_metric,
     heterogeneous_clock_metric,
     heterogeneous_potential_drift_coefficient,
     heterogeneous_rotational_drift_coefficient,
@@ -197,3 +200,54 @@ def test_lifted_transition_has_exact_shift_register() -> None:
     )
     assert transition.shape == (8, 8)
     np.testing.assert_array_equal(transition[2:8, :6], np.eye(6))
+
+
+@pytest.mark.parametrize("delay", [0, 1, 2, 4])
+@pytest.mark.parametrize("arrival", [0.2, 0.5, 0.8])
+def test_fresh_anchor_metric_certifies_contraction(
+    delay: int, arrival: float
+) -> None:
+    metric = fresh_anchor_lyapunov_metric(
+        0.3, delay=delay, first_agent_probability=arrival
+    )
+    transitions = tuple(
+        lifted_rotational_transition(
+            0.3,
+            delay=delay,
+            agent=agent,
+            fresh_optimistic_anchor=True,
+        )
+        for agent in (0, 1)
+    )
+    multiplier = expected_quadratic_multiplier(
+        metric, transitions, (arrival, 1.0 - arrival)
+    )
+    assert multiplier < 1.0
+    assert np.min(np.linalg.eigvalsh(metric)) > 0.0
+
+
+def test_log_drift_controller_selects_the_lower_priced_multiplier() -> None:
+    selected = choose_log_drift_anchor(
+        plain_multiplier=1.1,
+        fresh_multiplier=0.9,
+        resource_debt=0.0,
+        average_anchor_budget=0.25,
+        lyapunov_tradeoff=10.0,
+    )
+    rejected = choose_log_drift_anchor(
+        plain_multiplier=0.8,
+        fresh_multiplier=0.9,
+        resource_debt=0.0,
+        average_anchor_budget=0.25,
+        lyapunov_tradeoff=10.0,
+    )
+    assert selected.use_fresh_anchor
+    assert not rejected.use_fresh_anchor
+
+
+def test_generalized_multiplier_matches_direct_metric_inequality() -> None:
+    metric = np.diag([3.0, 1.0])
+    transition = np.asarray([[0.8, 0.1], [0.0, 0.9]])
+    multiplier = expected_quadratic_multiplier(metric, (transition,), (1.0,))
+    residual = multiplier * metric - transition.T @ metric @ transition
+    assert np.min(np.linalg.eigvalsh(residual)) >= -1e-12

@@ -32,6 +32,13 @@ class ClockedOptimismStep:
     optimistic_factor: float
 
 
+@dataclass(frozen=True)
+class LogDriftDecision:
+    use_fresh_anchor: bool
+    selected_log_multiplier: float
+    resource_debt_after: float
+
+
 def rotational_coordinate_factors(normalized_step: float) -> PhaseFactors:
     """Mean-square factors for a uniform asynchronous bilinear coordinate."""
 
@@ -238,6 +245,122 @@ def stale_optimistic_lifted_spectral_radius(
             transition[2 * lag : 2 * lag + 2, 2 * (lag - 1) : 2 * lag] = np.eye(2)
         operator += probability * np.kron(transition, transition)
     return float(np.max(np.abs(np.linalg.eigvals(operator))))
+
+
+def expected_quadratic_multiplier(
+    metric: np.ndarray,
+    transitions: tuple[np.ndarray, ...],
+    probabilities: tuple[float, ...],
+) -> float:
+    """Smallest q satisfying sum p M^T P M <= q P."""
+
+    metric = np.asarray(metric, dtype=float)
+    if (
+        metric.ndim != 2
+        or metric.shape[0] != metric.shape[1]
+        or not np.allclose(metric, metric.T, atol=1e-12)
+    ):
+        raise ValueError("metric must be square and symmetric")
+    eigenvalues, eigenvectors = np.linalg.eigh(metric)
+    if np.min(eigenvalues) <= 0.0:
+        raise ValueError("metric must be positive definite")
+    if len(transitions) == 0 or len(transitions) != len(probabilities):
+        raise ValueError("transitions and probabilities must be nonempty and match")
+    if any(matrix.shape != metric.shape for matrix in transitions):
+        raise ValueError("every transition must match the metric")
+    if any(probability < 0.0 for probability in probabilities) or not math.isclose(
+        sum(probabilities), 1.0, rel_tol=1e-12, abs_tol=1e-12
+    ):
+        raise ValueError("probabilities must be nonnegative and sum to one")
+    expected = sum(
+        probability * matrix.T @ metric @ matrix
+        for probability, matrix in zip(probabilities, transitions)
+    )
+    inverse_root = (
+        eigenvectors
+        @ np.diag(1.0 / np.sqrt(eigenvalues))
+        @ eigenvectors.T
+    )
+    normalized = inverse_root @ expected @ inverse_root
+    return float(np.max(np.linalg.eigvalsh(0.5 * (normalized + normalized.T))))
+
+
+def fresh_anchor_lyapunov_metric(
+    normalized_step: float,
+    *,
+    delay: int,
+    first_agent_probability: float,
+    tolerance: float = 1e-12,
+    maximum_iterations: int = 200_000,
+) -> np.ndarray:
+    """Solve P = I + E[M_fresh^T P M_fresh] by fixed-point iteration."""
+
+    heterogeneous_clock_metric(first_agent_probability)
+    transitions = tuple(
+        lifted_rotational_transition(
+            normalized_step,
+            delay=delay,
+            agent=agent,
+            fresh_optimistic_anchor=True,
+        )
+        for agent in (0, 1)
+    )
+    probabilities = (first_agent_probability, 1.0 - first_agent_probability)
+    dimension = transitions[0].shape[0]
+    metric = np.eye(dimension)
+    identity = np.eye(dimension)
+    for _ in range(maximum_iterations):
+        updated = identity + sum(
+            probability * matrix.T @ metric @ matrix
+            for probability, matrix in zip(probabilities, transitions)
+        )
+        relative = np.linalg.norm(updated - metric) / max(
+            1.0, np.linalg.norm(updated)
+        )
+        metric = updated
+        if relative <= tolerance:
+            return 0.5 * (metric + metric.T)
+    raise RuntimeError("fresh-anchor Lyapunov fixed point did not converge")
+
+
+def choose_log_drift_anchor(
+    *,
+    plain_multiplier: float,
+    fresh_multiplier: float,
+    resource_debt: float,
+    average_anchor_budget: float,
+    lyapunov_tradeoff: float,
+    hard_feasible: bool = True,
+) -> LogDriftDecision:
+    """Drift-plus-penalty choice using certified log energy multipliers."""
+
+    values = (
+        plain_multiplier,
+        fresh_multiplier,
+        resource_debt,
+        average_anchor_budget,
+        lyapunov_tradeoff,
+    )
+    if any(not math.isfinite(value) for value in values):
+        raise ValueError("all log-drift inputs must be finite")
+    if plain_multiplier <= 0.0 or fresh_multiplier <= 0.0:
+        raise ValueError("multipliers must be positive")
+    if resource_debt < 0.0 or not 0.0 <= average_anchor_budget <= 1.0:
+        raise ValueError("invalid debt or anchor budget")
+    if lyapunov_tradeoff <= 0.0:
+        raise ValueError("lyapunov_tradeoff must be positive")
+    plain_log = math.log(plain_multiplier)
+    fresh_log = math.log(fresh_multiplier)
+    use_fresh = bool(
+        hard_feasible
+        and lyapunov_tradeoff * (plain_log - fresh_log) > resource_debt
+    )
+    selected = fresh_log if use_fresh else plain_log
+    debt_after = max(
+        0.0,
+        resource_debt + float(use_fresh) - average_anchor_budget,
+    )
+    return LogDriftDecision(use_fresh, selected, debt_after)
 
 
 def choose_clocked_optimism(
