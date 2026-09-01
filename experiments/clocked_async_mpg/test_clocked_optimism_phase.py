@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import itertools
+import math
+
 import numpy as np
 import pytest
 
@@ -7,6 +10,7 @@ from .clocked_optimism_phase import (
     choose_clocked_optimism,
     choose_log_drift_anchor,
     expected_quadratic_multiplier,
+    finite_horizon_budget_reserve,
     fresh_anchor_lyapunov_metric,
     heterogeneous_clock_metric,
     heterogeneous_potential_drift_coefficient,
@@ -251,3 +255,73 @@ def test_generalized_multiplier_matches_direct_metric_inequality() -> None:
     multiplier = expected_quadratic_multiplier(metric, (transition,), (1.0,))
     residual = multiplier * metric - transition.T @ metric @ transition
     assert np.min(np.linalg.eigvalsh(residual)) >= -1e-12
+
+
+def test_finite_horizon_reserve_implies_exact_call_budget_exhaustively() -> None:
+    horizon = 8
+    tradeoff = 2.0
+    maximum_log_gain = 0.4
+    reserve = finite_horizon_budget_reserve(
+        maximum_calls=4,
+        horizon=horizon,
+        lyapunov_tradeoff=tradeoff,
+        maximum_log_gain=maximum_log_gain,
+    )
+    assert reserve.maximum_debt == pytest.approx(1.8)
+    assert reserve.nominal_average_budget == pytest.approx(0.275)
+
+    # These multipliers realize negative, zero, intermediate, and maximum
+    # certified log gains.  Exhausting all 4^8 context strings checks that the
+    # deterministic queue accounting needs no iid or Markov context model.
+    gains = (-0.2, 0.0, 0.2, maximum_log_gain)
+    for sequence in itertools.product(gains, repeat=horizon):
+        debt = 0.0
+        calls = 0
+        for gain in sequence:
+            decision = choose_log_drift_anchor(
+                plain_multiplier=math.exp(gain),
+                fresh_multiplier=1.0,
+                resource_debt=debt,
+                average_anchor_budget=reserve.nominal_average_budget,
+                lyapunov_tradeoff=tradeoff,
+                hard_feasible=True,
+            )
+            debt = decision.resource_debt_after
+            calls += int(decision.use_fresh_anchor)
+            assert debt < reserve.maximum_debt + 1e-12
+        assert calls <= reserve.maximum_calls
+
+
+def test_finite_horizon_reserve_rejects_an_inadequate_budget() -> None:
+    with pytest.raises(ValueError, match="smaller than the debt reserve"):
+        finite_horizon_budget_reserve(
+            maximum_calls=1,
+            horizon=100,
+            lyapunov_tradeoff=10.0,
+            maximum_log_gain=0.2,
+        )
+
+
+@pytest.mark.parametrize(
+    ("maximum_calls", "horizon", "tradeoff", "maximum_gain"),
+    [
+        (-1, 10, 1.0, 0.2),
+        (11, 10, 1.0, 0.2),
+        (1, 0, 1.0, 0.2),
+        (1, 10, 0.0, 0.2),
+        (1, 10, 1.0, -0.2),
+    ],
+)
+def test_finite_horizon_reserve_validates_inputs(
+    maximum_calls: int,
+    horizon: int,
+    tradeoff: float,
+    maximum_gain: float,
+) -> None:
+    with pytest.raises(ValueError):
+        finite_horizon_budget_reserve(
+            maximum_calls=maximum_calls,
+            horizon=horizon,
+            lyapunov_tradeoff=tradeoff,
+            maximum_log_gain=maximum_gain,
+        )

@@ -39,6 +39,62 @@ class LogDriftDecision:
     resource_debt_after: float
 
 
+@dataclass(frozen=True)
+class FiniteHorizonBudgetReserve:
+    """Nominal queue budget that implies an exact finite call budget."""
+
+    maximum_calls: int
+    horizon: int
+    maximum_debt: float
+    nominal_average_budget: float
+
+
+def finite_horizon_budget_reserve(
+    *,
+    maximum_calls: int,
+    horizon: int,
+    lyapunov_tradeoff: float,
+    maximum_log_gain: float,
+) -> FiniteHorizonBudgetReserve:
+    """Reserve the worst-case terminal debt before running the controller.
+
+    If every certified log gain obeys
+    ``log(q_plain) - log(q_fresh) <= maximum_log_gain``, a controller starting
+    at zero debt has debt strictly below ``V * maximum_log_gain + 1``.  Running
+    it with the returned nominal average budget therefore gives
+
+    ``sum(use_fresh) <= nominal_budget * horizon + terminal_debt``
+    ``                    <= maximum_calls``.
+
+    The construction removes the proof mismatch caused by a post-hoc hard
+    guard changing the controller's feasible action set near the horizon.
+    """
+
+    if isinstance(maximum_calls, bool) or not isinstance(maximum_calls, int):
+        raise ValueError("maximum_calls must be an integer")
+    if isinstance(horizon, bool) or not isinstance(horizon, int):
+        raise ValueError("horizon must be an integer")
+    if maximum_calls < 0 or horizon <= 0 or maximum_calls > horizon:
+        raise ValueError("maximum_calls must lie in [0, horizon]")
+    if (
+        not math.isfinite(lyapunov_tradeoff)
+        or not math.isfinite(maximum_log_gain)
+        or lyapunov_tradeoff <= 0.0
+        or maximum_log_gain < 0.0
+    ):
+        raise ValueError("tradeoff must be positive and maximum gain nonnegative")
+    maximum_debt = lyapunov_tradeoff * maximum_log_gain + 1.0
+    nominal = (maximum_calls - maximum_debt) / horizon
+    if nominal < 0.0:
+        raise ValueError("finite call budget is smaller than the debt reserve")
+    return FiniteHorizonBudgetReserve(
+        maximum_calls=maximum_calls,
+        horizon=horizon,
+        maximum_debt=maximum_debt,
+        nominal_average_budget=nominal,
+    )
+
+
 def rotational_coordinate_factors(normalized_step: float) -> PhaseFactors:
     """Mean-square factors for a uniform asynchronous bilinear coordinate."""
 
