@@ -5,7 +5,9 @@ import pytest
 
 from .wall_clock_phase import (
     certified_wall_clock_coefficients,
+    essential_agent_clock_lower_bound,
     expected_maximum_exponential,
+    robust_stale_direction_progress,
     symmetric_interaction_phase,
 )
 
@@ -66,3 +68,53 @@ def test_heterogeneous_rate_coefficients_are_finite() -> None:
 def test_wall_clock_helpers_reject_invalid_rates() -> None:
     with pytest.raises(ValueError):
         expected_maximum_exponential(np.asarray([1.0, 0.0]))
+
+
+def test_robust_stale_progress_matches_dense_step_search() -> None:
+    signal, uncertainty, smoothness, cap = 2.4, 0.7, 1.8, 0.9
+    exact = robust_stale_direction_progress(
+        signal, uncertainty, smoothness, cap
+    )
+    steps = np.linspace(0.0, cap, 200_001)
+    values = (
+        steps*signal*(signal-uncertainty)
+        -0.5*smoothness*steps**2*signal**2
+    )
+    assert exact["certified_progress"] == pytest.approx(
+        float(np.max(values)), abs=1e-10
+    )
+    assert exact["step"] == pytest.approx(float(steps[np.argmax(values)]), abs=1e-5)
+
+
+def test_robust_stale_progress_has_exact_identifiability_boundary() -> None:
+    for uncertainty in (1.0, 1.2, 10.0):
+        result = robust_stale_direction_progress(1.0, uncertainty, 2.0)
+        assert result == {
+            "certified_progress": 0.0,
+            "step": 0.0,
+            "unconstrained_step": 0.0,
+        }
+    below = robust_stale_direction_progress(1.0, 0.2, 2.0)
+    assert below["certified_progress"] == pytest.approx((1.0-0.2)**2/4.0)
+
+
+def test_essential_agent_clock_lower_bound_tracks_slow_required_block() -> None:
+    lower = essential_agent_clock_lower_bound(
+        np.asarray([3, 8, 2]), np.asarray([2.0, 0.5, 5.0])
+    )
+    assert lower == pytest.approx(16.0)
+
+
+def test_phase_lower_bound_helpers_reject_invalid_inputs() -> None:
+    with pytest.raises(ValueError):
+        robust_stale_direction_progress(-1.0, 0.0, 1.0)
+    with pytest.raises(ValueError):
+        robust_stale_direction_progress(1.0, 0.0, 0.0)
+    with pytest.raises(ValueError):
+        essential_agent_clock_lower_bound(
+            np.asarray([1.5, 2.0]), np.asarray([1.0, 1.0])
+        )
+    with pytest.raises(ValueError):
+        essential_agent_clock_lower_bound(
+            np.asarray([1.0]), np.asarray([0.0])
+        )

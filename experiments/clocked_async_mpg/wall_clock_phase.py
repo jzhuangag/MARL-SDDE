@@ -14,6 +14,80 @@ from .finite_time_drift import rate_balanced_steps
 Array = NDArray[np.float64]
 
 
+def robust_stale_direction_progress(
+    signal_norm: float,
+    uncertainty_radius: float,
+    smoothness: float,
+    maximum_step: float = math.inf,
+) -> dict[str, float]:
+    """Exact worst-case smooth progress along one stale direction.
+
+    The stale packet has norm ``signal_norm`` and the current gradient is only
+    known to lie in an Euclidean ball of radius ``uncertainty_radius`` around
+    it.  For an update ``alpha * packet``, block smoothness gives the robust
+    certificate
+
+    ``alpha*s*(s-B) - 0.5*L*alpha**2*s**2``.
+
+    This helper returns the maximizing nonnegative step and certificate.  It
+    is an upper bound on what *any* rule restricted to the observed stale
+    direction can certify from this information, rather than a new controller.
+    """
+
+    values = (signal_norm, uncertainty_radius, smoothness, maximum_step)
+    if not all(math.isfinite(value) or value == math.inf for value in values):
+        raise ValueError("arguments must be finite, except an infinite step cap")
+    if signal_norm < 0.0 or uncertainty_radius < 0.0:
+        raise ValueError("signal and uncertainty must be nonnegative")
+    if smoothness <= 0.0 or maximum_step < 0.0:
+        raise ValueError("smoothness must be positive and the step cap nonnegative")
+    if signal_norm == 0.0 or uncertainty_radius >= signal_norm:
+        return {
+            "certified_progress": 0.0,
+            "step": 0.0,
+            "unconstrained_step": 0.0,
+        }
+    unconstrained = (
+        signal_norm-uncertainty_radius
+    )/(smoothness*signal_norm)
+    step = min(unconstrained, maximum_step)
+    progress = (
+        step*signal_norm*(signal_norm-uncertainty_radius)
+        -0.5*smoothness*step**2*signal_norm**2
+    )
+    return {
+        "certified_progress": progress,
+        "step": step,
+        "unconstrained_step": unconstrained,
+    }
+
+
+def essential_agent_clock_lower_bound(
+    required_fresh_packets: Array, completion_rates: Array
+) -> float:
+    """Clock lower bound imposed by strategically essential policy blocks.
+
+    If block ``i`` needs at least ``m_i`` sequential fresh packets and its
+    packet clock is Poisson with rate ``lambda_i``, the expected time of its
+    ``m_i``-th packet is ``m_i/lambda_i``.  Any full-policy stopping time that
+    requires all blocks is therefore at least the maximum of these means.
+    """
+
+    packets = np.asarray(required_fresh_packets, dtype=float)
+    rates = np.asarray(completion_rates, dtype=float)
+    if packets.ndim != 1 or packets.size == 0 or packets.shape != rates.shape:
+        raise ValueError("packet counts and rates must be equal nonempty vectors")
+    if (
+        not np.isfinite(packets).all()
+        or (packets < 0.0).any()
+        or not np.equal(packets, np.floor(packets)).all()
+    ):
+        raise ValueError("required packet counts must be finite nonnegative integers")
+    if not np.isfinite(rates).all() or (rates <= 0.0).any():
+        raise ValueError("completion rates must be finite and positive")
+    return float(np.max(packets/rates))
+
+
 def expected_maximum_exponential(completion_rates: Array) -> float:
     """Exact expected maximum of independent exponential service times."""
 
