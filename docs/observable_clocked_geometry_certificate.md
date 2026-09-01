@@ -92,6 +92,46 @@ exact potential geometry is negative, and large uncertainty fails closed.
 
 ## What remains statistically open
 
+### Low-complexity dual-use fingerprint
+
+The preferred deployed sensor does not estimate the full Jacobian.  Whenever
+the controller has already paid for a full virtual lookahead, it observes the
+ordinary joint pseudo-gradient \(g=F(x)\) and the lookahead pseudo-gradient
+\(g^+=F(x-\eta g)\).  In a local linear game,
+
+\[
+\frac{g-g^+}{\eta}=Ag.
+\]
+
+The two scalar statistics
+
+\[
+a(g)=\frac{\langle g,Ag\rangle}{\|g\|^2},
+\qquad
+r(g)=\sqrt{
+\frac{\|Ag\|^2}{\|g\|^2}-a(g)^2
+}
+\]
+
+separate the exact anchors used in LCO-H1: \((a,r)=(1,0)\) in the isotropic
+potential phase and \((a,r)=(0,1)\) in the unit rotational phase.  The
+fingerprint costs \(O(d)\) arithmetic and constant scalar memory after the two
+gradients exist.  It never computes a Hessian, full Jacobian, covariance
+matrix, or inverse.  The optimistic call is therefore *dual use*: it both
+damps the current game and supplies information for later resource decisions.
+
+This identity does not make sensing free.  The lookahead gradient is charged
+as the same extra oracle used by the update, and an initial or periodic
+optimistic call made for information is still a paid probe.  The implementation
+fails uninformatively below a public gradient-energy floor, because normalized
+directional statistics are unstable near zero signal.
+
+For a general operator, one direction cannot certify the worst unseen
+direction.  A positive theorem must therefore assume a phase-separated
+normal/low-rank active subspace, combine several charged directions, or retain
+the residual spectral bound used by the full operator certificate.  This is a
+model restriction to prove, not an empirical detail to omit.
+
 A generic full \(d\times d\) Jacobian estimate costs \(O(d^2)\) storage and is
 not the intended deployed algorithm.  The low-complexity route must exploit
 block structure: exponentially weighted cross-block secants or fixed-rank JVP
