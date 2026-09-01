@@ -50,14 +50,15 @@ Automatic differentiation evaluates the Hessian-vector product without forming o
 The intended neural implementation charges the extra backward pass and retains decentralized execution.
 
 Assume on a declared trust region that the block Hessian is `rho_i`-Lipschitz, the gradient estimator has radius `r_i^g`, and the Hessian-vector product has operator radius `r_i^H`.
-Taylor's theorem gives the executable radius
+Let `ell_i` be the cumulative joint-policy path length since the proposal was born, so `||Delta_i||<=ell_i`.
+Taylor's theorem gives the monotone executable radius
 
 \[
 \left\|\widetilde g_i^k-\nabla_iJ(\theta^k)\right\|
 \le
-R_i(\Delta_i)
-:=r_i^g+r_i^H\|\Delta_i\|
-+\frac{\rho_i}{2}\|\Delta_i\|^2,
+R_i(\ell_i)
+:=r_i^g+r_i^H\ell_i
++\frac{\rho_i}{2}\ell_i^2,
 \quad
 \Delta_i=\theta^k-\theta^b.
 \tag{2}
@@ -91,7 +92,7 @@ If this were the only term, the exact continuous optimum would be
 \]
 
 The update also changes the transport radius of proposals still in flight.
-For each such proposal `p`, let `ell_p` be its current joint-policy path length and let `Z_p=R_p(ell_p)` be its certified residual radius.
+For each such proposal `p`, let `ell_p` be its cumulative joint-policy path length and let `Z_p=R_p(ell_p)` be its certified residual radius.
 For a candidate displacement of length `d=alpha s_i`, the outcome-free radius increment obeys
 
 \[

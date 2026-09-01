@@ -178,6 +178,81 @@ def _transport_drift_derivative(
     return float(derivative)
 
 
+def transport_drift_second_derivative(
+    cert: TransportCertificate,
+    pending: tuple[PendingTransportDebt, ...],
+    step: float,
+    *,
+    potential_weight: float,
+) -> float:
+    """Second derivative of the scalar transport drift envelope."""
+
+    if potential_weight <= 0 or not 0 <= step <= cert.max_step:
+        raise ValueError("invalid curvature query")
+    signal = cert.proposal_norm
+    curvature = potential_weight*cert.block_smoothness*signal*signal
+    for debt in pending:
+        linear = (
+            debt.hvp_radius+debt.hessian_lipschitz*debt.path_norm
+        )*signal
+        quadratic = 0.5*debt.hessian_lipschitz*signal*signal
+        increment = linear*step+quadratic*step*step
+        curvature += debt.weight*(
+            (linear+2.0*quadratic*step)**2
+            + 2.0*quadratic*(debt.radius+increment)
+        )
+    return float(curvature)
+
+
+def public_curvature_bound(
+    *,
+    potential_weight: float,
+    smoothness_max: float,
+    max_pending: int,
+    weight_max: float,
+    gradient_radius_max: float,
+    hvp_radius_max: float,
+    hessian_lipschitz_max: float,
+    path_length_max: float,
+    proposal_norm_max: float,
+    max_step: float,
+) -> float:
+    """Public ``M_0`` with ``F''(alpha) <= M_0 ||g||^2``."""
+
+    scalars = (
+        potential_weight,
+        smoothness_max,
+        weight_max,
+        gradient_radius_max,
+        hvp_radius_max,
+        hessian_lipschitz_max,
+        path_length_max,
+        proposal_norm_max,
+        max_step,
+    )
+    if potential_weight <= 0 or smoothness_max <= 0 or min(scalars[2:]) < 0:
+        raise ValueError("invalid public curvature constants")
+    if max_pending < 0:
+        raise ValueError("max_pending must be nonnegative")
+    radius_max = (
+        gradient_radius_max
+        + hvp_radius_max*path_length_max
+        + 0.5*hessian_lipschitz_max*path_length_max**2
+    )
+    marginal_max = hvp_radius_max+hessian_lipschitz_max*path_length_max
+    increment_max = (
+        marginal_max*max_step*proposal_norm_max
+        + 0.5*hessian_lipschitz_max*max_step**2*proposal_norm_max**2
+    )
+    pending_curvature = weight_max*(
+        (marginal_max+hessian_lipschitz_max*max_step*proposal_norm_max)**2
+        + hessian_lipschitz_max*(radius_max+increment_max)
+    )
+    return float(
+        potential_weight*smoothness_max+max_pending*pending_curvature
+    )
+
+
 def lyapunov_optimal_step(
     cert: TransportCertificate,
     pending: tuple[PendingTransportDebt, ...],
@@ -251,6 +326,7 @@ def audit() -> dict[str, object]:
     nonlinear_radius_checks = 0
     transport_improvement_checks = 0
     optimizer_checks = 0
+    curvature_bound_checks = 0
     maximum_quadratic_error = 0.0
     minimum_nonlinear_slack = float("inf")
     maximum_optimizer_gap = 0.0
@@ -334,6 +410,25 @@ def audit() -> dict[str, object]:
         maximum_optimizer_gap = max(maximum_optimizer_gap, abs(optimum-numeric))
         optimizer_checks += 1
 
+        second = transport_drift_second_derivative(
+            cert, pending, optimum, potential_weight=potential_weight
+        )
+        public = public_curvature_bound(
+            potential_weight=potential_weight,
+            smoothness_max=smoothness,
+            max_pending=len(pending),
+            weight_max=1.5,
+            gradient_radius_max=0.2,
+            hvp_radius_max=0.04,
+            hessian_lipschitz_max=0.3,
+            path_length_max=0.4,
+            proposal_norm_max=2.0,
+            max_step=1.0,
+        )
+        if second > public*signal*signal+1e-12:
+            raise AssertionError("public curvature bound was violated")
+        curvature_bound_checks += 1
+
     if transport_improvement_checks != nonlinear_radius_checks:
         raise AssertionError("transport did not improve every declared local radius")
     return {
@@ -345,6 +440,7 @@ def audit() -> dict[str, object]:
         "transport_radius_improvement_checks": transport_improvement_checks,
         "lyapunov_optimizer_checks": optimizer_checks,
         "maximum_optimizer_grid_gap": maximum_optimizer_gap,
+        "public_curvature_bound_checks": curvature_bound_checks,
         "scientific_population_generated": False,
     }
 

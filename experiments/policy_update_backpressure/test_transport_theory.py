@@ -11,10 +11,12 @@ from experiments.policy_update_backpressure.transport_theory import (
     equicoupled_matrix,
     gain_optimal_step,
     lyapunov_optimal_step,
+    public_curvature_bound,
     quadratic_gradient,
     quadratic_hessian,
     raw_staleness_radius,
     transport_lyapunov_drift_bound,
+    transport_drift_second_derivative,
     transported_gradient,
     transported_radius,
 )
@@ -75,6 +77,30 @@ def test_no_pending_debt_recovers_gain_optimum() -> None:
     assert lyapunov == pytest.approx(gain_optimal_step(cert), abs=1e-12)
 
 
+def test_public_curvature_bound_covers_exact_second_derivative() -> None:
+    cert = TransportCertificate(1.1, 0.2, 1.4, 0.8)
+    pending = (
+        PendingTransportDebt(0.1, 0.3, 0.02, 0.2),
+        PendingTransportDebt(0.2, 0.4, 0.04, 0.3, weight=1.5),
+    )
+    second = transport_drift_second_derivative(
+        cert, pending, 0.7, potential_weight=3.0
+    )
+    bound = public_curvature_bound(
+        potential_weight=3.0,
+        smoothness_max=1.4,
+        max_pending=2,
+        weight_max=1.5,
+        gradient_radius_max=0.2,
+        hvp_radius_max=0.04,
+        hessian_lipschitz_max=0.3,
+        path_length_max=0.4,
+        proposal_norm_max=1.1,
+        max_step=0.8,
+    )
+    assert second <= bound*cert.proposal_norm**2
+
+
 def test_invalid_radius_rejected() -> None:
     with pytest.raises(ValueError):
         transported_radius(0.0, -0.1, 1.0, 0.2)
@@ -86,4 +112,5 @@ def test_outcome_free_audit_closes_all_algebra_checks() -> None:
     assert result["nonlinear_radius_checks"] == 576
     assert result["transport_radius_improvement_checks"] == 576
     assert result["lyapunov_optimizer_checks"] == 162
+    assert result["public_curvature_bound_checks"] == 162
     assert result["scientific_population_generated"] is False
