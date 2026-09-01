@@ -1,0 +1,42 @@
+{
+  "closed_form_optimizer_checks": 144,
+  "finite_time_event_checks": 405,
+  "gain_bound_checks": 576,
+  "kind": "deterministic_phase_theory_algebra_not_efficacy",
+  "maximum_closed_form_grid_gap": 0.00012029535489321841,
+  "minimum_finite_time_event_slack": -1.4210854715202004e-14,
+  "minimum_true_gain_minus_bound": -4.440892098500626e-16,
+  "sign_flip_example": {
+    "alpha": 0.5,
+    "cross": 0.9,
+    "cross_debt": 0.13499999999999993,
+    "current_slow_gradient": -0.05499999999999994,
+    "freshness_ratio": 1.6874999999999976,
+    "gradient_sign_flipped": true,
+    "stale_slow_gradient": 0.08000000000000007,
+    "stale_update_gain": -0.0029999999999998916,
+    "stale_update_is_harmful": true
+  },
+  "stale_bias_checks": 144,
+  "wall_clock_separation_example": {
+    "accept_all_post_stale_regret": 0.19690654197093221,
+    "accept_all_wall_clock_regret": 4.661526376518411,
+    "barrier_wall_clock_regret_lower_bound": 10.0,
+    "baselines_are_linear_in_slow_clock": true,
+    "cross": 0.9,
+    "cross_debt": 0.7619876492747225,
+    "fast_residual_after_first": 1.3877787807814457e-16,
+    "freshness_ratio": 0.8466529436385806,
+    "horizon": 40,
+    "initial_regret": 0.5,
+    "post_fast_regret": 0.011757659847356173,
+    "post_fast_x": 0.15334705636141943,
+    "potential_weight": 4.47213595499958,
+    "pub_fast_queue_is_throttled": true,
+    "pub_is_asymptotically_constant_in_slow_clock": true,
+    "pub_wall_clock_regret_upper_bound": 0.9585487340468908,
+    "shared_fixed_step": 0.8466529436385806,
+    "slow_clock": 20,
+    "stale_slow_proposal": -0.9
+  }
+}

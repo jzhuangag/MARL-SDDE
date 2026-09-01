@@ -267,3 +267,31 @@ a running job. Record commands, hashes, outcomes and stop decisions, then
 commit/push reviewed changes. No GPU/HPC4, remote storage operation or
 destructive cleanup is authorized. No guarantee of a one-day finish,
 positive experiments or acceptance.
+
+## 2026-09-01 asynchronous-MARL successor checkpoint
+
+The generic calibrated-collaboration construction remains stopped.  The only
+active successor is now the distinct-agent asynchronous CTDE problem in
+`asynchronous_policy_update_backpressure_scope.md`:
+
+- unilateral agent-policy proposals are perishable because other agents'
+  updates change the joint occupancy and their gradients;
+- cross-agent freshness debt is the single state variable linking the problem,
+  Lyapunov drift, online admission, step size and ready-proposal ordering;
+- the universal 144-cell value screen failed unchanged at `7.2183%` median and
+  `54.1667%` directional coverage, so universal superiority remains stopped;
+- an outcome-independent phase theory now proves low-load static
+  near-optimality, a high-load `O(1)` versus `Omega(M)` wall-clock separation,
+  one-event descent and conditional finite-time full-gradient stationarity;
+- 14 current package tests pass, including 405 capped/unclipped event-algebra
+  instances and exact separation witnesses; these are algebra, not efficacy;
+- a phase-conditioned disjoint CPU study is only conditionally allowed after
+  the Stage-1 checkpoint.  It must implement the closed-form controller and
+  may not use favorable old cells as confirmation data;
+- no GPU/HPC4, standard MARL benchmark or paper efficacy claim is authorized.
+
+See `policy_update_backpressure_stage1_checkpoint.md` and
+`perishable_update_phase_theory.md`.  The next unresolved paper risk is an
+executable conservative cross-sensitivity certificate for neural policies;
+the episodic bounded-trajectory radius is proved, while continuing-chain and
+critic/off-policy terms remain explicit obligations.
