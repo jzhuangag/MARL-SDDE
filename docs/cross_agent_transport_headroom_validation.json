@@ -1,0 +1,42 @@
+{
+  "all_gates_pass": false,
+  "decision": "stop_unconditional_full_transport_performance_route",
+  "efficacy_pilot_authorized": false,
+  "gates": {
+    "complete_finite": true,
+    "high_full_hvp_cost_ratio_le_0_95": false,
+    "high_geometric_ratio_le_0_90": false,
+    "high_ten_percent_cells_ge_0_60": false,
+    "low_geometric_ratio_le_1_05": false,
+    "no_transport_harmful_steps": true,
+    "transition_geometric_ratio_le_0_95": false
+  },
+  "high_full_hvp_cost_geometric_ratio": 1.352358753730594,
+  "kind": "outcome_free_exact_transport_headroom_validation",
+  "parent_preregistration_commit": "eb56fb5",
+  "phase_summary": {
+    "high": {
+      "cells": 54,
+      "fraction_ten_percent_gain": 0.2777777777777778,
+      "geometric_regret_ratio": 1.0284785947083466,
+      "median_regret_gain": -0.008525981574201702
+    },
+    "low": {
+      "cells": 54,
+      "fraction_ten_percent_gain": 0.12962962962962962,
+      "geometric_regret_ratio": 1.2332651066321605,
+      "median_regret_gain": -0.124999999999994
+    },
+    "transition": {
+      "cells": 216,
+      "fraction_ten_percent_gain": 0.25462962962962965,
+      "geometric_regret_ratio": 1.0829297732916692,
+      "median_regret_gain": -0.05446011898204295
+    }
+  },
+  "raw_result": {
+    "bytes": 5201673,
+    "path": "docs/cross_agent_transport_headroom_results.json",
+    "sha256": "22481e794219F09F1EBF2DEE9BBD204A092860C90FC9D2E266DD2009898930EA"
+  }
+}
