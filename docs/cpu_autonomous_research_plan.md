@@ -17,6 +17,16 @@ nonempty fully charged wall-clock speedup region.  If the result is a direct
 composition of existing delayed SA and synchronous MPG theory, stop it before
 experiments.  All previous failures remain unchanged.
 
+The exact-gradient one-event interface is now closed for smooth scalar blocks,
+including the interaction-weighted Krasovskii history and an explicit constant
+step ceiling.  A conditionally centered packet-noise corollary is also closed,
+but only under a pre-application filtration that excludes the current packet
+innovation and assumes completion is non-informative.  This is still a generic
+delayed block-coordinate lemma, not the proposed MARL theorem.  Markov bias,
+critic error, vector policy blocks, Nash-gap conversion and wall-clock
+separation remain mandatory stop gates; no efficacy run is authorized by this
+intermediate result.
+
 ## Latest bounded decision: compatible-update scheduling stopped
 
 Read `compatible_schedule_headroom_validation.md` before proposing another
