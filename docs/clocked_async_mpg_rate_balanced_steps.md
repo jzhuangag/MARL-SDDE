@@ -3,7 +3,7 @@
 Status: closed event-time allocation lemma; wall-clock process and matching
 game lower bound remain open.
 
-## Why a common step is the wrong clock
+## What a common step can lose
 
 With agent `i` activated at an event with probability `p_i`, the common-step
 drift controls
@@ -15,9 +15,12 @@ drift controls
 
 The resulting `p_min` is not just a loose proof artifact.  A rare essential
 policy block cannot reach a full-gradient or Nash criterion without receiving
-updates.  Nevertheless, forcing every block to use the same step needlessly
-adds another imbalance.  The local steps below equalize the expected descent
-weight without scanning a catalogue or solving a QP.
+updates.  Equalizing `p_i alpha_i` removes this particular coefficient
+imbalance without scanning a catalogue or solving a QP.  It does **not** imply
+that rate balancing minimizes finite-time error: block-gradient magnitudes,
+noise, curvature and the target criterion can make a common step better.  The
+family below is a theorem-facing allocation and not a universal performance
+claim.
 
 ## Heterogeneous-step drift
 
@@ -115,7 +118,7 @@ catalogue or numerical optimization.  With (6), (2) becomes
 
 This is the strongest common full-gradient coefficient within the restricted
 rate-balanced family.  It is not claimed to solve the unrestricted step
-allocation problem.
+allocation problem or to dominate a tuned common-step asynchronous learner.
 
 ## Wall-clock interpretation and unavoidable limit
 

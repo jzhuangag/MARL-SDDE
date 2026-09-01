@@ -8,10 +8,12 @@ from .finite_time_drift import (
     expected_noisy_quadratic_lyapunov_step,
     expected_quadratic_lyapunov_step,
     expected_rate_balanced_quadratic_lyapunov_step,
+    expected_single_flight_biased_noisy_quadratic_lyapunov_step,
     expected_single_flight_quadratic_lyapunov_step,
     interaction_history_weights,
     maximum_constant_step,
     rate_balanced_steps,
+    single_flight_constant_step,
     single_flight_local_steps,
     weighted_history_energy,
 )
@@ -77,6 +79,28 @@ def test_single_flight_steps_have_no_delay_price_without_cross_coupling() -> Non
     )
     assert allocation["scale"] == pytest.approx(1.0)
     assert np.asarray(allocation["step_sizes"]) == pytest.approx([0.5, 2.0])
+    assert np.asarray(allocation["history_weights"]) == pytest.approx([0.0, 0.0])
+
+
+def test_single_flight_common_step_saturates_off_diagonal_condition() -> None:
+    matrix = np.asarray([[2.0, 0.4], [0.7, 1.5]])
+    probabilities = np.asarray([0.35, 0.65])
+    allocation = single_flight_constant_step(
+        matrix, probabilities, maximum_delay=5
+    )
+    conditions = np.asarray(allocation["conditions"])
+    steps = np.asarray(allocation["step_sizes"])
+    assert steps == pytest.approx(np.full(2, float(allocation["step_size"])))
+    assert float(np.max(conditions)) == pytest.approx(1.0, abs=1e-12)
+    assert (conditions <= 1.0+1e-12).all()
+
+
+def test_single_flight_common_step_removes_diagonal_delay_price() -> None:
+    probabilities = np.asarray([0.2, 0.8])
+    allocation = single_flight_constant_step(
+        np.diag([2.0, 0.5]), probabilities, maximum_delay=100
+    )
+    assert allocation["step_size"] == pytest.approx(0.5)
     assert np.asarray(allocation["history_weights"]) == pytest.approx([0.0, 0.0])
 
 
@@ -244,6 +268,47 @@ def test_single_flight_quadratic_drift_bound_on_compatible_histories() -> None:
                 steps,
             )
             assert result["expected_next"] <= result["certified_upper"]+1e-10
+
+
+def test_single_flight_biased_noisy_drift_on_compatible_histories() -> None:
+    rng = np.random.default_rng(71094)
+    young_parameter = 0.7
+    for dimension in (2, 4):
+        raw = rng.uniform(0.0, 0.2, size=(dimension, dimension))
+        curvature = 0.5*(raw+raw.T)+2.0*np.eye(dimension)
+        probabilities = rng.uniform(0.2, 1.0, size=dimension)
+        probabilities /= np.sum(probabilities)
+        delay_window = 4
+        allocation = single_flight_constant_step(
+            np.abs(curvature),
+            probabilities,
+            delay_window,
+            history_inflation=1.0+young_parameter,
+        )
+        steps = 0.85*np.asarray(allocation["step_sizes"])
+        bias = rng.normal(scale=0.04, size=dimension)
+        sigma = rng.uniform(0.0, 0.25, size=dimension)
+        for _ in range(30):
+            delays = rng.integers(0, delay_window+1, size=dimension)
+            current = rng.normal(scale=0.3, size=dimension)
+            path = rng.normal(scale=0.3, size=(delay_window+1, dimension))
+            path[-1] = current
+            for block in range(dimension):
+                birth = delay_window-int(delays[block])
+                path[birth:, block] = current[block]
+            result = expected_single_flight_biased_noisy_quadratic_lyapunov_step(
+                path,
+                delays,
+                curvature,
+                probabilities,
+                steps,
+                bias,
+                sigma,
+                young_parameter,
+            )
+            assert result["expected_next"] <= result["certified_upper"]+1e-10
+            assert result["bias_penalty"] >= 0.0
+            assert result["variance_penalty"] >= 0.0
 
 
 def test_input_validation_is_strict() -> None:
