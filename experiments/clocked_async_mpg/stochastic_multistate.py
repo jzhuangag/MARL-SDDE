@@ -291,6 +291,22 @@ def simulate_stochastic_shadow_barrier(
         )
         barrier = float(np.max(first_duration))
         if time+barrier > maximum_time:
+            terminal_window = maximum_time-time
+            for agent in range(2):
+                duration = float(first_duration[agent])
+                elapsed = 0.0
+                while elapsed+duration <= terminal_window:
+                    elapsed += duration
+                    completed_packets += 1
+                    duration = _service_duration(
+                        service_rng[agent], agent, service_ratio
+                    )
+                cancelled_transition_work += (
+                    batch_size
+                    *horizon
+                    *(terminal_window-elapsed)
+                    /duration
+                )
             break
         packet_gradients: list[list[Array]] = [[], []]
         for agent in range(2):

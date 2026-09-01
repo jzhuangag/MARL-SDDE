@@ -111,3 +111,24 @@ def test_packet_validation_is_strict() -> None:
             batch_size=2,
             generator=np.random.default_rng(1),
         )
+
+
+def test_shadow_charges_terminal_incomplete_round() -> None:
+    result = simulate_stochastic_shadow_barrier(
+        coupling=0.08,
+        service_ratio=2.0,
+        seed_index=3,
+        namespace="stochastic-terminal-accounting-test",
+        maximum_time=0.1,
+        horizon=5,
+        batch_size=4,
+        step_fraction=0.1,
+        target_normalized_gap=0.3,
+    )
+    assert int(result["applied_updates"]) == 0
+    assert int(result["completed_packets"]) == 0
+    assert float(result["completed_transition_work"]) == 0.0
+    assert float(result["cancelled_transition_work"]) > 0.0
+    assert float(result["total_transition_work"]) == pytest.approx(
+        float(result["cancelled_transition_work"])
+    )
