@@ -16,15 +16,22 @@ The proposed problem is therefore:
 > damping, and guarantee last-iterate stability rather than merely average
 > regret.
 
-The controller has one purpose: minimize a Lyapunov drift certificate of the
-clocked game.  It jointly controls the step applied to an arriving policy block
-and whether that update buys an arrival-fresh optimistic anchor.  A fresh
-anchor temporarily freezes parameter commits, evaluates the lookahead oracle
-under the current joint policy, applies the owner block, and fully charges the
-additional actor interaction and serialized learner time.  Virtual
+The primary executable contract is a current-oracle asynchronous block
+actor--critic: actors fill a centralized replay or training buffer
+asynchronously, while the learner computes the selected agent block's
+pseudo-gradient at the current actor/critic parameters.  The controller has one
+purpose: minimize a Lyapunov drift certificate of this randomly clocked game.
+It jointly controls the step applied to an arriving policy block and whether
+that update buys a second current-parameter lookahead/backward oracle.  The
+extra optimizer and critic computation is fully charged.  Virtual
 clock/resource debts prevent fast agents or optimism calls from silently
 consuming the entire wall-clock/compute budget.  Decentralized execution is
 unchanged; this is a centralized-training mechanism.
+
+This primary theorem does not claim that an on-policy rollout computed under
+an old joint policy is current.  Reusing such packets requires a separate
+off-policy certificate.  The delayed-rollout audit below is retained as an
+extension boundary, not folded silently into the main algorithm.
 
 ## Exact asynchronous phase boundary
 
@@ -125,14 +132,14 @@ left side is negative, so optimism is never purchased.  In a rotational phase
 it is positive and the queue admits calls until their marginal stability value
 is priced by debt.
 
-### Delay changes the executable contract
+### Optional delayed-rollout extension changes the contract
 
 A nominal extra-gradient computed entirely at the same stale state is not a
 delay correction.  A lifted second-moment audit gives spectral radius greater
 than one for the pure bilinear subclass at delays 1, 2, and 4 even when every
-update uses that stale extra-gradient.  The proposed algorithm therefore must
-use a genuinely arrival-fresh anchor on \(u_k=1\); otherwise the delay claim is
-false.
+update uses that stale extra-gradient.  Any future delayed-rollout extension
+must therefore use a genuinely arrival-fresh anchor on \(u_k=1\); otherwise a
+delay-robust claim is false.  The primary current-oracle theorem sets \(D=0\).
 
 For delay \(D\), define
 \(z_k=(x_k,x_{k-1},\ldots,x_{k-D})\) and let \(M_{i,0,D}\) be the lifted

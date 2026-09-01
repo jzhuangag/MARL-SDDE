@@ -130,6 +130,8 @@ the executable Markov policy-gradient algorithm:
 5. a resource comparator that includes fresh-rollout, backward-pass,
    communication, and commit-barrier wall-clock costs.
 
-The CPU phase/headroom scan may be preregistered only after a static audit
-confirms that these interfaces are mathematically compatible.  A positive
-linear scan alone cannot authorize a GPU experiment.
+The first CPU phase/headroom scan is restricted to the current-oracle
+\(D=0\) contract, where the clock-balanced metric and phase boundary are
+exact.  The delayed lifted machinery remains a falsification/extension audit.
+A positive linear scan alone cannot authorize a GPU experiment; Markov-noise
+certificates and a nonlinear actor--critic interface must still close.
