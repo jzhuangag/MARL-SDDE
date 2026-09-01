@@ -44,6 +44,21 @@ def test_information_value_is_nonnegative_for_uncertain_belief() -> None:
     assert decision.same_debt_information_value >= 0.0
 
 
+def test_information_can_trigger_a_call_with_negative_immediate_value() -> None:
+    decision = _decision(0.16, resource_debt=0.0)
+    assert decision.immediate_expected_log_gain < 0.0
+    assert decision.same_debt_information_value > 0.0
+    assert decision.use_optimism
+
+
+def test_controller_uses_closed_form_not_quadrature(monkeypatch: pytest.MonkeyPatch) -> None:
+    def forbidden(*_args, **_kwargs):
+        raise AssertionError("controller must not invoke numerical quadrature")
+
+    monkeypatch.setattr("numpy.polynomial.hermite.hermgauss", forbidden)
+    assert _decision(0.35).same_debt_information_value >= 0.0
+
+
 def test_hard_infeasibility_overrides_a_favorable_call() -> None:
     assert not _decision(1.0, hard_feasible=False).use_optimism
 
