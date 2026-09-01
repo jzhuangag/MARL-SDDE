@@ -295,3 +295,27 @@ See `policy_update_backpressure_stage1_checkpoint.md` and
 executable conservative cross-sensitivity certificate for neural policies;
 the episodic bounded-trajectory radius is proved, while continuing-chain and
 critic/off-policy terms remain explicit obligations.
+
+## 2026-09-01 policy-inventory successor checkpoint
+
+The phase PUB pilot and the unconditional cross-agent HVP-transport headroom
+scan have now both stopped under their frozen gates.  The latter completed all
+17,820 deterministic trajectories but passed only 2/7 gates; full-HVP high
+phase regret was 1.3524 times the strong comparator.  It does not authorize a
+stochastic or GPU experiment.
+
+The only active theory candidate is now `policy_inventory_control_mainline.md`.
+It treats paid in-flight joint rollouts as perishable policy inventory.  The
+factorized joint importance-ratio second moment is the physical risk state; a
+current distinct-agent update improves the policy while changing the future
+variance of every outstanding rollout.  A composite Lyapunov function prices
+that causal externality and yields a continuous scalar update in `O(P)` work,
+with no HVP, preconditioner, finite step catalogue or participation scan.
+
+Exact Gaussian factorization, RMS risk scaling, post-step inventory geometry,
+convexity and scalar optimization currently pass outcome-free algebra tests.
+The event-time completed-risk bound is conditional; the general Markov
+trajectory interface, nonvacuous full-gradient conversion, wall-clock theorem
+and fixed-controller separation remain open.  No efficacy pilot is authorized
+until both the proof interface and a separately frozen outcome-free oracle
+headroom gate pass.
