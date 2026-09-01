@@ -7,7 +7,9 @@ from .wall_clock_phase import (
     certified_wall_clock_coefficients,
     essential_agent_clock_lower_bound,
     expected_maximum_exponential,
+    gaussian_sign_packet_lower_bound,
     robust_stale_direction_progress,
+    stochastic_essential_agent_clock_lower_bound,
     symmetric_interaction_phase,
 )
 
@@ -117,4 +119,42 @@ def test_phase_lower_bound_helpers_reject_invalid_inputs() -> None:
     with pytest.raises(ValueError):
         essential_agent_clock_lower_bound(
             np.asarray([1.0]), np.asarray([0.0])
+        )
+
+
+def test_gaussian_sign_packet_bound_matches_binary_change_of_measure() -> None:
+    signal, noise, error = 0.4, 1.7, 0.05
+    expected_binary_kl = (
+        (1.0-error)*np.log((1.0-error)/error)
+        +error*np.log(error/(1.0-error))
+    )
+    expected = expected_binary_kl/(2.0*signal**2/noise**2)
+    assert gaussian_sign_packet_lower_bound(signal, noise, error) == pytest.approx(
+        expected
+    )
+
+
+def test_stochastic_clock_lower_bound_is_set_by_hardest_essential_agent() -> None:
+    signals = np.asarray([0.5, 0.2, 0.8])
+    noise = np.asarray([1.0, 1.4, 0.7])
+    rates = np.asarray([1.0, 0.3, 2.0])
+    packet_bounds = np.asarray(
+        [
+            gaussian_sign_packet_lower_bound(signal, scale, 0.1)
+            for signal, scale in zip(signals, noise, strict=True)
+        ]
+    )
+    lower = stochastic_essential_agent_clock_lower_bound(
+        signals, noise, rates, 0.1
+    )
+    assert lower == pytest.approx(float(np.max(packet_bounds/rates)))
+    assert int(np.argmax(packet_bounds/rates)) == 1
+
+
+def test_stochastic_clock_lower_bound_rejects_invalid_confidence() -> None:
+    with pytest.raises(ValueError):
+        gaussian_sign_packet_lower_bound(1.0, 1.0, 0.5)
+    with pytest.raises(ValueError):
+        stochastic_essential_agent_clock_lower_bound(
+            np.asarray([1.0]), np.asarray([1.0, 2.0]), np.asarray([1.0]), 0.1
         )

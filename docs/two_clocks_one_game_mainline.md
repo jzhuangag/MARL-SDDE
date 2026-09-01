@@ -124,7 +124,16 @@ The intended main theorem has three pieces using the same model.
    Hence no stale-direction method can promise positive progress when
    interaction debt reaches the signal.  Separately, every full-policy or
    Nash guarantee must wait for each essential agent's packets, giving a
-   wall-clock lower bound governed by its local completion rate.
+   wall-clock lower bound governed by its local completion rate.  On the
+   Gaussian-gradient cooperative subclass this is quantified by
+
+   \[
+   \mathbb E T\ge\max_i
+   \frac{\sigma_i^2}{2\lambda_i\Delta_i^2}
+   \operatorname{kl}(1-\delta,\delta),
+   \]
+
+   for sign-separated `epsilon`-stationarity instances.
 
 Together these statements explain both sides of the same phenomenon.  The
 paper must not claim universal no-harm or that aggregate throughput erases an

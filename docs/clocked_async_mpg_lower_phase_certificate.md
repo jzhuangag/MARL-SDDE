@@ -85,9 +85,67 @@ many duplicate packets at one frozen policy.  A final minimax theorem should
 extend (4) to the stochastic accuracy-dependent packet requirement and compare
 its constants with the upper wall-clock theorem.
 
+## Stochastic accuracy-dependent service lower bound
+
+The packet requirement can be made information-theoretic.  Consider the
+separable one-state identical-interest game
+
+\[
+ \Phi_v(x)=\sum_i\left(v_i x_i-\frac{\mu_i}{2}x_i^2\right),
+ \qquad v_i\in\{-\Delta_i,+\Delta_i\}.               \tag{5}
+\]
+
+Agent `i`'s packet at any adaptively selected `x_i` is
+
+\[
+ Y_{i,t}=v_i-\mu_i x_i+\xi_{i,t},
+ \qquad \xi_{i,t}\sim N(0,\sigma_i^2).
+\]
+
+Since the learner knows `x_i` and `mu_i`, every packet is equivalently one
+sample from `N(v_i,sigma_i^2)`.  If `epsilon<Delta_i`, the two sets
+`|v_i-mu_i*x_i|<=epsilon` for the positive and negative instances are
+disjoint.  An `epsilon`-stationary output therefore identifies the sign of
+every essential `v_i`.
+
+Let both sign errors be at most `delta<1/2`.  Sequential change of measure and
+binary data processing give
+
+\[
+ \mathbb E_{+}N_i\frac{2\Delta_i^2}{\sigma_i^2}
+ \ge \operatorname{kl}(1-\delta,\delta),             \tag{6}
+\]
+
+where
+
+\[
+ \operatorname{kl}(1-\delta,\delta)
+ =(1-\delta)\log\frac{1-\delta}{\delta}
+ +\delta\log\frac{\delta}{1-\delta}.
+\]
+
+For an independent Poisson packet clock, the compensated count process and
+optional stopping yield `E[N_i(T)]=lambda_i E[T]`.  Thus any algorithm that is
+`epsilon`-stationary with failure probability at most `delta` on all sign
+instances satisfies
+
+\[
+ \boxed{
+ \mathbb E T\ge
+ \max_i
+ \frac{\sigma_i^2}{2\lambda_i\Delta_i^2}
+ \operatorname{kl}(1-\delta,\delta).}                \tag{7}
+\]
+
+This is an asynchronous stochastic-optimization lower bound inside a
+cooperative Markov-game subclass.  It is unaffected by other agents' aggregate
+packet rate and formally justifies the slow-essential-block term in the upper
+story.  It does not yet match the interaction-delay term; equation (1) supplies
+that term's qualitative identifiability boundary.
+
 ## Validation
 
-`wall_clock_phase.py` implements (1) with an optional public step cap and (4).
-Tests compare the closed form with a 200,001-point direct search, exercise the
-exact `B=s` boundary, verify the slow-block maximum and reject malformed
-inputs.  These are deterministic algebra checks, not efficacy data.
+`wall_clock_phase.py` implements (1), (4), (6) and (7).  Tests compare the
+closed form with a 200,001-point direct search, exercise the exact `B=s`
+boundary, verify both slow-block maxima and reject malformed inputs.  These are
+deterministic algebra checks, not efficacy data.

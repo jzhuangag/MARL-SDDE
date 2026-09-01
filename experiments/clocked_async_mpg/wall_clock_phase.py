@@ -88,6 +88,70 @@ def essential_agent_clock_lower_bound(
     return float(np.max(packets/rates))
 
 
+def gaussian_sign_packet_lower_bound(
+    signal_magnitude: float,
+    noise_standard_deviation: float,
+    error_probability: float,
+) -> float:
+    """Expected packets required to identify a Gaussian gradient sign.
+
+    Under hypotheses ``N(+Delta, sigma^2)`` and ``N(-Delta, sigma^2)``, the
+    per-packet KL divergence is ``2*Delta^2/sigma^2``.  Binary data processing
+    at a sequential stopping rule with both errors at most ``delta`` gives the
+    returned change-of-measure lower bound on expected packet count.
+    """
+
+    if not (
+        math.isfinite(signal_magnitude)
+        and math.isfinite(noise_standard_deviation)
+        and signal_magnitude > 0.0
+        and noise_standard_deviation > 0.0
+    ):
+        raise ValueError("signal and noise scale must be finite and positive")
+    if not (
+        math.isfinite(error_probability)
+        and 0.0 < error_probability < 0.5
+    ):
+        raise ValueError("error_probability must lie strictly between zero and one half")
+    binary_kl = (
+        (1.0-error_probability)
+        *math.log((1.0-error_probability)/error_probability)
+        +error_probability
+        *math.log(error_probability/(1.0-error_probability))
+    )
+    per_packet_kl = 2.0*signal_magnitude**2/noise_standard_deviation**2
+    return binary_kl/per_packet_kl
+
+
+def stochastic_essential_agent_clock_lower_bound(
+    signal_magnitudes: Array,
+    noise_standard_deviations: Array,
+    completion_rates: Array,
+    error_probability: float,
+) -> float:
+    """Wall-clock lower bound for all-block Gaussian sign identification."""
+
+    signals = np.asarray(signal_magnitudes, dtype=float)
+    noise = np.asarray(noise_standard_deviations, dtype=float)
+    rates = np.asarray(completion_rates, dtype=float)
+    if (
+        signals.ndim != 1
+        or signals.size == 0
+        or signals.shape != noise.shape
+        or signals.shape != rates.shape
+    ):
+        raise ValueError("signals, noise scales and rates must be equal vectors")
+    packet_bounds = np.asarray(
+        [
+            gaussian_sign_packet_lower_bound(signal, scale, error_probability)
+            for signal, scale in zip(signals, noise, strict=True)
+        ]
+    )
+    if not np.isfinite(rates).all() or (rates <= 0.0).any():
+        raise ValueError("completion rates must be finite and positive")
+    return float(np.max(packet_bounds/rates))
+
+
 def expected_maximum_exponential(completion_rates: Array) -> float:
     """Exact expected maximum of independent exponential service times."""
 
