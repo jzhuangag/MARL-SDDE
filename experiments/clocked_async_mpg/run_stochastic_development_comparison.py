@@ -22,6 +22,7 @@ from .stochastic_multistate import (
 
 
 POLICIES = (
+    "single_flight_pathwise_constant",
     "single_flight_local",
     "single_flight_constant",
     "common_global",
@@ -48,6 +49,7 @@ def _one(job: tuple[Any, ...]) -> dict[str, Any]:
         step_fraction,
         target_normalized_gap,
         policy,
+        history_inflation,
     ) = job
     parameters = {
         "coupling": coupling,
@@ -64,7 +66,9 @@ def _one(job: tuple[Any, ...]) -> dict[str, Any]:
         result = simulate_stochastic_shadow_barrier(**parameters)
     else:
         result = simulate_stochastic_asynchronous(
-            **parameters, step_rule=policy
+            **parameters,
+            step_rule=policy,
+            history_inflation=history_inflation,
         )
     return {
         "coupling": coupling,
@@ -89,6 +93,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             step_fraction,
             args.target_normalized_gap,
             policy,
+            args.history_inflation,
         )
         for coupling in args.couplings
         for service_ratio in args.service_ratios
@@ -256,8 +261,11 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--target-normalized-gap", type=float, default=0.3)
     parser.add_argument(
-        "--reference-policy", choices=POLICIES, default="single_flight_constant"
+        "--reference-policy",
+        choices=POLICIES,
+        default="single_flight_pathwise_constant",
     )
+    parser.add_argument("--history-inflation", type=float, default=2.0)
     parser.add_argument("--couplings", type=float, nargs="+", default=[0.0, 0.08, 0.16, 0.24])
     parser.add_argument("--service-ratios", type=float, nargs="+", default=[1.0, 2.0, 4.0, 8.0])
     parser.add_argument("--step-fractions", type=float, nargs="+", default=[0.1, 0.2, 0.4, 0.8])

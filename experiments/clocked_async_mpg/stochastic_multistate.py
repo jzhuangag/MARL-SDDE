@@ -26,6 +26,7 @@ from .finite_time_drift import (
     rate_balanced_steps,
     single_flight_constant_step,
     single_flight_local_steps,
+    single_flight_pathwise_constant_step,
 )
 
 
@@ -142,6 +143,7 @@ def simulate_stochastic_asynchronous(
     step_fraction: float,
     target_normalized_gap: float,
     step_rule: str = "single_flight_local",
+    history_inflation: float = 1.0,
 ) -> dict[str, float | int | None]:
     game = make_game(coupling)
     delay = maximum_event_delay(service_ratio)
@@ -149,17 +151,22 @@ def simulate_stochastic_asynchronous(
     probabilities = rates/np.sum(rates)
     if step_rule == "single_flight_local":
         allocation = single_flight_local_steps(
-            game.lipschitz, probabilities, delay
+            game.lipschitz, probabilities, delay, history_inflation
         )
         step_sizes = step_fraction*np.asarray(allocation["step_sizes"])
     elif step_rule == "single_flight_constant":
         allocation = single_flight_constant_step(
-            game.lipschitz, probabilities, delay
+            game.lipschitz, probabilities, delay, history_inflation
+        )
+        step_sizes = step_fraction*np.asarray(allocation["step_sizes"])
+    elif step_rule == "single_flight_pathwise_constant":
+        allocation = single_flight_pathwise_constant_step(
+            game.lipschitz, delay, history_inflation
         )
         step_sizes = step_fraction*np.asarray(allocation["step_sizes"])
     elif step_rule == "generic_rate_balanced":
         allocation = rate_balanced_steps(
-            game.lipschitz, probabilities, delay
+            game.lipschitz, probabilities, delay, history_inflation
         )
         step_sizes = step_fraction*np.asarray(allocation["step_sizes"])
     elif step_rule == "common_global":

@@ -229,6 +229,67 @@ def single_flight_constant_step(
     }
 
 
+def single_flight_pathwise_constant_step(
+    cross_lipschitz: Array,
+    maximum_delay: int,
+    history_inflation: float = 1.0,
+) -> dict[str, Array | float]:
+    """Largest common step certified for every bounded activation sequence.
+
+    The history weight of block ``j`` is the largest mismatch coefficient
+    ``ell_i_off * L_ij_off`` over a possible arriving block ``i``.  This avoids
+    any iid event-mark assumption and is therefore the certificate matching
+    independent bounded-renewal worker clocks.
+    """
+
+    if maximum_delay < 0:
+        raise ValueError("maximum_delay must be nonnegative")
+    if history_inflation <= 0.0 or not math.isfinite(history_inflation):
+        raise ValueError("history_inflation must be finite and positive")
+    matrix = np.asarray(cross_lipschitz, dtype=float)
+    if matrix.ndim != 2 or matrix.shape[0] != matrix.shape[1]:
+        raise ValueError("cross_lipschitz must be square")
+    if (matrix < 0.0).any() or not np.isfinite(matrix).all():
+        raise ValueError("cross_lipschitz must be finite and nonnegative")
+    teammate = matrix.copy()
+    np.fill_diagonal(teammate, 0.0)
+    teammate_row_sums = np.sum(teammate, axis=1)
+    base_history_weights = np.max(
+        teammate_row_sums[:, None]*teammate, axis=0
+    )
+    roots: list[float] = []
+    for block in range(matrix.shape[0]):
+        linear = float(matrix[block, block])
+        quadratic = float(
+            history_inflation*maximum_delay**2*base_history_weights[block]
+        )
+        if quadratic > 0.0:
+            root = (
+                -linear+math.sqrt(linear*linear+4.0*quadratic)
+            )/(2.0*quadratic)
+        elif linear > 0.0:
+            root = 1.0/linear
+        else:
+            root = math.inf
+        roots.append(root)
+    step_size = float(min(roots))
+    history_weights = step_size*base_history_weights
+    conditions = (
+        np.diag(matrix)*step_size
+        +history_inflation
+        *maximum_delay**2
+        *history_weights
+        *step_size
+    )
+    return {
+        "conditions": np.asarray(conditions, dtype=float),
+        "history_weights": np.asarray(history_weights, dtype=float),
+        "step_size": step_size,
+        "step_sizes": np.full(matrix.shape[0], step_size, dtype=float),
+        "teammate_lipschitz": teammate,
+    }
+
+
 def maximum_constant_step(
     cross_lipschitz: Array,
     activation_probabilities: Array,
@@ -869,4 +930,117 @@ def expected_single_flight_biased_noisy_quadratic_lyapunov_step(
         "slack": certified_upper-expected_next,
         "variance_penalty": variance_penalty,
         "weighted_stationarity": weighted_stationarity,
+    }
+
+
+def pathwise_single_flight_biased_noisy_quadratic_lyapunov_step(
+    state_path: Array,
+    delay: int,
+    activated_block: int,
+    curvature: Array,
+    step_size: float,
+    conditional_bias: float,
+    noise_standard_deviation: float,
+    young_parameter: float,
+) -> dict[str, float]:
+    """One pathwise block drift under self-fresh bounded-renewal activation."""
+
+    path = np.asarray(state_path, dtype=float)
+    curvature = np.asarray(curvature, dtype=float)
+    if path.ndim != 2 or path.shape[0] < 1:
+        raise ValueError("state_path must contain at least one state")
+    dimension = path.shape[1]
+    maximum_delay = path.shape[0]-1
+    if curvature.shape != (dimension, dimension):
+        raise ValueError("curvature shape does not match the state dimension")
+    if not np.allclose(curvature, curvature.T, atol=1e-12, rtol=0.0):
+        raise ValueError("curvature must be symmetric")
+    if float(np.min(np.linalg.eigvalsh(curvature))) < -1e-12:
+        raise ValueError("curvature must be positive semidefinite")
+    if activated_block < 0 or activated_block >= dimension:
+        raise ValueError("activated_block is invalid")
+    if delay < 0 or delay > maximum_delay:
+        raise ValueError("delay is invalid")
+    if step_size < 0.0 or not math.isfinite(step_size):
+        raise ValueError("step_size must be finite and nonnegative")
+    if not math.isfinite(conditional_bias):
+        raise ValueError("conditional_bias must be finite")
+    if noise_standard_deviation < 0.0 or not math.isfinite(
+        noise_standard_deviation
+    ):
+        raise ValueError("noise_standard_deviation must be finite and nonnegative")
+    if young_parameter <= 0.0 or not math.isfinite(young_parameter):
+        raise ValueError("young_parameter must be finite and positive")
+
+    matrix = np.abs(curvature)
+    teammate = matrix.copy()
+    np.fill_diagonal(teammate, 0.0)
+    teammate_row_sums = np.sum(teammate, axis=1)
+    base_history_weights = np.max(
+        teammate_row_sums[:, None]*teammate, axis=0
+    )
+    history_weights = step_size*base_history_weights
+    inflation = 1.0+young_parameter
+    current = path[-1]
+    stale = path[maximum_delay-delay]
+    if not math.isclose(
+        float(stale[activated_block]),
+        float(current[activated_block]),
+        abs_tol=1e-12,
+    ):
+        raise ValueError("single-flight packet has a stale own block")
+    past_steps = np.diff(path, axis=0)
+    history = weighted_history_energy(past_steps, history_weights)
+    coefficient = 0.5*maximum_delay*inflation
+    objective = 0.5*float(current@curvature@current)
+    current_lyapunov = objective+coefficient*history
+    current_gradient = curvature@current
+    stale_gradient = float(curvature[activated_block]@stale)
+
+    next_values: list[float] = []
+    for innovation in (
+        -float(noise_standard_deviation),
+        float(noise_standard_deviation),
+    ):
+        estimator = stale_gradient+conditional_bias+innovation
+        step = np.zeros(dimension, dtype=float)
+        step[activated_block] = -step_size*estimator
+        updated = current+step
+        next_steps = (
+            np.vstack((past_steps[1:], step))
+            if maximum_delay
+            else np.empty((0, dimension), dtype=float)
+        )
+        next_history = weighted_history_energy(next_steps, history_weights)
+        next_objective = 0.5*float(updated@curvature@updated)
+        next_values.append(next_objective+coefficient*next_history)
+    expected_next = float(np.mean(next_values))
+    stationarity = step_size*float(current_gradient[activated_block]**2)
+    bias_penalty = (
+        0.5*(1.0+1.0/young_parameter)*step_size*conditional_bias**2
+    )
+    variance_coefficient = (
+        matrix[activated_block, activated_block]*step_size**2
+        +inflation
+        *maximum_delay**2
+        *history_weights[activated_block]
+        *step_size**2
+    )
+    variance_penalty = (
+        0.5*variance_coefficient*noise_standard_deviation**2
+    )
+    certified_upper = (
+        current_lyapunov
+        -0.5*stationarity
+        +bias_penalty
+        +variance_penalty
+    )
+    return {
+        "bias_penalty": bias_penalty,
+        "certified_upper": certified_upper,
+        "current": current_lyapunov,
+        "expected_next": expected_next,
+        "slack": certified_upper-expected_next,
+        "variance_penalty": variance_penalty,
+        "weighted_stationarity": stationarity,
     }

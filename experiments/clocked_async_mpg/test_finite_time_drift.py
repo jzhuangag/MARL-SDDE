@@ -13,8 +13,10 @@ from .finite_time_drift import (
     interaction_history_weights,
     maximum_constant_step,
     rate_balanced_steps,
+    pathwise_single_flight_biased_noisy_quadratic_lyapunov_step,
     single_flight_constant_step,
     single_flight_local_steps,
+    single_flight_pathwise_constant_step,
     weighted_history_energy,
 )
 
@@ -102,6 +104,16 @@ def test_single_flight_common_step_removes_diagonal_delay_price() -> None:
     )
     assert allocation["step_size"] == pytest.approx(0.5)
     assert np.asarray(allocation["history_weights"]) == pytest.approx([0.0, 0.0])
+
+
+def test_pathwise_common_step_saturates_worst_arrival_condition() -> None:
+    matrix = np.asarray([[2.0, 0.4], [0.7, 1.5]])
+    allocation = single_flight_pathwise_constant_step(
+        matrix, maximum_delay=5, history_inflation=1.4
+    )
+    conditions = np.asarray(allocation["conditions"])
+    assert float(np.max(conditions)) == pytest.approx(1.0, abs=1e-12)
+    assert (conditions <= 1.0+1e-12).all()
 
 
 def test_weighted_history_energy_uses_block_and_time_weights() -> None:
@@ -309,6 +321,41 @@ def test_single_flight_biased_noisy_drift_on_compatible_histories() -> None:
             assert result["expected_next"] <= result["certified_upper"]+1e-10
             assert result["bias_penalty"] >= 0.0
             assert result["variance_penalty"] >= 0.0
+
+
+def test_pathwise_single_flight_drift_for_every_activated_block() -> None:
+    rng = np.random.default_rng(71095)
+    young_parameter = 0.8
+    for dimension in (2, 4):
+        raw = rng.uniform(0.0, 0.18, size=(dimension, dimension))
+        curvature = 0.5*(raw+raw.T)+2.0*np.eye(dimension)
+        delay_window = 4
+        allocation = single_flight_pathwise_constant_step(
+            np.abs(curvature),
+            delay_window,
+            history_inflation=1.0+young_parameter,
+        )
+        step_size = 0.9*float(allocation["step_size"])
+        for _ in range(30):
+            current = rng.normal(scale=0.3, size=dimension)
+            path = rng.normal(scale=0.3, size=(delay_window+1, dimension))
+            path[-1] = current
+            for activated in range(dimension):
+                delay = int(rng.integers(0, delay_window+1))
+                compatible = path.copy()
+                birth = delay_window-delay
+                compatible[birth:, activated] = current[activated]
+                result = pathwise_single_flight_biased_noisy_quadratic_lyapunov_step(
+                    compatible,
+                    delay,
+                    activated,
+                    curvature,
+                    step_size,
+                    conditional_bias=0.03,
+                    noise_standard_deviation=0.2,
+                    young_parameter=young_parameter,
+                )
+                assert result["expected_next"] <= result["certified_upper"]+1e-10
 
 
 def test_input_validation_is_strict() -> None:

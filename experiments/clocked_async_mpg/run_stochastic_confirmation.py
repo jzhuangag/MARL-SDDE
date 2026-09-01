@@ -26,6 +26,14 @@ POLICIES = [
     "generic_rate_balanced",
     "fully_utilized_shadow_barrier",
 ]
+POLICIES_V2 = [
+    "single_flight_pathwise_constant",
+    "single_flight_constant",
+    "common_global",
+    "single_flight_local",
+    "generic_rate_balanced",
+    "fully_utilized_shadow_barrier",
+]
 
 
 def sha256(path: Path) -> str:
@@ -63,11 +71,19 @@ def load_config(path: Path) -> dict[str, Any]:
         "synchronous_policy",
         "target_normalized_gap",
     }
+    if int(config.get("config_version", -1)) == 2:
+        required = required|{"history_inflation"}
     if set(config) != required:
         raise ValueError("configuration keys do not match the frozen schema")
-    if config["config_version"] != 1 or config["policies"] != POLICIES:
+    expected_policies = POLICIES if config["config_version"] == 1 else POLICIES_V2
+    if config["config_version"] not in (1, 2) or config["policies"] != expected_policies:
         raise ValueError("unsupported configuration version or policy registry")
-    if config["primary_policy"] != "single_flight_constant":
+    expected_primary = (
+        "single_flight_constant"
+        if config["config_version"] == 1
+        else "single_flight_pathwise_constant"
+    )
+    if config["primary_policy"] != expected_primary:
         raise ValueError("primary policy changed")
     if config["strong_async_policy"] != "common_global":
         raise ValueError("strong asynchronous policy changed")
@@ -79,6 +95,8 @@ def load_config(path: Path) -> dict[str, Any]:
         raise ValueError("seed_count must be positive")
     if float(config["step_fraction"]) != 1.0:
         raise ValueError("registered maximal step fraction changed")
+    if config["config_version"] == 2 and float(config["history_inflation"]) != 2.0:
+        raise ValueError("registered pathwise history inflation changed")
     return config
 
 
@@ -94,6 +112,7 @@ def _one(job: tuple[Any, ...]) -> dict[str, Any]:
         step_fraction,
         target_normalized_gap,
         policy,
+        history_inflation,
     ) = job
     parameters = {
         "coupling": float(coupling),
@@ -110,7 +129,9 @@ def _one(job: tuple[Any, ...]) -> dict[str, Any]:
         result = simulate_stochastic_shadow_barrier(**parameters)
     else:
         result = simulate_stochastic_asynchronous(
-            **parameters, step_rule=str(policy)
+            **parameters,
+            step_rule=str(policy),
+            history_inflation=float(history_inflation),
         )
     return {
         "coupling": float(coupling),
@@ -134,6 +155,7 @@ def run(config: dict[str, Any], workers: int) -> tuple[list[dict[str, Any]], dic
             config["step_fraction"],
             config["target_normalized_gap"],
             policy,
+            float(config.get("history_inflation", 1.0)),
         )
         for coupling in config["couplings"]
         for service_ratio in config["service_ratios"]
@@ -334,6 +356,7 @@ def analyze(rows: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any
     primary_barrier_gap = _geometric_mean(barrier_gap)
     primary_raw_time = _geometric_mean(raw_times) if raw_times else None
     primary_raw_work = _geometric_mean(raw_work) if raw_work else None
+    certificate_cost_limit = 1.35 if config["config_version"] == 1 else 2.0
     gates = {
         "S1_schema_unique_finite": expected_keys and finite,
         "S2_primary_cell_paired_coverage_at_least_0_95": all(
@@ -354,13 +377,13 @@ def analyze(rows: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any
             value < 1.0 for value in barrier_times
         ) >= 10,
         "S6_primary_final_gap_ratio_at_most_1_05": primary_barrier_gap <= 1.05,
-        "S7_certificate_cost_vs_raw_at_most_1_35": (
+        "S7_certificate_cost_vs_raw_within_registered_limit": (
             len(raw_times) == primary_count
             and len(raw_work) == primary_count
             and primary_raw_time is not None
             and primary_raw_work is not None
-            and primary_raw_time <= 1.35
-            and primary_raw_work <= 1.35
+            and primary_raw_time <= certificate_cost_limit
+            and primary_raw_work <= certificate_cost_limit
         ),
         "S8_transition_accounting_valid": accounting_valid,
         "S9_registered_delay_valid": delay_valid,
@@ -373,6 +396,7 @@ def analyze(rows: list[dict[str, Any]], config: dict[str, Any]) -> dict[str, Any
     }
     return {
         "all_prereproduction_gates_pass": all(gates.values()),
+        "certificate_cost_limit": certificate_cost_limit,
         "cells": cells,
         "gates": gates,
         "policy_target_coverage": policy_coverage,

@@ -67,6 +67,7 @@ def test_all_registered_development_step_rules_run() -> None:
     for step_rule in (
         "single_flight_local",
         "single_flight_constant",
+        "single_flight_pathwise_constant",
         "generic_rate_balanced",
         "common_global",
     ):
