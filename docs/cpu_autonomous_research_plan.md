@@ -319,3 +319,19 @@ trajectory interface, nonvacuous full-gradient conversion, wall-clock theorem
 and fixed-controller separation remain open.  No efficacy pilot is authorized
 until both the proof interface and a separately frozen outcome-free oracle
 headroom gate pass.
+
+### Policy-inventory headroom decision
+
+The separately frozen outcome-free headroom scan at commit `31ed16c` completed
+155,520 evaluations but failed 2/6 mandatory gates.  The exact continuous
+action improves certified utility over the strong ray-level causal baseline by
+only 1.5039% in aggregate, and only 4.1667% of rays reach 5%.  Structural
+validity, low-load recovery, nonzero high-load updates and pointwise dominance
+pass.  The stochastic pilot, formal study and GPU benchmark are forbidden.
+
+Accordingly, the policy-inventory controller is no longer an active positive
+mainline.  Its exact risk identities remain valid supporting theory.  No
+further controller variant is authorized merely by changing a step, graph,
+participation, transport or shrinkage parameter.  A new successor must change
+the task-level research premise and demonstrate paper-level oracle value before
+any sampled experiment.
