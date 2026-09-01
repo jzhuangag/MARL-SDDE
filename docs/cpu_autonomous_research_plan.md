@@ -77,6 +77,15 @@ small CPU theory confirmation on multi-state games.  It does not authorize
 formal seeds, standard MARL benchmarks or GPU work, and it does not claim to
 beat partially asynchronous or speculative off-policy algorithms.
 
+Before that freeze, a structural mismatch was corrected and recorded: with
+one in-flight packet per policy block, the arriving agent's own block is fresh,
+so only off-diagonal teammate sensitivities belong in the delay history.
+Charging `L_ii` as stale caused an honest 16/16-cell tainted development
+failure even at zero coupling.  The proved self-fresh refinement restores the
+correct zero-coupling limit and yields `O(n^2)` local-curvature steps.  The
+exact multi-state confirmation is now separately frozen; its 64-seed namespace
+and C1--C10 gates cannot be changed after the design commit.
+
 ## Latest bounded decision: compatible-update scheduling stopped
 
 Read `compatible_schedule_headroom_validation.md` before proposing another

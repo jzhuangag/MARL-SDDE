@@ -8,9 +8,11 @@ from .finite_time_drift import (
     expected_noisy_quadratic_lyapunov_step,
     expected_quadratic_lyapunov_step,
     expected_rate_balanced_quadratic_lyapunov_step,
+    expected_single_flight_quadratic_lyapunov_step,
     interaction_history_weights,
     maximum_constant_step,
     rate_balanced_steps,
+    single_flight_local_steps,
     weighted_history_energy,
 )
 
@@ -66,6 +68,16 @@ def test_rate_balanced_steps_equalize_expected_descent() -> None:
     assert probabilities*steps == pytest.approx(np.full(3, scale))
     assert float(np.max(conditions)) == pytest.approx(1.0, abs=1e-12)
     assert (conditions <= 1.0+1e-12).all()
+
+
+def test_single_flight_steps_have_no_delay_price_without_cross_coupling() -> None:
+    probabilities = np.asarray([0.2, 0.8])
+    allocation = single_flight_local_steps(
+        np.diag([2.0, 0.5]), probabilities, maximum_delay=100
+    )
+    assert allocation["scale"] == pytest.approx(1.0)
+    assert np.asarray(allocation["step_sizes"]) == pytest.approx([0.5, 2.0])
+    assert np.asarray(allocation["history_weights"]) == pytest.approx([0.0, 0.0])
 
 
 def test_weighted_history_energy_uses_block_and_time_weights() -> None:
@@ -198,6 +210,38 @@ def test_rate_balanced_quadratic_drift_bound_on_random_paths() -> None:
                 probabilities,
                 steps,
                 history_inflation=1.3,
+            )
+            assert result["expected_next"] <= result["certified_upper"]+1e-10
+
+
+def test_single_flight_quadratic_drift_bound_on_compatible_histories() -> None:
+    rng = np.random.default_rng(71093)
+    for dimension in (2, 4):
+        raw = rng.uniform(0.0, 0.25, size=(dimension, dimension))
+        curvature = 0.5*(raw+raw.T)+2.0*np.eye(dimension)
+        probabilities = rng.uniform(0.2, 1.0, size=dimension)
+        probabilities /= np.sum(probabilities)
+        delay_window = 4
+        allocation = single_flight_local_steps(
+            np.abs(curvature), probabilities, delay_window
+        )
+        steps = 0.9*np.asarray(allocation["step_sizes"])
+        for _ in range(30):
+            delays = rng.integers(0, delay_window+1, size=dimension)
+            current = rng.normal(scale=0.3, size=dimension)
+            path = rng.normal(
+                scale=0.3, size=(delay_window+1, dimension)
+            )
+            path[-1] = current
+            for block in range(dimension):
+                birth = delay_window-int(delays[block])
+                path[birth:, block] = current[block]
+            result = expected_single_flight_quadratic_lyapunov_step(
+                path,
+                delays,
+                curvature,
+                probabilities,
+                steps,
             )
             assert result["expected_next"] <= result["certified_upper"]+1e-10
 
