@@ -18,7 +18,10 @@ The proposed problem is therefore:
 
 The controller has one purpose: minimize a Lyapunov drift certificate of the
 clocked game.  It jointly controls the step applied to an arriving policy block
-and whether that update uses the stabilizing optimistic correction.  Virtual
+and whether that update buys an arrival-fresh optimistic anchor.  A fresh
+anchor temporarily freezes parameter commits, evaluates the lookahead oracle
+under the current joint policy, applies the owner block, and fully charges the
+additional actor interaction and serialized learner time.  Virtual
 clock/resource debts prevent fast agents or optimism calls from silently
 consuming the entire wall-clock/compute budget.  Decentralized execution is
 unchanged; this is a centralized-training mechanism.
@@ -122,6 +125,33 @@ left side is negative, so optimism is never purchased.  In a rotational phase
 it is positive and the queue admits calls until their marginal stability value
 is priced by debt.
 
+### Delay changes the executable contract
+
+A nominal extra-gradient computed entirely at the same stale state is not a
+delay correction.  A lifted second-moment audit gives spectral radius greater
+than one for the pure bilinear subclass at delays 1, 2, and 4 even when every
+update uses that stale extra-gradient.  The proposed algorithm therefore must
+use a genuinely arrival-fresh anchor on \(u_k=1\); otherwise the delay claim is
+false.
+
+For delay \(D\), define
+\(z_k=(x_k,x_{k-1},\ldots,x_{k-D})\) and let \(M_{i,0,D}\) be the lifted
+stale-coordinate transition, while \(M_{i,1,D}\) uses the current-state
+coordinate extra-gradient.  Under iid arrival probabilities \(r_i\), the exact
+second-moment operator at fixed anchor probability \(p\) is
+
+\[
+\mathcal K_D(p)=
+\sum_i r_i\{(1-p)M_{i,0,D}^{\otimes2}
++pM_{i,1,D}^{\otimes2}\}.
+\]
+
+Mean-square stability holds exactly when
+\(\rho(\mathcal K_D(p))<1\).  At \(D=0\) this reduces to
+\(p>1/(2-s^2)\).  Numerical theorem checks show the minimum fresh-anchor
+frequency rises substantially with delay; the analytic upper/lower bound for
+general \(D\) remains a proof obligation, not a completed theorem.
+
 For delayed dynamics the intended Lyapunov--Krasovskii energy is
 
 \[
@@ -153,7 +183,7 @@ algorithm:
    the boundary, with explicit wall-clock and oracle costs;
 5. a no-waste result in potential regions and a clock-imbalance term that
    vanishes under the debt controller;
-6. an implementation whose extra-gradient cost is fully charged and compared
+6. an implementation whose fresh-anchor extra-gradient cost is fully charged and compared
    with equal-cost extra batching, always optimism, fixed optimism frequency,
    optimistic mirror descent/extragradient, and strong asynchronous MARL
    baselines.

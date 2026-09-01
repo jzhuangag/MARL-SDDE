@@ -10,6 +10,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 
+import numpy as np
+
 
 @dataclass(frozen=True)
 class PhaseFactors:
@@ -128,6 +130,114 @@ def heterogeneous_potential_drift_coefficient(
         else 1.0 - normalized_step
     )
     return (1.0 - first_agent_probability) * (updated * updated - 1.0)
+
+
+def lifted_rotational_transition(
+    normalized_step: float,
+    *,
+    delay: int,
+    agent: int,
+    fresh_optimistic_anchor: bool,
+) -> np.ndarray:
+    """Lifted transition for a stale plain or arrival-fresh EG coordinate."""
+
+    rotational_coordinate_factors(normalized_step)
+    if delay < 0 or agent not in (0, 1):
+        raise ValueError("delay must be nonnegative and agent must be 0 or 1")
+    dimension = 2 * (delay + 1)
+    transition = np.zeros((dimension, dimension), dtype=float)
+    transition[:2, :2] = np.eye(2)
+    rotation = np.asarray([[0.0, 1.0], [-1.0, 0.0]])
+    selector = np.zeros((2, 2), dtype=float)
+    selector[agent, agent] = 1.0
+    if fresh_optimistic_anchor:
+        transition[:2, :2] -= (
+            normalized_step
+            * selector
+            @ rotation
+            @ (np.eye(2) - normalized_step * rotation)
+        )
+    else:
+        delayed_slice = slice(2 * delay, 2 * delay + 2)
+        transition[:2, delayed_slice] -= normalized_step * selector @ rotation
+    for lag in range(1, delay + 1):
+        transition[2 * lag : 2 * lag + 2, 2 * (lag - 1) : 2 * lag] = np.eye(2)
+    return transition
+
+
+def lifted_mean_square_spectral_radius(
+    normalized_step: float,
+    *,
+    delay: int,
+    first_agent_probability: float,
+    fresh_optimism_probability: float,
+) -> float:
+    """Exact iid-switch second-moment spectral radius for the lifted system."""
+
+    heterogeneous_clock_metric(first_agent_probability)
+    if (
+        not math.isfinite(fresh_optimism_probability)
+        or not 0.0 <= fresh_optimism_probability <= 1.0
+    ):
+        raise ValueError("fresh_optimism_probability must lie in [0, 1]")
+    dimension = 2 * (delay + 1)
+    operator = np.zeros((dimension * dimension, dimension * dimension))
+    for agent_probability, agent in (
+        (first_agent_probability, 0),
+        (1.0 - first_agent_probability, 1),
+    ):
+        for anchor_probability, fresh in (
+            (1.0 - fresh_optimism_probability, False),
+            (fresh_optimism_probability, True),
+        ):
+            transition = lifted_rotational_transition(
+                normalized_step,
+                delay=delay,
+                agent=agent,
+                fresh_optimistic_anchor=fresh,
+            )
+            operator += (
+                agent_probability
+                * anchor_probability
+                * np.kron(transition, transition)
+            )
+    return float(np.max(np.abs(np.linalg.eigvals(operator))))
+
+
+def stale_optimistic_lifted_spectral_radius(
+    normalized_step: float,
+    *,
+    delay: int,
+    first_agent_probability: float,
+) -> float:
+    """Diagnostic radius when the nominal EG oracle is itself delayed."""
+
+    rotational_coordinate_factors(normalized_step)
+    heterogeneous_clock_metric(first_agent_probability)
+    if delay < 0:
+        raise ValueError("delay must be nonnegative")
+    dimension = 2 * (delay + 1)
+    rotation = np.asarray([[0.0, 1.0], [-1.0, 0.0]])
+    operator = np.zeros((dimension * dimension, dimension * dimension))
+    for probability, agent in (
+        (first_agent_probability, 0),
+        (1.0 - first_agent_probability, 1),
+    ):
+        transition = np.zeros((dimension, dimension))
+        transition[:2, :2] = np.eye(2)
+        selector = np.zeros((2, 2))
+        selector[agent, agent] = 1.0
+        delayed_slice = slice(2 * delay, 2 * delay + 2)
+        transition[:2, delayed_slice] -= (
+            normalized_step
+            * selector
+            @ rotation
+            @ (np.eye(2) - normalized_step * rotation)
+        )
+        for lag in range(1, delay + 1):
+            transition[2 * lag : 2 * lag + 2, 2 * (lag - 1) : 2 * lag] = np.eye(2)
+        operator += probability * np.kron(transition, transition)
+    return float(np.max(np.abs(np.linalg.eigvals(operator))))
 
 
 def choose_clocked_optimism(

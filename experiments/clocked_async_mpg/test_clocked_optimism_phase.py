@@ -8,10 +8,13 @@ from .clocked_optimism_phase import (
     heterogeneous_clock_metric,
     heterogeneous_potential_drift_coefficient,
     heterogeneous_rotational_drift_coefficient,
+    lifted_mean_square_spectral_radius,
+    lifted_rotational_transition,
     potential_coordinate_factors,
     randomized_factor,
     rotational_coordinate_factors,
     rotational_optimism_threshold,
+    stale_optimistic_lifted_spectral_radius,
 )
 
 
@@ -152,3 +155,45 @@ def test_heterogeneous_rotational_matrix_identity(
         optimism_probability=optimism_probability,
     )
     np.testing.assert_allclose(mixed - metric, coefficient * np.eye(2), atol=1e-14)
+
+
+def test_delay_zero_lifted_radius_matches_closed_form_boundary() -> None:
+    step = 0.4
+    threshold = rotational_optimism_threshold(step)
+    assert lifted_mean_square_spectral_radius(
+        step,
+        delay=0,
+        first_agent_probability=0.5,
+        fresh_optimism_probability=threshold - 1e-5,
+    ) > 1.0
+    assert lifted_mean_square_spectral_radius(
+        step,
+        delay=0,
+        first_agent_probability=0.5,
+        fresh_optimism_probability=threshold + 1e-5,
+    ) < 1.0
+
+
+@pytest.mark.parametrize("delay", [1, 2, 4])
+def test_fully_stale_extragradient_does_not_stabilize_delay(delay: int) -> None:
+    assert stale_optimistic_lifted_spectral_radius(
+        0.3, delay=delay, first_agent_probability=0.5
+    ) > 1.0
+
+
+@pytest.mark.parametrize("delay", [1, 2, 4])
+def test_fully_fresh_anchor_stabilizes_registered_delay_smoke(delay: int) -> None:
+    assert lifted_mean_square_spectral_radius(
+        0.3,
+        delay=delay,
+        first_agent_probability=0.5,
+        fresh_optimism_probability=1.0,
+    ) < 1.0
+
+
+def test_lifted_transition_has_exact_shift_register() -> None:
+    transition = lifted_rotational_transition(
+        0.2, delay=3, agent=0, fresh_optimistic_anchor=False
+    )
+    assert transition.shape == (8, 8)
+    np.testing.assert_array_equal(transition[2:8, :6], np.eye(6))
