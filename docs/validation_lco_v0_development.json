@@ -1,0 +1,61 @@
+{
+  "artifact": {
+    "path": "experiments/clocked_async_mpg/results/lco_v0_value_development/summary.json",
+    "sha256": "87f3a9d466689332fab33d38b5ce0757395d2ef2f50eff70f69e9093d1ff2113",
+    "size_bytes": 2414702
+  },
+  "config_sha256": "2e9f3fc22961c13a73860a7a937d5d6428ef7683afd515436bce62f625706580",
+  "decision": "stop_one_step_value_of_information_architecture",
+  "development_survives": false,
+  "execution_commit": "386ba68",
+  "formal_evidence": false,
+  "gates": {
+    "E1_finite_and_accounted": true,
+    "E2_each_noise_gain": false,
+    "E3_each_noise_capture": false,
+    "E4_each_noise_cells": false,
+    "E5_each_arrival": true,
+    "E6_low_persistence": false,
+    "E7_low_budget": true,
+    "E8_value_of_information": true,
+    "E9_information_nontrivial": true,
+    "E10_stationary_potential": true,
+    "E11_budget": true,
+    "E12_development_only": true
+  },
+  "primary_metrics": {
+    "arrival_group_gains": {
+      "0.1": 0.008603590713512528,
+      "0.5": 0.020628577464823807
+    },
+    "low_budget_mean_dynamic_gain": 0.0011763192893577007,
+    "low_persistence_mean_dynamic_gain": 0.007925875770236429,
+    "maximum_budget_overshoot": 0,
+    "noise_0": {
+      "dynamic_improvement_fraction": 0.59375,
+      "mean_dynamic_gain": 0.014653441044770617,
+      "mean_gain_over_myopic": 0.006041235819485744,
+      "mean_information_induced_call_fraction": 0.07677078247070312,
+      "median_exact_gain_capture": 0.3202254448069032
+    },
+    "noise_0_05": {
+      "dynamic_improvement_fraction": 0.59375,
+      "mean_dynamic_gain": 0.014578727133565717,
+      "mean_gain_over_myopic": 0.006064224766783331,
+      "mean_information_induced_call_fraction": 0.07487106323242188,
+      "median_exact_gain_capture": 0.2071919021780721
+    },
+    "stationary_potential_max_log_rate_loss": 0.0
+  },
+  "reanalysis": {
+    "budget_violations": 0,
+    "semantic_summary_exact": true,
+    "unique_specifications": 1920
+  },
+  "scope": {
+    "cells": 240,
+    "coordinate_events": 1966080,
+    "paths": 1920,
+    "seeds": 8
+  }
+}
