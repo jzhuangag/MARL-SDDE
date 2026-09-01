@@ -126,6 +126,21 @@ optimistic call made for information is still a paid probe.  The implementation
 fails uninformatively below a public gradient-energy floor, because normalized
 directional statistics are unstable near zero signal.
 
+The first causal development architecture treats the local geometry as a
+two-state hidden process.  Before event \(k\), its posterior is predicted using
+the registered phase transition law.  If event \(k\) purchases optimism, the
+paid fingerprint updates the posterior only for event \(k+1\).  Without a
+purchase, the filter performs prediction only.  The queue prices the posterior
+mean log benefit, while a fully charged public probe schedule prevents an
+absorbing no-information state.  This state machine is (O(1)) beyond the
+(O(d)) fingerprint.
+
+The Gaussian score likelihood with means \(-1\) and \(+1\) is currently a
+development model for the exact potential/rotation subclass.  It is not yet a
+confidence sequence for Markov actor--critic noise.  Any positive development
+result must therefore be labeled architecture evidence, followed by a
+separate coverage theorem and independent confirmation.
+
 For a general operator, one direction cannot certify the worst unseen
 direction.  A positive theorem must therefore assume a phase-separated
 normal/low-rank active subspace, combine several charged directions, or retain
