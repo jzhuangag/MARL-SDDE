@@ -1,5 +1,22 @@
 # Autonomous CPU research plan — 2026-09-01
 
+## Theorem-first replacement after scheduler failure
+
+Read `clocked_async_mpg_mainline_decision.md`.  The project now stops creating
+online scheduler variants.  The only active replacement candidate is a
+finite-time wall-clock analysis of event-driven distinct-agent policy learning
+in a Markov potential game.  Its intended Lyapunov--Krasovskii functional must
+jointly handle potential gap, critic error and delayed block-update history.
+The contribution is conditional on a genuinely new interaction-delay theorem;
+a generic delay-adaptive step size is explicitly insufficient.
+
+No scientific trajectory, seed registry, formal experiment or GPU benchmark
+is authorized.  First close or kill four interfaces: delayed Markov-gradient
+decomposition, one-event drift, finite-time game criterion and an analytically
+nonempty fully charged wall-clock speedup region.  If the result is a direct
+composition of existing delayed SA and synchronous MPG theory, stop it before
+experiments.  All previous failures remain unchanged.
+
 ## Latest bounded decision: compatible-update scheduling stopped
 
 Read `compatible_schedule_headroom_validation.md` before proposing another
