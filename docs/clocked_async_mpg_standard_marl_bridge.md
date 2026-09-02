@@ -147,14 +147,17 @@ GPU job.
 
 ## 7. Remaining pre-GPU work
 
-1. implement the project-owned external-checkout overlay without copying
-   upstream source;
-2. run the Layer-0 CPU smoke and transition-accounting tests;
-3. expose the neural common step and every practical teammate-drift diagnostic
-   reproducibly, while labelling them empirical rather than uniform
-   certificates; a theorem-covered neural variant would require the separate
-   projected-architecture obligations in `two_clocks_neural_certificate_audit.md`;
-4. measure one-task smoke resource use, then freeze task budgets, pilot seeds,
-   gates, and Slurm layout;
-5. only then submit the minimal pilot to HPC4 scratch, with no `/project`
+The project-owned external-checkout runtime, Layer-0 CPU ownership/accounting
+smoke, neural common-step interface and teammate-drift diagnostics now pass an
+outcome-free, byte-exact local reproduction.  They remain empirical on the
+neural actor; see `two_clocks_layer0_g0_validation.md` and
+`two_clocks_neural_certificate_audit.md`.
+
+The remaining gate is operational rather than a new CPU efficacy experiment:
+
+1. perform outcome-free installation, task-shape, lifecycle and resource
+   preflight on the selected HPC4 GPU stack;
+2. freeze task budgets, genuinely new pilot seeds, numerical gates, runner and
+   analyzer hashes, and Slurm layout in a separate immutable commit;
+3. only then submit the minimal pilot to HPC4 scratch, with no `/project`
    output until validation passes.

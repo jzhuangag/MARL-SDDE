@@ -7,6 +7,11 @@ to run outcome-bearing seeds immediately.  The receiving agent must complete
 Stage G0 and create a separate immutable preregistration commit before any
 scientific pilot.  Formal seeds are not authorized.
 
+The local CPU portion of G0 has passed and reproduced byte-exactly; see
+`two_clocks_layer0_g0_validation.md`.  The receiving agent should retain that
+evidence and complete only the GPU installation, task-shape, concurrent
+lifecycle and resource-measurement portion of G0 before preregistration.
+
 ## 1. Fixed scientific scope
 
 The surviving question is:
