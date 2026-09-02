@@ -79,6 +79,18 @@ time and the `m_i`-th Poisson arrival has a Gamma distribution with that mean.
 It formalizes the slow-essential-agent limit: summing all actor rates cannot
 replace the rate of a strategically necessary policy block.
 
+The same bounded-service subclass has a deterministic periodic counterpart.
+If essential block `i` can receive packets only at a positive service period
+`s_i`, its `m_i`-th required sequential packet is not available before
+`m_i s_i`.  Hence, pathwise and therefore in expectation,
+
+\[
+ \mathbb E T\ge\max_i m_i s_i.                       \tag{5}
+\]
+
+This is the periodic analogue of (4) under the corresponding bounded service
+assumption; it does not assert a coupling-delay minimax matching result.
+
 The existing two-curvature fresh-query witness supplies a concrete `m_i=2`
 subproblem and separates two adaptive asynchronous queries from arbitrarily
 many duplicate packets at one frozen policy.  A final minimax theorem should
@@ -92,7 +104,7 @@ separable one-state identical-interest game
 
 \[
  \Phi_v(x)=\sum_i\left(v_i x_i-\frac{\mu_i}{2}x_i^2\right),
- \qquad v_i\in\{-\Delta_i,+\Delta_i\}.               \tag{5}
+ \qquad v_i\in\{-\Delta_i,+\Delta_i\}.               \tag{6}
 \]
 
 Agent `i`'s packet at any adaptively selected `x_i` is
@@ -113,7 +125,7 @@ binary data processing give
 
 \[
  \mathbb E_{+}N_i\frac{2\Delta_i^2}{\sigma_i^2}
- \ge \operatorname{kl}(1-\delta,\delta),             \tag{6}
+ \ge \operatorname{kl}(1-\delta,\delta),             \tag{7}
 \]
 
 where
@@ -134,7 +146,7 @@ instances satisfies
  \mathbb E T\ge
  \max_i
  \frac{\sigma_i^2}{2\lambda_i\Delta_i^2}
- \operatorname{kl}(1-\delta,\delta).}                \tag{7}
+ \operatorname{kl}(1-\delta,\delta).}                \tag{8}
 \]
 
 This is an asynchronous stochastic-optimization lower bound inside a
@@ -143,9 +155,24 @@ packet rate and formally justifies the slow-essential-block term in the upper
 story.  It does not yet match the interaction-delay term; equation (1) supplies
 that term's qualitative identifiability boundary.
 
+For the same periodic-service subclass, (7) gives the packet requirement and
+the deterministic availability condition gives `T>=s_i N_i(T)` for every
+essential block.  Taking expectations and combining with change of measure
+yields
+
+\[
+ \mathbb E T\ge
+ \max_i\frac{\sigma_i^2 s_i}{2\Delta_i^2}
+ \operatorname{kl}(1-\delta,\delta).                 \tag{9}
+\]
+
+The Poisson result (8) is retained separately.  Neither service model by
+itself establishes minimax matching for the interaction-induced coupling
+delay.
+
 ## Validation
 
-`wall_clock_phase.py` implements (1), (4), (6) and (7).  Tests compare the
+`wall_clock_phase.py` implements (1), (4)--(9).  Tests compare the
 closed form with a 200,001-point direct search, exercise the exact `B=s`
 boundary, verify both slow-block maxima and reject malformed inputs.  These are
 deterministic algebra checks, not efficacy data.

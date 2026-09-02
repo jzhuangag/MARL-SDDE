@@ -22,6 +22,15 @@ Removing any of "distinct blocks", "joint Markov trajectory", "off-diagonal
 self-freshness", or "wall-clock upper/lower phase" makes the current novelty
 claim fail.
 
+The Yu--Chen--Poor SDDE line makes a second boundary explicit.  Choosing the
+number of active workers, group size, staleness threshold or gradient-dropout
+policy from an SDDE characteristic root is already prior art for shared-model
+ASGD.  Recasting that choice as a dynamic collaboration graph, or merely
+replacing its Hessian norm by a Lyapunov weight, is not a defensible
+contribution.  Here Lyapunov design is restricted to the off-diagonal
+single-flight history and its common safe step; the paper-level object is the
+distinct-policy rate--coupling phase.
+
 ## Nearest primary boundaries
 
 | Work | What it already supplies | What remains different here | Risk |
@@ -29,6 +38,7 @@ claim fail.
 | Cohen et al., NeurIPS 2021, *Asynchronous Stochastic Optimization Robust to Arbitrary Delays* | Nonconvex delayed stochastic optimization with average-delay dependence and an efficient delay-robust rule | A shared stochastic objective/oracle; no distinct strategic policy blocks, Markov-game potential/Nash conversion, or owner-self-fresh decomposition | high |
 | Mishchenko et al., NeurIPS 2022, *Asynchronous SGD Beats Minibatch SGD Under Arbitrary Delays* | Virtual-iterate analysis and asynchronous advantage over minibatch SGD under arbitrary delays | Workers query one shared model objective; the theorem does not separate diagonal owner freshness from off-diagonal teammate policy drift | very high |
 | Adibi et al., AISTATS 2024, *Stochastic Approximation with Delayed Updates: Finite-Time Rates under Markovian Sampling* | Finite-time delayed SA under Markovian sampling and a delay-adaptive scheme | One contractive operator; no policy-induced joint Markov law, unilateral Nash criterion or wall-clock distinct-agent lower phase | very high |
+| Yu, Chen and Poor, IEEE TSP 2025 (extending ICC 2024), *Distributed Stochastic Gradient Descent With Staleness* | SDDE/Poisson wall-clock analysis of shared-model ASGD; optimizes worker/group/dropout scheduling through learning rate, Hessian spectrum and staleness | Its workers update one global parameter and have no distinct policy ownership, owner self-freshness, off-diagonal strategic coupling, joint Markov-game trajectory or Nash/essential-policy-block phase | very high |
 | Lan et al., ICLR 2025, AFedPG | Policy-gradient-specific asynchronous federated algorithm, convergence, sample and time complexity | Multiple workers update one global policy.  They are not policy owners whose updates rotate one another's gradients in a game | very high |
 | Qu and Wierman, COLT 2020 | Finite-time asynchronous SA and Q-learning with coordinate coverage | Contractive SA/Q-learning rather than interacting policy-gradient blocks and a wall-clock barrier phase | medium |
 | Maheshwari, Wu and Sastry, IEEE CSL 2024/2025 | Asynchronous decentralized actor--critic dynamics in general-sum/near-potential Markov games | Asymptotic decentralized learning; no finite-time packet-staleness, wall-clock barrier comparison or matching clock lower bound | high |

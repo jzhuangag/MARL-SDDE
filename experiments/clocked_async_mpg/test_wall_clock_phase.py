@@ -6,10 +6,12 @@ import pytest
 from .wall_clock_phase import (
     certified_wall_clock_coefficients,
     essential_agent_clock_lower_bound,
+    essential_agent_periodic_service_clock_lower_bound,
     expected_maximum_exponential,
     gaussian_sign_packet_lower_bound,
     robust_stale_direction_progress,
     stochastic_essential_agent_clock_lower_bound,
+    stochastic_essential_agent_periodic_service_lower_bound,
     symmetric_interaction_phase,
 )
 
@@ -107,6 +109,23 @@ def test_essential_agent_clock_lower_bound_tracks_slow_required_block() -> None:
     assert lower == pytest.approx(16.0)
 
 
+def test_periodic_service_lower_bound_matches_poisson_rate_reparameterization() -> None:
+    packets = np.asarray([3, 8, 2])
+    periods = np.asarray([0.5, 2.0, 0.2])
+    assert essential_agent_periodic_service_clock_lower_bound(
+        packets, periods
+    ) == pytest.approx(
+        essential_agent_clock_lower_bound(packets, 1.0/periods)
+    )
+
+
+def test_periodic_service_lower_bound_tracks_slow_essential_block() -> None:
+    lower = essential_agent_periodic_service_clock_lower_bound(
+        np.asarray([5, 3, 8]), np.asarray([0.2, 5.0, 0.3])
+    )
+    assert lower == pytest.approx(15.0)
+
+
 def test_phase_lower_bound_helpers_reject_invalid_inputs() -> None:
     with pytest.raises(ValueError):
         robust_stale_direction_progress(-1.0, 0.0, 1.0)
@@ -119,6 +138,14 @@ def test_phase_lower_bound_helpers_reject_invalid_inputs() -> None:
     with pytest.raises(ValueError):
         essential_agent_clock_lower_bound(
             np.asarray([1.0]), np.asarray([0.0])
+        )
+    with pytest.raises(ValueError):
+        essential_agent_periodic_service_clock_lower_bound(
+            np.asarray([1.0, 2.0]), np.asarray([1.0])
+        )
+    with pytest.raises(ValueError):
+        essential_agent_periodic_service_clock_lower_bound(
+            np.asarray([1.0]), np.asarray([np.inf])
         )
 
 
@@ -151,10 +178,28 @@ def test_stochastic_clock_lower_bound_is_set_by_hardest_essential_agent() -> Non
     assert int(np.argmax(packet_bounds/rates)) == 1
 
 
+def test_periodic_stochastic_clock_lower_bound_matches_rate_reparameterization() -> None:
+    signals = np.asarray([0.5, 0.2, 0.8])
+    noise = np.asarray([1.0, 1.4, 0.7])
+    periods = np.asarray([1.0, 1.0/0.3, 0.5])
+    error = 0.1
+    assert stochastic_essential_agent_periodic_service_lower_bound(
+        signals, noise, periods, error
+    ) == pytest.approx(
+        stochastic_essential_agent_clock_lower_bound(
+            signals, noise, 1.0/periods, error
+        )
+    )
+
+
 def test_stochastic_clock_lower_bound_rejects_invalid_confidence() -> None:
     with pytest.raises(ValueError):
         gaussian_sign_packet_lower_bound(1.0, 1.0, 0.5)
     with pytest.raises(ValueError):
         stochastic_essential_agent_clock_lower_bound(
             np.asarray([1.0]), np.asarray([1.0, 2.0]), np.asarray([1.0]), 0.1
+        )
+    with pytest.raises(ValueError):
+        stochastic_essential_agent_periodic_service_lower_bound(
+            np.asarray([1.0]), np.asarray([1.0]), np.asarray([0.0]), 0.1
         )

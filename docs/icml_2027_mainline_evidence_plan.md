@@ -1,121 +1,128 @@
 # ICML 2027 mainline and evidence plan
 
-## Recommended claim
+Date: 2026-09-02.
 
-The defensible central claim is:
+## Current unique candidate
 
-> In delayed multi-agent Markov TD with a fixed nonlinear representation,
-> reward-free fingerprint sensing can select participation from a
-> correlation--cost phase rule and retain a finite-horizon Lyapunov guarantee
-> under the same message, environment, and delay budgets.
+The sole current ICML candidate is **Two Clocks, One Game**: barrier-free
+centralized training with decentralized execution for distinct policy blocks in
+one Markov potential game. Each agent owns at most one fixed-horizon policy
+gradient packet in flight. A completed packet is applied immediately with a
+single common pathwise-certified step, then its owner launches the next packet
+from the current joint-policy version.
 
-This is narrower than general actor--critic or end-to-end MARL, but it has a
-complete causal chain: the common-path model determines the variance term, the
-two budgets determine the usable horizon, the delayed Lyapunov recursion
-determines the finite-time risk, and a reward-free observable estimates the
-correlation parameter without using learning outcomes.
+The paper asks:
 
-The title should avoid an unconditional unknown-mixing claim and avoid saying
-that the method gives universal superlinear wall-clock speedup.  A candidate
-is **“Reward-Free Correlation-Adaptive Participation for Delayed Multi-Agent
-Markov Learning.”** “Beyond Linear Speedup” can be a subtitle only if the
-formal resource-normalized comparison supports that wording.
+> When does heterogeneous packet completion yield genuine wall-clock learning
+> value in an interacting Markov game, and when must teammate-policy staleness
+> erase that value?
+
+The intended answer is a rate--coupling phase. The favorable quantity is
+aggregate useful packet completion under heterogeneous service. The adverse
+quantity is the interaction-weighted teammate-policy motion while a packet is
+in flight. Single-flight ownership makes a packet self-fresh in its own policy
+block; it remains strategically stale in teammate blocks. A slow essential
+policy block remains a wall-clock bottleneck for full-policy or Nash guarantees.
+
+The recommended title is **“Two Clocks, One Game: Rate--Coupling Limits of
+Barrier-Free Policy Learning in Markov Potential Games.”** It must not claim
+universal asynchronous no-harm, generic linear speedup, or that aggregate
+throughput eliminates an essential slow actor.
 
 ## The theorem package that must appear in the paper
 
-1. **Delayed finite-horizon Lyapunov bound.**  For the affine TD head under a
-   stable drift and bounded Markov noise, derive the exact delayed recursion
-   bound in the (P)-norm.  The leading noise term must expose
-   \(v(q,\rho)=\rho+(1-\rho)/q\), while the contraction and usable horizon
-   expose (D) and both residual budgets.
+1. **Event-time upper bound.** Give the finite-time stationarity result for
+   arbitrary bounded packet-completion order using an off-diagonal
+   Lyapunov--Krasovskii history energy. The common certified step must be the
+   declared positive-root condition based on the interaction envelope; the
+   online block update remains ordinary `O(dim(theta_i))` policy gradient.
+2. **Wall-clock conversion and barrier separation.** Convert the event-time
+   result through bounded service intervals or rates, exposing aggregate
+   completed work and the essential-block coverage window. Show why a fully
+   utilized frozen-policy barrier cannot replace adaptive query depth with
+   duplicate packets sampled at one frozen policy.
+3. **Strategic-staleness obstruction and essential-agent lower bound.** State
+   the stale-direction safe-progress boundary and the stochastic
+   essential-agent clock lower family. Delimit the result honestly as an
+   instance-sensitive phase picture, not a globally minimax-matched theorem.
+4. **Finite-horizon Markov-packet interface.** Account for the exact
+   likelihood-gradient identity, truncation bias, bounded packet second
+   moment, and conditional independence of completion from packet innovation.
+   Give the factorized-softmax cross-sensitivity instantiation and distinguish
+   a theorem-facing uniform certificate from any practical measured proxy.
+5. **Conditional stationarity-to-Nash conversion.** Prove or explicitly
+   delimit the MPG interiority/distribution-mismatch constant; no uniform Nash
+   conclusion may be silently inferred where this condition is absent.
 
-2. **Budget-aware phase rule.**  Substitute
-   \(N(q)=\min\{\lfloor B_m/(h+q)\rfloor,
-   \lfloor B_e/q\rfloor\}-D\) into the finite-time upper bound and prove the
-   selected q minimizes the certified surrogate over the finite catalogue.
-   State clearly when the closed-form rule is exact (fixed ray/known
-   correlation) and when it is only a certificate-guided action.
+The central technical distinction from black-box delayed SGD is structural:
+the owner block is self-fresh, so the delayed history pays only off-diagonal
+cross-agent coupling while diagonal curvature remains local.
 
-3. **Reward-free fingerprint concentration.**  With independent probe blocks,
-   prove a time-uniform or fixed-horizon concentration bound for
-   \(\hat\rho=K/m\), including the independent-path collision term.  Then bound
-   the excess certified risk from selecting the wrong q by the phase-score
-   modulus.  Probe cost must be subtracted before applying the bound.
+## Evidence status
 
-4. **Adaptation cost/lower-bound boundary.**  Retain the existing stopped
-   change-of-measure and adaptive occupation lower-bound results to explain why
-   unknown-mixing adaptation cannot be claimed uniformly and why probing has a
-   real opportunity cost.  This prevents the paper from overselling the
-   sensing mechanism.
+The exact multi-state CPU confirmation passed all ten frozen gates. Across 12
+heterogeneous primary cells, certified asynchronous learning was faster than
+the fully utilized frozen-policy barrier in all 12 cells, with geometric
+target-time ratio `0.4445572803`.
 
-The SDDE/Lyapunov--Krasovskii construction should be an interpretation layer;
-the primary theorem must be the executed discrete delayed Markov-TD recursion.
-No theorem should imply convergence for a trainable ReLU encoder or a general
-actor--critic unless a separate proof is added.
+The independent stochastic Markov-packet confirmation passed all twelve frozen
+gates and reproduced byte-for-byte. Across 64 fresh seeds and the same 12
+heterogeneous cells, its certified-asynchronous/barrier ratios were
+`0.4313525930` in wall-clock time and `0.4296873191` in charged transition
+work; all 12 cells had lower median wall-clock time. Higher service
+heterogeneity helped and stronger coupling hurt in every registered direction.
+Homogeneous high-coupling controls retain the predicted negative side of the
+phase. Raw asynchronous learning is a speed reference, while the certified
+learner is the theorem-facing method; the reported certificate-cost ceiling is
+not a superiority claim over raw async.
 
-## Main-text positive evidence
+These are fully charged CPU results for the theorem-facing model. They do not
+establish performance on standard nonlinear MARL benchmarks.
 
-The main experimental table should be populated only after T-063A passes its
-frozen formal gates.  It should report, for each of Asterix, Breakout, and
-Seaquest and for the aggregate:
+## Standard-MARL evidence plan
 
-- controller/strong-fixed geometric terminal-risk ratio with one-sided cluster
-  bootstrap upper bound;
-- delay-0 and delay-8 ratios;
-- strict improved-cell breadth with its lower bound;
-- true-correlation oracle proximity;
-- message- and environment-binding cases.
+After CPU/theory closure, freeze a separate outcome-free GPU preregistration
+for the single-flight common-step learner. It is pathwise certified on the
+finite-policy theorem class and an explicitly empirical instantiation on the
+unconstrained neural actor. It must retain CTDE/decentralized execution and
+compare against a fully utilized barrier, raw single-flight async, a strong
+delay-adaptive asynchronous reference, and official HAA2C/HAPPO/MAPPO
+baselines where applicable. The planned task layers are a CPU integration
+smoke, continuous heterogeneous MAMuJoCo control, and partially observable
+SMACv2 cooperation.
 
-The primary comparison is against the frozen task-by-budget strong fixed-q
-baseline with no probe cost.  The controller must be credited for all probe
-messages and actor transitions.  No pilot seed, pilot-selected threshold, or
-outcome-aware oracle row may enter this table.
+Report return versus actual wall-clock and transitions separately, together
+with charged partial/cancelled work, utilization, actor idle fraction,
+policy-lag events, teammate KL drift, proposal scale, and final/lower-tail
+return. Standard-MARL evidence is an empirical extension beyond the tabular
+MPG theorem and must not be represented as theorem-covered PPO, Adam, learned
+bootstrapped critic, or recurrent-policy behavior.
 
-## Positive appendix evidence
+No GPU job, seed registry, threshold, or formal standard-MARL result is
+authorized by this document. Those items require a later frozen
+preregistration after the CPU/theory gates close.
 
-If T-063A passes, the appendix should contain positive, reproducible
-breakdowns rather than a collection of unrelated ablations:
+## Superseded historical route
 
-- all seven correlation levels and the selected-q phase diagram;
-- both delays and both budget-binding regimes;
-- seed-cluster confidence intervals, not endpoint-level standard errors;
-- fingerprint calibration, rho-zero collision rate, and q-direction paths;
-- controller versus true-rho full-budget gap;
-- probe-cost accounting and usable-update fraction;
-- CPU time, memory, and O(1) controller arithmetic scaling;
-- fixed-q envelope and a no-probe ablation that isolates probe opportunity cost.
+The reward-free participation / T-063 route is **superseded** as the ICML
+mainline. Its historical experiments, frozen gates, seeds, diagnostics,
+results, and conclusions are preserved unchanged in their existing records;
+they are not evidence for the current Two Clocks candidate and are not
+reinterpreted or repaired here. The supersession does not authorize changing
+any historical threshold, comparator, result, or formal-status decision.
 
-The prior negative EXP-017A/T-020 results should be a short diagnostic appendix:
-they establish why reward-dependent selection, q=1 absorbing behavior, and a
-weak fallback are not acceptable.  They must not be mixed into the positive
-formal sample or used to relax any gate.
+## Remaining gates and stop rules
 
-## Decision tree after T-063A
+The publication upper/lower chain and dependence audit are now consolidated.
+The architecture-specific audit closed negatively for the unconstrained HARL
+actor, so no neural theorem-coverage claim is allowed. Before GPU work, freeze
+the external-checkout overlay, dependency lock, non-scientific resource
+preflight, task budgets, seeds, baselines, analysis hashes and stop rules in a
+separate preregistration. Complete a fresh primary-source novelty and
+citation-integrity audit before manuscript delivery.
 
-The primary T-063A run has now completed.  Its efficacy gates pass, but the
-mandatory maximum-per-seed rho=0 collision gate misses by one two-match block
-(`2/96=0.0208333` versus `0.02`).  It is therefore not formal-passed
-evidence.  The post-result audit shows that this maximum statistic was not
-family-wise calibrated over 1,536 blocks; this diagnosis does not alter T-063A.
-
-T-063B is a separate prospective confirmation with all-new seeds and an exact
-aggregate binomial collision gate.  It is authorized only after clean T-063A
-reproduction and the static audit; any T-063B gate failure remains a failure.
-Until T-063B passes, the paper must describe the nonlinear result as strong
-but qualified evidence, not as unconditional formal validation.
-
-- **All formal gates pass:** freeze the formal result, write the theorem
-  package and main/appendix tables, then consider one new GPU-only learned-
-  encoder robustness experiment.  That experiment is optional for the first
-  submission and requires its own preregistration.
-- **Formal value passes but one robustness gate fails:** report the exact
-  qualified scope (for example, taskwise failure on one benchmark) and do not
-  claim broad standard-RL superiority.  A new benchmark may be designed only
-  after an outcome-free audit.
-- **Formal fails:** stop the positive ICML claim, preserve the failure, and
-  return to theorem/benchmark redesign.  No gate, seed, comparator, or
-  analysis may be changed to make the body positive.
-
-Thus “正文正向、附件正向” is a desired presentation only conditional on
-independent formal evidence; it is not an analysis rule.  The current CPU
-formal run is the decisive next step, and no GPU is needed yet.
+Stop the mainline before GPU if the lower result collapses to generic delayed
+SGD after removing distinct policy blocks and the joint Markov trajectory, or
+if the neural implementation cannot show a charged, reproducible asynchronous
+advantage over both the fully utilized barrier and a strong asynchronous
+reference without outcome-selected delay injection.

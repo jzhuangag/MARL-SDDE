@@ -62,6 +62,30 @@ def robust_stale_direction_progress(
     }
 
 
+def _validated_essential_packet_service_vectors(
+    required_fresh_packets: Array,
+    service_values: Array,
+    service_label: str,
+) -> tuple[Array, Array]:
+    """Validate essential packet counts and a positive per-block service vector."""
+
+    packets = np.asarray(required_fresh_packets, dtype=float)
+    service = np.asarray(service_values, dtype=float)
+    if packets.ndim != 1 or packets.size == 0 or packets.shape != service.shape:
+        raise ValueError(
+            f"packet counts and {service_label} must be equal nonempty vectors"
+        )
+    if (
+        not np.isfinite(packets).all()
+        or (packets < 0.0).any()
+        or not np.equal(packets, np.floor(packets)).all()
+    ):
+        raise ValueError("required packet counts must be finite nonnegative integers")
+    if not np.isfinite(service).all() or (service <= 0.0).any():
+        raise ValueError(f"{service_label} must be finite and positive")
+    return packets, service
+
+
 def essential_agent_clock_lower_bound(
     required_fresh_packets: Array, completion_rates: Array
 ) -> float:
@@ -73,19 +97,21 @@ def essential_agent_clock_lower_bound(
     requires all blocks is therefore at least the maximum of these means.
     """
 
-    packets = np.asarray(required_fresh_packets, dtype=float)
-    rates = np.asarray(completion_rates, dtype=float)
-    if packets.ndim != 1 or packets.size == 0 or packets.shape != rates.shape:
-        raise ValueError("packet counts and rates must be equal nonempty vectors")
-    if (
-        not np.isfinite(packets).all()
-        or (packets < 0.0).any()
-        or not np.equal(packets, np.floor(packets)).all()
-    ):
-        raise ValueError("required packet counts must be finite nonnegative integers")
-    if not np.isfinite(rates).all() or (rates <= 0.0).any():
-        raise ValueError("completion rates must be finite and positive")
+    packets, rates = _validated_essential_packet_service_vectors(
+        required_fresh_packets, completion_rates, "completion rates"
+    )
     return float(np.max(packets/rates))
+
+
+def essential_agent_periodic_service_clock_lower_bound(
+    required_fresh_packets: Array, service_periods: Array
+) -> float:
+    """Clock lower bound for essential blocks with deterministic service periods."""
+
+    packets, periods = _validated_essential_packet_service_vectors(
+        required_fresh_packets, service_periods, "service periods"
+    )
+    return float(np.max(packets*periods))
 
 
 def gaussian_sign_packet_lower_bound(
@@ -150,6 +176,35 @@ def stochastic_essential_agent_clock_lower_bound(
     if not np.isfinite(rates).all() or (rates <= 0.0).any():
         raise ValueError("completion rates must be finite and positive")
     return float(np.max(packet_bounds/rates))
+
+
+def stochastic_essential_agent_periodic_service_lower_bound(
+    signal_magnitudes: Array,
+    noise_standard_deviations: Array,
+    service_periods: Array,
+    error_probability: float,
+) -> float:
+    """Periodic-service lower bound for all-block Gaussian sign identification."""
+
+    signals = np.asarray(signal_magnitudes, dtype=float)
+    noise = np.asarray(noise_standard_deviations, dtype=float)
+    periods = np.asarray(service_periods, dtype=float)
+    if (
+        signals.ndim != 1
+        or signals.size == 0
+        or signals.shape != noise.shape
+        or signals.shape != periods.shape
+    ):
+        raise ValueError("signals, noise scales and periods must be equal vectors")
+    packet_bounds = np.asarray(
+        [
+            gaussian_sign_packet_lower_bound(signal, scale, error_probability)
+            for signal, scale in zip(signals, noise, strict=True)
+        ]
+    )
+    if not np.isfinite(periods).all() or (periods <= 0.0).any():
+        raise ValueError("service periods must be finite and positive")
+    return float(np.max(packet_bounds*periods))
 
 
 def expected_maximum_exponential(completion_rates: Array) -> float:
