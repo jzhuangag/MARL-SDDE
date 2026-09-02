@@ -54,6 +54,7 @@ export XDG_CACHE_HOME="$ROOT/envs/cache"
 export MPLCONFIGDIR="$ROOT/envs/matplotlib"
 export TORCH_HOME="$ROOT/envs/torch-cache"
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 unset HIP_VISIBLE_DEVICES ROCR_VISIBLE_DEVICES
 
 {
