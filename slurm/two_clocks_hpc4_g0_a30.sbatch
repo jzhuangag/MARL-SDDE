@@ -67,5 +67,5 @@ cd "$CODE_ROOT"
 
 "$RUNTIME/bin/python" -m pip freeze --all | sort > "$RUN_DIR/pip-freeze.txt"
 cp "$CODE_ROOT/docs/two_clocks_plot_contract.md" "$ROOT/plots/README.md"
-sha256sum "$RUN_DIR"/* > "$RUN_DIR/SHA256SUMS"
 echo "completed_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)" | tee -a "$RUN_DIR/runtime.txt"
+sha256sum "$RUN_DIR"/* > "$RUN_DIR/SHA256SUMS"
