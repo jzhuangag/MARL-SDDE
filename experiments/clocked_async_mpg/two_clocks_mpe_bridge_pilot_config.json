@@ -1,0 +1,47 @@
+{
+  "experiment_id": "two_clocks_public_mpe_cpu_pilot_v1",
+  "scope": "fresh-seed CPU feasibility pilot; never paper formal evidence",
+  "harl_root": "tmp/HARL",
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "pilot_seeds": [97144146, 93217332, 96351161, 95291953, 97220059, 93535094, 96951766, 94503258],
+  "tasks": {
+    "simple_spread_v2": {
+      "episode_length": 25,
+      "service_horizon": 128.0
+    },
+    "simple_reference_v2": {
+      "episode_length": 25,
+      "service_horizon": 192.0
+    }
+  },
+  "methods": ["offdiag_async", "raw_async", "delay_scaled_async", "frozen_barrier"],
+  "profiles": ["balanced", "heterogeneous"],
+  "checkpoint_fractions": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "baseline_episodes": 16,
+  "evaluation_episodes": 5,
+  "gamma": 0.99,
+  "hidden_sizes": [32, 32],
+  "learning_rate": 0.0005,
+  "maximum_step_norm": 0.05,
+  "cross_lipschitz_diagonal": 5.0,
+  "cross_lipschitz_off_diagonal": 0.5,
+  "maximum_event_delay": 8,
+  "workers": 4,
+  "expected_endpoint_rows": 128,
+  "expected_curve_rows": 640,
+  "gates": {
+    "P1_validity_pairing_and_accounting": "all rows finite; exact task/method/profile/seed/checkpoint set; paired initialization and evaluation; complete and partial work charged; owner self-fresh",
+    "P2_positive_learning": "mean final-minus-initial return is positive for every task x method aggregate across both profiles",
+    "P3_heterogeneous_auc_gain": "offdiag_async minus frozen_barrier mean AUC, normalized by absolute paired initial return, is at least 0.05 overall and positive on each task",
+    "P4_heterogeneous_directionality": "offdiag_async has larger AUC than frozen_barrier in at least 60% of paired heterogeneous seed x task cells",
+    "P5_async_reference_safety": "offdiag_async normalized AUC is no more than 0.02 below the stronger of raw_async and delay_scaled_async overall and on either task",
+    "P6_rate_coupling_order": "offdiag-versus-barrier normalized AUC gain is strictly larger under heterogeneous than balanced service for each task",
+    "P7_nontrivial_lyapunov_design": "the declared off-diagonal multiplier lies strictly between zero and one and the realized offdiag motion differs from raw motion",
+    "P8_motion_and_work_disclosure": "step norm, policy KL, teammate birth-arrival KL, optimizer updates, completed/cancelled work, and evaluation work are finite and reported separately",
+    "P9_no_outcome_selected_setting": "task, estimator, learning rate, interaction matrix, horizons, thresholds and comparators equal this frozen configuration",
+    "P10_public_quality_anchor": "upstream HAA2C task learnability anchor is executed separately before any GPU preregistration; not required to read this pilot",
+    "P11_no_formal_or_gpu_escalation": "pilot never counts as formal evidence and any failed mandatory gate stops GPU escalation",
+    "P12_reproducibility": "endpoints.csv and curves.csv are byte-identical in an isolated unchanged rerun"
+  },
+  "decision_rule": "P1-P9 and P11-P12 are mandatory for CPU survival; P10 must pass before a GPU preregistration. No failed threshold, seed, task, method, estimator or horizon may be changed after outcome access."
+}
