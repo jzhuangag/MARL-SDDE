@@ -57,8 +57,8 @@ charged.
 Frozen workload: 128 endpoint rows, 640 curve rows, 39,856 complete packets,
 1,992,800 completed training environment steps, and 4,980,000 completed actor
 transitions, plus separately reported baseline, evaluation, and partial work.
-The estimate is suitable for four local CPU workers; neither GPU nor HPC4 is
-authorized.
+Amendment 1 changes the execution-only worker count from four to eight after a
+no-artifact runtime preflight; neither GPU nor HPC4 is authorized.
 
 ## Frozen outcomes and gates
 
@@ -91,5 +91,6 @@ does not turn pilot data into formal evidence.
 - analyzer SHA-256:
   `1b37be6510f7c871ed7e6e8e072e5b19cb6502da30b6984523cb92a3aaf2b9bf`;
 - configuration SHA-256:
-  `eae1d0a69ce772f0285f651d587ac519dc6c46f08d3964b32f7c156a25347631`;
+  original `eae1d0a69ce772f0285f651d587ac519dc6c46f08d3964b32f7c156a25347631`,
+  Amendment 1 `a06f250c4edf07b0dc7db74d9df5c6edac662a2f77386c6857cd47d99c269cda`;
 - targeted static tests: `18 passed`.
