@@ -25,6 +25,61 @@ class ParallelCommitDecision:
     iterations: int
 
 
+def certified_joint_gain(
+    *,
+    scales: np.ndarray,
+    gain_lower_bounds: np.ndarray,
+    curvature_diagonal: np.ndarray,
+    interaction_weights: np.ndarray,
+    interaction_strength: float,
+) -> float:
+    """Evaluate the theorem-facing joint-improvement lower bound."""
+
+    gains = _vector("gain_lower_bounds", gain_lower_bounds)
+    scales = _vector("scales", scales, gains.size)
+    diagonal = _vector("curvature_diagonal", curvature_diagonal, gains.size)
+    weights = _vector("interaction_weights", interaction_weights, gains.size)
+    if np.any(scales < 0.0) or np.any(scales > 1.0):
+        raise ValueError("scales must lie in [0, 1]")
+    if np.any(diagonal < 0.0) or np.any(weights < 0.0):
+        raise ValueError("curvature and interaction weights must be nonnegative")
+    if not math.isfinite(interaction_strength) or interaction_strength < 0.0:
+        raise ValueError("interaction strength must be finite and nonnegative")
+    return float(
+        np.dot(gains, scales)
+        - 0.5 * np.dot(diagonal, scales * scales)
+        - 0.5 * interaction_strength * float(np.dot(weights, scales)) ** 2
+    )
+
+
+def stale_directional_lower_bounds(
+    *,
+    birth_directional_gains: np.ndarray,
+    proposal_directions: np.ndarray,
+    interaction_absolute: np.ndarray,
+    policy_displacement: np.ndarray,
+) -> np.ndarray:
+    """Bound arrival-time directional gains from an observable policy path.
+
+    If the absolute cross-block Hessian is bounded by ``interaction_absolute``,
+    the fundamental theorem of calculus gives
+
+    ``d_i grad_i(current) >= d_i grad_i(birth)
+       - |d_i| sum_j L_ij |current_j-birth_j|``.
+    """
+
+    birth = _vector("birth_directional_gains", birth_directional_gains)
+    directions = _vector("proposal_directions", proposal_directions, birth.size)
+    displacement = _vector("policy_displacement", policy_displacement, birth.size)
+    interaction = np.asarray(interaction_absolute, dtype=float)
+    if interaction.shape != (birth.size, birth.size):
+        raise ValueError("interaction_absolute has incompatible shape")
+    if np.any(~np.isfinite(interaction)) or np.any(interaction < 0.0):
+        raise ValueError("interaction_absolute must be finite and nonnegative")
+    penalty = np.abs(directions) * (interaction @ np.abs(displacement))
+    return birth - penalty
+
+
 def _vector(name: str, value: np.ndarray, size: int | None = None) -> np.ndarray:
     result = np.asarray(value, dtype=float)
     if result.ndim != 1 or result.size == 0:
@@ -168,15 +223,17 @@ def choose_lyapunov_parallel_commit(
         interaction_strength=tradeoff * interaction_strength,
         maximum_scales=maximum_scales,
     )
-    certified_gain = float(
-        np.dot(gains, decision.scales)
-        - 0.5 * np.dot(diagonal, decision.scales * decision.scales)
-        - 0.5 * interaction_strength * decision.interaction_load**2
+    gain = certified_joint_gain(
+        scales=decision.scales,
+        gain_lower_bounds=gains,
+        curvature_diagonal=diagonal,
+        interaction_weights=weights,
+        interaction_strength=interaction_strength,
     )
     return ParallelCommitDecision(
         scales=decision.scales,
         active_count=decision.active_count,
-        certified_gain=certified_gain,
+        certified_gain=gain,
         queue_weighted_objective=decision.queue_weighted_objective,
         interaction_load=decision.interaction_load,
         scalar_root=decision.scalar_root,

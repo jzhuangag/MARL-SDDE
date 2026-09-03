@@ -6,8 +6,10 @@ import numpy as np
 import pytest
 
 from .parallel_commit_qp import (
+    certified_joint_gain,
     choose_lyapunov_parallel_commit,
     solve_rank_one_box_qp,
+    stale_directional_lower_bounds,
     update_commit_queues,
 )
 
@@ -111,6 +113,53 @@ def test_projected_queue_updates_are_pathwise() -> None:
     )
     np.testing.assert_allclose(service, [0.7, 0.1])
     assert risk == pytest.approx(0.2)
+
+
+def test_joint_gain_is_lower_bound_for_signed_rank_one_quadratics() -> None:
+    rng = np.random.default_rng(20260903)
+    for _ in range(200):
+        agents = 6
+        diagonal = rng.uniform(0.2, 1.5, size=agents)
+        factor = rng.normal(size=agents)
+        strength = float(rng.uniform(0.0, 1.2))
+        hessian = np.diag(diagonal) + strength * np.outer(factor, factor)
+        theta = rng.normal(size=agents)
+        optimum = rng.normal(size=agents)
+        gradient = hessian @ (optimum - theta)
+        directions = rng.normal(size=agents)
+        scales = rng.uniform(0.0, 1.0, size=agents)
+        update = directions * scales
+        exact = float(gradient @ update - 0.5 * update @ hessian @ update)
+        bound = certified_joint_gain(
+            scales=scales,
+            gain_lower_bounds=gradient * directions,
+            curvature_diagonal=diagonal * directions * directions,
+            interaction_weights=np.abs(factor * directions),
+            interaction_strength=strength,
+        )
+        assert exact >= bound - 1e-12
+
+
+def test_stale_directional_bound_holds_for_exact_quadratic_path() -> None:
+    rng = np.random.default_rng(1701)
+    for _ in range(100):
+        agents = 5
+        matrix = rng.normal(size=(agents, agents))
+        hessian = matrix.T @ matrix + 0.1 * np.eye(agents)
+        birth = rng.normal(size=agents)
+        displacement = rng.normal(scale=0.2, size=agents)
+        current = birth + displacement
+        optimum = rng.normal(size=agents)
+        directions = rng.normal(size=agents)
+        birth_gradient = hessian @ (optimum - birth)
+        current_gradient = hessian @ (optimum - current)
+        lower = stale_directional_lower_bounds(
+            birth_directional_gains=birth_gradient * directions,
+            proposal_directions=directions,
+            interaction_absolute=np.abs(hessian),
+            policy_displacement=displacement,
+        )
+        assert np.all(current_gradient * directions >= lower - 1e-12)
 
 
 @pytest.mark.parametrize(
