@@ -110,7 +110,18 @@ preregistration; it does not convert the CPU pilot into formal evidence.
 
 ## Current readiness
 
-The theory-facing story is coherent and has positive reproducible evidence.
-The project is not yet ICML-ready because the standard-neural bridge is
-missing.  The next work is therefore implementation of the outcome-free MPE
-bridge—not another analytic controller and not manuscript polishing.
+The frozen public-MPE CPU bridge has now failed its preregistered survival
+criteria.  It produced only `0.492%` aggregate normalized heterogeneous AUC
+gain versus the frozen barrier (required `5%`), with positive direction on
+`simple_reference_v2` and negative direction on `simple_spread_v2`; positive
+learning and taskwise phase-order gates also failed.  Exact reproduction
+passed.  The upstream HAA2C anchor and GPU escalation are therefore stopped.
+
+The theory-facing finite-game story remains coherent and has positive
+reproducible evidence, but this particular neural bridge does not provide the
+cross-task external evidence required for an ICML-complete package.  Another
+controller or outcome-guided retuning of this experiment is forbidden.  Any
+future ICML attempt must first change the problem-level source of value or
+derive a mature actor--critic algorithm before assigning a new experiment,
+rather than treating the present failure as an implementation parameter to
+tune away.
