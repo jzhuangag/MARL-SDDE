@@ -1,8 +1,9 @@
 # Lyapunov parallel commit for asynchronous heterogeneous MARL
 
-Status: replacement-candidate scope and algebraic interface.  It is not a
-theorem, preregistration, positive experimental claim, or authorization for a
-new GPU run.
+Status: **stopped after the frozen CPU oracle-headroom screen**.  The algebraic
+interface remains valid, but the candidate failed every declared headroom gate
+and is not authorized for sampled learning or GPU work.  See
+`validation_lyapunov_parallel_commit_headroom.md`.
 
 ## One paper question
 
@@ -150,4 +151,3 @@ Before any new GPU work:
 Failure of either the performance-bound interface or CPU oracle-headroom gate
 stops this candidate.  It must not be rescued by weakening comparators or
 selecting a favorable standard task after outcomes.
-
