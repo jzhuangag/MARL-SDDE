@@ -4,9 +4,12 @@ Date: 2026-09-03.
 
 ## Decision
 
-**G0 passes.**  A separate CPU pilot may now be designed and preregistered.
-This result contains no learning-performance evidence and does not authorize a
-GPU run.
+**Superseded by Amendment 1.**  The original G0 scientific-outcome exclusion,
+ownership checks, and complete-packet accounting passed, but the frozen
+barrier's unfinished tail was charged as one trajectory although every packet
+contains two.  The original authorization is therefore withdrawn pending a
+corrected frozen rerun.  This result contains no learning-performance evidence
+and does not authorize a GPU run.
 
 The frozen source commit was `b406e81`.  Primary and isolated reproduction
 outputs were byte-identical with SHA-256

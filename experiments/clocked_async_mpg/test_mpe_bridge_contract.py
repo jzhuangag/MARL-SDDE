@@ -42,7 +42,7 @@ def test_frozen_barrier_charges_unfinished_tail_work() -> None:
     schedule = barrier_schedule((1.0, 1.55, 4.0), 8.0, 25)
     assert schedule["rounds"] == 2
     assert schedule["completed_by_owner"] == (8, 4, 2)
-    assert schedule["cancelled_environment_steps_by_owner"] == (0, 28, 0)
+    assert schedule["cancelled_environment_steps_by_owner"] == (0, 58, 0)
 
 
 def test_packet_scales_are_outcome_independent() -> None:

@@ -117,8 +117,8 @@ def barrier_schedule(
             remainder = max(0.0, duration - whole * service)
             if remainder > 1e-12:
                 cancelled_steps[owner] += min(
-                    episode_length,
-                    int(math.floor(episode_length * remainder / service + 1e-12)),
+                    2 * episode_length,
+                    int(math.floor(2 * episode_length * remainder / service + 1e-12)),
                 )
         rounds += 1
         start += duration
