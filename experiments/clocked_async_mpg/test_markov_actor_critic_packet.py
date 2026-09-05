@@ -9,6 +9,7 @@ from .markov_actor_critic_packet import (
     bounded_version_displacement,
     build_actor_critic_packet_certificate,
     contracted_critic_radius,
+    simultaneous_empirical_bernstein_radius,
     simultaneous_vector_mean_radius,
 )
 
@@ -50,6 +51,43 @@ def test_zero_packet_norm_has_zero_radius() -> None:
         joint_coordinate_count=2,
         failure_probability=0.1,
     ) == 0.0
+
+
+def test_empirical_bernstein_radius_matches_scaled_two_sided_formula() -> None:
+    variances = np.asarray([0.04, 0.09, 0.01])
+    bounds = np.asarray([1.0, 1.5, 0.7])
+    radius = simultaneous_empirical_bernstein_radius(
+        coordinate_sample_variances=variances,
+        trajectory_count=80,
+        coordinate_abs_bounds=bounds,
+        scheduled_packet_count=50,
+        joint_coordinate_count=9,
+        failure_probability=0.03,
+    )
+    logarithm = math.log(4.0 * 50 * 9 / 0.03)
+    coordinates = np.sqrt(2.0 * variances * logarithm / 80)
+    coordinates += 14.0 * bounds * logarithm / (3.0 * 79)
+    assert radius == pytest.approx(np.linalg.norm(coordinates))
+
+
+def test_empirical_bernstein_exploits_low_observed_variance() -> None:
+    bernstein = simultaneous_empirical_bernstein_radius(
+        coordinate_sample_variances=np.full(4, 1e-4),
+        trajectory_count=4096,
+        coordinate_abs_bounds=1.0,
+        scheduled_packet_count=64,
+        joint_coordinate_count=8,
+        failure_probability=0.05,
+    )
+    hoeffding = simultaneous_vector_mean_radius(
+        vector_dimension=4,
+        trajectory_count=4096,
+        trajectory_norm_bound=2.0,
+        scheduled_packet_count=64,
+        joint_coordinate_count=8,
+        failure_probability=0.05,
+    )
+    assert bernstein < 0.2 * hoeffding
 
 
 def test_actor_and_critic_radii_are_additive_without_hidden_discount() -> None:
@@ -142,4 +180,16 @@ def test_invalid_version_delay_is_rejected() -> None:
     with pytest.raises(ValueError):
         bounded_version_displacement(
             max_intervening_updates=-1, max_update_norm=0.2
+        )
+
+
+def test_empirical_bernstein_rejects_single_trajectory() -> None:
+    with pytest.raises(ValueError):
+        simultaneous_empirical_bernstein_radius(
+            coordinate_sample_variances=np.ones(2),
+            trajectory_count=1,
+            coordinate_abs_bounds=1.0,
+            scheduled_packet_count=2,
+            joint_coordinate_count=4,
+            failure_probability=0.1,
         )

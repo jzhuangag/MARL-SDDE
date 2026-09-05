@@ -11,6 +11,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 
+import numpy as np
+
 
 @dataclass(frozen=True)
 class ActorCriticPacketCertificate:
@@ -73,6 +75,52 @@ def simultaneous_vector_mean_radius(
         2.0 * math.log(2.0 * packets * coordinates / delta) / samples
     )
     return float(math.sqrt(dimension) * coordinate_radius)
+
+
+def simultaneous_empirical_bernstein_radius(
+    *,
+    coordinate_sample_variances: np.ndarray,
+    trajectory_count: int,
+    coordinate_abs_bounds: np.ndarray | float,
+    scheduled_packet_count: int,
+    joint_coordinate_count: int,
+    failure_probability: float,
+) -> float:
+    """Observable two-sided empirical-Bernstein vector radius.
+
+    The sample variance uses denominator ``m-1``.  Maurer--Pontil's scalar
+    bound is applied to both signs and union-bounded over the finite packet
+    schedule and the declared joint actor/critic coordinates.  Scaling from
+    ``[-C_j,C_j]`` contributes the coordinate range ``2*C_j``.
+    """
+
+    samples = _positive_integer("trajectory_count", trajectory_count)
+    if samples < 2:
+        raise ValueError("trajectory_count must be at least two")
+    packets = _positive_integer("scheduled_packet_count", scheduled_packet_count)
+    coordinates = _positive_integer("joint_coordinate_count", joint_coordinate_count)
+    variances = np.asarray(coordinate_sample_variances, dtype=float)
+    if variances.ndim != 1 or variances.size == 0:
+        raise ValueError("coordinate_sample_variances must be a nonempty vector")
+    if variances.size > coordinates:
+        raise ValueError("joint_coordinate_count is smaller than the supplied vector")
+    if np.any(~np.isfinite(variances)) or np.any(variances < 0.0):
+        raise ValueError("coordinate_sample_variances must be finite and nonnegative")
+    bounds = np.asarray(coordinate_abs_bounds, dtype=float)
+    if bounds.ndim == 0:
+        bounds = np.full(variances.size, float(bounds))
+    if bounds.shape != variances.shape:
+        raise ValueError("coordinate_abs_bounds must be scalar or match the variances")
+    if np.any(~np.isfinite(bounds)) or np.any(bounds < 0.0):
+        raise ValueError("coordinate_abs_bounds must be finite and nonnegative")
+    delta = float(failure_probability)
+    if not math.isfinite(delta) or not 0.0 < delta < 1.0:
+        raise ValueError("failure_probability must lie strictly between zero and one")
+
+    logarithm = math.log(4.0 * packets * coordinates / delta)
+    coordinate_radii = np.sqrt(2.0 * variances * logarithm / samples)
+    coordinate_radii += 14.0 * bounds * logarithm / (3.0 * (samples - 1))
+    return float(np.linalg.norm(coordinate_radii))
 
 
 def bounded_version_displacement(

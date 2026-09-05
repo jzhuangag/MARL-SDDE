@@ -47,6 +47,22 @@ inside a Markov trajectory is declared iid.  This deliberately conservative
 finite-schedule radius is the theorem interface; an empirical standard error
 cannot silently replace it.
 
+For a nonvacuous observable alternative, let `S_j^2` be the unbiased sample
+variance of coordinate `j` across the reset replicas and let that coordinate
+lie in `[-C_j,C_j]`.  Applying the empirical Bernstein inequality to both
+signs and union-bounding over the same schedule gives coordinate radii
+
+\[
+ r_j=\sqrt{\frac{2S_j^2\log(4Kd/\delta)}{m}}
+ +\frac{14C_j\log(4Kd/\delta)}{3(m-1)},                \tag{1b}
+\]
+
+and vector radius `sqrt(sum_j r_j^2)`.  This is data-dependent but still a
+certificate; unlike a raw standard error, it retains the bounded-range term.
+The scalar inequality is from Maurer and Pontil, *Empirical Bernstein Bounds
+and Sample Variance Penalization*, COLT 2009.  Its use here is only across
+independent reset replicas, not across Markov transitions.
+
 ## 3. Arrival-time actor radius
 
 Assume the population actor statistic satisfies
