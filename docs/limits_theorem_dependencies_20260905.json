@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "artifact": "LIMITS-MANUSCRIPT-DEPENDENCY-AUDIT-20260905",
+  "decision": {
+    "narrow_parallel_markov_theory_manuscript": "conditional_go_after_two_remaining_minimax_links",
+    "asynchronous_strategic_marl_icml_mainline": "no_go",
+    "new_efficacy_experiment": false,
+    "gpu_or_hpc4": false
+  },
+  "unified_quantity": "inf over common predictable unknown-regime policies of the worst oracle-normalized downstream risk",
+  "claims": [
+    {
+      "id": "AC-7",
+      "status": "proved",
+      "scope": "stationary Gaussian common-factor model with known mixing and budget-bounded predictable stopping",
+      "depends_on": ["spatial rotation", "Kalman innovation likelihood", "common predictable action kernel cancellation"],
+      "test": "experiments/dependence_delay_linear/test_adaptive_change_of_measure.py"
+    },
+    {
+      "id": "occupation_information_lower_bound",
+      "status": "proved_as_policy_induced_relaxation",
+      "depends_on": ["AC-7", "binary data processing", "controlled Kalman flow", "dual budgets"],
+      "open": "finite-budget equality or second-order matching to the occupation optimum"
+    },
+    {
+      "id": "AC-8_unrestricted_unknown_mixing",
+      "status": "closed_negative",
+      "depends_on": ["unit-mixing one-latent-draw reduction", "TV contraction", "Le Cam", "finite-history continuity"],
+      "test": "experiments/dependence_delay_linear/test_theory_audit_t017.py"
+    },
+    {
+      "id": "AC-9b_threshold_sandwich",
+      "status": "proved_on_compact_separated_class",
+      "depends_on": ["AC-7", "Bhattacharyya upper test", "exact risk catalogue", "mixing gap", "hypothesis gap", "oracle gap", "risk sensitivity", "bounded delay"],
+      "test": "experiments/dependence_delay_linear/test_theory_audit_t017.py"
+    },
+    {
+      "id": "AC-9c_first_order_matching",
+      "status": "proved_under_T039_assumptions",
+      "rate": "1 + O(log(s)/s)",
+      "depends_on": ["uniform probe exponent", "Vstar(s)=Theta(1/s)", "budget sensitivity", "bounded wrong commitment", "fixed delay cost"],
+      "test": "experiments/dependence_delay_linear/test_t039_downstream_oracle_matching.py"
+    },
+    {
+      "id": "AC-9d_controlled_occupation_matching",
+      "status": "open"
+    },
+    {
+      "id": "learning_excess_to_testing_reduction",
+      "status": "proved_for_finite_fresh_deployment",
+      "depends_on": ["finite separated deployment catalogue", "fresh deployment or explicit noncancellation", "AC-7"],
+      "boundary": "does not cover continuously interleaved online learning or general asynchronous MARL",
+      "document": "docs/learning_excess_to_testing_reduction_20260905.md"
+    },
+    {
+      "id": "coupled_two_law_expected_safety_occupation",
+      "status": "open",
+      "blocking_consequence": "a single-regime occupation relaxation cannot lower-bound general expected-safe predictable policies"
+    },
+    {
+      "id": "baseline_as_sensing_anytime_switch",
+      "status": "proposed_not_proved",
+      "reason": "the all-agent baseline itself has positive regime information; separate paid probing is not necessary"
+    },
+    {
+      "id": "minimum_safety_slack_frontier",
+      "status": "open",
+      "notation": "epsilon_star(B)"
+    },
+    {
+      "id": "AC-10_full_matrix_stability_coupling",
+      "status": "open"
+    },
+    {
+      "id": "AC-11_general_observation_or_nonlinear_learning",
+      "status": "open"
+    },
+    {
+      "id": "AC-12_SDDE_discrete_bridge",
+      "status": "open_interpretation_only"
+    }
+  ],
+  "formal_evidence": {
+    "experiment": "EXP-016B formal",
+    "seeds": 192,
+    "rows": 2752512,
+    "gates": "P1-P12 pass",
+    "reproduction": "byte-identical",
+    "primary_relative_improvement": 0.544267,
+    "affine_td_relative_improvement": 0.108523,
+    "qualified_scenarios": "77/96",
+    "scope": "Gaussian threshold mechanism plus affine delayed Markov-TD transfer; not general nonlinear MARL"
+  },
+  "standard_task_stop": {
+    "best_task_oracle_value": 0.01404,
+    "aggregate_oracle_value": 0.00704,
+    "frozen_gate": 0.05,
+    "interpretation": "insufficient strong-baseline headroom, not insufficient statistical power"
+  }
+}
