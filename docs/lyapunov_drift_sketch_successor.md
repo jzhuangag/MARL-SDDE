@@ -2,8 +2,8 @@
 
 Date: 2026-09-05.
 
-Status: **abstract design interface only; one final CPU upper-bound gate is
-required before estimator construction.**
+Status: **stopped as an ICML mainline after the frozen equal-cost upper-bound
+gate.**
 
 ## Unified question
 
@@ -108,3 +108,18 @@ Failure of the equal-cost diagonal or headroom-capture gate stops the entire
 coupled-timescale idea as the ICML mainline.  Passing only authorizes the
 harder construction of observable Markov coefficient estimators; it is not
 paper evidence and does not authorize GPU work.
+
+## Frozen outcome
+
+The gate was preregistered at commit `09ed268` and reproduced byte for byte.
+The privileged ideal sketch still achieved a geometric AUC ratio of 0.785693
+against the best fixed pair, but its ratio to the stronger exact online
+diagonal rule was 1.016520 and only 32.91% of primary seed-cells improved.
+It recovered -31.84% of the exact coupling headroom.  I4--I6 therefore fail.
+
+Coefficient decision error was not the bottleneck: its median fraction of
+split-cost oracle descent was 3.43%, and every cell passed the registered 25%
+threshold.  The separate fully charged sensor consumed the modest exact
+coupling margin.  Under the frozen stop rule, no observable estimator,
+sampled efficacy run, formal run, GPU benchmark or HPC4 job is authorized.
+See `validation_ideal_drift_sketch_equal_cost.md`.

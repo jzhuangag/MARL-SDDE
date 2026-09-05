@@ -239,6 +239,18 @@ sampled efficacy, formal seeds or GPU work.  Full oracle and certificate
 results are in `validation_coupled_actor_critic_headroom.md` and
 `validation_coupled_actor_critic_certificate_nonvacuity.md`.
 
+That final successor has now failed its frozen necessary-condition audit.
+Even with privileged latent-state samples and unbiased five-scalar drift
+coefficients, the fully charged sketch was 1.652% worse than exact online
+diagonal in aggregate and improved only 32.91% of primary seed-cells.  It
+recovered negative rather than positive exact coupling headroom, despite a
+median coefficient decision-regret fraction of only 3.43%.  The failure is
+therefore attributed to the separate sensing tax consuming a modest dynamic
+margin, not to a weak coefficient estimator.  The coupled-timescale sketch is
+stopped as an ICML mainline; the favorable high-target/low-noise subset is
+descriptive and cannot be used to alter the registered population.  Details
+are in `validation_ideal_drift_sketch_equal_cost.md`.
+
 ## Experimental package if the gates survive
 
 The eventual paper must report return/potential gap against four resources:
