@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact": "LIMITS-MANUSCRIPT-DEPENDENCY-AUDIT-20260905",
   "decision": {
-    "narrow_parallel_markov_theory_manuscript": "conditional_go_after_two_remaining_minimax_links",
+    "narrow_parallel_markov_theory_manuscript": "conditional_go_after_one_matching_policy_link",
     "asynchronous_strategic_marl_icml_mainline": "no_go",
     "new_efficacy_experiment": false,
     "gpu_or_hpc4": false
@@ -54,18 +54,21 @@
     },
     {
       "id": "coupled_two_law_expected_safety_occupation",
-      "status": "open",
-      "blocking_consequence": "a single-regime occupation relaxation cannot lower-bound general expected-safe predictable policies"
+      "status": "proved_exact_variational_characterization_for_finite_commit",
+      "method": "one H0 reference occupation on likelihood-ratio-augmented continuous state",
+      "boundary": "infinite-dimensional measure LP; not a finite-variable LP and not continuously interleaved MARL",
+      "document": "docs/coupled_likelihood_occupation_frontier_20260905.md"
+    },
+    {
+      "id": "minimum_safety_slack_frontier",
+      "status": "finite_budget_lower_bound_proved",
+      "bound": "epsilon_star_B(r) >= g0 * [0.5 exp(-Kmax_B) - r/g1]_+",
+      "boundary": "requires separated finite deployment and noncancellation; no matching upper policy yet"
     },
     {
       "id": "baseline_as_sensing_anytime_switch",
       "status": "proposed_not_proved",
       "reason": "the all-agent baseline itself has positive regime information; separate paid probing is not necessary"
-    },
-    {
-      "id": "minimum_safety_slack_frontier",
-      "status": "open",
-      "notation": "epsilon_star(B)"
     },
     {
       "id": "AC-10_full_matrix_stability_coupling",

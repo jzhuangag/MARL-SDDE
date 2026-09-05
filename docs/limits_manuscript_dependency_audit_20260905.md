@@ -3,7 +3,7 @@
 Date: 2026-09-05
 
 Status: **conditional GO for a narrowly scoped parallel-Markov-learning
-theory manuscript after two remaining minimax links are proved; NO-GO for
+theory manuscript after one remaining matching-policy link is proved; NO-GO for
 relabelling it as an asynchronous strategic-MARL algorithm paper.**
 
 ## The one coherent statistical question
@@ -107,8 +107,9 @@ Gaussian common-factor Markov observation model
 | theorem-derived fallback | proved for a supplied exact finite-budget risk catalogue | controls expected `S_mean`, not pathwise no-harm |
 | first-order adaptation matching | proved as \(1+O(\log s/s)\) on the separated class | not second-order controlled-occupation matching |
 | learning-risk-to-testing reduction | proved for predictable sensing followed by finite fresh deployment | requires a separated finite deployment catalogue and noncancellation; does not cover continuous interleaved learning |
-| safety-constrained occupation achievability | open | the current ETC upper bound does not match the adaptive occupation program |
-| minimum safety slack \(\epsilon^\star(B)\) | open | strict no-harm can force fallback and has no nontrivial frontier theorem |
+| coupled expected-safety occupation frontier | proved as an exact infinite-dimensional variational program for finite commit | likelihood-ratio-augmented state is continuous; a finite-grid LP is only approximate |
+| minimum safety slack \(\epsilon^\star_B(r)\) | finite-budget lower bound proved | not yet matched by an executable upper policy |
+| safety-constrained occupation matching | open | the proposed baseline-as-sensing rule is not yet proved to attain the coupled frontier or its order |
 | delayed affine Markov-TD transfer | formal mechanism evidence exists | does not make the observation lower bound a general TD lower bound |
 | full matrix delayed stability coupling | open AC-10 | cannot claim general adaptive \((q,b,\eta)\) convergence |
 | nonlinear/general observation extension | open AC-11 | fixed-gradient covariance is not nonlinear training convergence |
@@ -167,7 +168,7 @@ overclaim, while another controller search has already failed its entry gate.
 
 ### Narrow theory / signal-processing manuscript
 
-**Conditional GO only after the two remaining central minimax links above are
+**Conditional GO only after the remaining matching-policy link above is
 closed.**  A coherent
 working title is:
 
@@ -205,10 +206,11 @@ optimization; it does not restore asynchronous strategic-MARL scope.
    a new noncancellation or coupled-law argument;
 2. derive and analyze the baseline-as-sensing anytime likelihood switch,
    including its occupation cost and remaining-budget stopping boundary;
-3. formulate the joint two-law occupation program imposed by one common
-   predictable policy kernel; prove that it lower-bounds expected-safe rules;
-4. characterize strict no-harm feasibility or the minimum necessary
-   \(\epsilon^\star(B)\);
+3. retain the exact likelihood-ratio-augmented expected-safety occupation
+   program and its finite-budget \(\epsilon_B^\star(r)\) lower bound; do not
+   replace it by two independent regime occupations or call a finite grid exact;
+4. construct an executable baseline-as-sensing policy and prove a stated-order
+   upper bound relative to the coupled frontier or safety-slack lower bound;
 5. prove or explicitly assume every risk-sensitivity and compactness constant
    used by T-039; remove any circular definition involving the oracle gap;
 6. reconcile the older `theorem_derived_fallback.md` statement “AC-9 not
