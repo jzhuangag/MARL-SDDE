@@ -465,3 +465,28 @@ pending static ceiling must beat both sequential service and a strong
 best-color compatible scheduler.  No stochastic learner or GPU benchmark is
 authorized unless every frozen scheduling gate and the later Markov causal-cone
 theorem pass.
+
+## 2026-09-05 moving-critic successor checkpoint
+
+The failed Two Clocks public-MPE bridge remains immutable.  A task-level
+successor now models two causally coupled debts in asynchronous CTDE: teammate
+policy motion makes an owner-fresh packet strategically stale, and applying
+that actor packet moves the centralized critic's target.  The composite
+quadratic Lyapunov drift is an exact convex two-variable box QP in actor scale
+`alpha` and critic scale `beta`; nine algebra tests and the then-current 437
+test package regression pass.
+
+The separately frozen exact-moment oracle scan at preregistration commit
+`fc8646b` passed H1--H10.  Relative geometric AUC is `0.732823` against a
+per-scenario optimized fixed pair and `0.948118` against a strong eventwise
+diagonalized Lyapunov rule; all 128 primary directions are favorable and 32
+controls behave as registered.  Two complete 317,361-byte outputs are
+byte-identical at SHA-256 `47446BA3...E37F1`.
+
+This is latent-state oracle evidence, not an observable algorithm or sampled
+MARL result.  The only authorized next task is the performance-bound kill
+gate: derive observable critic-error and actor-progress envelopes, incorporate
+Markov packet bias plus in-flight history in the same filtration, and obtain a
+finite-time potential/stationarity inequality for the implemented joint
+action.  No sampled CPU pilot, formal seed, GPU or HPC4 work is authorized
+until that gate closes.

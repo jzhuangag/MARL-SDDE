@@ -213,6 +213,19 @@ confirmation.  Only a successful independent confirmation would justify a
 standard HAPPO/MAPPO/HAA2C GPU preregistration.  Failure of either gate stops
 this successor rather than generating another controller variant.
 
+### Oracle-headroom outcome
+
+The separately preregistered exact-moment scan at commit `fc8646b` passed
+H1--H10 and reproduced byte for byte.  The coupled/best-fixed geometric AUC
+ratio is `0.732823`, and the coupled/online-diagonal ratio is `0.948118`, with
+all 128 primary scenarios directionally favorable.  Target-motion-zero
+controls reduce exactly to the diagonal rule.  This closes only kill gate 2.
+
+Kill gate 1, the observable conditional performance bound, remains open and
+continues to prohibit sampled CPU efficacy, formal seeds and GPU work.  Full
+results and limitations are in
+`validation_coupled_actor_critic_headroom.md`.
+
 ## Experimental package if the gates survive
 
 The eventual paper must report return/potential gap against four resources:
@@ -227,4 +240,3 @@ regimes.
 SDDE is optional.  It may summarize the small-step random-delay limit and
 predict a phase boundary, but the discrete event-time Lyapunov theorem and
 the fully charged experiments are primary.
-
