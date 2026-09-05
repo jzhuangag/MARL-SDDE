@@ -1,0 +1,61 @@
+{
+  "H64_S2_n128_arithmetic_cost": {
+    "QP_time": "O(k^3+I*(k^2+k*log(k)))",
+    "anchor_scalars": 6,
+    "cache_build_time": "O(S*n*(d*r+H*r+L+r^2)+S*H*r^2)",
+    "cached_expected_forward_steps": 8064,
+    "cached_expected_transitions": 16256,
+    "cached_maximum_transitions": 24320,
+    "cached_resets": 512,
+    "comparison_scope": "equal fixed n only, not equal confidence widths or equal accuracy",
+    "direct_expected_transitions_same_n": 391168,
+    "direct_resets": 16384,
+    "direct_to_cache_transition_ratio": 24.062992125984252,
+    "donor_parameter_scalars_per_query": "d*k; alignment/coordinate-fit costs additional",
+    "expected_probe_transitions_per_query": 254,
+    "prefix_coefficient_scalars": 768,
+    "query_time_excluding_QP": "O(d*r*(k+1)+r^2*k+r*k^2)",
+    "same_total_budget_no_harm": false
+  },
+  "all_state_prefix_affine_identity_max_error": 1.1102230246251565e-16,
+  "analytic_nonvacuity": {
+    "beta": [
+      0.7638810707528866
+    ],
+    "hypothetical_n_per_state": 4096,
+    "true_advantage": -1.5674514330769866,
+    "upper_advantage": -1.038678980821639,
+    "uses_exact_means_not_collected_data": true
+  },
+  "cached_short_unroll_H8_arithmetic_cost": {
+    "QP_time": "O(k^3+I*(k^2+k*log(k)))",
+    "anchor_scalars": 6,
+    "cache_build_time": "O(S*n*(d*r+H*r+L+r^2)+S*H*r^2)",
+    "cached_expected_forward_steps": 896,
+    "cached_expected_transitions": 9088,
+    "cached_maximum_transitions": 9984,
+    "cached_resets": 512,
+    "comparison_scope": "equal fixed n only, not equal confidence widths or equal accuracy",
+    "direct_expected_transitions_same_n": 289024,
+    "direct_resets": 16384,
+    "direct_to_cache_transition_ratio": 31.802816901408452,
+    "donor_parameter_scalars_per_query": "d*k; alignment/coordinate-fit costs additional",
+    "expected_probe_transitions_per_query": 142,
+    "prefix_coefficient_scalars": 96,
+    "query_time_excluding_QP": "O(d*r*(k+1)+r^2*k+r*k^2)",
+    "same_total_budget_no_harm": false
+  },
+  "decision": {
+    "fixed_law_uniform_parameter_horizon_reuse": "qualified_with_residual_penalty_and_fresh_reset_access",
+    "formal_authorized": false,
+    "global_low_cost_claim": false,
+    "gpu_authorized": false,
+    "new_efficacy_pilot_authorized": false,
+    "reuse_alone_final_mechanism": "reject_as_sufficient_paper_contribution"
+  },
+  "kind": "deterministic_cache_qualification_not_efficacy",
+  "long_to_cached_short_transition_ratio": 1.7887323943661972,
+  "off_anchor_certified_upper_with_exact_moments": 0.24716207557119974,
+  "off_anchor_margin": 0.4230659000336381,
+  "off_anchor_true_finite_return_advantage": -0.17590382446243838
+}

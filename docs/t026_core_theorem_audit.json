@@ -1,0 +1,38 @@
+{
+  "task": "T-026",
+  "date": "2026-08-02",
+  "verdict": "PASS_WITH_CLAIM_ATTRIBUTION_CORRECTION",
+  "theorems": {
+    "T3": {
+      "proof_status": "pass",
+      "scope": "predictably decorrelated, fixed bounded heterogeneous delays, homogeneous vector recursion",
+      "excluded": ["unthinned recursion", "arbitrary time-varying delays"]
+    },
+    "T4": {
+      "proof_status": "pass",
+      "scope": "predictably decorrelated affine recursion with bounded innovation and stationary aggregate mean zero",
+      "excluded": ["unbounded nonlinear gradients", "conditional-centering-free models outside the TV assumptions"]
+    },
+    "T5": {
+      "proof_status": "pass",
+      "scope": "Gaussian location subclass with pathwise single additive cost h+q",
+      "corrected_overclaim": "not a dual-budget or heterogeneous-delay theorem"
+    },
+    "T9": {
+      "proof_status": "pass",
+      "scope": "explicit Bernoulli hidden-sharing construction at a fixed parameter",
+      "formal_evidence": "EXP-018B",
+      "excluded": ["arbitrary scalar-correlated multivariate gradients", "nonlinear convergence"]
+    }
+  },
+  "open_boundaries": [
+    "unthinned finite-time Markov TD",
+    "SDDE-to-discrete approximation",
+    "nonlinear convergence under parameter drift",
+    "uniform unrestricted unknown-mixing adaptation",
+    "uniform controlled-belief occupation matching"
+  ],
+  "current_mainline_invalidated": false,
+  "gpu_execution_authorized": false
+}
+

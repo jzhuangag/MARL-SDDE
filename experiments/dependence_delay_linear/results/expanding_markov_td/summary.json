@@ -1,0 +1,98 @@
+{
+  "experiment": "EXP-008C",
+  "status": "VALID",
+  "registered_cells": 72,
+  "conditional_means": [
+    -0.545,
+    1.8550000000000002
+  ],
+  "stationary_mean": 0.655,
+  "gates": {
+    "numerical_checks": {
+      "independent_construction": {
+        "pass": true,
+        "eta": 0.17,
+        "rho": 0.37,
+        "mode": 0,
+        "num_agents": 2,
+        "homogeneous_delay": 2,
+        "maximum_absolute_difference": 2.7755575615628914e-17,
+        "frobenius_difference": 7.016522229951154e-17
+      },
+      "boundary_validity": {
+        "pass": true,
+        "observed_cells": 72,
+        "maximum_eigen_residual": 5.203999554862825e-15,
+        "maximum_covariance_operator_dimension": 18
+      },
+      "iid_reduction": {
+        "pass": true,
+        "maximum_relative_boundary_error": 0.0
+      },
+      "one_agent_correlation_invariance": {
+        "pass": true,
+        "maximum_boundary_relative_change": 0.0,
+        "maximum_gap_rule_relative_change": 0.0
+      }
+    },
+    "scientific_gates": {
+      "persistence_activates_instability": {
+        "pass": true,
+        "active_cells": 24,
+        "total_p0p98_cells": 24,
+        "minimum_markov_to_iid_ratio": 0.019245373677246883,
+        "maximum_markov_to_iid_ratio": 0.03955628594665875
+      },
+      "iid_rule_insufficient": {
+        "pass": true,
+        "unstable_p0p98_cells": 24,
+        "largest_iid_rule_radius_at_p0p98": 1.68187814908367
+      },
+      "gap_inflated_safety": {
+        "pass": false,
+        "largest_gap_rule_radius": 1.0005347466366317
+      },
+      "gap_inflated_nonvacuity": {
+        "pass": false,
+        "cells_ratio_at_least_0p20": 72,
+        "smallest_gap_to_exact_ratio": 0.657613306536142,
+        "largest_gap_to_exact_ratio": 1.055524035617513
+      },
+      "correlation_does_not_improve_stability": {
+        "pass": true,
+        "largest_correlated_to_independent_boundary_ratio": 0.9957208707178913
+      },
+      "correlation_limited_participation": {
+        "pass": true,
+        "largest_correlated_q32_to_q16_gain": 1.0007832081226145,
+        "smallest_independent_minus_correlated_gain": 0.0002721221440609156
+      },
+      "mean_stability_insufficient": {
+        "pass": true,
+        "cells_ms_at_most_0p8_mean": 72,
+        "minimum_ms_to_mean_ratio": 0.17337846044981683,
+        "maximum_ms_to_mean_ratio": 0.49467322777814443
+      }
+    },
+    "numerical_overall_pass": true,
+    "scientific_pass_count": 5,
+    "scientific_total": 7
+  },
+  "exploratory": {
+    "minimum_required_to_gap_inflation": 0.6362687495058794,
+    "maximum_required_to_gap_inflation": 1.0557815360449634
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1"
+  },
+  "artifacts": [
+    "expanding_markov_boundaries.csv",
+    "direct_validation.json",
+    "fig1_exact_boundary_scaling.png",
+    "fig2_rule_tightness.png",
+    "fig3_required_inflation.png"
+  ]
+}

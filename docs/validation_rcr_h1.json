@@ -1,0 +1,47 @@
+{
+  "experiment": "RCR-H1",
+  "decision": "stop",
+  "preregistration_commit": "3f98a907f0f8956feb7b9d17e7663c23cda99919",
+  "execution_commit": "0c9fb7f40fcc7ea37feac0fb52315e58661a37cd",
+  "config_sha256": "875e692868e6696e5c4dd13c029a3e5e88914bb61e164a422243c9ef4c7e9d36",
+  "runner_sha256": "3e7e18849191c44d253f38cffa7006e195f592a3bfbc4d72e99cf8e67c4c9ced",
+  "primary_summary_sha256": "ab9bc684991154058cb1056019b350d256e005a345c6365d5c06a558734e7500",
+  "reproduction_summary_sha256": "ab9bc684991154058cb1056019b350d256e005a345c6365d5c06a558734e7500",
+  "byte_exact_reproduction": true,
+  "row_count": 2048,
+  "event_count": 393216,
+  "cell_count": 64,
+  "adaptive_correction_geometric_risk_ratio": 0.9932041347366077,
+  "causal_rcr_geometric_risk_ratio": 0.992717893795988,
+  "oracle_geometric_risk_ratio": 0.9694670314097582,
+  "nonstationary_cell_improvement_fraction": 0.4583333333333333,
+  "median_oracle_gain_capture": 0.0,
+  "stationary_causal_risk_ratio": 1.0,
+  "persistence_causal_risk_ratios": {
+    "0.8": 0.9859048934836182,
+    "0.95": 0.9950937574489608
+  },
+  "profile_ratios": {
+    "stationary": {"causal": 1.0, "oracle": 1.0},
+    "bursty": {"causal": 0.9765071963979197, "oracle": 0.9314370182761633},
+    "mixed": {"causal": 0.994918815482959, "oracle": 0.9579421439263497},
+    "rotating": {"causal": 1.0001967606724171, "oracle": 0.994331454390761}
+  },
+  "maximum_refresh_budget_overshoot": 0,
+  "maximum_solver_iterations": 40,
+  "gates": {
+    "H1": true,
+    "H2": false,
+    "H3": false,
+    "H4": false,
+    "H5": false,
+    "H6": true,
+    "H7": false,
+    "H8": true,
+    "H9": true,
+    "H10": true
+  },
+  "formal_evidence": false,
+  "standard_marl_authorized": false,
+  "gpu_authorized": false
+}

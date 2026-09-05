@@ -1,0 +1,122 @@
+{
+  "T060A_decision_unchanged": true,
+  "aggregate": {
+    "bootstrap_95_ratio_interval": [
+      0.6076660804443873,
+      0.8286650473873245
+    ],
+    "bootstrap_one_sided_95_upper": 0.8078211630699454,
+    "bootstrap_probability_ratio_at_most_0_95": 0.99986,
+    "cell_ratio_quantiles": {
+      "0.0": 0.11616958966979181,
+      "0.1": 0.3449633099971408,
+      "0.25": 0.5721129509165515,
+      "0.5": 0.7760983376869437,
+      "0.75": 1.0,
+      "0.9": 1.0,
+      "1.0": 1.7011350184407865
+    },
+    "improvement": 0.294811973785977,
+    "ratio": 0.705188026214023,
+    "strict_cell_fraction": 0.6071428571428571
+  },
+  "audit_id": "T-060A-post-result-theory-rule-audit",
+  "bootstrap_replicates": 50000,
+  "bootstrap_seed": 60001,
+  "cells": 84,
+  "classification": "post-result discovery audit; not preregistered evidence and not a T-060A gate",
+  "controller_authorized": false,
+  "endpoints_sha256": "3e58807e4e200cf25b8b8162e6f4b605c8e53f11e89ab159846db27fa750c5bf",
+  "gpu_authorized": false,
+  "hpc4_authorized": false,
+  "new_prospective_confirmation_required": true,
+  "source_rule": "T-050 stationary coefficient (h+q)[rho+(1-rho)/q]",
+  "summary_sha256": "0de91624a57b4a88143c3098ddd1f17e4896088c018c94b3d38453567553a7ac",
+  "tasks": {
+    "asterix": {
+      "bootstrap_95_ratio_interval": [
+        0.45516253847229576,
+        0.7459568569312512
+      ],
+      "bootstrap_one_sided_95_upper": 0.7105402812630419,
+      "bootstrap_probability_ratio_at_most_0_95": 0.99986,
+      "cell_ratio_quantiles": {
+        "0.0": 0.11616958966979181,
+        "0.1": 0.24666879728932617,
+        "0.25": 0.3904791981424042,
+        "0.5": 0.6514022737617495,
+        "0.75": 1.0,
+        "0.9": 1.0,
+        "1.0": 1.0
+      },
+      "cells": 28,
+      "improvement": 0.42596828507791074,
+      "ratio": 0.5740317149220893,
+      "strict_cell_fraction": 0.7142857142857143
+    },
+    "breakout": {
+      "bootstrap_95_ratio_interval": [
+        0.5295046557589903,
+        0.902907203603031
+      ],
+      "bootstrap_one_sided_95_upper": 0.8618479629060559,
+      "bootstrap_probability_ratio_at_most_0_95": 0.99008,
+      "cell_ratio_quantiles": {
+        "0.0": 0.3389207784052173,
+        "0.1": 0.3464078249898538,
+        "0.25": 0.5403662964852315,
+        "0.5": 0.7022718506616625,
+        "0.75": 1.0,
+        "0.9": 1.0,
+        "1.0": 1.0
+      },
+      "cells": 28,
+      "improvement": 0.3305089471759124,
+      "ratio": 0.6694910528240876,
+      "strict_cell_fraction": 0.7142857142857143
+    },
+    "seaquest": {
+      "bootstrap_95_ratio_interval": [
+        0.7261624397434455,
+        1.1983661993209713
+      ],
+      "bootstrap_one_sided_95_upper": 1.1439036491840804,
+      "bootstrap_probability_ratio_at_most_0_95": 0.62922,
+      "cell_ratio_quantiles": {
+        "0.0": 0.5393650971524594,
+        "0.1": 0.5640576311213271,
+        "0.25": 0.6655036628459292,
+        "0.5": 1.0,
+        "0.75": 1.0029804434101108,
+        "0.9": 1.449709717651567,
+        "1.0": 1.7011350184407865
+      },
+      "cells": 28,
+      "improvement": 0.08749737244688793,
+      "ratio": 0.9125026275531121,
+      "strict_cell_fraction": 0.39285714285714285
+    }
+  },
+  "theory_choices_over_increasing_rho": {
+    "h=32": [
+      16,
+      16,
+      16,
+      4,
+      4,
+      1,
+      1
+    ],
+    "h=8": [
+      16,
+      16,
+      4,
+      4,
+      1,
+      1,
+      1
+    ]
+  },
+  "validation_seed_clusters": 16,
+  "why_not_the_registered_oracle": "T-060A selected a cellwise empirical action on 16 seeds; this audit applies the outcome-independent closed-form action directly"
+}

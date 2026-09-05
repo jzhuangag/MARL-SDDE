@@ -1,0 +1,19 @@
+{
+  "experiment_id": "causal_freshness_confirmation_cpu_v1",
+  "horizon": 512,
+  "seeds": [92001, 92002, 92003, 92004, 92005, 92006, 92007, 92008, 92009, 92010, 92011, 92012, 92013, 92014, 92015, 92016, 92017, 92018, 92019, 92020, 92021, 92022, 92023, 92024, 92025, 92026, 92027, 92028, 92029, 92030, 92031, 92032, 92033, 92034, 92035, 92036, 92037, 92038, 92039, 92040, 92041, 92042, 92043, 92044, 92045, 92046, 92047, 92048, 92049, 92050, 92051, 92052, 92053, 92054, 92055, 92056, 92057, 92058, 92059, 92060, 92061, 92062, 92063, 92064],
+  "high_prevalences": [0.1, 0.25, 0.5],
+  "persistence_values": [0.0, 0.8, 0.98],
+  "high_risk_multipliers": [1.0, 2.0, 4.0, 8.0],
+  "fresh_variance_ratios": [0.5, 1.0, 2.0],
+  "refresh_fractions": [0.1, 0.25, 0.5],
+  "risk_tradeoff": 4.0,
+  "gates": {
+    "stationary_max_absolute_ratio_error": 1e-10,
+    "dynamic_max_geometric_ratio": 0.9,
+    "minimum_better_fraction": 0.85,
+    "minimum_median_oracle_capture": 0.7,
+    "persistence_max_geometric_ratio": 0.95,
+    "minimum_mean_budget_utilization": 0.99
+  }
+}

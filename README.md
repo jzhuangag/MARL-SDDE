@@ -83,6 +83,63 @@ The resulting research target is correlation/state-adaptive participation
 under SDDE-governed delay, not a controller that forces every source of
 heterogeneity to act through the agent count.
 
+EXP-007A--D move this mechanism into delayed linear TD. Independent paths give
+effective participation 30.996 at \(q=32\), while correlation 0.9 gives only
+1.111. An exact delayed mean boundary is insufficient for stochastic
+stability, so the current algorithm combines it with the aggregate random-
+Jacobian second moment. In a preregistered 64-seed confirmation, all seven
+mean-square gates passed: the largest 99% upper mean-error limit was 0.649,
+and treating correlated agents as independent increased paired final error by
+at least 8.19 times at the 99% lower-confidence level. The rule is scalar and
+does not use a preconditioner or actor--critic architecture.
+
+EXP-010B proves the affine finite-time bound for predictably decorrelated
+delayed Markov TD and validates it in a seven-state vector problem. EXP-011A
+adds a sharp minimax lower bound: exact speedup is
+\(q/[1+(q-1)\rho]\), and resource-optimal participation follows a
+correlation/overhead phase transition. With 32 agents, speedup is only
+\(1.1073\times\) at \(\rho=.9\). Together these results make
+*Beyond Linear Speedup* a theorem-backed mainline rather than an empirical
+slogan.
+
+EXP-011B adds an end-to-end predictable controller when both mixing and
+observable cross-agent sharing are unknown. Optional-stopping-valid mixture
+confidence sequences feed the same scalar \((q,b,\eta)\) search. Across 576
+formal dual-controller runs, joint coverage is 100%, all covered updating
+actions are exactly stable, and median participation falls from 9.5 at
+\(\rho=0\) to one at \(\rho=.9\).
+
+EXP-012A removes access to hidden sharing masks. An anytime,
+mixing-bias-corrected collision certificate infers latent correlation from two
+observed agent samples. It obtains 100% joint coverage and exact safety over
+1,152 fresh CPU trajectories; all core artifacts reproduce exactly.
+
+EXP-012B extends the same guarantee to continuous Markov observations using a
+bounded similarity kernel and a learned independent-source baseline. It
+passes all seven gates with 100% joint coverage and completes the controlled
+CPU theorem/certificate program.
+
+The nonlinear feasibility stage freezes a two-hidden-layer tanh TD model and
+checks the underlying variance mechanism without training-budget confounds.
+At \(q=32\), the normalized gradient covariance trace is 0.0318 for
+independent agents (theory: 0.03125) but 0.9418 at correlation 0.9 (theory:
+0.9031). The accompanying theorem proves the exact
+\(\rho+(1-\rho)/q\) covariance factor for any square-integrable nonlinear
+stochastic update under hidden pair sharing. These are implementation-smoke
+numbers, not formal empirical evidence; a preregistered nonlinear study is the
+next gate.
+
+EXP-013B executed that gate with 1,024 fresh, preregistered realizable neural-TD
+runs. The overall result is a recorded failure (3/5 gates). Independent agents
+strongly benefit from participation: the \(q=32/q=1\) geometric MSE ratio is
+0.0622 with a 99% upper limit of 0.1119. Median resource-oracle participation
+also moves from 32 at correlation zero to four at correlation .9. However,
+fixed \(q=4\) does not reliably beat \(q=32\) at high correlation (ratio
+0.8319; 99% upper limit 1.2935). A descriptive interaction audit shows that
+the \(q=32/q=1\) ratio deteriorates by 18.48 times from correlation zero to
+.9, with a 99% lower limit of 8.51. Thus nonlinear correlation-limited
+parallelism is supported, while correlation-only participation is not.
+
 ![Transient-to-stationary crossover](experiments/dependence_delay_linear/results/crossover/fig_crossover_by_horizon.png)
 
 ## Quick start
@@ -109,6 +166,22 @@ python run_budget_participation.py --output-dir results/budget_participation
 python run_online_participation.py --output-dir results/online_participation
 python run_sparse_dynamic.py --output-dir results/sparse_dynamic
 python run_oracle_phase.py --output-dir results/oracle_phase
+python run_linear_td_correlation.py --output-dir results/linear_td_correlation
+python run_td_delay_stability.py --output-dir results/td_delay_stability
+python run_joint_ms_confirmation.py --output-dir results/joint_ms_confirmation
+python run_exact_lifted_boundary.py --output-dir results/exact_lifted_boundary
+python run_multistate_certificate_transfer.py `
+  --output-dir results/multistate_certificate_transfer
+python run_affine_finite_time_certificate.py `
+  --output-dir results/affine_finite_time_certificate
+python run_correlation_minimax_phase.py `
+  --output-dir results/correlation_minimax_phase
+python run_dual_anytime_controller.py --num-seeds 32 `
+  --base-seed 20261231 --output-dir results/dual_anytime_controller
+python run_latent_collision_certificate.py --num-seeds 128 `
+  --base-seed 20270201 --output-dir results/latent_collision_certificate
+python run_kernel_latent_certificate.py --num-seeds 128 `
+  --base-seed 20270401 --output-dir results/kernel_latent_certificate
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py
@@ -116,10 +189,23 @@ python -m unittest -v test_linear_model.py test_stagewise_controller.py `
 
 No GPU is required for these linear experiments.
 
+The nonlinear smoke test is also CPU-compatible:
+
+```powershell
+python experiments/nonlinear_markov_td/run_gradient_variance_smoke.py
+python experiments/nonlinear_markov_td/run_nonlinear_td_smoke.py
+```
+
+The 1,024-run nonlinear confirmation is CPU-compatible but took roughly
+45 minutes in the recorded environment. Richer multi-environment neural
+experiments should use a GPU.
+
 ## Repository structure
 
 - `experiments/dependence_delay_linear/`: exact model, sweeps, Monte Carlo
   checks, tests, and selected result artifacts;
+- `experiments/nonlinear_markov_td/`: CPU-only nonlinear feasibility and
+  gradient-variance mechanism checks;
 - `docs/`: experiment passports, registered decisions, and reproducibility
   records.
 

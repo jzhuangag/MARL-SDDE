@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task": "T-017",
+  "starting_commit": "2ffeffda3b43dcdca08886b970ce7c805cb48079",
+  "experiment_freeze": {
+    "exp015a_passed_gates": 7,
+    "exp015a_total_gates": 8,
+    "fallback_threshold": 0.8,
+    "observed_fallback": 0.777778,
+    "formal_seeds_allowed": false,
+    "exp016a_preregistration_allowed_by_t017": false,
+    "experiments_run_in_t017": 0
+  },
+  "claims": [
+    {
+      "id": "AC-7",
+      "status": "proved_known_mixing_specialization_inherited_machinery",
+      "depends_on": ["stationary additive Gaussian AR recursion", "spatial common-direction reduction", "hypothesis-specific Kalman innovations", "controlled-sensing likelihood factorization", "common action-kernel cancellation", "binary data processing"],
+      "formula_audit": ["stationary initialization", "additive prediction variance", "irregular stride", "both KL directions", "budget-bounded stopping", "uniform-integrability boundary for unbounded stopping", "delay accounted outside observation covariance"],
+      "verified_by": "test_adaptive_change_of_measure.py"
+    },
+    {
+      "id": "AC-8-unrestricted",
+      "status": "closed_negative",
+      "scope": "positive distinct theta hypotheses; mixing class has supremum one; every policy has finite affordable span",
+      "depends_on": ["lambda=1 history is a Markov kernel of one latent Gaussian draw", "TV data processing", "Le Cam two-point inequality", "finite-history Gaussian continuity as lambda approaches one"],
+      "verified_by": "test_theory_audit_t017.py"
+    },
+    {
+      "id": "AC-8-separated-positive-route",
+      "status": "open",
+      "scope": "lambda <= 1-gamma or a separate valid mixing certificate"
+    },
+    {
+      "id": "AC-9-unrestricted",
+      "status": "closed_negative",
+      "depends_on": ["uniform terminal-risk expansion", "oracle coefficient gap can approach zero", "nonzero identification occupation cost"],
+      "conclusion": "safe worthwhile scale divided by identification scale diverges as oracle gap tends to zero"
+    },
+    {
+      "id": "AC-9-threshold-sandwich",
+      "status": "proved_compact_separated_class",
+      "depends_on": ["theta bounds and Delta_min", "lambda <= 1-gamma", "finite conditioned q,b catalogue", "positive dual cost rates", "bounded delay", "oracle coefficient gap g_min", "AC-7 two-direction information lower bound", "Bhattacharyya fixed-block upper bound", "uniform O(1/s^2) terminal-risk remainder", "theorem-derived fallback safety inequality"],
+      "does_not_imply": "matching the entire adaptive controlled-belief occupation optimum",
+      "verified_by": "test_theory_audit_t017.py"
+    },
+    {"id": "AC-9-occupation-optimum", "status": "open"},
+    {"id": "AC-12", "status": "open_inherited_out_of_scope"}
+  ],
+  "novelty": {
+    "inherited": ["controlled Markov causal likelihood factorization", "action-kernel cancellation", "information per control cost", "best-arm allocation change of measure", "unknown-covariance simultaneous subset identification", "factored multi-agent BAI matching"],
+    "defensible_candidate": "dual-cost delayed safe adaptation-worthwhile threshold coupling correlation identification to downstream learning risk, plus unrestricted unknown-mixing impossibility"
+  },
+  "decision": "A_under_D",
+  "exp016a_allowed": false
+}

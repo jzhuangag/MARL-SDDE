@@ -1,0 +1,65 @@
+{
+  "experiment_id": "T-053A-sampled-standard-task-pilot",
+  "decision": "fail_stop_formal",
+  "preregistration_commit": "7082315f389f453b819684b54bfc0a9123d26f2f",
+  "config_sha256": "d90a6c1b446f3cc338c0ea32924bfe7216d10ba40da8b770dd8b023b820c8d81",
+  "runner_sha256": "ac466d42a9c40bc80a1bf4f3d5fdbc756604099df302ffb8b0843b1eb352c58d",
+  "sampled_kernel_sha256": "78de76267c7b9086258509c6de8ac9c33b51527f5e7d26b70f486c5844f7826b",
+  "artifact_sha256": {
+    "endpoints.csv": "e4871aace2a0f25ca3d6a64a927f14a3e28e0108e723093fe1a665aba8cb0798",
+    "cells.csv": "b7f0815ade998abf5621d737a841a2c7200a66776667436b4e1e845a3ff6fe49",
+    "summary.json": "4893daa14e7a9d2d32f8cbd2acd95039d7495f6a621555da4e6866c72eace872"
+  },
+  "workload": {
+    "cells": 84,
+    "endpoints": 672,
+    "pilot_seeds": 8,
+    "long_learning_trajectories": 11424,
+    "stored_full_trajectories": 0,
+    "hardware": "local CPU",
+    "gpu_jobs": 0,
+    "hpc4_jobs": 0
+  },
+  "primary_results": {
+    "aggregate_controller_to_strong_ratio": 0.8904290776829121,
+    "aggregate_improvement": 0.10957092231708787,
+    "aggregate_controller_to_oracle_ratio": 0.997115945053105,
+    "active_cells": 54,
+    "active_improved_fraction": 0.6851851851851852,
+    "inactive_cells": 30,
+    "inactive_geometric_ratio": 1.001144123180552,
+    "fingerprint_standardized_rmse": 0.933958037576708
+  },
+  "task_ratios": {
+    "frozenlake8x8": 0.7500718001747689,
+    "cliffwalking": 0.9945330026059931,
+    "taxi": 0.9464026857618733
+  },
+  "delay_ratios": {
+    "0": 0.8889448766884768,
+    "8": 0.8919157567304299
+  },
+  "gates": {
+    "P1": true,
+    "P2": true,
+    "P3": true,
+    "P4": false,
+    "P5": true,
+    "P6": true,
+    "P7": true,
+    "P8": true,
+    "P9": true,
+    "P10": true,
+    "P11": true,
+    "P12": true
+  },
+  "gates_passed": 11,
+  "gates_total": 12,
+  "clean_rerun_byte_identical": true,
+  "authorization": {
+    "formal": false,
+    "gpu": false,
+    "hpc4": false,
+    "next": "T-054 paired variance, finite-horizon, and task-heterogeneity audit only"
+  }
+}

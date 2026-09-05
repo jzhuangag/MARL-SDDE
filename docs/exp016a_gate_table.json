@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "experiment": "EXP-016A",
+  "all_mandatory": true,
+  "gray_zone_core_gate_eligible": false,
+  "familywise_alpha": 0.05,
+  "gates": [
+    {
+      "id": "G1",
+      "name": "validity_and_leakage",
+      "scope": "all generated rows",
+      "pass_rule": "all metrics finite; zero charged message/environment violations; static and runtime taint audit finds zero hidden theta, lambda, regime, latent-state, or oracle-action access in non-oracle policies",
+      "mandatory": true
+    },
+    {
+      "id": "G2",
+      "name": "below_B_N_fallback",
+      "scope": "all theorem-scope below_bn cells",
+      "pass_rule": "learning_aware fallback fraction equals 1 exactly",
+      "interpretation": "deterministic policy audit, not empirical proof of information-theoretic impossibility",
+      "mandatory": true
+    },
+    {
+      "id": "G3",
+      "name": "above_B_S_qualification",
+      "scope": "all theorem-scope above_bs cells",
+      "pass_rule": "100% of learning_aware paths satisfy frozen probe, delay, dual-budget, epsilon_safe, and commit-reserve qualification predicates",
+      "mandatory": true
+    },
+    {
+      "id": "G4",
+      "name": "high_regime_gain",
+      "scope": "all theorem-scope above_bs high-regime cells",
+      "pass_rule": "paired mean oracle-regret improvement versus always_all is at least 0.02 relative to mean always_all oracle regret and its simultaneous max-t 95% lower confidence bound is greater than zero in every cell",
+      "mandatory": true
+    },
+    {
+      "id": "G5",
+      "name": "low_regime_safety",
+      "scope": "all theorem-scope above_bs low-regime cells",
+      "pass_rule": "one-sided simultaneous 95% upper confidence bound for baseline-relative safety deficit is at most the scenario epsilon_safe in every cell",
+      "mandatory": true
+    },
+    {
+      "id": "G6",
+      "name": "directional_identification",
+      "scope": "all theorem-scope above_bs cells, low and high evaluated separately",
+      "pass_rule": "Bonferroni-Holm simultaneous one-sided Clopper-Pearson upper bound for each directional error is at most delta=0.025",
+      "mandatory": true
+    },
+    {
+      "id": "G7",
+      "name": "break_even_bracket",
+      "scope": "positive theorem scenarios only",
+      "pass_rule": "in at least 0.75 of base scenarios, the first registered budget with positive paired mean gain versus always_all lies in the closed [B_N,B_S] bracket; scenarios with no observed positive gain fail this gate",
+      "mandatory": true
+    },
+    {
+      "id": "G8",
+      "name": "novelty_learning_value",
+      "scope": "prespecified above_bs cells with delay in {4,12} and budget ray in {balanced,message_limited,environment_limited}",
+      "pass_rule": "learning_aware paired oracle-regret improvement versus information_only is at least 0.03 relative and simultaneous max-t 95% lower confidence bound is greater than zero in every cell; charged violation difference equals zero",
+      "mandatory": true
+    },
+    {
+      "id": "G9",
+      "name": "delay_mechanism",
+      "scope": "prespecified theorem cells with delay=12 and region=above_bs",
+      "pass_rule": "no_delay_ablation has either at least 0.02 more wrong-commit probability or strictly higher oracle regret with simultaneous max-t 95% lower bound greater than zero in every cell",
+      "mandatory": true
+    },
+    {
+      "id": "G10",
+      "name": "dual_budget_mechanism",
+      "scope": "above_bs message_limited and environment_limited theorem cells",
+      "pass_rule": "each single-budget ablation either has positive intended-budget-violation probability or, after frozen legal projection, has strictly higher oracle regret with simultaneous max-t 95% lower bound greater than zero in every corresponding cell",
+      "mandatory": true
+    },
+    {
+      "id": "G11",
+      "name": "exp015a_freeze",
+      "scope": "repository and report audit",
+      "pass_rule": "EXP-015A remains 7/8 failure; threshold 0.80 and observed 0.777778 are byte-for-byte unchanged and are not included in EXP-016A gate aggregation",
+      "mandatory": true
+    },
+    {
+      "id": "G12",
+      "name": "reproducibility",
+      "scope": "clean rerun with identical pilot seeds and committed configuration",
+      "pass_rule": "core raw CSV, aggregate CSV, gate JSON, metadata JSON, and configuration hash reproduce byte-for-byte",
+      "mandatory": true
+    }
+  ],
+  "progression": "All G1-G12 must pass. There is no aggregate k-of-n override. Any failure stops formal progression.",
+  "scientific_outcomes_present": false
+}

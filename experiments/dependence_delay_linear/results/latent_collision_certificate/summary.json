@@ -1,0 +1,145 @@
+{
+  "experiment": "EXP-012A",
+  "num_seeds": 128,
+  "base_seed": 20270201,
+  "gates": {
+    "joint_anytime_coverage": {
+      "value": 1.0,
+      "pass": true
+    },
+    "conditional_action_safety": {
+      "maximum_updating_radius": 0.9938295618653805,
+      "pass": true
+    },
+    "correlation_ordering": {
+      "pass": true
+    },
+    "fast_mixing_identification": {
+      "rho0_upper": 0.16898760934135404,
+      "rho05_upper": 0.6696147041439205,
+      "rho09_upper": 1.0,
+      "pass": true
+    },
+    "persistent_probe_nonvacuity": {
+      "minimum_median_probes": 82.0,
+      "pass": true
+    },
+    "participation_response": {
+      "by_delay": {
+        "0": {
+          "weak": 3,
+          "strict": 3
+        },
+        "2": {
+          "weak": 3,
+          "strict": 0
+        }
+      },
+      "pass": true
+    }
+  },
+  "validity_pass": true,
+  "scientific_passes": 4,
+  "overall_pass": true,
+  "scenario_summary": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "rho_upper": 0.16898760934135404,
+      "p_upper": 0.5333743497313201,
+      "probes": 1539.0,
+      "q_d0": 8.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9916820084093192,
+      "radius_d2": 0.9684140272139036
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.5,
+      "rho_upper": 0.6696147041439205,
+      "p_upper": 0.5309506382004351,
+      "probes": 1552.0,
+      "q_d0": 2.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9932048766893533,
+      "radius_d2": 0.9684585416496313
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "rho_upper": 1.0,
+      "p_upper": 0.5334514649385664,
+      "probes": 1546.0,
+      "q_d0": 1.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9938295618653805,
+      "radius_d2": 0.9684701470637861
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "rho_upper": 0.2994011734929335,
+      "p_upper": 0.9106117908981349,
+      "probes": 481.0,
+      "q_d0": 8.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9801501844996716,
+      "radius_d2": 0.9648249911870199
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.5,
+      "rho_upper": 0.7915658612261048,
+      "p_upper": 0.910687940179453,
+      "probes": 488.0,
+      "q_d0": 2.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9843195105870228,
+      "radius_d2": 0.9648249911870199
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "rho_upper": 1.0,
+      "p_upper": 0.9108884303240368,
+      "probes": 483.5,
+      "q_d0": 1.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9855947359559403,
+      "radius_d2": 0.9650633687202633
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "rho_upper": 0.6090715885773142,
+      "p_upper": 0.984330143054665,
+      "probes": 83.0,
+      "q_d0": 8.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.9453146351404553,
+      "radius_d2": 0.9669668320264894
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.5,
+      "rho_upper": 1.0,
+      "p_upper": 0.9843095299737196,
+      "probes": 83.0,
+      "q_d0": 1.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.948412151803449,
+      "radius_d2": 0.9669668320264894
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "rho_upper": 1.0,
+      "p_upper": 0.9842732352972615,
+      "probes": 82.0,
+      "q_d0": 1.0,
+      "q_d2": 1.0,
+      "radius_d0": 0.948412151803449,
+      "radius_d2": 0.9669668320264894
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "experiment": "EXP-018B",
+  "formal": true,
+  "mandatory_gates": {
+    "F1_shape_finite_unique": {"rows": 18432, "formal_seeds": 192},
+    "F2_manifest_and_parameter_freeze": {"manifest_hash": "be491d5175f6c2af36e1d65d2497595f67472e9c37bfd069d561d82a500d2418"},
+    "F3_q1_crn_exact": true,
+    "F4_pairwise_share_calibration": {"maximum_absolute_error": 0.06},
+    "F5_median_equivalence_upper": {"one_sided_quantile": 0.975, "maximum": 0.20},
+    "F6_p90_equivalence_upper": {"one_sided_quantile": 0.975, "maximum": 0.50},
+    "F7_path_independent_summary_schema": true,
+    "F8_scope_boundary": true,
+    "R1_exact_reproduction": ["projections.csv", "static_manifest.json", "summary.json"]
+  },
+  "bootstrap_replications": 5000,
+  "bootstrap_seed": 18240101,
+  "familywise_alpha": 0.05,
+  "all_mandatory_gates_required": true,
+  "failed_gate_action": "stop_EXP018B_and_preserve_failure",
+  "gpu_authorized": false
+}

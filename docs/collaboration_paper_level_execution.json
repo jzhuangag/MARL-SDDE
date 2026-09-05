@@ -1,0 +1,181 @@
+{
+  "recorded_date": "2026-09-01",
+  "timezone": "Asia/Shanghai",
+  "kind": "internal_paper_level_decision_and_final_source_regression_not_efficacy",
+  "parent_commit": "c84860732e24a9487216afb74fe4b380046d918c",
+  "branch": "codex/joint-ms-exp007c",
+  "workspace": "E:/HKUST-study/vin/SDDE",
+  "environment": {
+    "platform": "Windows",
+    "shell": "PowerShell",
+    "python": ".venv/Scripts/python.exe",
+    "python_version": "3.11.13",
+    "base_environment": "D:/anaconda/envs/ust2"
+  },
+  "decision": {
+    "status": "REVISE_CORE_NO_PERFORMANCE_PILOT",
+    "scientific_goal": "Personalized full-state learning risk at matched total resource cost",
+    "reject_as_final_mechanism": "Generic exact-safe parameter mixing or visited-risk ledger",
+    "selected_research_candidate": "Calibration-limited collaboration via recipient-corrected update information",
+    "candidate_is_implemented_algorithm": false,
+    "complete_finite_time_markov_td_theorem": false,
+    "independent_novelty_established": false,
+    "net_gain_after_calibration_cost_proved": false,
+    "pilot_authorized": false,
+    "formal_authorized": false,
+    "prospective_claim_change": "Explicit finite-time calibration penalty rather than universal exact all-prefix no-harm; no change to any frozen old gate.",
+    "nearest_newly_verified_baseline": "AffPCL; generic correction, importance weighting and Lyapunov machinery are inherited."
+  },
+  "source_verification": {
+    "fresh_sources": 3,
+    "record": "docs/collaboration_paper_level_sources.json",
+    "primary_and_openalex_positive": 3,
+    "doi_resolution_positive": 3,
+    "semantic_scholar": "429; no bypass",
+    "bibliography_or_manuscript_delivered": false,
+    "exhaustive_novelty_search": false
+  },
+  "checks": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q --junitxml=.pytest_cache/paper_decision_full_regression.xml",
+      "exit_code": 0,
+      "passed": 854,
+      "skipped": 7,
+      "seconds": 752.63,
+      "source_boundary": "Final code at parent c848607; experimental source unchanged throughout this turn. This fresh run includes the final numerical guard omitted by the older full-suite run.",
+      "junit": ".pytest_cache/paper_decision_full_regression.xml",
+      "junit_summary": {
+        "tests": 861,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 7,
+        "seconds": 752.477,
+        "timestamp": "2026-09-01T00:01:06.892694+08:00"
+      }
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -c \"import json, math; eta=.1; a=1-eta; calc=lambda s,l:eta**2*s*(1+a*l)/((1-a*a)*(1-a*l)); vl=calc(1,0); vc=calc(.5,0); result={'kind':'exact_algebra_not_sampled_experiment','conditional_identity':{'target_mean':.1,'stationary_ratio_pooled_mean':.5,'conditional_ratio_pooled_mean':.5*(.2*.1+.2*.9),'conditional_bias_of_stationary_ratio':.4},'calibration_tax':{'eta':eta,'drift':1,'local_noise_variance':1,'corrected_noise_variance':.5,'local_stationary_mse':vl,'centered_corrected_stationary_mse':vc,'corrected_mse_bias_01':vc+.1**2,'corrected_mse_bias_02':vc+.2**2,'maximum_abs_bias_for_gain':math.sqrt(vl-vc)},'temporal_variance':{'lag0_variance_in_both':1,'iid_stationary_mse':calc(1,0),'ar08_stationary_mse':calc(1,.8)}}; print(json.dumps(result,sort_keys=True,indent=2))\"",
+      "exit_code": 0,
+      "kind": "exact_algebra_not_sampled_experiment",
+      "result": {
+        "conditional_identity": {
+          "target_mean": 0.1,
+          "stationary_ratio_pooled_mean": 0.5,
+          "conditional_ratio_pooled_mean": 0.1,
+          "conditional_bias_of_stationary_ratio": 0.4
+        },
+        "calibration_tax": {
+          "eta": 0.1,
+          "drift": 1,
+          "local_noise_variance": 1,
+          "corrected_noise_variance": 0.5,
+          "local_stationary_mse": 0.052631578947368446,
+          "centered_corrected_stationary_mse": 0.026315789473684223,
+          "corrected_mse_bias_01": 0.036315789473684225,
+          "corrected_mse_bias_02": 0.06631578947368423,
+          "maximum_abs_bias_for_gain": 0.16222142113076257
+        },
+        "temporal_variance": {
+          "lag0_variance_in_both": 1,
+          "iid_stationary_mse": 0.052631578947368446,
+          "ar08_stationary_mse": 0.32330827067669204
+        }
+      },
+      "boundary": "Not an implementable calibration algorithm, benefit proof, or claim that AffPCL fails."
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -c \"import numpy as np,json; eta=.1; a=.9; out=[]; B=np.array([[a,eta],[0,.8]]); Q=np.diag([0.,1-.8**2]); C=np.linalg.solve(np.eye(4)-np.kron(B,B),Q.reshape(-1)).reshape(2,2); f=eta**2*(1+a*.8)/((1-a*a)*(1-a*.8)); print(json.dumps({'kind':'deterministic_2x2_Lyapunov_identity_check','formula_mse':f,'matrix_mse':float(C[0,0]),'absolute_difference':abs(float(C[0,0])-f),'stationary_equation_residual':float(np.max(np.abs(C-B@C@B.T-Q)))},sort_keys=True)); assert abs(C[0,0]-f)<1e-12\"",
+      "exit_code": 0,
+      "kind": "deterministic_2x2_Lyapunov_identity_check",
+      "result": {
+        "formula_mse": 0.32330827067669204,
+        "matrix_mse": 0.323308270676692,
+        "absolute_difference": 5.551115123125783e-17,
+        "stationary_equation_residual": 0
+      },
+      "boundary": "Matrix solve used only for identity verification; not an online algorithm or free estimator."
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -c @'\nimport json\nimport numpy as np\neta=.1\nsigma2=1.7\ne0=.3\nbias=.07\ncount=0\nworst=0.0\nfor a in (-.4,.9):\n    mu=(1-a)/eta\n    for lam in (-.6,0.,.8):\n        F=np.array([[a,eta],[0.,lam]])\n        Q=np.diag([0.,sigma2*(1-lam*lam)])\n        C=np.diag([0.,sigma2])\n        mean=np.array([e0,0.])\n        for t in range(21):\n            k=np.arange(t)\n            covsum=np.sum((a**(k[:,None]+k[None,:]))*(lam**np.abs(k[:,None]-k[None,:])))\n            formula=(a**t*e0+bias/mu*(1-a**t))**2+eta**2*sigma2*covsum\n            matrix=mean[0]**2+C[0,0]\n            worst=max(worst,abs(float(matrix-formula)))\n            assert abs(matrix-formula)<1e-12\n            count+=1\n            mean=F@mean+np.array([eta*bias,0.])\n            C=F@C@F.T+Q\nprint(json.dumps({'kind':'deterministic_finite_time_identity_check_not_efficacy','identities':count,'maximum_absolute_error':worst},sort_keys=True))\n'@",
+      "exit_code": 0,
+      "kind": "deterministic_finite_time_identity_check_not_efficacy",
+      "result": {
+        "identities": 126,
+        "maximum_absolute_error": 3.3306690738754696e-16
+      },
+      "boundary": "Deterministic initial error and stationary exogenous AR noise. Learned random bias and warm-up dependence are not certified; cumulative comparisons must include calibration/holding intervals on the same resource clock."
+    }
+  ],
+  "final_file_sha256": [
+    {
+      "path": "docs/collaboration_paper_level_decision.md",
+      "sha256": "FA8D4432B5780EB60DD8FCD08385023A7647A19FEE2A095B0637FFC5E99E0BFE"
+    },
+    {
+      "path": "docs/collaboration_paper_level_sources.json",
+      "sha256": "33932E4C3C003D6865D9338C06D25D54E5CC7D76A5922CE31FAF3E7849E270C8"
+    },
+    {
+      "path": "docs/cpu_autonomous_research_plan.md",
+      "sha256": "5C8155F7BE0F9A29EA00FA9331D91DBE538BADB1E1A967A57CE82DE9E80F4438"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/delayed_training_risk_ledger.py",
+      "sha256": "5D113BC89C639A894ED092169A8F1A186979844AB99AE1926DB6526A9624F27D"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/test_delayed_training_risk_ledger.py",
+      "sha256": "906077412A401D55E620D6381661B311FA4B4DEF933F164D80805C5D6C43A4CB"
+    },
+    {
+      "path": ".pytest_cache/paper_decision_full_regression.xml",
+      "sha256": "218E73DE812603FF34251BDF8D5B1615ACD10D3DFD07C47C6C3CB00591039F00"
+    }
+  ],
+  "frozen_t083a_artifact_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/endpoints.csv",
+      "sha256": "C10975BE82199FE82EF2853B18BD97A04AF0978A5E6CDAF6BC772CE4FC61114B"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/cells.csv",
+      "sha256": "61761F0B9472778B5073D2473A8FC9A1C994E269698E61F309AD6FDC63AF1EB6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/summary.json",
+      "sha256": "DD932FA9DBB5E203B3DE027E74A813FED737FE7CE9386C09DB4593E52A7CC228"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/endpoints.csv",
+      "sha256": "C10975BE82199FE82EF2853B18BD97A04AF0978A5E6CDAF6BC772CE4FC61114B"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/cells.csv",
+      "sha256": "61761F0B9472778B5073D2473A8FC9A1C994E269698E61F309AD6FDC63AF1EB6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/summary.json",
+      "sha256": "6DD44415AF441F96A580F3A54BFAE4DEAA03FB8D9181A5A067C9D45922417BCD"
+    }
+  ],
+  "integrity": {
+    "old_endpoints_and_cells_unchanged": true,
+    "old_original_and_reproduction_summaries_unchanged": true,
+    "F12_timeout_failure_preserved": true,
+    "F13_summary_mismatch_failure_preserved": true,
+    "frozen_controller_gates_or_seeds_modified": false,
+    "experimental_source_modified": false,
+    "formal_data_used_for_tuning": false,
+    "new_efficacy_trajectories": 0,
+    "new_efficacy_preregistration": false,
+    "new_formal_seeds": false,
+    "deterministic_identity_checks_are_performance_evidence": false,
+    "gpu_or_hpc4_access": false,
+    "remote_storage_operations": false,
+    "destructive_cleanup": false,
+    "papers_or_bibliography_delivered": false,
+    "scientific_failure_rescued_by_test_passes": false
+  },
+  "next_authorized_cpu_work": "ONE fully specified finite-MRP calibration/learning construction: observable reward/data interface, birth/delivery filtration, actual updates, attainable same-stream calibration bound, coupled learning/calibration/delay Lyapunov drift, full costs and nonempty net benefit; distinguish from AffPCL and importance-weighted transfer. If privileged models/free data/vacuous bound/routine extension only, reject and report no qualified successor. No efficacy run until this gate passes and a separate protocol is frozen.",
+  "continuation": "Bounded CPU theoretical work remains; heartbeat not paused. No fixed-time or acceptance guarantee."
+}

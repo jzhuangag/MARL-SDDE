@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task": "T-018",
+  "starting_commit": "3bdca34c4c5f0f55e3534f64f47042790d8a3daf",
+  "history_freeze": {
+    "exp015a_status": "7/8 failure, threshold 0.80, observed 0.777778",
+    "exp016a_original_hash": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+    "exp016a_amendment_1_hash": "a6312a4769457c3d73aedea60f9c3523a2860d6fc0499ad1ccdb6124188412d0",
+    "exp016a_run_allowed": false
+  },
+  "claims": [
+    {
+      "id": "SM-1",
+      "status": "aligned",
+      "statement": "theorem_derived_fallback.md controls S_mean, not S_path",
+      "depends_on": [
+        "expected finite-budget risk definitions",
+        "positive-part convexity",
+        "no CRN equality shortcut"
+      ],
+      "verified_by": "test_t018_static_scan.py"
+    },
+    {
+      "id": "LV-1",
+      "status": "conditional_theorem_preregistered",
+      "statement": "if B_id < B_value, Z={B:B_id<=B<B_value} is a learning-value separation zone",
+      "depends_on": [
+        "known public mixing or separated mixing certificate",
+        "finite action catalogue",
+        "statistically reliable identification threshold",
+        "downstream-worthwhile and S_mean-safe value threshold"
+      ],
+      "verified_by": "test_t018_static_scan.py"
+    },
+    {
+      "id": "TAINT-1",
+      "status": "static_api_audit_passed",
+      "statement": "information_only_score has no downstream-risk, wrong-commit, epsilon_safe, oracle-action, or hidden-regime input",
+      "verified_by": "test_t018_static_scan.py"
+    },
+    {
+      "id": "SCAN-1",
+      "status": "grid_preregistered_then_executed_outcome_free",
+      "grid_hash": "c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db",
+      "scenario_count": 3456,
+      "budget_points_per_scenario": 10,
+      "active_zone_coverage": 1.0,
+      "effect_zone_coverage": 0.6999782986111112,
+      "message_binding_scenario_count": 1772,
+      "environment_binding_scenario_count": 1404,
+      "final_decision": "A"
+    },
+    {
+      "id": "SCAN-ERRATUM-1",
+      "status": "corrected_censored_threshold_bookkeeping",
+      "supersedes_for_summary_only": "SCAN-1",
+      "preserves_original_record": true,
+      "preregistration_commit": "e2f62252488190a24c68d89b61dc15d8c7746261",
+      "original_scan_commit": "4256a4b1af58b4daac9fa06af5e77c6165101b4f",
+      "original_results_json_sha256": "4c182792d2d13e13c1df30d4ec481e1547665f0a7428712cb39547648984e397",
+      "grid_hash": "c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db",
+      "scenario_count": 3456,
+      "finite_B_value_scenario_count": 3448,
+      "search_censored_scenario_count": 8,
+      "finite_active_zone_coverage": 1.0,
+      "finite_effect_zone_coverage_descriptive": 0.7010223317865429,
+      "message_binding_finite_scenario_count": 1772,
+      "environment_binding_finite_scenario_count": 1404,
+      "N3_effect_coverage_is_preregistered_gate": false,
+      "final_decision": "A_for_prospective_EXP016B_preregistration_only"
+    }
+  ],
+  "scientific_outcomes_present": false
+}

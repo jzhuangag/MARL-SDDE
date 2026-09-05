@@ -1,0 +1,55 @@
+{
+  "experiment_id": "T-073-continuous-QP-collaboration-architecture-calibration",
+  "verification_status": "VERIFIED_DESIGN_CALIBRATION",
+  "decision": "Q1_to_Q9_pass_but_require_persistent_mixing_SNR_certificate_before_new_seed_pilot",
+  "provenance": {
+    "frozen_architecture_commit": "52acc60fc2365915a7d01603629aa5d7cf4ef0eb",
+    "source_t071a_endpoints_sha256": "1432FDBE403A2ADA3D4C1734BAB476AE0F47F4765491D33245FD76B4A26CE446",
+    "endpoints_sha256": "987E149E24A6E2AE433DB982CFCD5D12D0C3035E60BECE9239F8E689008DFD3D",
+    "cells_sha256": "34A48EFD1485962ED9BEBEE99ED689F5A09CB1E356F0B31C0EAB3D46406A4F4F",
+    "summary_sha256": "3F25A43829F580234C1ABBC0430E80BE4E93048B4B727CC3648B20CBF9D6FF85",
+    "reproduction_byte_identical": true
+  },
+  "metrics": {
+    "nonstationary_improvement": 0.08457257859462675,
+    "nonstationary_strict_cell_fraction": 0.5555555555555556,
+    "single_switch_improvement": 0.051861719415585594,
+    "alternating_improvement": 0.11615491007877132,
+    "delay_0_improvement": 0.08671469632453699,
+    "delay_1_improvement": 0.09255526661147762,
+    "delay_3_improvement": 0.074353637531972,
+    "stationary_ratio": 1.0808666856141267,
+    "accepted_nonlocal_rate": 0.2288652584876543,
+    "rollback_rate": 0.7623908902391976,
+    "mean_iterations_per_recipient_decision": 28.893482349537038,
+    "mean_debt": 0.04261920517613455,
+    "max_debt": 2.4855626716992996
+  },
+  "descriptive_criteria": {
+    "Q1": true,
+    "Q2": true,
+    "Q3": true,
+    "Q4": true,
+    "Q5": true,
+    "Q6": true,
+    "Q7": true,
+    "Q8": true,
+    "Q9": true
+  },
+  "phase_diagnosis": {
+    "target_scale_0_1_improvement": -0.055949,
+    "target_scale_0_3_improvement": 0.036518,
+    "target_scale_0_6_improvement": 0.245976,
+    "noise_scale_0_5_improvement": 0.014839,
+    "temporal_correlation_0_9_improvement": -0.008512
+  },
+  "authorization": {
+    "new_persistent_certificate_design": true,
+    "preregister_T073A": false,
+    "reuse_calibration_as_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}
