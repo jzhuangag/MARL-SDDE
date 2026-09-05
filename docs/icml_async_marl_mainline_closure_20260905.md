@@ -92,3 +92,9 @@ to pause performance experiments, consolidate the theory/negative-bound paper
 option, and conduct a fresh problem-level novelty search before allocating
 GPU resources.  This is a stop decision for the present family, not a promise
 that a future ICML idea cannot be found.
+
+The requested fresh problem-level search was completed later on 2026-09-05.
+Its last conditional candidate, factor-local correction of mixed-version
+trajectories, failed the model-free performance-bound gate before any outcome
+experiment.  The proof, counterexamples, literature boundary and next decision
+are recorded in `docs/icml2027_problem_reset_audit_20260905.md`.
