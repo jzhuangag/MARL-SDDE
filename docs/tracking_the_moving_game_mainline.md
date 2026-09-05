@@ -224,14 +224,20 @@ ratio is `0.732823`, and the coupled/online-diagonal ratio is `0.948118`, with
 all 128 primary scenarios directionally favorable.  Target-motion-zero
 controls reduce exactly to the diagonal rule.  This closes only kill gate 2.
 
-Kill gate 1 remains open.  The observable two-action drift, finite-schedule
-reset-trajectory concentration, stale linear-critic contraction, and
-single-counted version-path interface are now proved under explicit
-conditions.  The remaining blockers are instantiating nonvacuous constants,
-activated-owner/game conversion, and a comparison theorem for the same
-executable algorithm.  Sampled CPU efficacy, formal seeds and GPU work remain
-prohibited.  Full oracle results and limitations are in
-`validation_coupled_actor_critic_headroom.md`.
+Kill gate 1 failed for the proposed per-packet high-probability shield.  The
+conditional two-action theorem is algebraically valid, but its preregistered
+optimistic nonvacuity audit requires a median 65,536 charged transitions per
+packet and passes the 8,192-transition cap in only 20.83% of cases.  That
+implementation is permanently stopped; thresholds will not be changed.
+
+The broader coupled actor--critic question is not yet stopped because kill
+gate 2 showed material exact-moment headroom.  One successor is allowed at the
+theory-design level: an expectation-level predictable sample-split controller
+whose sensor and update batches are independent and fully charged.  It must
+derive its own convergence bound and equal-cost feasibility gate before any
+sampled efficacy, formal seeds or GPU work.  Full oracle and certificate
+results are in `validation_coupled_actor_critic_headroom.md` and
+`validation_coupled_actor_critic_certificate_nonvacuity.md`.
 
 ## Experimental package if the gates survive
 

@@ -2,8 +2,8 @@
 
 Date: 2026-09-05.
 
-Status: **conditional theorem closed; constant nonvacuity and sampled efficacy
-remain gated.**
+Status: **conditional theorem closed; the per-packet high-probability
+implementation failed its preregistered nonvacuity gate.**
 
 ## 1. Setting and executable action
 
@@ -157,8 +157,13 @@ bounded-service event-count lemma; it is not required for (11).
 
 ## 6. Honest gate state
 
-The algebraic performance theorem is now closed conditionally, but the
-performance-bound gate is **not yet passed**.  A frozen static audit must show
-that explicit tabular constants and fully charged packet sizes make
-`r_k<||g_hat_k||` in a material region.  If the certificate always selects
-`alpha=0`, the candidate stops even though (11) is formally true.
+The algebraic theorem is closed conditionally, but its proposed practical
+high-probability implementation is stopped.  In the preregistered optimistic
+audit, only 20.83% of owner cases were jointly nonvacuous within 8,192 charged
+transitions and the median minimum was 65,536.  This was with zero variance,
+zero staleness and an exact critic, so ordinary sampled packets cannot rescue
+it.  See `validation_coupled_actor_critic_certificate_nonvacuity.md`.
+
+Any successor must change the proof/algorithm interface, not the failed gate.
+The admissible next route is expectation-level predictable sample splitting;
+it cannot inherit the per-event no-harm statement of this theorem.
