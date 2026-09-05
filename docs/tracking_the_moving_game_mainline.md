@@ -154,10 +154,13 @@ selected bounds for:
 - Markov mixing, truncation and importance-ratio bias of a stored packet; and
 - critic fixed-point sensitivity `kappa_i`.
 
-A valid general theorem must add the Lyapunov--Krasovskii history energy for
-all in-flight packets, telescope the same implemented `(alpha,beta)` actions,
-and convert its drift to a potential/Nash or standard stationarity criterion.
-No neural claim may inherit (5) just by calling TD loss `e^2`.
+A valid general theorem must telescope the same implemented `(alpha,beta)`
+actions and convert its drift to a potential/Nash or standard stationarity
+criterion.  The first executable route pays recorded policy and critic
+version displacement once through robust packet radii and therefore sets the
+optional Lyapunov--Krasovskii history term to zero.  A later history-energy
+refinement may replace that robust term but cannot duplicate it.  No neural
+claim may inherit (5) just by calling TD loss `e^2`.
 
 ## Novelty confrontation
 
@@ -221,9 +224,13 @@ ratio is `0.732823`, and the coupled/online-diagonal ratio is `0.948118`, with
 all 128 primary scenarios directionally favorable.  Target-motion-zero
 controls reduce exactly to the diagonal rule.  This closes only kill gate 2.
 
-Kill gate 1, the observable conditional performance bound, remains open and
-continues to prohibit sampled CPU efficacy, formal seeds and GPU work.  Full
-results and limitations are in
+Kill gate 1 remains open.  The observable two-action drift, finite-schedule
+reset-trajectory concentration, stale linear-critic contraction, and
+single-counted version-path interface are now proved under explicit
+conditions.  The remaining blockers are instantiating nonvacuous constants,
+activated-owner/game conversion, and a comparison theorem for the same
+executable algorithm.  Sampled CPU efficacy, formal seeds and GPU work remain
+prohibited.  Full oracle results and limitations are in
 `validation_coupled_actor_critic_headroom.md`.
 
 ## Experimental package if the gates survive

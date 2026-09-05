@@ -34,16 +34,20 @@ Suppose a critic correction of scale `beta` satisfies, on the same event,
 \[
  \|e_k-\beta\widehat F_k\|
  \le(1-\mu_c\beta)c_k+\beta\epsilon_{c,k},
- \quad 0\le\beta\le\mu_c^{-1},                         \tag{3}
+ \quad 0\le\beta\le L_c^{-1},                          \tag{3}
 \]
 
 and the critic fixed point moves by at most
 `kappa_i ||theta_i^{k+1}-theta_i^k||`.  The predictable certificate update is
 
 \[
- c_{k+1}=(1-\mu_c\beta_k)c_k+eta_k\epsilon_{c,k}
+ c_{k+1}=(1-\mu_c\beta_k)c_k+\beta_k\epsilon_{c,k}
           +\kappa_i\alpha_k g_k.                        \tag{4}
 \]
+
+Here the theorem-facing SPD critic operator satisfies
+`mu_c I <= A_theta <= L_c I`.  The admissible step endpoint is governed by
+`L_c`, not merely by `mu_c`.
 
 This is a radius recursion, not a claim that TD loss equals value error.
 
@@ -162,9 +166,10 @@ Four items remain mandatory.
    critic update under the packet's behavior policy, including policy-version
    mismatch.  A sample split may be used, but every trajectory and critic
    update must be charged.
-3. **History closure.**  Derive `h_i` and the negative shift of `H_k` from the
-   same off-diagonal single-flight path, without double-counting strategic
-   staleness both in (1) and the history energy.
+3. **History closure.**  The first executable theorem sets `h_i=0` and pays
+   policy and critic staleness exactly once in the robust radii (1)--(3).  A
+   Lyapunov--Krasovskii refinement is optional and may only replace, rather
+   than duplicate, the same version-path term.
 4. **Game conversion.**  Combine activated-block coverage with a declared
    Markov-potential-game stationarity/Nash conversion and state every
    occupancy/interiority constant.  General-sum or neural guarantees are not
@@ -173,4 +178,3 @@ Four items remain mandatory.
 Only after all four are proved for one executable packet format can the
 performance-bound gate pass.  The exact oracle-headroom result does not lower
 this standard.
-

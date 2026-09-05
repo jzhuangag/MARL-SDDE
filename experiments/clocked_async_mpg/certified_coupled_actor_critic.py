@@ -111,6 +111,7 @@ def next_critic_radius(
     critic_radius: float,
     critic_gradient_radius: float,
     critic_contraction: float,
+    critic_smoothness: float,
     target_sensitivity: float,
 ) -> float:
     """Propagate the pathwise critic tracking certificate."""
@@ -121,11 +122,14 @@ def next_critic_radius(
     critic = _nonnegative("critic_radius", critic_radius)
     critic_gradient = _nonnegative("critic_gradient_radius", critic_gradient_radius)
     contraction = _nonnegative("critic_contraction", critic_contraction)
+    smoothness = _nonnegative("critic_smoothness", critic_smoothness)
     target = _nonnegative("target_sensitivity", target_sensitivity)
-    if contraction == 0.0:
-        raise ValueError("critic_contraction must be positive")
-    if beta * contraction > 1.0 + 1e-12:
-        raise ValueError("beta exceeds the certified contraction interval")
+    if contraction == 0.0 or smoothness == 0.0:
+        raise ValueError("critic_contraction and critic_smoothness must be positive")
+    if contraction > smoothness + 1e-12:
+        raise ValueError("critic_contraction cannot exceed critic_smoothness")
+    if beta * smoothness > 1.0 + 1e-12:
+        raise ValueError("beta exceeds the SPD contraction interval")
     result = (
         (1.0 - contraction * beta) * critic
         + beta * critic_gradient
@@ -172,6 +176,7 @@ def choose_certified_coupled_scales(
     *,
     alpha_cap: float,
     beta_cap: float,
+    critic_smoothness: float,
     **certificate_inputs: float,
 ) -> CertifiedCoupledDecision:
     """Minimize the observable two-action Lyapunov certificate."""
@@ -179,10 +184,13 @@ def choose_certified_coupled_scales(
     alpha_cap = _nonnegative("alpha_cap", alpha_cap)
     beta_cap = _nonnegative("beta_cap", beta_cap)
     contraction = float(certificate_inputs["critic_contraction"])
+    smoothness = _nonnegative("critic_smoothness", critic_smoothness)
     if contraction <= 0.0:
         raise ValueError("critic_contraction must be positive")
-    if beta_cap * contraction > 1.0 + 1e-12:
-        raise ValueError("beta_cap exceeds the certified contraction interval")
+    if contraction > smoothness + 1e-12:
+        raise ValueError("critic_contraction cannot exceed critic_smoothness")
+    if beta_cap * smoothness > 1.0 + 1e-12:
+        raise ValueError("beta_cap exceeds the SPD contraction interval")
     linear, quadratic, diagnostics = certified_drift_coefficients(
         **certificate_inputs
     )
@@ -200,6 +208,7 @@ def choose_certified_coupled_scales(
         critic_radius=certificate_inputs["critic_radius"],
         critic_gradient_radius=certificate_inputs["critic_gradient_radius"],
         critic_contraction=certificate_inputs["critic_contraction"],
+        critic_smoothness=smoothness,
         target_sensitivity=certificate_inputs["target_sensitivity"],
     )
     return CertifiedCoupledDecision(
@@ -247,4 +256,3 @@ def clipped_margin_progress_lower(
     margin = max(0.0, gradient - actor_radius - 2.0 * weight * critic * target)
     clipped_scale = min(cap, 1.0 / curvature)
     return float(0.5 * clipped_scale * margin**2)
-
