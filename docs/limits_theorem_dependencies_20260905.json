@@ -2,7 +2,7 @@
   "schema_version": 1,
   "artifact": "LIMITS-MANUSCRIPT-DEPENDENCY-AUDIT-20260905",
   "decision": {
-    "narrow_parallel_markov_theory_manuscript": "conditional_go_after_one_matching_policy_link",
+    "narrow_parallel_markov_theory_manuscript": "conditional_go_under_explicit_finite_commit_and_competitiveness_assumptions",
     "asynchronous_strategic_marl_icml_mainline": "no_go",
     "new_efficacy_experiment": false,
     "gpu_or_hpc4": false
@@ -67,8 +67,14 @@
     },
     {
       "id": "baseline_as_sensing_anytime_switch",
-      "status": "proposed_not_proved",
-      "reason": "the all-agent baseline itself has positive regime information; separate paid probing is not necessary"
+      "status": "conditional_upper_theorem_proved",
+      "reason": "the all-agent baseline itself has positive regime information; separate paid probing is not necessary",
+      "safety": "exact likelihood-ratio martingale plus Ville threshold",
+      "high_regime": "Markov/Kalman Chernoff tail plus finite-budget branch-risk sensitivity",
+      "matching": "constant/order matching under information-per-opportunity competitiveness",
+      "document": "docs/baseline_as_sensing_anytime_switch_20260905.md",
+      "implementation": "experiments/dependence_delay_linear/baseline_as_sensing_switch.py",
+      "test": "experiments/dependence_delay_linear/test_baseline_as_sensing_switch.py"
     },
     {
       "id": "AC-10_full_matrix_stability_coupling",

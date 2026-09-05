@@ -2,8 +2,8 @@
 
 Date: 2026-09-05
 
-Status: **conditional GO for a narrowly scoped parallel-Markov-learning
-theory manuscript after one remaining matching-policy link is proved; NO-GO for
+Status: **the theorem chain is a conditional GO for a narrowly scoped
+parallel-Markov-learning limits manuscript; NO-GO for
 relabelling it as an asynchronous strategic-MARL algorithm paper.**
 
 ## The one coherent statistical question
@@ -109,7 +109,7 @@ Gaussian common-factor Markov observation model
 | learning-risk-to-testing reduction | proved for predictable sensing followed by finite fresh deployment | requires a separated finite deployment catalogue and noncancellation; does not cover continuous interleaved learning |
 | coupled expected-safety occupation frontier | proved as an exact infinite-dimensional variational program for finite commit | likelihood-ratio-augmented state is continuous; a finite-grid LP is only approximate |
 | minimum safety slack \(\epsilon^\star_B(r)\) | finite-budget lower bound proved | not yet matched by an executable upper policy |
-| safety-constrained occupation matching | open | the proposed baseline-as-sensing rule is not yet proved to attain the coupled frontier or its order |
+| safety-constrained occupation matching | proved conditionally for the baseline-as-sensing anytime switch | constant/order matching requires a public information-per-opportunity competitiveness condition and negligible cutoff tail |
 | delayed affine Markov-TD transfer | formal mechanism evidence exists | does not make the observation lower bound a general TD lower bound |
 | full matrix delayed stability coupling | open AC-10 | cannot claim general adaptive \((q,b,\eta)\) convergence |
 | nonlinear/general observation extension | open AC-11 | fixed-gradient covariance is not nonlinear training convergence |
@@ -168,8 +168,8 @@ overclaim, while another controller search has already failed its entry gate.
 
 ### Narrow theory / signal-processing manuscript
 
-**Conditional GO only after the remaining matching-policy link above is
-closed.**  A coherent
+**Conditional GO under the explicitly stated finite-commit, separation,
+mixing, risk-sensitivity and competitiveness assumptions.**  A coherent
 working title is:
 
 > **When Is Parallel Markov Learning Worth It? Correlation, Delay, and the
@@ -188,7 +188,7 @@ The contribution contract is one story:
 This is a plausible TSP/theory submission package if the missing links close.
 It is not an “absolute accept” guarantee and should not be advertised as one.
 
-The present upper algorithm also needs redesign.  Individual all-agent
+The upper algorithm is now specified as follows.  Individual all-agent
 observations have positive regime KL, so a separately paid fixed probe is not
 information-theoretically necessary.  The appropriate candidate is a
 **baseline-as-sensing anytime likelihood switch**: execute the safe baseline,
@@ -196,21 +196,25 @@ update the exact Kalman likelihood ratio from the observations that baseline
 learning already produces, and switch only after directional evidence and
 remaining-budget value jointly qualify.  Its unavoidable cost is the
 high-regime oracle opportunity lost while waiting, not a fictitious mandatory
-sensor charge.  This candidate remains parallel Markov stochastic
-optimization; it does not restore asynchronous strategic-MARL scope.
+sensor charge.  Ville safety, a Markov/Kalman Chernoff detection bound, and
+conditional constant/order matching are proved in
+`docs/baseline_as_sensing_anytime_switch_20260905.md`.  This candidate remains
+parallel Markov stochastic optimization; it does not restore asynchronous
+strategic-MARL scope.
 
 ## Remaining authorized CPU work
 
 1. retain the proved learning-excess-to-testing reduction only for finite
    fresh deployment; do not extend it to interleaved online learning without
    a new noncancellation or coupled-law argument;
-2. derive and analyze the baseline-as-sensing anytime likelihood switch,
-   including its occupation cost and remaining-budget stopping boundary;
+2. retain the proved baseline-as-sensing anytime switch with its exact Ville
+   threshold, finite-budget cutoff and conditional matching assumption;
 3. retain the exact likelihood-ratio-augmented expected-safety occupation
    program and its finite-budget \(\epsilon_B^\star(r)\) lower bound; do not
    replace it by two independent regime occupations or call a finite grid exact;
-4. construct an executable baseline-as-sensing policy and prove a stated-order
-   upper bound relative to the coupled frontier or safety-slack lower bound;
+4. before new outcomes, audit the information/opportunity competitiveness
+   condition and at least 10% equal-resource headroom on a public theoretical
+   Markov-learning family;
 5. prove or explicitly assume every risk-sensitivity and compactness constant
    used by T-039; remove any circular definition involving the oracle gap;
 6. reconcile the older `theorem_derived_fallback.md` statement “AC-9 not
