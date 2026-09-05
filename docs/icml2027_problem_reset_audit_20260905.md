@@ -192,3 +192,18 @@ positive regime and a matching strong comparator.
    narrower theory or signal-processing venue.
 
 This work needs no GPU.
+
+## Subsequent finite-commit theorem audit
+
+A later bounded audit did close a coherent binary finite-commit limits chain:
+learning excess reduces to testing under fresh deployment, expected safety is
+exactly represented by a likelihood-ratio-augmented coupled occupation
+program, and a zero-probe baseline-as-sensing switch obtains an anytime Ville
+safety guarantee with a conditional matching upper bound.  These results are
+recorded in the 2026-09-05 limits-manuscript documents.
+
+They do not reopen the asynchronous-MARL mainline.  The final outcome-free
+oracle ceiling also failed: median ideal headroom was zero and only 21.7625%
+of 30,502 feasible T-018 cells reached 10%, versus the frozen 10%-median and
+60%-prevalence gate.  No new scientific experiment, GPU run, or controller
+identifier is authorized.

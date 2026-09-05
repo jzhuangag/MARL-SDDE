@@ -226,3 +226,26 @@ strategic-MARL scope.
    suite before delivery.
 
 No new efficacy experiment, GPU job or HPC4 work is authorized by this audit.
+
+## Post-theorem oracle-headroom gate
+
+After the three theorem links were closed, the required outcome-free ceiling
+was evaluated on the complete public T-018 theoretical grid.  A perfect
+regime-aware oracle was given the hidden binary regime for free, paid no probe
+cost, and used the same dual budgets as the strongest regime-blind fixed
+action selected from the full catalogue.  Across 30,502 feasible
+scenario--budget cells:
+
+- median ideal headroom was zero;
+- only 21.7625% of cells had at least 10% headroom;
+- the 90th percentile was 14.0903%;
+- the frozen broad gate required median headroom at least 10% and at least 60%
+  of cells reaching 10%.
+
+The gate therefore fails even for an unattainably favorable oracle.  This is
+not a power or controller-estimation failure.  It rules out a new broad
+efficacy experiment on this grid and prevents the conditional upper theorem
+from being promoted to a positive general ICML algorithm claim.  The exact
+theorem remains a valid limits result on its stated separated class.  The full
+audit is recorded in `docs/baseline_sensing_headroom_audit_20260905.md` and its
+machine-readable companion.

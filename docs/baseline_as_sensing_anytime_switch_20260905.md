@@ -243,3 +243,10 @@ continuously interleaved asynchronous updates, or a standard nonlinear MARL
 result.  A broader ICML claim remains unauthorized unless an outcome-free
 standard Markov-learning audit verifies (10) and at least 10% equal-resource
 headroom before any new benchmark experiment.
+
+That outcome-free oracle ceiling was subsequently run on the complete public
+T-018 theoretical grid.  Even a free perfect-regime oracle had median headroom
+zero over the strong regime-blind fixed action, and only 21.7625% of feasible
+cells reached 10%; the frozen 10%/60% broad gate failed.  Hence this theorem
+does not authorize a new efficacy experiment on that grid.  See
+`docs/baseline_sensing_headroom_audit_20260905.md`.
