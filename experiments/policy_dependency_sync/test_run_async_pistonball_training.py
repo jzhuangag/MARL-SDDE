@@ -35,6 +35,11 @@ def test_small_training_state_machine_is_finite_and_budget_feasible() -> None:
     assert result["remaining_packets_after_drain"] == 0
     assert result["launched_gradient_packets"] == 4
     assert result["received_packets"] == 4
+    assert result["critic_updates"] == 4
+    assert result["mean_td_loss"] >= 0.0
+    assert result["mean_packet_gradient_norm"] > 0.0
+    assert len(result["actor_parameter_drift_l2"]) == 4
+    assert max(result["actor_parameter_drift_l2"]) > 0.0
     assert result["launched_actor_transitions"] == 5 * 4
     assert result["launched_actor_transitions"] == 4 * sum(
         row["segment_cycles"] for row in result["launch_trace"]

@@ -29,6 +29,7 @@ from .async_pistonball_ctde import (
     PistonCentralCritic,
     PolicyCacheBank,
     apply_refresh_action,
+    clone_parameter_groups,
     collect_parallel_segment,
     compress_parallel_snapshot,
     critic_td_loss,
@@ -385,6 +386,7 @@ def run_training(
 
     base_actor = PistonActor().to(device)
     actors = tuple(copy.deepcopy(base_actor).to(device) for _ in range(config.n_agents))
+    initial_actor_parameters = clone_parameter_groups(actors)
     target_actors = tuple(copy.deepcopy(actor).to(device) for actor in actors)
     critic = PistonCentralCritic(config.n_agents).to(device)
     target_critic = copy.deepcopy(critic).to(device)
@@ -402,6 +404,9 @@ def run_training(
     received_packets = 0
     selected_edges = 0
     cumulative_train_reward = 0.0
+    critic_updates = 0
+    td_loss_sum = 0.0
+    packet_gradient_norm_sum = 0.0
     evaluation_rows: list[dict[str, float | int]] = []
     launch_rows: list[dict[str, Any]] = []
     evaluation_launches = set(
@@ -525,6 +530,8 @@ def run_training(
                 td_loss.backward()
                 torch.nn.utils.clip_grad_norm_(critic.parameters(), config.gradient_clip)
                 critic_optimizer.step()
+                critic_updates += 1
+                td_loss_sum += float(td_loss.detach().cpu())
 
                 actor_batch = replay.sample(config.batch_size, replay_rng, device)
                 gradients = owner_critic_gradient(
@@ -536,6 +543,9 @@ def run_training(
                     states=actor_batch.states,
                 )
                 gradients = _clip_gradients(gradients, config.gradient_clip)
+                packet_gradient_norm_sum += math.sqrt(
+                    sum(float(gradient.square().sum().cpu()) for gradient in gradients)
+                )
                 delay = int(delay_rng.integers(0, config.maximum_delay + 1))
                 packet_queue.launch(
                     owner=owner,
@@ -598,6 +608,15 @@ def run_training(
             "utf-8"
         )
     ).hexdigest().upper()
+    actor_parameter_drift_l2 = [
+        math.sqrt(
+            sum(
+                float((current.detach() - initial).square().sum().cpu())
+                for current, initial in zip(actor.parameters(), initial_group)
+            )
+        )
+        for actor, initial_group in zip(actors, initial_actor_parameters)
+    ]
     return {
         "scheduler": scheduler,
         "seed": int(seed),
@@ -618,6 +637,10 @@ def run_training(
         "received_packets": received_packets,
         "remaining_packets_after_drain": len(packet_queue),
         "cumulative_training_team_reward": cumulative_train_reward,
+        "critic_updates": critic_updates,
+        "mean_td_loss": td_loss_sum / max(critic_updates, 1),
+        "mean_packet_gradient_norm": packet_gradient_norm_sum / max(launched_packets, 1),
+        "actor_parameter_drift_l2": actor_parameter_drift_l2,
         "finite": finite,
         "budget_feasible": spent_units <= allowance,
         "runtime_seconds": runtime,
@@ -636,6 +659,12 @@ def main() -> None:
     parser.add_argument("--rollout-horizon", type=int, default=4)
     parser.add_argument("--max-cycles", type=int, default=125)
     parser.add_argument("--batch-size", type=int, default=32)
+    parser.add_argument("--replay-capacity", type=int, default=4096)
+    parser.add_argument("--exploration-std", type=float, default=0.2)
+    parser.add_argument("--critic-step", type=float, default=3e-4)
+    parser.add_argument("--actor-receipt-step", type=float, default=1e-3)
+    parser.add_argument("--target-polyak", type=float, default=0.01)
+    parser.add_argument("--gradient-clip", type=float, default=5.0)
     parser.add_argument("--evaluations", type=int, default=5)
     parser.add_argument("--evaluation-episodes", type=int, default=2)
     parser.add_argument("--budget-rate", type=float, default=0.5)
@@ -651,7 +680,13 @@ def main() -> None:
         launches=args.launches,
         rollout_horizon=args.rollout_horizon,
         max_cycles=args.max_cycles,
+        replay_capacity=args.replay_capacity,
         batch_size=args.batch_size,
+        exploration_std=args.exploration_std,
+        critic_step=args.critic_step,
+        actor_receipt_step=args.actor_receipt_step,
+        target_polyak=args.target_polyak,
+        gradient_clip=args.gradient_clip,
         evaluations=args.evaluations,
         evaluation_episodes=args.evaluation_episodes,
         budget_rate=args.budget_rate,
