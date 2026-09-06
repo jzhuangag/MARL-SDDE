@@ -9,6 +9,7 @@ from experiments.policy_dependency_sync.signed_drift import (
     fixed_step_score,
     outgoing_cache_debt_drift,
     optimal_step,
+    pending_history_increment_envelope,
     receipt_optimal_step,
     robust_alignment_lower_bound,
     robust_candidate_norm_upper_bound,
@@ -177,6 +178,34 @@ def test_receipt_step_matches_explicit_composite_quadratic_search():
         + 0.5 * pending_curvature * step**2 * packet_gradient**2
     )
     assert chosen <= float(values.min()) + 1e-10
+
+
+def test_pending_history_envelope_matches_expanded_square_sum():
+    radii = (0.2, 0.7, 0.1)
+    sensitivities = (0.4, 0.9, 0.0)
+    weights = (1.0, 0.5, 1.7)
+    displacement = 0.13
+    direct = 0.5 * sum(
+        weight
+        * ((radius + sensitivity * displacement) ** 2 - radius**2)
+        for radius, sensitivity, weight in zip(
+            radii, sensitivities, weights, strict=True
+        )
+    )
+    increment, linear, curvature = pending_history_increment_envelope(
+        radii, sensitivities, weights, displacement
+    )
+    assert increment == pytest.approx(direct)
+    assert increment == pytest.approx(
+        linear * displacement + 0.5 * curvature * displacement**2
+    )
+
+
+def test_pending_history_envelope_rejects_malformed_inputs():
+    with pytest.raises(ValueError):
+        pending_history_increment_envelope((0.1,), (0.2, 0.3), (1.0,), 0.4)
+    with pytest.raises(ValueError):
+        pending_history_increment_envelope((-0.1,), (0.2,), (1.0,), 0.4)
 
 
 def test_robust_bounds_cover_all_sampled_perturbations():

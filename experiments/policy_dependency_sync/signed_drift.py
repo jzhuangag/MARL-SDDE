@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Mapping
+from typing import Mapping, Sequence
 
 import numpy as np
 
@@ -94,6 +94,42 @@ def receipt_optimal_step(
         curvature,
         maximum_step,
     )
+
+
+def pending_history_increment_envelope(
+    radii: Sequence[float],
+    cross_sensitivities: Sequence[float],
+    weights: Sequence[float],
+    parameter_displacement: float,
+) -> tuple[float, float, float]:
+    """Quadratic envelope for the history-energy shift of pending packets.
+
+    Returns ``(increment, linear_coefficient, curvature)`` where the increment
+    equals ``linear * displacement + 0.5 * curvature * displacement**2``.
+    """
+    if not (len(radii) == len(cross_sensitivities) == len(weights)):
+        raise ValueError("pending sequences must have equal lengths")
+    if min(radii, default=0.0) < 0.0:
+        raise ValueError("radii must be nonnegative")
+    if min(cross_sensitivities, default=0.0) < 0.0:
+        raise ValueError("cross sensitivities must be nonnegative")
+    if min(weights, default=0.0) < 0.0:
+        raise ValueError("weights must be nonnegative")
+    if parameter_displacement < 0.0:
+        raise ValueError("parameter displacement must be nonnegative")
+    linear = sum(
+        weight * radius * sensitivity
+        for radius, sensitivity, weight in zip(
+            radii, cross_sensitivities, weights, strict=True
+        )
+    )
+    curvature = sum(
+        weight * sensitivity * sensitivity
+        for sensitivity, weight in zip(cross_sensitivities, weights, strict=True)
+    )
+    increment = linear * parameter_displacement
+    increment += 0.5 * curvature * parameter_displacement**2
+    return float(increment), float(linear), float(curvature)
 
 
 def robust_alignment_lower_bound(
