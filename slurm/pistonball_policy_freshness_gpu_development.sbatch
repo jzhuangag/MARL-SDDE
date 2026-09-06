@@ -27,7 +27,7 @@ if [[ "${actual_commit}" != "${CPF_EXPECTED_COMMIT}" ]]; then
   exit 4
 fi
 
-IFS=',' read -r -a scheduler_array <<< "${CPF_SCHEDULERS}"
+IFS=':' read -r -a scheduler_array <<< "${CPF_SCHEDULERS}"
 scheduler="${scheduler_array[${SLURM_ARRAY_TASK_ID}]}"
 if [[ -z "${scheduler}" ]]; then
   printf 'no scheduler at array index %s\n' "${SLURM_ARRAY_TASK_ID}" >&2

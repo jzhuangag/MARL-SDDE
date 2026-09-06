@@ -36,3 +36,13 @@ mismatch debt, and whether runtime is practical.  It has no pass threshold,
 p-value, or paper claim.  If these results justify a pilot, the next commit
 must freeze new seeds, exact hashes, strong comparator selection, return/AUC/
 budget/overhead gates, and a stopping rule before any pilot job starts.
+
+## Operational amendment 1
+
+The first submission passed a comma-delimited scheduler list through Slurm's
+`--export`, whose own delimiter is comma.  Task 0 received the first method and
+continued normally; tasks 1--4 stopped in shell parsing before Python and
+created no result JSON.  The batch script now uses a colon-delimited list.
+The scientific runner, seed, methods, configurations, and analyzer are
+unchanged.  Only failed task indices may be resubmitted; task 0 must not be
+rerun or overwritten.
