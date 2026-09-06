@@ -1,0 +1,97 @@
+{
+  "schema": "bounded-primary-source-audit/1",
+  "date": "2026-09-06",
+  "status": "bounded_not_exhaustive",
+  "sources": [
+    {
+      "title": "Distributed Stochastic Gradient Descent With Staleness: A Stochastic Delay Differential Equation Based Framework",
+      "authors": ["Siyuan Yu", "Wei Chen", "H. Vincent Poor"],
+      "venue": "IEEE Transactions on Signal Processing",
+      "volume": 73,
+      "pages": "1708-1726",
+      "year": 2025,
+      "doi": "10.1109/TSP.2025.3546574",
+      "primary_url": "https://ieeexplore.ieee.org/document/10909566/",
+      "verification": ["IEEE Xplore positive match", "local licensed PDF title/abstract/method/conclusion read"],
+      "relevance": "SDDE and characteristic-root optimization of worker number, group size, staleness threshold, and communication protocol for shared-model ASGD.",
+      "not_the_gap": "Does not provide a pairwise policy-dependency cache graph for distinct Markov-game policy blocks."
+    },
+    {
+      "title": "Distributed Stochastic Optimization with Random Communication and Computational Delays: Optimal Policies and Performance Analysis",
+      "authors": ["Siyuan Yu", "Wei Chen", "H. Vincent Poor"],
+      "venue": "IEEE International Conference on Communications",
+      "year": 2024,
+      "doi": "10.1109/ICC51166.2024.10622795",
+      "primary_url": "https://doi.org/10.1109/ICC51166.2024.10622795",
+      "verification": ["local licensed PDF title/abstract/system-model read", "identified by the TSP article as its earlier conference version"],
+      "relevance": "Earlier SDDE/Langevin analysis of stochastic-gradient noise and staleness.",
+      "not_the_gap": "Shared optimization parameter and global scheduling rather than distinct interacting policies."
+    },
+    {
+      "title": "Cooperative Multi-Agent Reinforcement Learning: Asynchronous Communication and Linear Function Approximation",
+      "authors": ["Yifei Min", "Jiafan He", "Tianhao Wang", "Quanquan Gu"],
+      "venue": "International Conference on Machine Learning",
+      "volume": 202,
+      "pages": "24785-24811",
+      "year": 2023,
+      "primary_url": "https://proceedings.mlr.press/v202/min23a.html",
+      "verification": ["PMLR proceedings positive match"],
+      "relevance": "Asynchronous low-communication cooperation with linear function approximation and regret guarantees.",
+      "not_the_gap": "Parallel agents solve one common linear MDP; no pairwise strategic-staleness graph among distinct policy blocks."
+    },
+    {
+      "title": "Asynchronous Actor-Critic for Multi-Agent Reinforcement Learning",
+      "authors": ["Yuchen Xiao", "Weihao Tan", "Christopher Amato"],
+      "venue": "Neural Information Processing Systems",
+      "volume": 35,
+      "year": 2022,
+      "doi": "10.52202/068431-0317",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2022/hash/1c153788756d35559c22d105d1182c30-Abstract-Conference.html",
+      "verification": ["NeurIPS proceedings positive match"],
+      "relevance": "Asynchronous action selection and learning with temporally extended actions.",
+      "not_the_gap": "Execution-time action asynchrony rather than training-time mixed policy-version caches."
+    },
+    {
+      "title": "Dynamic Coordination Graph for Cooperative Multi-Agent Reinforcement Learning",
+      "authors": ["Chapman Siu", "Jason Traish", "Richard Yi Da Xu"],
+      "venue": "Asian Conference on Machine Learning",
+      "volume": 157,
+      "pages": "438-453",
+      "year": 2021,
+      "primary_url": "https://proceedings.mlr.press/v157/siu21a.html",
+      "verification": ["PMLR proceedings positive match"],
+      "relevance": "Dynamically generated coordination graph for joint-value factorization.",
+      "not_the_gap": "Graph structures action-value factorization, not policy-version refresh during asynchronous training."
+    },
+    {
+      "title": "HyperMARL: Adaptive Hypernetworks for Multi-Agent RL",
+      "authors": ["Kale-ab Tessera", "Muhammad Arrasy Rahman", "Amos J. Storkey", "Stefano Albrecht"],
+      "venue": "Neural Information Processing Systems",
+      "volume": 38,
+      "year": 2025,
+      "doi": "10.52202/085713-3814",
+      "primary_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/a647405740b28a61311ac9cff28772e5-Abstract-Conference.html",
+      "verification": ["NeurIPS proceedings positive match"],
+      "relevance": "Addresses cross-agent gradient interference and specialization under parameter sharing.",
+      "not_the_gap": "Architectural parameter generation rather than delayed cache synchronization under a communication queue."
+    },
+    {
+      "title": "Distributed Online Learning for Joint Regret with Communication Constraints",
+      "authors": ["Dirk van der Hoeven", "Hedi Hadiji", "Tim van Erven"],
+      "venue": "Algorithmic Learning Theory",
+      "volume": 167,
+      "pages": "1003-1042",
+      "year": 2022,
+      "primary_url": "https://proceedings.mlr.press/v167/hoeven22a.html",
+      "verification": ["PMLR proceedings positive match"],
+      "relevance": "Adapts graph partitions under asynchronous activations, delays, and communication constraints in online convex learning.",
+      "not_the_gap": "No Markov-game trajectory law, distinct policy-gradient dependencies, or controlled cache-reset SDDE."
+    }
+  ],
+  "pdf_read_integrity": {
+    "status": "UNAVAILABLE",
+    "reason": "pypdf was absent in the active runtime; full text was extracted with Poppler without relying on page anchors",
+    "random_delays_sha256": "caeaca604d95494f892810a0cec735ede3685085c6265e0f109fb9c70628e48f",
+    "sdde_sgd_sha256": "f7f5d7038c5f34b1dcf5a9eac1419c5460384f461dee3c88a916a806cdb2e97b"
+  }
+}
