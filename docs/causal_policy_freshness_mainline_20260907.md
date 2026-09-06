@@ -223,6 +223,15 @@ freshness costs 77,501 refresh units, and no matched optimizer control was part
 of that learner-only gate.  The next evidence link is therefore a matched,
 binding-budget controller-headroom experiment, not an efficacy claim.
 
+The first outcome-blind score-scale audit exposed a sharper implementation
+condition before that experiment: the ReLU centralized critic has zero mixed
+action curvature almost everywhere, so all 980 measured cross-policy signed
+VJP deltas were exactly zero. Cache-reset and queue terms remained active.
+This stops the ReLU score interface and explains the historical signed-only
+null behavior. The next allowed learner uses a fixed smooth critic action
+head and must requalify both nonzero mixed VJPs and learning before controller
+headroom is measured.
+
 ## Distinction from adjacent work
 
 - [IMPALA](https://proceedings.mlr.press/v80/espeholt18a.html) corrects
@@ -285,14 +294,15 @@ critic/JVP overhead remains a practical failure mode and is reported directly.
 
 ## Immediate execution order
 
-1. freeze a matched-optimizer controller-headroom design around the qualified
-   Pistonball learner, with random delay, binding prefix budgets, and strong
-   static/online comparators;
-2. establish that the signed score has nontrivial equal-resource headroom and
+1. replace the stopped ReLU score interface by a fixed smooth critic action
+   head and jointly requalify learning and nonzero mixed VJPs;
+2. freeze a matched-optimizer controller-headroom design with random delay,
+   binding finite budgets, and strong static/online comparators;
+3. establish that the signed score has nontrivial equal-resource headroom and
    audit its replay-only critic/VJP uncertainty and runtime;
-3. only then preregister a small GPU Pistonball pilot with new seeds and
+4. only then preregister a small GPU Pistonball pilot with new seeds and
    mandatory strong-baseline gates;
-4. run formal seeds and write the full manuscript only if that pilot passes.
+5. run formal seeds and write the full manuscript only if that pilot passes.
 
 This sequence advances the one surviving thesis and does not reopen the
 discarded participation, unsigned graph, online-horizon, or generic
