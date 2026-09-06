@@ -1,0 +1,317 @@
+{
+  "aggregates": {
+    "age_prefix": {
+      "mean_optional_policy_bytes": 175775602.0,
+      "mean_refresh_units": 1964.5,
+      "mean_return_auc": -5.108745050100911,
+      "mean_runtime_seconds": 603.9308550524875,
+      "mean_terminal_return": -1.3692166170259696
+    },
+    "cache": {
+      "mean_optional_policy_bytes": 125847994.0,
+      "mean_refresh_units": 1406.5,
+      "mean_return_auc": -5.558656242563325,
+      "mean_runtime_seconds": 604.2182759559946,
+      "mean_terminal_return": -4.772138950048812
+    },
+    "complete_terminal": {
+      "mean_optional_policy_bytes": 183246848.0,
+      "mean_refresh_units": 2048.0,
+      "mean_return_auc": -3.3504264788234637,
+      "mean_runtime_seconds": 595.2068825299939,
+      "mean_terminal_return": -2.23310674917564
+    },
+    "full_refresh": {
+      "mean_optional_policy_bytes": 6422721494.0,
+      "mean_refresh_units": 71781.5,
+      "mean_return_auc": -7.347970979957425,
+      "mean_runtime_seconds": 606.3669467190193,
+      "mean_terminal_return": -6.657934368932797
+    },
+    "mismatch_prefix": {
+      "mean_optional_policy_bytes": 174567676.0,
+      "mean_refresh_units": 1951.0,
+      "mean_return_auc": -5.590237303585306,
+      "mean_runtime_seconds": 613.6554505039967,
+      "mean_terminal_return": -4.722829285354531
+    },
+    "mismatch_terminal": {
+      "mean_optional_policy_bytes": 175507174.0,
+      "mean_refresh_units": 1961.5,
+      "mean_return_auc": -5.621042227580162,
+      "mean_runtime_seconds": 611.923482631988,
+      "mean_terminal_return": -4.969268677313353
+    },
+    "no_refresh": {
+      "mean_optional_policy_bytes": 0.0,
+      "mean_refresh_units": 0.0,
+      "mean_return_auc": -4.764848774866701,
+      "mean_runtime_seconds": 599.5847097014921,
+      "mean_terminal_return": -0.9306489637678137
+    },
+    "round_prefix": {
+      "mean_optional_policy_bytes": 172867632.0,
+      "mean_refresh_units": 1932.0,
+      "mean_return_auc": -4.138648044630639,
+      "mean_runtime_seconds": 596.3805595640006,
+      "mean_terminal_return": -3.9880862330064066
+    },
+    "signed": {
+      "mean_optional_policy_bytes": 126116422.0,
+      "mean_refresh_units": 1409.5,
+      "mean_return_auc": -5.375570775747158,
+      "mean_runtime_seconds": 667.4604356380005,
+      "mean_terminal_return": -3.840057691024435
+    },
+    "signed_only": {
+      "mean_optional_policy_bytes": 98826242.0,
+      "mean_refresh_units": 1104.5,
+      "mean_return_auc": -5.533862721429457,
+      "mean_runtime_seconds": 663.5834840374882,
+      "mean_terminal_return": -2.4550002402999067
+    },
+    "static_prefix": {
+      "mean_optional_policy_bytes": 173225536.0,
+      "mean_refresh_units": 1936.0,
+      "mean_return_auc": -5.433089980250434,
+      "mean_runtime_seconds": 603.8350864939857,
+      "mean_terminal_return": -4.796793782395945
+    }
+  },
+  "best_strong_auc_code": "complete_terminal",
+  "best_strong_terminal_code": "no_refresh",
+  "confirmatory": false,
+  "decision": "stop this controller configuration before an efficacy pilot",
+  "experiment_id": "PISTONBALL-CONTROLLER-HEADROOM-DEVELOPMENT",
+  "freshness_deltas": [
+    -12.588693098298407,
+    1.1341222879684398
+  ],
+  "gates": {
+    "H1_invariants": true,
+    "H2_freshness_headroom": false,
+    "H3_nontrivial_signed_spend": true,
+    "H4_strong_terminal_gain": false,
+    "H5_normalized_headroom": false,
+    "H6_component_value": false,
+    "H7_auc_no_harm": false,
+    "H8_runtime": true
+  },
+  "mean_freshness_headroom": -5.7272854051649835,
+  "mean_signed_minus_best_strong": -2.909408727256621,
+  "normalized_strong_gain": -Infinity,
+  "passed": false,
+  "per_seed": {
+    "79006": {
+      "age_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 182083660,
+        "refresh_units": 2035,
+        "return_auc": 1.942347448229918,
+        "runtime_seconds": 597.1911677689932,
+        "terminal_return": 9.45838656290051,
+        "valid": true
+      },
+      "cache": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 139224656,
+        "refresh_units": 1556,
+        "return_auc": 1.1657992250407863,
+        "runtime_seconds": 600.8886040729994,
+        "terminal_return": 2.2580645793005822,
+        "valid": true
+      },
+      "complete_terminal": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 183246848,
+        "refresh_units": 2048,
+        "return_auc": 6.167811020765087,
+        "runtime_seconds": 597.2276716860069,
+        "terminal_return": 8.273012610238249,
+        "valid": true
+      },
+      "full_refresh": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 6421424092,
+        "refresh_units": 71767,
+        "return_auc": -2.5545955357434647,
+        "runtime_seconds": 604.6921124220244,
+        "terminal_return": -2.844887205212951,
+        "valid": true
+      },
+      "mismatch_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 181099424,
+        "refresh_units": 2024,
+        "return_auc": 1.5340966690717766,
+        "runtime_seconds": 614.9913651809911,
+        "terminal_return": 2.7511612262433864,
+        "valid": true
+      },
+      "mismatch_terminal": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 182978420,
+        "refresh_units": 2045,
+        "return_auc": 1.472486821082065,
+        "runtime_seconds": 617.1814512749843,
+        "terminal_return": 2.2582824423257413,
+        "valid": true
+      },
+      "no_refresh": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 0,
+        "refresh_units": 0,
+        "return_auc": 2.9876350677318633,
+        "runtime_seconds": 601.7934444909915,
+        "terminal_return": 9.743805893085456,
+        "valid": true
+      },
+      "round_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 180562568,
+        "refresh_units": 2018,
+        "return_auc": 4.455766311241466,
+        "runtime_seconds": 598.660706093011,
+        "terminal_return": 4.467195654411037,
+        "valid": true
+      },
+      "signed": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 138777276,
+        "refresh_units": 1551,
+        "return_auc": 1.932611184314146,
+        "runtime_seconds": 674.5001959479996,
+        "terminal_return": 4.8618720677635405,
+        "valid": true
+      },
+      "signed_only": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 105850108,
+        "refresh_units": 1183,
+        "return_auc": 1.6776643738174006,
+        "runtime_seconds": 673.1319973809877,
+        "terminal_return": 7.730606298601157,
+        "valid": true
+      },
+      "static_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 183246848,
+        "refresh_units": 2048,
+        "return_auc": 1.7990816510472427,
+        "runtime_seconds": 606.5098331149784,
+        "terminal_return": 2.70185156154912,
+        "valid": true
+      }
+    },
+    "79007": {
+      "age_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 169467544,
+        "refresh_units": 1894,
+        "return_auc": -12.159837548431739,
+        "runtime_seconds": 610.6705423359817,
+        "terminal_return": -12.196819796952449,
+        "valid": true
+      },
+      "cache": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 112471332,
+        "refresh_units": 1257,
+        "return_auc": -12.283111710167436,
+        "runtime_seconds": 607.5479478389898,
+        "terminal_return": -11.802342479398206,
+        "valid": true
+      },
+      "complete_terminal": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 183246848,
+        "refresh_units": 2048,
+        "return_auc": -12.868663978412014,
+        "runtime_seconds": 593.1860933739808,
+        "terminal_return": -12.739226108589529,
+        "valid": true
+      },
+      "full_refresh": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 6424018896,
+        "refresh_units": 71796,
+        "return_auc": -12.141346424171385,
+        "runtime_seconds": 608.0417810160143,
+        "terminal_return": -10.470981532652644,
+        "valid": true
+      },
+      "mismatch_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 168035928,
+        "refresh_units": 1878,
+        "return_auc": -12.714571276242388,
+        "runtime_seconds": 612.3195358270023,
+        "terminal_return": -12.196819796952449,
+        "valid": true
+      },
+      "mismatch_terminal": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 168035928,
+        "refresh_units": 1878,
+        "return_auc": -12.714571276242388,
+        "runtime_seconds": 606.6655139889917,
+        "terminal_return": -12.196819796952449,
+        "valid": true
+      },
+      "no_refresh": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 0,
+        "refresh_units": 0,
+        "return_auc": -12.517332617465266,
+        "runtime_seconds": 597.3759749119927,
+        "terminal_return": -11.605103820621084,
+        "valid": true
+      },
+      "round_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 165172696,
+        "refresh_units": 1846,
+        "return_auc": -12.733062400502744,
+        "runtime_seconds": 594.1004130349902,
+        "terminal_return": -12.44336812042385,
+        "valid": true
+      },
+      "signed": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 113455568,
+        "refresh_units": 1268,
+        "return_auc": -12.683752735808461,
+        "runtime_seconds": 660.4206753280014,
+        "terminal_return": -12.54198744981241,
+        "valid": true
+      },
+      "signed_only": {
+        "budget_enforcement": "terminal",
+        "optional_policy_bytes": 91802376,
+        "refresh_units": 1026,
+        "return_auc": -12.745389816676314,
+        "runtime_seconds": 654.0349706939887,
+        "terminal_return": -12.64060677920097,
+        "valid": true
+      },
+      "static_prefix": {
+        "budget_enforcement": "prefix",
+        "optional_policy_bytes": 163204224,
+        "refresh_units": 1824,
+        "return_auc": -12.665261611548111,
+        "runtime_seconds": 601.1603398729931,
+        "terminal_return": -12.295439126341009,
+        "valid": true
+      }
+    }
+  },
+  "pilot_or_formal_evidence": false,
+  "signed_minus_best_strong_auc": -2.025144296923694,
+  "signed_minus_best_strong_by_seed": [
+    -4.881933825321916,
+    -0.9368836291913265
+  ],
+  "signed_minus_cache": 0.9320812590243772,
+  "signed_minus_signed_only": -1.3850574507245281,
+  "signed_runtime_ratio_to_no_refresh": 1.113204564489813
+}

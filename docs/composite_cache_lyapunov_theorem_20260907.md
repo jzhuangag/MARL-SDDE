@@ -131,6 +131,14 @@ implementation consequently fixes a smooth SiLU actor and critic. Its
 estimator-specific Taylor and confidence constants remain explicit proof
 obligations rather than being inferred from empirical score activity.
 
+The theorem itself does not require this Taylor/VJP estimator. A more accurate
+sparse implementation can form the predicted owner gradient separately under
+the null cache and each actual one-edge-refreshed cache, then insert their
+alignment bounds directly into (5). This costs `O(Delta_p)` reverse
+evaluations but removes the finite policy-displacement Taylor approximation.
+Both implementations remain subject to the same simultaneous score-error
+event (8); empirical activity is not a confidence certificate.
+
 A hard causal prefix cap may remove positive actions from (6) so that every
 finite experiment satisfies its policy-byte budget exactly.  This does not
 change the minimizer over the remaining feasible set.

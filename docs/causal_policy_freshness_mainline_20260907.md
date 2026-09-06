@@ -241,6 +241,22 @@ normalization fixes `V=1e8` and `beta=83,650.1231` for the next matched
 headroom design; signed-only and cache-only ablations remain mandatory because
 the signed raw curvature is small.
 
+That matched two-seed design has now failed its frozen gate. The proposed
+one-VJP controller trails no-refresh in both seeds, full refresh has opposite
+paired effects (`-12.59` and `+1.13` relative to no-refresh), and the cache
+term degrades signed-only. The result rules out the current linearized
+finite-displacement score and cache weighting; it does not support a pilot.
+It also makes the scientific problem sharper: staleness can stabilize or harm
+learning, so mismatch minimization is not a valid objective by itself.
+
+The paired Lyapunov theorem is estimator-agnostic. The only remaining
+Pistonball repair allowed before stopping this benchmark line is an exact
+sparse counterfactual score: evaluate owner-gradient alignment under each
+actual one-edge cache replacement in the causal cone, with measured
+`O(Delta)` reverse-mode cost. This changes the estimator interface, not the
+budget, learner, or claim. It must pass an outcome-free complexity audit and a
+new frozen headroom gate; otherwise the standard-benchmark mainline stops.
+
 ## Distinction from adjacent work
 
 - [IMPALA](https://proceedings.mlr.press/v80/espeholt18a.html) corrects
@@ -303,12 +319,11 @@ critic/JVP overhead remains a practical failure mode and is reported directly.
 
 ## Immediate execution order
 
-1. freeze a matched-optimizer controller-headroom design around the qualified
-   smooth interface, with random delay,
-   binding finite budgets, and strong static/online comparators;
-2. establish that the signed score has nontrivial equal-resource headroom and
-   audit its replay-only critic/VJP uncertainty and runtime;
-3. only then preregister a small GPU Pistonball pilot with new seeds and
+1. implement and audit the exact sparse counterfactual alignment score,
+   including its measured degree-dependent overhead;
+2. freeze one final matched Pistonball headroom gate without revisiting the
+   failed weights, seeds, or outcomes;
+3. only if it passes, preregister a small GPU Pistonball pilot with new seeds and
    mandatory strong-baseline gates;
 4. run formal seeds and write the full manuscript only if that pilot passes.
 
