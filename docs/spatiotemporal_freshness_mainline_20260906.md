@@ -63,18 +63,27 @@ refreshes inside the certified causal cone.  At receipt epoch `ell(k)`, choose
 the applied mass `alpha_k`.  These variables occur at different filtrations and
 must not be collapsed into one clairvoyant QP.
 
-For every candidate horizon, nested cone shells supply a certified omission
-remainder and an exact edge cost.  The launch decision minimizes
+For every candidate horizon, the cone supplies additive certified packet-bias
+components and an exact edge cost.  The launch decision minimizes
 
 \[
-V\widehat D_k(H,E)+Q_k c_k(H,E)
+V\overline\Gamma_k(H,E)+Q_k c_k(H,E)
 \tag{2}
 \]
 
-by selecting positive net-benefit shells/edges.  The receipt decision minimizes
-the realized scalar quadratic drift bound and has the closed form already
-proved for `alpha_k`.  Thus Lyapunov drift creates all three controls; it is not
-added only after the algorithm is chosen.
+where `Gamma_bar` is the bias--variance debt attached to the new rollout until
+it is consumed.  For fixed `H`, its Cauchy certificate is additive, so the
+controller selects precisely those edges whose debt reduction exceeds their
+queue price.  It then takes the best declared integer horizon.  The receipt
+decision removes the completing packet debt and minimizes the remaining
+scalar quadratic drift bound.  Thus Lyapunov drift creates all three controls;
+it is not added only after the algorithm is chosen.
+
+The key accounting identity is now explicit: packet debt is added at birth,
+grown under every intervening policy update, and removed at receipt.  This
+avoids predicting a future signed return gain at dispatch.  Signed alignment
+is required only for the scalar receipt action, when current learner state is
+available.
 
 ## Theorem stack
 
@@ -84,20 +93,23 @@ added only after the algorithm is chosen.
 2. **Shifted conformal certificate:** split conformal calibrates the trajectory
    tube at a reference policy; a trajectory-KL/Pinsker term corrects bounded
    policy drift.
-3. **Noisy drift comparison:** the causal minimizer competes with every
-   predictable budget-feasible dispatch/receipt policy with a necessary
-   `2 e_k` estimation penalty.
-4. **Finite-time learning/resource theorem:** the average stationarity measure
-   is bounded by initialization, `O(1/V)` queue price, Markov/delay error,
-   causal-cone error, and comparator remainder; the pathwise average budget
-   violation is `O(V/K)` under the proved queue cap.
+3. **Packet-debt cancellation:** the fixed coefficients in the packet history
+   energy cancel conditional stale-gradient bias and variance when the packet
+   is consumed; other pending packets contribute an explicit interference
+   remainder.
+4. **Noisy drift comparison and finite time:** the causal minimizer competes
+   with every predictable budget-feasible launch policy and the full-cap
+   receipt comparator with the necessary `2 e_k` penalties.  The theorem
+   bounds weighted stationarity and gives a pathwise communication budget.
 5. **Dynamic-over-static separation:** disjoint launch-state cones yield an
    `m`-fold edge-cost separation over any static graph with uniform zero cone
    error.
 
-The still-open theorem interface is the executable critic estimate of signed
-within-cone drift benefit and the full launch-to-receipt remainder under policy
-changes during a random delay.
+The launch-to-receipt remainder is closed conditionally in
+`packet_debt_lyapunov_theorem_20260906.md`.  The still-open theorem interface
+is an executable centralized-critic/control-split confidence bound for the
+receipt-time scalar score and a concrete exact-game instantiation of all
+certificate constants.
 
 ## Empirical package required for an ICML submission
 
@@ -122,7 +134,8 @@ single boundary experiment; they must not fragment the publication narrative.
 ## Immediate gates
 
 1. Confirm the causal tube on fresh CPU calibration/holdout seeds.
-2. Close the within-cone drift estimator and random-delay receipt remainder.
+2. Instantiate the receipt-score estimator and packet-debt constants on an
+   exact factored Markov game.
 3. Demonstrate CPU synthetic controller headroom over the strongest static
    horizon/graph envelope.
 4. Only then request GPU resources for Pistonball policy training.
