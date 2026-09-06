@@ -41,6 +41,8 @@ def analyze(paths: Iterable[Path]) -> dict[str, Any]:
         for key in invariant_keys
     ):
         raise ValueError("matched-resource development invariants differ")
+    if any(record["config"] != reference["config"] for record in records):
+        raise ValueError("development configurations differ")
     if any(
         not record["finite"]
         or not record["budget_feasible"]
@@ -50,6 +52,15 @@ def analyze(paths: Iterable[Path]) -> dict[str, Any]:
         raise ValueError("a development run is invalid")
 
     rows: dict[str, dict[str, float | int]] = {}
+    transition_grids = {
+        tuple(int(row["actor_transitions"]) for row in record["evaluations"])
+        for record in records
+    }
+    initial_returns = {
+        float(record["evaluations"][0]["return"]) for record in records
+    }
+    if len(transition_grids) != 1 or len(initial_returns) != 1:
+        raise ValueError("evaluation grids or common initialization differ")
     for scheduler, record in by_scheduler.items():
         evaluations = record["evaluations"]
         rows[scheduler] = {
@@ -84,6 +95,7 @@ def analyze(paths: Iterable[Path]) -> dict[str, Any]:
         "pilot_or_formal_evidence": False,
         "all_finite": all_finite,
         "seed": reference["seed"],
+        "initial_return": next(iter(initial_returns)),
         "rows": rows,
         "best_nonmain_terminal_scheduler": best_terminal_name,
         "best_nonmain_auc_scheduler": best_auc_name,

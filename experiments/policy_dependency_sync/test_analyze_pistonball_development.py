@@ -19,6 +19,7 @@ def test_development_analyzer_uses_higher_return_and_auc(tmp_path: Path) -> None
         record = {
             "scheduler": scheduler,
             "seed": 7,
+            "config": {"budget_rate": 0.5},
             "allowed_refresh_units": 5,
             "launched_actor_transitions": 100,
             "spent_refresh_units": 4,

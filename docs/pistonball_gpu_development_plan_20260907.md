@@ -46,3 +46,20 @@ created no result JSON.  The batch script now uses a colon-delimited list.
 The scientific runner, seed, methods, configurations, and analyzer are
 unchanged.  Only failed task indices may be resubmitted; task 0 must not be
 rerun or overwritten.
+
+## Operational amendment 2: bounded image preprocessing memory
+
+The corrected array began Python normally, but signed, signed-only, and
+no-refresh tasks were killed by the 32 GB host-memory cgroup before producing
+JSON; mismatch and complete-burst were stopped before the same failure.  No
+return or curve was observed.  A code audit identified a dominant avoidable
+allocation candidate: repeated full-resolution uint8-to-float32 CPU image
+interpolation before replay compression.  The preprocessing now uses deterministic center-index uint8
+subsampling, whose largest intermediate is bounded by the compressed spatial
+axis rather than a full float image batch.
+
+This is a learner implementation change, so none of the killed/stopped tasks
+may be combined with later results.  A new commit and new output root must first
+pass a bounded 512-launch memory qualification.  Only then may the original
+development matrix be restarted from scratch; no pilot/formal population is
+affected because none exists.

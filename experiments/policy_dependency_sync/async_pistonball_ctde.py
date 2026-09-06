@@ -156,7 +156,7 @@ class CompressedReplay:
 def resize_uint8_images(
     images: np.ndarray, output_height: int, output_width: int
 ) -> np.ndarray:
-    """Deterministically resize one image or an image batch for replay."""
+    """Deterministically subsample one image or batch without float workspaces."""
 
     array = np.asarray(images)
     single = array.ndim == 3
@@ -164,14 +164,19 @@ def resize_uint8_images(
         array = array[None]
     if array.ndim != 4 or array.shape[-1] != 3:
         raise ValueError("images must have shape HxWx3 or NxHxWx3")
-    tensor = torch.as_tensor(array, dtype=torch.float32).permute(0, 3, 1, 2)
-    resized = F.interpolate(
-        tensor,
-        size=(int(output_height), int(output_width)),
-        mode="bilinear",
-        align_corners=False,
+    if output_height <= 0 or output_width <= 0:
+        raise ValueError("output dimensions must be positive")
+    source_height, source_width = array.shape[1:3]
+    row_index = np.minimum(
+        ((np.arange(int(output_height)) + 0.5) * source_height / int(output_height)).astype(int),
+        source_height - 1,
     )
-    result = resized.round().clamp(0, 255).to(torch.uint8).cpu().numpy()
+    column_index = np.minimum(
+        ((np.arange(int(output_width)) + 0.5) * source_width / int(output_width)).astype(int),
+        source_width - 1,
+    )
+    resized = array[:, row_index, :, :][:, :, column_index, :]
+    result = np.ascontiguousarray(resized.transpose(0, 3, 1, 2), dtype=np.uint8)
     return result[0] if single else result
 
 
