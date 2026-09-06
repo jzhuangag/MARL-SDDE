@@ -9,6 +9,7 @@ receipt delays.  It is not a standard MARL benchmark.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 from itertools import combinations
 from math import sqrt
 from typing import Mapping, Sequence
@@ -19,6 +20,7 @@ from .factored_markov_packet import (
     donor_order,
     global_hessian,
     horizon_certificate,
+    prospective_offsets,
 )
 from .packet_debt import (
     HorizonCertificate,
@@ -44,6 +46,7 @@ POLICIES = (
     "packet_debt_fixed_step",
     "packet_debt_oracle_receipt",
     "signed_oracle_graph_h4",
+    "signed_online_model_graph_h4",
     "no_refresh_full_h4",
     "packet_debt_full_h4",
     "largest_mismatch_h4",
@@ -89,6 +92,8 @@ class Packet:
     control_standard_normal: float
     update_standard_normal: float
     step_cap: float
+    conditional_row: np.ndarray
+    cache_at_launch: np.ndarray
 
 
 def make_cells() -> list[AsyncGameCell]:
@@ -242,20 +247,29 @@ def _launch_choice(
 
 
 def _signed_h4_choice(
-    certificate: HorizonCertificate,
+    eligible_edges: Sequence[tuple[int, int]],
     conditional_row: np.ndarray,
     owner: int,
     theta: np.ndarray,
-    target: np.ndarray,
+    score_reference: np.ndarray,
     cache: np.ndarray,
     hessian: np.ndarray,
+    step_cap: float,
+    smoothness: float,
+    gradient_variance: float,
     message_queue: float,
     learning_weight: float,
 ) -> tuple[tuple[tuple[int, int], ...], float]:
-    """Exact synthetic launch score; no future state or packet noise is used."""
+    """Minimize a signed launch score using only the supplied predictable state.
 
-    edges = tuple(certificate.stale_radius_by_edge)
-    current_gradient = float(hessian[owner] @ (theta - target))
+    ``score_reference`` is the true target only for the explicitly named oracle
+    policy.  The online policy passes its past-packet LMS estimate.  Keeping the
+    environment target out of this helper's interface makes that separation
+    auditable.
+    """
+
+    edges = tuple(eligible_edges)
+    current_gradient = float(hessian[owner] @ (theta - score_reference))
     best = None
     # The executable graph action is null or one causal-cone refresh.  Repeated
     # launches still create a dynamic graph, while the exact minimization costs
@@ -268,14 +282,16 @@ def _signed_h4_choice(
                     raise ValueError("candidate edge has the wrong owner")
                 candidate_cache[donor] = theta[donor]
             candidate_cache[owner] = theta[owner]
-            mean_gradient = float(conditional_row @ (candidate_cache - target))
+            mean_gradient = float(
+                conditional_row @ (candidate_cache - score_reference)
+            )
             learning_score = (
-                -certificate.step_cap * current_gradient * mean_gradient
+                -step_cap * current_gradient * mean_gradient
                 + 0.5
-                * certificate.smoothness
-                * certificate.step_cap
-                * certificate.step_cap
-                * (mean_gradient * mean_gradient + certificate.gradient_variance)
+                * smoothness
+                * step_cap
+                * step_cap
+                * (mean_gradient * mean_gradient + gradient_variance)
             )
             index = learning_weight * learning_score + message_queue * len(selected)
             row = (float(index), len(selected), tuple(map(repr, selected)), selected)
@@ -310,6 +326,7 @@ def _receipt_step(
     if policy in {
         "packet_debt_fixed_step",
         "signed_oracle_graph_h4",
+        "signed_online_model_graph_h4",
         "no_refresh_full_h4",
         "packet_debt_full_h4",
         "largest_mismatch_h4",
@@ -360,6 +377,11 @@ def simulate(
     target = base_target[permutation]
     theta = base_theta[permutation] + 0.025 * paths["initial_noise"]
     cache = np.tile(theta, (agents, 1))
+    # The reference estimator must be equivariant to a translation of the
+    # parameter coordinates.  Initializing at the observable current iterate
+    # preserves this property; a zero-vector initialization would create an
+    # artificial dependence on the arbitrary origin of parameter space.
+    target_estimate = theta.copy()
     hessian = global_hessian(agents, 0.4, cell.coupling)
     step_cap = 0.04
     learning_weight = sqrt(float(launches))
@@ -372,13 +394,14 @@ def simulate(
     mode_horizon_sum = {0: 0.0, 1: 0.0}
     mode_counts = {0: 0, 1: 0}
     graph_supports = set()
+    graph_trace_digest = hashlib.sha256()
     round_robin_pointer = np.zeros(agents, dtype=int)
     baseline_token = 0.0
     accepted_steps = 0
     cumulative_objective = 0.0
 
     def receive_due(event: int, flush: bool = False) -> None:
-        nonlocal pending, theta, accepted_steps
+        nonlocal pending, theta, target_estimate, accepted_steps
         while True:
             due_indices = [
                 index
@@ -395,6 +418,24 @@ def simulate(
             update_gradient = packet.mean_gradient + sqrt(
                 packet.gradient_variance
             ) * packet.update_standard_normal
+            if policy == "signed_online_model_graph_h4":
+                observed_projection = float(
+                    packet.conditional_row @ packet.cache_at_launch
+                    - update_gradient
+                )
+                prediction_error = float(
+                    packet.conditional_row @ target_estimate
+                    - observed_projection
+                )
+                denominator = float(
+                    packet.conditional_row @ packet.conditional_row
+                )
+                target_estimate -= (
+                    0.25
+                    * packet.conditional_row
+                    * prediction_error
+                    / max(denominator, 1e-12)
+                )
             theta[packet.owner] -= alpha * update_gradient
             cache[packet.owner, packet.owner] = theta[packet.owner]
             if alpha > 0.0:
@@ -413,6 +454,7 @@ def simulate(
             "packet_debt_fixed_step",
             "packet_debt_oracle_receipt",
             "signed_oracle_graph_h4",
+            "signed_online_model_graph_h4",
             "no_refresh_full_h4",
             "packet_debt_full_h4",
             "largest_mismatch_h4",
@@ -441,18 +483,34 @@ def simulate(
         )
         item_h4 = {certificate.horizon: certificate for certificate in certificates}[4]
         row_h4 = rows[4]
-        if policy == "signed_oracle_graph_h4":
+        if policy in {"signed_oracle_graph_h4", "signed_online_model_graph_h4"}:
             item = item_h4
+            score_target = (
+                target if policy == "signed_oracle_graph_h4" else target_estimate
+            )
+            mode_values = _mode_parameters(mode)
+            eligible_offsets = prospective_offsets(
+                agents - 1,
+                offset,
+                mode_values["move_probability"],
+                4,
+                0.9,
+            )
+            order = donor_order(owner, agents)
+            eligible_edges = tuple((order[index], owner) for index in eligible_offsets)
             selected, _ = _signed_h4_choice(
-                item,
-                row_h4,
-                owner,
-                theta,
-                target,
-                cache,
-                hessian,
-                resource_queues["message"],
-                learning_weight,
+                eligible_edges=eligible_edges,
+                conditional_row=row_h4,
+                owner=owner,
+                theta=theta,
+                score_reference=score_target,
+                cache=cache,
+                hessian=hessian,
+                step_cap=item.step_cap,
+                smoothness=item.smoothness,
+                gradient_variance=item.gradient_variance,
+                message_queue=resource_queues["message"],
+                learning_weight=learning_weight,
             )
         elif policy == "no_refresh_full_h4":
             item = item_h4
@@ -560,6 +618,8 @@ def simulate(
         mode_horizon_sum[mode] += horizon
         mode_counts[mode] += 1
         graph_supports.add(tuple(sorted(selected)))
+        graph_trace_digest.update(repr(tuple(sorted(selected))).encode("ascii"))
+        graph_trace_digest.update(b"\n")
         message_cost = float(len(selected))
         environment_cost = float(item.base_cost_by_resource["environment"])
         messages += message_cost
@@ -595,6 +655,8 @@ def simulate(
                 control_standard_normal=float(paths["control_noise"][event]),
                 update_standard_normal=float(paths["update_noise"][event]),
                 step_cap=step_cap,
+                conditional_row=row.copy(),
+                cache_at_launch=refreshed_cache.copy(),
             )
         )
         next_packet_id += 1
@@ -616,6 +678,8 @@ def simulate(
         "slow_mean_horizon": mode_horizon_sum[0] / max(1, mode_counts[0]),
         "fast_mean_horizon": mode_horizon_sum[1] / max(1, mode_counts[1]),
         "distinct_graph_supports": len(graph_supports),
+        "graph_trace_sha256": graph_trace_digest.hexdigest().upper(),
+        "target_estimation_error": float(np.linalg.norm(target_estimate - target)),
         "finite": bool(np.isfinite(theta).all() and np.isfinite(terminal)),
     }
 

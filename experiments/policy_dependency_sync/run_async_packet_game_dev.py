@@ -36,16 +36,26 @@ STRONG_BASELINES = (
     *FIXED_PAIR_POLICIES,
 )
 
-EVALUATED_POLICIES = ("signed_oracle_graph_h4", *STRONG_BASELINES)
-
-
-def evaluate(seeds: list[int], launches: int, grid: str = "legacy") -> dict:
+def evaluate(
+    seeds: list[int],
+    launches: int,
+    grid: str = "legacy",
+    proposed_policy: str = "signed_oracle_graph_h4",
+) -> dict:
+    if proposed_policy not in {
+        "signed_oracle_graph_h4",
+        "signed_online_model_graph_h4",
+    }:
+        raise ValueError("unknown proposed policy")
+    evaluated_policies = (proposed_policy, *STRONG_BASELINES)
+    if proposed_policy != "signed_oracle_graph_h4":
+        evaluated_policies = (*evaluated_policies, "signed_oracle_graph_h4")
     experiment_cells = make_cells() if grid == "legacy" else make_budget_cells()
     cells = []
     for cell in experiment_cells:
         rows = {
             policy: [simulate(cell, policy, seed, launches) for seed in seeds]
-            for policy in EVALUATED_POLICIES
+            for policy in evaluated_policies
         }
         aggregates = {
             policy: {
@@ -87,9 +97,9 @@ def evaluate(seeds: list[int], launches: int, grid: str = "legacy") -> dict:
             feasible_baselines,
             key=lambda name: aggregates[name]["terminal_risk"],
         )
-        proposed = aggregates["signed_oracle_graph_h4"]["risk"]
+        proposed = aggregates[proposed_policy]["risk"]
         baseline = aggregates[strongest]["risk"]
-        proposed_terminal = aggregates["signed_oracle_graph_h4"]["terminal_risk"]
+        proposed_terminal = aggregates[proposed_policy]["terminal_risk"]
         baseline_terminal = aggregates[strongest_terminal]["terminal_risk"]
         cells.append(
             {
@@ -124,7 +134,18 @@ def evaluate(seeds: list[int], launches: int, grid: str = "legacy") -> dict:
         )
         for delay in (2, 5)
     }
-    proposed = [row["aggregates"]["signed_oracle_graph_h4"] for row in cells]
+    proposed = [row["aggregates"][proposed_policy] for row in cells]
+    oracle_recovery = []
+    if proposed_policy != "signed_oracle_graph_h4":
+        for row in active_rows:
+            aggregates = row["aggregates"]
+            baseline_name = row["strongest_terminal_baseline"]
+            baseline = aggregates[baseline_name]["terminal_risk"]
+            oracle = aggregates["signed_oracle_graph_h4"]["terminal_risk"]
+            observed = aggregates[proposed_policy]["terminal_risk"]
+            denominator = baseline - oracle
+            if denominator > 0.0:
+                oracle_recovery.append((baseline - observed) / denominator)
     return {
         "status": "development_only",
         "scientific_outcome_authorized": False,
@@ -182,17 +203,20 @@ def evaluate(seeds: list[int], launches: int, grid: str = "legacy") -> dict:
             ),
             "maximum_message_excess": float(
                 max(
-                    row["aggregates"]["signed_oracle_graph_h4"]["messages_per_launch"]
+                    row["aggregates"][proposed_policy]["messages_per_launch"]
                     - row["message_budget"]
                     for row in cells
                 )
             ),
             "maximum_environment_excess": float(
                 max(
-                    row["aggregates"]["signed_oracle_graph_h4"]["environment_per_launch"]
+                    row["aggregates"][proposed_policy]["environment_per_launch"]
                     - row["environment_budget"]
                     for row in cells
                 )
+            ),
+            "median_oracle_terminal_headroom_recovery": float(
+                np.median(oracle_recovery) if oracle_recovery else 1.0
             ),
         },
     }
@@ -203,12 +227,19 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--launches", type=int, default=240)
     parser.add_argument("--seeds", type=int, default=4)
+    parser.add_argument("--seed-start", type=int, default=43001)
     parser.add_argument("--grid", choices=("legacy", "budget"), default="legacy")
+    parser.add_argument(
+        "--proposed-policy",
+        choices=("signed_oracle_graph_h4", "signed_online_model_graph_h4"),
+        default="signed_oracle_graph_h4",
+    )
     args = parser.parse_args()
     result = evaluate(
-        [43001 + index for index in range(args.seeds)],
+        [args.seed_start + index for index in range(args.seeds)],
         args.launches,
         grid=args.grid,
+        proposed_policy=args.proposed_policy,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
