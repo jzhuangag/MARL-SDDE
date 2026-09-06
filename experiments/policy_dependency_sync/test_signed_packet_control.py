@@ -93,3 +93,26 @@ def test_paired_stationarity_bound_decreases_at_root_rate() -> None:
             )
         )
     assert values == pytest.approx([0.1, 0.05, 0.025])
+
+
+def test_stochastic_joint_budget_scaling_is_cube_root() -> None:
+    values = []
+    budget_remainders = []
+    for launches in (125, 1000, 8000):
+        step = launches ** (-1.0 / 3.0)
+        weight = launches ** (2.0 / 3.0)
+        values.append(
+            paired_stationarity_upper(
+                initial_suboptimality=1.0,
+                initial_queue=0.0,
+                launches=launches,
+                learning_weight=weight,
+                descent_mass=step,
+                queue_drift_constant=1.0,
+                comparator_remainder_sum=launches * step * step,
+                score_error_sum=0.0,
+            )
+        )
+        budget_remainders.append(weight / launches)
+    assert np.all(np.asarray(values[1:]) < np.asarray(values[:-1]))
+    assert budget_remainders == pytest.approx([0.2, 0.1, 0.05])

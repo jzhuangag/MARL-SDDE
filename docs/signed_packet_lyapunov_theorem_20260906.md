@@ -212,9 +212,17 @@ Queue iteration also yields
 When the null action is free, every positive action costs at least `c_min`,
 and estimated drift scores are uniformly bounded, the standard DPP threshold
 gives a deterministic `O(V)` queue cap.
-Thus `V=sqrt(N)` gives an `O(N^(-1/2))` average-budget remainder.
-The stationarity rate is governed by the comparator remainder and score error;
-the theorem does not call a fixed error neighborhood exact convergence.
+Thus `V=sqrt(N)` gives an `O(N^(-1/2))` average-budget remainder, but this fact
+alone does not give the same stochastic stationarity rate when the update step
+also vanishes.
+
+For bounded packet variance, a comparator remainder of order `w_p^2` per
+packet, constant `w_p=N^(-1/3)`, and `V=N^(2/3)`, equation (12) and the queue
+cap yield matching `O(N^(-1/3))` stationarity and average-budget remainders,
+apart from normalized score-estimation and Markov-bias terms.
+In a deterministic or negligible-variance regime, a fixed stable step and
+`V=sqrt(N)` recover the usual `O(N^(-1/2))` drift-plus-penalty tradeoff.
+The theorem does not call a fixed error neighborhood exact convergence.
 
 ## 5. Favorable and unfavorable phases
 
