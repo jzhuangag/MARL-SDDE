@@ -98,3 +98,18 @@ Its last conditional candidate, factor-local correction of mixed-version
 trajectories, failed the model-free performance-bound gate before any outcome
 experiment.  The proof, counterexamples, literature boundary and next decision
 are recorded in `docs/icml2027_problem_reset_audit_20260905.md`.
+
+## 2026-09-06 strategic-clock audit
+
+A genuinely different problem-level candidate was subsequently frozen before
+execution: use Lyapunov virtual clocks to prevent unknown actor availability
+from distorting the joint policy path.  Its exact one-state cooperative-game
+gate completed correctly but failed the scientific entry conditions.  Median
+raw-to-synchronous normalized AUC loss was only `0.00521352`; a
+population-selected fixed block scaling was strongest in all 194 cells; and
+the Lyapunov rule beat that strong comparator in none of the 12 headroom-active
+cells.  Balanced and single-basin controls also incurred large costs.
+
+Accordingly, strategic-clock equalization is closed rather than tuned or
+renamed.  Full provenance and the frozen gate ledger are in
+`docs/validation_strategic_clock_exact_gate_20260906.md`.
