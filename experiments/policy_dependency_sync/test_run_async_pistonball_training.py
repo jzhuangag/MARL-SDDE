@@ -30,6 +30,7 @@ def test_small_training_state_machine_is_finite_and_budget_feasible() -> None:
         device_name="cpu",
     )
     assert result["finite"]
+    assert result["deterministic_algorithms"]
     assert result["budget_feasible"]
     assert result["remaining_packets_after_drain"] == 0
     assert result["launched_gradient_packets"] == 4

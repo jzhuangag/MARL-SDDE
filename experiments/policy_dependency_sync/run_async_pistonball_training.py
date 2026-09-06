@@ -369,6 +369,10 @@ def run_training(
     if scheduler not in SCHEDULERS:
         raise ValueError(f"scheduler must be one of {SCHEDULERS}")
     device = _device(device_name)
+    torch.use_deterministic_algorithms(True)
+    if hasattr(torch.backends, "cudnn"):
+        torch.backends.cudnn.benchmark = False
+        torch.backends.cudnn.deterministic = True
     torch.manual_seed(int(seed))
     if device.type == "cuda":
         torch.cuda.manual_seed_all(int(seed))
@@ -599,6 +603,7 @@ def run_training(
         "seed": int(seed),
         "config": asdict(config),
         "device": str(device),
+        "deterministic_algorithms": torch.are_deterministic_algorithms_enabled(),
         "torch": torch.__version__,
         "python": platform.python_version(),
         "evaluations": evaluation_rows,

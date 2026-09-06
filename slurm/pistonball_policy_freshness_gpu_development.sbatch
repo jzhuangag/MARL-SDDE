@@ -18,6 +18,7 @@ unset HIP_VISIBLE_DEVICES
 export PYGAME_HIDE_SUPPORT_PROMPT=1
 export SDL_VIDEODRIVER=dummy
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 
 cd "${CPF_ROOT}/code"
 actual_commit="$(git rev-parse HEAD)"
@@ -72,6 +73,7 @@ path, scheduler = sys.argv[1:]
 result = json.load(open(path, encoding="utf-8"))
 assert result["scheduler"] == scheduler
 assert result["device"] == "cuda"
+assert result["deterministic_algorithms"]
 assert result["finite"]
 assert result["budget_feasible"]
 assert result["remaining_packets_after_drain"] == 0

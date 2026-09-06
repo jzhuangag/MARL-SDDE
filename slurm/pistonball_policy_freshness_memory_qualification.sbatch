@@ -17,6 +17,7 @@ unset HIP_VISIBLE_DEVICES
 export PYGAME_HIDE_SUPPORT_PROMPT=1
 export SDL_VIDEODRIVER=dummy
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 
 cd "${CPF_ROOT}/code"
 test "$(git rev-parse HEAD)" = "${CPF_EXPECTED_COMMIT}"
@@ -50,6 +51,7 @@ import sys
 
 result = json.load(open(sys.argv[1], encoding="utf-8"))
 assert result["finite"] and result["budget_feasible"]
+assert result["deterministic_algorithms"]
 assert result["remaining_packets_after_drain"] == 0
 actual_cycles = sum(row["segment_cycles"] for row in result["launch_trace"])
 assert result["launched_actor_transitions"] == 20 * actual_cycles

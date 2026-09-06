@@ -87,3 +87,16 @@ ends.  Hence every method receives exactly 327,680 actor transitions and the
 same evaluation transition grid.  This learner change requires a fresh memory
 qualification and a completely new development output root; the successful
 pre-amendment qualification is retained as systems evidence only.
+
+## Operational amendment 4: deterministic GPU placebo contract
+
+The first matched-transition matrix completed, but `signed_only` selected no
+refreshes while its training reward trace differed from `no_refresh`.  The two
+methods were byte-identical under the same CPU seed, so the GPU discrepancy is
+not an algorithmic effect.  The runner now enables deterministic PyTorch
+algorithms and disables cuDNN benchmarking, while every Pistonball Slurm entry
+sets `CUBLAS_WORKSPACE_CONFIG=:4096:8` before Python starts.  The result object
+records the deterministic-algorithm state and batch validation requires it.
+The completed pre-amendment matrix remains useful only for this diagnosis; its
+return differences cannot be used as method evidence.  A fresh qualification
+and fresh matrix root are required.

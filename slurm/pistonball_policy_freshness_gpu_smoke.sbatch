@@ -17,6 +17,7 @@ unset HIP_VISIBLE_DEVICES
 export PYGAME_HIDE_SUPPORT_PROMPT=1
 export SDL_VIDEODRIVER=dummy
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
 
 cd "${CPF_ROOT}/code"
 actual_commit="$(git rev-parse HEAD)"
@@ -58,11 +59,12 @@ import sys
 path = sys.argv[1]
 result = json.load(open(path, encoding="utf-8"))
 assert result["device"] == "cuda"
+assert result["deterministic_algorithms"]
 assert result["finite"]
 assert result["budget_feasible"]
 assert result["remaining_packets_after_drain"] == 0
 assert result["launched_actor_transitions"] == 64 * 4 * 20
-assert result["received_packets"] == 64 - (32 // 4) + 1
+assert result["received_packets"] == result["launched_gradient_packets"]
 print(
     {
         "spent_refresh_units": result["spent_refresh_units"],
