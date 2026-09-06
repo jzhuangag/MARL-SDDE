@@ -317,16 +317,20 @@ over the strongest matched non-oracle scheduler while satisfying the message
 budget.  Wall-clock improvement is supportive rather than necessary; excessive
 critic/JVP overhead remains a practical failure mode and is reported directly.
 
-## Immediate execution order
+## Final benchmark decision (2026-09-07)
 
-1. implement and audit the exact sparse counterfactual alignment score,
-   including its measured degree-dependent overhead;
-2. freeze one final matched Pistonball headroom gate without revisiting the
-   failed weights, seeds, or outcomes;
-3. only if it passes, preregister a small GPU Pistonball pilot with new seeds and
-   mandatory strong-baseline gates;
-4. run formal seeds and write the full manuscript only if that pilot passes.
+The exact sparse counterfactual score audit at commit `8962d1a` failed its
+pre-outcome complexity gate. The score was nonzero and active, and its measured
+runtime ratio to no refresh was 1.375, but the registered causal cone required
+9--18 reverse evaluations rather than at most eight. Thus standard Pistonball
+does not instantiate the assumed low-degree policy-dependency factorization.
 
-This sequence advances the one surviving thesis and does not reopen the
-discarded participation, unsigned graph, online-horizon, or generic
-wall-clock-recovery routes.
+Per the frozen decision rule, there will be no further Pistonball headroom
+matrix, pilot, or formal run for this mainline. Pruning the observed cone,
+relaxing the gate, or replacing the score after seeing this result would be a
+new method rather than a validation. The conditional discrete Lyapunov theory
+and the exact causal estimator remain useful research artifacts, but the
+present problem--benchmark--algorithm package is not an ICML-ready positive
+paper. Any continuation must begin with a new formulation-level feasibility
+argument and outcome-free headroom certificate, not another experiment number
+on this benchmark.
