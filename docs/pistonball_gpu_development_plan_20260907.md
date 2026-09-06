@@ -107,3 +107,9 @@ adaptive average pooling.  Both encoders receive fixed compressed geometry, so
 their adaptive layers are replaced by fixed `AvgPool2d(4,4)` layers with the
 same 4-by-2 actor and 4-by-4 critic output shapes.  Determinism remains strict;
 the error is not downgraded to a warning.
+
+Before spending five full development runs, a two-method placebo qualification
+uses development-only seed 79002 for 512 launches.  If `signed_only` selects no
+edge, its complete launch trace, training reward, and evaluation rows must be
+identical to `no_refresh`.  A mismatch blocks the full matrix even when both
+jobs otherwise finish.
