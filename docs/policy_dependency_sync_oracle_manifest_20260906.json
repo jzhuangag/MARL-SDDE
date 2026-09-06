@@ -1,0 +1,81 @@
+{
+  "experiment_id": "PDSG-001-exact-oracle-headroom",
+  "parent_design_commit": "3cfbc8c20b1c7b7dfa840a81d0a924592923e413",
+  "status": "frozen_before_outcome_execution",
+  "model": {
+    "agents": 4,
+    "horizon": 180,
+    "strong_convexity": 0.6,
+    "step_size": 0.06,
+    "gradient_noise_std": 0.02,
+    "target": [1.0, -0.7, 0.4, -1.1],
+    "initial": [-1.1, 1.0, -0.8, 0.9],
+    "state_count": 3,
+    "state_stay_probabilities": [0.3333333333333333, 0.8, 0.95],
+    "communication_delays": [0, 2, 5],
+    "message_rates": [0.5, 1.0],
+    "owner_profiles": ["round_robin", "imbalanced"],
+    "topology_families": ["rotating_star", "rotating_path", "rotating_dense", "static_dense", "uncoupled"],
+    "coupling_scales": [0.25, 0.9]
+  },
+  "seeds": [92001, 92002, 92003, 92004, 92005, 92006, 92007, 92008],
+  "policies": [
+    "no_refresh",
+    "periodic_full",
+    "round_robin_all",
+    "oldest_cache",
+    "largest_mismatch",
+    "active_oldest",
+    "best_fixed_mapping",
+    "weighted_mismatch",
+    "one_step_oracle",
+    "unbudgeted_full_refresh"
+  ],
+  "population_rules": {
+    "active": "topology family begins with rotating_, coupling_scale=0.9, and state_stay_probability in {0.8,0.95}",
+    "iid_control": "topology family begins with rotating_ and state_stay_probability=1/3",
+    "low_coupling_control": "topology family begins with rotating_ and coupling_scale=0.25",
+    "static_control": "topology_family=static_dense",
+    "uncoupled_control": "topology_family=uncoupled"
+  },
+  "comparators": {
+    "strong_causal_envelope": [
+      "no_refresh",
+      "periodic_full",
+      "round_robin_all",
+      "oldest_cache",
+      "largest_mismatch",
+      "active_oldest"
+    ],
+    "strong_outcome_aware_static": "best_fixed_mapping selected per registered cell by geometric cumulative expected-potential risk over all registered seeds",
+    "proposed_theory_facing_rule": "weighted_mismatch",
+    "optimistic_dynamic_ceiling": "one_step_oracle",
+    "cost_unconstrained_reference": "unbudgeted_full_refresh"
+  },
+  "resource_accounting": {
+    "one_directed_policy_refresh": 1.0,
+    "token_bucket_initial_credit": 0.0,
+    "token_bucket_capacity": 6.0,
+    "all_budgeted_policies_must_not_exceed": "message_rate * horizon",
+    "refresh_delay": "a transmitted cache receives the source parameter from k-delay",
+    "environment_steps": "identical horizon for every method-seed row"
+  },
+  "mandatory_gates": {
+    "G1": "all values finite, identical horizons, and no message-budget violation",
+    "G2": "median active one_step_oracle improvement over the strongest registered budgeted comparator is at least 0.10",
+    "G3": "one_step_oracle strictly improves at least 0.60 of active cells",
+    "G4": "weighted_mismatch retains at least 0.70 of the positive oracle gain in median and improves at least 0.60 of active cells",
+    "G5": "maximum weighted_mismatch loss relative to the strongest comparator is at most 0.01 in static and uncoupled controls",
+    "G6": "oracle improvement is positive for every registered nonzero Markov persistence and communication delay in the active population",
+    "G7": "weighted_mismatch selected-edge identity changes at least once in at least 0.50 of active method-seed rows",
+    "G8": "weighted_mismatch aggregate active risk is lower than both largest_mismatch and active_oldest",
+    "G9": "best_fixed_mapping is selected across seeds at cell level, never per seed or trajectory",
+    "G10": "byte-identical clean reproduction after G1-G9 pass"
+  },
+  "stopping_rule": "Any failure among G1-G9 stops reproduction, sampled pilots, formal seeds, standard MARL benchmarks, GPU, and HPC4. No threshold, population, baseline, or seed may be changed after the primary outcome run.",
+  "excluded_outcomes": [
+    "T-070 through T-083 scientific outcomes",
+    "strategic-clock exact-gate outcomes",
+    "all EXP-017 outcomes"
+  ]
+}
