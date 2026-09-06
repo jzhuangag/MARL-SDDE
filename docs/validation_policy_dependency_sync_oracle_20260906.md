@@ -32,6 +32,7 @@ and no refresh; the registered drift oracle still improves every active cell.
   including the fixed-mapping search;
 - seeds: 92001--92008;
 - targeted tests before execution: `7 passed in 0.29s`;
+- post-derivation regression: `1450 passed, 7 skipped in 237.40s`;
 - local CPU only.
 
 The ignored raw result is
@@ -108,4 +109,3 @@ MARL, or that a standard benchmark contains the same headroom.
 
 The high-level architecture remains a candidate; the frozen unsigned
 controller is permanently rejected.
-
