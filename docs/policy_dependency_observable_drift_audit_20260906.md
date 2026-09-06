@@ -8,14 +8,19 @@ new outcome experiment, pilot, formal seed set, GPU job, or HPC4 operation.
 ## 1. Decision
 
 The controlled strategic-freshness problem remains viable, but the PDSG-001
-oracle is not directly executable.  A causal controller can instead minimize a
-confidence-valid upper bound on the same one-step Lyapunov drift.  The bound has
-a closed-form step for each candidate edge and an `O(deg(i))` edge comparison
+oracle is not directly executable.  A causal controller can minimize an
+estimated upper bound on the same one-step Lyapunov drift.  The bound has a
+closed-form step for each candidate edge and an `O(deg(i))` edge comparison
 once its predictable statistics are available.
 
-The interface is conditionally feasible.  It is not theorem-complete because
-the Markov confidence radii, delayed launch/receipt history term, and deep-MARL
-autodiff cost have not yet been established.
+The pathwise confidence version below is a valid robust construction but is
+not the primary proposed algorithm.  Earlier project evidence found analogous
+per-packet simultaneous certificates empirically vacuous.  The primary route
+therefore uses an expectation-level stochastic drift oracle with a cumulative
+selection-error term; it does not claim that every realized refresh is
+individually harmless.  The interface remains incomplete because the Markov
+mean-error bound, delayed launch/receipt history term, and deep-MARL autodiff
+cost have not yet been established.
 
 ## 2. Information available when an edge is chosen
 
@@ -42,7 +47,7 @@ trajectory being scheduled, the future policy path, an unknown optimum, and
 outcome-selected constants.  In particular, the registered quadratic target
 and expected Hessian used by PDSG-001 are oracle-only.
 
-## 3. Confidence-valid drift score
+## 3. Optional confidence-valid drift score
 
 For a candidate refresh `j -> i`, suppose the dispatch-time estimators satisfy
 on one simultaneous event
@@ -192,9 +197,11 @@ continuous approximation and phase interpretation.
 
 ## 6. Proof obligations before a successor CPU gate
 
-1. Construct `F_k`-measurable estimators in (1) from completed Markov data.
-2. Derive time-uniform radii under an explicit mixing or regeneration
-   assumption, including critic and importance-weight errors.
+1. Construct `F_k`-measurable estimators from completed Markov data.
+2. Bound the conditional expected supremum score error under an explicit
+   mixing or regeneration assumption, including critic and importance-weight
+   errors.  A time-uniform pathwise radius is optional, not required by the
+   primary claim.
 3. Bound the linearization remainder used by the one-reverse-pass interface.
 4. Prove the delayed event-time recursion including (5), (7), and the packet
    pipeline.
