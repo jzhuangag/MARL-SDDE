@@ -1,0 +1,163 @@
+"""Low-complexity signed policy-cache scoring for differentiable CTDE critics."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Mapping, Sequence
+
+import torch
+
+
+TensorGroup = Sequence[torch.Tensor]
+
+
+@dataclass(frozen=True)
+class NeuralCacheChoice:
+    donor: int | None
+    index: float
+    estimated_alignment: float
+    candidate_count: int
+    vjp_calls: int
+
+
+def _gradient_tuple(
+    loss: torch.Tensor, parameters: TensorGroup, *, create_graph: bool
+) -> tuple[torch.Tensor, ...]:
+    parameters = tuple(parameters)
+    if not parameters:
+        raise ValueError("parameter group must be nonempty")
+    return tuple(
+        torch.autograd.grad(
+            loss,
+            parameters,
+            create_graph=create_graph,
+            retain_graph=True,
+            allow_unused=False,
+        )
+    )
+
+
+def signed_cache_choice(
+    *,
+    current_owner_loss: torch.Tensor,
+    cached_owner_loss: torch.Tensor,
+    owner_parameters: TensorGroup,
+    donor_parameters: Mapping[int, TensorGroup],
+    donor_displacements: Mapping[int, TensorGroup],
+    taylor_remainder_by_donor: Mapping[int, float],
+    step: float,
+    smoothness: float,
+    packet_second_moment_upper: float,
+    receipt_motion_upper: float,
+    communication_queue: float,
+    learning_weight: float,
+    message_cost: float = 1.0,
+) -> NeuralCacheChoice:
+    """Choose null or one refresh with one cross-policy reverse VJP.
+
+    The action-dependent statistic is the first-order change in alignment
+    between the current owner gradient and the gradient produced by the
+    worker's cached joint policy.  Curvature and receipt-motion inputs are
+    common certified upper bounds, so they cannot create a spurious edge
+    preference.
+    """
+
+    scalars = (
+        step,
+        smoothness,
+        packet_second_moment_upper,
+        receipt_motion_upper,
+        communication_queue,
+        learning_weight,
+        message_cost,
+    )
+    if any(value < 0.0 for value in scalars) or step == 0.0:
+        raise ValueError("invalid nonnegative scoring constants")
+    donors = tuple(sorted(donor_parameters))
+    if set(donors) != set(donor_displacements) or set(donors) != set(
+        taylor_remainder_by_donor
+    ):
+        raise ValueError("donor maps must have identical keys")
+
+    current_gradient = tuple(
+        value.detach()
+        for value in _gradient_tuple(
+            current_owner_loss, owner_parameters, create_graph=False
+        )
+    )
+    cached_gradient = _gradient_tuple(
+        cached_owner_loss, owner_parameters, create_graph=True
+    )
+    if len(current_gradient) != len(cached_gradient):
+        raise ValueError("owner gradient structures differ")
+    base_alignment_tensor = sum(
+        (current * cached).sum()
+        for current, cached in zip(current_gradient, cached_gradient)
+    )
+
+    flat_parameters: list[torch.Tensor] = []
+    group_slices: dict[int, slice] = {}
+    for donor in donors:
+        group = tuple(donor_parameters[donor])
+        displacement = tuple(donor_displacements[donor])
+        if len(group) != len(displacement) or not group:
+            raise ValueError("invalid donor parameter/displacement group")
+        start = len(flat_parameters)
+        flat_parameters.extend(group)
+        group_slices[donor] = slice(start, len(flat_parameters))
+
+    if flat_parameters:
+        flat_vjp = torch.autograd.grad(
+            base_alignment_tensor,
+            tuple(flat_parameters),
+            retain_graph=True,
+            allow_unused=True,
+        )
+    else:
+        flat_vjp = ()
+
+    base_alignment = float(base_alignment_tensor.detach().cpu())
+    common_drift = (
+        0.5 * smoothness * step * step * packet_second_moment_upper
+        + step * receipt_motion_upper
+    )
+    candidates: list[tuple[float, int, int | None, float]] = [
+        (
+            learning_weight * (-step * base_alignment + common_drift),
+            0,
+            None,
+            base_alignment,
+        )
+    ]
+    for donor in donors:
+        selected_vjp = flat_vjp[group_slices[donor]]
+        displacement = tuple(donor_displacements[donor])
+        change = 0.0
+        for derivative, delta in zip(selected_vjp, displacement):
+            if derivative is not None:
+                if derivative.shape != delta.shape:
+                    raise ValueError("donor displacement shape mismatch")
+                change += float((derivative.detach() * delta.detach()).sum().cpu())
+        lower_alignment = (
+            base_alignment
+            + change
+            - float(taylor_remainder_by_donor[donor])
+        )
+        drift = -step * lower_alignment + common_drift
+        index = learning_weight * drift + communication_queue * message_cost
+        candidates.append((float(index), 1, donor, lower_alignment))
+
+    best = min(candidates, key=lambda row: (row[0], row[1], -1 if row[2] is None else row[2]))
+    return NeuralCacheChoice(
+        donor=best[2],
+        index=best[0],
+        estimated_alignment=best[3],
+        candidate_count=len(candidates),
+        vjp_calls=1 if donors else 0,
+    )
+
+
+def parameter_bytes(parameters: TensorGroup) -> int:
+    return int(
+        sum(parameter.numel() * parameter.element_size() for parameter in parameters)
+    )

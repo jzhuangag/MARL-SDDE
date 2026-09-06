@@ -177,9 +177,13 @@ The current evidence supports consecutive links of the same mechanism:
    signed ranking and a finite-action expected-maximum error bound for the
    local critic/JVP interface.
 
-The remaining empirical link is end-to-end Pistonball learning with the neural
-critic/JVP score.  That experiment decides whether the complete method, rather
-than its individual interfaces, improves the return--communication frontier.
+An outcome-free CPU contract now connects this formula to 20 distinct
+Pistonball actors and a centralized critic: all eligible edge derivatives are
+formed with one cross-policy VJP, the update changes only the owner block, and
+cache refreshes are charged by exact actor payload bytes.  The remaining
+empirical link is end-to-end Pistonball learning.  That experiment decides
+whether the complete method, rather than its individual interfaces, improves
+the return--communication frontier.
 
 ## Distinction from adjacent work
 
@@ -243,14 +247,13 @@ critic/JVP overhead remains a practical failure mode and is reported directly.
 
 ## Immediate execution order
 
-1. freeze the Pistonball owner-update, cache, packet, and accounting contract;
-2. implement the local critic/JVP score without per-edge rollouts;
-3. run CPU determinism, leakage, gradient, message, and timing smokes;
-4. preregister a small GPU Pistonball pilot with new seeds and mandatory
+1. freeze the complete Pistonball owner-update, critic, packet, and accounting
+   contract around the validated neural interface;
+2. specify the replay-only critic/VJP uncertainty and regularity assumption;
+3. preregister a small GPU Pistonball pilot with new seeds and mandatory
    strong-baseline gates;
-5. run formal seeds and write the full manuscript only if that pilot passes.
+4. run formal seeds and write the full manuscript only if that pilot passes.
 
 This sequence advances the one surviving thesis and does not reopen the
 discarded participation, unsigned graph, online-horizon, or generic
 wall-clock-recovery routes.
-
