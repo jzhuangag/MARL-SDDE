@@ -46,7 +46,13 @@ def test_online_score_interface_excludes_environment_target() -> None:
     assert "score_reference" in parameters
 
 
-def test_no_result_directory_exists_before_preregistration() -> None:
-    root = Path("experiments/policy_dependency_sync/results")
-    assert not (root / "pdsg_obs001_primary").exists()
-    assert not (root / "pdsg_obs001_reproduction").exists()
+def test_result_directories_are_reserved_as_ignored_artifacts() -> None:
+    patterns = set(Path(".gitignore").read_text(encoding="utf-8").splitlines())
+    assert (
+        "experiments/policy_dependency_sync/results/pdsg_obs001_primary/"
+        in patterns
+    )
+    assert (
+        "experiments/policy_dependency_sync/results/pdsg_obs001_reproduction/"
+        in patterns
+    )
