@@ -98,6 +98,10 @@ exact tensor-payload byte counting.
 
 ## Provenance
 
+The hashes below identify the validated files at commit `14f18e5`.  Subsequent
+development may extend the score with an exact cache-energy term; the commit
+keeps this structural result reconstructible.
+
 ```text
 neural_signed_cache.py
   ECB968674916278F5EA7EA0309666602C4A296C123EBC7DDA0ED63C0FF8047A0

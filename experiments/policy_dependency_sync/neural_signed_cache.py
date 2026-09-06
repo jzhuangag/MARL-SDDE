@@ -16,6 +16,7 @@ class NeuralCacheChoice:
     donor: int | None
     index: float
     estimated_alignment: float
+    cache_reset_benefit: float
     candidate_count: int
     vjp_calls: int
 
@@ -45,6 +46,7 @@ def signed_cache_choice(
     donor_parameters: Mapping[int, TensorGroup],
     donor_displacements: Mapping[int, TensorGroup],
     taylor_remainder_by_donor: Mapping[int, float],
+    cache_reset_benefit_by_donor: Mapping[int, float] | None = None,
     step: float,
     smoothness: float,
     packet_second_moment_upper: float,
@@ -78,6 +80,20 @@ def signed_cache_choice(
         taylor_remainder_by_donor
     ):
         raise ValueError("donor maps must have identical keys")
+    if min(taylor_remainder_by_donor.values(), default=0.0) < 0.0:
+        raise ValueError("Taylor remainders must be nonnegative")
+    reset_benefits = (
+        {donor: 0.0 for donor in donors}
+        if cache_reset_benefit_by_donor is None
+        else {
+            int(donor): float(value)
+            for donor, value in cache_reset_benefit_by_donor.items()
+        }
+    )
+    if set(reset_benefits) != set(donors) or min(
+        reset_benefits.values(), default=0.0
+    ) < 0.0:
+        raise ValueError("cache reset benefits must be nonnegative and match donors")
 
     current_gradient = tuple(
         value.detach()
@@ -121,12 +137,13 @@ def signed_cache_choice(
         0.5 * smoothness * step * step * packet_second_moment_upper
         + step * receipt_motion_upper
     )
-    candidates: list[tuple[float, int, int | None, float]] = [
+    candidates: list[tuple[float, int, int | None, float, float]] = [
         (
             learning_weight * (-step * base_alignment + common_drift),
             0,
             None,
             base_alignment,
+            0.0,
         )
     ]
     for donor in donors:
@@ -144,14 +161,22 @@ def signed_cache_choice(
             - float(taylor_remainder_by_donor[donor])
         )
         drift = -step * lower_alignment + common_drift
-        index = learning_weight * drift + communication_queue * message_cost
-        candidates.append((float(index), 1, donor, lower_alignment))
+        reset_benefit = reset_benefits[donor]
+        index = (
+            learning_weight * drift
+            - reset_benefit
+            + communication_queue * message_cost
+        )
+        candidates.append(
+            (float(index), 1, donor, lower_alignment, reset_benefit)
+        )
 
     best = min(candidates, key=lambda row: (row[0], row[1], -1 if row[2] is None else row[2]))
     return NeuralCacheChoice(
         donor=best[2],
         index=best[0],
         estimated_alignment=best[3],
+        cache_reset_benefit=best[4],
         candidate_count=len(candidates),
         vjp_calls=1 if donors else 0,
     )

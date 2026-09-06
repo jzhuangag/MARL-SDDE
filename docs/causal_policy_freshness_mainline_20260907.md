@@ -93,6 +93,19 @@ The first term makes the graph signed: freshness is valuable when it improves
 alignment with the current learning direction, not simply when it removes a
 large parameter mismatch.
 
+The learning potential is augmented by the exact policy-cache energy
+
+\[
+H_p=\frac12\sum_{i\ne j}\beta_{ji}
+\|\theta_{j,p}-\chi_{j\to i,p}\|^2.
+\]
+
+Refreshing `j -> i` decreases this energy by the observable amount
+`B_p(j->i)=beta_(ji)||theta_j-chi_(j->i)||^2/2`.  An owner update creates an
+exact outgoing-cache increment, retained as a receipt-time remainder or a
+predictable action-dependent bound.  This term prevents an uncertain critic
+from making the null graph absorbing while still charging every refresh.
+
 Let `Q_p` be the virtual communication queue,
 
 \[
@@ -104,11 +117,12 @@ executed action is
 
 \[
 a_p\in\arg\min_{a\in\mathcal A_p}
-\{V\widehat D_p(a)+Q_pc_p(a)\}.
+\{V\widehat D_p(a)-B_p(a)+Q_pc_p(a)\}.
 \]
 
-Lyapunov drift therefore determines the communication graph online; it is not
-only a post-hoc convergence tool.  Null-plus-one-edge selection is exact in
+This is the one-step drift of `V F+H+Q^2/2`: Lyapunov drift therefore
+determines the communication graph online; it is not only a post-hoc
+convergence tool.  Null-plus-one-edge selection is exact in
 `O(Delta_p)` after the local signed statistics are formed.  The primary
 algorithm fixes rollout horizon and receipt step so that the paper studies one
 identifiable control variable rather than combining previously unsupported
@@ -120,16 +134,19 @@ Assume (a) block smoothness and a lower-bounded potential; (b) eventual packet
 receipt with an explicit in-flight bound; (c) a uniformly geometrically mixing
 trajectory kernel or regenerative alternative; (d) a predictable
 launch-to-receipt motion bound; (e) bounded packet second moments; and (f) a
-simultaneous expected score error `epsilon_p` over the finite action set.
+simultaneous expected learning-drift error `epsilon_p^F` over the finite action
+set.
 
 The paired launch-receipt theorem gives
 
 \[
 \sum_{p<N}\kappa_p\mathbb E\|g_p^0\|^2
 \le F(\theta^0)-F_\star+
-\frac{Q_0^2}{2V}+
-\sum_{p<N}\mathbb E[R_p+2\epsilon_p]
-+\frac{NB_Q}{V},
+\frac{H_0+Q_0^2/2}{V}+
+\sum_{p<N}\mathbb E R_p+
+\frac1V\sum_{p<N}\mathbb E\Gamma_p^++
+2\sum_{p<N}\mathbb E\epsilon_p^F+
+\frac{NB_Q}{V},
 \]
 
 against any predictable budget-feasible comparator satisfying the declared
@@ -150,8 +167,8 @@ The exact affine model supplies an observable system-identification corollary.
 Every completed packet reveals a noisy projection of its unknown reference;
 translation-equivariant normalized least mean squares contracts under the
 cyclic-owner persistent-excitation condition.  Its reference error yields an
-explicit `epsilon_p`, which enters the theorem above through the `2 epsilon_p`
-action-regret term.
+explicit learning-drift error `epsilon_p^F`, which enters the theorem above
+through the twice-uniform-error action-regret term.
 
 For nonlinear MARL, the learner uses completed replay data and its centralized
 critic.  One local reverse-mode differentiation estimates how the owner
