@@ -38,6 +38,7 @@ from .async_pistonball_ctde import (
     owner_critic_gradient,
     polyak_update,
     select_age_refresh,
+    select_cache_lyapunov_refresh,
     select_mismatch_refresh,
     signed_refresh_for_batch,
 )
@@ -51,6 +52,7 @@ SCHEDULERS = (
     "no_refresh",
     "age",
     "mismatch",
+    "cache_lyapunov",
     "round_robin",
     "static_chain",
     "complete_burst",
@@ -339,6 +341,15 @@ def _scheduler_action(
             eligible_donors=eligible,
             caches=caches,
             maximum_edges=maximum_edges,
+        ), None
+    if scheduler == "cache_lyapunov":
+        return select_cache_lyapunov_refresh(
+            recipient=owner,
+            eligible_donors=eligible,
+            actors=actors,
+            caches=caches,
+            communication_queue=queue_value,
+            cache_debt_weight=config.cache_debt_weight,
         ), None
     if scheduler not in ("signed_lyapunov", "signed_only"):
         raise ValueError(f"unknown scheduler {scheduler}")

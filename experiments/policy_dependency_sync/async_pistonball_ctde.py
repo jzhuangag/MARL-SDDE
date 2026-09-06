@@ -513,6 +513,36 @@ def select_mismatch_refresh(
     return tuple(candidates[: int(maximum_edges)])
 
 
+def select_cache_lyapunov_refresh(
+    *,
+    recipient: int,
+    eligible_donors: Iterable[int],
+    actors: Sequence[nn.Module],
+    caches: PolicyCacheBank,
+    communication_queue: float,
+    cache_debt_weight: float,
+    message_cost: float = 1.0,
+) -> tuple[int, ...]:
+    """Minimize exact cache-reset drift plus queue price without a VJP."""
+
+    if min(communication_queue, cache_debt_weight, message_cost) < 0.0:
+        raise ValueError("cache Lyapunov inputs must be nonnegative")
+    candidates: list[tuple[float, int]] = []
+    for donor in sorted({int(value) for value in eligible_donors}):
+        if donor == int(recipient):
+            continue
+        norm = caches.displacement_norm(recipient, donor, actors[donor])
+        index = (
+            -0.5 * float(cache_debt_weight) * norm * norm
+            + float(communication_queue) * float(message_cost)
+        )
+        candidates.append((index, donor))
+    if not candidates:
+        return ()
+    best_index, best_donor = min(candidates, key=lambda row: (row[0], row[1]))
+    return (best_donor,) if best_index < 0.0 else ()
+
+
 def clone_parameter_groups(modules: Sequence[nn.Module]) -> tuple[tuple[torch.Tensor, ...], ...]:
     return tuple(
         tuple(parameter.detach().clone() for parameter in module.parameters())

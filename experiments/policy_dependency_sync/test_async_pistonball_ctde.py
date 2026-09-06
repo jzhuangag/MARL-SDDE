@@ -20,6 +20,7 @@ from .async_pistonball_ctde import (
     polyak_update,
     resize_uint8_images,
     select_age_refresh,
+    select_cache_lyapunov_refresh,
     select_mismatch_refresh,
     signed_refresh_for_batch,
 )
@@ -138,6 +139,32 @@ def test_age_and_mismatch_baselines_are_predictable() -> None:
         caches=caches,
         maximum_edges=1,
     ) == (2,)
+
+
+def test_cache_lyapunov_ablation_trades_exact_reset_against_queue_price() -> None:
+    actors = tiny_actors()
+    caches = PolicyCacheBank(actors)
+    with torch.no_grad():
+        next(actors[1].parameters()).add_(0.1)
+        next(actors[2].parameters()).add_(0.3)
+    selected = select_cache_lyapunov_refresh(
+        recipient=0,
+        eligible_donors=(1, 2, 3),
+        actors=actors,
+        caches=caches,
+        communication_queue=0.0,
+        cache_debt_weight=1.0,
+    )
+    assert selected == (2,)
+    rejected = select_cache_lyapunov_refresh(
+        recipient=0,
+        eligible_donors=(1, 2, 3),
+        actors=actors,
+        caches=caches,
+        communication_queue=1e9,
+        cache_debt_weight=1.0,
+    )
+    assert rejected == ()
 
 
 def test_age_and_mismatch_do_not_spend_on_fresh_caches() -> None:
