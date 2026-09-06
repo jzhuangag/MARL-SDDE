@@ -19,6 +19,12 @@ class NeuralCacheChoice:
     cache_reset_benefit: float
     candidate_count: int
     vjp_calls: int
+    null_index: float
+    best_edge_donor: int | None
+    best_edge_index: float | None
+    best_edge_learning_index_delta: float | None
+    best_edge_cache_reset_benefit: float | None
+    best_edge_queue_price: float | None
 
 
 def _gradient_tuple(
@@ -146,6 +152,7 @@ def signed_cache_choice(
             0.0,
         )
     ]
+    edge_diagnostics: list[tuple[float, int, float, float, float]] = []
     for donor in donors:
         selected_vjp = flat_vjp[group_slices[donor]]
         displacement = tuple(donor_displacements[donor])
@@ -167,11 +174,27 @@ def signed_cache_choice(
             - reset_benefit
             + communication_queue * message_cost
         )
+        edge_diagnostics.append(
+            (
+                float(index),
+                int(donor),
+                float(
+                    learning_weight
+                    * (drift - (-step * base_alignment + common_drift))
+                ),
+                float(reset_benefit),
+                float(communication_queue * message_cost),
+            )
+        )
         candidates.append(
             (float(index), 1, donor, lower_alignment, reset_benefit)
         )
 
-    best = min(candidates, key=lambda row: (row[0], row[1], -1 if row[2] is None else row[2]))
+    best = min(
+        candidates,
+        key=lambda row: (row[0], row[1], -1 if row[2] is None else row[2]),
+    )
+    best_edge = min(edge_diagnostics, default=None, key=lambda row: (row[0], row[1]))
     return NeuralCacheChoice(
         donor=best[2],
         index=best[0],
@@ -179,6 +202,16 @@ def signed_cache_choice(
         cache_reset_benefit=best[4],
         candidate_count=len(candidates),
         vjp_calls=1 if donors else 0,
+        null_index=float(candidates[0][0]),
+        best_edge_donor=None if best_edge is None else int(best_edge[1]),
+        best_edge_index=None if best_edge is None else float(best_edge[0]),
+        best_edge_learning_index_delta=(
+            None if best_edge is None else float(best_edge[2])
+        ),
+        best_edge_cache_reset_benefit=(
+            None if best_edge is None else float(best_edge[3])
+        ),
+        best_edge_queue_price=None if best_edge is None else float(best_edge[4]),
     )
 
 

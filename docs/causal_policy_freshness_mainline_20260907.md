@@ -109,8 +109,13 @@ from making the null graph absorbing while still charging every refresh.
 Let `Q_p` be the virtual communication queue,
 
 \[
-Q_{p+1}=[Q_p+c_p(a_p)-\bar c]^+.
+ Q_{p+1}=[Q_p+\nu(c_p(a_p)-\bar c)]^+.
 \]
+
+The queue contribution to the composite Lyapunov function is
+`Q_p^2/(2 nu)`, so this scaled recursion preserves the action price `Q_p c_p`
+while making `nu` an explicit dual-response step rather than an untracked
+implementation coefficient.
 
 Given a predictable critic/Jacobian-vector-product estimate `Dhat_p`, the
 executed action is

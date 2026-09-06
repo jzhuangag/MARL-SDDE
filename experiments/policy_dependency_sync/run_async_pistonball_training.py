@@ -42,6 +42,7 @@ from .async_pistonball_ctde import (
     signed_refresh_for_batch,
 )
 from .pistonball_tail import predictive_tube_support
+from .neural_signed_cache import NeuralCacheChoice
 
 
 SCHEDULERS = (
@@ -71,6 +72,8 @@ class TrainingConfig:
     target_polyak: float = 0.01
     gradient_clip: float = 5.0
     budget_rate: float = 0.5
+    budget_enforcement: str = "prefix"
+    queue_step: float = 1.0
     cone_shell: int = 6
     maximum_delay: int = 4
     lyapunov_weight: float = 100000.0
@@ -107,6 +110,7 @@ class TrainingConfig:
             self.actor_receipt_step,
             self.gradient_clip,
             self.budget_rate,
+            self.queue_step,
             self.cone_shell,
             self.maximum_delay,
             self.lyapunov_weight,
@@ -122,11 +126,14 @@ class TrainingConfig:
             self.critic_step,
             self.actor_receipt_step,
             self.gradient_clip,
+            self.queue_step,
             self.lyapunov_weight,
             self.score_smoothness,
         )
         if min(strictly_positive) <= 0.0:
             raise ValueError("optimization steps, clip, and Lyapunov terms must be positive")
+        if self.budget_enforcement not in {"prefix", "terminal"}:
+            raise ValueError("budget enforcement must be prefix or terminal")
 
 
 @dataclass
@@ -240,6 +247,39 @@ def _round_robin_donor(
     return tuple(rotated[: int(maximum_edges)])
 
 
+def _remaining_refresh_units(
+    *, config: TrainingConfig, launch: int, spent_units: int
+) -> int:
+    """Return the exact feasible refresh count before one launch."""
+
+    if launch < 0 or launch >= config.launches or spent_units < 0:
+        raise ValueError("invalid launch or spend state")
+    if config.budget_enforcement == "prefix":
+        return hard_budget_remaining(
+            launches_after_action=launch + 1,
+            budget_rate=config.budget_rate,
+            spent_units=spent_units,
+        )
+    terminal_allowance = int(
+        math.floor(config.launches * config.budget_rate + 1e-12)
+    )
+    return max(terminal_allowance - spent_units, 0)
+
+
+def _advance_communication_queue(
+    *, queue_value: float, refresh_units: int, config: TrainingConfig
+) -> float:
+    """One dual-queue step for the average optional-refresh constraint."""
+
+    if queue_value < 0.0 or refresh_units < 0:
+        raise ValueError("queue state and refresh units must be nonnegative")
+    return max(
+        queue_value
+        + config.queue_step * (refresh_units - config.budget_rate),
+        0.0,
+    )
+
+
 def _scheduler_action(
     *,
     scheduler: str,
@@ -256,17 +296,17 @@ def _scheduler_action(
     queue_value: float,
     remaining_units: int,
     config: TrainingConfig,
-) -> tuple[int, ...]:
+) -> tuple[tuple[int, ...], NeuralCacheChoice | None]:
     maximum_edges = min(int(remaining_units), len(eligible))
     if maximum_edges <= 0 or scheduler == "no_refresh":
-        return ()
+        return (), None
     if scheduler == "age":
         return select_age_refresh(
             recipient=owner,
             eligible_donors=eligible,
             caches=caches,
             maximum_edges=1,
-        )
+        ), None
     if scheduler == "mismatch":
         return select_mismatch_refresh(
             recipient=owner,
@@ -274,12 +314,12 @@ def _scheduler_action(
             actors=actors,
             caches=caches,
             maximum_edges=1,
-        )
+        ), None
     if scheduler == "round_robin":
         stale = tuple(
             donor for donor in eligible if caches.age(owner, donor) > 0
         )
-        return _round_robin_donor(stale, launch, 1)
+        return _round_robin_donor(stale, launch, 1), None
     if scheduler == "static_chain":
         static = tuple(
             donor for donor in (owner - 1, owner + 1) if donor in set(eligible)
@@ -289,18 +329,18 @@ def _scheduler_action(
             eligible_donors=static,
             caches=caches,
             maximum_edges=min(1, maximum_edges),
-        )
+        ), None
     if scheduler == "complete_burst":
         return select_age_refresh(
             recipient=owner,
             eligible_donors=eligible,
             caches=caches,
             maximum_edges=maximum_edges,
-        )
+        ), None
     if scheduler not in ("signed_lyapunov", "signed_only"):
         raise ValueError(f"unknown scheduler {scheduler}")
     if len(replay) < config.batch_size:
-        return ()
+        return (), None
     choice = signed_refresh_for_batch(
         owner=owner,
         eligible_donors=eligible,
@@ -321,7 +361,8 @@ def _scheduler_action(
         ),
         can_refresh=remaining_units > 0,
     )
-    return () if choice.donor is None else (int(choice.donor),)
+    selected = () if choice.donor is None else (int(choice.donor),)
+    return selected, choice
 
 
 def _evaluate(
@@ -448,12 +489,10 @@ def run_training(
                 possible_agents=worker.environment.possible_agents,
                 state=worker.environment.state(),
             )
-            remaining = hard_budget_remaining(
-                launches_after_action=launch + 1,
-                budget_rate=config.budget_rate,
-                spent_units=spent_units,
+            remaining = _remaining_refresh_units(
+                config=config, launch=launch, spent_units=spent_units
             )
-            selected = _scheduler_action(
+            selected, score_diagnostic = _scheduler_action(
                 scheduler=scheduler,
                 owner=owner,
                 eligible=eligible,
@@ -480,8 +519,10 @@ def run_training(
             spent_units += refresh.refresh_units
             spent_bytes += refresh.optional_policy_bytes
             selected_edges += refresh.refresh_units
-            queue_value = max(
-                queue_value + refresh.refresh_units - config.budget_rate, 0.0
+            queue_value = _advance_communication_queue(
+                queue_value=queue_value,
+                refresh_units=refresh.refresh_units,
+                config=config,
             )
 
             transitions = _collect_full_launch(
@@ -509,6 +550,28 @@ def run_training(
                     "segment_cycles": len(transitions),
                     "segment_team_reward": float(
                         sum(transition.reward for transition in transitions)
+                    ),
+                    "score_diagnostic": (
+                        None
+                        if score_diagnostic is None
+                        else {
+                            "selected_donor": score_diagnostic.donor,
+                            "selected_index": score_diagnostic.index,
+                            "null_index": score_diagnostic.null_index,
+                            "best_edge_donor": score_diagnostic.best_edge_donor,
+                            "best_edge_index": score_diagnostic.best_edge_index,
+                            "best_edge_learning_index_delta": (
+                                score_diagnostic.best_edge_learning_index_delta
+                            ),
+                            "best_edge_cache_reset_benefit": (
+                                score_diagnostic.best_edge_cache_reset_benefit
+                            ),
+                            "best_edge_queue_price": (
+                                score_diagnostic.best_edge_queue_price
+                            ),
+                            "candidate_count": score_diagnostic.candidate_count,
+                            "vjp_calls": score_diagnostic.vjp_calls,
+                        }
                     ),
                 }
             )
@@ -668,6 +731,10 @@ def main() -> None:
     parser.add_argument("--evaluations", type=int, default=5)
     parser.add_argument("--evaluation-episodes", type=int, default=2)
     parser.add_argument("--budget-rate", type=float, default=0.5)
+    parser.add_argument(
+        "--budget-enforcement", choices=("prefix", "terminal"), default="prefix"
+    )
+    parser.add_argument("--queue-step", type=float, default=1.0)
     parser.add_argument("--cone-shell", type=int, default=6)
     parser.add_argument("--maximum-delay", type=int, default=4)
     parser.add_argument("--lyapunov-weight", type=float, default=100000.0)
@@ -690,6 +757,8 @@ def main() -> None:
         evaluations=args.evaluations,
         evaluation_episodes=args.evaluation_episodes,
         budget_rate=args.budget_rate,
+        budget_enforcement=args.budget_enforcement,
+        queue_step=args.queue_step,
         cone_shell=args.cone_shell,
         maximum_delay=args.maximum_delay,
         lyapunov_weight=args.lyapunov_weight,

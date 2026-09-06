@@ -34,6 +34,12 @@ def test_one_vjp_recovers_exact_bilinear_alignment_changes() -> None:
     assert choice.donor == 0
     assert choice.candidate_count == 3
     assert choice.vjp_calls == 1
+    assert choice.best_edge_donor == 0
+    assert choice.best_edge_index is not None
+    assert choice.best_edge_index < choice.null_index
+    assert choice.best_edge_learning_index_delta is not None
+    assert choice.best_edge_cache_reset_benefit == 0.0
+    assert choice.best_edge_queue_price == 0.0
 
 
 def test_queue_price_can_select_null_action() -> None:
@@ -125,3 +131,4 @@ def test_exact_cache_reset_benefit_can_prevent_null_absorption() -> None:
     )
     assert choice.donor == 0
     assert choice.cache_reset_benefit == 2.0
+    assert choice.best_edge_cache_reset_benefit == 2.0

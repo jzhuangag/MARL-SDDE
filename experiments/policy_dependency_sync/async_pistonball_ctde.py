@@ -638,6 +638,12 @@ def signed_refresh_for_batch(
             cache_reset_benefit=0.0,
             candidate_count=1,
             vjp_calls=0,
+            null_index=float(learning_weight * (-step * alignment + common)),
+            best_edge_donor=None,
+            best_edge_index=None,
+            best_edge_learning_index_delta=None,
+            best_edge_cache_reset_benefit=None,
+            best_edge_queue_price=None,
         )
 
     donor_parameters: dict[int, tuple[torch.Tensor, ...]] = {}

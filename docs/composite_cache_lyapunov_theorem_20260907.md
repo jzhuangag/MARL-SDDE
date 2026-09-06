@@ -20,17 +20,17 @@ The composite Lyapunov state is
 
 \[
  \mathcal L_t
- =V F(\theta_t)+H_t+\frac12 Q_t^2,
+ =V F(\theta_t)+H_t+\frac{1}{2\nu} Q_t^2,
  \qquad
  H_t=\frac12\sum_{i\ne j}\beta_{ji}
  \|\theta_{j,t}-\chi_{j\to i,t}\|^2 .
 \tag{1}
 \]
 
-Thus Lyapunov theory is both the design and analysis principle.  `F` values
-learning progress, `H` prices strategically stale teammate policies, and `Q`
-prices communication debt.  The same one-step upper bound selects the graph
-edge and telescopes in the convergence proof.
+where `nu>0` is the dual-queue step.  Thus Lyapunov theory is both the design
+and analysis principle.  `F` values learning progress, `H` prices strategically
+stale teammate policies, and `Q` prices communication debt.  The same one-step
+upper bound selects the graph edge and telescopes in the convergence proof.
 
 ## Exact launch reset
 
@@ -99,9 +99,21 @@ The controller executes
 \[
  a_p\in\arg\min_{a\in\{\varnothing\}\cup\mathcal C_p}
  \widehat J_p(a),
-\qquad
- Q_{p+1}=[Q_p+c_p(a_p)-\bar c]^+ .
+ \qquad
+ Q_{p+1}=[Q_p+\nu(c_p(a_p)-\bar c)]^+ .
 \tag{6}
+\]
+
+The scaling in (1) makes the queue drift exactly
+`Q_p(c_p-bar c)` plus a remainder at most
+`nu(c_p-bar c)^2/2`; consequently `nu` changes the dual response speed without
+silently rescaling the queue price in (5).  Iteration also gives the pathwise
+finite-horizon budget relation
+
+\[
+ \frac1N\sum_{p<N}c_p(a_p)
+ \le \bar c+\frac{Q_N}{\nu N}.
+\tag{7}
 \]
 
 The nonlinear implementation evaluates the signed change in `D_p^F` for every
@@ -164,8 +176,9 @@ At every launch, (2) accounts for the entire cache-state jump.  At every
 receipt, the block-smoothness bound accounts for the objective jump and (3)
 accounts for the entire outgoing-cache jump.  Pair each launch with its
 eventual receipt.  The queue half-square inequality contributes
-`Q_p(c_p-bar c)+B_Q`.  Exact minimization of (5), followed by averaging over
-the comparator's launch-measurable randomization, incurs at most
+`Q_p(c_p-bar c)+B_Q`, where one may take
+`B_Q=nu sup_p(c_p-bar c)^2/2`.  Exact minimization of (5), followed by
+averaging over the comparator's launch-measurable randomization, incurs at most
 `2 V epsilon_p^F`.  The conditional cost constraint (9) removes its expected
 queue term because `Q_p` is launch-measurable.  Summing every launch reset, every receipt increment, and every queue
 increment telescopes `V F+H+Q^2/2` in chronological event order.  Because the

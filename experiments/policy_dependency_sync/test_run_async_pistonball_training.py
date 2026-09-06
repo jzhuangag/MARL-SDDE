@@ -4,9 +4,33 @@ import inspect
 
 from .run_async_pistonball_training import (
     TrainingConfig,
+    _advance_communication_queue,
+    _remaining_refresh_units,
     _scheduler_action,
     run_training,
 )
+
+
+def test_terminal_budget_allows_bursts_but_never_exceeds_total() -> None:
+    config = TrainingConfig(
+        launches=8,
+        budget_rate=0.5,
+        budget_enforcement="terminal",
+        queue_step=2.0,
+    )
+    assert _remaining_refresh_units(config=config, launch=0, spent_units=0) == 4
+    assert _remaining_refresh_units(config=config, launch=1, spent_units=3) == 1
+    assert _remaining_refresh_units(config=config, launch=7, spent_units=4) == 0
+
+
+def test_dual_queue_step_has_the_declared_scaled_recursion() -> None:
+    config = TrainingConfig(launches=8, budget_rate=0.5, queue_step=2.0)
+    assert _advance_communication_queue(
+        queue_value=0.0, refresh_units=1, config=config
+    ) == 1.0
+    assert _advance_communication_queue(
+        queue_value=1.0, refresh_units=0, config=config
+    ) == 0.0
 
 
 def test_small_training_state_machine_is_finite_and_budget_feasible() -> None:
