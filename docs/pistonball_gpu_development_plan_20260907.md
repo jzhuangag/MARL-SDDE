@@ -73,3 +73,17 @@ was correct; the qualification assertion was not.  The replacement validator
 checks this realized accounting identity and equality between launched and
 received gradient-packet counts after the terminal drain.  The failed
 qualification output remains diagnostic only and cannot authorize the matrix.
+
+## Operational amendment 3: matched actor-transition horizon
+
+The corrected memory qualification revealed that Pistonball may terminate
+inside a four-cycle rollout segment.  Fixing the number of launch events alone
+therefore does not fix the number of charged actor transitions: a scheduler
+whose policies terminate an episode earlier can consume fewer transitions.
+The development comparison is now defined by an exact four-cycle launch
+horizon.  After a terminal transition the same owner worker is reset with the
+next deterministic seed and collects the remaining cycles before the launch
+ends.  Hence every method receives exactly 327,680 actor transitions and the
+same evaluation transition grid.  This learner change requires a fresh memory
+qualification and a completely new development output root; the successful
+pre-amendment qualification is retained as systems evidence only.

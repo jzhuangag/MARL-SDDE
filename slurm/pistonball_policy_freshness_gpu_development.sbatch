@@ -76,7 +76,7 @@ assert result["finite"]
 assert result["budget_feasible"]
 assert result["remaining_packets_after_drain"] == 0
 assert result["launched_actor_transitions"] == 4096 * 4 * 20
-assert result["received_packets"] == 4096 - (32 // 4) + 1
+assert result["received_packets"] == result["launched_gradient_packets"]
 print(
     {
         "scheduler": scheduler,

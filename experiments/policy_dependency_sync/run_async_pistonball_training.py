@@ -22,6 +22,7 @@ import numpy as np
 import torch
 
 from .async_pistonball_ctde import (
+    CompressedTransition,
     CompressedReplay,
     OwnerGradientQueue,
     PistonActor,
@@ -132,6 +133,7 @@ class Worker:
     environment: Any
     observations: Mapping[str, np.ndarray]
     resets: int
+    reset_seed_base: int
 
 
 def _device(name: str) -> torch.device:
@@ -160,9 +162,48 @@ def _make_workers(config: TrainingConfig, seed: int) -> list[Worker]:
     workers: list[Worker] = []
     for owner in range(config.n_agents):
         environment = _make_environment(config)
-        observations, _ = environment.reset(seed=int(seed + 1000 * owner))
-        workers.append(Worker(environment, observations, 1))
+        reset_seed_base = int(seed + 1000 * owner)
+        observations, _ = environment.reset(seed=reset_seed_base)
+        workers.append(Worker(environment, observations, 0, reset_seed_base))
     return workers
+
+
+def _collect_full_launch(
+    *,
+    worker: Worker,
+    owner: int,
+    actors: Sequence[PistonActor],
+    caches: PolicyCacheBank,
+    config: TrainingConfig,
+    rng: np.random.Generator,
+    device: torch.device,
+) -> list[CompressedTransition]:
+    """Collect exactly one launch horizon, resetting across episode boundaries."""
+
+    transitions: list[CompressedTransition] = []
+    while len(transitions) < config.rollout_horizon:
+        segment, observations, terminated = collect_parallel_segment(
+            environment=worker.environment,
+            owner=owner,
+            actors=actors,
+            caches=caches,
+            observations=worker.observations,
+            horizon=config.rollout_horizon - len(transitions),
+            exploration_std=config.exploration_std,
+            rng=rng,
+            device=device,
+        )
+        if not segment:
+            raise RuntimeError("Pistonball produced an empty training segment")
+        transitions.extend(segment)
+        if terminated:
+            worker.resets += 1
+            worker.observations, _ = worker.environment.reset(
+                seed=worker.reset_seed_base + worker.resets
+            )
+        else:
+            worker.observations = observations
+    return transitions
 
 
 def _clip_gradients(
@@ -434,14 +475,12 @@ def run_training(
                 queue_value + refresh.refresh_units - config.budget_rate, 0.0
             )
 
-            transitions, observations, terminated = collect_parallel_segment(
-                environment=worker.environment,
+            transitions = _collect_full_launch(
+                worker=worker,
                 owner=owner,
                 actors=actors,
                 caches=caches,
-                observations=worker.observations,
-                horizon=config.rollout_horizon,
-                exploration_std=config.exploration_std,
+                config=config,
                 rng=action_rngs[owner],
                 device=device,
             )
@@ -464,14 +503,6 @@ def run_training(
                     ),
                 }
             )
-            if terminated:
-                worker.resets += 1
-                worker.observations, _ = worker.environment.reset(
-                    seed=int(seed + 1000 * owner + worker.resets)
-                )
-            else:
-                worker.observations = observations
-
             if len(replay) >= config.batch_size:
                 batch = replay.sample(config.batch_size, replay_rng, device)
                 critic_optimizer.zero_grad(set_to_none=True)
