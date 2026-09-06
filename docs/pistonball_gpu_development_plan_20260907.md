@@ -100,3 +100,10 @@ records the deterministic-algorithm state and batch validation requires it.
 The completed pre-amendment matrix remains useful only for this diagnosis; its
 return differences cannot be used as method evidence.  A fresh qualification
 and fresh matrix root are required.
+
+The first strict-determinism qualification then stopped before producing an
+output because CUDA does not implement a deterministic backward pass for
+adaptive average pooling.  Both encoders receive fixed compressed geometry, so
+their adaptive layers are replaced by fixed `AvgPool2d(4,4)` layers with the
+same 4-by-2 actor and 4-by-4 critic output shapes.  Determinism remains strict;
+the error is not downgraded to a warning.

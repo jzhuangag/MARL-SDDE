@@ -31,7 +31,7 @@ class PistonActor(nn.Module):
             nn.ReLU(),
             nn.Conv2d(16, 32, kernel_size=3, stride=2, padding=1),
             nn.ReLU(),
-            nn.AdaptiveAvgPool2d((4, 2)),
+            nn.AvgPool2d(kernel_size=4, stride=4),
             nn.Flatten(),
             nn.Linear(32 * 4 * 2, 64),
             nn.ReLU(),
@@ -55,7 +55,7 @@ class PistonCentralCritic(nn.Module):
             nn.ReLU(),
             nn.Conv2d(16, 32, kernel_size=3, stride=2, padding=1),
             nn.ReLU(),
-            nn.AdaptiveAvgPool2d((4, 4)),
+            nn.AvgPool2d(kernel_size=4, stride=4),
             nn.Flatten(),
         )
         self.value = nn.Sequential(

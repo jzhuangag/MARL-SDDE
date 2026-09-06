@@ -41,6 +41,11 @@ def test_models_have_expected_ctde_shapes() -> None:
     state = torch.zeros(1, 3, 64, 64, dtype=torch.uint8)
     assert actions.shape == (1, 4)
     assert critic(state, actions).shape == (1, 1)
+    assert not any(
+        isinstance(module, torch.nn.AdaptiveAvgPool2d)
+        for network in (*actors, critic)
+        for module in network.modules()
+    )
 
 
 def test_resize_is_deterministic_and_preserves_batch_axis() -> None:
