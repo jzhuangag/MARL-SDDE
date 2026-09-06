@@ -123,6 +123,57 @@ def optimized_score_error_bound(
     )
 
 
+def gaussian_max_norm_rms_bound(
+    action_count: int,
+    dimension: int,
+    maximum_coordinate_standard_deviation: float,
+    maximum_bias_norm: float = 0.0,
+) -> float:
+    """RMS bound for the maximum norm of finitely many Gaussian errors.
+
+    Dependence among action errors is allowed.  A union bound on their
+    individual Gaussian norm tails gives
+
+    ``sqrt(E max ||Z_j||^2) <= s * sqrt(a^2 + 2 a sqrt(pi/2) + 2)``,
+
+    where ``a=sqrt(d)+sqrt(2 log m)``.  A deterministic bias is then added by
+    Minkowski's inequality.
+    """
+    if action_count <= 0 or dimension <= 0:
+        raise ValueError("action_count and dimension must be positive")
+    if maximum_coordinate_standard_deviation < 0.0 or maximum_bias_norm < 0.0:
+        raise ValueError("standard deviation and bias must be nonnegative")
+    threshold = np.sqrt(dimension) + np.sqrt(2.0 * np.log(action_count))
+    second_moment_factor = np.sqrt(
+        threshold * threshold
+        + 2.0 * threshold * np.sqrt(np.pi / 2.0)
+        + 2.0
+    )
+    return float(
+        maximum_bias_norm
+        + maximum_coordinate_standard_deviation * second_moment_factor
+    )
+
+
+def uniform_optimized_score_error_bound(
+    maximum_step: float,
+    curvature: float,
+    current_gradient_norm_bound: float,
+    candidate_gradient_norm_bound: float,
+    current_gradient_rms_error: float,
+    maximum_candidate_error_rms: float,
+) -> float:
+    """Expected supremum score error from joint RMS maximum bounds."""
+    return optimized_score_error_bound(
+        maximum_step=maximum_step,
+        curvature=curvature,
+        current_gradient_norm_bound=current_gradient_norm_bound,
+        candidate_gradient_norm_bound=candidate_gradient_norm_bound,
+        current_gradient_rms_error=current_gradient_rms_error,
+        candidate_gradient_rms_error=maximum_candidate_error_rms,
+    )
+
+
 def sparse_candidate_gradient(
     base_gradient_samples: np.ndarray,
     local_jvp_samples: np.ndarray,

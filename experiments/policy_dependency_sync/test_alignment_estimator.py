@@ -5,12 +5,14 @@ import pytest
 
 from experiments.policy_dependency_sync.alignment_estimator import (
     GradientErrorBudget,
+    gaussian_max_norm_rms_bound,
     geometric_mean_variance_factor,
     markov_mean_rms_bound,
     optimized_quadratic_score,
     optimized_score_error_bound,
     sparse_candidate_gradient,
     split_fully_charged_rollouts,
+    uniform_optimized_score_error_bound,
 )
 
 
@@ -108,12 +110,49 @@ def test_rollout_split_is_disjoint_and_fully_charged() -> None:
     assert len(control) + len(update) == 12
 
 
+def test_gaussian_max_bound_reduces_to_single_vector_tail_integral() -> None:
+    observed = gaussian_max_norm_rms_bound(
+        action_count=1,
+        dimension=4,
+        maximum_coordinate_standard_deviation=0.2,
+        maximum_bias_norm=0.1,
+    )
+    threshold = np.sqrt(4.0)
+    expected = 0.1 + 0.2 * np.sqrt(
+        threshold**2 + 2.0 * threshold * np.sqrt(np.pi / 2.0) + 2.0
+    )
+    assert observed == pytest.approx(expected)
+
+
+def test_uniform_score_bound_uses_max_error_not_degree_sum() -> None:
+    candidate_max = gaussian_max_norm_rms_bound(8, 4, 0.01, 0.02)
+    observed = uniform_optimized_score_error_bound(
+        maximum_step=0.3,
+        curvature=1.5,
+        current_gradient_norm_bound=1.2,
+        candidate_gradient_norm_bound=2.0,
+        current_gradient_rms_error=0.01,
+        maximum_candidate_error_rms=candidate_max,
+    )
+    per_action = optimized_score_error_bound(
+        maximum_step=0.3,
+        curvature=1.5,
+        current_gradient_norm_bound=1.2,
+        candidate_gradient_norm_bound=2.0,
+        current_gradient_rms_error=0.01,
+        candidate_gradient_rms_error=candidate_max,
+    )
+    assert observed == pytest.approx(per_action)
+    assert observed < 8.0 * per_action
+
+
 @pytest.mark.parametrize(
     "call",
     [
         lambda: geometric_mean_variance_factor(0, 0.2),
         lambda: geometric_mean_variance_factor(3, 1.0),
         lambda: markov_mean_rms_bound(3, 0.2, -1.0),
+        lambda: gaussian_max_norm_rms_bound(0, 3, 0.1),
         lambda: split_fully_charged_rollouts(np.arange(3)),
     ],
 )

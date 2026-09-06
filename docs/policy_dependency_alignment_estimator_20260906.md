@@ -132,6 +132,27 @@ uniform bound; the conservative expectation-only choice
 `sum_(j in N_i union {0}) e_ij` follows from `max<=sum`.  A sharper shared-data
 maximal inequality is useful but is not needed for correctness.
 
+For the Gaussian audit model, a sharper bound is available without assuming
+independence among actions.  If every centered candidate error has covariance
+operator at most `s_g^2 I_d`, a union bound on Gaussian norm tails gives
+
+\[
+\left(\mathbb E\max_{j\le M}\|Z_j\|^2\right)^{1/2}
+\le s_g\left[a_M^2+2a_M\sqrt{\pi/2}+2\right]^{1/2},
+\quad
+a_M=\sqrt d+\sqrt{2\log M}.
+\tag{11}
+\]
+
+The proof integrates
+`P(max_j ||Z_j|| >= s_g(a_M+t)) <= exp(-t^2/2)`.  A maximum deterministic
+bias norm is added by Minkowski's inequality.  Substituting this joint RMS
+maximum for `r_g` in (10) yields a valid expected-supremum score bound whose
+degree dependence is `sqrt(log M)`, rather than the valid but overly
+conservative linear sum.  This refinement is limited to the declared
+Gaussian/sub-Gaussian error model; it is not silently applied to arbitrary
+heavy-tailed actor gradients.
+
 ## 5. Adaptivity at packet receipt
 
 Choosing a scalar step from a realized gradient and applying that same random
