@@ -9,6 +9,7 @@ theorem-facing CPU model, not as a standard MARL benchmark.
 
 from __future__ import annotations
 
+from functools import lru_cache
 from math import comb
 from typing import Mapping, Sequence
 
@@ -17,12 +18,14 @@ import numpy as np
 from .packet_debt import HorizonCertificate, bias_square_upper
 
 
+@lru_cache(maxsize=None)
 def donor_order(owner: int, agents: int) -> tuple[int, ...]:
     if agents < 2 or not 0 <= owner < agents:
         raise ValueError("invalid owner or agent count")
     return tuple((owner + offset) % agents for offset in range(1, agents))
 
 
+@lru_cache(maxsize=None)
 def offset_transition(donors: int, move_probability: float) -> np.ndarray:
     """Lazy directed-cycle transition over relative donor offsets."""
 
@@ -35,6 +38,7 @@ def offset_transition(donors: int, move_probability: float) -> np.ndarray:
     return matrix
 
 
+@lru_cache(maxsize=None)
 def average_offset_occupancy(
     donors: int,
     start_offset: int,
@@ -55,6 +59,7 @@ def average_offset_occupancy(
     return occupancy / horizon
 
 
+@lru_cache(maxsize=None)
 def binomial_quantile(trials: int, probability: float, coverage: float) -> int:
     """Smallest integer ``q`` with ``P(Binomial(trials,p)<=q)>=coverage``."""
 
@@ -74,6 +79,7 @@ def binomial_quantile(trials: int, probability: float, coverage: float) -> int:
     return trials
 
 
+@lru_cache(maxsize=None)
 def prospective_offsets(
     donors: int,
     start_offset: int,
@@ -88,6 +94,7 @@ def prospective_offsets(
     return tuple((start_offset + move) % donors for move in range(count))
 
 
+@lru_cache(maxsize=None)
 def global_hessian(agents: int, strong_convexity: float, coupling: float) -> np.ndarray:
     """Stationary cooperative potential Hessian."""
 
@@ -98,6 +105,7 @@ def global_hessian(agents: int, strong_convexity: float, coupling: float) -> np.
     return matrix
 
 
+@lru_cache(maxsize=None)
 def conditional_owner_row(
     owner: int,
     agents: int,
@@ -120,6 +128,7 @@ def conditional_owner_row(
     return row
 
 
+@lru_cache(maxsize=None)
 def ar1_mean_variance(innovation_variance: float, correlation: float, horizon: int) -> float:
     """Variance of an AR(1)-correlated trajectory average."""
 
@@ -149,6 +158,7 @@ def horizon_certificate(
     step_cap: float,
     delivery_motion_bound: Mapping[int, float] | None = None,
     message_cost: float = 1.0,
+    trajectory_copies: int = 1,
 ) -> tuple[HorizonCertificate, np.ndarray]:
     """Build an exact-model certificate and return its conditional row."""
 
@@ -162,6 +172,8 @@ def horizon_certificate(
         raise ValueError("invalid owner")
     if message_cost < 0.0:
         raise ValueError("message cost must be nonnegative")
+    if trajectory_copies <= 0:
+        raise ValueError("trajectory copies must be positive")
     cache[owner] = theta[owner]
     delivery_motion_bound = {} if delivery_motion_bound is None else delivery_motion_bound
 
@@ -209,7 +221,9 @@ def horizon_certificate(
         ),
         smoothness=float(strong_convexity + coupling),
         step_cap=float(step_cap),
-        base_cost_by_resource={"environment": float(horizon)},
+        base_cost_by_resource={
+            "environment": float(trajectory_copies * horizon)
+        },
         stale_radius_by_edge=stale,
         fresh_radius_by_edge=fresh,
         cost_by_edge=costs,
@@ -255,4 +269,3 @@ def certificate_dominates_actual_bias(
         actual_bias * actual_bias
         <= bias_square_upper(certificate, refreshed_edges) + 1e-12
     )
-

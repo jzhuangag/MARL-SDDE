@@ -79,6 +79,7 @@ def certificates_for_context(context: dict):
             innovation_variance=context["innovation_variance"],
             temporal_correlation=context["temporal_correlation"],
             step_cap=0.05,
+            trajectory_copies=2,
         )[0]
         for horizon in HORIZONS
     ]
@@ -104,7 +105,7 @@ def fixed_action_rows(all_certificates, queues: dict[str, float]) -> list[dict]:
                 {
                     "name": f"H{horizon}_{graph_rule}",
                     "debt": float(np.mean(debt_values)),
-                    "environment": float(horizon),
+                    "environment": float(2 * horizon),
                     "message": float(np.mean(message_values)),
                 }
             )
@@ -155,7 +156,11 @@ def evaluate() -> dict:
             ]
             dynamic_debt = float(np.mean([choice.packet_debt for choice in dynamic]))
             dynamic_budget = {
-                "environment": float(np.mean([choice.horizon for choice in dynamic])),
+                "environment": float(
+                    np.mean(
+                        [choice.resource_costs["environment"] for choice in dynamic]
+                    )
+                ),
                 "message": float(
                     np.mean([choice.resource_costs["message"] for choice in dynamic])
                 ),
@@ -231,4 +236,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
