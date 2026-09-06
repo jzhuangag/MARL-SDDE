@@ -25,13 +25,13 @@ def _summary(values: Iterable[float]) -> dict[str, float | int]:
     }
 
 
-def _reciprocal_positive_median(values: Iterable[float]) -> float:
+def _reciprocal_positive_median(values: Iterable[float]) -> float | None:
     positive = np.asarray(
         [abs(float(value)) for value in values if abs(float(value)) > 1e-12],
         dtype=float,
     )
     if positive.size == 0:
-        raise ValueError("cannot calibrate an identically zero Lyapunov component")
+        return None
     return float(np.clip(1.0 / float(np.median(positive)), 1e-3, 1e8))
 
 
@@ -103,6 +103,14 @@ def analyze(path: Path) -> dict[str, Any]:
     selected = sum(row["selected_donor"] is not None for row in diagnostics)
     signed_favorable = sum(value < 0.0 for value in raw_learning)
     queue_active = sum(value > 0.0 for value in queue_prices)
+    learning_component_nonzero = recommended_learning_weight is not None
+    cache_component_nonzero = recommended_cache_weight is not None
+    queue_component_active = queue_active > 0
+    scale_audit_passed = (
+        learning_component_nonzero
+        and cache_component_nonzero
+        and queue_component_active
+    )
     return {
         "experiment_id": "PISTONBALL-LYAPUNOV-SCORE-SCALE-AUDIT",
         "confirmatory": False,
@@ -113,6 +121,15 @@ def analyze(path: Path) -> dict[str, Any]:
         "selected_fraction_under_legacy_scale": selected / len(diagnostics),
         "signed_favorable_fraction": signed_favorable / len(diagnostics),
         "queue_active_fraction": queue_active / len(diagnostics),
+        "learning_component_nonzero": learning_component_nonzero,
+        "cache_component_nonzero": cache_component_nonzero,
+        "queue_component_active": queue_component_active,
+        "scale_audit_passed": scale_audit_passed,
+        "decision": (
+            "authorize an equal-resource controller-headroom matrix"
+            if scale_audit_passed
+            else "stop before controller headroom and repair the differentiable score interface"
+        ),
         "raw_learning_drift_delta": _summary(raw_learning),
         "raw_cache_reset_energy": _summary(raw_cache),
         "queue_price": _summary(queue_prices),
