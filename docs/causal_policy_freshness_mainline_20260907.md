@@ -232,6 +232,15 @@ null behavior. The next allowed learner uses a fixed smooth critic action
 head and must requalify both nonzero mixed VJPs and learning before controller
 headroom is measured.
 
+That smooth-interface qualification now passes. A fully fresh SiLU learner
+improves terminal decentralized return by 2.1068 under its frozen gate, and a
+matched scale run produces nonzero signed deltas with 42.77% favorable-edge
+frequency while both cache and queue prices remain active. These are
+development interface checks, not controller evidence. The outcome-blind
+normalization fixes `V=1e8` and `beta=83,650.1231` for the next matched
+headroom design; signed-only and cache-only ablations remain mandatory because
+the signed raw curvature is small.
+
 ## Distinction from adjacent work
 
 - [IMPALA](https://proceedings.mlr.press/v80/espeholt18a.html) corrects
@@ -294,15 +303,14 @@ critic/JVP overhead remains a practical failure mode and is reported directly.
 
 ## Immediate execution order
 
-1. replace the stopped ReLU score interface by a fixed smooth critic action
-   head and jointly requalify learning and nonzero mixed VJPs;
-2. freeze a matched-optimizer controller-headroom design with random delay,
+1. freeze a matched-optimizer controller-headroom design around the qualified
+   smooth interface, with random delay,
    binding finite budgets, and strong static/online comparators;
-3. establish that the signed score has nontrivial equal-resource headroom and
+2. establish that the signed score has nontrivial equal-resource headroom and
    audit its replay-only critic/VJP uncertainty and runtime;
-4. only then preregister a small GPU Pistonball pilot with new seeds and
+3. only then preregister a small GPU Pistonball pilot with new seeds and
    mandatory strong-baseline gates;
-5. run formal seeds and write the full manuscript only if that pilot passes.
+4. run formal seeds and write the full manuscript only if that pilot passes.
 
 This sequence advances the one surviving thesis and does not reopen the
 discarded participation, unsigned graph, online-horizon, or generic
