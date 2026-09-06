@@ -9,6 +9,7 @@ from .pistonball_tail import (
     score_cross_influence_matrix,
     spsa_hessian_from_objectives,
     summarize_piston_influence,
+    trajectory_tube_residual,
 )
 
 
@@ -106,3 +107,18 @@ def test_spsa_hessian_has_correct_shape_and_zero_diagonal():
     assert np.allclose(np.diag(estimate), 0.0)
     assert np.allclose(estimate, estimate.T)
     assert np.linalg.norm(estimate - np.diag(np.diag(estimate))) > 0.0
+
+
+def test_trajectory_residual_rejects_wrong_noise_shape():
+    class Fixture:
+        n_pistons = 3
+
+    with np.testing.assert_raises(ValueError):
+        trajectory_tube_residual(
+            Fixture(),
+            np.zeros(3),
+            reset_seed=1,
+            burn_in=0,
+            horizon=2,
+            action_noise=np.zeros((3, 3)),
+        )

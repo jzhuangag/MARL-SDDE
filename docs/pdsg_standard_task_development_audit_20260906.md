@@ -88,6 +88,27 @@ The positive object is instead a causal support derived from declared local
 dynamics and launch state; a centralized critic may estimate signed value only
 inside that support.
 
+## Trajectory-cone width exposes a horizon phase
+
+A subsequent reward-free development smoke used three fixed stochastic policy
+profiles, the three launch states, horizons 4, 6, and 8, and 16 trajectory
+noises per cell.  Sixteen calibration points cannot certify 90% split-conformal
+coverage; the code correctly marked that requested certificate as unavailable.
+The descriptive 80th-percentile path-residual median was 2.3741 piston widths
+and its 90th percentile across cells was 5.4112.
+
+After adding the fixed two-width contact pad, median edge-cost fractions were
+0.236842, 0.347368, and 0.410526 at horizons 4, 6, and 8.  The corresponding
+maximums were 0.347368, 0.9, and 1.0.  Longer rollouts can therefore erase the
+sparse-graph advantage in specific launch states.  This observation motivates
+joint horizon--graph control; it is not used to tune the separately frozen
+PDSG-CONE-001 confirmation seeds.
+
+Output hashes:
+
+- `development_rows.csv`: `E78923E0444749E5B6A8ECF1AD5E64EBB22336DF0500232DC21D7A1B74A0CD3F`.
+- `summary.json`: `601086966500E6F1271E9B13A904C44AEB25C2DE6BBC943222FA8D9431288155`.
+
 ## Fallacy scan (11/11)
 
 1. No p-value was treated as an effect size; no p-value was computed.

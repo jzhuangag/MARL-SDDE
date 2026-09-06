@@ -124,6 +124,46 @@ def finite_horizon_return(
     return total, launch_x, launch_velocity_x
 
 
+def trajectory_tube_residual(
+    raw_env,
+    theta: np.ndarray,
+    reset_seed: int,
+    burn_in: int,
+    horizon: int,
+    action_noise: np.ndarray,
+    piston_width: float = 40.0,
+) -> tuple[float, float, float, tuple[float, ...]]:
+    """Maximum deviation from the launch-time constant-velocity center line."""
+
+    theta = np.asarray(theta, dtype=np.float64)
+    action_noise = np.asarray(action_noise, dtype=np.float64)
+    if action_noise.shape != (int(horizon), raw_env.n_pistons):
+        raise ValueError("action_noise shape does not match horizon and piston count")
+    raw_env.reset(seed=int(reset_seed))
+    for _ in range(int(burn_in)):
+        if not raw_env.agents:
+            break
+        _apply_joint_action(raw_env, heuristic_burn_in_action(raw_env))
+    launch_x = float(raw_env.ball.position.x)
+    launch_velocity_x = float(raw_env.ball.velocity.x)
+    positions = []
+    joint_cycle_seconds = raw_env.n_pistons / 20.0
+    for time_index in range(int(horizon)):
+        if not raw_env.agents:
+            positions.append(float(raw_env.ball.position.x))
+            continue
+        actions = np.tanh(theta + action_noise[time_index]).astype(np.float32)
+        _apply_joint_action(raw_env, actions)
+        positions.append(float(raw_env.ball.position.x))
+    deviations = [
+        abs(position - (launch_x + launch_velocity_x * (time_index + 1) * joint_cycle_seconds))
+        / piston_width
+        for time_index, position in enumerate(positions)
+    ]
+    residual = max(deviations, default=0.0)
+    return float(residual), launch_x, launch_velocity_x, tuple(positions)
+
+
 def directional_influence_matrix(
     objective: Callable[[np.ndarray], float],
     theta: np.ndarray,
