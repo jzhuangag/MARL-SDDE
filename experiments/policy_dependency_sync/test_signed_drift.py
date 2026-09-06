@@ -7,7 +7,9 @@ from experiments.policy_dependency_sync.signed_drift import (
     choose_edge_and_step,
     delayed_cache_reset_benefit,
     fixed_step_score,
+    outgoing_cache_debt_drift,
     optimal_step,
+    receipt_optimal_step,
     robust_alignment_lower_bound,
     robust_candidate_norm_upper_bound,
     robust_optimal_step,
@@ -106,6 +108,75 @@ def test_delayed_cache_reset_benefit_equals_direct_energy_change():
 
 def test_delayed_refresh_can_increase_cache_debt():
     assert delayed_cache_reset_benefit(1.0, 1.0, 0.9, -1.0) < 0.0
+
+
+def test_outgoing_cache_drift_equals_direct_energy_change():
+    weights = {1: 0.4, 2: 1.1, 3: 0.2}
+    caches = {1: -0.7, 2: 0.3, 3: 1.4}
+    current = 0.8
+    gradient = -0.6
+    step = 0.13
+    updated = current - step * gradient
+    before = 0.5 * sum(
+        weights[item] * (current - caches[item]) ** 2 for item in weights
+    )
+    after = 0.5 * sum(
+        weights[item] * (updated - caches[item]) ** 2 for item in weights
+    )
+    assert outgoing_cache_debt_drift(
+        weights, current, caches, gradient, step
+    ) == pytest.approx(after - before)
+
+
+def test_receipt_step_matches_explicit_composite_quadratic_search():
+    weights = {1: 0.4, 2: 0.7}
+    caches = {1: -0.2, 2: 0.5}
+    current = 0.9
+    objective_gradient = 0.8
+    packet_gradient = 0.6
+    objective_smoothness = 1.3
+    pending_linear = 0.12
+    pending_curvature = 0.3
+    maximum = 0.5
+    step = receipt_optimal_step(
+        objective_gradient,
+        packet_gradient,
+        objective_smoothness,
+        weights,
+        current,
+        caches,
+        maximum,
+        pending_linear,
+        pending_curvature,
+    )
+    grid = np.linspace(0.0, maximum, 100_001)
+    objective = (
+        -grid * objective_gradient * packet_gradient
+        + 0.5 * objective_smoothness * grid**2 * packet_gradient**2
+    )
+    cache = np.asarray(
+        [
+            outgoing_cache_debt_drift(
+                weights, current, caches, packet_gradient, float(alpha)
+            )
+            for alpha in grid
+        ]
+    )
+    pending = (
+        grid * pending_linear * abs(packet_gradient)
+        + 0.5 * pending_curvature * grid**2 * packet_gradient**2
+    )
+    values = objective + cache + pending
+    chosen = (
+        -step * objective_gradient * packet_gradient
+        + 0.5 * objective_smoothness * step**2 * packet_gradient**2
+        + outgoing_cache_debt_drift(
+            weights, current, caches, packet_gradient, step
+        )
+        + step * pending_linear * abs(packet_gradient)
+        + 0.5 * pending_curvature * step**2 * packet_gradient**2
+    )
+    assert chosen <= float(values.min()) + 1e-10
 
 
 def test_robust_bounds_cover_all_sampled_perturbations():

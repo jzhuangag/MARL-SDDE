@@ -30,6 +30,72 @@ def delayed_cache_reset_benefit(
     return 0.5 * weight * (before * before - after * after)
 
 
+def outgoing_cache_debt_drift(
+    weight_by_recipient: Mapping[int, float],
+    current_parameter: float,
+    cache_by_recipient: Mapping[int, float],
+    packet_gradient: float,
+    step: float,
+) -> float:
+    """Exact cache-energy change when a donor parameter is updated."""
+    if set(weight_by_recipient) != set(cache_by_recipient):
+        raise ValueError("weight and cache recipients must match")
+    if min(weight_by_recipient.values(), default=0.0) < 0.0:
+        raise ValueError("weights must be nonnegative")
+    if step < 0.0:
+        raise ValueError("step must be nonnegative")
+    displacement = step * packet_gradient
+    linear_debt = sum(
+        weight_by_recipient[recipient]
+        * (current_parameter - cache_by_recipient[recipient])
+        for recipient in weight_by_recipient
+    )
+    total_weight = sum(weight_by_recipient.values())
+    return float(
+        -displacement * linear_debt
+        + 0.5 * displacement * displacement * total_weight
+    )
+
+
+def receipt_optimal_step(
+    objective_gradient: float,
+    packet_gradient: float,
+    objective_smoothness: float,
+    weight_by_recipient: Mapping[int, float],
+    current_parameter: float,
+    cache_by_recipient: Mapping[int, float],
+    maximum_step: float,
+    pending_linear_coefficient: float = 0.0,
+    pending_curvature: float = 0.0,
+) -> float:
+    """Minimize objective, outgoing-cache, and pending quadratic drift."""
+    if objective_smoothness <= 0.0:
+        raise ValueError("objective smoothness must be positive")
+    if pending_linear_coefficient < 0.0 or pending_curvature < 0.0:
+        raise ValueError("pending coefficients must be nonnegative")
+    if set(weight_by_recipient) != set(cache_by_recipient):
+        raise ValueError("weight and cache recipients must match")
+    if min(weight_by_recipient.values(), default=0.0) < 0.0:
+        raise ValueError("weights must be nonnegative")
+    outgoing_gradient = sum(
+        weight_by_recipient[recipient]
+        * (current_parameter - cache_by_recipient[recipient])
+        for recipient in weight_by_recipient
+    )
+    certified_alignment = (
+        (objective_gradient + outgoing_gradient) * packet_gradient
+        - pending_linear_coefficient * abs(packet_gradient)
+    )
+    curvature = objective_smoothness + sum(weight_by_recipient.values())
+    curvature += pending_curvature
+    return robust_optimal_step(
+        certified_alignment,
+        abs(packet_gradient),
+        curvature,
+        maximum_step,
+    )
+
+
 def robust_alignment_lower_bound(
     true_gradient_estimate: np.ndarray | float,
     candidate_gradient_estimate: np.ndarray | float,

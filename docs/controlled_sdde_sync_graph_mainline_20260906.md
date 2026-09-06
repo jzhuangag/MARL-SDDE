@@ -165,13 +165,18 @@ The executed variables are:
 1. launch-time refresh edges `S_i`;
 2. receipt-time scalar update mass `alpha_(i,k)`.
 
-For a fixed candidate update mass, additive certified edge benefits and linear
-message prices make the exact graph decision a thresholded sort, not a generic
-matrix QP.  Joint minimization can be performed by sorting the finitely many
-edge breakpoints and solving the scalar convex quadratic for `alpha` on each
-interval.  With a sparse declared dependency envelope, this costs
-`O(|E_i| log |E_i|)` per launch and `O(dim(theta_i))` for the ordinary policy
-update.  No Hessian inverse or dense covariance matrix is required.
+These actions occur at different causal events.  At dispatch, the graph rule
+compares the predicted minimized future drift values of the eligible refresh
+edges.  At trajectory receipt, the server recomputes the scalar update mass
+from the received packet and the then-current outgoing cache and in-flight
+debts.  The two decisions are coupled by the same Lyapunov function but are not
+represented as a fictitious simultaneous action.
+
+With one eligible edge per dispatch and a sparse declared dependency envelope,
+the launch comparison costs `O(|E_i|)` after its alignment statistics are
+formed.  The receipt rule is a scalar convex minimization, with a closed form
+under a quadratic pending-debt envelope.  No Hessian inverse or dense
+covariance matrix is required.
 
 ## 6. Intended theorem chain
 
