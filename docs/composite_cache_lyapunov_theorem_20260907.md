@@ -127,12 +127,22 @@ event
 \tag{8}
 \]
 
-Assume also a predictable budget-feasible comparator with
+Assume also a predictable randomized comparator distribution supported on the
+same currently feasible action set.  If `a_p^circ` is drawn from that
+distribution, require
 
 \[
- D_p^F(a_p^\circ)-\frac{B_p(a_p^\circ)}{V}
- \le -\kappa_p\|\nabla_{i_p}F(\theta_{b(p)})\|^2+R_p.
+ \mathbb E[c_p(a_p^\circ)-\bar c\mid\mathcal F_{b(p)}]\le 0
 \tag{9}
+\]
+
+and
+
+\[
+ \mathbb E\!\left[D_p^F(a_p^\circ)
+ -\frac{B_p(a_p^\circ)}{V}\,\middle|\,\mathcal F_{b(p)}\right]
+ \le -\kappa_p\|\nabla_{i_p}F(\theta_{b(p)})\|^2+R_p.
+\tag{10}
 \]
 
 Then
@@ -145,7 +155,7 @@ Then
  +\frac1V\sum_{p<N}\mathbb E[\Gamma_p^+]
  +2\sum_{p<N}\mathbb E\epsilon_p^F
  +\frac{NB_Q}{V}.
-\tag{10}
+\tag{11}
 \]
 
 ### Proof
@@ -154,15 +164,16 @@ At every launch, (2) accounts for the entire cache-state jump.  At every
 receipt, the block-smoothness bound accounts for the objective jump and (3)
 accounts for the entire outgoing-cache jump.  Pair each launch with its
 eventual receipt.  The queue half-square inequality contributes
-`Q_p(c_p-bar c)+B_Q`.  Exact minimization of (5) incurs at most
-`2 V epsilon_p^F` against the comparator.  Conditional budget feasibility removes its queue
-term.  Summing every launch reset, every receipt increment, and every queue
+`Q_p(c_p-bar c)+B_Q`.  Exact minimization of (5), followed by averaging over
+the comparator's launch-measurable randomization, incurs at most
+`2 V epsilon_p^F`.  The conditional cost constraint (9) removes its expected
+queue term because `Q_p` is launch-measurable.  Summing every launch reset, every receipt increment, and every queue
 increment telescopes `V F+H+Q^2/2` in chronological event order.  Because the
 launch rule does not know the future receipt term, upper-bound it by
 `Gamma_p^+=max(Gamma_p,0)` after it is realized.  Use
-`F>=F_star`, `H_N>=0`, `Q_N^2>=0`, insert (9), and divide by `V`.
+`F>=F_star`, `H_N>=0`, `Q_N^2>=0`, insert (10), and divide by `V`.
 
-Equation (10) is conditional because the neural critic/VJP score event (8)
+Equation (11) is conditional because the neural critic/VJP score event (8)
 still needs an estimator-specific Markov generalization argument.  The cache
 identities and telescoping step are exact and do not depend on that future
 argument.  If a valid launch-time common upper bound for (4) is available, it
@@ -182,7 +193,7 @@ and use a common receipt envelope.  Edge `e` strictly beats null whenever
 
 \[
  B_p(e)>V\delta_p(e)+Q_pc_p(e).
-\tag{11}
+\tag{12}
 \]
 
 Therefore an untrained or conservative critic does not permanently force the

@@ -149,9 +149,12 @@ The paired launch-receipt theorem gives
 \frac{NB_Q}{V},
 \]
 
-against any predictable budget-feasible comparator satisfying the declared
-descent condition.  Queue iteration gives the corresponding average-message
-bound.  With bounded stochastic packet variance, `w=N^{-1/3}` and
+against any launch-measurable randomized comparator whose conditional expected
+cost is at most the budget rate and which satisfies the declared descent
+condition.  This conditional formulation permits non-null unit-cost actions
+when the budget rate is fractional; a merely pathwise average-feasible
+comparator would not remove the queue cross term.  Queue iteration gives the
+corresponding average-message bound.  With bounded stochastic packet variance, `w=N^{-1/3}` and
 `V=N^{2/3}` balance the stationarity and budget terms at order
 `N^{-1/3}`, apart from normalized Markov, motion, and score-estimation terms.
 
@@ -201,6 +204,13 @@ cache refreshes are charged by exact actor payload bytes.  The remaining
 empirical link is end-to-end Pistonball learning.  That experiment decides
 whether the complete method, rather than its individual interfaces, improves
 the return--communication frontier.
+
+The first deterministic GPU development matrix validates the complete systems
+path but not efficacy.  The composite scheduler changes the mixed-policy
+training trajectory and uses 984 of 2,048 refresh units, yet all methods tie at
+the terminal decentralized return and the signed-only ablation selects no
+edge.  The actor--critic backbone must first pass a separate learning
+qualification; these development outcomes do not authorize a pilot.
 
 ## Distinction from adjacent work
 
