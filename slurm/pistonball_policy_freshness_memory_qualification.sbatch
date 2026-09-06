@@ -51,10 +51,15 @@ import sys
 result = json.load(open(sys.argv[1], encoding="utf-8"))
 assert result["finite"] and result["budget_feasible"]
 assert result["remaining_packets_after_drain"] == 0
-assert result["launched_actor_transitions"] == 1024 * 4 * 20
-assert result["received_packets"] == 1024 - (32 // 4) + 1
+actual_cycles = sum(row["segment_cycles"] for row in result["launch_trace"])
+assert result["launched_actor_transitions"] == 20 * actual_cycles
+assert 0 < result["launched_actor_transitions"] <= 1024 * 4 * 20
+assert result["evaluations"][-1]["actor_transitions"] == result["launched_actor_transitions"]
+assert result["received_packets"] == result["launched_gradient_packets"]
 print(
     {
+        "launched_actor_transitions": result["launched_actor_transitions"],
+        "launched_gradient_packets": result["launched_gradient_packets"],
         "spent_refresh_units": result["spent_refresh_units"],
         "allowed_refresh_units": result["allowed_refresh_units"],
         "runtime_seconds": result["runtime_seconds"],

@@ -353,6 +353,7 @@ def run_training(
     spent_bytes = 0
     queue_value = 0.0
     launched_transitions = 0
+    launched_packets = 0
     received_packets = 0
     selected_edges = 0
     cumulative_train_reward = 0.0
@@ -507,6 +508,7 @@ def run_training(
                     delay=delay,
                     gradients=gradients,
                 )
+                launched_packets += 1
                 immediately_received = packet_queue.apply_due(
                     event=launch,
                     actors=actors,
@@ -576,6 +578,7 @@ def run_training(
         "optional_policy_bytes": spent_bytes,
         "selected_edges": selected_edges,
         "launched_actor_transitions": launched_transitions,
+        "launched_gradient_packets": launched_packets,
         "received_packets": received_packets,
         "remaining_packets_after_drain": len(packet_queue),
         "cumulative_training_team_reward": cumulative_train_reward,

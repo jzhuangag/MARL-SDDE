@@ -32,8 +32,12 @@ def test_small_training_state_machine_is_finite_and_budget_feasible() -> None:
     assert result["finite"]
     assert result["budget_feasible"]
     assert result["remaining_packets_after_drain"] == 0
+    assert result["launched_gradient_packets"] == 4
     assert result["received_packets"] == 4
     assert result["launched_actor_transitions"] == 5 * 4
+    assert result["launched_actor_transitions"] == 4 * sum(
+        row["segment_cycles"] for row in result["launch_trace"]
+    )
     assert len(result["evaluations"]) == 2
 
 

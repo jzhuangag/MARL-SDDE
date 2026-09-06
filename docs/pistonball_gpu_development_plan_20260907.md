@@ -60,6 +60,16 @@ axis rather than a full float image batch.
 
 This is a learner implementation change, so none of the killed/stopped tasks
 may be combined with later results.  A new commit and new output root must first
-pass a bounded 512-launch memory qualification.  Only then may the original
+pass a bounded 1,024-launch memory qualification.  Only then may the original
 development matrix be restarted from scratch; no pilot/formal population is
 affected because none exists.
+
+The first qualification execution completed the learner in 129.06 seconds with
+2,765,264 KiB peak process RSS, but its shell validator failed because it had
+incorrectly required every rollout segment to contain four cycles.  Pistonball
+can terminate within a segment, so the fully charged actor-transition count is
+instead 20 times the sum of the realized segment lengths.  The runner's charge
+was correct; the qualification assertion was not.  The replacement validator
+checks this realized accounting identity and equality between launched and
+received gradient-packet counts after the terminal drain.  The failed
+qualification output remains diagnostic only and cannot authorize the matrix.
