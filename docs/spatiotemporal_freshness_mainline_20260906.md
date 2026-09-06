@@ -41,7 +41,8 @@ graph and motivate joint spatiotemporal control.
 Training is centralized and asynchronous.  Each worker launches a joint
 environment trajectory for one owner policy block using a local cache of all
 teammate policy versions.  At launch, the server knows the current centralized
-state, the worker's version vector, the communication queue, and the public
+state, the worker's version vector, the policy-byte and actor-transition
+resource queues, and the public
 trajectory-cone certificate.  At receipt, it additionally knows the realized
 packet gradient and all intervening policy versions.
 
@@ -72,7 +73,9 @@ V\overline\Gamma_k(H,E)+Q_k c_k(H,E)
 \]
 
 where `Gamma_bar` is the bias--variance debt attached to the new rollout until
-it is consumed.  For fixed `H`, its Cauchy certificate is additive, so the
+it is consumed.  The scalar queue notation in (2) abbreviates the dot product
+of policy-byte and actor-transition queues with their costs.  For fixed `H`,
+its Cauchy certificate is additive, so the
 controller selects precisely those edges whose debt reduction exceeds their
 queue price.  It then takes the best declared integer horizon.  The receipt
 decision removes the completing packet debt and minimizes the remaining

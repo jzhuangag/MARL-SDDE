@@ -27,9 +27,13 @@ def certificate(
         gradient_variance=1.5 / horizon,
         smoothness=2.0,
         step_cap=0.1,
+        base_cost_by_resource={"environment": float(horizon)},
         stale_radius_by_edge={(0, 1): 0.5, (2, 1): 0.3},
         fresh_radius_by_edge={(0, 1): 0.1, (2, 1): 0.2},
-        cost_by_edge={(0, 1): 0.4, (2, 1): 0.1},
+        cost_by_edge={
+            (0, 1): {"message": 0.4},
+            (2, 1): {"message": 0.1},
+        },
         max_edges=max_edges,
     )
 
@@ -47,17 +51,21 @@ def test_packet_energy_coefficients() -> None:
 
 def test_launch_rule_matches_brute_force() -> None:
     items = [certificate(4), certificate(8)]
-    queue = 0.3
+    queues = {"message": 0.3, "environment": 0.02}
     weight = 2.0
-    chosen = choose_horizon_and_graph(items, queue, weight)
+    chosen = choose_horizon_and_graph(items, queues, weight)
     brute = []
     for item in items:
         edges = tuple(item.stale_radius_by_edge)
         for size in range(len(edges) + 1):
             for selected in combinations(edges, size):
                 square, debt = packet_debt(item, selected)
-                cost = sum(item.cost_by_edge[edge] for edge in selected)
-                brute.append((weight * debt + queue * cost, item.horizon, selected, square))
+                costs = dict(item.base_cost_by_resource)
+                for edge in selected:
+                    for resource, cost in item.cost_by_edge[edge].items():
+                        costs[resource] = costs.get(resource, 0.0) + cost
+                price = sum(queues[resource] * cost for resource, cost in costs.items())
+                brute.append((weight * debt + price, item.horizon, selected, square))
     best = min(brute, key=lambda row: (row[0], row[1], tuple(map(repr, row[2]))))
     assert chosen.drift_plus_penalty_index == pytest.approx(best[0])
     assert chosen.horizon == best[1]
@@ -78,15 +86,21 @@ def test_launch_rule_matches_random_brute_force_instances() -> None:
                     gradient_variance=random.random(),
                     smoothness=0.5 + random.random(),
                     step_cap=0.01 + 0.1 * random.random(),
+                    base_cost_by_resource={"environment": float(horizon)},
                     stale_radius_by_edge={edge: random.random() for edge in edges},
                     fresh_radius_by_edge={edge: random.random() for edge in edges},
-                    cost_by_edge={edge: 0.1 + random.random() for edge in edges},
+                    cost_by_edge={
+                        edge: {"message": 0.1 + random.random()} for edge in edges
+                    },
                     max_edges=trial % 4,
                 )
             )
-        queue = 2.0 * random.random()
+        queues = {
+            "message": 2.0 * random.random(),
+            "environment": 0.1 * random.random(),
+        }
         weight = 0.5 + random.random()
-        chosen = choose_horizon_and_graph(items, queue, weight)
+        chosen = choose_horizon_and_graph(items, queues, weight)
         brute = []
         for item in items:
             edges = tuple(item.stale_radius_by_edge)
@@ -94,9 +108,15 @@ def test_launch_rule_matches_random_brute_force_instances() -> None:
             for size in range(min(cap, len(edges)) + 1):
                 for selected in combinations(edges, size):
                     square, debt = packet_debt(item, selected)
-                    cost = sum(item.cost_by_edge[edge] for edge in selected)
+                    costs = dict(item.base_cost_by_resource)
+                    for edge in selected:
+                        for resource, cost in item.cost_by_edge[edge].items():
+                            costs[resource] = costs.get(resource, 0.0) + cost
+                    price = sum(
+                        queues[resource] * cost for resource, cost in costs.items()
+                    )
                     brute.append(
-                        (weight * debt + queue * cost, item.horizon, selected, square)
+                        (weight * debt + price, item.horizon, selected, square)
                     )
         best = min(
             brute,
@@ -104,19 +124,28 @@ def test_launch_rule_matches_random_brute_force_instances() -> None:
         )
         assert chosen.drift_plus_penalty_index == pytest.approx(best[0])
         assert chosen.horizon == best[1]
-        assert chosen.refreshed_edges == best[2]
+        assert set(chosen.refreshed_edges) == set(best[2])
         assert chosen.bias_square_upper == pytest.approx(best[3])
 
 
 def test_cardinality_cap_takes_best_net_edge() -> None:
-    chosen = choose_horizon_and_graph([certificate(max_edges=1)], 0.0, 1.0)
+    chosen = choose_horizon_and_graph(
+        [certificate(max_edges=1)],
+        {"message": 0.0, "environment": 0.0},
+        1.0,
+    )
     assert chosen.refreshed_edges == ((0, 1),)
 
 
 def test_large_queue_selects_no_refresh() -> None:
-    chosen = choose_horizon_and_graph([certificate()], 1_000.0, 1.0)
+    chosen = choose_horizon_and_graph(
+        [certificate()],
+        {"message": 1_000.0, "environment": 0.0},
+        1.0,
+    )
     assert chosen.refreshed_edges == ()
-    assert chosen.communication_cost == 0.0
+    assert chosen.resource_costs["message"] == 0.0
+    assert chosen.resource_costs["environment"] == 4.0
 
 
 def test_remaining_packet_coefficients_match_direct_expansion() -> None:

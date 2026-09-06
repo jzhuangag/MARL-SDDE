@@ -100,13 +100,13 @@ refreshing `e` reduces the certified debt by
 \tag{4}
 \]
 
-With virtual communication queue `Q_k`, learning weight `V`, and message cost
-`c_e`, the exact launch rule is
+With resource queues `Q_(r,k)`, learning weight `V`, and edge-resource costs
+`c_(e,r)`, the exact launch rule is
 
 \[
 e\in E_k(H)
 \quad\Longleftrightarrow\quad
-V\Delta_e(H)>Q_kc_e.
+V\Delta_e(H)>\sum_rQ_{r,k}c_{e,r}.
 \tag{5}
 \]
 
@@ -114,7 +114,8 @@ Under a cardinality cap, take the largest positive net values in (5).  The
 controller then chooses the horizon with the smallest
 
 \[
-V\overline\Gamma_k(H,E_k(H))+Q_kc_k(H,E_k(H)).
+V\overline\Gamma_k(H,E_k(H))
++\sum_rQ_{r,k}c_{r,k}(H,E_k(H)).
 \tag{6}
 \]
 
@@ -124,7 +125,10 @@ integer action space of the online controller, not an offline hyperparameter
 search.  The work is
 `O(sum_(H in Hset)|C(X_k,H)|)` without a cap and adds sorting only when a
 cardinality cap is imposed.  No Hessian inverse, covariance matrix, generic
-QP, or per-edge environment probe is required.
+QP, or per-edge environment probe is required.  The base resource vector
+includes the `H` actor transitions consumed by the rollout; policy bytes are
+charged edgewise.  Wall-clock occupancy may be added as a third measured
+resource but is not the definition of learning quality.
 
 The horizon tradeoff is endogenous.  Longer trajectories may reduce Markov,
 truncation, or gradient-variance components but enlarge the causal cone and
@@ -232,16 +236,17 @@ Let
 \[
 \Phi_k=F(\theta^k)-F_\star
 +\sum_{p\in\mathcal P_k}\Gamma_{p,k}
-+\frac{Q_k^2}{2V},
++\sum_r\frac{Q_{r,k}^2}{2V},
 \tag{15}
 \]
 
-and update `Q_(k+1)=[Q_k+c_k-bar c]^+` only at launch events.  Assume costs
-lie in `[0,c_max]`.  At each launch, the algorithm minimizes (6) with
-conditional uniform packet-debt error `epsilon_k^L`.  Let any predictable
-comparison policy have conditional average cost at most `bar c` and birth
-debt `Gamma_k^circ`.  At every receipt, assume (1), (7), the condition below
-(12), and conditional uniform scalar-score error `epsilon_r^R`.
+and update `Q_(r,k+1)=[Q_(r,k)+c_(r,k)-bar c_r]^+` only at launch events.
+Assume resource `r` has costs in `[0,c_(r,max)]`.  At each launch, the
+algorithm minimizes (6) with conditional uniform packet-debt error
+`epsilon_k^L`.  Let any predictable comparison policy have conditional
+average cost at most `bar c_r` for every resource and birth debt
+`Gamma_k^circ`.  At every receipt, assume (1), (7), the condition below (12),
+and conditional uniform scalar-score error `epsilon_r^R`.
 
 For any event prefix containing `N` launches and a set `R` of receipts,
 
@@ -258,7 +263,7 @@ For any event prefix containing `N` launches and a set `R` of receipts,
 \tag{16}
 \]
 
-where `B_Q=c_max^2/2`.
+where `B_Q=sum_r c_(r,max)^2/2`.
 
 ### Proof
 
@@ -272,24 +277,29 @@ over the chronological launch/receipt filtration, telescope (15), and use
 only leaves nonnegative energy in `Phi_terminal`; it is not silently treated
 as completed.
 
-Pathwise queue iteration gives
+Pathwise queue iteration gives, for every resource `r`,
 
 \[
-\frac1N\sum_{k=1}^Nc_k
-\le\bar c+\frac{Q_N-Q_0}{N}.
+\frac1N\sum_{k=1}^Nc_{r,k}
+\le\bar c_r+\frac{Q_{r,N}-Q_{r,0}}{N}.
 \tag{17}
 \]
 
-If a zero-refresh action exists, each positive message costs at least
-`c_min`, and every estimated birth debt has magnitude at most `M_Gamma`, then
+For the message resource, if a zero-refresh action exists, each positive
+message costs at least `c_min`, and every estimated birth debt has magnitude
+at most `M_Gamma`, then
 
 \[
-Q_k\le\frac{2VM_\Gamma}{c_{\min}}+c_{\max}.
+Q_{\mathrm{msg},k}
+\le\frac{2VM_\Gamma}{c_{\min}}+c_{\mathrm{msg},\max}.
 \tag{18}
 \]
 
-Thus the graph is chosen by Lyapunov backpressure and its average budget is a
-pathwise consequence, not a post hoc resource plot.
+For a mandatory resource such as environment transitions, the corresponding
+pathwise budget needs either a feasible low-cost horizon action plus the same
+bounded-score comparison, or a standard Slater condition.  Thus graph and
+horizon are chosen by multi-resource Lyapunov backpressure; each claimed
+budget must state the condition that bounds its own queue.
 
 For a bounded number of in-flight packets, bounded certificates, constant
 `w=N^(-1/2)`, and `V=N`, (16)--(18) yield an `O(N^(-1/2))` optimization/budget
@@ -345,4 +355,3 @@ guarantee that it has not proved.
 
 PDSG-CONE-001 authorizes this design work but not execution under its
 identifier.  No GPU/HPC4 experiment is authorized yet.
-

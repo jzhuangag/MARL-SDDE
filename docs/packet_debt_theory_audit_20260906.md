@@ -19,7 +19,7 @@ arbitrary interleavings of bounded-delay launches and receipts.
 ## Closed obligations
 
 1. **One Lyapunov design:** horizon, version graph, and receipt mass are actions
-   of the same objective-plus-packet-debt-plus-resource-queue functional.
+   of the same objective-plus-packet-debt-plus-multi-resource-queue functional.
 2. **No temporal clairvoyance:** launch variables use launch information;
    receipt mass uses receipt information and a sealed independent update half.
 3. **Exact graph minimization:** the additive Cauchy certificate makes edge
@@ -29,8 +29,10 @@ arbitrary interleavings of bounded-delay launches and receipts.
    packets remain as nonnegative terminal energy.
 5. **Bias cancellation:** the `5/4` bias coefficient and `1/2` variance
    coefficient yield the proved full-cap descent comparison.
-6. **Resource guarantee:** the virtual queue implies a pathwise average
-   communication bound and a deterministic cap under bounded scores.
+6. **Resource guarantee:** virtual queues price both actor transitions and
+   policy bytes.  The message queue has a deterministic cap under bounded
+   scores; mandatory-resource queues require a feasible low-cost action or a
+   stated Slater condition.
 7. **Asymptotic scaling:** for bounded in-flight population and certificates,
    `w=N^(-1/2)` and `V=N` give an `O(N^(-1/2))` optimization/resource remainder
    plus the explicit comparator bias and estimator-error terms.
@@ -76,4 +78,3 @@ control split.  If no such gap exists, the controller does not proceed to
 Pistonball training even though the cone certificate passed.  If it exists,
 the runner and analyzer are frozen before new confirmation seeds, and all
 failed gates remain failures.
-

@@ -15,6 +15,7 @@ from typing import Hashable, Mapping, Sequence
 
 
 Edge = tuple[Hashable, Hashable]
+Resource = Hashable
 
 
 @dataclass(frozen=True)
@@ -33,9 +34,10 @@ class HorizonCertificate:
     gradient_variance: float
     smoothness: float
     step_cap: float
+    base_cost_by_resource: Mapping[Resource, float]
     stale_radius_by_edge: Mapping[Edge, float]
     fresh_radius_by_edge: Mapping[Edge, float]
-    cost_by_edge: Mapping[Edge, float]
+    cost_by_edge: Mapping[Edge, Mapping[Resource, float]]
     max_edges: int | None = None
 
 
@@ -45,7 +47,7 @@ class LaunchChoice:
     refreshed_edges: tuple[Edge, ...]
     bias_square_upper: float
     packet_debt: float
-    communication_cost: float
+    resource_costs: Mapping[Resource, float]
     drift_plus_penalty_index: float
 
 
@@ -74,8 +76,11 @@ def _validate_certificate(certificate: HorizonCertificate) -> None:
         raise ValueError("stale radii must be nonnegative")
     if min(certificate.fresh_radius_by_edge.values(), default=0.0) < 0.0:
         raise ValueError("fresh radii must be nonnegative")
-    if min(certificate.cost_by_edge.values(), default=0.0) < 0.0:
-        raise ValueError("edge costs must be nonnegative")
+    if min(certificate.base_cost_by_resource.values(), default=0.0) < 0.0:
+        raise ValueError("base resource costs must be nonnegative")
+    for costs in certificate.cost_by_edge.values():
+        if min(costs.values(), default=0.0) < 0.0:
+            raise ValueError("edge resource costs must be nonnegative")
     if certificate.max_edges is not None and certificate.max_edges < 0:
         raise ValueError("max_edges must be nonnegative")
 
@@ -146,7 +151,7 @@ def packet_debt(
 
 def choose_horizon_and_graph(
     certificates: Sequence[HorizonCertificate],
-    communication_queue: float,
+    resource_queues: Mapping[Resource, float],
     learning_weight: float,
 ) -> LaunchChoice:
     """Exactly minimize launch packet debt plus virtual-queue price.
@@ -159,12 +164,17 @@ def choose_horizon_and_graph(
 
     if not certificates:
         raise ValueError("at least one horizon certificate is required")
-    if communication_queue < 0.0 or learning_weight <= 0.0:
-        raise ValueError("queue must be nonnegative and learning weight positive")
+    if min(resource_queues.values(), default=0.0) < 0.0 or learning_weight <= 0.0:
+        raise ValueError("queues must be nonnegative and learning weight positive")
 
     choices: list[LaunchChoice] = []
     for certificate in certificates:
         _validate_certificate(certificate)
+        used_resources = set(certificate.base_cost_by_resource)
+        for edge_costs in certificate.cost_by_edge.values():
+            used_resources.update(edge_costs)
+        if not used_resources <= set(resource_queues):
+            raise ValueError("every charged resource requires a queue price")
         all_edges = tuple(certificate.stale_radius_by_edge)
         component_count = max(
             1,
@@ -176,9 +186,13 @@ def choose_horizon_and_graph(
             stale = certificate.stale_radius_by_edge[edge]
             fresh = certificate.fresh_radius_by_edge[edge]
             debt_reduction = coefficient * (stale * stale - fresh * fresh)
+            price = sum(
+                resource_queues[resource] * cost
+                for resource, cost in certificate.cost_by_edge[edge].items()
+            )
             net = (
                 learning_weight * debt_reduction
-                - communication_queue * certificate.cost_by_edge[edge]
+                - price
             )
             if net > 0.0:
                 scored.append((float(net), edge))
@@ -187,16 +201,28 @@ def choose_horizon_and_graph(
             scored = scored[: certificate.max_edges]
         selected = tuple(edge for _, edge in scored)
         square, debt = packet_debt(certificate, selected)
-        cost = sum(certificate.cost_by_edge[edge] for edge in selected)
+        total_costs = {
+            resource: float(certificate.base_cost_by_resource.get(resource, 0.0))
+            for resource in resource_queues
+        }
+        for edge in selected:
+            for resource, cost in certificate.cost_by_edge[edge].items():
+                total_costs[resource] = total_costs.get(resource, 0.0) + cost
+        price = sum(
+            resource_queues[resource] * cost
+            for resource, cost in total_costs.items()
+        )
         choices.append(
             LaunchChoice(
                 horizon=certificate.horizon,
                 refreshed_edges=selected,
                 bias_square_upper=square,
                 packet_debt=debt,
-                communication_cost=float(cost),
+                resource_costs={
+                    resource: float(cost) for resource, cost in total_costs.items()
+                },
                 drift_plus_penalty_index=float(
-                    learning_weight * debt + communication_queue * cost
+                    learning_weight * debt + price
                 ),
             )
         )
@@ -329,4 +355,3 @@ def direct_full_cap_drift_upper(
     remaining = remaining_linear * step_cap * sqrt(second_moment)
     remaining += 0.5 * remaining_curvature * step_cap * step_cap * second_moment
     return float(objective - completing_energy + remaining)
-
