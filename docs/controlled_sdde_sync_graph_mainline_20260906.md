@@ -239,8 +239,9 @@ Verified source metadata and read boundaries are recorded separately in
 
 ## 9. Mandatory problem gates before a controller pilot
 
-An outcome-free exact linear-quadratic potential-game audit must compare the
-dynamic ceiling with all of:
+An outcome-free exact linear-quadratic potential-game audit must use the
+registered causal one-step drift policy as its optimistic dynamic ceiling and
+compare that ceiling with all of:
 
 - no refresh;
 - periodic full refresh at the same average message cost;
@@ -248,7 +249,7 @@ dynamic ceiling with all of:
 - the best fixed edge-specific refresh rates;
 - online largest-parameter-mismatch refresh;
 - online oldest-cache refresh;
-- the best causal one-step drift policy with the registered information.
+- online active-edge oldest-cache refresh.
 
 Across a frozen grid containing stationary, switching, sparse, dense, weak-
 coupling, strong-coupling, balanced-clock, and heterogeneous-clock controls,
@@ -289,4 +290,3 @@ The strongest objections are:
 
 The exact oracle gate tests objection 5 first because it is the cheapest fatal
 test.  Theorem construction is not authorized if that gate fails.
-
