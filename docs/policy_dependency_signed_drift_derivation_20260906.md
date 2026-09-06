@@ -48,16 +48,30 @@ sign.
 ## 2. Lyapunov edge value
 
 For the composite Lyapunov function in
-`controlled_sdde_sync_graph_mainline_20260906.md`, add the exact cache reset
-and queue increments.  The candidate score is
+`controlled_sdde_sync_graph_mainline_20260906.md`, add the cache and queue
+increments.  If the refresh delivers the delayed source
+`theta_j^(k-d)` rather than the current `theta_j^k`, its exact cache-debt
+reduction is
+
+\[
+R_{ij,k}=\frac{p_{ij}}2\left(
+\|\theta_j^k-\chi_{j\to i}^k\|^2
+-\|\theta_j^k-\theta_j^{k-d}\|^2
+\right).
+\tag{2}
+\]
+
+The second term is the residual flight mismatch.  Consequently a delayed
+refresh can have negative immediate cache value.  Omitting this term is valid
+only for zero delivery delay.  The candidate score is
 
 \[
 \Psi_j(\alpha)=
 -\alpha a_i g_j
 +\frac12\alpha^2\bar H_{ii}g_j^2
--\frac{p_{ij}}2\|\theta_j-\chi_{j\to i}\|^2
+-R_{ij,k}
 +Q_k c_{ij}.
-\tag{2}
+\tag{3}
 \]
 
 The no-refresh candidate has `d_i0=0`, no reset benefit, and zero message
@@ -70,7 +84,7 @@ For each candidate, joint step-size minimization has the closed form
 \alpha_j^*=
 \Pi_{[0,\alpha_{\max}]}
 \frac{[a_i g_j]_+}{\bar H_{ii}g_j^2},
-\tag{3}
+\tag{4}
 \]
 
 with `alpha_j^*=0` when `g_j=0`.  Substitution into (2), followed by an
@@ -87,7 +101,7 @@ F(\theta-\alpha U_i g_j)-F(\theta)
 \le
 -\alpha\langle\nabla_iF(\theta),g_j\rangle
 +\frac{L_i\alpha^2}{2}\|g_j\|^2.
-\tag{4}
+\tag{5}
 \]
 
 An executable deep-MARL rule needs predictable estimates of the two quantities
@@ -100,15 +114,21 @@ to choose the next launch graph:
 - `epsilon_ij`: a simultaneous confidence bound for the prediction error;
 - `L_i`: a public or certified block-smoothness envelope.
 
-The scalar first-order part for all teammate blocks can be obtained from one
-vector--Jacobian product of a gradient-alignment scalar and then partitioned by
-policy block.  This is an additional autodiff pass, not one Hessian inversion
-or one trajectory per edge.  A norm bound pays the unobserved quadratic
-remainder.
+The scalar first-order part for all teammate blocks can be approximated from
+one reverse-mode derivative of a gradient-alignment scalar and then
+partitioned by policy block.  This proposed interface still needs a measured
+autodiff-cost audit; the current evidence does not establish that it always
+costs exactly one ordinary backward pass.  A certified norm bound must pay the
+unobserved Taylor remainder.
 
 The launch graph must be committed before the next trajectory is observed.
 Using the same packet to choose its own refresh edge would be post-treatment
 selection and is forbidden.
+
+The frozen PDSG-001 `one_step_oracle` uses the registered target, expected
+quadratic matrix, current Markov state, and candidate cache.  It is an
+optimistic problem-value ceiling, not the executable estimator described
+above.  Its positive result cannot be promoted to an algorithm result.
 
 ## 4. What remains to prove
 
@@ -129,4 +149,3 @@ yet justify the deep rule.  A theorem freeze requires:
 If the confidence penalty always selects no refresh, or if the extra gradient
 calculation costs more than the oracle gain, the practical architecture fails
 despite the positive PDSG-001 problem signal.
-

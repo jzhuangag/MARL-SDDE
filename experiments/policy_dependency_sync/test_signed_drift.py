@@ -5,8 +5,12 @@ import pytest
 
 from experiments.policy_dependency_sync.signed_drift import (
     choose_edge_and_step,
+    delayed_cache_reset_benefit,
     fixed_step_score,
     optimal_step,
+    robust_alignment_lower_bound,
+    robust_candidate_norm_upper_bound,
+    robust_optimal_step,
 )
 
 
@@ -88,8 +92,68 @@ def test_non_descent_candidate_gets_zero_step_without_other_benefit():
     assert optimal_step(1.0, -1.0, 2.0, 0.5) == 0.0
 
 
+def test_delayed_cache_reset_benefit_equals_direct_energy_change():
+    weight = 1.7
+    current = 1.2
+    cached = -0.4
+    delivered = 0.8
+    before = 0.5 * weight * (current - cached) ** 2
+    after = 0.5 * weight * (current - delivered) ** 2
+    assert delayed_cache_reset_benefit(
+        weight, current, cached, delivered
+    ) == pytest.approx(before - after)
+
+
+def test_delayed_refresh_can_increase_cache_debt():
+    assert delayed_cache_reset_benefit(1.0, 1.0, 0.9, -1.0) < 0.0
+
+
+def test_robust_bounds_cover_all_sampled_perturbations():
+    rng = np.random.default_rng(731)
+    estimate_a = np.asarray((0.8, -0.4, 0.3))
+    estimate_g = np.asarray((0.2, 0.6, -0.5))
+    radius_a = 0.25
+    radius_g = 0.18
+    alignment_lower = robust_alignment_lower_bound(
+        estimate_a, estimate_g, radius_a, radius_g
+    )
+    norm_upper = robust_candidate_norm_upper_bound(estimate_g, radius_g)
+    for _ in range(1_000):
+        direction_a = rng.normal(size=3)
+        direction_g = rng.normal(size=3)
+        direction_a /= np.linalg.norm(direction_a)
+        direction_g /= np.linalg.norm(direction_g)
+        true_a = estimate_a + rng.random() * radius_a * direction_a
+        true_g = estimate_g + rng.random() * radius_g * direction_g
+        assert true_a @ true_g >= alignment_lower - 1e-12
+        assert np.linalg.norm(true_g) <= norm_upper + 1e-12
+
+
+def test_robust_step_minimizes_certified_scalar_upper_bound():
+    alignment_lower = 0.7
+    norm_upper = 1.3
+    smoothness = 1.8
+    maximum = 0.4
+    step = robust_optimal_step(
+        alignment_lower, norm_upper, smoothness, maximum
+    )
+    grid = np.linspace(0.0, maximum, 100_001)
+    values = (
+        -grid * alignment_lower
+        + 0.5 * smoothness * grid**2 * norm_upper**2
+    )
+    value = (
+        -step * alignment_lower
+        + 0.5 * smoothness * step**2 * norm_upper**2
+    )
+    assert value <= float(values.min()) + 1e-10
+
+
+def test_nonpositive_certified_alignment_rejects_learning_step():
+    assert robust_optimal_step(-0.1, 1.0, 2.0, 0.5) == 0.0
+
+
 @pytest.mark.parametrize("curvature", [0.0, -1.0])
 def test_invalid_curvature_is_rejected(curvature):
     with pytest.raises(ValueError):
         optimal_step(1.0, 1.0, curvature, 0.5)
-
