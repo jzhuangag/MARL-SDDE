@@ -717,6 +717,110 @@ def signed_refresh_for_batch(
     )
 
 
+def exact_counterfactual_refresh_for_batch(
+    *,
+    owner: int,
+    eligible_donors: Iterable[int],
+    actors: Sequence[nn.Module],
+    caches: PolicyCacheBank,
+    critic: nn.Module,
+    observations: torch.Tensor,
+    states: torch.Tensor,
+    step: float,
+    communication_queue: float,
+    learning_weight: float,
+    smoothness: float,
+    packet_second_moment_upper: float,
+    receipt_motion_upper: float,
+    cache_debt_weight: float = 0.0,
+    can_refresh: bool = True,
+) -> NeuralCacheChoice:
+    """Score actual null/one-edge cached policies with sparse reverse passes."""
+
+    donors = tuple(
+        sorted({int(donor) for donor in eligible_donors if int(donor) != int(owner)})
+    )
+    owner_parameters = module_parameters(actors[int(owner)])
+    current_actions = joint_policy_actions(actors=actors, observations=observations)
+    current_loss = -critic(states, current_actions).mean()
+    current_gradient = tuple(
+        value.detach()
+        for value in torch.autograd.grad(
+            current_loss, owner_parameters, retain_graph=False, allow_unused=False
+        )
+    )
+
+    def alignment(replacement: int | None) -> float:
+        outputs: list[torch.Tensor] = []
+        for donor, actor in enumerate(actors):
+            selected = (
+                actor
+                if donor == int(owner) or donor == replacement
+                else caches.rollout_actor(int(owner), donor, actors)
+            )
+            outputs.append(selected(observations[:, donor]))
+        loss = -critic(states, torch.cat(outputs, dim=1)).mean()
+        gradient = torch.autograd.grad(
+            loss, owner_parameters, retain_graph=False, allow_unused=False
+        )
+        return float(
+            sum(
+                (reference * candidate.detach()).sum()
+                for reference, candidate in zip(current_gradient, gradient)
+            ).cpu()
+        )
+
+    common_drift = (
+        0.5 * float(smoothness) * float(step) ** 2 * float(packet_second_moment_upper)
+        + float(step) * float(receipt_motion_upper)
+    )
+    null_alignment = alignment(None)
+    null_drift = -float(step) * null_alignment + common_drift
+    null_index = float(learning_weight) * null_drift
+    edge_rows: list[tuple[float, int, float, float, float, float]] = []
+    if can_refresh:
+        for donor in donors:
+            candidate_alignment = alignment(donor)
+            candidate_drift = -float(step) * candidate_alignment + common_drift
+            learning_delta = float(learning_weight) * (candidate_drift - null_drift)
+            norm = caches.displacement_norm(int(owner), donor, actors[donor])
+            reset_benefit = 0.5 * float(cache_debt_weight) * norm * norm
+            queue_price = float(communication_queue)
+            index = null_index + learning_delta - reset_benefit + queue_price
+            edge_rows.append(
+                (
+                    float(index),
+                    donor,
+                    candidate_alignment,
+                    learning_delta,
+                    reset_benefit,
+                    queue_price,
+                )
+            )
+    best_edge = min(edge_rows, default=None, key=lambda row: (row[0], row[1]))
+    selected = best_edge if best_edge is not None and best_edge[0] < null_index else None
+    return NeuralCacheChoice(
+        donor=None if selected is None else int(selected[1]),
+        index=null_index if selected is None else float(selected[0]),
+        estimated_alignment=(
+            null_alignment if selected is None else float(selected[2])
+        ),
+        cache_reset_benefit=(0.0 if selected is None else float(selected[4])),
+        candidate_count=1 + len(edge_rows),
+        vjp_calls=1 + 1 + len(edge_rows),
+        null_index=null_index,
+        best_edge_donor=None if best_edge is None else int(best_edge[1]),
+        best_edge_index=None if best_edge is None else float(best_edge[0]),
+        best_edge_learning_index_delta=(
+            None if best_edge is None else float(best_edge[3])
+        ),
+        best_edge_cache_reset_benefit=(
+            None if best_edge is None else float(best_edge[4])
+        ),
+        best_edge_queue_price=None if best_edge is None else float(best_edge[5]),
+    )
+
+
 def critic_td_loss(
     *,
     critic: nn.Module,

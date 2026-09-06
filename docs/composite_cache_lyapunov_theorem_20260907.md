@@ -139,6 +139,14 @@ evaluations but removes the finite policy-displacement Taylor approximation.
 Both implementations remain subject to the same simultaneous score-error
 event (8); empirical activity is not a confidence certificate.
 
+For causal alignment with the packet model, every candidate score must be
+formed from trajectories completed strictly before its launch. The prospective
+implementation samples a completed replay batch with a dedicated RNG. A
+current pre-action environment snapshot is also launch-measurable, but it is
+not by itself an estimate under the replay distribution that generates the
+subsequent owner packet and is therefore insufficient for the claimed
+replay-based score interface.
+
 A hard causal prefix cap may remove positive actions from (6) so that every
 finite experiment satisfies its policy-byte budget exactly.  This does not
 change the minimizer over the remaining feasible set.

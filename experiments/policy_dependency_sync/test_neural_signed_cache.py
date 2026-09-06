@@ -6,6 +6,7 @@ from .async_pistonball_ctde import (
     PistonActor,
     PistonCentralCritic,
     PolicyCacheBank,
+    exact_counterfactual_refresh_for_batch,
     signed_refresh_for_batch,
 )
 from .neural_signed_cache import parameter_bytes, signed_cache_choice
@@ -175,3 +176,33 @@ def test_smooth_critic_exposes_mixed_policy_curvature_that_relu_hides() -> None:
     silu_delta = learning_delta("silu")
     assert relu_delta == 0.0
     assert abs(silu_delta) > 1e-12
+
+
+def test_exact_sparse_counterfactual_scores_actual_one_edge_cache() -> None:
+    torch.manual_seed(772)
+    actors = tuple(PistonActor(activation="silu") for _ in range(4))
+    caches = PolicyCacheBank(actors)
+    with torch.no_grad():
+        actors[1].action_head.bias.add_(0.2)
+    critic = PistonCentralCritic(4, activation="silu")
+    choice = exact_counterfactual_refresh_for_batch(
+        owner=0,
+        eligible_donors=(1,),
+        actors=actors,
+        caches=caches,
+        critic=critic,
+        observations=torch.randn(2, 4, 3, 64, 32),
+        states=torch.randn(2, 3, 64, 64),
+        step=0.01,
+        communication_queue=0.0,
+        learning_weight=1.0,
+        smoothness=1.0,
+        packet_second_moment_upper=1.0,
+        receipt_motion_upper=0.0,
+        cache_debt_weight=0.0,
+    )
+    assert choice.candidate_count == 2
+    assert choice.vjp_calls == 3
+    assert choice.best_edge_donor == 1
+    assert choice.best_edge_learning_index_delta is not None
+    assert abs(choice.best_edge_learning_index_delta) > 1e-12

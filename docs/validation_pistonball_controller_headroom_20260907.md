@@ -79,6 +79,15 @@ No pilot, formal seeds, confidence interval, or ICML efficacy claim is
 authorized. The stopped one-VJP finite-displacement approximation must not be
 rescued by changing `V`, `beta`, budget, seeds, or gates against these results.
 
+The audit also found that the stopped runner gated score use on replay
+availability but evaluated the VJP on the current launch-state snapshot rather
+than a completed replay batch. This snapshot is causal, so it does not create
+outcome leakage, but the historical documentation's stronger "replay-only"
+description was inaccurate and its relationship to the later packet-gradient
+distribution was weak. Prospective exact scoring uses an independent RNG to
+sample only replay completed before the launch; the training replay RNG is
+unchanged.
+
 The discrete Lyapunov theorem accepts any predictable simultaneous estimate
 of each candidate action drift; it does not require the failed Taylor/VJP
 approximation. One outcome-free repair remains scientifically motivated:

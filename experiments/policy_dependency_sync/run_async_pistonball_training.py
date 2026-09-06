@@ -33,6 +33,7 @@ from .async_pistonball_ctde import (
     collect_parallel_segment,
     compress_parallel_snapshot,
     critic_td_loss,
+    exact_counterfactual_refresh_for_batch,
     hard_budget_remaining,
     joint_policy_actions,
     owner_critic_gradient,
@@ -56,6 +57,15 @@ SCHEDULERS = (
     "round_robin",
     "static_chain",
     "complete_burst",
+    "exact_lyapunov",
+    "exact_signed_only",
+)
+
+SCORE_SCHEDULERS = (
+    "signed_lyapunov",
+    "signed_only",
+    "exact_lyapunov",
+    "exact_signed_only",
 )
 
 
@@ -351,11 +361,16 @@ def _scheduler_action(
             communication_queue=queue_value,
             cache_debt_weight=config.cache_debt_weight,
         ), None
-    if scheduler not in ("signed_lyapunov", "signed_only"):
+    if scheduler not in SCORE_SCHEDULERS:
         raise ValueError(f"unknown scheduler {scheduler}")
     if len(replay) < config.batch_size:
         return (), None
-    choice = signed_refresh_for_batch(
+    score_function = (
+        exact_counterfactual_refresh_for_batch
+        if scheduler.startswith("exact_")
+        else signed_refresh_for_batch
+    )
+    score_arguments = dict(
         owner=owner,
         eligible_donors=eligible,
         actors=actors,
@@ -369,12 +384,16 @@ def _scheduler_action(
         smoothness=config.score_smoothness,
         packet_second_moment_upper=config.score_second_moment,
         receipt_motion_upper=config.score_motion_bound,
-        taylor_coefficient=config.score_taylor_coefficient,
         cache_debt_weight=(
-            config.cache_debt_weight if scheduler == "signed_lyapunov" else 0.0
+            config.cache_debt_weight
+            if scheduler in {"signed_lyapunov", "exact_lyapunov"}
+            else 0.0
         ),
         can_refresh=remaining_units > 0,
     )
+    if score_function is signed_refresh_for_batch:
+        score_arguments["taylor_coefficient"] = config.score_taylor_coefficient
+    choice = score_function(**score_arguments)
     selected = () if choice.donor is None else (int(choice.donor),)
     return selected, choice
 
@@ -438,6 +457,7 @@ def run_training(
         np.random.default_rng(int(seed) + 101 + owner) for owner in range(config.n_agents)
     ]
     replay_rng = np.random.default_rng(int(seed) + 211)
+    score_rng = np.random.default_rng(int(seed) + 311)
 
     base_actor = PistonActor(activation=config.network_activation).to(device)
     actors = tuple(copy.deepcopy(base_actor).to(device) for _ in range(config.n_agents))
@@ -505,6 +525,17 @@ def run_training(
                 possible_agents=worker.environment.possible_agents,
                 state=worker.environment.state(),
             )
+            if scheduler in SCORE_SCHEDULERS and len(replay) >= config.batch_size:
+                completed_score_batch = replay.sample(
+                    config.batch_size, score_rng, device
+                )
+                score_observations = completed_score_batch.observations
+                score_states = completed_score_batch.states
+            else:
+                score_observations = torch.as_tensor(
+                    launch_observations[None], device=device
+                )
+                score_states = torch.as_tensor(launch_state[None], device=device)
             remaining = _remaining_refresh_units(
                 config=config, launch=launch, spent_units=spent_units
             )
@@ -517,10 +548,8 @@ def run_training(
                 caches=caches,
                 critic=critic,
                 replay=replay,
-                score_observations=torch.as_tensor(
-                    launch_observations[None], device=device
-                ),
-                score_states=torch.as_tensor(launch_state[None], device=device),
+                score_observations=score_observations,
+                score_states=score_states,
                 device=device,
                 queue_value=queue_value,
                 remaining_units=remaining,
