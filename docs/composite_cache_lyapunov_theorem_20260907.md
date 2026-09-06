@@ -123,6 +123,14 @@ receipt-time quantity into the launch score.
 Arithmetic after differentiation is `O(Delta_p)`; parameter contraction is
 `O(Delta_p d)` and the actual runtime must be reported.
 
+This VJP requires nonzero mixed policy curvature. A ReLU critic is affine in
+the joint action inside each activation region and therefore has zero
+cross-agent action Hessian almost everywhere; it cannot implement the signed
+first-order estimator even though it can still train. The prospective neural
+implementation consequently fixes a smooth SiLU actor and critic. Its
+estimator-specific Taylor and confidence constants remain explicit proof
+obligations rather than being inferred from empirical score activity.
+
 A hard causal prefix cap may remove positive actions from (6) so that every
 finite experiment satisfies its policy-byte budget exactly.  This does not
 change the minimizer over the remaining feasible set.

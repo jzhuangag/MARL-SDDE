@@ -74,6 +74,7 @@ class TrainingConfig:
     budget_rate: float = 0.5
     budget_enforcement: str = "prefix"
     queue_step: float = 1.0
+    network_activation: str = "relu"
     cone_shell: int = 6
     maximum_delay: int = 4
     lyapunov_weight: float = 100000.0
@@ -134,6 +135,8 @@ class TrainingConfig:
             raise ValueError("optimization steps, clip, and Lyapunov terms must be positive")
         if self.budget_enforcement not in {"prefix", "terminal"}:
             raise ValueError("budget enforcement must be prefix or terminal")
+        if self.network_activation not in {"relu", "silu"}:
+            raise ValueError("network activation must be relu or silu")
 
 
 @dataclass
@@ -425,11 +428,13 @@ def run_training(
     ]
     replay_rng = np.random.default_rng(int(seed) + 211)
 
-    base_actor = PistonActor().to(device)
+    base_actor = PistonActor(activation=config.network_activation).to(device)
     actors = tuple(copy.deepcopy(base_actor).to(device) for _ in range(config.n_agents))
     initial_actor_parameters = clone_parameter_groups(actors)
     target_actors = tuple(copy.deepcopy(actor).to(device) for actor in actors)
-    critic = PistonCentralCritic(config.n_agents).to(device)
+    critic = PistonCentralCritic(
+        config.n_agents, activation=config.network_activation
+    ).to(device)
     target_critic = copy.deepcopy(critic).to(device)
     caches = PolicyCacheBank(actors)
     replay = CompressedReplay(config.replay_capacity)
@@ -735,6 +740,9 @@ def main() -> None:
         "--budget-enforcement", choices=("prefix", "terminal"), default="prefix"
     )
     parser.add_argument("--queue-step", type=float, default=1.0)
+    parser.add_argument(
+        "--network-activation", choices=("relu", "silu"), default="relu"
+    )
     parser.add_argument("--cone-shell", type=int, default=6)
     parser.add_argument("--maximum-delay", type=int, default=4)
     parser.add_argument("--lyapunov-weight", type=float, default=100000.0)
@@ -759,6 +767,7 @@ def main() -> None:
         budget_rate=args.budget_rate,
         budget_enforcement=args.budget_enforcement,
         queue_step=args.queue_step,
+        network_activation=args.network_activation,
         cone_shell=args.cone_shell,
         maximum_delay=args.maximum_delay,
         lyapunov_weight=args.lyapunov_weight,

@@ -2,6 +2,12 @@ from __future__ import annotations
 
 import torch
 
+from .async_pistonball_ctde import (
+    PistonActor,
+    PistonCentralCritic,
+    PolicyCacheBank,
+    signed_refresh_for_batch,
+)
 from .neural_signed_cache import parameter_bytes, signed_cache_choice
 
 
@@ -132,3 +138,40 @@ def test_exact_cache_reset_benefit_can_prevent_null_absorption() -> None:
     assert choice.donor == 0
     assert choice.cache_reset_benefit == 2.0
     assert choice.best_edge_cache_reset_benefit == 2.0
+
+
+def test_smooth_critic_exposes_mixed_policy_curvature_that_relu_hides() -> None:
+    torch.manual_seed(771)
+    observations = torch.randn(2, 4, 3, 64, 32)
+    states = torch.randn(2, 3, 64, 64)
+
+    def learning_delta(activation: str) -> float:
+        actors = tuple(PistonActor(activation=activation) for _ in range(4))
+        caches = PolicyCacheBank(actors)
+        with torch.no_grad():
+            actors[1].action_head.bias.add_(0.2)
+        critic = PistonCentralCritic(4, activation=activation)
+        choice = signed_refresh_for_batch(
+            owner=0,
+            eligible_donors=(1,),
+            actors=actors,
+            caches=caches,
+            critic=critic,
+            observations=observations,
+            states=states,
+            step=0.01,
+            communication_queue=0.0,
+            learning_weight=1.0,
+            smoothness=1.0,
+            packet_second_moment_upper=1.0,
+            receipt_motion_upper=0.0,
+            taylor_coefficient=0.0,
+            cache_debt_weight=0.0,
+        )
+        assert choice.best_edge_learning_index_delta is not None
+        return choice.best_edge_learning_index_delta
+
+    relu_delta = learning_delta("relu")
+    silu_delta = learning_delta("silu")
+    assert relu_delta == 0.0
+    assert abs(silu_delta) > 1e-12

@@ -21,20 +21,28 @@ from torch.nn import functional as F
 from .neural_signed_cache import NeuralCacheChoice, parameter_bytes, signed_cache_choice
 
 
+def _activation(name: str) -> nn.Module:
+    if name == "relu":
+        return nn.ReLU()
+    if name == "silu":
+        return nn.SiLU()
+    raise ValueError("network activation must be relu or silu")
+
+
 class PistonActor(nn.Module):
     """A compact but fully distinct continuous Pistonball actor block."""
 
-    def __init__(self) -> None:
+    def __init__(self, activation: str = "relu") -> None:
         super().__init__()
         self.encoder = nn.Sequential(
             nn.Conv2d(3, 16, kernel_size=5, stride=2, padding=2),
-            nn.ReLU(),
+            _activation(activation),
             nn.Conv2d(16, 32, kernel_size=3, stride=2, padding=1),
-            nn.ReLU(),
+            _activation(activation),
             nn.AvgPool2d(kernel_size=4, stride=4),
             nn.Flatten(),
             nn.Linear(32 * 4 * 2, 64),
-            nn.ReLU(),
+            _activation(activation),
         )
         self.action_head = nn.Linear(64, 1)
 
@@ -48,19 +56,19 @@ class PistonActor(nn.Module):
 class PistonCentralCritic(nn.Module):
     """Centralized action-value model; actors remain local at execution."""
 
-    def __init__(self, n_agents: int) -> None:
+    def __init__(self, n_agents: int, activation: str = "relu") -> None:
         super().__init__()
         self.state_encoder = nn.Sequential(
             nn.Conv2d(3, 16, kernel_size=5, stride=2, padding=2),
-            nn.ReLU(),
+            _activation(activation),
             nn.Conv2d(16, 32, kernel_size=3, stride=2, padding=1),
-            nn.ReLU(),
+            _activation(activation),
             nn.AvgPool2d(kernel_size=4, stride=4),
             nn.Flatten(),
         )
         self.value = nn.Sequential(
             nn.Linear(32 * 4 * 4 + int(n_agents), 128),
-            nn.ReLU(),
+            _activation(activation),
             nn.Linear(128, 1),
         )
 
