@@ -209,8 +209,14 @@ The first deterministic GPU development matrix validates the complete systems
 path but not efficacy.  The composite scheduler changes the mixed-policy
 training trajectory and uses 984 of 2,048 refresh units, yet all methods tie at
 the terminal decentralized return and the signed-only ablation selects no
-edge.  The actor--critic backbone must first pass a separate learning
-qualification; these development outcomes do not authorize a pilot.
+edge.  A separately frozen backbone qualification then passes: under fully
+fresh caches, actor step `0.01`, and one development-only seed, terminal return
+improves by 4.826 from a common initialization, with finite nonzero gradient
+and actor-drift diagnostics.  This retains the distinct-actor
+centralized-critic learner but is not a communication comparison: complete
+freshness costs 77,501 refresh units, and no matched optimizer control was part
+of that learner-only gate.  The next evidence link is therefore a matched,
+binding-budget controller-headroom experiment, not an efficacy claim.
 
 ## Distinction from adjacent work
 
@@ -274,11 +280,13 @@ critic/JVP overhead remains a practical failure mode and is reported directly.
 
 ## Immediate execution order
 
-1. freeze the complete Pistonball owner-update, critic, packet, and accounting
-   contract around the validated neural interface;
-2. specify the replay-only critic/VJP uncertainty and regularity assumption;
-3. preregister a small GPU Pistonball pilot with new seeds and mandatory
-   strong-baseline gates;
+1. freeze a matched-optimizer controller-headroom design around the qualified
+   Pistonball learner, with random delay, binding prefix budgets, and strong
+   static/online comparators;
+2. establish that the signed score has nontrivial equal-resource headroom and
+   audit its replay-only critic/VJP uncertainty and runtime;
+3. only then preregister a small GPU Pistonball pilot with new seeds and
+   mandatory strong-baseline gates;
 4. run formal seeds and write the full manuscript only if that pilot passes.
 
 This sequence advances the one surviving thesis and does not reopen the
