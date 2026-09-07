@@ -81,37 +81,41 @@ eligible causal cone `C_p` and action set
 For action `a`, let `A_p(a)` be the conditional alignment of the future
 owner-gradient packet with the launch-time potential gradient, `G_p(a)` an
 action-specific packet-gradient bound, and `M_p` a predictable
-launch-to-receipt parameter-motion bound.  Combining block smoothness with the
-cache and queue Lyapunov terms gives the action-dependent index
+launch-to-receipt parameter-motion bound. Combining block smoothness with the
+topology-robust core Lyapunov function `VF+Q^2/(2 nu)` gives the principal
+action-dependent index
 
 \[
-J_p(a,\alpha)=-m_p(a)\alpha+\frac{C_p(a)}2\alpha^2
--B_p(a)+Q_pc_p(a),
+J_p^{\rm core}(a,\alpha)=-m_p^{\rm core}(a)\alpha
++\frac{C_p^{\rm core}(a)}2\alpha^2+Q_pc_p(a),
 \]
 
 where
 
 \[
-m_p(a)=V[A_p(a)-L_{i_p}G_p(a)M_p]-G_p(a)S_p,
-\qquad C_p(a)=G_p(a)^2(VL_{i_p}+W_p).
+m_p^{\rm core}(a)=V[A_p(a)-L_{i_p}G_p(a)M_p],
+\qquad C_p^{\rm core}(a)=VL_{i_p}G_p(a)^2.
 \]
 
 The first term makes the graph signed: freshness is valuable when it improves
 alignment with the current learning direction, not simply when it removes a
 large parameter mismatch.
 
-The learning potential is augmented by the exact policy-cache energy
+For an optional persistent-cache strengthening, fix one edge universe `U` and
+augment the learning potential by the exact policy-cache energy
 
 \[
-H_p=\frac12\sum_{i\ne j}\beta_{ji}
+H_p=\frac12\sum_{(j,i)\in U}\beta_{ji}
 \|\theta_{j,p}-\chi_{j\to i,p}\|^2.
 \]
 
 Refreshing `j -> i` decreases this energy by the observable amount
 `B_p(j->i)=beta_(ji)||theta_j-chi_(j->i)||^2/2`.  An owner update creates an
 exact outgoing-cache increment, retained as a receipt-time remainder or a
-predictable action-dependent bound.  This term prevents an uncertain critic
-from making the null graph absorbing while still charging every refresh.
+predictable action-dependent bound. State-dependent candidate support may
+change inside `U` without changing `H`. If the weights or universe change, the
+exact topology-motion jump must be added; summing only over currently active
+edges is not a valid telescoping argument.
 
 Let `Q_p` be the virtual communication queue,
 
@@ -129,19 +133,22 @@ executed action and packet weight are
 
 \[
 \widehat\alpha_p(a)=
-\Pi_{[0,\bar\alpha]}\!\left(\frac{\widehat m_p(a)}{C_p(a)}\right),
+\Pi_{[0,\bar\alpha]}\!\left(
+\frac{\widehat m_p^{\rm core}(a)}{C_p^{\rm core}(a)}\right),
 \qquad
 a_p\in\arg\min_{a\in\mathcal A_p}
-J_p(a,\widehat\alpha_p(a);\widehat A_p).
+J_p^{\rm core}(a,\widehat\alpha_p(a);\widehat A_p).
 \]
 
-This is the one-step drift of `V F+H+Q^2/2`: Lyapunov drift therefore
+The principal rule is the one-step drift of `V F+Q^2/(2 nu)`: Lyapunov drift therefore
 determines the communication graph and receipt weight online; it is not only a
 post-hoc convergence tool.  Null-plus-one-edge selection and its scalar weight
 are exact in `O(Delta_p)` after the local signed statistics are formed.  The
 rollout horizon is fixed, so the two controlled quantities have a single
 interpretation: which teammate cache enters the next owner trajectory, and how
-strongly its delayed packet is applied.
+strongly its delayed packet is applied. The cache-augmented rule replaces the
+core coefficients by fixed-universe cache coefficients and is analyzed as a
+separate extension.
 
 ## Main theorem target
 
@@ -152,14 +159,13 @@ launch-to-receipt motion bound; (e) bounded packet second moments; and (f) a
 simultaneous expected learning-drift error `epsilon_p^F` over the finite action
 set.
 
-The paired launch-receipt theorem gives
+The topology-robust paired launch-receipt theorem gives
 
 \[
 \sum_{p<N}\kappa_p\mathbb E\|g_p^0\|^2
 \le F(\theta^0)-F_\star+
-\frac{H_0+Q_0^2/2}{V}+
+\frac{Q_0^2/(2\nu)}{V}+
 \sum_{p<N}\mathbb E R_p+
-\frac1V\sum_{p<N}\mathbb E\Gamma_p^++
 2\sum_{p<N}\mathbb E\epsilon_p^F+
 \frac{NB_Q}{V},
 \]
@@ -172,6 +178,11 @@ comparator would not remove the queue cross term.  Queue iteration gives the
 corresponding average-message bound.  With bounded stochastic packet variance, `w=N^{-1/3}` and
 `V=N^{2/3}` balance the stationarity and budget terms at order
 `N^{-1/3}`, apart from normalized Markov, motion, and score-estimation terms.
+
+This core bound has no graph-turnover term. The optional fixed-universe cache
+corollary adds `H_0/V`; if cache weights vary, it also adds the positive part of
+the exact topology-motion increment. Pursuit turnover therefore cannot be
+advertised empirically while disappearing theoretically.
 
 The favorable phase is explicit: refresh has learning value when the reduction
 in mixed-policy bias is large enough to dominate packet variance,
@@ -369,7 +380,16 @@ state-compatible edge in every primary case and recovered 53.98% median and
 transitions; the incompatible edge was never certified positive.  This is a
 positive theorem-interface result, not standard-task return evidence.
 
-The next required link is an end-to-end CPU tabular controller that amortizes
-identification against strong equal-resource schedulers.  Only if it passes may
-the Pursuit neural interface be frozen.  No claim relies on reopening the
-stopped Pistonball line.
+The end-to-end CPU tabular mechanism link is now closed by PDSG-FR-001 on 32
+untouched seeds. Its core
+`VF+Q^2/(2nu)` controller reduces favorable-phase geometric cumulative risk by
+41.22% relative to the frozen strong state-myopic scheduler, improves all
+12/12 favorable cells and 384/384 paired seed-cells, and recovers 87.57% median
+oracle headroom. Primary and isolated-reproduction endpoints and summaries are
+byte-identical. This is finite-state core-mechanism evidence only: the runner
+contains no persistent cache energy and does not certify a neural Pursuit
+critic.
+
+This result authorizes an outcome-free Pursuit cache/critic interface audit,
+not a GPU efficacy run. No claim relies on reopening the stopped Pistonball
+line.

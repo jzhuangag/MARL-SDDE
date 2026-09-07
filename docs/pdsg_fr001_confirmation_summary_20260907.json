@@ -1,0 +1,53 @@
+{
+  "experiment_id": "PDSG-FR-001",
+  "evidence_class": "independent_cpu_core_mechanism_confirmation",
+  "preregistration_commit": "4c69c03",
+  "scope": {
+    "supports_topology_robust_core_controller": true,
+    "supports_persistent_cache_energy_extension": false,
+    "supports_standard_marl_efficacy": false,
+    "supports_neural_critic_calibration": false
+  },
+  "rows": 7680,
+  "primary_population_seed_cells": 384,
+  "metrics": {
+    "favorable_geometric_risk_ratio": 0.5878309402552402,
+    "favorable_risk_reduction": 0.4121690597447598,
+    "favorable_strict_cells": 12,
+    "favorable_cell_count": 12,
+    "favorable_seedwise_win_fraction": 1.0,
+    "median_oracle_headroom_recovery": 0.8756521826324575,
+    "favorable_pareto_dominant_points": 12,
+    "low_cycle_geometric_risk_ratio": 1.006754848248179,
+    "low_to_favorable_phase_gap": 0.41892390799293877,
+    "all_cell_geometric_risk_ratio": 0.7492747497591697,
+    "all_cell_risk_reduction": 0.25072525024083026,
+    "oracle_geometric_risk_ratio": 0.6699062646714251,
+    "budget_violation_count": 0
+  },
+  "gates": {
+    "P1_complete_identity": true,
+    "P2_finite_and_equal_environment": true,
+    "P3_communication_budget": true,
+    "P4_favorable_risk": true,
+    "P5_favorable_cells": true,
+    "P6_seedwise_direction": true,
+    "P7_oracle_recovery": true,
+    "P8_pareto_points": true,
+    "P9_phase_separation": true,
+    "P10_all_cell_risk": true,
+    "P11_oracle_headroom": true,
+    "P12_byte_exact_reproduction": true
+  },
+  "hashes": {
+    "configuration": "f25c7ba61037650572c3716ad656f57d5906f9b830caf8b8884f1367acd08238",
+    "confirmation_runner": "2fc2245842355fab371f6b00990258b1951ec5009e4506128bdf7be223f617e1",
+    "endpoints_primary_and_reproduction": "82e20f5d6c3b62510050ed75779a4d18ada007d0e14fa19288e4da392fda1751",
+    "summary_primary_and_reproduction": "702443e781014fc07ff2fb6adbd6525853e09ca7ff774ad6a957420b1321fc9e"
+  },
+  "scientific_pass": true,
+  "reproduction_pass": true,
+  "pursuit_interface_design_authorized": true,
+  "pursuit_gpu_efficacy_authorized": false,
+  "formal_authorized": false
+}

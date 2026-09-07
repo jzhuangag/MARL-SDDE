@@ -31,8 +31,10 @@ control problem.
    to the null action and each eligible one-edge refresh.
 4. The alignment feedback arrives with the trajectory.  A delayed optimistic
    local linear model learns which edge has useful drift value.
-5. One composite Lyapunov upper bound jointly chooses the edge and the packet's
-   receipt-time weight while a virtual queue prices actual policy bytes.
+5. One topology-robust Lyapunov upper bound jointly chooses the edge and the
+   packet's receipt-time weight while a virtual queue prices actual policy
+   bytes. A fixed-universe cache potential is an optional strengthening, not a
+   hidden assumption of the main guarantee.
 6. The exact launch/receipt recursion yields a finite-time stationarity bound
    relative to a dynamic feasible comparator and a pathwise average-byte bound.
 
@@ -52,26 +54,33 @@ At launch event `p`, owner `i_p` has local candidate set
 \]
 
 For each candidate the delayed local factor model supplies an optimistic
-alignment `A_p^U(a)`.  The controller exactly minimizes
+alignment `A_p^U(a)`. The principal controller exactly minimizes
 
 \[
- J_p(a,\alpha)
- =-m_p(a;A_p^U)\alpha+\frac{C_p(a)}2\alpha^2
-  -B_p(a)+Q_pc_p(a),
+ J_p^{\rm core}(a,\alpha)
+ =-V[A_p^U(a)-L_iG_p(a)M_p]\alpha
+  +\frac{VL_iG_p(a)^2}{2}\alpha^2+Q_pc_p(a),
 \]
 
 using
 
 \[
  \alpha_p(a)=\Pi_{[0,\bar\alpha]}
- \left(\frac{m_p(a;A_p^U)}{C_p(a)}\right)
+ \left(\frac{m_p^{\rm core}(a;A_p^U)}
+ {C_p^{\rm core}(a)}\right)
 \]
 
-and an `O(Delta)` candidate scan.  `B_p(a)` is the exact strategic-cache
-energy reset and `Q_p c_p(a)` is the actual communication price.  Delay,
-launch-to-receipt motion, critic uncertainty, and action-specific gradient
-bounds enter `m_p` or the proved estimation remainder; none is represented by
-an arbitrary age-decay coefficient.
+and an `O(Delta)` candidate scan. `Q_p c_p(a)` is the actual communication
+price. Delay, launch-to-receipt motion, critic uncertainty, and action-specific
+gradient bounds enter the same bound; none is represented by an arbitrary
+age-decay coefficient. The edge remains an optimization variable because
+refreshing it changes the action-specific future trajectory alignment.
+
+For persistent caches, a secondary controller augments the index with an exact
+cache reset and outgoing-cache motion. Its cache energy is defined on one fixed
+edge universe. If relevance weights change, the theorem carries the exact
+topology-motion remainder. It never sums cache energy only over the currently
+active edges and then assumes that sum telescopes.
 
 The online variables are therefore the directed training-time collaboration
 edge and packet weight.  The final actors execute independently with local
@@ -82,17 +91,23 @@ observations; the graph is not an execution protocol.
 The paper should present one theorem with four explicit lemmas, not unrelated
 claims.
 
-### Lemma A: exact paired Lyapunov drift
+### Lemma A: topology-robust paired Lyapunov drift
 
-Chronologically telescope launch, cache replacement, delayed receipt, owner
-update, outgoing-cache change, and graph-support change for
+Chronologically telescope launch, delayed receipt, owner update, and the
+communication queue for
 
 \[
- \mathcal L_p=V F(\theta_p)+H_p+Q_p^2/(2\nu).
+ \mathcal L_p^{\rm core}=V F(\theta_p)+Q_p^2/(2\nu).
 \]
 
 This establishes the candidate-specific quadratic index and its scalar closed
-form.  The graph-switch positive increment remains explicit.
+form without a topology-motion assumption. A cache-extension lemma then adds
+`H` on a fixed edge universe. If its weights change, the exact remainder is
+
+\[
+ \Xi_p=\frac12\sum_{e\in U}(\beta_{e,p+1}-\beta_{e,p})
+ \|\theta_{j(e),p}-\chi_{e,p}\|^2.
+\]
 
 ### Lemma B: controlled Markov-game kernel
 
@@ -125,11 +140,14 @@ MARL drift decision is the paper-specific step.
 
 ### Main theorem: learning and communication
 
-Insert Lemma C into Lemma A and compare with a conditionally budget-feasible
-dynamic policy.  The result bounds average owner-block stationarity by initial
-potential/cache energy, graph-switch and Markov/factor approximation, stochastic
-packet variance, delayed alignment learning, and the queue tradeoff.  The queue
-iteration simultaneously gives the pathwise average policy-byte constraint.
+Insert Lemma C into the core Lemma A and compare with a conditionally
+budget-feasible dynamic policy. The result bounds average owner-block
+stationarity by initial potential, Markov/factor approximation, stochastic
+packet variance, delayed alignment learning, and the queue tradeoff. It is
+valid under arbitrary state-dependent candidate-set turnover. The optional
+cache theorem adds initial cache energy and the positive topology-motion sum.
+The queue iteration simultaneously gives the pathwise average policy-byte
+constraint.
 
 The theorem should not claim last-iterate Nash convergence for an unrestricted
 general-sum game.  The primary scope is cooperative potential Markov games and
@@ -137,21 +155,29 @@ owner-block stationarity under explicitly stated approximation conditions.
 
 ## Why Lyapunov is essential rather than decorative
 
-The learning potential `F` says whether applying a packet is useful.  Cache
-energy `H` records which teammate versions make that packet strategically
-stale.  Communication debt `Q` records whether repeated refreshes are feasible.
-Minimizing the drift of their sum produces both controlled variables.  Removing
-any one term changes the executable action:
+The learning potential `F` says whether the trajectory produced by an edge and
+its delayed packet are useful. Communication debt `Q` says whether repeatedly
+choosing such edges is feasible. Minimizing the drift of `VF+Q^2/(2nu)`
+produces both controlled variables: the edge through signed trajectory
+alignment and the receipt weight through a scalar quadratic minimizer. This is
+the main design, not a post-hoc proof.
+
+Cache energy `H` is a principled optional memory term: it records persistent
+policy-version mismatch and can create extra freshness pressure. Its scope is
+deliberately narrower because topology motion must be paid. Removing terms has
+the following causal effects:
 
 - without `F`, the rule refreshes large mismatches even when staleness is
   beneficial;
-- without `H`, uncertain edge learning can make the null graph absorbing;
 - without `Q`, the scheduler has no enforceable long-run byte budget;
 - without the receipt-weight minimization, a correctly refreshed but very late
-  packet can still destabilize the owner update.
+  packet can still destabilize the owner update;
+- adding fixed-universe `H` creates persistent cache pressure, whereas
+  active-edge-only `H` creates an unaccounted jump whenever the graph turns
+  over.
 
-This four-way ablation is the empirical counterpart of the theorem, not a list
-of unrelated engineering options.
+The core-versus-cache ablation is therefore a theorem-scope test, not a list of
+unrelated engineering options.
 
 ## Role of the SDDE
 
@@ -170,11 +196,11 @@ make the paper sound more mathematical.
 - exact algebra and exhaustive finite-state tests for every drift identity;
 - an analytic forecast-reversal phase where the best instantaneous edge differs
   from the best finite-horizon edge;
-- independent untouched-seed confirmation of the complete plug-in controller,
+- independent untouched-seed confirmation of the core plug-in controller,
   including strong online myopic, fixed, periodic, random, and exact-oracle
   comparators;
-- delayed-UCB confidence, selected-action regret, queue, and controlled-kernel
-  tests;
+- delayed-UCB confidence, selected-action regret, queue, controlled-kernel, and
+  topology-motion identity tests;
 - dense-graph degeneration and degree/runtime scaling.
 
 The tabular mechanism can appear as a theorem illustration or appendix result.
@@ -192,9 +218,10 @@ The strong comparator family includes no optional refresh, complete refresh,
 age, parameter mismatch, fixed local graphs/rates, periodic refresh, a greedy
 myopic signed scheduler, and their resource-feasible envelope.  Primary claims
 require broad improvement over the strongest non-oracle online baseline, not
-only over one weak fixed graph.  Ablations remove optimism, signed alignment,
-cache energy, packet-weight control, state-dependent graph support, and queue
-pricing one at a time.
+only over one weak fixed graph. Ablations remove optimism, signed alignment,
+packet-weight control, state-dependent graph support, and queue pricing. The
+cache-energy extension is reported separately with fixed-universe and
+topology-motion accounting.
 
 Pistonball remains the dense degeneration case already falsified for the
 low-degree claim.  It is not rerun until a new outcome-free reason exists.
@@ -214,21 +241,31 @@ low-degree claim.  It is not rerun until a new outcome-free reason exists.
 7. Limitations: factor approximation, non-informative service delay, local
    potential-game scope, and absence of universal no-harm.
 
-## Remaining kill gates
+## Evidence status and remaining kill gates
 
-The project is not ICML-ready until all of the following are true:
+The independent forecast-reversal confirmation has passed every frozen gate
+with byte-exact reproduction. Within the finite-state model, this closes the
+core mechanism link: favorable risk ratio `0.587831`, all `12/12` favorable
+cells and `384/384` paired seed-cells improve, and median exact-oracle headroom
+recovery is `0.875652`. It does not close the persistent-cache or standard-MARL
+links.
 
-1. the independent forecast-reversal confirmation and clean reproduction pass
-   every frozen gate;
-2. the delayed optimistic alignment implementation matches its theorem and has
+The project is not ICML-ready until all of the following remaining conditions
+are true:
+
+1. the delayed optimistic alignment implementation matches its theorem and has
    a nonvacuous CPU calibration interface;
+2. the real Pursuit state machine copies and persists the chosen cache edge,
+   charges its bytes independently of receipt weight, and passes exact energy
+   and no-double-counting invariants;
 3. an outcome-free Pursuit oracle-value audit shows material equal-resource
    headroom over the full strong online family;
 4. a preregistered Pursuit pilot yields broad return--communication gains with
    acceptable overhead;
 5. independent seeds reproduce the principal benchmark direction;
-6. the main theorem carries all critic, factor, controlled-kernel, graph-switch,
-   and delay terms without double counting;
+6. the main core theorem carries critic, factor, controlled-kernel, and delay
+   terms without depending on graph-switch cancellation; any cache theorem
+   separately carries its exact topology-motion term without double counting;
 7. a fresh systematic novelty and citation-integrity audit finds no directly
    subsuming method.
 

@@ -8,6 +8,8 @@ from .composite_cache_lyapunov import (
     donor_receipt_increment_upper,
     refresh_reset_benefit,
     stale_edge_activation_margin,
+    topology_motion_increment,
+    topology_motion_positive_upper,
 )
 
 
@@ -86,3 +88,44 @@ def test_activation_margin_encodes_non_absorption_condition() -> None:
         communication_queue=0.5,
         message_cost=1.0,
     ) < 0.0
+
+
+def test_topology_motion_is_exact_fixed_universe_energy_difference() -> None:
+    current = {0: np.array([1.0, 0.0]), 1: np.array([0.0, 1.0])}
+    caches = {
+        (0, 2): np.array([1.0, 0.0]),
+        (1, 2): np.array([2.0, 1.0]),
+    }
+    old_weights = {(0, 2): 1.0, (1, 2): 0.0}
+    new_weights = {(0, 2): 0.0, (1, 2): 1.0}
+    before = cache_mismatch_energy(current, caches, old_weights)
+    after = cache_mismatch_energy(current, caches, new_weights)
+    jump = topology_motion_increment(current, caches, old_weights, new_weights)
+    assert jump == 2.0
+    assert after - before == jump
+
+
+def test_active_edge_only_energy_cannot_silently_telescope() -> None:
+    current = {0: np.array([0.0]), 1: np.array([0.0])}
+    caches = {(0, 2): np.array([0.0]), (1, 2): np.array([3.0])}
+    old_weights = {(0, 2): 1.0, (1, 2): 0.0}
+    new_weights = {(0, 2): 0.0, (1, 2): 1.0}
+    # No parameter update and no refresh occurs, yet changing which edge is
+    # active creates a positive Lyapunov jump that an active-edge sum misses.
+    jump = topology_motion_increment(current, caches, old_weights, new_weights)
+    assert jump == 4.5
+    assert topology_motion_positive_upper(
+        policy_cache_diameter_upper=3.0,
+        old_weight_by_edge=old_weights,
+        new_weight_by_edge=new_weights,
+    ) == jump
+
+
+def test_topology_motion_upper_ignores_helpful_edge_removal() -> None:
+    old_weights = {(0, 2): 1.0, (1, 2): 0.5}
+    new_weights = {(0, 2): 0.0, (1, 2): 0.25}
+    assert topology_motion_positive_upper(
+        policy_cache_diameter_upper=10.0,
+        old_weight_by_edge=old_weights,
+        new_weight_by_edge=new_weights,
+    ) == 0.0

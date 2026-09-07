@@ -27,7 +27,10 @@ statistically instantiated version of the same launch decision
  0\leq\alpha_p\leq\bar\alpha,
 \]
 
-and the same composite Lyapunov function `V F + H + Q^2/(2 nu)`.
+and the topology-robust core Lyapunov function `V F + Q^2/(2 nu)`. The same
+statistical interface can be inserted into the optional fixed-universe
+cache-energy extension, but its confidence theorem does not require that
+extension.
 
 ## Delayed local alignment model
 
@@ -113,12 +116,12 @@ largest possible packet gain, and hence the communication queue cap, diverge.
 It does not invalidate optimism because the true alignment is already below
 `A_max`.
 
-Substitute `A_p^U(a)` for the alignment in the exact index
+Substitute `A_p^U(a)` for the alignment in the topology-robust core index
 
 \[
- J_p(a,\alpha;A)
- =-m_p(a;A)\alpha+\frac{C_p(a)}2\alpha^2
-  -B_p(a)+Q_pc_p(a).
+ J_p^{\rm core}(a,\alpha;A)
+ =-V[A-L_iG_p(a)M_p]\alpha
+  +\frac{VL_iG_p(a)^2}{2}\alpha^2+Q_pc_p(a).
 \tag{6}
 \]
 
@@ -127,13 +130,16 @@ For every candidate, compute the same scalar minimizer
 \[
  \widehat\alpha_p(a)=
  \Pi_{[0,\bar\alpha]}
- \left(\frac{m_p(a;A_p^U(a))}{C_p(a)}\right),
+ \left(\frac{m_p^{\rm core}(a;A_p^U(a))}
+ {C_p^{\rm core}(a)}\right),
 \]
 
-then select the candidate with minimum optimistic index.  The optimism is
+then select the candidate with minimum optimistic index. The optimism is
 one-sided in exactly the useful direction: larger alignment lowers predicted
-learning drift.  It does not override the cache reset, delay penalty, or
-communication queue price.
+learning drift. It does not override the delay penalty or communication queue
+price. In the optional cache extension, the exact reset and outgoing-cache
+terms are added as separately audited deterministic quantities on a fixed edge
+universe.
 
 ## Theorem 1: selected-action Lyapunov regret
 
@@ -141,7 +147,8 @@ On event (4), for every feasible launch-measurable comparator pair
 `(a_p^o,alpha_p^o)`, the selected pair satisfies
 
 \[
- J_p(a_p,\alpha_p;A_p)-J_p(a_p^o,\alpha_p^o;A_p)
+ J_p^{\rm core}(a_p,\alpha_p;A_p)
+ -J_p^{\rm core}(a_p^o,\alpha_p^o;A_p)
  \leq 2V\bar\alpha r_p(a_p).
 \tag{7}
 \]
@@ -155,12 +162,12 @@ therefore gives
 
 \[
  \begin{aligned}
- J_p(a_p,\alpha_p;A_p)
- &\leq J_p(a_p,\alpha_p;A_p^U)
+ J_p^{\rm core}(a_p,\alpha_p;A_p)
+ &\leq J_p^{\rm core}(a_p,\alpha_p;A_p^U)
        +2V\bar\alpha r_p(a_p)\\
- &\leq J_p(a_p^o,\alpha_p^o;A_p^U)
+ &\leq J_p^{\rm core}(a_p^o,\alpha_p^o;A_p^U)
        +2V\bar\alpha r_p(a_p)\\
- &\leq J_p(a_p^o,\alpha_p^o;A_p)
+ &\leq J_p^{\rm core}(a_p^o,\alpha_p^o;A_p)
        +2V\bar\alpha r_p(a_p).
  \end{aligned}
 \]
@@ -198,7 +205,7 @@ lemma within each residue and sum to obtain
 The condition `lambda>=L_x^2` makes every norm at most one.  Cauchy--Schwarz
 proves (8).
 
-Combining (7)--(8) with the exact discrete drift theorem adds the normalized
+Combining (7)--(8) with the topology-robust core drift theorem adds the normalized
 statistical term
 
 \[
@@ -244,6 +251,15 @@ completed packets.  Candidate contexts, ridge state, and reference gradients
 are then predictable.  Encoder drift, Bellman approximation, controlled-kernel
 shift from `pursuit_controlled_kernel_bridge_20260907.md`, and factor residual
 all enter `epsilon^app` explicitly.
+
+Equation (1) is not assumed stationary across unrestricted deep-policy
+training.  The proved realizable case uses a fixed local feature map and one
+`w_*`.  A piecewise realization may reset the ridge state at predictable epoch
+boundaries; applying (8) in each of `K` epochs and Cauchy--Schwarz introduces a
+worst-case `sqrt(K)` factor.  A sliding-window implementation instead requires
+a separate variation-budget analysis.  Until one of these contracts is frozen,
+actor/critic nonstationarity remains an approximation term rather than
+sub-Gaussian noise.
 
 Before any GPU efficacy experiment, a CPU interface qualification must verify:
 
