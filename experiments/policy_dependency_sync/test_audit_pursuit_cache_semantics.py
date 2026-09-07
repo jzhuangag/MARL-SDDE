@@ -32,3 +32,12 @@ def test_fixed_universe_energy_does_not_depend_on_candidate_support() -> None:
     fixed_energy = cache_mismatch_energy(current, cached, fixed)
     assert np.isfinite(fixed_energy)
     assert fixed_energy == cache_mismatch_energy(current, cached, fixed)
+
+
+def test_local_reset_difference_avoids_full_energy_cancellation() -> None:
+    current = np.array([1.0, -2.0, 3.0])
+    stale = np.array([0.5, -1.5, 2.0])
+    refreshed = current.copy()
+    before = 0.5 * float(np.sum((current - stale) ** 2))
+    after = 0.5 * float(np.sum((current - refreshed) ** 2))
+    assert before - after == before

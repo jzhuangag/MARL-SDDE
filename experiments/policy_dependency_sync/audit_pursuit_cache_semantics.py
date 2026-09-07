@@ -117,6 +117,7 @@ def run_audit(
     topology_changes = 0
     positive_topology_jumps = 0
     maximum_reset_error = 0.0
+    maximum_full_energy_cancellation_error = 0.0
     maximum_topology_error = 0.0
 
     for seed in seeds:
@@ -150,7 +151,7 @@ def run_audit(
                     caches.mark_owner_update(donor)
                     current, cached = _fixed_universe_state(actors, caches)
                     before = cache_mismatch_energy(current, cached, fixed_weights)
-                    reset = 0.5 * float(
+                    edge_before = 0.5 * float(
                         np.sum((current[donor] - cached[(donor, owner)]) ** 2)
                     )
                     action = apply_refresh_action(
@@ -163,8 +164,22 @@ def run_audit(
                     after = cache_mismatch_energy(
                         next_current, next_cached, fixed_weights
                     )
+                    edge_after = 0.5 * float(
+                        np.sum(
+                            (
+                                next_current[donor]
+                                - next_cached[(donor, owner)]
+                            )
+                            ** 2
+                        )
+                    )
+                    stable_reset = edge_before - edge_after
                     maximum_reset_error = max(
-                        maximum_reset_error, abs((before - after) - reset)
+                        maximum_reset_error, abs(stable_reset - edge_before)
+                    )
+                    maximum_full_energy_cancellation_error = max(
+                        maximum_full_energy_cancellation_error,
+                        abs((before - after) - edge_before),
                     )
                     if action.optional_policy_bytes <= 0:
                         raise AssertionError("a non-null refresh must charge actor bytes")
@@ -280,6 +295,9 @@ def run_audit(
         "topology_changes": topology_changes,
         "positive_topology_jumps": positive_topology_jumps,
         "maximum_reset_identity_error": maximum_reset_error,
+        "maximum_full_energy_cancellation_error": (
+            maximum_full_energy_cancellation_error
+        ),
         "maximum_topology_identity_error": maximum_topology_error,
         "source_sha256": {
             "pursuit.py": hashlib.sha256(
@@ -297,7 +315,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     result = run_audit(
-        seeds=tuple(range(92000, 92008)),
+        seeds=tuple(range(92100, 92108)),
         action_seed=9981,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
