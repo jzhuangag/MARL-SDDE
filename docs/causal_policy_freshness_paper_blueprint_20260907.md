@@ -247,26 +247,29 @@ The independent forecast-reversal confirmation has passed every frozen gate
 with byte-exact reproduction. Within the finite-state model, this closes the
 core mechanism link: favorable risk ratio `0.587831`, all `12/12` favorable
 cells and `384/384` paired seed-cells improve, and median exact-oracle headroom
-recovery is `0.875652`. It does not close the persistent-cache or standard-MARL
-links.
+recovery is `0.875652`. It does not close the persistent-cache extension's
+performance or the standard-MARL links.
+
+The outcome-free Pursuit state-machine qualification now also closes launch
+cache copying, full byte charging, zero-weight persistence, owner-specific
+cached behavior, and the exact topology-motion event decomposition with
+byte-identical reproduction. It does not show that the neural score is
+calibrated or that the controller improves return.
 
 The project is not ICML-ready until all of the following remaining conditions
 are true:
 
 1. the delayed optimistic alignment implementation matches its theorem and has
    a nonvacuous CPU calibration interface;
-2. the real Pursuit state machine copies and persists the chosen cache edge,
-   charges its bytes independently of receipt weight, and passes exact energy
-   and no-double-counting invariants;
-3. an outcome-free Pursuit oracle-value audit shows material equal-resource
+2. an outcome-free Pursuit oracle-value audit shows material equal-resource
    headroom over the full strong online family;
-4. a preregistered Pursuit pilot yields broad return--communication gains with
+3. a preregistered Pursuit pilot yields broad return--communication gains with
    acceptable overhead;
-5. independent seeds reproduce the principal benchmark direction;
-6. the main core theorem carries critic, factor, controlled-kernel, and delay
+4. independent seeds reproduce the principal benchmark direction;
+5. the main core theorem carries critic, factor, controlled-kernel, and delay
    terms without depending on graph-switch cancellation; any cache theorem
    separately carries its exact topology-motion term without double counting;
-7. a fresh systematic novelty and citation-integrity audit finds no directly
+6. a fresh systematic novelty and citation-integrity audit finds no directly
    subsuming method.
 
 Failure of a gate changes the claim or stops the standard-benchmark line; it is

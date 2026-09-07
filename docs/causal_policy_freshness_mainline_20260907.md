@@ -393,3 +393,11 @@ critic.
 This result authorizes an outcome-free Pursuit cache/critic interface audit,
 not a GPU efficacy run. No claim relies on reopening the stopped Pistonball
 line.
+
+The outcome-free cache interface has now passed on actual Pursuit state
+sequences. Launch refreshes charge full actor bytes and persist independently
+of a zero receipt weight; owner workers drive the environment from their
+current-self/cached-teammate joint policy profile. Fixed-universe reset,
+topology-motion, and the topology--refresh--receipt event decomposition are
+exactly tested. The remaining bridge is statistical and performance-facing:
+neural alignment calibration and equal-resource oracle headroom.

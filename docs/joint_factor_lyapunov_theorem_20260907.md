@@ -229,6 +229,26 @@ The cache-augmented analogue of (10) adds `H_0/V` and
 case of (13); omitting `Xi_p` is incorrect. High graph turnover is therefore a
 measured source of cache-theorem cost, not a free selling point.
 
+### Event partition and no-double-counting contract
+
+At every decision epoch, cache-energy change is partitioned in this order:
+
+\[
+ \Delta H_p=
+ \underbrace{\Xi_p}_{\text{weight/support motion}}
+ -\underbrace{B_p(a_p)}_{\text{launch cache copy}}
+ +\underbrace{D_p^{\rm receipt}}_{\text{donor parameter update}}.
+\tag{15}
+\]
+
+Each term is evaluated against the state immediately preceding its event. The
+controlled-kernel discrepancy is not a fourth cache term: it enters exactly
+once when constructing the alignment bound `A_p^L(a)` for `Delta F`. Likewise,
+`B_p`, `D_p^receipt`, and `Xi_p` never enter the controlled-kernel radius. This
+separates distribution shift in the learning potential from bookkeeping change
+in cache energy, even though both are causally triggered by the same refresh.
+The exact three-event identity is covered by an executable regression test.
+
 ## Queue stability
 
 For the core controller, a positive action can improve the zero-action index
@@ -237,7 +257,7 @@ by at most `(m_max^core)^2/(2 C_min^core)`. It is not selected once
 \[
  Q_p>\frac{(m_{\max}^{\rm core})^2}
  {2C_{\min}^{\rm core}c_{\min}}.
-\tag{15}
+\tag{16}
 \]
 
 For the cache extension, add `B_max` to the numerator. Adding the largest final
@@ -246,7 +266,7 @@ queue increment yields a deterministic cap, and queue iteration gives
 \[
  \frac1N\sum_{p<N}c_p(a_p)
  \le \bar c+\frac{Q_N-Q_0}{\nu N}.
-\tag{16}
+\tag{17}
 \]
 
 The core minimizer is implemented in `core_factor_lyapunov.py`; the

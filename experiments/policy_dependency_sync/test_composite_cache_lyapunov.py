@@ -129,3 +129,37 @@ def test_topology_motion_upper_ignores_helpful_edge_removal() -> None:
         old_weight_by_edge=old_weights,
         new_weight_by_edge=new_weights,
     ) == 0.0
+
+
+def test_topology_refresh_and_receipt_energy_events_do_not_double_count() -> None:
+    current = {0: np.array([0.7, -0.2]), 1: np.array([0.1, 0.4])}
+    caches = {
+        (0, 2): np.array([0.2, 0.3]),
+        (1, 2): np.array([-0.1, 0.5]),
+    }
+    old_weights = {(0, 2): 0.5, (1, 2): 1.0}
+    new_weights = {(0, 2): 1.5, (1, 2): 0.8}
+    initial = cache_mismatch_energy(current, caches, old_weights)
+    topology = topology_motion_increment(
+        current, caches, old_weights, new_weights
+    )
+
+    refresh = refresh_reset_benefit(
+        current[1], caches[(1, 2)], new_weights[(1, 2)]
+    )
+    refreshed_caches = dict(caches)
+    refreshed_caches[(1, 2)] = current[1].copy()
+
+    gradient = np.array([0.3, -0.5])
+    step = 0.06
+    receipt = donor_receipt_energy_increment(
+        current=current[0],
+        gradient=gradient,
+        step=step,
+        cache_by_recipient={2: refreshed_caches[(0, 2)]},
+        weight_by_recipient={2: new_weights[(0, 2)]},
+    )
+    final_current = dict(current)
+    final_current[0] = current[0] - step * gradient
+    final = cache_mismatch_energy(final_current, refreshed_caches, new_weights)
+    assert np.isclose(final - initial, topology - refresh + receipt)
