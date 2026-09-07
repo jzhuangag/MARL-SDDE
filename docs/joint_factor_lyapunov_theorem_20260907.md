@@ -61,7 +61,7 @@ actors and has no cache communication.
 ## Predictable one-step bound
 
 Let `b(p)` and `r(p)` be launch and receipt times. Assume block smoothness
-`L_i`, gradient clipping `||g_p(a)||<=G_p`, and a predictable receipt-motion
+`L_i`, candidate-specific gradient clipping `||g_p(a)||<=G_p(a)`, and a predictable receipt-motion
 bound
 
 \[
@@ -92,9 +92,9 @@ quadratic cache identity give
  \begin{aligned}
  \mathbb E[\Delta(VF+H)\mid\mathcal F_{b(p)}]
  \le{}&-m_p(a)\alpha
-       +\frac{C_p}{2}\alpha^2-B_p(a)+R_p+\Xi_p^+,\\
- m_p(a)={}&V[A_p^L(a)-L_iG_pM_p]-G_pS_p,\\
- C_p={}&G_p^2(VL_i+W_p),
+       +\frac{C_p(a)}{2}\alpha^2-B_p(a)+R_p+\Xi_p^+,\\
+ m_p(a)={}&V[A_p^L(a)-L_iG_p(a)M_p]-G_p(a)S_p,\\
+ C_p(a)={}&G_p(a)^2(VL_i+W_p),
  \end{aligned}
 \tag{6}
 \]
@@ -113,7 +113,7 @@ remaining action-independent terms yields the index
 
 \[
  J_p(a,\alpha)
- =-m_p(a)\alpha+\frac{C_p}{2}\alpha^2
+ =-m_p(a)\alpha+\frac{C_p(a)}{2}\alpha^2
   -B_p(a)+Q_pc_p(a).
 \tag{7}
 \]
@@ -124,7 +124,7 @@ For every candidate edge,
 
 \[
  \alpha_p^*(a)
- =\Pi_{[0,\bar\alpha]}\!\left(\frac{m_p(a)}{C_p}\right),
+ =\Pi_{[0,\bar\alpha]}\!\left(\frac{m_p(a)}{C_p(a)}\right),
  \qquad
  a_p\in\arg\min_a J_p(a,\alpha_p^*(a)).
 \tag{8}
@@ -148,7 +148,7 @@ whose conditional expected cost is at most `bar c`. If that comparator obeys
 
 \[
  \mathbb E[-m_p(a_p^\circ)\alpha_p^\circ
- +C_p(\alpha_p^\circ)^2/2-B_p(a_p^\circ)
+ +C_p(a_p^\circ)(\alpha_p^\circ)^2/2-B_p(a_p^\circ)
  \mid\mathcal F_{b(p)}]
  \le -V\kappa_p\|\nabla_iF(\theta_{b(p)})\|^2+VR_p^\circ,
 \tag{9}
@@ -177,7 +177,7 @@ At launch, cache replacement decreases `H` by exactly `B_p(a)`. At receipt,
 block smoothness gives the objective terms in (6), while expansion of the
 squared outgoing cache differences gives its linear and quadratic cache terms.
 The gradient change between launch and receipt is bounded by `L_i M_p`, giving
-`V alpha L_i G_p M_p`. Apply the queue half-square inequality to (3). The
+`V alpha L_i G_p(a) M_p`. Apply the queue half-square inequality to (3). The
 choice (8) exactly minimizes the remaining action-dependent expression, so it
 is no larger than the conditional expectation of the comparator expression;
 the comparator queue term is nonpositive because `Q_p` is launch measurable.
@@ -193,7 +193,7 @@ Markov mixing and critic/factor approximation, remains required.
 
 ## Queue stability
 
-If `m_p(a)<=m_max`, `C_p>=C_min>0`, `B_p(a)<=B_max`, and every positive action
+If `m_p(a)<=m_max`, `C_p(a)>=C_min>0`, `B_p(a)<=B_max`, and every positive action
 costs at least `c_min`, its advantage over the zero action is no more than
 `m_max^2/(2C_min)+B_max`. Hence no positive-cost action is selected once
 

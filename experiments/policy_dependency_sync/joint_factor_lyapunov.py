@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import isfinite
 from typing import Hashable, Mapping
 
 
@@ -22,10 +23,17 @@ def projected_quadratic_minimizer(
 ) -> tuple[float, float]:
     """Minimize ``-gain * alpha + curvature * alpha^2 / 2`` on an interval."""
 
+    gain = float(linear_gain)
     if quadratic_curvature <= 0.0 or maximum_weight < 0.0:
         raise ValueError("curvature must be positive and maximum weight nonnegative")
-    alpha = min(max(float(linear_gain) / float(quadratic_curvature), 0.0), maximum_weight)
-    value = -float(linear_gain) * alpha + 0.5 * float(quadratic_curvature) * alpha**2
+    if gain != gain or gain == float("inf"):
+        raise ValueError("linear gain cannot be NaN or positive infinity")
+    if gain <= 0.0:
+        return 0.0, 0.0
+    if not isfinite(gain):
+        raise ValueError("unexpected nonfinite linear gain")
+    alpha = min(gain / float(quadratic_curvature), maximum_weight)
+    value = -gain * alpha + 0.5 * float(quadratic_curvature) * alpha**2
     return float(alpha), float(value)
 
 
@@ -50,15 +58,50 @@ def choose_joint_factor_action(
     null action plus bounded-degree one-edge refreshes.
     """
 
+    return choose_joint_factor_action_variable_bounds(
+        alignment_lower_by_action=alignment_lower_by_action,
+        reset_benefit_by_action=reset_benefit_by_action,
+        communication_cost_by_action=communication_cost_by_action,
+        gradient_norm_upper_by_action={
+            action: gradient_norm_upper for action in alignment_lower_by_action
+        },
+        communication_queue=communication_queue,
+        learning_weight=learning_weight,
+        learning_smoothness=learning_smoothness,
+        receipt_motion_upper=receipt_motion_upper,
+        receipt_cache_linear_upper=receipt_cache_linear_upper,
+        outgoing_cache_weight=outgoing_cache_weight,
+        maximum_packet_weight=maximum_packet_weight,
+    )
+
+
+def choose_joint_factor_action_variable_bounds(
+    *,
+    alignment_lower_by_action: Mapping[Hashable, float],
+    reset_benefit_by_action: Mapping[Hashable, float],
+    communication_cost_by_action: Mapping[Hashable, float],
+    gradient_norm_upper_by_action: Mapping[Hashable, float],
+    communication_queue: float,
+    learning_weight: float,
+    learning_smoothness: float,
+    receipt_motion_upper: float,
+    receipt_cache_linear_upper: float,
+    outgoing_cache_weight: float,
+    maximum_packet_weight: float,
+) -> JointFactorChoice:
+    """Minimize the same drift index with certified action-specific bounds."""
+
     actions = set(alignment_lower_by_action)
-    if not actions or actions != set(reset_benefit_by_action) or actions != set(
-        communication_cost_by_action
-    ):
+    mappings = (
+        reset_benefit_by_action,
+        communication_cost_by_action,
+        gradient_norm_upper_by_action,
+    )
+    if not actions or any(actions != set(mapping) for mapping in mappings):
         raise ValueError("all nonempty action mappings must have the same keys")
     nonnegative = (
         communication_queue,
         learning_weight,
-        gradient_norm_upper,
         learning_smoothness,
         receipt_motion_upper,
         receipt_cache_linear_upper,
@@ -66,27 +109,26 @@ def choose_joint_factor_action(
         maximum_packet_weight,
         *reset_benefit_by_action.values(),
         *communication_cost_by_action.values(),
+        *gradient_norm_upper_by_action.values(),
     )
     if min(nonnegative) < 0.0 or learning_weight <= 0.0 or learning_smoothness <= 0.0:
         raise ValueError("bounds are nonnegative and learning terms strictly positive")
-
-    curvature = gradient_norm_upper**2 * (
-        learning_weight * learning_smoothness + outgoing_cache_weight
-    )
-    if curvature <= 0.0:
-        raise ValueError("positive curvature requires a positive gradient bound")
+    if min(gradient_norm_upper_by_action.values()) <= 0.0:
+        raise ValueError("every action requires a positive gradient bound")
 
     rows: list[JointFactorChoice] = []
     for action in actions:
+        gradient_bound = float(gradient_norm_upper_by_action[action])
+        curvature = gradient_bound**2 * (
+            learning_weight * learning_smoothness + outgoing_cache_weight
+        )
         effective_gain = (
             learning_weight
             * (
                 float(alignment_lower_by_action[action])
-                - learning_smoothness
-                * gradient_norm_upper
-                * receipt_motion_upper
+                - learning_smoothness * gradient_bound * receipt_motion_upper
             )
-            - gradient_norm_upper * receipt_cache_linear_upper
+            - gradient_bound * receipt_cache_linear_upper
         )
         packet_weight, packet_value = projected_quadratic_minimizer(
             linear_gain=effective_gain,
@@ -107,7 +149,20 @@ def choose_joint_factor_action(
                 communication_cost=cost,
             )
         )
-    return min(rows, key=lambda row: (row.index, str(row.action)))
+    # A zero-weight positive-cost action can tie the null action when every
+    # certified gain is nonpositive.  Prefer the least communication and then
+    # the least applied weight among exact index ties; otherwise a purely
+    # representational action ordering can spend messages without changing the
+    # iterate.
+    return min(
+        rows,
+        key=lambda row: (
+            row.index,
+            row.communication_cost,
+            row.packet_weight,
+            str(row.action),
+        ),
+    )
 
 
 def joint_queue_cap(

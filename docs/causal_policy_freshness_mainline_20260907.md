@@ -32,8 +32,10 @@ directed refresh under a long-run message budget.  Randomly delayed packets are
 paired with their launch decisions in the analysis.  The result is a dynamic
 training-time policy-cache graph; decentralized execution is unchanged.
 
-This is one mechanism and one claim: **spend asynchronous synchronization only
-where a fresh teammate policy has certified marginal learning value.**
+This is one mechanism and one claim: **use the learning Lyapunov drift to spend
+asynchronous synchronization on the teammate factor, and at the packet weight,
+with the best predicted finite-horizon learning value under the current dual
+resource price.**
 
 ## System model
 
@@ -76,17 +78,22 @@ eligible causal cone `C_p` and action set
 \{\{j\to i_p\}:j\in\mathcal C_p\}.
 \]
 
-For action `a`, let `mu_p(a)` and `m_p(a)` be the conditional mean and second
-moment of the future owner-gradient packet, `g_p^0` the current owner-block
-potential gradient, `w_p` the fixed stable receipt step, and `d_p(a)` a
-predictable launch-to-receipt gradient-motion bound.  The paired learning-drift
-upper bound is
+For action `a`, let `A_p(a)` be the conditional alignment of the future
+owner-gradient packet with the launch-time potential gradient, `G_p(a)` an
+action-specific packet-gradient bound, and `M_p` a predictable
+launch-to-receipt parameter-motion bound.  Combining block smoothness with the
+cache and queue Lyapunov terms gives the action-dependent index
 
 \[
-D_p(a)=
--w_p\langle g_p^0,\mu_p(a)\rangle
-+\frac{L_{i_p}w_p^2}{2}m_p(a)
-+w_pd_p(a)\|\mu_p(a)\|.
+J_p(a,\alpha)=-m_p(a)\alpha+\frac{C_p(a)}2\alpha^2
+-B_p(a)+Q_pc_p(a),
+\]
+
+where
+
+\[
+m_p(a)=V[A_p(a)-L_{i_p}G_p(a)M_p]-G_p(a)S_p,
+\qquad C_p(a)=G_p(a)^2(VL_{i_p}+W_p).
 \]
 
 The first term makes the graph signed: freshness is valuable when it improves
@@ -117,21 +124,24 @@ The queue contribution to the composite Lyapunov function is
 while making `nu` an explicit dual-response step rather than an untracked
 implementation coefficient.
 
-Given a predictable critic/Jacobian-vector-product estimate `Dhat_p`, the
-executed action is
+Given a predictable critic/Jacobian-vector-product estimate `Ahat_p`, the
+executed action and packet weight are
 
 \[
+\widehat\alpha_p(a)=
+\Pi_{[0,\bar\alpha]}\!\left(\frac{\widehat m_p(a)}{C_p(a)}\right),
+\qquad
 a_p\in\arg\min_{a\in\mathcal A_p}
-\{V\widehat D_p(a)-B_p(a)+Q_pc_p(a)\}.
+J_p(a,\widehat\alpha_p(a);\widehat A_p).
 \]
 
 This is the one-step drift of `V F+H+Q^2/2`: Lyapunov drift therefore
-determines the communication graph online; it is not only a post-hoc
-convergence tool.  Null-plus-one-edge selection is exact in
-`O(Delta_p)` after the local signed statistics are formed.  The primary
-algorithm fixes rollout horizon and receipt step so that the paper studies one
-identifiable control variable rather than combining previously unsupported
-horizon and step-size heuristics.
+determines the communication graph and receipt weight online; it is not only a
+post-hoc convergence tool.  Null-plus-one-edge selection and its scalar weight
+are exact in `O(Delta_p)` after the local signed statistics are formed.  The
+rollout horizon is fixed, so the two controlled quantities have a single
+interpretation: which teammate cache enters the next owner trajectory, and how
+strongly its delayed packet is applied.
 
 ## Main theorem target
 
