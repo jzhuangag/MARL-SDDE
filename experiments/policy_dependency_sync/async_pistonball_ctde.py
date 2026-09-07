@@ -371,6 +371,7 @@ class InFlightOwnerGradient:
     launch_event: int
     owner: int
     gradients: tuple[torch.Tensor, ...] = field(compare=False)
+    packet_weight: float = field(default=1.0, compare=False)
 
 
 class OwnerGradientQueue:
@@ -386,9 +387,10 @@ class OwnerGradientQueue:
         launch_event: int,
         delay: int,
         gradients: Sequence[torch.Tensor],
+        packet_weight: float = 1.0,
     ) -> None:
-        if delay < 0:
-            raise ValueError("delay must be nonnegative")
+        if delay < 0 or packet_weight < 0.0:
+            raise ValueError("delay and packet weight must be nonnegative")
         detached = tuple(gradient.detach().clone() for gradient in gradients)
         heapq.heappush(
             self._heap,
@@ -397,6 +399,7 @@ class OwnerGradientQueue:
                 launch_event=int(launch_event),
                 owner=int(owner),
                 gradients=detached,
+                packet_weight=float(packet_weight),
             ),
         )
 
@@ -416,12 +419,14 @@ class OwnerGradientQueue:
             parameters = tuple(actors[packet.owner].parameters())
             if len(parameters) != len(packet.gradients):
                 raise RuntimeError("packet gradient structure differs from owner")
+            effective_step = float(step) * packet.packet_weight
             with torch.no_grad():
                 for parameter, gradient in zip(parameters, packet.gradients):
                     if parameter.shape != gradient.shape:
                         raise RuntimeError("packet gradient shape differs from owner")
-                    parameter.add_(-float(step) * gradient.to(parameter.device))
-            caches.mark_owner_update(packet.owner)
+                    parameter.add_(-effective_step * gradient.to(parameter.device))
+            if effective_step > 0.0:
+                caches.mark_owner_update(packet.owner)
             applied.append(packet)
         return tuple(applied)
 

@@ -114,6 +114,57 @@ def test_packet_gradient_is_immutable_after_launch() -> None:
     assert changed_parameter_groups(before, actors) == (1,)
 
 
+def test_packet_carried_weight_scales_receipt_update() -> None:
+    actors = tiny_actors()
+    caches = PolicyCacheBank(actors)
+    queue = OwnerGradientQueue()
+    gradients = tuple(torch.ones_like(parameter) for parameter in actors[1].parameters())
+    before = tuple(parameter.detach().clone() for parameter in actors[1].parameters())
+    queue.launch(
+        owner=1,
+        launch_event=0,
+        delay=1,
+        gradients=gradients,
+        packet_weight=0.25,
+    )
+    queue.apply_due(event=1, actors=actors, caches=caches, step=0.04)
+    for old, current in zip(before, actors[1].parameters()):
+        assert torch.allclose(current, old - 0.01)
+
+
+def test_zero_weight_receipt_preserves_charged_launch_refresh() -> None:
+    actors = tiny_actors()
+    caches = PolicyCacheBank(actors)
+    with torch.no_grad():
+        next(actors[1].parameters()).add_(0.2)
+    caches.mark_owner_update(1)
+    action = apply_refresh_action(
+        recipient=0, donors=(1,), actors=actors, caches=caches
+    )
+    refreshed = tuple(
+        parameter.detach().clone()
+        for parameter in caches.cached_actor(0, 1).parameters()
+    )
+    before_actors = clone_parameter_groups(actors)
+    queue = OwnerGradientQueue()
+    queue.launch(
+        owner=0,
+        launch_event=0,
+        delay=1,
+        gradients=tuple(torch.ones_like(parameter) for parameter in actors[0].parameters()),
+        packet_weight=0.0,
+    )
+    packets = queue.apply_due(event=1, actors=actors, caches=caches, step=0.04)
+    assert len(packets) == 1
+    assert action.optional_policy_bytes > 0
+    assert changed_parameter_groups(before_actors, actors) == ()
+    assert caches.current_versions[0] == 0
+    assert all(
+        torch.equal(saved, current.detach())
+        for saved, current in zip(refreshed, caches.cached_actor(0, 1).parameters())
+    )
+
+
 def test_hard_budget_is_prefix_feasible() -> None:
     assert hard_budget_remaining(launches_after_action=1, budget_rate=0.5, spent_units=0) == 0
     assert hard_budget_remaining(launches_after_action=2, budget_rate=0.5, spent_units=0) == 1
