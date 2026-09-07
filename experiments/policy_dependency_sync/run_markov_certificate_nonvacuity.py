@@ -39,9 +39,13 @@ CONFIG: dict[str, Any] = {
 }
 
 
-def canonical_config_hash() -> str:
-    encoded = json.dumps(CONFIG, sort_keys=True, separators=(",", ":")).encode()
+def config_hash(config: dict[str, Any]) -> str:
+    encoded = json.dumps(config, sort_keys=True, separators=(",", ":")).encode()
     return hashlib.sha256(encoded).hexdigest()
+
+
+def canonical_config_hash() -> str:
+    return config_hash(CONFIG)
 
 
 def _sample_counts(
@@ -59,13 +63,12 @@ def _sample_counts(
     return counts
 
 
-@lru_cache(maxsize=1)
-def run_rows() -> list[dict[str, Any]]:
-    transition = np.asarray(CONFIG["transition"], dtype=float)
-    scores = np.asarray(CONFIG["score_by_action"], dtype=float)
+def run_rows_for_config(config: dict[str, Any]) -> list[dict[str, Any]]:
+    transition = np.asarray(config["transition"], dtype=float)
+    scores = np.asarray(config["score_by_action"], dtype=float)
     rows: list[dict[str, Any]] = []
-    for seed in CONFIG["seeds"]:
-        for sample_size in CONFIG["sample_sizes_per_positive_action"]:
+    for seed in config["seeds"]:
+        for sample_size in config["sample_sizes_per_positive_action"]:
             action_counts = [
                 _sample_counts(
                     transition=transition,
@@ -87,11 +90,11 @@ def run_rows() -> list[dict[str, Any]]:
                         score_count_by_state=state_counts,
                         score_range=0.5,
                         initial_state=current_state,
-                        future_horizon=CONFIG["future_horizon"],
-                        total_action_count=CONFIG[
+                        future_horizon=config["future_horizon"],
+                        total_action_count=config[
                             "total_action_count_including_null"
                         ],
-                        event_failure_probability=CONFIG[
+                        event_failure_probability=config[
                             "event_failure_probability"
                         ],
                     )
@@ -101,7 +104,7 @@ def run_rows() -> list[dict[str, Any]]:
                             transition=transition,
                             score_by_state=scores[action],
                             initial_state=current_state,
-                            horizon=CONFIG["future_horizon"],
+                            horizon=config["future_horizon"],
                         )
                     )
                 candidate_values = lower_bounds + [0.0]
@@ -123,7 +126,7 @@ def run_rows() -> list[dict[str, Any]]:
                         "charged_transitions": 2 * sample_size,
                         "local_robust_dp_scalar_work": (
                             2
-                            * CONFIG["future_horizon"]
+                            * config["future_horizon"]
                             * transition.shape[0] ** 2
                         ),
                     }
@@ -131,8 +134,15 @@ def run_rows() -> list[dict[str, Any]]:
     return rows
 
 
-def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    selected_size = 4096
+@lru_cache(maxsize=1)
+def run_rows() -> list[dict[str, Any]]:
+    return run_rows_for_config(CONFIG)
+
+
+def summarize_for_config(
+    rows: list[dict[str, Any]], config: dict[str, Any]
+) -> dict[str, Any]:
+    selected_size = int(config.get("primary_sample_size_per_positive_action", 4096))
     selected = [
         row
         for row in rows
@@ -140,7 +150,7 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     ]
     recoveries = np.asarray([row["value_recovery"] for row in selected])
     medians = []
-    for size in CONFIG["sample_sizes_per_positive_action"]:
+    for size in config["sample_sizes_per_positive_action"]:
         values = [
             row["value_recovery"]
             for row in rows
@@ -177,24 +187,24 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     scalar_work = max(row["local_robust_dp_scalar_work"] for row in rows)
     gates = {
         "N1_correct_edge_rate_at_4096": correct_rate
-        >= CONFIG["gates"]["N1_correct_edge_rate_at_4096_min"],
+        >= config["gates"]["N1_correct_edge_rate_at_4096_min"],
         "N2_median_value_recovery_at_4096": float(np.median(recoveries))
-        >= CONFIG["gates"]["N2_median_value_recovery_at_4096_min"],
+        >= config["gates"]["N2_median_value_recovery_at_4096_min"],
         "N3_p05_value_recovery_at_4096": float(np.quantile(recoveries, 0.05))
-        >= CONFIG["gates"]["N3_p05_value_recovery_at_4096_min"],
+        >= config["gates"]["N3_p05_value_recovery_at_4096_min"],
         "N4_wrong_edge_positive_rate_at_4096": wrong_positive_rate
-        <= CONFIG["gates"]["N4_wrong_edge_positive_rate_at_4096_max"],
+        <= config["gates"]["N4_wrong_edge_positive_rate_at_4096_max"],
         "N5_median_recovery_monotone": bool(
             all(right >= left - 1e-12 for left, right in zip(medians, medians[1:]))
         ),
         "N6_exact_transition_charging": exact_charging,
         "N7_local_robust_dp_scalar_work": scalar_work
-        <= CONFIG["gates"]["N7_local_robust_dp_scalar_work_max"],
+        <= config["gates"]["N7_local_robust_dp_scalar_work_max"],
         "N8_all_rows_finite": all_finite,
     }
     return {
-        "audit_id": CONFIG["audit_id"],
-        "config_hash": canonical_config_hash(),
+        "audit_id": config["audit_id"],
+        "config_hash": config_hash(config),
         "row_count": len(rows),
         "selected_sample_size_per_positive_action": selected_size,
         "selected_total_charged_transitions": 2 * selected_size,
@@ -205,13 +215,17 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "median_recovery_by_sample_size": {
             str(size): median
             for size, median in zip(
-                CONFIG["sample_sizes_per_positive_action"], medians, strict=True
+                config["sample_sizes_per_positive_action"], medians, strict=True
             )
         },
         "maximum_local_robust_dp_scalar_work": scalar_work,
         "gates": gates,
         "all_gates_pass": all(gates.values()),
     }
+
+
+def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    return summarize_for_config(rows, CONFIG)
 
 
 def main() -> None:
