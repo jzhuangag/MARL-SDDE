@@ -215,8 +215,10 @@ dense numerical grid in `joint_factor_lyapunov.py`.
 
 ## Remaining ICML kill gates
 
-1. Close (5) for an explicit factored Markov estimator without assuming a
-   perfectly known critic.
+1. The finite-state Poisson holdout and exact known-model forms of (5) are
+   proved in `markov_alignment_certificate_20260907.md`.  Close the remaining
+   state-conditional learned-model/critic radius; a stationary bridge alone
+   can erase the switching signal.
 2. Construct an exact small factored Markov game where (8) has a strict
    equal-resource advantage over strong fixed, age and myopic schedulers.
 3. Only then freeze a Pursuit learner and test return, sample progress,
