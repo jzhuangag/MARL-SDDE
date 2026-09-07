@@ -300,17 +300,21 @@ depend on an unnecessary approximation.
 
 ## Paper-level experiment design
 
-The main positive benchmark is 20-agent Pistonball with distinct actor blocks,
-fixed horizon, heterogeneous service delay, and matched transition/policy-byte
-budgets.  The principal plot is return versus optional policy bytes, with
-sample-progress curves and tail performance.  Comparators are no optional
-refresh, complete refresh, age and mismatch scheduling, physical static graph,
-best fixed local graph/rate, and the strongest resource-feasible envelope.
+The positive benchmark candidate is Pursuit, whose public local observations
+admit an outcome-free degree-four state-dependent interaction interface.
+It uses distinct actor blocks, fixed horizon, heterogeneous service delay, and
+matched transition/policy-byte budgets.  The principal plot is return versus
+optional policy bytes, with sample-progress curves and tail performance.
+Comparators are no optional refresh, complete refresh, age and mismatch
+scheduling, a fixed local graph, best fixed local graph/rate, and the strongest
+resource-feasible envelope.  This experiment remains conditional on a neural
+score-interface qualification; structural sparsity alone is insufficient.
 
-A dense cooperative task serves as the boundary condition.  Ablations remove
-the signed score, causal cone, and queue separately.  Additional panels vary
-delay, message budget, number of agents, and local interaction degree, and
-report estimator overhead and graph turnover.
+Pistonball is retained as the dense/high-degree degeneration case rather than
+the positive benchmark.  Ablations remove the signed score, state-dependent
+factor graph, packet-weight control, and communication queue separately.
+Additional panels vary delay, message budget, number of agents, and local
+interaction degree, and report estimator overhead and graph turnover.
 
 The central benchmark gate is a broad improvement in return/sample efficiency
 over the strongest matched non-oracle scheduler while satisfying the message
@@ -334,3 +338,28 @@ present problem--benchmark--algorithm package is not an ICML-ready positive
 paper. Any continuation must begin with a new formulation-level feasibility
 argument and outcome-free headroom certificate, not another experiment number
 on this benchmark.
+
+## Locally factored continuation (2026-09-07)
+
+The continuation makes local factorization part of the problem statement
+rather than inferring it after an experiment.  The outcome-free Pursuit audit
+found a state-dependent degree-four interface with negligible cap truncation
+and substantial graph turnover.  The joint Lyapunov rule now exactly selects
+both a null/one-edge cache refresh and its receipt-time packet weight in
+`O(Delta)` candidate evaluations.  A finite factor-switch Markov game proves a
+25.18% equal-communication advantage over the strongest fixed-initial-state
+and round-robin schedulers.
+
+The stochastic interface has also narrowed.  Finite-state Poisson holdout
+bounds retain Markov transients and policy-induced occupancy shift, while a
+count-uniform rectangular robust dynamic program preserves the current local
+state.  Independent MCERT-001 confirmation selected the correct
+state-compatible edge in every primary case and recovered 53.98% median and
+49.65% fifth-percentile exact value after 8,192 fully charged identification
+transitions; the incompatible edge was never certified positive.  This is a
+positive theorem-interface result, not standard-task return evidence.
+
+The next required link is an end-to-end CPU tabular controller that amortizes
+identification against strong equal-resource schedulers.  Only if it passes may
+the Pursuit neural interface be frozen.  No claim relies on reopening the
+stopped Pistonball line.
