@@ -321,11 +321,12 @@ depend on an unnecessary approximation.
 
 ## Paper-level experiment design
 
-The positive benchmark candidate is Pursuit, whose public local observations
-admit an outcome-free degree-four state-dependent interaction interface.
-It uses distinct actor blocks, fixed horizon, heterogeneous service delay, and
-matched transition/policy-byte budgets.  The principal plot is return versus
-optional policy bytes, with sample-progress curves and tail performance.
+Pursuit was the first positive benchmark candidate because its public local
+observations admit an outcome-free degree-four state-dependent interaction
+interface.  It uses distinct actor blocks, fixed horizon, heterogeneous
+service delay, and matched transition/policy-byte budgets.  The intended
+principal plot was return versus optional policy bytes, with sample-progress
+curves and tail performance.
 Comparators are no optional refresh, complete refresh, age and mismatch
 scheduling, a fixed local graph, best fixed local graph/rate, and the strongest
 resource-feasible envelope.  This experiment remains conditional on a neural
@@ -401,3 +402,33 @@ current-self/cached-teammate joint policy profile. Fixed-universe reset,
 topology-motion, and the topology--refresh--receipt event decomposition are
 exactly tested. The remaining bridge is statistical and performance-facing:
 neural alignment calibration and equal-resource oracle headroom.
+
+## Pursuit estimator closure (2026-09-08)
+
+The delayed launch--receipt packet interface and the exact compatible
+pair-factor candidate algebra pass.  In particular, exhaustive neighbor-action
+enumeration, a centered directional finite difference, fixed actor reverse
+calls, selected-packet taint exclusion, and exact copied-state branch replay
+all agree.
+
+The statistical bridge does not.  A privileged 875-dimensional bilinear head
+failed on untouched conditional-mean data (`R^2=-1.0684`).  A deployable
+summary-feature profile critic trained only from 1,024 selected completed
+packets failed three of four gates.  The final raw-observation shared-CNN
+factor critic also failed all four frozen development gates: edge-effect
+`R^2=-0.0263`, nonzero sign accuracy `0.5676`, best-with-null accuracy `0.50`,
+and edge/null alignment scale `0.0190`.
+
+Pursuit is therefore stopped as the principal efficacy benchmark.  It remains
+a structural stress test for dynamic causal support, recipient caches, exact
+policy-byte charging, and topology-motion accounting.  No further Pursuit
+estimator, calibration, pilot, formal run, or GPU job is authorized.  This
+does not alter the finite-state positive core result or the estimator-agnostic
+paired Lyapunov theorem; it leaves the standard-task efficacy bridge open.
+
+Any replacement standard benchmark must be selected before outcome inspection
+using four properties: local policy dependency, sufficiently informative
+shaped learning signal, nontrivial cache-refresh oracle value at matched
+transitions and bytes, and a parameter-shared critic whose candidate scan is
+linear in declared local degree.  It must receive a new benchmark contract and
+independent seeds.  Pursuit data cannot tune that contract.

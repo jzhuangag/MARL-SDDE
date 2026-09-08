@@ -179,6 +179,10 @@ class AlignmentLaunch:
     ]
     candidate_raw_mean_alignment: tuple[tuple[int | None, float], ...]
     candidate_factor_mean_alignment: tuple[tuple[int | None, float], ...]
+    owner_observation: tuple[float, ...]
+    candidate_donor_observation: tuple[
+        tuple[int | None, tuple[float, ...]], ...
+    ]
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -588,6 +592,24 @@ def collect_alignment_launches(
                     )
                     for donor in candidates
                 }
+                owner_observation_record = tuple(
+                    float(value)
+                    for value in np.asarray(
+                        observations[environment.possible_agents[owner]],
+                        dtype=float,
+                    ).ravel()
+                )
+                donor_observation_record: dict[
+                    int | None, tuple[float, ...]
+                ] = {None: (0.0,) * (7 * 7 * 3)}
+                for donor in donors:
+                    donor_observation_record[donor] = tuple(
+                        float(value)
+                        for value in np.asarray(
+                            observations[environment.possible_agents[donor]],
+                            dtype=float,
+                        ).ravel()
+                    )
                 if launch_reference is None:
                     probability_direction = np.zeros(5, dtype=float)
                 else:
@@ -939,6 +961,10 @@ def collect_alignment_launches(
                         ),
                         candidate_factor_mean_alignment=tuple(
                             candidate_factor_mean_alignment
+                        ),
+                        owner_observation=owner_observation_record,
+                        candidate_donor_observation=tuple(
+                            donor_observation_record.items()
                         ),
                     )
                 )

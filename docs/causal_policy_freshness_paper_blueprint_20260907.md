@@ -206,13 +206,16 @@ make the paper sound more mathematical.
 The tabular mechanism can appear as a theorem illustration or appendix result.
 It cannot substitute for a standard MARL benchmark.
 
-### Standard MARL evidence (Pursuit; GPU only after interface qualification)
+### Standard MARL evidence (benchmark selection reopened after Pursuit stop)
 
-The positive benchmark uses distinct actor blocks, asynchronous owner launches,
-random service delay, state-dependent degree-four local factors, a centralized
+The required positive benchmark must use distinct actor blocks, asynchronous
+owner launches, random service delay, local policy factors, a centralized
 training critic, and decentralized evaluation.  Primary outcomes are return
 and sample efficiency versus actual policy bytes; wall-clock and estimator
-overhead are secondary.
+overhead are secondary.  Pursuit no longer fills this role: its final
+raw-observation factor critic failed all four frozen estimator-class gates on
+2026-09-08.  Pursuit is retained only as a dynamic-topology/cache-semantics
+stress test.
 
 The strong comparator family includes no optional refresh, complete refresh,
 age, parameter mismatch, fixed local graphs/rates, periodic refresh, a greedy
@@ -224,7 +227,10 @@ cache-energy extension is reported separately with fixed-universe and
 topology-motion accounting.
 
 Pistonball remains the dense degeneration case already falsified for the
-low-degree claim.  It is not rerun until a new outcome-free reason exists.
+low-degree claim.  It is not rerun until a new outcome-free reason exists.  A
+replacement positive benchmark is not named until an outcome-free contract
+establishes local dependency, an informative learning signal, matched-resource
+oracle headroom, and a deployable parameter-shared factor critic.
 
 ## Paper organization
 
@@ -233,8 +239,9 @@ low-degree claim.  It is not rerun until a new outcome-free reason exists.
    cooperative potential objective.
 3. Method: local factor alignment model and joint optimistic Lyapunov action.
 4. Theory: the four-link theorem chain above.
-5. Experiments: tabular phase/confirmation, Pursuit learning frontier,
-   ablations, scaling, and dense degeneration.
+5. Experiments: tabular phase/confirmation, a still-to-be-qualified standard
+   MARL learning frontier, ablations, scaling, and Pursuit/Pistonball structural
+   stress tests.
 6. Related work: shared-policy actor--learner lag, homogeneous cooperative
    linear MDPs, delayed bandits, coordination graphs, constrained RL, and SDDE
    distributed SGD.
@@ -250,21 +257,23 @@ cells and `384/384` paired seed-cells improve, and median exact-oracle headroom
 recovery is `0.875652`. It does not close the persistent-cache extension's
 performance or the standard-MARL links.
 
-The outcome-free Pursuit state-machine qualification now also closes launch
+The outcome-free Pursuit state-machine qualification closes launch
 cache copying, full byte charging, zero-weight persistence, owner-specific
 cached behavior, and the exact topology-motion event decomposition with
-byte-identical reproduction. It does not show that the neural score is
-calibrated or that the controller improves return.
+byte-identical reproduction. Three increasingly structured estimator-class
+audits then failed, including the final raw-observation shared CNN.  Pursuit is
+therefore stopped as an efficacy benchmark and does not show that the
+controller improves standard-task return.
 
 The project is not ICML-ready until all of the following remaining conditions
 are true:
 
-1. the delayed optimistic alignment implementation matches its theorem and has
-   a nonvacuous CPU calibration interface;
-2. an outcome-free Pursuit oracle-value audit shows material equal-resource
-   headroom over the full strong online family;
-3. a preregistered Pursuit pilot yields broad return--communication gains with
-   acceptable overhead;
+1. a replacement benchmark contract establishes local policy dependency and a
+   nonvacuous selected-packet critic interface without using Pursuit outcomes;
+2. an outcome-free oracle-value audit on that benchmark shows material
+   equal-resource headroom over the full strong online family;
+3. a preregistered standard-task pilot yields broad return--communication gains
+   with acceptable overhead;
 4. independent seeds reproduce the principal benchmark direction;
 5. the main core theorem carries critic, factor, controlled-kernel, and delay
    terms without depending on graph-switch cancellation; any cache theorem

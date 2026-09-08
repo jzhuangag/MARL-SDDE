@@ -40,6 +40,12 @@ def test_pursuit_launch_receipt_interface_is_causal_and_charged() -> None:
         for row in rows
     )
     assert all(len(row.owner_probability_direction) == 5 for row in rows)
+    assert all(len(row.owner_observation) == 7 * 7 * 3 for row in rows)
+    assert all(
+        len(observation) == 7 * 7 * 3
+        for row in rows
+        for _, observation in row.candidate_donor_observation
+    )
     assert all(
         abs(sum(delta)) < 1e-6
         for row in rows
