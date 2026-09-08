@@ -432,3 +432,15 @@ shaped learning signal, nontrivial cache-refresh oracle value at matched
 transitions and bytes, and a parameter-shared critic whose candidate scan is
 linear in declared local degree.  It must receive a new benchmark contract and
 independent seeds.  Pursuit data cannot tune that contract.
+
+The outcome-free selection now names Multiwalker as the primary contract
+candidate because its per-step package-progress reward and public neighbor
+observations directly address the signal/locality failure exposed by Pursuit.
+Its isolated Box2D runtime, five-recipient policy caches, random delayed
+receipt ledger, exact byte charging, and deterministic replay now pass.  The
+continuous-action factor algebra also passes a double-precision directional
+finite-difference oracle: four actor reverse calls are independent of degree
+and the critic work is `1+2 Delta`.  These are structural results, not positive
+learning evidence.  KAZ is the secondary heterogeneous-role stress task.  Both
+still require a matched-resource oracle headroom gate before any efficacy
+pilot.

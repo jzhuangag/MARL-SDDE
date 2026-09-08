@@ -228,9 +228,15 @@ topology-motion accounting.
 
 Pistonball remains the dense degeneration case already falsified for the
 low-degree claim.  It is not rerun until a new outcome-free reason exists.  A
-replacement positive benchmark is not named until an outcome-free contract
-establishes local dependency, an informative learning signal, matched-resource
-oracle headroom, and a deployable parameter-shared factor critic.
+replacement positive benchmark is Multiwalker provisionally: its public
+neighbor observations and per-step package-progress reward address locality
+and signal density before outcome inspection.  Its outcome-free cache/receipt
+contract and exact continuous-action factor algebra now pass, including a
+degree-independent four-call actor Jacobian direction and an `O(Delta)` critic
+candidate scan.  KAZ is the heterogeneous-role secondary task.  Neither
+enters the paper as efficacy evidence until a separately frozen contract
+establishes matched-resource oracle headroom and a deployable
+parameter-shared factor critic.
 
 ## Paper organization
 
@@ -268,8 +274,9 @@ controller improves standard-task return.
 The project is not ICML-ready until all of the following remaining conditions
 are true:
 
-1. a replacement benchmark contract establishes local policy dependency and a
-   nonvacuous selected-packet critic interface without using Pursuit outcomes;
+1. the Multiwalker replacement contract and continuous factor algebra are
+   extended by a nonvacuous statistical critic interface without using
+   Pursuit outcomes;
 2. an outcome-free oracle-value audit on that benchmark shows material
    equal-resource headroom over the full strong online family;
 3. a preregistered standard-task pilot yields broad return--communication gains
