@@ -166,7 +166,7 @@ The topology-robust paired launch-receipt theorem gives
 \le F(\theta^0)-F_\star+
 \frac{Q_0^2/(2\nu)}{V}+
 \sum_{p<N}\mathbb E R_p+
-2\sum_{p<N}\mathbb E\epsilon_p^F+
+2\bar\alpha\sum_{p<N}\mathbb E\epsilon_p^F+
 \frac{NB_Q}{V},
 \]
 
@@ -175,7 +175,12 @@ cost is at most the budget rate and which satisfies the declared descent
 condition.  This conditional formulation permits non-null unit-cost actions
 when the budget rate is fractional; a merely pathwise average-feasible
 comparator would not remove the queue cross term.  Queue iteration gives the
-corresponding average-message bound.  With bounded stochastic packet variance, `w=N^{-1/3}` and
+corresponding average-message bound. The displayed left side is launch-time
+selected-block stationarity. If owners are drawn from predictable
+probabilities bounded below by `pi_min`, a tower-property corollary converts it
+to full-gradient stationarity at a uniformly sampled launch, at the expected
+`1/pi_min` factor. A cyclic implementation instead needs an epoch-motion
+argument. With bounded stochastic packet variance, `w=N^{-1/3}` and
 `V=N^{2/3}` balance the stationarity and budget terms at order
 `N^{-1/3}`, apart from normalized Markov, motion, and score-estimation terms.
 

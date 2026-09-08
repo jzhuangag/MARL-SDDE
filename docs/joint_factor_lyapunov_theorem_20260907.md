@@ -74,7 +74,7 @@ must be subtracted explicitly in this bound. Smoothness and (3)--(4) give
 \[
  \mathbb E[\Delta(VF)\mid\mathcal F_{b(p)}]
  \le -m_p^{\rm core}(a)\alpha
- +\frac{C_p^{\rm core}(a)}2\alpha^2+R_p,
+ +\frac{C_p^{\rm core}(a)}2\alpha^2+V\mathcal R_p,
 \tag{5}
 \]
 
@@ -87,7 +87,9 @@ where
 \tag{6}
 \]
 
-and `R_p` contains only action-independent declared remainders. The queue
+and `mathcal R_p` is an objective-scale, action-independent declared
+remainder. Writing `V mathcal R_p` in (5) makes its units agree with
+`Delta(VF)` and with the normalized result below. The queue
 half-square inequality adds `Q_p(c_p(a)-bar c)` and an action-independent
 upper bound on `nu(c_p(a)-bar c)^2/2`. Hence the executable core index is
 
@@ -128,7 +130,8 @@ If that comparator satisfies
  \mathbb E[-m_p^{\rm core}(a_p^\circ)\alpha_p^\circ
  +C_p^{\rm core}(a_p^\circ)(\alpha_p^\circ)^2/2
  \mid\mathcal F_{b(p)}]
- \le -V\kappa_p\|\nabla_iF(\theta_{b(p)})\|^2+VR_p^\circ,
+ \le -V\kappa_p\|\nabla_iF(\theta_{b(p)})\|^2
+ +V\mathcal R_p^\circ,
 \tag{9}
 \]
 
@@ -140,7 +143,7 @@ then (8) obeys
  \mathbb E\|\nabla_iF(\theta_{b(p)})\|^2
  \le{}& F(\theta_0)-F_\star
  +\frac{Q_0^2}{2\nu V}
- +\sum_{p<N}\mathbb E(R_p+R_p^\circ)\\
+ +\sum_{p<N}\mathbb E(\mathcal R_p+\mathcal R_p^\circ)\\
  &+\frac{N\nu(c_{\max}+\bar c)^2}{2V}.
  \end{aligned}
 \tag{10}
@@ -168,9 +171,41 @@ telescope `VF+Q^2/(2nu)`, use `F>=F_star` and `Q^2>=0`, insert (9), and divide
 by `V`. Uniform alignment error perturbs the selected and comparator indices by
 at most `V bar(alpha) epsilon_p` each.
 
-The proof is exact conditional on the declared alignment and motion bounds. It
+The left-hand side is selected-block stationarity at launch states. The
+following randomized-owner corollary converts it to a conventional
+full-gradient criterion. Cyclic ownership alone does not identify all block
+gradients at one common iterate. The proof is exact conditional on the
+declared alignment and motion bounds. It
 is not yet a distribution-free neural-Pursuit theorem: the learned-critic
 radius remains an experimental/theoretical interface obligation.
+
+### Randomized-owner full-stationarity corollary
+
+Let `G_p` be the filtration immediately before drawing the next owner, so that
+`theta_(b(p))` is `G_p` measurable. Suppose
+
+\[
+ \mathbb P(i_p=i\mid\mathcal G_p)=\pi_{i,p}\ge\pi_{\min}>0
+ \quad\text{and}\quad \kappa_p\ge\kappa_{\min}>0.
+\tag{11}
+\]
+
+Then, conditionally on `G_p`,
+
+\[
+ \mathbb E[\kappa_p\|\nabla_{i_p}F(\theta_{b(p)})\|^2
+ \mid\mathcal G_p]
+ \ge \kappa_{\min}\pi_{\min}
+ \|\nabla F(\theta_{b(p)})\|^2.
+\tag{12}
+\]
+
+If `P` is uniform on `{0,...,N-1}` independently of the run, (10) divided by
+`N kappa_min pi_min` therefore bounds
+`E||grad F(theta_(b(P)))||^2`.  This is an exact tower-property consequence of
+(10), not an assumption that block gradients are evaluated at a synchronized
+iterate. Uniform random ownership gives `pi_min=1/n`. A cyclic implementation
+requires a separate epoch-motion lemma and is not covered by this corollary.
 
 ## Layer II: optional fixed-universe cache-energy extension
 
@@ -181,11 +216,11 @@ Fix one edge universe `U` and define
  H_t=\frac12\sum_{e=(j,i)\in U}\beta_e
  \|\theta_{j,t}-\chi_{e,t}\|^2,
  \qquad \beta_e\ge0.
-\tag{11}
+\tag{13}
 \]
 
 The state-dependent candidate set may change arbitrarily inside `U`; inactive
-edges remain represented in (11). With fixed weights, candidate-set turnover
+edges remain represented in (13). With fixed weights, candidate-set turnover
 does not change `H`. Exact launch reset `B_p(a)`, a simultaneous outgoing-cache
 displacement bound `S_p`, and total outgoing weight `W_p` produce
 
@@ -196,10 +231,10 @@ displacement bound `S_p`, and total outgoing weight `W_p` produce
  J_p^{H}(a,\alpha)&=-m_p^{H}(a)\alpha
  +C_p^{H}(a)\alpha^2/2-B_p(a)+Q_pc_p(a).
  \end{aligned}
-\tag{12}
+\tag{14}
 \]
 
-The same scalar projection and finite candidate scan exactly minimize (12).
+The same scalar projection and finite candidate scan exactly minimize (14).
 This extension gives a persistent freshness pressure, but it is not needed for
 the topology-robust core result.
 
@@ -211,7 +246,7 @@ reweighting event, the exact topology-motion jump is
  \Xi_p=\frac12\sum_{e=(j,i)\in U}
  (\beta_{e,p+1}-\beta_{e,p})
  \|\theta_{j,p}-\chi_{e,p}\|^2.
-\tag{13}
+\tag{15}
 \]
 
 For `||theta_j-chi_e||<=R`,
@@ -220,13 +255,13 @@ For `||theta_j-chi_e||<=R`,
  \Xi_p\le\Xi_p^+
  \le\frac{R^2}{2}\sum_{e\in U}
  [\beta_{e,p+1}-\beta_{e,p}]_+.
-\tag{14}
+\tag{16}
 \]
 
 The cache-augmented analogue of (10) adds `H_0/V` and
-`sum_p E[Xi_p^+]/V`, and uses the comparator expression in (12). If one writes
+`sum_p E[Xi_p^+]/V`, and uses the comparator expression in (14). If one writes
 `H_t` only over the active `E_t`, this is exactly the indicator-weight special
-case of (13); omitting `Xi_p` is incorrect. High graph turnover is therefore a
+case of (15); omitting `Xi_p` is incorrect. High graph turnover is therefore a
 measured source of cache-theorem cost, not a free selling point.
 
 ### Event partition and no-double-counting contract
@@ -238,7 +273,7 @@ At every decision epoch, cache-energy change is partitioned in this order:
  \underbrace{\Xi_p}_{\text{weight/support motion}}
  -\underbrace{B_p(a_p)}_{\text{launch cache copy}}
  +\underbrace{D_p^{\rm receipt}}_{\text{donor parameter update}}.
-\tag{15}
+\tag{17}
 \]
 
 Each term is evaluated against the state immediately preceding its event. The
@@ -257,7 +292,7 @@ by at most `(m_max^core)^2/(2 C_min^core)`. It is not selected once
 \[
  Q_p>\frac{(m_{\max}^{\rm core})^2}
  {2C_{\min}^{\rm core}c_{\min}}.
-\tag{16}
+\tag{18}
 \]
 
 For the cache extension, add `B_max` to the numerator. Adding the largest final
@@ -266,7 +301,7 @@ queue increment yields a deterministic cap, and queue iteration gives
 \[
  \frac1N\sum_{p<N}c_p(a_p)
  \le \bar c+\frac{Q_N-Q_0}{\nu N}.
-\tag{17}
+\tag{19}
 \]
 
 The core minimizer is implemented in `core_factor_lyapunov.py`; the
