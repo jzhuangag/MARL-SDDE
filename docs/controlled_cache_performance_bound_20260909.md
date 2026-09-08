@@ -95,6 +95,21 @@ between `a*` and `a_H` therefore gives one-step loss at most
 induction. The executable helper
 `proxy_greedy_policy_regret_upper` evaluates the right side.
 
+### Relation to potential-based reward shaping
+
+The classical potential-shaping result of Ng, Harada, and Russell shows policy
+invariance when the *complete* transition reward contains the appropriately
+discounted potential difference
+([author-hosted paper](https://ai.stanford.edu/~ang/papers/shaping-icml99.pdf),
+[verified ICML metadata](https://dblp.org/rec/conf/icml/NgHR99.html)). That
+result cannot be invoked merely because the present score contains the launch
+reset `B_t`. Environment motion, actor updates, delayed receipts, queue
+reflection, and topology changes also move the potential between scheduler
+decisions. MW-PF-DEV-001 deliberately tests the incomplete low-complexity
+proxy, and (2)--(4) retain its approximation error instead of claiming policy
+invariance. Citation metadata checks are recorded in
+`citation_verification_paired_freshness_20260909.json`.
+
 ## What this theorem does and does not establish
 
 Equation (4) is a genuine induced-trajectory performance statement. It also
