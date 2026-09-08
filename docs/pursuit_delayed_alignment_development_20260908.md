@@ -120,7 +120,11 @@ actions.  Refreshing `j->i` changes only the `ij` factor, so every candidate is
 scored in `O(Delta A^2)` arithmetic, which is `O(Delta)` for Pursuit's fixed
 five-action space.  This formula preserves the full reference direction and
 ties the estimator to a centralized-training critic rather than an arbitrary
-context predictor.  It is now the only authorized estimator design.
+context predictor.  It is now the only authorized estimator design.  The
+corresponding implementation has since matched exhaustive neighbor-action
+enumeration, a centered finite-difference directional derivative, and a fixed
+five-reverse-pass complexity audit; the separate theorem--implementation note
+records the derivation and the still-open statistical critic gate.
 
 ## Frozen next interface, before any efficacy run
 
