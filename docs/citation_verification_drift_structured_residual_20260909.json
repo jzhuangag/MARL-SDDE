@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-09-09",
+  "purpose": "Bounded novelty audit for drift-structured relative-value control; not a final manuscript bibliography",
+  "records": [
+    {
+      "key": "ldptrlq",
+      "title": "A Lyapunov Drift-Plus-Penalty Method Tailored for Reinforcement Learning with Queue Stability",
+      "year": 2025,
+      "venue": "arXiv preprint",
+      "identifier": "arXiv:2506.04291",
+      "doi": "10.48550/arXiv.2506.04291",
+      "primary": "https://arxiv.org/abs/2506.04291",
+      "secondary_authoritative": "https://dblp.org/rec/journals/corr/abs-2506-04291",
+      "metadata_checks": {
+        "arxiv_abstract_record": "pass; four authors listed; v2 dated 2026-08-13",
+        "arxiv_v2_html_body": "conflict; body byline includes Yuan Wu in addition to the four abstract-record authors",
+        "dblp": "pass for the four-author 2025 CoRR record, last updated before arXiv v2",
+        "crossref": "not applicable; DOI is the arXiv DataCite identifier",
+        "openalex": "no positive record retained",
+        "semantic_scholar": "no positive record retained"
+      },
+      "verification_status": "quarantined_metadata_conflict",
+      "use_policy": "Do not add an author list or BibTeX record to the manuscript until the arXiv abstract metadata and v2 manuscript byline are reconciled.",
+      "supports": "Closest explicit claim of balancing greedy drift-plus-penalty with long-horizon RL in generic queueing systems."
+    },
+    {
+      "key": "rccda",
+      "title": "RCCDA: Adaptive Model Updates in the Presence of Concept Drift under a Constrained Resource Budget",
+      "authors": [
+        "Adam Piaseczny",
+        "Md Kamran Chowdhury Shisher",
+        "Shiqiang Wang",
+        "Christopher Brinton"
+      ],
+      "year": 2025,
+      "venue": "Advances in Neural Information Processing Systems 38",
+      "identifier": "arXiv:2505.24149",
+      "proceedings_identifier": "10.52202/085713-5183",
+      "primary": "https://papers.nips.cc/paper_files/paper/2025/hash/e3d1b6d954a204267fd334cbaf9cd4af-Abstract-Conference.html",
+      "arxiv": "https://arxiv.org/abs/2505.24149",
+      "secondary_authoritative": "https://dblp.org/rec/conf/nips/PiasecznySWB25",
+      "metadata_checks": {
+        "official_neurips": "pass",
+        "arxiv": "pass",
+        "dblp": "pass",
+        "crossref": "no separate Crossref record retained; proceedings identifier appears on the official page",
+        "openalex": "no positive record retained",
+        "semantic_scholar": "no positive record retained"
+      },
+      "verification_status": "verified_for_novelty_audit",
+      "supports": "Closest resource-constrained model-update policy using an analytic loss evolution and a lightweight Lyapunov drift-plus-penalty rule under concept drift."
+    },
+    {
+      "key": "delayed_optimism",
+      "title": "Optimism and Delays in Episodic Reinforcement Learning",
+      "authors": [
+        "Benjamin Howson",
+        "Ciara Pike-Burke",
+        "Sarah Filippi"
+      ],
+      "year": 2023,
+      "venue": "Proceedings of The 26th International Conference on Artificial Intelligence and Statistics",
+      "series": "PMLR",
+      "volume": "206",
+      "pages": "6061-6094",
+      "primary": "https://proceedings.mlr.press/v206/howson23a.html",
+      "metadata_checks": {
+        "official_pmlr": "pass",
+        "crossref": "not applicable; official PMLR metadata used",
+        "openalex": "not queried",
+        "semantic_scholar": "not queried"
+      },
+      "verification_status": "verified_for_novelty_audit",
+      "supports": "Delayed-feedback regret can be inherited only after the policy-freshness event process satisfies the paper's episodic-information assumptions."
+    },
+    {
+      "key": "delayed_linear_psrl",
+      "title": "Posterior Sampling with Delayed Feedback for Reinforcement Learning with Linear Function Approximation",
+      "year": 2023,
+      "venue": "Advances in Neural Information Processing Systems 36",
+      "identifier": "arXiv:2310.18919",
+      "primary": "https://papers.nips.cc/paper_files/paper/2023/hash/15d3d4a4bd808605e3a3c1ea0fd0eba4-Abstract-Conference.html",
+      "arxiv": "https://arxiv.org/abs/2310.18919",
+      "metadata_checks": {
+        "official_neurips": "pass",
+        "arxiv": "pass",
+        "authors": "not yet cross-checked across both records",
+        "openalex": "not queried",
+        "semantic_scholar": "not queried"
+      },
+      "verification_status": "existence_verified_metadata_incomplete",
+      "use_policy": "Do not add a BibTeX record until the author list and proceedings metadata receive a fresh full check.",
+      "supports": "Shows that delayed-feedback linear-function-approximation regret is existing machinery rather than a standalone novelty claim."
+    }
+  ],
+  "quality": {
+    "sources_are_primary_or_authoritative_indexes": true,
+    "final_bibliography_ready": false,
+    "retraction_check_complete": false,
+    "citation_gate": "The LDPTRLQ author conflict and incomplete delayed-linear-PSRL metadata must be resolved before either record enters a manuscript bibliography."
+  },
+  "novelty_consequence": "Neither adding an RL value term to drift-plus-penalty nor paying a generic delayed-feedback term is claimable. Any paper-level distinction must come from the causal launch/receipt policy-cache process with distinct MARL actors, its sparse factorization, and simultaneous scheduler-performance, learning-stationarity, and policy-byte guarantees."
+}
