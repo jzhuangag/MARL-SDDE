@@ -9,12 +9,48 @@ import pytest
 
 from .multiwalker_alignment_headroom_dev import (
     AlignmentLocalOption,
+    AlignmentOracleRow,
     POLICIES,
+    analyze_alignment_rows,
     joint_weight_decrease,
     randomized_epoch_owner_schedule,
     run_alignment_scenario,
     solve_prefix_alignment_oracle,
 )
+
+
+def test_low_drift_chunk_summary_is_finite_and_not_a_gate_population() -> None:
+    row = AlignmentOracleRow(
+        seed=1,
+        drift_scale=0.01,
+        budget_rate=0.25,
+        exact_oracle_decrease=1.1,
+        exact_oracle_spent_edges=1,
+        exact_oracle_nonzero_weights=1,
+        strong_online_policy="no_refresh",
+        strong_online_decrease=1.0,
+        no_refresh_decrease=1.0,
+        ideal_reference_decrease=2.0,
+        oracle_gain_over_no_refresh=0.1,
+        oracle_headroom_over_strong=0.1,
+        oracle_recovery_gap=1.0,
+        normalized_absolute_headroom=0.05,
+        optimizer_success=True,
+        optimizer_status=0,
+        optimizer_mip_gap=0.0,
+        selected_owner_count=5,
+        maximum_prefix_excess=0,
+        charged_diagnostic_transitions=10,
+        public_trace_transitions=1,
+        reference_replay_error=0.0,
+        minimum_owner_launches=4,
+    )
+    summary = analyze_alignment_rows([row])
+    assert math.isfinite(summary["active_direction_rate"])
+    assert math.isfinite(summary["active_median_normalized_absolute_headroom"])
+    assert not summary["gates"]["H8_active_oracle_gain"]
+    assert not summary["gates"]["H12_joint_weight_nontrivial"]
+    assert not summary["all_gates_pass"]
 
 
 def test_randomized_epoch_owner_schedule_is_balanced_and_reproducible() -> None:

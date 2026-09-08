@@ -903,8 +903,19 @@ def analyze_alignment_rows(rows: Sequence[AlignmentOracleRow]) -> dict[str, obje
     gain = sum(row.oracle_gain_over_no_refresh for row in active)
     headroom = sum(row.oracle_headroom_over_strong for row in active)
     recovery = headroom / abs(gain) if abs(gain) > 1e-20 else 0.0
-    direction = float(np.mean([row.oracle_headroom_over_strong > 1e-12 for row in active]))
-    normalized = float(np.median([row.normalized_absolute_headroom for row in active]))
+    # A low-drift-only process is a valid mechanical chunk but not a scientific
+    # gate population.  Keep its summary finite and make every active-only gate
+    # fail explicitly; the frozen 2026-09-09 result predates this reporting fix.
+    direction = (
+        float(np.mean([row.oracle_headroom_over_strong > 1e-12 for row in active]))
+        if active
+        else 0.0
+    )
+    normalized = (
+        float(np.median([row.normalized_absolute_headroom for row in active]))
+        if active
+        else 0.0
+    )
     diagnostic_by_scenario = {
         (row.seed, row.drift_scale): row.charged_diagnostic_transitions
         for row in rows
@@ -931,11 +942,11 @@ def analyze_alignment_rows(rows: Sequence[AlignmentOracleRow]) -> dict[str, obje
             for row in rows
         ),
         "H7_reference_signal": all(row.ideal_reference_decrease > 1e-12 for row in rows),
-        "H8_active_oracle_gain": gain > 0.0,
-        "H9_active_recovery": recovery >= 0.10,
-        "H10_active_direction": direction >= 0.75,
-        "H11_active_normalized_headroom": normalized >= 0.005,
-        "H12_joint_weight_nontrivial": all(
+        "H8_active_oracle_gain": bool(active) and gain > 0.0,
+        "H9_active_recovery": bool(active) and recovery >= 0.10,
+        "H10_active_direction": bool(active) and direction >= 0.75,
+        "H11_active_normalized_headroom": bool(active) and normalized >= 0.005,
+        "H12_joint_weight_nontrivial": bool(active) and all(
             0 < row.exact_oracle_nonzero_weights <= 20 for row in active
         ),
     }

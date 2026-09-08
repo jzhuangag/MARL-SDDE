@@ -43,6 +43,11 @@ correctly rejected the resulting `NaN`. Every underlying row is finite, and
 the frozen merge path analyzes all sixteen rows together with a nonempty active
 population. Thus this is a mechanical partial-chunk reporting defect, not a
 missing cell or an altered scientific value. It is retained in provenance.
+After the frozen validation commit, the partial-chunk analyzer was patched to
+emit finite zero-valued active metrics and explicit failed active-only gates
+when no active row is present. A full-population post-fix merge preserves both
+frozen artifact hashes exactly; the scientific result was not recomputed or
+changed.
 
 A clean reproduction used four isolated seed processes, each containing both
 drifts, from 2026-09-08 23:22:04 to 2026-09-09 00:06:10. All four returned
