@@ -53,9 +53,11 @@ first-order price differs from the exact queue-potential increment by at most
 \tag{2}
 \]
 
-Receipt and topology events between launches must either be included in the
-transition defining (1), or contribute their own uniform action-score error.
-They cannot disappear from the continuation model.
+Environment transitions, scheduled actor drift, packet receipts and topology
+events between launches must either be included in the transition defining
+(1), or contribute their own uniform action-score error. The reset identity
+alone covers only the instantaneous cache copy; none of the intervening events
+can disappear from the continuation model.
 
 ## Finite-horizon performance theorem
 
