@@ -175,7 +175,7 @@ where `D_p^rec` is `W` times the right side of (3) plus (3a), and
 They occur at different causal times, so describing them as a simultaneous
 QP would be incorrect.
 
-### Conditional paired theorem
+### Conditional paired stationarity--on-state-utility theorem
 
 Suppose the selected-feedback utility model is optimistic on one simultaneous
 event,
@@ -233,6 +233,14 @@ detail. The remaining hard work is not this algebra: it is verifying the
 controlled-Markov confidence and receipt condition (6b) for an executable
 critic.
 
+The utility term in (6c) is an on-state action comparison: `a_p^o` is evaluated
+on the cache/Markov state reached by the proposed controller. Because cache
+actions change future states, (6c) is not by itself a return comparison between
+two scheduler-induced trajectories. The separate controlled-state reduction in
+`controlled_cache_performance_bound_20260909.md` gives a valid dynamic-policy
+bound only when `-(H+Q^2/(2 nu))/V` has an explicit continuation-value error.
+That error is a primary theorem obligation, not an optional refinement.
+
 ## What a complete theorem must prove
 
 The finite-event queue and receipt algebra in (2)--(6) is exact.  An ICML-level
@@ -251,7 +259,9 @@ approximation term:
 6. the exact `sum Xi_p^+/W` remainder for any optional moving-topology cache
    energy;
 7. either eventual terminal drain for the analyzed launches or a theorem whose
-   stationarity sum is explicitly restricted to the received-packet set.
+   stationarity sum is explicitly restricted to the received-packet set;
+8. a controlled-state continuation-value or Bellman-residual bound before the
+   on-state utility term is described as scheduler policy regret.
 
 Only after these obligations close may (6c) be converted to the full-gradient
 and explicit-rate bound of the form
