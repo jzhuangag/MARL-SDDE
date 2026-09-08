@@ -236,7 +236,7 @@ Then
 \[
  \sum_{p<N}\kappa_p\mathbb E\|\nabla_{i_p}F(\theta_{b(p)})\|^2
  \le F(\theta_0)-F_\star
- +\frac{H_0+Q_0^2/2}{V}
+ +\frac{H_0+Q_0^2/(2\nu)}{V}
  +\sum_{p<N}\mathbb E R_p
  +\frac1V\sum_{p<N}\mathbb E[\Gamma_p^+]
  +2\sum_{p<N}\mathbb E\epsilon_p^F
@@ -254,8 +254,9 @@ eventual receipt.  The queue half-square inequality contributes
 `B_Q=nu sup_p(c_p-bar c)^2/2`.  Exact minimization of (5), followed by
 averaging over the comparator's launch-measurable randomization, incurs at most
 `2 V epsilon_p^F`.  The conditional cost constraint (9) removes its expected
-queue term because `Q_p` is launch-measurable.  Summing every launch reset, every receipt increment, and every queue
-increment telescopes `V F+H+Q^2/2` in chronological event order.  Because the
+queue term because `Q_p` is launch-measurable.  Summing every launch reset,
+every receipt increment, and every queue increment telescopes
+`V F+H+Q^2/(2 nu)` in chronological event order.  Because the
 launch rule does not know the future receipt term, upper-bound it by
 `Gamma_p^+=max(Gamma_p,0)` after it is realized.  Use
 `F>=F_star`, `H_N>=0`, `Q_N^2>=0`, insert (10), and divide by `V`.

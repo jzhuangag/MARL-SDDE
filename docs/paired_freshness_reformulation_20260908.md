@@ -66,22 +66,31 @@ while bounding a weighted sum of owner-block gradients.  Wall-clock time is a
 secondary systems metric.  Delay remains fundamental because it separates
 launch feedback from receipt and increases parameter motion.
 
+On a fixed local edge universe `U`, define the policy-cache energy
+
+\[
+ H_t=\frac12\sum_{e=(j\to i)\in U}\beta_e
+       \|\theta_{j,t}-\chi_{e,t}\|^2.
+\]
+
 Use the communication queue
 
 \[
  Q_{p+1}=[Q_p+\nu(c_p(a_p)-\bar c)]^+
 \]
 
-and the topology-robust Lyapunov function
+and the composite Lyapunov function
 
 \[
- \mathcal L_t=W F(\theta_t)+\frac{Q_t^2}{2\nu}.
+ \mathcal L_t=W F(\theta_t)+H_t+\frac{Q_t^2}{2\nu}.
 \tag{2}
 \]
 
-The cache-energy extension is not part of (2).  On a changing topology it is
-valid only on a fixed edge universe and with the explicit positive
-topology-motion remainder `Xi_p^+`.
+The topology-robust core is recovered by setting every `beta_e=0`. On a
+changing topology, (2) remains valid only when inactive edges are represented
+inside the fixed universe and the exact positive topology-motion remainder
+`Xi_p^+` is retained. It is invalid to sum `H_t` only over the currently active
+edges and then omit the jump when that active set changes.
 
 ## Paired launch--receipt drift
 
@@ -89,7 +98,15 @@ Let `v_p` be a launch-measurable reference direction formed only from packets
 completed before launch.  Suppose `||nabla_i F(theta_b)-v_p||<=e_p`,
 `||G_p||<=G_p^max`, block smoothness is `L_i`, and launch-to-receipt owner
 motion is at most `M_p`.  At receipt, the selected packet gives the observable
-scalar `Y_p=<v_p,G_p>`.  The paired objective drift obeys
+scalar `Y_p=<v_p,G_p>`. Let
+
+\[
+ S_p=\sum_{r:(i_p\to r)\in U}
+ \beta_{i_pr}(\theta_{i_p}-\chi_{i_p\to r}),\qquad
+ \beta_p^{\rm out}=\sum_r\beta_{i_pr},
+\]
+
+both evaluated at receipt. The learning-objective part obeys
 
 \[
  \Delta F_p\le
@@ -98,38 +115,50 @@ scalar `Y_p=<v_p,G_p>`.  The paired objective drift obeys
 \tag{3}
 \]
 
+The exact outgoing-cache increment is
+
+\[
+ \Gamma_p=-\alpha_p\langle G_p,S_p\rangle
+ +\frac{\alpha_p^2}{2}\|G_p\|^2\beta_p^{\rm out}.
+\tag{3a}
+\]
+
 Unlike the failed alignment formulation, (3) is not used to predict which
-cache edge is valuable.  It decides how much to trust the packet that the
-chosen cached behavior actually produced.  Its receipt-time minimizer is the
-one-dimensional certified root
+cache edge is valuable. It decides how much to trust the packet that the
+chosen cached behavior actually produced. Combining (3) and (3a), its
+receipt-time minimizer is the one-dimensional certified root
 
 \[
  \alpha_p^*=\Pi_{[0,\alpha_{\max}]}
- \frac{[Y_p-G_p^{\max}(e_p+L_iM_p)]_+}
-      {L_i(G_p^{\max})^2}.
+ \frac{[W\{Y_p-G_p^{\max}(e_p+L_iM_p)\}
+              +\langle G_p,S_p\rangle]_+}
+      {(G_p^{\max})^2(WL_i+\beta_p^{\rm out})}.
 \tag{4}
 \]
 
-Thus `alpha` is online and Lyapunov-designed, but no counterfactual gradient
-alignment model is required.
+Thus `alpha` is online and jointly prices learning descent and the exact
+outgoing-cache motion, but no counterfactual gradient-alignment model is
+required. Setting the cache terms to zero recovers the topology-robust core
+root.
 
 At launch, an optimistic utility model `U_p^U(a)` based only on previously
 returned selected trajectories gives
 
 \[
  a_p\in\arg\min_{a\in\mathcal A_p^{\rm feasible}}
- \{-V U_p^U(a)+Q_pc_p(a)\}.
+ \{-V U_p^U(a)-B_p(a)+Q_pc_p(a)\},
 \tag{5}
 \]
 
-The feasible set enforces the hard prefix cap.  Equation (5) is not merely a
-myopic reward rule if the utility state includes the persistent recipient
-cache: the learned object is the value of a cache-state transition, not the
-immediate reward of transmitting a message.  This is precisely the dynamic
-value isolated by the exact prefix-budget oracle.  The intended low-complexity
-realization uses a bounded-degree factorized critic and null-plus-one-edge
-actions, so candidate evaluation is `O(Delta)` after local features are
-formed.
+where `B_p(a)=H_p-H_p^a` is the exact cache-energy drop caused by the refresh,
+and `B_p(empty)=0`. The feasible set enforces the hard prefix cap. Equation (5)
+is not the failed pure one-step alignment rule: the utility term values the
+current cached rollout, while `B_p(a)` is an exact potential-shaping term for
+the persistence of the refreshed version into later launches. No learned
+scheduler Q-network or unobserved counterfactual packet is required. The
+intended low-complexity realization uses a bounded-degree factorized critic
+and null-plus-one-edge actions, so candidate evaluation is `O(Delta)` after
+local features are formed.
 
 Pairing the launch queue increment, the selected utility penalty, and the
 eventual receipt drift yields
@@ -137,12 +166,12 @@ eventual receipt drift yields
 \[
  \Delta\mathcal L_p-VU_p(a_p)
  \le Q_p(c_p(a_p)-\bar c)-VU_p(a_p)
- +W\,D_p^{\rm rec}(\alpha_p)+B_Q,
+ -B_p(a_p)+D_p^{\rm rec}(\alpha_p)+B_Q,
 \tag{6}
 \]
 
-where `D_p^rec` is the right side of (3) and
-`B_Q=nu(c_p-bar c)^2/2`.  This is the common proof object for (4) and (5).
+where `D_p^rec` is `W` times the right side of (3) plus (3a), and
+`B_Q=nu(c_p-bar c)^2/2`. This is the common proof object for (4) and (5).
 They occur at different causal times, so describing them as a simultaneous
 QP would be incorrect.
 
@@ -159,8 +188,8 @@ and let `a_p^o` be any launch-measurable comparator whose conditional expected
 cost is at most `bar c`.  Exact minimization of (5) gives
 
 \[
- [-VU_p(a_p)+Q_pc_p(a_p)]-
- [-VU_p(a_p^o)+Q_pc_p(a_p^o)]
+ [-VU_p(a_p)-B_p(a_p)+Q_pc_p(a_p)]-
+ [-VU_p(a_p^o)-B_p(a_p^o)+Q_pc_p(a_p^o)]
  \le 2V r_p(a_p).
 \tag{6a}
 \]
@@ -169,31 +198,38 @@ If the receipt rule additionally satisfies the estimator-specific condition
 
 \[
  \mathbb E[D_p^{\rm rec}(\alpha_p)\mid\mathcal F_{b(p)}]
- \le-\kappa_p\|\nabla_{i_p}F(\theta_{b(p)})\|^2+R_p,
+ \le-W\kappa_p\|\nabla_{i_p}F(\theta_{b(p)})\|^2+W R_p,
 \tag{6b}
 \]
 
 then chronological launch--receipt pairing and the queue half-square inequality
-yield
+yield (6c), provided the system starts without inherited packets and every one
+of the first `N` launched packets is drained before the terminal potential is
+evaluated:
 
 \[
 \begin{aligned}
  V\sum_{p<N}\mathbb E[U_p(a_p^o)-U_p(a_p)]
  &+W\sum_{p<N}\kappa_p
    \mathbb E\|\nabla_{i_p}F(\theta_{b(p)})\|^2\\
- \le{}&W(F(\theta_0)-F_\star)+\frac{Q_0^2}{2\nu}
+ \le{}&W(F(\theta_0)-F_\star)+H_0+\frac{Q_0^2}{2\nu}
  +2V\sum_{p<N}\mathbb E r_p(a_p)\\
  &+NB_Q+W\sum_{p<N}\mathbb E R_p .
 \end{aligned}
 \tag{6c}
 \]
 
-For the optional variable-weight cache-energy extension, the right side also
-contains `sum_p E[Xi_p^+]`; the topology-robust core bound does not.  The proof
+For variable weights on the fixed edge universe, the right side also contains
+`sum_p E[Xi_p^+]`; the topology-robust `beta=0` core bound does not. The proof
 of (6a) is the standard optimistic sandwich, but only the selected action's
-radius is paid.  For (6c), add the receipt inequality and queue drift to (6a),
-use the comparator's conditional cost feasibility, telescope (2), and use
-`F>=F_star`.  The remaining hard work is not this algebra: it is verifying the
+radius is paid because `B_p` is exact. For (6c), add the receipt inequality and
+queue drift to (6a), drop the comparator's nonpositive `-B_p(a_p^o)` term, use
+its conditional cost feasibility, telescope (2), and use `F>=F_star` and
+`H_N>=0`. At an arbitrary wall-clock cutoff the same argument controls only
+packets already received; it must retain the set of outstanding launches as a
+boundary object and cannot silently credit their future stationarity descent.
+Terminal drain is therefore part of the theorem protocol, not an implementation
+detail. The remaining hard work is not this algebra: it is verifying the
 controlled-Markov confidence and receipt condition (6b) for an executable
 critic.
 
@@ -213,7 +249,9 @@ approximation term:
    skeleton that makes this bias vanish with the learning rate;
 5. queue stability and the pathwise prefix-budget relation;
 6. the exact `sum Xi_p^+/W` remainder for any optional moving-topology cache
-   energy.
+   energy;
+7. either eventual terminal drain for the analyzed launches or a theorem whose
+   stationarity sum is explicitly restricted to the received-packet set.
 
 Only after these obligations close may (6c) be converted to the full-gradient
 and explicit-rate bound of the form

@@ -32,6 +32,18 @@ def test_large_queue_prefers_zero_cost_launch() -> None:
     assert choice.action == "null"
 
 
+def test_exact_cache_reset_can_make_a_persistent_refresh_worthwhile() -> None:
+    choice = choose_launch_cache_action(
+        utility_upper_by_action={"null": 1.0, "edge": 0.95},
+        reset_benefit_by_action={"null": 0.0, "edge": 0.4},
+        communication_cost_by_action={"null": 0.0, "edge": 1.0},
+        communication_queue=0.1,
+        utility_weight=2.0,
+    )
+    assert choice.action == "edge"
+    assert choice.reset_benefit == pytest.approx(0.4)
+
+
 def test_receipt_root_matches_dense_smoothness_minimizer() -> None:
     choice = choose_receipt_packet_weight(
         observed_launch_alignment=1.4,
@@ -64,6 +76,24 @@ def test_receipt_motion_can_certifiably_reject_packet() -> None:
     assert choice.certified_alignment < 0.0
     assert choice.packet_weight == 0.0
     assert choice.drift_upper == 0.0
+
+
+def test_receipt_root_jointly_prices_objective_and_outgoing_cache_motion() -> None:
+    choice = choose_receipt_packet_weight(
+        observed_launch_alignment=1.0,
+        packet_norm_upper=2.0,
+        reference_error_upper=0.1,
+        learning_smoothness=1.5,
+        launch_to_receipt_motion_upper=0.0,
+        maximum_packet_weight=1.0,
+        learning_weight=3.0,
+        cache_gradient_alignment=0.4,
+        outgoing_cache_weight=2.0,
+    )
+    assert choice.certified_alignment == pytest.approx(0.8)
+    assert choice.effective_linear_gain == pytest.approx(2.8)
+    assert choice.quadratic_curvature == pytest.approx(26.0)
+    assert choice.packet_weight == pytest.approx(2.8 / 26.0)
 
 
 def test_queue_update_has_exact_reflection_and_scaling() -> None:

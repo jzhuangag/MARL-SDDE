@@ -28,6 +28,7 @@ def utility_queue_cap(
     queue_step: float,
     maximum_cost: float,
     average_budget: float,
+    maximum_reset_benefit: float = 0.0,
 ) -> float:
     """Pathwise queue cap when a zero-cost null launch is always feasible."""
 
@@ -38,6 +39,7 @@ def utility_queue_cap(
         queue_step,
         maximum_cost,
         average_budget,
+        maximum_reset_benefit,
     )
     if any(not isfinite(float(value)) for value in values):
         raise ValueError("queue-cap inputs must be finite")
@@ -48,11 +50,12 @@ def utility_queue_cap(
         or queue_step <= 0.0
         or maximum_cost < minimum_positive_cost
         or average_budget < 0.0
+        or maximum_reset_benefit < 0.0
     ):
         raise ValueError("invalid queue-cap domain")
     rejection_threshold = (
-        utility_weight * utility_range_upper / minimum_positive_cost
-    )
+        utility_weight * utility_range_upper + maximum_reset_benefit
+    ) / minimum_positive_cost
     maximum_increment = queue_step * max(maximum_cost - average_budget, 0.0)
     return float(rejection_threshold + maximum_increment)
 
@@ -79,6 +82,7 @@ def paired_finite_time_rhs(
     queue_remainder_sum: float,
     receipt_remainder_sum: float,
     topology_motion_positive_sum: float = 0.0,
+    initial_cache_energy: float = 0.0,
 ) -> float:
     """Right side of the conditional paired utility--stationarity bound.
 
@@ -95,6 +99,7 @@ def paired_finite_time_rhs(
         queue_remainder_sum,
         receipt_remainder_sum,
         topology_motion_positive_sum,
+        initial_cache_energy,
     )
     if any(not isfinite(float(value)) for value in values):
         raise ValueError("finite-time inputs must be finite")
@@ -102,6 +107,7 @@ def paired_finite_time_rhs(
         raise ValueError("finite-time inputs must be nonnegative")
     return float(
         initial_objective_gap
+        + initial_cache_energy
         + initial_queue**2 / (2.0 * queue_step)
         + 2.0 * utility_weight * selected_radius_sum
         + queue_remainder_sum

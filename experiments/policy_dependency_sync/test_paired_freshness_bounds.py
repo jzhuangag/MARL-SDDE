@@ -24,7 +24,8 @@ def test_queue_cap_is_rejection_threshold_plus_one_increment() -> None:
         queue_step=0.2,
         maximum_cost=1.0,
         average_budget=0.25,
-    ) == pytest.approx(12.15)
+        maximum_reset_benefit=0.5,
+    ) == pytest.approx(13.15)
 
 
 def test_pathwise_average_cost_uses_the_unscaled_queue() -> None:
@@ -46,4 +47,5 @@ def test_paired_rhs_keeps_every_nonnegative_remainder() -> None:
         queue_remainder_sum=0.4,
         receipt_remainder_sum=0.3,
         topology_motion_positive_sum=0.1,
-    ) == pytest.approx(5.0)
+        initial_cache_energy=0.2,
+    ) == pytest.approx(5.2)
