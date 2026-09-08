@@ -6,6 +6,7 @@ import pytest
 from .optimistic_delayed_alignment import (
     AlignmentConfidence,
     DelayedRidgeAlignment,
+    choose_optimistic_core_factor_action,
     choose_optimistic_joint_factor_action,
     delayed_leverage_sum_bound,
 )
@@ -174,6 +175,55 @@ def test_optimistic_scores_drive_the_exact_joint_edge_weight_choice() -> None:
     )
     assert selected.action == "edge"
     assert selected.packet_weight == pytest.approx(0.7)
+
+
+def test_optimistic_scores_drive_topology_robust_core_choice() -> None:
+    confidence = {
+        "null": AlignmentConfidence(0.1, 0.0, 0.1, 0.0),
+        "edge": AlignmentConfidence(0.2, 0.5, 0.7, 0.4),
+    }
+    selected = choose_optimistic_core_factor_action(
+        confidence_by_action=confidence,
+        communication_cost_by_action={"null": 0.0, "edge": 1.0},
+        gradient_norm_upper_by_action={"null": 1.0, "edge": 1.0},
+        communication_queue=0.01,
+        learning_weight=1.0,
+        learning_smoothness=1.0,
+        receipt_motion_upper=0.0,
+        maximum_packet_weight=1.0,
+    )
+    assert selected.action == "edge"
+    assert selected.packet_weight == pytest.approx(0.7)
+    assert selected.reset_benefit == 0.0
+
+
+def test_completed_ridge_state_is_invariant_to_receipt_order() -> None:
+    contexts = [
+        np.asarray([1.0, 0.0]),
+        np.asarray([0.5, -0.5]),
+        np.asarray([0.0, 1.0]),
+    ]
+    feedback = [0.2, -0.1, 0.7]
+    models = [
+        DelayedRidgeAlignment(
+            dimension=2,
+            ridge=1.0,
+            noise_subgaussian=0.1,
+            parameter_norm_upper=1.0,
+        )
+        for _ in range(2)
+    ]
+    identifiers = [[model.launch(context) for context in contexts] for model in models]
+    for index in (0, 1, 2):
+        models[0].receive(identifiers[0][index], feedback[index])
+    for index in (2, 0, 1):
+        models[1].receive(identifiers[1][index], feedback[index])
+    assert np.allclose(models[0].gram, models[1].gram)
+    assert np.allclose(models[0].inverse_gram, models[1].inverse_gram)
+    assert np.allclose(models[0].response, models[1].response)
+    assert models[0].log_determinant_ratio == pytest.approx(
+        models[1].log_determinant_ratio
+    )
 
 
 def test_invalid_confidence_inputs_fail_closed() -> None:

@@ -12,6 +12,7 @@ from .joint_factor_lyapunov import (
     JointFactorChoice,
     choose_joint_factor_action_variable_bounds,
 )
+from .core_factor_lyapunov import choose_core_factor_action_variable_bounds
 
 
 @dataclass(frozen=True)
@@ -171,6 +172,40 @@ def choose_optimistic_joint_factor_action(
         receipt_motion_upper=receipt_motion_upper,
         receipt_cache_linear_upper=receipt_cache_linear_upper,
         outgoing_cache_weight=outgoing_cache_weight,
+        maximum_packet_weight=maximum_packet_weight,
+    )
+
+
+def choose_optimistic_core_factor_action(
+    *,
+    confidence_by_action: Mapping[Hashable, AlignmentConfidence],
+    communication_cost_by_action: Mapping[Hashable, float],
+    gradient_norm_upper_by_action: Mapping[Hashable, float],
+    communication_queue: float,
+    learning_weight: float,
+    learning_smoothness: float,
+    receipt_motion_upper: float,
+    maximum_packet_weight: float,
+) -> JointFactorChoice:
+    """Insert optimism into the topology-robust core Lyapunov controller.
+
+    ``AlignmentConfidence.upper`` is deliberately optimistic, not a safety
+    lower bound.  The selected-action regret lemma pays at most twice its
+    radius; this wrapper must therefore be used with that lemma rather than
+    with a claim of per-launch certified descent.
+    """
+
+    return choose_core_factor_action_variable_bounds(
+        alignment_lower_by_action={
+            action: confidence.upper
+            for action, confidence in confidence_by_action.items()
+        },
+        communication_cost_by_action=communication_cost_by_action,
+        gradient_norm_upper_by_action=gradient_norm_upper_by_action,
+        communication_queue=communication_queue,
+        learning_weight=learning_weight,
+        learning_smoothness=learning_smoothness,
+        receipt_motion_upper=receipt_motion_upper,
         maximum_packet_weight=maximum_packet_weight,
     )
 

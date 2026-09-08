@@ -3,7 +3,7 @@
 - Origin Skill: academic-research-suite
 - Origin Mode: outcome-free algorithm and theorem derivation
 - Origin Date: 2026-09-07
-- Verification Status: ABSTRACT DELAYED LINEAR-ALIGNMENT THEOREM PROVED; PURSUIT REALIZATION OPEN
+- Verification Status: ABSTRACT DELAYED LINEAR-ALIGNMENT THEOREM PROVED; MULTIWALKER ALIGNMENT REALIZATION OPEN
 - Version Label: optimistic_delayed_factor_lyapunov_v1
 
 # Optimistic delayed factor learning inside the Lyapunov controller
@@ -242,14 +242,21 @@ computations on completed replay; they are not free environment samples.
 Only a selected non-null refresh consumes policy bytes.  Compute time and
 memory remain measured secondary outcomes.
 
-## Pursuit realization contract
+## Standard-benchmark realization contract
+
+Pursuit failed all frozen learned-factor gates and is no longer an efficacy
+candidate. Multiwalker has now passed an independently reproduced
+policy-profile return-oracle gate, but that object is not yet the gradient
+alignment in Equation (1). The exact distinction and the required
+reference-gradient correction are recorded in
+`multiwalker_alignment_bridge_audit_20260908.md`.
 
 The theorem can be instantiated without claiming a distribution-free neural
-confidence set by freezing a local neural feature encoder within each fitting
-epoch and fitting a finite-dimensional linear factor head only from subsequently
-completed packets.  Candidate contexts, ridge state, and reference gradients
-are then predictable.  Encoder drift, Bellman approximation, controlled-kernel
-shift from `pursuit_controlled_kernel_bridge_20260907.md`, and factor residual
+confidence set by freezing a local feature encoder within each fitting epoch
+and fitting a finite-dimensional linear head only from subsequently completed
+selected packets. Candidate contexts, ridge state, and reference gradients are
+then predictable. Encoder drift, reference-gradient error, Bellman or
+score-function approximation, controlled-kernel shift, and factor residual
 all enter `epsilon^app` explicitly.
 
 Equation (1) is not assumed stationary across unrestricted deep-policy
@@ -261,20 +268,23 @@ a separate variation-budget analysis.  Until one of these contracts is frozen,
 actor/critic nonstationarity remains an approximation term rather than
 sub-Gaussian noise.
 
-Before any GPU efficacy experiment, a CPU interface qualification must verify:
+Before any GPU efficacy experiment, CPU qualifications must verify:
 
 1. launch/receipt causality and delayed covariance updates;
-2. nonzero signed alignment feedback and counterfactual feature diversity;
+2. privileged signed alignment-oracle headroom above the complete strong
+   envelope under identical prefix costs;
 3. empirical coverage of the declared linear-head radius on held-out completed
    packets, reported as calibration rather than a distribution-free theorem;
 4. bounded degree and measured `O(Delta)` candidate count;
 5. exact policy-byte charging and a nontrivial communication queue;
-6. an oracle-value ceiling against age, mismatch, periodic, fixed-local, and
-   strong online baselines before training outcomes are used to tune gates.
+6. causal cached-profile rollouts and an oracle-value ceiling against age,
+   mismatch, periodic, fixed-local, and strong online baselines before training
+   outcomes are used to tune gates.
 
-Failure of this interface stops the Pursuit efficacy run.  Passing it permits
-a separately preregistered pilot; it does not turn the tabular confirmation
-into standard-MARL evidence.
+Failure of the alignment-headroom interface stops Multiwalker controller
+development even though the return-oracle result remains valid. Passing all
+CPU interfaces permits a separately preregistered pilot; it does not turn the
+tabular or return-oracle confirmation into standard-MARL learning evidence.
 
 ## Bounded novelty statement
 

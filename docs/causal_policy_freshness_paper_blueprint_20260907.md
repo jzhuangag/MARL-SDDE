@@ -307,3 +307,13 @@ The exact oracle consumes future simulator values and the qualification prefix
 is a fixed all-current reference; a causal, learned score must next recover a
 nontrivial share of this headroom on cache-dependent rollouts before standard
 CTDE efficacy or GPU experiments are authorized.
+
+The confirmed quantity is cached-profile `H`-return, not the conditional
+gradient alignment in Lemma A. The two must not be conflated in the paper.
+Before condition 1 is closed, a privileged CPU alignment oracle must show that
+edge-dependent packet descent also has material headroom under the same
+communication constraint. Only after that gate may a causal selected-packet
+feature/ridge model be calibrated and tested. This preserves the single causal
+story: profile freshness changes the rollout, the rollout changes the packet,
+and the packet must change the cooperative potential in the direction priced
+by the Lyapunov controller.

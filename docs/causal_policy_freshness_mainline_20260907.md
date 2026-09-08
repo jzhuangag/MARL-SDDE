@@ -479,3 +479,14 @@ declared communication constraint. This still does not validate an observable
 controller, because the exact oracle sees future branch returns and evaluates
 against a public all-current prefix. The next bridge is a frozen
 delayed-feedback confidence interface and then causal cached-profile rollouts.
+
+An immediate theory--experiment audit narrows that bridge: the confirmed
+oracle optimizes finite-horizon cached-profile return, while the core
+convergence theorem requires conditional owner-gradient packet alignment.
+Return headroom is necessary evidence that refreshes change useful behavior,
+but it does not imply alignment headroom. The next CPU gate must therefore
+construct a privileged, fully charged conditional alignment oracle and compare
+it with the same strong scheduling family before any selected-only critic is
+fit. The launch--receipt ledger and exact reference-error/smoothness
+decomposition are now executable; Multiwalker alignment headroom itself
+remains open.
