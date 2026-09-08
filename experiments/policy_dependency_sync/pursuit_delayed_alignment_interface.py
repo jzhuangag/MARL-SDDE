@@ -165,6 +165,8 @@ class AlignmentLaunch:
     receipt_event: int
     context: tuple[float, ...]
     feedback: float
+    launch_owner_action: int
+    discounted_reward: float
     policy_bytes: int
     candidate_count: int
     reference_available: bool
@@ -819,6 +821,7 @@ def collect_alignment_launches(
                     total_bytes += policy_bytes
 
                 reward = 0.0
+                discounted_reward = 0.0
                 packet_loss: torch.Tensor | None = None
                 observations_after = observations
                 terms: dict[str, bool] = {}
@@ -846,6 +849,7 @@ def collect_alignment_launches(
                     )
                     cycle_reward = float(rewards[environment.possible_agents[owner]])
                     reward += cycle_reward
+                    discounted_reward += (discount**horizon_index) * cycle_reward
                     loss_term = (
                         -(discount**horizon_index)
                         * cycle_reward
@@ -916,6 +920,8 @@ def collect_alignment_launches(
                         receipt_event=receipt_event,
                         context=contexts[selected],
                         feedback=feedback,
+                        launch_owner_action=int(owner_action),
+                        discounted_reward=float(discounted_reward),
                         policy_bytes=policy_bytes,
                         candidate_count=len(candidates),
                         reference_available=reference is not None,

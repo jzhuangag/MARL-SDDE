@@ -47,6 +47,8 @@ def test_pursuit_launch_receipt_interface_is_causal_and_charged() -> None:
     )
     assert any(row.reference_available for row in rows)
     assert all(-1.0 <= row.feedback <= 1.0 for row in rows)
+    assert all(0 <= row.launch_owner_action < 5 for row in rows)
+    assert all(np.isfinite(row.discounted_reward) for row in rows)
     assert all(
         (row.donor is None and row.policy_bytes == 0)
         or (row.donor is not None and row.policy_bytes > 0)
