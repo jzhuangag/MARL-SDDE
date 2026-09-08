@@ -87,6 +87,41 @@ The handcrafted linear head did not pass that conditional-mean prediction
 test in the small development split.  No independent confirmation, controller
 efficacy experiment, or GPU pilot is authorized by these runs.
 
+A final information-sufficiency check added a fixed eight-dimensional sketch
+of the launch reference gradient, the owner score gradient, their coordinatewise
+product, candidate policy probabilities, actor identities, and event phase.
+With 2,560 representation packets and 2,560 disjoint linear-head packets, the
+held-out replicated-mean `R^2` was `-0.1398` overall (`-0.0592` at low
+mismatch and `-0.2236` at high mismatch).  This is an improvement over the
+39-feature prototype but remains worse than the test mean.  Generic context
+regression is therefore stopped; increasing sketch dimension, network depth,
+or sample size is not an admissible rescue.
+
+The replacement interface must be critic-derived.  For a pairwise local factor
+critic, define
+
+\[
+ \widehat Q_i^a(u_i)=\widehat q_i(o_i,u_i)
+ +\sum_{j\in\mathcal N_i}
+ \sum_{u_j}\pi_{j|i}^a(u_j|o_j)
+ \widehat q_{ij}(o_i,o_j,u_i,u_j).
+\]
+
+Then the predicted alignment is
+
+\[
+ \widehat A_p(a)=\sum_{u_i}
+ \langle v_{i,p},\nabla_{\theta_i}\pi_i(u_i|o_i)\rangle
+ \widehat Q_i^a(u_i).
+\]
+
+All owner-policy directional derivatives are computed once for the five
+actions.  Refreshing `j->i` changes only the `ij` factor, so every candidate is
+scored in `O(Delta A^2)` arithmetic, which is `O(Delta)` for Pursuit's fixed
+five-action space.  This formula preserves the full reference direction and
+ties the estimator to a centralized-training critic rather than an arbitrary
+context predictor.  It is now the only authorized estimator design.
+
 ## Frozen next interface, before any efficacy run
 
 The next admissible qualification has four disjoint sources of data:
@@ -110,4 +145,3 @@ This qualification may use the public heuristic path to locate a nonzero
 mismatch phase, but a standard-MARL claim still requires checkpoints generated
 by a separately preregistered learner.  A positive heuristic-path result alone
 cannot authorize the paper's principal empirical claim.
-

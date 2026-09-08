@@ -6,8 +6,10 @@ from .pursuit_delayed_alignment_interface import (
     FEATURE_NAMES,
     collect_alignment_launches,
     episode_block_conformal_radius,
+    encode_alignment_contexts,
     fit_ridge,
     predict_ridge,
+    train_alignment_representation,
 )
 
 
@@ -70,3 +72,27 @@ def test_ridge_head_and_episode_block_radius() -> None:
         miscoverage=0.2,
     )
     assert radius == 0.4
+
+
+def test_representation_is_frozen_before_linear_head() -> None:
+    rng = np.random.default_rng(404)
+    contexts = rng.normal(size=(96, len(FEATURE_NAMES)))
+    contexts[:, 0] = 1.0
+    responses = np.tanh(contexts[:, 2] * contexts[:, 4])
+    model, location, scale, losses = train_alignment_representation(
+        contexts,
+        responses,
+        seed=405,
+        embedding_dimension=8,
+        epochs=80,
+    )
+    encoded = encode_alignment_contexts(
+        model,
+        contexts,
+        location=location,
+        scale=scale,
+    )
+    assert encoded.shape == (96, 9)
+    assert np.all(encoded[:, 0] == 1.0)
+    assert losses["final_mse"] < losses["initial_mse"]
+    assert all(not parameter.requires_grad for parameter in model.parameters())

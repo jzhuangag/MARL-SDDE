@@ -14,6 +14,7 @@ import copy
 import math
 import time
 from dataclasses import asdict, dataclass
+from functools import lru_cache
 from typing import Mapping, Sequence
 
 import numpy as np
@@ -24,6 +25,10 @@ from .async_pistonball_ctde import PolicyCacheBank, apply_refresh_action
 from .audit_pursuit_cache_semantics import PursuitInterfaceActor, _pursuit_model
 from .audit_pursuit_local_factorization import bounded_local_graph
 from .neural_signed_cache import parameter_bytes
+
+
+GRADIENT_PROJECTION_DIMENSION = 8
+INTERFACE_AGENTS = 8
 
 
 FEATURE_NAMES = (
@@ -41,6 +46,28 @@ FEATURE_NAMES = (
     for role in ("owner", "donor")
     for channel in ("wall", "pursuer", "evader")
     for action in ("left", "right", "up", "down", "stay")
+) + tuple(
+    f"reference_projection_{index}"
+    for index in range(GRADIENT_PROJECTION_DIMENSION)
+) + tuple(
+    f"score_projection_{index}"
+    for index in range(GRADIENT_PROJECTION_DIMENSION)
+) + tuple(
+    f"gradient_product_{index}"
+    for index in range(GRADIENT_PROJECTION_DIMENSION)
+) + tuple(
+    f"donor_{kind}_probability_{action}"
+    for kind in ("current", "cached", "difference")
+    for action in range(5)
+) + tuple(
+    f"owner_identity_{index}" for index in range(INTERFACE_AGENTS)
+) + tuple(
+    f"donor_identity_{index}" for index in range(INTERFACE_AGENTS)
+) + (
+    "event_sine",
+    "event_cosine",
+    "reference_norm",
+    "score_norm",
 )
 
 
@@ -111,6 +138,23 @@ class PursuitHeuristicLinearActor(nn.Module):
             layer.bias.add_(fraction * (self.target_bias - layer.bias))
 
 
+class AlignmentRepresentation(nn.Module):
+    """Small frozen feature encoder fitted only at predictable epoch breaks."""
+
+    def __init__(self, input_dimension: int, embedding_dimension: int) -> None:
+        super().__init__()
+        self.encoder = nn.Sequential(
+            nn.Linear(int(input_dimension), 64),
+            nn.SiLU(),
+            nn.Linear(64, int(embedding_dimension)),
+            nn.SiLU(),
+        )
+        self.head = nn.Linear(int(embedding_dimension), 1)
+
+    def forward(self, context: torch.Tensor) -> torch.Tensor:
+        return self.head(self.encoder(context)).squeeze(-1)
+
+
 @dataclass(frozen=True)
 class AlignmentLaunch:
     seed: int
@@ -171,12 +215,6 @@ def _categorical_from_uniform(probabilities: torch.Tensor, uniform: float) -> in
     return int(np.searchsorted(cumulative, min(float(uniform), 1.0 - 1e-12)))
 
 
-def _policy_tv(current: nn.Module, cached: nn.Module, observation: np.ndarray) -> float:
-    current_probability = _policy_probabilities(current, observation)
-    cached_probability = _policy_probabilities(cached, observation)
-    return float(0.5 * torch.abs(current_probability - cached_probability).sum())
-
-
 def _profile_actions_for_candidate(
     *,
     candidate: int | None,
@@ -230,6 +268,30 @@ def _spatial_features(observation: np.ndarray | None) -> tuple[float, ...]:
     return tuple(values)
 
 
+def _fixed_gradient_projection(
+    value: np.ndarray | None,
+    *,
+    dimension: int = GRADIENT_PROJECTION_DIMENSION,
+) -> tuple[float, ...]:
+    if value is None:
+        return (0.0,) * int(dimension)
+    vector = np.asarray(value, dtype=float).ravel()
+    norm = float(np.linalg.norm(vector))
+    if norm <= 1e-15:
+        return (0.0,) * int(dimension)
+    projection = _gradient_projection_matrix(vector.size, int(dimension))
+    return tuple((projection @ (vector / norm)).tolist())
+
+
+@lru_cache(maxsize=8)
+def _gradient_projection_matrix(size: int, dimension: int) -> np.ndarray:
+    generator = np.random.default_rng(71993 + 104729 * int(size))
+    return generator.choice(
+        (-1.0, 1.0),
+        size=(int(dimension), int(size)),
+    ) / math.sqrt(float(dimension))
+
+
 def _launch_context(
     *,
     owner: int,
@@ -240,6 +302,9 @@ def _launch_context(
     caches: PolicyCacheBank,
     positions: Sequence[Sequence[int]],
     score_projection: float,
+    reference_gradient: np.ndarray | None,
+    score_gradient: np.ndarray,
+    event: int,
 ) -> tuple[float, ...]:
     owner_observation = observations[possible_agents[owner]]
     if donor is None:
@@ -248,6 +313,8 @@ def _launch_context(
         distance = 0.0
         cache_age = 0.0
         tv = 0.0
+        current_probability = np.zeros(5, dtype=float)
+        cached_probability = np.zeros(5, dtype=float)
     else:
         donor_observation = observations[possible_agents[donor]]
         donor_evader_density = _observation_density(donor_observation, 2)
@@ -259,11 +326,36 @@ def _launch_context(
         cache_age = float(
             min(20, caches.age(owner, donor)) / 20.0
         )
-        tv = _policy_tv(
-            actors[donor],
-            caches.cached_actor(owner, donor),
-            donor_observation,
+        current_probability = (
+            _policy_probabilities(actors[donor], donor_observation)
+            .detach()
+            .cpu()
+            .numpy()
         )
+        cached_probability = (
+            _policy_probabilities(
+                caches.cached_actor(owner, donor), donor_observation
+            )
+            .detach()
+            .cpu()
+            .numpy()
+        )
+        tv = float(0.5 * np.sum(np.abs(current_probability - cached_probability)))
+    reference_projection = _fixed_gradient_projection(reference_gradient)
+    score_vector_projection = _fixed_gradient_projection(score_gradient)
+    gradient_product = tuple(
+        left * right
+        for left, right in zip(reference_projection, score_vector_projection)
+    )
+    policy_features = tuple(current_probability) + tuple(cached_probability) + tuple(
+        current_probability - cached_probability
+    )
+    owner_identity = tuple(float(index == owner) for index in range(INTERFACE_AGENTS))
+    donor_identity = tuple(
+        float(donor is not None and index == donor)
+        for index in range(INTERFACE_AGENTS)
+    )
+    phase = 2.0 * math.pi * (int(event) % 16) / 16.0
     return (
         1.0,
         float(donor is not None),
@@ -274,7 +366,21 @@ def _launch_context(
         distance,
         cache_age,
         tv,
-    ) + _spatial_features(owner_observation) + _spatial_features(donor_observation)
+    ) + _spatial_features(owner_observation) + _spatial_features(
+        donor_observation
+    ) + reference_projection + score_vector_projection + gradient_product + (
+        policy_features
+        + owner_identity
+        + donor_identity
+        + (
+            math.sin(phase),
+            math.cos(phase),
+            0.0
+            if reference_gradient is None
+            else math.log1p(float(np.linalg.norm(reference_gradient))),
+            math.log1p(float(np.linalg.norm(score_gradient))),
+        )
+    )
 
 
 def _deliver_gradients(
@@ -368,6 +474,8 @@ def collect_alignment_launches(
         raise ValueError("discount must lie in (0, 1]")
     if actor_mode not in {"heuristic_path", "random_mlp"}:
         raise ValueError("unknown actor mode")
+    if n_pursuers != INTERFACE_AGENTS:
+        raise ValueError("the registered interface uses exactly eight pursuers")
     if counterfactual_replicates <= 0:
         raise ValueError("counterfactual_replicates must be positive")
     started = time.perf_counter()
@@ -466,6 +574,9 @@ def collect_alignment_launches(
                         caches=caches,
                         positions=positions,
                         score_projection=score_projection,
+                        reference_gradient=launch_reference,
+                        score_gradient=score_gradient,
+                        event=event,
                     )
                     for donor in candidates
                 }
@@ -785,6 +896,87 @@ def predict_ridge(
 ) -> np.ndarray:
     x = np.asarray(contexts, dtype=float)
     return ((x - location) / scale) @ weight
+
+
+def train_alignment_representation(
+    contexts: np.ndarray,
+    responses: np.ndarray,
+    *,
+    seed: int,
+    embedding_dimension: int = 16,
+    epochs: int = 400,
+    learning_rate: float = 0.005,
+    weight_decay: float = 1e-4,
+) -> tuple[AlignmentRepresentation, np.ndarray, np.ndarray, dict[str, float]]:
+    """Fit a bounded-size nonlinear encoder on an earlier episode split."""
+
+    x = np.asarray(contexts, dtype=np.float32)
+    y = np.asarray(responses, dtype=np.float32)
+    if x.ndim != 2 or y.shape != (x.shape[0],) or x.shape[0] == 0:
+        raise ValueError("invalid representation design")
+    if embedding_dimension <= 0 or epochs <= 0 or learning_rate <= 0.0:
+        raise ValueError("invalid representation hyperparameters")
+    location = np.mean(x, axis=0, dtype=np.float64).astype(np.float32)
+    scale = np.std(x, axis=0, dtype=np.float64).astype(np.float32)
+    location[0] = 0.0
+    scale[scale < 1e-6] = 1.0
+    scale[0] = 1.0
+    standardized = (x - location) / scale
+
+    torch.use_deterministic_algorithms(True)
+    torch.manual_seed(int(seed))
+    model = AlignmentRepresentation(x.shape[1], embedding_dimension)
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=float(learning_rate),
+        weight_decay=float(weight_decay),
+    )
+    tensor_x = torch.as_tensor(standardized, dtype=torch.float32)
+    tensor_y = torch.as_tensor(y, dtype=torch.float32)
+    initial_loss = float(
+        torch.mean((model(tensor_x).detach() - tensor_y) ** 2).cpu()
+    )
+    for _ in range(int(epochs)):
+        prediction = model(tensor_x)
+        loss = torch.mean((prediction - tensor_y) ** 2)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        optimizer.step()
+    final_loss = float(
+        torch.mean((model(tensor_x).detach() - tensor_y) ** 2).cpu()
+    )
+    model.eval()
+    for parameter in model.parameters():
+        parameter.requires_grad_(False)
+    return model, location, scale, {
+        "initial_mse": initial_loss,
+        "final_mse": final_loss,
+    }
+
+
+def encode_alignment_contexts(
+    model: AlignmentRepresentation,
+    contexts: np.ndarray,
+    *,
+    location: np.ndarray,
+    scale: np.ndarray,
+) -> np.ndarray:
+    """Return an intercept plus the frozen encoder output for a linear head."""
+
+    x = np.asarray(contexts, dtype=np.float32)
+    if x.ndim != 2:
+        raise ValueError("contexts must be a matrix")
+    standardized = (x - np.asarray(location, dtype=np.float32)) / np.asarray(
+        scale, dtype=np.float32
+    )
+    with torch.no_grad():
+        embedding = model.encoder(
+            torch.as_tensor(standardized, dtype=torch.float32)
+        ).cpu().numpy()
+    return np.concatenate(
+        (np.ones((embedding.shape[0], 1), dtype=float), embedding.astype(float)),
+        axis=1,
+    )
 
 
 def episode_block_conformal_radius(
