@@ -449,3 +449,13 @@ and the critic work is `1+2 Delta`.  These are structural results, not positive
 learning evidence.  KAZ is the secondary heterogeneous-role stress task.  Both
 still require a matched-resource oracle headroom gate before any efficacy
 pilot.
+
+The first Multiwalker development headroom matrix is retained as a `6/7`
+failure. Its aggregate and effect gates pass, but the active directional rate
+is `11/16=68.75%` rather than the frozen `75%`. The failure also exposes that
+the labelled eight-step oracle is only receding-horizon greedy: under a prefix
+budget it can be beaten by feasible age, mismatch, or random schedules and is
+not an upper bound. No critic is authorized. A single Amendment may replace
+that oracle by an exact full-horizon budget-aware optimizer while preserving
+the states, costs, comparator family, seeds, and thresholds; failure of the
+corrected kill test stops Multiwalker.
