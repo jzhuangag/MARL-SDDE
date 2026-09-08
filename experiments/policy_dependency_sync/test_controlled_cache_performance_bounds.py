@@ -1,9 +1,51 @@
 import pytest
 
 from .controlled_cache_performance_bounds import (
+    drift_structured_action_score,
+    drift_structured_relative_value,
     proxy_greedy_policy_regret_upper,
     queue_drift_score_error_upper,
 )
+
+
+def test_drift_structured_score_is_exact_bellman_score() -> None:
+    scale = 4.0
+    stage_reward = 0.7
+    next_potential = 1.6
+    next_optimal_value = 2.3
+    residual = drift_structured_relative_value(
+        optimal_value=next_optimal_value,
+        current_potential=next_potential,
+        lyapunov_scale=scale,
+    )
+    score = drift_structured_action_score(
+        stage_reward=stage_reward,
+        expected_next_potential=next_potential,
+        expected_next_relative_value=residual,
+        lyapunov_scale=scale,
+    )
+    assert score == pytest.approx(stage_reward + next_optimal_value)
+
+
+def test_zero_residual_recovers_potential_only_score() -> None:
+    assert drift_structured_action_score(
+        stage_reward=1.0,
+        expected_next_potential=0.6,
+        expected_next_relative_value=0.0,
+        lyapunov_scale=3.0,
+    ) == pytest.approx(0.8)
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"optimal_value": 1.0, "current_potential": -0.1, "lyapunov_scale": 1.0},
+        {"optimal_value": 1.0, "current_potential": 0.1, "lyapunov_scale": 0.0},
+    ],
+)
+def test_relative_value_rejects_invalid_potential_inputs(kwargs: dict[str, float]) -> None:
+    with pytest.raises(ValueError):
+        drift_structured_relative_value(**kwargs)
 
 
 def test_proxy_greedy_bound_pays_twice_both_uniform_errors() -> None:

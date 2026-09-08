@@ -6,6 +6,50 @@ from math import isfinite
 from typing import Sequence
 
 
+def drift_structured_relative_value(
+    *, optimal_value: float, current_potential: float, lyapunov_scale: float
+) -> float:
+    """Return ``h*=V*+P/V`` for the exact drift-structured decomposition."""
+
+    values = (optimal_value, current_potential, lyapunov_scale)
+    if any(not isfinite(float(value)) for value in values):
+        raise ValueError("value-decomposition inputs must be finite")
+    if current_potential < 0.0 or lyapunov_scale <= 0.0:
+        raise ValueError("potential is nonnegative and scale is positive")
+    return float(optimal_value + current_potential / lyapunov_scale)
+
+
+def drift_structured_action_score(
+    *,
+    stage_reward: float,
+    expected_next_potential: float,
+    expected_next_relative_value: float,
+    lyapunov_scale: float,
+) -> float:
+    """Exact Bellman score after separating Lyapunov and residual value.
+
+    The current potential is action independent and is therefore omitted.
+    With ``h_(t+1)^*=V_(t+1)^*+P_(t+1)/V``, this score equals the ordinary
+    Bellman score ``r+E[V_(t+1)^*]`` exactly.
+    """
+
+    values = (
+        stage_reward,
+        expected_next_potential,
+        expected_next_relative_value,
+        lyapunov_scale,
+    )
+    if any(not isfinite(float(value)) for value in values):
+        raise ValueError("action-score inputs must be finite")
+    if expected_next_potential < 0.0 or lyapunov_scale <= 0.0:
+        raise ValueError("next potential is nonnegative and scale is positive")
+    return float(
+        stage_reward
+        - expected_next_potential / lyapunov_scale
+        + expected_next_relative_value
+    )
+
+
 def proxy_greedy_policy_regret_upper(
     *,
     continuation_value_errors: Sequence[float],
