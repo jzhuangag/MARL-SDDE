@@ -160,7 +160,11 @@ preregistered Pursuit learning pilot.
 ## Current decision
 
 The compatible pair-factor formula is the only active nonlinear estimator
-interface.  Its algebra and local-degree complexity pass.  Critic calibration,
-equal-resource headroom, controller efficacy, independent confirmation, and
-standard-MARL GPU evidence remain open.  No GPU or HPC4 run is authorized by
-this result.
+interface.  Its algebra and local-degree complexity pass.  A subsequent
+privileged 875-dimensional linear-head development run failed its held-out
+test (`R^2=-1.0684`, best-action accuracy `0.45`) with only 90 training edge
+rows.  That high-dimensional head is stopped.  The remaining admissible path
+is a parameter-shared factor critic trained from selected completed
+transitions; its calibration, equal-resource headroom, controller efficacy,
+independent confirmation, and standard-MARL GPU evidence remain open.  No GPU
+or HPC4 run is authorized by these results.

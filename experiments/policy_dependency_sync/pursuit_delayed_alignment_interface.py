@@ -171,6 +171,12 @@ class AlignmentLaunch:
     candidate_contexts: tuple[tuple[int | None, tuple[float, ...]], ...]
     candidate_feedback: tuple[tuple[int | None, float], ...]
     candidate_mean_feedback: tuple[tuple[int | None, float], ...]
+    owner_probability_direction: tuple[float, ...]
+    candidate_probability_difference: tuple[
+        tuple[int | None, tuple[float, ...]], ...
+    ]
+    candidate_raw_mean_alignment: tuple[tuple[int | None, float], ...]
+    candidate_factor_mean_alignment: tuple[tuple[int | None, float], ...]
 
     def to_dict(self) -> dict[str, object]:
         return asdict(self)
@@ -580,14 +586,61 @@ def collect_alignment_launches(
                     )
                     for donor in candidates
                 }
+                if launch_reference is None:
+                    probability_direction = np.zeros(5, dtype=float)
+                else:
+                    from .pursuit_compatible_factor import (
+                        owner_probability_direction,
+                    )
+
+                    normalized_reference = launch_reference / max(
+                        float(np.linalg.norm(launch_reference)), 1e-15
+                    )
+                    _, probability_direction, _ = owner_probability_direction(
+                        actor=actors[owner],
+                        observation=observations[
+                            environment.possible_agents[owner]
+                        ],
+                        reference_direction=normalized_reference,
+                    )
+                probability_differences: dict[int | None, tuple[float, ...]] = {
+                    None: (0.0,) * 5
+                }
+                for donor in donors:
+                    donor_observation = observations[
+                        environment.possible_agents[donor]
+                    ]
+                    current_probability = (
+                        _policy_probabilities(actors[donor], donor_observation)
+                        .detach()
+                        .cpu()
+                        .numpy()
+                    )
+                    cached_probability = (
+                        _policy_probabilities(
+                            caches.cached_actor(owner, donor), donor_observation
+                        )
+                        .detach()
+                        .cpu()
+                        .numpy()
+                    )
+                    probability_differences[donor] = tuple(
+                        float(value)
+                        for value in current_probability - cached_probability
+                    )
                 selected = candidates[int(selection_rng.integers(0, len(candidates)))]
                 candidate_feedback: list[tuple[int | None, float]] = []
                 candidate_mean_feedback: list[tuple[int | None, float]] = []
+                candidate_raw_mean_alignment: list[tuple[int | None, float]] = []
+                candidate_factor_mean_alignment: list[tuple[int | None, float]] = []
                 selected_reward_audit: float | None = None
                 selected_feedback_audit: float | None = None
+                selected_raw_alignment_audit: float | None = None
                 if audit_counterfactuals:
                     for candidate in candidates:
                         replicate_values: list[float] = []
+                        replicate_raw_values: list[float] = []
+                        replicate_factor_values: list[float] = []
                         for replicate in range(counterfactual_replicates):
                             cloned_model = copy.deepcopy(model)
                             if replicate == 0:
@@ -610,7 +663,10 @@ def collect_alignment_launches(
                                 )
                             try:
                                 candidate_reward = 0.0
+                                candidate_discounted_reward = 0.0
                                 candidate_loss: torch.Tensor | None = None
+                                candidate_initial_observation: np.ndarray | None = None
+                                candidate_initial_action: int | None = None
                                 for horizon_index in range(rollout_horizon):
                                     candidate_observations = {
                                         agent: np.swapaxes(
@@ -646,6 +702,15 @@ def collect_alignment_launches(
                                         ]
                                         + 1e-12
                                     )
+                                    if candidate_initial_observation is None:
+                                        candidate_initial_observation = np.asarray(
+                                            candidate_observations[
+                                                environment.possible_agents[owner]
+                                            ]
+                                        ).copy()
+                                        candidate_initial_action = int(
+                                            candidate_owner_action
+                                        )
                                     cycle_reward = 0.0
                                     for action_agent, agent in enumerate(
                                         environment.possible_agents
@@ -659,6 +724,9 @@ def collect_alignment_launches(
                                             cloned_model.latest_reward_state[owner]
                                         )
                                     candidate_reward += cycle_reward
+                                    candidate_discounted_reward += (
+                                        (discount**horizon_index) * cycle_reward
+                                    )
                                     loss_term = (
                                         -(discount**horizon_index)
                                         * cycle_reward
@@ -675,33 +743,65 @@ def collect_alignment_launches(
                                 cloned_model.close()
                             if candidate_loss is None:
                                 raise AssertionError("counterfactual packet is empty")
+                            if candidate_initial_observation is None or (
+                                candidate_initial_action is None
+                            ):
+                                raise AssertionError("counterfactual launch score is empty")
                             candidate_gradient = _flatten_gradients(
                                 candidate_loss,
                                 tuple(actors[owner].parameters()),
                             )
-                            candidate_value = (
+                            raw_alignment = (
                                 0.0
                                 if launch_reference is None
-                                else float(
-                                    np.clip(
-                                        _directional_projection(
-                                            launch_reference,
-                                            candidate_gradient,
-                                        )
-                                        / feedback_scale,
-                                        -1.0,
-                                        1.0,
-                                    )
+                                else _directional_projection(
+                                    launch_reference,
+                                    candidate_gradient,
+                                )
+                            )
+                            candidate_value = float(
+                                np.clip(
+                                    raw_alignment / feedback_scale,
+                                    -1.0,
+                                    1.0,
                                 )
                             )
                             replicate_values.append(candidate_value)
+                            replicate_raw_values.append(raw_alignment)
+                            factor_initial_probability = _policy_probabilities(
+                                actors[owner], candidate_initial_observation
+                            )
+                            factor_initial_log_probability = torch.log(
+                                factor_initial_probability[candidate_initial_action]
+                                + 1e-12
+                            )
+                            factor_gradient = _flatten_gradients(
+                                -candidate_discounted_reward
+                                * factor_initial_log_probability,
+                                tuple(actors[owner].parameters()),
+                            )
+                            replicate_factor_values.append(
+                                0.0
+                                if launch_reference is None
+                                else _directional_projection(
+                                    launch_reference,
+                                    factor_gradient,
+                                )
+                            )
                             if replicate == 0 and candidate == selected:
                                 selected_reward_audit = candidate_reward
                                 selected_feedback_audit = candidate_value
+                                selected_raw_alignment_audit = raw_alignment
                             counterfactual_steps += 1
                         candidate_feedback.append((candidate, replicate_values[0]))
                         candidate_mean_feedback.append(
                             (candidate, float(np.mean(replicate_values)))
+                        )
+                        candidate_raw_mean_alignment.append(
+                            (candidate, float(np.mean(replicate_raw_values)))
+                        )
+                        candidate_factor_mean_alignment.append(
+                            (candidate, float(np.mean(replicate_factor_values)))
                         )
                 policy_bytes = 0
                 if selected is not None:
@@ -782,10 +882,20 @@ def collect_alignment_launches(
                         )
                     )
                 )
+                raw_alignment = (
+                    0.0
+                    if reference is None
+                    else _directional_projection(reference, packet_gradient)
+                )
                 if selected_feedback_audit is not None:
                     maximum_selected_reward_error = max(
                         maximum_selected_reward_error,
                         abs(feedback - selected_feedback_audit),
+                    )
+                if selected_raw_alignment_audit is not None:
+                    maximum_selected_reward_error = max(
+                        maximum_selected_reward_error,
+                        abs(raw_alignment - selected_raw_alignment_audit),
                     )
                 delay = int(delay_rng.integers(0, maximum_delay + 1))
                 receipt_event = event + delay + 1
@@ -812,6 +922,18 @@ def collect_alignment_launches(
                         candidate_contexts=tuple(contexts.items()),
                         candidate_feedback=tuple(candidate_feedback),
                         candidate_mean_feedback=tuple(candidate_mean_feedback),
+                        owner_probability_direction=tuple(
+                            float(value) for value in probability_direction
+                        ),
+                        candidate_probability_difference=tuple(
+                            probability_differences.items()
+                        ),
+                        candidate_raw_mean_alignment=tuple(
+                            candidate_raw_mean_alignment
+                        ),
+                        candidate_factor_mean_alignment=tuple(
+                            candidate_factor_mean_alignment
+                        ),
                     )
                 )
                 packet_id += 1

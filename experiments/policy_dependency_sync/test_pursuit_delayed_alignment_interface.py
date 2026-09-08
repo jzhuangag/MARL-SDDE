@@ -33,8 +33,17 @@ def test_pursuit_launch_receipt_interface_is_causal_and_charged() -> None:
     assert all(
         len(row.candidate_feedback)
         == len(row.candidate_mean_feedback)
+        == len(row.candidate_raw_mean_alignment)
+        == len(row.candidate_factor_mean_alignment)
+        == len(row.candidate_probability_difference)
         == row.candidate_count
         for row in rows
+    )
+    assert all(len(row.owner_probability_direction) == 5 for row in rows)
+    assert all(
+        abs(sum(delta)) < 1e-6
+        for row in rows
+        for _, delta in row.candidate_probability_difference
     )
     assert any(row.reference_available for row in rows)
     assert all(-1.0 <= row.feedback <= 1.0 for row in rows)
