@@ -31,10 +31,11 @@ control problem.
    to the null action and each eligible one-edge refresh.
 4. The alignment feedback arrives with the trajectory.  A delayed optimistic
    local linear model learns which edge has useful drift value.
-5. One topology-robust Lyapunov upper bound jointly chooses the edge and the
-   packet's receipt-time weight while a virtual queue prices actual policy
-   bytes. A fixed-universe cache potential is an optional strengthening, not a
-   hidden assumption of the main guarantee.
+5. One topology-robust Lyapunov argument controls two causally ordered
+   decisions: it chooses the refresh edge at launch and, after that packet
+   returns, chooses its receipt-time weight.  A virtual queue prices actual
+   policy bytes. A fixed-universe cache potential is an optional
+   strengthening, not a hidden assumption of the main guarantee.
 6. The exact launch/receipt recursion yields a finite-time stationarity bound
    relative to a dynamic feasible comparator and a pathwise average-byte bound.
 
@@ -53,8 +54,11 @@ At launch event `p`, owner `i_p` has local candidate set
  \qquad |\mathcal N_p(i_p)|\leq\Delta.
 \]
 
-For each candidate the delayed local factor model supplies an optimistic
-alignment `A_p^U(a)`. The principal controller exactly minimizes
+For each launch candidate the delayed local factor model supplies an
+optimistic packet-value bound.  Launch selects the edge using only
+launch-measurable information.  At the later receipt event, the returned
+packet supplies a certified alignment and the principal controller exactly
+minimizes
 
 \[
  J_p^{\rm core}(a,\alpha)
@@ -62,7 +66,7 @@ alignment `A_p^U(a)`. The principal controller exactly minimizes
   +\frac{VL_iG_p(a)^2}{2}\alpha^2+Q_pc_p(a),
 \]
 
-using
+over its scalar packet weight, using
 
 \[
  \alpha_p(a)=\Pi_{[0,\bar\alpha]}
@@ -70,11 +74,14 @@ using
  {C_p^{\rm core}(a)}\right)
 \]
 
-and an `O(Delta)` candidate scan. `Q_p c_p(a)` is the actual communication
-price. Delay, launch-to-receipt motion, critic uncertainty, and action-specific
-gradient bounds enter the same bound; none is represented by an arbitrary
+The launch stage performs an `O(Delta)` candidate scan and charges
+`Q_p c_p(a)` as the actual communication price.  The displayed minimizer is
+therefore a prospective per-candidate bound or, when evaluated at receipt, a
+one-dimensional root; it must not be described as a simultaneous launch-time
+QP. Delay, launch-to-receipt motion, critic uncertainty, and action-specific
+gradient bounds enter the paired bound; none is represented by an arbitrary
 age-decay coefficient. The edge remains an optimization variable because
-refreshing it changes the action-specific future trajectory alignment.
+refreshing it changes the action-specific future trajectory distribution.
 
 For persistent caches, a secondary controller augments the index with an exact
 cache reset and outgoing-cache motion. Its cache energy is defined on one fixed
@@ -83,8 +90,9 @@ topology-motion remainder. It never sums cache energy only over the currently
 active edges and then assumes that sum telescopes.
 
 The online variables are therefore the directed training-time collaboration
-edge and packet weight.  The final actors execute independently with local
-observations; the graph is not an execution protocol.
+edge and packet weight, chosen at different events of the same causal packet
+lifecycle.  The final actors execute independently with local observations;
+the graph is not an execution protocol.
 
 ## Main theorem chain
 
