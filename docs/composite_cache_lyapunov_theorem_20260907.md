@@ -8,6 +8,25 @@
 
 # Composite Lyapunov control of asynchronous policy freshness
 
+## Scope correction (2026-09-08)
+
+This note is the **fixed-edge-universe cache-energy extension**, not the
+topology-robust principal theorem.  Its `H_t` is defined on one fixed universe
+`U` (inactive edges may have zero weight only when their weight motion is
+accounted for explicitly).  The principal controller and convergence statement
+instead use
+
+\[
+ \mathcal L_t^{\rm core}=V F(\theta_t)+\frac{Q_t^2}{2\nu},
+\]
+
+jointly select the launch edge and receipt weight, and contain no cache-energy
+or graph-turnover cancellation.  Equations (1)--(11) below remain valid as
+written when `U` and `beta` are fixed.  If the state-dependent weights change,
+the exact topology-motion term derived below must be added.  In particular,
+summing only over the currently active Pursuit edges is not a valid telescoping
+argument.
+
 ## The single controlled object
 
 The training state contains distinct current policies `theta_j`, recipient
@@ -82,6 +101,37 @@ without a separate in-flight/path bound.  The primary controller therefore
 does not pretend to know (4): its positive part is retained explicitly in the
 finite-time remainder.  A valid launch-predictable common envelope may replace
 that realized remainder in a corollary.
+
+## Exact topology-motion increment
+
+Let `U` be fixed and allow predictable nonnegative weights `beta_(e,p)` to
+change before launch `p`.  Holding policies and caches fixed during that
+topology event, the cache-energy jump is exactly
+
+\[
+ \Xi_p=\frac12\sum_{e=(j\to i)\in U}
+   (\beta_{e,p+1}-\beta_{e,p})
+   \|\theta_{j,p}-\chi_{e,p}\|^2 .
+\tag{4a}
+\]
+
+This identity includes activation and deactivation because inactive edges are
+represented by zero weight in `U`.  Edge removal can make `Xi_p` negative;
+the safe finite-time upper bound retains `Xi_p^+=max(Xi_p,0)`.  If
+`||theta_j-chi_e|| <= R_cache`, then
+
+\[
+ \Xi_p^+\le \frac{R_{\rm cache}^2}{2}
+ \sum_{e\in U}(\beta_{e,p+1}-\beta_{e,p})_+ .
+\tag{4b}
+\]
+
+Consequently, under varying weights the right-hand side of (11) gains
+`V^{-1} sum_(p<N) E[Xi_p^+]`.  The chronological decomposition is topology
+motion `Xi_p`, then launch reset `-B_p`, then the eventual receipt increment
+`Gamma_p`; these terms cannot be merged or silently cancelled.  The executable
+identities and positive upper bound are tested in
+`experiments/policy_dependency_sync/test_composite_cache_lyapunov.py`.
 
 ## Edge decision
 
