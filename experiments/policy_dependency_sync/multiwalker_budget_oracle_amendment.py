@@ -314,6 +314,38 @@ def run_amendment(
     discount: float = 0.99,
 ) -> list[ExactOracleRow]:
     original = _load_original_rows(original_rows_path)
+    return run_exact_from_baselines(
+        baseline_rows=original,
+        seeds=seeds,
+        drift_scales=drift_scales,
+        budget_rates=budget_rates,
+        walkers=walkers,
+        events=events,
+        horizon=horizon,
+        discount=discount,
+    )
+
+
+def run_exact_from_baselines(
+    *,
+    baseline_rows: Sequence[Mapping[str, object]],
+    seeds: Sequence[int],
+    drift_scales: Sequence[float] = (0.01, 0.04),
+    budget_rates: Sequence[float] = (0.25, 0.5),
+    walkers: int = 5,
+    events: int = 40,
+    horizon: int = 8,
+    discount: float = 0.99,
+) -> list[ExactOracleRow]:
+    """Compute exact rows against a caller-supplied frozen baseline table.
+
+    The Amendment entry point above still authenticates the immutable v1 table
+    before reaching this function.  Independent confirmation generates its
+    own baseline table from frozen source and uses this interface so that new
+    seeds are not falsely required to match the development artifact hash.
+    """
+
+    original = list(baseline_rows)
     output: list[ExactOracleRow] = []
     for seed, drift in itertools.product(seeds, drift_scales):
         prefix, snapshots, initial = _public_trace(
