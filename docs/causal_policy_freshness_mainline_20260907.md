@@ -468,3 +468,14 @@ headroom. This repairs the diagnostic but does not convert reused development
 seeds into confirmation or establish an observable controller. The only
 authorized next step is an untouched-seed repetition of both the comparator
 envelope and exact oracle under an independently frozen protocol.
+
+That independent repetition now passes C1--C9 on untouched seeds
+`96100--96107`, with byte-exact clean reproduction. The exact optimizer beats
+the strong online envelope in all `16/16` active cells, recovers `54.53%` of
+the active oracle gain left above the envelope, and has `1.2870%` median
+normalized headroom. Multiwalker therefore passes the problem-value gate:
+there is a reproducible dynamic policy-cache allocation opportunity under the
+declared communication constraint. This still does not validate an observable
+controller, because the exact oracle sees future branch returns and evaluates
+against a public all-current prefix. The next bridge is a frozen
+delayed-feedback confidence interface and then causal cached-profile rollouts.

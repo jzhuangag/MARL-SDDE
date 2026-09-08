@@ -298,3 +298,12 @@ budget oracle. On the unchanged development seeds it yields `59.18%` recovery,
 strong online envelope. Condition 2 remains open at paper-evidence level until
 the same calculation passes on untouched seeds. No learned critic or
 controller result is implied by this oracle ceiling.
+
+Condition 2 now also passes an independently frozen eight-seed confirmation:
+all validity and performance gates pass, active direction is `16/16`, recovery
+is `54.53%`, median normalized headroom is `1.2870%`, and the clean rerun is
+byte-identical. The paper-level status nevertheless remains pre-controller.
+The exact oracle consumes future simulator values and the qualification prefix
+is a fixed all-current reference; a causal, learned score must next recover a
+nontrivial share of this headroom on cache-dependent rollouts before standard
+CTDE efficacy or GPU experiments are authorized.
