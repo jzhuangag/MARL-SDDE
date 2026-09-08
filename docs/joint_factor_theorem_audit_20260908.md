@@ -69,8 +69,12 @@ The audit also states explicitly that a uniform alignment error contributes
 side is identified as selected-block stationarity at launch states. The added
 randomized-owner corollary closes the full-gradient conversion when every
 owner has predictable probability at least `pi_min`: conditioning before the
-owner draw gives a lower bound of `kappa_min pi_min ||grad F||^2`. Cyclic
-ownership at changing iterates still needs a separate epoch-motion lemma.
+owner draw gives a lower bound of `kappa_min pi_min ||grad F||^2`. Cyclic or
+random-permutation ownership at changing iterates needs an epoch-motion lemma
+rather than the per-launch probability corollary. This is now proved in
+`owner_permutation_epoch_stationarity_20260908.md`: the conversion pays the
+measured within-epoch path-motion remainder and is valid for any complete
+permutation.
 
 ## Exact conditional scope
 
@@ -98,11 +102,11 @@ main theorem:
   factor critic under Markov trajectories and controlled cache-dependent
   kernels.
 
-Full-gradient stationarity is now available for the declared randomized-owner
-algorithm. The current cyclic structural smoke and development headroom run do
-not invoke that corollary; a future theorem-facing controller experiment must
-sample owners with the registered positive probabilities or separately prove
-the cyclic epoch remainder.
+Full-gradient stationarity is available either for i.i.d. owner draws with the
+declared positive conditional probabilities or for complete owner permutations
+with the separately proved epoch-motion remainder. A future theorem-facing
+controller experiment must implement one of these two contracts and, in the
+permutation case, log the receipt-update path motion entering that remainder.
 
 The Multiwalker algebra verifies how all candidates are scored in
 `O(Delta)`, but it does not yet verify the statistical lower bound. The

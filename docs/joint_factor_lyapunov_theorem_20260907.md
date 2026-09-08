@@ -206,6 +206,11 @@ If `P` is uniform on `{0,...,N-1}` independently of the run, (10) divided by
 (10), not an assumption that block gradients are evaluated at a synchronized
 iterate. Uniform random ownership gives `pi_min=1/n`. A cyclic implementation
 requires a separate epoch-motion lemma and is not covered by this corollary.
+That missing interface is now supplied by
+`owner_permutation_epoch_stationarity_20260908.md`: any complete owner
+permutation yields a full-gradient epoch-start bound, with the exact additional
+remainder `kappa_max sum_i L_i^2 P_(i,e)^2` for within-epoch parameter-path
+motion. It is not a zero-cost conversion.
 
 ## Layer II: optional fixed-universe cache-energy extension
 
