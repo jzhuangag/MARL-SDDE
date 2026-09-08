@@ -317,3 +317,13 @@ feature/ridge model be calibrated and tested. This preserves the single causal
 story: profile freshness changes the rollout, the rollout changes the packet,
 and the packet must change the cooperative potential in the direction priced
 by the Lyapunov controller.
+
+That final implication fails its frozen Multiwalker development gate.
+MW-AH-DEV-001 reproduces exactly and passes eleven of twelve gates, but the
+normalized one-update alignment headroom is `1.5224e-06`, about 3,284 times
+below the required `0.005`. The alignment-critic version of this blueprint is
+therefore stopped and is not paper-ready. The confirmed `H`-return headroom
+cannot be substituted for this missing quantity. A post-outcome two-stage
+launch-utility/receipt-drift reformulation is being audited separately and
+must pass new theory and causal-controller gates before this blueprint can be
+reactivated.

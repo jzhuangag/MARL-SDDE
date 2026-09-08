@@ -490,3 +490,17 @@ it with the same strong scheduling family before any selected-only critic is
 fit. The launch--receipt ledger and exact reference-error/smoothness
 decomposition are now executable; Multiwalker alignment headroom itself
 remains open.
+
+MW-AH-DEV-001 now closes that question negatively. The frozen sixteen-cell
+CPU gate is byte-exactly reproduced and passes H1--H10 and H12, but fails H11:
+the active median headroom is only `1.5224e-06` of ideal reference descent,
+versus the preregistered `0.005` threshold. The high `94.60%` recovery ratio
+only recovers most of an extremely small cache-sensitive gradient effect.
+Consequently, no selected-feedback alignment critic, confirmation run, or GPU
+experiment is authorized for this formulation.
+
+The independent cached-profile return result remains true and estimates a
+different object. Any continuation must explicitly reformulate the launch
+objective around causal cache-state utility while using only the realized
+selected packet to choose its receipt weight. It may not equate return with
+gradient alignment or reuse the privileged MW-AH branches for training.
