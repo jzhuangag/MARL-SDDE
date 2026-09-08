@@ -63,10 +63,13 @@ can disappear from the continuation model.
 
 Consider the controlled launch MDP induced by the complete event ledger. Let
 `V_t^*` be its optimal value-to-go for the same stage utilities and constraints.
-Suppose, uniformly over reachable successor states,
+Only relative continuation values affect an action. Define the shift-invariant
+uniform error over reachable successor states by
 
 \[
- \left|\widehat V_{t+1}(x)-V_{t+1}^*(x)\right|\le\epsilon_t,
+ \epsilon_t=
+ \inf_{c\in\mathbb R}\sup_x
+ \left|\widehat V_{t+1}(x)+c-V_{t+1}^*(x)\right|,
 \tag{3}
 \]
 
@@ -83,8 +86,9 @@ that implemented score, then for every initial state
 ### Proof
 
 Let `a*` maximize the Bellman expression with `V*_(t+1)` and let `a_H` be the
-implemented greedy action. Replacing `V*_(t+1)` by `Vhat_(t+1)` costs at most
-`epsilon_t` for each action; replacing the exact proxy score by the
+implemented greedy action. Add the optimizing time-dependent constant in (3),
+which cancels from every action score. Replacing `V*_(t+1)` by the shifted
+`Vhat_(t+1)` costs at most `epsilon_t` for each action; replacing the exact proxy score by the
 implemented score costs at most `zeta_t` for each action. The greedy inequality
 between `a*` and `a_H` therefore gives one-step loss at most
 `2(epsilon_t+zeta_t)`. Add the downstream loss under `a_H` and apply backward
