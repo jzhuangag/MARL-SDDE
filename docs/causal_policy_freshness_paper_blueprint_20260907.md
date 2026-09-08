@@ -290,3 +290,11 @@ are true:
 
 Failure of a gate changes the claim or stops the standard-benchmark line; it is
 not repaired by renaming the experiment or weakening a frozen comparator.
+
+The development version of condition 2 is now positive after a prospectively
+frozen correction from a greedy lookahead diagnostic to the exact 40-prefix
+budget oracle. On the unchanged development seeds it yields `59.18%` recovery,
+`16/16` active directions, and `1.6119%` median normalized headroom over the
+strong online envelope. Condition 2 remains open at paper-evidence level until
+the same calculation passes on untouched seeds. No learned critic or
+controller result is implied by this oracle ceiling.

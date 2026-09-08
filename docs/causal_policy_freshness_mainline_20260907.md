@@ -459,3 +459,12 @@ not an upper bound. No critic is authorized. A single Amendment may replace
 that oracle by an exact full-horizon budget-aware optimizer while preserving
 the states, costs, comparator family, seeds, and thresholds; failure of the
 corrected kill test stops Multiwalker.
+
+The prospectively frozen Amendment now passes all eight exact-oracle gates on
+the same immutable development data. The zero-gap prefix-budget optimizer
+beats the strong online envelope in `16/16` active cells, recovers `59.18%` of
+the dynamic gain left above that envelope, and has `1.6119%` median normalized
+headroom. This repairs the diagnostic but does not convert reused development
+seeds into confirmation or establish an observable controller. The only
+authorized next step is an untouched-seed repetition of both the comparator
+envelope and exact oracle under an independently frozen protocol.
