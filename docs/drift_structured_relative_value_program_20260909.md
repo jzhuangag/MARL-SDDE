@@ -191,6 +191,72 @@ Equation (10) is a target, not a proved rate.  In particular, a linear-MDP or
 Bellman-completeness assumption must be stated rather than hidden inside a
 generic neural approximation term.
 
+### Discounted residual certificate
+
+For a stationary discounted event-MDP with scheduler discount `gamma<1`,
+define the transformed Bellman operator
+
+\[
+ (\mathcal T_P h)(x)=\frac{P(x)}V+
+ \max_a\left\{r(x,a)+\gamma\mathbb E
+ [-P(X')/V+h(X')\mid x,a]\right\}.
+\tag{11}
+\]
+
+Because the potential terms do not depend on `h`, `T_P` is a `gamma`
+contraction in sup norm.  Its unique fixed point is `h*=V*+P/V`.  Hence a
+computable uniform residual certificate
+
+\[
+ \|\widehat h-\mathcal T_P\widehat h\|_\infty\le\delta
+\tag{12}
+\]
+
+implies
+
+\[
+ \|\widehat h-h^\star\|_\infty\le\frac\delta{1-\gamma}.
+\tag{13}
+\]
+
+If `pi_h` is greedy with respect to the transformed score, the standard
+performance-difference sandwich then yields
+
+\[
+ \|V^\star-V^{\pi_h}\|_\infty
+ \le \frac{2\gamma\delta}{(1-\gamma)^2},
+\tag{14}
+\]
+
+before selected-feedback statistical and action-score errors are added.  This
+is an exact reduction, but (12) is a demanding certificate: an empirical TD
+loss on visited states is not a uniform Bellman-residual guarantee.
+
+### Queue cap with a bounded residual span
+
+The learned residual must not be allowed to erase communication feasibility.
+Suppose the null action has zero communication cost, every non-null action has
+cost at least `c_min>0`, and the combined non-queue part of any non-null-minus-
+null score is at most `G_max`, including the confidence bonus and residual
+successor-value span.  Once
+
+\[
+ Q_t>G_{\max}/c_{\min},
+\tag{15}
+\]
+
+the null action strictly dominates.  With one-step queue increment at most
+`nu c_max`, this gives the pathwise cap
+
+\[
+ Q_t\le G_{\max}/c_{\min}+\nu c_{\max}
+\tag{16}
+\]
+
+from `Q_0=0`, and the queue recursion converts (16) into an `O(1/T)` average
+budget excess.  A residual learner without a certified span or explicit
+clipping cannot inherit this claim.
+
 ## Novelty boundary and stop rule
 
 Combining long-horizon RL with drift-plus-penalty is not by itself novel.

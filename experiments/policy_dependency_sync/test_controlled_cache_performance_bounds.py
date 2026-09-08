@@ -5,6 +5,7 @@ from .controlled_cache_performance_bounds import (
     drift_structured_relative_value,
     proxy_greedy_policy_regret_upper,
     queue_drift_score_error_upper,
+    residual_shielded_queue_cap,
 )
 
 
@@ -67,6 +68,43 @@ def test_queue_drift_error_has_the_scaled_half_square_constant() -> None:
         maximum_cost_deviation=0.75,
         lyapunov_weight=3.0,
     ) == pytest.approx(0.01875)
+
+
+def test_residual_queue_cap_pays_score_threshold_and_one_step_overshoot() -> None:
+    assert residual_shielded_queue_cap(
+        nonqueue_score_advantage_upper=3.0,
+        minimum_positive_cost=0.5,
+        queue_step=0.2,
+        maximum_cost=1.5,
+    ) == pytest.approx(6.3)
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {
+            "nonqueue_score_advantage_upper": -1.0,
+            "minimum_positive_cost": 0.5,
+            "queue_step": 0.2,
+            "maximum_cost": 1.0,
+        },
+        {
+            "nonqueue_score_advantage_upper": 1.0,
+            "minimum_positive_cost": 0.0,
+            "queue_step": 0.2,
+            "maximum_cost": 1.0,
+        },
+        {
+            "nonqueue_score_advantage_upper": 1.0,
+            "minimum_positive_cost": 1.0,
+            "queue_step": 0.2,
+            "maximum_cost": 0.5,
+        },
+    ],
+)
+def test_residual_queue_cap_rejects_invalid_bounds(kwargs: dict[str, float]) -> None:
+    with pytest.raises(ValueError):
+        residual_shielded_queue_cap(**kwargs)
 
 
 @pytest.mark.parametrize("queue", [0.0, 0.03, 0.2, 1.0])

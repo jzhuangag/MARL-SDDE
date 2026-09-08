@@ -90,3 +90,40 @@ def queue_drift_score_error_upper(
     return float(
         queue_step * maximum_cost_deviation**2 / (2.0 * lyapunov_weight)
     )
+
+
+def residual_shielded_queue_cap(
+    *,
+    nonqueue_score_advantage_upper: float,
+    minimum_positive_cost: float,
+    queue_step: float,
+    maximum_cost: float,
+) -> float:
+    """Pathwise queue cap when a bounded residual competes with a null action.
+
+    ``nonqueue_score_advantage_upper`` must include every possible advantage
+    of a non-null action over the zero-cost null action, including learned
+    residual span and confidence bonuses.  Above its ratio to the minimum
+    positive cost, the queue price forces the null action.  The second term is
+    the largest conservative one-step overshoot.
+    """
+
+    values = (
+        nonqueue_score_advantage_upper,
+        minimum_positive_cost,
+        queue_step,
+        maximum_cost,
+    )
+    if any(not isfinite(float(value)) for value in values):
+        raise ValueError("queue-cap inputs must be finite")
+    if (
+        nonqueue_score_advantage_upper < 0.0
+        or minimum_positive_cost <= 0.0
+        or queue_step <= 0.0
+        or maximum_cost < minimum_positive_cost
+    ):
+        raise ValueError("invalid residual queue-cap domain")
+    return float(
+        nonqueue_score_advantage_upper / minimum_positive_cost
+        + queue_step * maximum_cost
+    )
