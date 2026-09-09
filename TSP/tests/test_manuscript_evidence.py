@@ -1,0 +1,70 @@
+"""Regression checks tying the TSP manuscript to frozen evidence."""
+
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+REPO = ROOT.parent
+MAIN = (ROOT / "main.tex").read_text(encoding="utf-8")
+APPENDICES = (ROOT / "appendices.tex").read_text(encoding="utf-8")
+BIB = (ROOT / "references.bib").read_text(encoding="utf-8")
+
+
+def test_formal_numbers_match_core_results() -> None:
+    path = REPO / "experiments" / "dependence_delay_linear" / "results"
+    path = path / "exp016b_formal_20260801" / "analysis" / "core_results.json"
+    core = json.loads(path.read_text(encoding="utf-8"))
+    assert core["rows"] == 2_752_512
+    assert core["seeds"] == 192
+    assert f'{100 * core["primary_layer_A"]["relative_difference"]:.2f}' in MAIN
+    assert f'{100 * core["layer_B"]["relative_difference"]:.2f}' in MAIN
+    assert f'{core["primary_layer_A"]["simultaneous_one_sided_lower"]:.4f}' in MAIN
+    assert f'{core["layer_B"]["simultaneous_one_sided_lower"]:.4f}' in MAIN
+    assert core["scenario_level_denominator"] == 96
+    assert round(core["scenario_level_coverage"] * 96) == 77
+    assert core["safety_certificate"]["all_pass"] is True
+    assert all(core["gate_results_P1_P11"].values())
+
+
+def test_prior_studies_match_frozen_validation_reports() -> None:
+    exp010b = (REPO / "docs" / "validation_exp010b.md").read_text(encoding="utf-8")
+    exp007a = (REPO / "docs" / "experiment_007a_linear_td_correlation.md").read_text(encoding="utf-8")
+    for token in ("1,152", "12/12", "18.49", "12.67", "20.77", "228.98", "0.305"):
+        assert token in exp010b
+        assert token in MAIN
+    for token in ("30.996", "1.111", "134,784", "q=16", "q=1"):
+        assert token in exp007a
+        assert token in MAIN
+
+
+def test_every_citation_resolves_and_every_bib_entry_is_cited() -> None:
+    cite_keys = set()
+    for group in re.findall(r"\\cite\{([^}]+)\}", MAIN):
+        cite_keys.update(key.strip() for key in group.split(","))
+    bib_keys = set(re.findall(r"^@\w+\{([^,]+),", BIB, flags=re.MULTILINE))
+    assert len(bib_keys) >= 30
+    assert cite_keys == bib_keys
+
+
+def test_source_hygiene_and_front_matter() -> None:
+    for source in (MAIN, APPENDICES):
+        assert not any(ord(character) < 32 and character not in "\t\n\r" for character in source)
+    abstract = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", MAIN, re.DOTALL)
+    assert abstract is not None
+    words = re.findall(r"[A-Za-z]+(?:-[A-Za-z]+)?", abstract.group(1))
+    assert 150 <= len(words) <= 220
+    keywords = re.search(r"\\begin\{IEEEkeywords\}(.*?)\\end\{IEEEkeywords\}", MAIN, re.DOTALL)
+    assert keywords is not None
+    assert len([item for item in keywords.group(1).split(",") if item.strip()]) == 5
+
+
+def test_labels_and_references_are_closed() -> None:
+    source = MAIN + "\n" + APPENDICES
+    labels = re.findall(r"\\label\{([^}]+)\}", source)
+    refs = re.findall(r"\\(?:eqref|ref)\{([^}]+)\}", source)
+    assert len(labels) == len(set(labels))
+    assert set(refs) <= set(labels)
