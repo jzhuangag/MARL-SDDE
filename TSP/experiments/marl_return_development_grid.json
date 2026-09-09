@@ -1,0 +1,76 @@
+{
+  "experiment_id": "TSP-MARL-DEV-001",
+  "role": "development-only fixed-action headroom scan",
+  "upstream": {
+    "repository": "https://github.com/PKU-MARL/HARL",
+    "commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "pettingzoo_mpe",
+    "scenario": "simple_spread_v2",
+    "continuous_actions": false,
+    "rollout_length": 25,
+    "ctde": true,
+    "decentralized_evaluation": true
+  },
+  "coupling_regimes": [
+    "independent",
+    "shared"
+  ],
+  "coupling_contract": {
+    "reset_streams": "cyclic-permutation marginal preservation",
+    "shared_action_noise": "one public inverse-CDF uniform per strategic actor and step",
+    "individual_policy_action_marginal_unchanged": true
+  },
+  "fixed_action_grid": {
+    "q_rollout_workers": [1, 4, 8, 16],
+    "critic_lr": [0.00025, 0.0005],
+    "actor_lr": 0.0005,
+    "spacing": 1
+  },
+  "budgets": {
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "server_overhead_per_rollout_packet": 100,
+    "message_cost_per_update": "100 + 25*q",
+    "environment_cost_per_update": 25
+  },
+  "model": {
+    "hidden_sizes": [64, 64],
+    "activation": "tanh",
+    "ppo_epochs": 2,
+    "critic_epochs": 2
+  },
+  "evaluation": {
+    "interval_updates": 1000,
+    "episodes": 32,
+    "threads": 4,
+    "deterministic": true,
+    "primary_axis": "charged dual-budget fraction",
+    "primary_metric": "team-return AUC",
+    "secondary_metrics": [
+      "terminal team return",
+      "critic loss",
+      "selected q",
+      "selected critic_lr",
+      "wall-clock time",
+      "controller overhead"
+    ]
+  },
+  "development_seed_registry": {
+    "base": 93001,
+    "size": 17,
+    "stage_d0_seeds": [93001]
+  },
+  "stage_d0_runs": 16,
+  "mandatory_stage_d0_gates": {
+    "finite_and_complete": true,
+    "exact_dual_budget_accounting": true,
+    "upstream_worktree_clean": true,
+    "oracle_auc_headroom_over_global_strong_fixed_min": 0.05,
+    "oracle_improves_each_coupling_regime": true,
+    "shared_and_independent_worker_marginals_match": true
+  },
+  "stopping_rule": "Do not implement or run a confirmatory controller if any mandatory gate fails. Development returns may select actions but must never be reported as confirmatory evidence."
+}

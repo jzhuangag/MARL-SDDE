@@ -141,6 +141,34 @@ J_\nu(w)-J_\nu(w^\star)=\psi_\nu^\top e,
 Cauchy--Schwarz gives $|\psi_\nu^\top e|^2\le\|\psi_\nu\|^2\|e\|^2$.
 Taking expectations and applying the terminal envelope proves Corollary~\ref{cor:return}.
 
+\subsection{Proof of Theorem~\ref{thm:tracking}}
+During epoch $r$, hold the target $w_r^\star$ fixed and apply one replacement-block step from the proof of Theorem~\ref{thm:affine}.
+If $\widetilde Z_{r+1}$ denotes the terminal history envelope measured relative to $w_r^\star$, then
+\begin{equation}
+\widetilde Z_{r+1}\le c_{\rm aff}(a_r)Z_r+d_{\rm aff}(a_r)\le cZ_r+d.
+\label{eq:tracking-old-target}
+\end{equation}
+For every iterate $w_s$ in that terminal history and every $\chi>0$, Young's inequality gives
+\begin{align}
+\|w_s-w_{r+1}^\star\|^2
+&\le(1+\chi)\|w_s-w_r^\star\|^2\nonumber\\
+&\quad +(1+\chi^{-1})\|w_{r+1}^\star-w_r^\star\|^2.
+\end{align}
+Taking expectations and the maximum over the history yields
+\begin{equation}
+Z_{r+1}\le (1+\chi)cZ_r+(1+\chi)d+(1+\chi^{-1})v^2.
+\end{equation}
+Iteration proves \eqref{eq:tracking-bound} whenever $\bar c=(1+\chi)c<1$.
+
+For a one-step TD advantage,
+\begin{equation}
+\widehat A_w-A^\star
+=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star).
+\end{equation}
+The feature bound implies
+$\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$.
+Cauchy--Schwarz followed by the definition of $Z_n$ proves \eqref{eq:advantage-transfer}.
+
 \subsection{Existence and complexity of the mixed controller}
 For fixed $(q,b)$, $a_\delta$, $\beta_\delta$, $h_\tau$, and $g_\tau$ are continuous functions of $\eta$.
 The optimized Young coefficient and hence $c_{\rm aff}$ and $d_{\rm aff}$ are continuous wherever their denominators are positive, with the zero-delay values defined by continuity.

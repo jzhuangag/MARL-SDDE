@@ -31,6 +31,7 @@ Parallel Markov trajectories can accelerate policy evaluation, but their value i
 We formulate their joint control as a finite-budget learning problem in which a server selects participation, physical sample spacing, and step size before observing the next update.
 A discrete-time Lyapunov certificate converts these decisions into an explicit terminal-risk objective for affine delayed temporal-difference learning.
 Its contraction and residual terms retain cross-agent second moments, finite-mixing bias, and the complete delay profile, so the same certificate both proves convergence and designs the resource action.
+An epochwise extension bounds critic tracking and advantage-estimation error when policy updates move the projected value target.
 When dependence is unknown, a learning-aware gate purchases a fully charged likelihood probe only when its downstream risk reduction exceeds message, transition, delay, and decision-error costs.
 We establish a stopped adaptive change-of-measure lower bound, a finite-horizon performance and safety theorem, and a necessary--sufficient budget-threshold sandwich on a separated Markov class.
 Across registered CPU studies, the method recovers correlation-limited speedup, calibrates all finite-time bounds, and reduces two finite-budget risks by 54.4 and 10.9 percent.
@@ -92,6 +93,7 @@ The main contributions are summarized as follows.
 An exact Gaussian subclass exposes the opposing variance, mixing, and horizon effects and gives a correlation-limited speedup ceiling.
 \item We derive a finite-time Lyapunov certificate for affine delayed temporal-difference recursions with conditional Markov bias and dependent random Jacobian--innovation pairs.
 The certificate supplies both the convergence theorem and an implementable joint action score, with scalar step search and no matrix inversion or preconditioning.
+Its moving-policy extension quantifies how critic contraction competes with policy-induced target motion and transfers the tracking bound to advantage error.
 \item We characterize the price of learning dependence.
 A stopped adaptive change-of-measure identity and a controlled-belief occupation program give a necessary information cost, while a learning-aware gate gives a sufficient finite-budget performance and safety guarantee.
 On a compact separated class, the two thresholds match up to class constants and explicit oracle and safety scales.
@@ -369,6 +371,26 @@ Then
 
 The corollary connects the optimization variable to a reinforcement-learning quantity.
 The controller does not maximize sampled return directly; it minimizes a certified value-estimation error for the fixed target policy.
+
+The same certificate also tracks a critic target moved by a policy learner.
+Let $w_r^\star$ be the projected fixed point during epoch $r$, lasting one replacement block $m=2D+1$, and let $Z_r=\max_{rm-2D\le s\le rm}\E\|w_s-w_r^\star\|^2$.
+
+\begin{theorem}[Moving-policy critic tracking]
+Suppose every epoch satisfies Assumption~\ref{ass:catalogue}, possibly with a different certified action $a_r$, and its coefficients obey $c_{\rm aff}(a_r)\le c<1$ and $d_{\rm aff}(a_r)\le d$.
+If the policy-induced target moves only between epochs and
+$\|w_{r+1}^\star-w_r^\star\|\le v$, then for every $\chi>0$ satisfying $\bar c=(1+\chi)c<1$,
+\begin{align}
+Z_n&\le \bar c^n Z_0+
+\frac{(1+\chi)d+(1+\chi^{-1})v^2}{1-\bar c},\label{eq:tracking-bound}\\
+\E|\widehat A_w-A^\star|^2
+&\le (1+\gamma)^2\Phi^2 Z_n,\quad \|\phi(s)\|\le\Phi.
+\label{eq:advantage-transfer}
+\end{align}
+\label{thm:tracking}
+\end{theorem}
+
+The bound exposes a moving-target phase: policy improvement increases $v$, while the resource action determines $(c,d)$.
+Recomputing the joint score at actor-epoch boundaries therefore maintains a certified critic lag in centralized-training, decentralized-execution policy learning.
 
 \subsection{Joint action selection}
 The certificate score for action $a$ is
@@ -766,7 +788,7 @@ The figure therefore visualizes the same mechanism predicted by \eqref{eq:speedu
 \centering
 \includegraphics[width=0.96\textwidth]{figures/convergence_curves.pdf}
 \caption{Held-out resource-indexed convergence in TSP-CURVE-001 for persistence $0.9$ and zero delay (64 confirmation seeds; bands are 95 percent confidence intervals).
-The top row is normalized parameter error and the bottom row is normalized squared error of the fixed-policy discounted-return estimate.
+The first two panels show normalized parameter error; the last two show normalized squared error of the fixed-policy discounted-return estimate.
 The joint Lyapunov certificate changes participation with the dependence regime and improves both learning curves relative to the development-selected strong fixed $q=4$ comparator.}
 \label{fig:convergence-curves}
 \end{figure*}
@@ -794,24 +816,18 @@ For a finite catalogue, action evaluation is linear in the number of candidate t
 The exact likelihood update is scalar after the spatial reduction, and the affine certificate uses cached scalar moments and a one-dimensional step search.
 When temporal-difference Jacobians are rank one, online moment probes require $O(qd)$ arithmetic and $O(d)$ memory, matching the order of aggregating $q$ agent updates.
 
-Three mechanism studies and the convergence confirmation were executed on local CPUs.
-EXP-007A reproduced all thirteen registered artifacts byte for byte, EXP-010B reproduced eight, and EXP-016B reproduced its raw metrics, cell summary, scenario summary, and core-results file byte for byte.
-For TSP-CURVE-001, the action set, metrics, 16 development seeds, 64 confirmation seeds, and bootstrap rule were fixed before confirmation.
-Its complete raw metric and action-table hashes, aggregate curve data, and analysis code are included in the accompanying repository.
+All four studies ran on CPUs and reproduced their registered primary artifacts byte for byte.
+For TSP-CURVE-001, the action set, metrics, 16 development seeds, 64 confirmation seeds, and bootstrap rule were fixed before confirmation; raw hashes, aggregate curves, and analysis code accompany the repository.
 
-The experiments also isolate all three controlled coordinates.
-Fixing $q$ removes the cross-correlation response shown in Fig.~\ref{fig:convergence-curves}.
-Fixing $b$ removes the $18.49$-fold response to persistence in EXP-010B.
-Fixing $\eta$ ignores the delay-dependent feasible domain in \eqref{eq:certified-step-domain}.
-The resulting gaps show that the controller's value does not come from renaming a batch-size rule as Lyapunov optimization.
+The ablations isolate all three coordinates: fixing $q$ removes the correlation response in Fig.~\ref{fig:convergence-curves}, fixing $b$ removes the $18.49$-fold persistence response, and fixing $\eta$ ignores the delay-dependent domain in \eqref{eq:certified-step-domain}.
+Their gaps distinguish the controller from an adaptive batch-size rule.
 
 \section{Conclusion}
-Multi-agent Markov policy evaluation requires a resource decision before the value of the resulting update is known.
-The proposed method makes that decision through one finite-budget objective.
-A discrete Lyapunov certificate jointly chooses participation, physical spacing, and step size, and a learning-aware gate purchases dependence information only when the remaining learner can use it.
-The theory identifies a spatial speedup ceiling, proves delayed Markov convergence, lower-bounds adaptive identification cost, and separates the information and learning-value budget thresholds.
-The experiments confirm the complete chain from action selection to parameter and discounted-return-estimation curves under fully charged resources.
-The resulting controller is low complexity, uses Lyapunov drift as a design tool, and makes explicit when correlated parallelism is valuable rather than assuming that more actors are always better.
+Multi-agent Markov policy evaluation requires a resource decision before the next update's value is known.
+Our finite-budget Lyapunov certificate jointly chooses participation, physical spacing, and step size; a learning-aware gate measures dependence only when the remaining learner can use it.
+The theory identifies a spatial speedup ceiling, proves delayed Markov convergence and moving-policy critic tracking, lower-bounds adaptive identification cost, and separates the information and learning-value budget thresholds.
+Fully charged experiments connect action selection to parameter and return-estimation curves.
+The low-complexity controller uses Lyapunov drift as a design tool and identifies when correlated parallelism is valuable.
 
 \appendices
 \input{appendices}

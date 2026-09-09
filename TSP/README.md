@@ -29,7 +29,7 @@ The frozen source artifacts remain in their original repository locations and ar
 ## Current integrated artifact
 
 - Thirteen full IEEE double-column pages, including proof appendices and 32 verified references.
-- Four theorem statements, four propositions/corollaries, and aligned proofs or proof reductions.
+- Five theorem statements, five propositions/corollaries, and aligned proofs or proof reductions, including an epochwise moving-policy critic-tracking bridge.
 - Three figures regenerated from frozen or seed-separated repository evidence.
-- No unresolved citation, cross-reference, BibTeX, or layout warning.
+- No unresolved citation, cross-reference, or BibTeX warning; no overfull box or visible layout defect in the rendered manuscript.
 - Anonymous author and funding placeholders remain for the authors to fill before submission.

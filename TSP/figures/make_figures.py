@@ -112,7 +112,7 @@ def convergence_curve_figure() -> None:
         "q1": (r"Fixed $q=1$", GREEN, "-.", 1.3),
         "q32": (r"Fixed $q=32$", PURPLE, ":", 1.6),
     }
-    fig, axes = plt.subplots(2, 2, figsize=(7.15, 5.0), sharex=True)
+    fig, axes = plt.subplots(1, 4, figsize=(7.15, 2.35), sharex=True)
     for column, rho in enumerate((0.0, 0.9)):
         cell = data[np.isclose(data["rho"], rho)]
         for policy, (label, color, linestyle, linewidth) in styles.items():
@@ -121,9 +121,10 @@ def convergence_curve_figure() -> None:
             for row, (mean_name, ci_name) in enumerate(
                 (("parameter_mean", "parameter_ci95"), ("return_mean", "return_ci95"))
             ):
+                ax = axes[2 * row + column]
                 mean = curve[mean_name].to_numpy(dtype=float)
                 ci = curve[ci_name].fillna(0.0).to_numpy(dtype=float)
-                axes[row, column].plot(
+                ax.plot(
                     x,
                     mean,
                     label=label,
@@ -131,7 +132,7 @@ def convergence_curve_figure() -> None:
                     linestyle=linestyle,
                     linewidth=linewidth,
                 )
-                axes[row, column].fill_between(
+                ax.fill_between(
                     x,
                     np.maximum(mean - ci, 1e-8),
                     mean + ci,
@@ -139,26 +140,27 @@ def convergence_curve_figure() -> None:
                     alpha=0.10,
                     linewidth=0.0,
                 )
-        axes[0, column].set_title(rf"Cross-agent correlation $\rho={rho:g}$")
-        axes[1, column].set_xlabel("Charged resource fraction")
-    axes[0, 0].set_ylabel("Parameter error")
-    axes[1, 0].set_ylabel("Return-estimation error")
-    for ax in axes.flat:
+        axes[column].set_title(rf"Param., $\rho={rho:g}$", fontsize=8.5)
+        axes[2 + column].set_title(rf"Ret. est., $\rho={rho:g}$", fontsize=8.5)
+    for ax in axes:
+        ax.set_xlabel("Resource fraction")
         ax.set_yscale("log")
         ax.set_xlim(0.0, 1.0)
         ax.grid(color="#dddddd", linewidth=0.7)
         ax.set_axisbelow(True)
-    handles, labels = axes[0, 0].get_legend_handles_labels()
+    axes[0].set_ylabel("Normalized error")
+    axes[2].set_ylabel("Normalized error")
+    handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(
         handles,
         labels,
         frameon=False,
         ncol=4,
         loc="upper center",
-        bbox_to_anchor=(0.5, 1.01),
-        fontsize=8,
+        bbox_to_anchor=(0.5, 1.015),
+        fontsize=7.5,
     )
-    fig.tight_layout(rect=(0, 0, 1, 0.94))
+    fig.tight_layout(rect=(0, 0, 1, 0.88), w_pad=0.6)
     save(fig, "convergence_curves")
 
 

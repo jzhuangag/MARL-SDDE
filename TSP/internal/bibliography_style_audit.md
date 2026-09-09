@@ -14,7 +14,7 @@ The repository had no prior TSP bibliography, so the canonical IEEE skill templa
 - Journal abbreviations, `Proc.` conference style, page ranges, and brace-protected acronyms were checked.
 - DOI fields are retained when an authoritative DOI was verified.
 - Standard published proceedings entries omit long access URLs from the typeset bibliography; their authoritative URLs remain in the machine-readable citation report.
-- IEEEtran compilation produced no bibliography overflow, undefined citation, or line-box warning.
+- IEEEtran compilation produced no bibliography overflow, undefined citation, or overfull line-box warning. Four underfull introductory paragraphs remain visually benign in the rendered two-column layout.
 
 Definite errors: none.
 
