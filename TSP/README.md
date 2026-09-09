@@ -13,7 +13,7 @@ Internal provenance, completion tasks, and evidence boundaries are kept under `i
 ## Build
 
 Run `powershell -ExecutionPolicy Bypass -File build.ps1` from this directory.
-The script regenerates the two manuscript figures from verified repository artifacts, compiles the paper, and writes rendered page images under `tmp/rendered/` for visual inspection.
+The script regenerates the three manuscript figures from verified repository artifacts, compiles the paper, and writes rendered page images under `tmp/rendered/` for visual inspection.
 
 Run `..\.venv\Scripts\python.exe tools\verify_citations.py` for a fresh authoritative citation check and `..\.venv\Scripts\python.exe -m pytest tests\test_manuscript_evidence.py -q` for manuscript-to-evidence regression tests.
 
@@ -22,13 +22,14 @@ Run `..\.venv\Scripts\python.exe tools\verify_citations.py` for a fresh authorit
 - EXP-007A: correlation-limited effective participation in a seven-state linear temporal-difference task.
 - EXP-010B: a finite-time affine delayed Markov temporal-difference certificate and joint selection of participation, spacing, and step size.
 - EXP-016B: an independent 192-seed formal confirmation of the finite learning-value threshold and the learning-aware fallback rule.
+- TSP-CURVE-001: a disjoint 16-seed development and 64-seed confirmation study of parameter-error and discounted-return-estimation convergence curves.
 
 The frozen source artifacts remain in their original repository locations and are not copied or altered here.
 
 ## Current integrated artifact
 
-- Seven IEEE double-column pages, including the proof appendices and 32 verified references.
-- Four theorem statements with aligned proofs or proof reductions.
-- Two figures regenerated from frozen repository evidence.
+- Thirteen full IEEE double-column pages, including proof appendices and 32 verified references.
+- Four theorem statements, four propositions/corollaries, and aligned proofs or proof reductions.
+- Three figures regenerated from frozen or seed-separated repository evidence.
 - No unresolved citation, cross-reference, BibTeX, or layout warning.
 - Anonymous author and funding placeholders remain for the authors to fill before submission.

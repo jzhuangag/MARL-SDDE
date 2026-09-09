@@ -5,6 +5,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -13,11 +14,28 @@ BLUE = "#0072B2"
 ORANGE = "#D55E00"
 GREEN = "#009E73"
 GRAY = "#666666"
+PURPLE = "#CC79A7"
 
 
 def save(fig: plt.Figure, name: str) -> None:
-    fig.savefig(OUT / f"{name}.pdf", bbox_inches="tight")
-    fig.savefig(OUT / f"{name}.png", dpi=240, bbox_inches="tight")
+    pdf_metadata = {
+        "Creator": "MARL-SDDE TSP figure pipeline",
+        "Producer": "Matplotlib",
+        "CreationDate": None,
+        "ModDate": None,
+    }
+    png_metadata = {"Software": "MARL-SDDE TSP figure pipeline"}
+    fig.savefig(
+        OUT / f"{name}.pdf",
+        bbox_inches="tight",
+        metadata=pdf_metadata,
+    )
+    fig.savefig(
+        OUT / f"{name}.png",
+        dpi=240,
+        bbox_inches="tight",
+        metadata=png_metadata,
+    )
     plt.close(fig)
 
 
@@ -80,6 +98,70 @@ def joint_action_figure() -> None:
     save(fig, "exp010b_joint_actions")
 
 
+def convergence_curve_figure() -> None:
+    source = ROOT / "TSP" / "data" / "convergence_curve_summary.csv"
+    data = pd.read_csv(source)
+    data = data[
+        (np.isclose(data["persistence"], 0.9))
+        & (data["maximum_delay"] == 0)
+        & data["policy"].isin(["joint", "q4", "q1", "q32"])
+    ]
+    styles = {
+        "joint": ("Joint certificate", "#000000", "-", 2.0),
+        "q4": (r"Strong fixed $q=4$", ORANGE, "--", 1.6),
+        "q1": (r"Fixed $q=1$", GREEN, "-.", 1.3),
+        "q32": (r"Fixed $q=32$", PURPLE, ":", 1.6),
+    }
+    fig, axes = plt.subplots(2, 2, figsize=(7.15, 5.0), sharex=True)
+    for column, rho in enumerate((0.0, 0.9)):
+        cell = data[np.isclose(data["rho"], rho)]
+        for policy, (label, color, linestyle, linewidth) in styles.items():
+            curve = cell[cell["policy"] == policy].sort_values("resource_fraction")
+            x = curve["resource_fraction"].to_numpy(dtype=float)
+            for row, (mean_name, ci_name) in enumerate(
+                (("parameter_mean", "parameter_ci95"), ("return_mean", "return_ci95"))
+            ):
+                mean = curve[mean_name].to_numpy(dtype=float)
+                ci = curve[ci_name].fillna(0.0).to_numpy(dtype=float)
+                axes[row, column].plot(
+                    x,
+                    mean,
+                    label=label,
+                    color=color,
+                    linestyle=linestyle,
+                    linewidth=linewidth,
+                )
+                axes[row, column].fill_between(
+                    x,
+                    np.maximum(mean - ci, 1e-8),
+                    mean + ci,
+                    color=color,
+                    alpha=0.10,
+                    linewidth=0.0,
+                )
+        axes[0, column].set_title(rf"Cross-agent correlation $\rho={rho:g}$")
+        axes[1, column].set_xlabel("Charged resource fraction")
+    axes[0, 0].set_ylabel("Parameter error")
+    axes[1, 0].set_ylabel("Return-estimation error")
+    for ax in axes.flat:
+        ax.set_yscale("log")
+        ax.set_xlim(0.0, 1.0)
+        ax.grid(color="#dddddd", linewidth=0.7)
+        ax.set_axisbelow(True)
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        labels,
+        frameon=False,
+        ncol=4,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 1.01),
+        fontsize=8,
+    )
+    fig.tight_layout(rect=(0, 0, 1, 0.94))
+    save(fig, "convergence_curves")
+
+
 if __name__ == "__main__":
     plt.rcParams.update({
         "font.family": "serif",
@@ -91,3 +173,4 @@ if __name__ == "__main__":
     })
     learning_value_figure()
     joint_action_figure()
+    convergence_curve_figure()

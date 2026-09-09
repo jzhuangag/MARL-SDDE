@@ -10,6 +10,9 @@ This register is internal and is not publication prose.
 - Occupation-measure information and opportunity-cost lower bound.
 - Affine decorrelated delayed Markov temporal-difference finite-time Lyapunov bound.
 - Correlation-limited minimax speedup identity.
+- Exact resource-optimal participation phase for the Gaussian message-limited subclass.
+- Exact fixed-probe KL and Bhattacharyya information after spatial reduction.
+- Parameter-risk to fixed-policy return-estimation transfer.
 - Certified finite-horizon fallback and low-instance safety slack.
 - Compact-class necessary/sufficient learning-value threshold sandwich.
 
@@ -20,6 +23,7 @@ This register is internal and is not publication prose.
 - Delay is charged once in the environment horizon and also appears in the delayed Lyapunov envelope; it is not inserted into the observation covariance.
 - The main theorem separates certificate risk, probing cost, delay cost, correct-commit gain, and wrong-decision loss before combining them.
 - The SDDE interpretation is kept secondary to the exact discrete-time theorem.
+- The SDDE It\^o drift is used to expose the controlled covariance/delay geometry, while all finite-step claims remain discrete.
 
 ## Completed manuscript gates
 

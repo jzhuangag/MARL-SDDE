@@ -268,9 +268,9 @@ def summarize_confirmation(
         ]
         cell_rows.append(
             {
-                "persistence": keys[0],
-                "rho": keys[1],
-                "maximum_delay": keys[2],
+                "persistence": float(keys[0]),
+                "rho": float(keys[1]),
+                "maximum_delay": int(keys[2]),
                 "parameter_auc_ratio": geometric_mean(joint_cell["parameter_auc"])
                 / geometric_mean(fixed_cell["parameter_auc"]),
                 "return_auc_ratio": geometric_mean(joint_cell["return_auc"])

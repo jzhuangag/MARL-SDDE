@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 from pathlib import Path
+
+from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +44,25 @@ def test_prior_studies_match_frozen_validation_reports() -> None:
         assert token in MAIN
 
 
+def test_convergence_confirmation_matches_validation_record() -> None:
+    validation_path = ROOT / "internal" / "convergence_curve_validation.json"
+    validation = json.loads(validation_path.read_text(encoding="utf-8"))
+    data_path = ROOT / "data" / "convergence_curve_summary.csv"
+    digest = hashlib.sha256(data_path.read_bytes()).hexdigest()
+    assert validation["experiment_id"] == "TSP-CURVE-001"
+    assert validation["confirmation_seeds"] == 64
+    assert validation["raw_rows"] == 157_440
+    assert validation["selected_strong_fixed_q"] == 4
+    assert validation["cells_improved"] == 9
+    assert validation["cells_tied"] == 3
+    assert validation["finite"] is True
+    assert validation["within_budget"] is True
+    assert digest == validation["aggregate_csv_sha256"]
+    for token in ("157,440", "0.9009", "0.8868", "9.91", "11.32", "26.48", "21.67"):
+        assert token in MAIN
+    assert (ROOT / "figures" / "convergence_curves.pdf").is_file()
+
+
 def test_every_citation_resolves_and_every_bib_entry_is_cited() -> None:
     cite_keys = set()
     for group in re.findall(r"\\cite\{([^}]+)\}", MAIN):
@@ -60,6 +82,7 @@ def test_source_hygiene_and_front_matter() -> None:
     keywords = re.search(r"\\begin\{IEEEkeywords\}(.*?)\\end\{IEEEkeywords\}", MAIN, re.DOTALL)
     assert keywords is not None
     assert len([item for item in keywords.group(1).split(",") if item.strip()]) == 5
+    assert "\\qquad" not in MAIN + APPENDICES
 
 
 def test_labels_and_references_are_closed() -> None:
@@ -68,3 +91,9 @@ def test_labels_and_references_are_closed() -> None:
     refs = re.findall(r"\\(?:eqref|ref)\{([^}]+)\}", source)
     assert len(labels) == len(set(labels))
     assert set(refs) <= set(labels)
+
+
+def test_compiled_manuscript_is_full_tsp_length() -> None:
+    pdf = ROOT / "main.pdf"
+    assert pdf.is_file()
+    assert len(PdfReader(str(pdf)).pages) == 13
