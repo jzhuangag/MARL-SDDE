@@ -3,10 +3,21 @@
 - Origin Skills: academic-research-suite; publishable-academic-writing
 - Origin Mode: contribution-led paper architecture
 - Origin Date: 2026-09-07
-- Verification Status: WORKING BLUEPRINT; STANDARD-MARL EFFICACY AND NEURAL RADIUS PENDING
+- Verification Status: WORKING BLUEPRINT; POTENTIAL-ONLY BRIDGE FAILED; RESIDUAL-VALUE CONTROLLER OPEN
 - Version Label: causal_policy_freshness_paper_blueprint_v1
 
 # Causal Policy Freshness: ICML 2027 paper blueprint
+
+## Current boundary
+
+The paper architecture is conditional.  MW-PF-DEV-001 shows that exact
+cache-reset energy plus a communication queue is not, by itself, an adequate
+continuation-value model: its frozen cross-fitted controller loses to the
+strengthened online envelope and always selects zero reset weight.  The six
+steps below describe the intended causal chain only if a learned
+drift-structured residual value can be certified and can obtain fresh-seed
+cache-dependent rollout gains.  Until then, they must not be written as an
+achieved algorithm or theorem package.
 
 ## One paper, one question
 

@@ -3,10 +3,22 @@
 - Origin Skills: academic-research-suite; publishable-academic-writing
 - Origin Mode: research synthesis
 - Origin Date: 2026-09-07
-- Verification Status: VERIFIED AS CURRENT RESEARCH THESIS
+- Verification Status: CONDITIONAL RESEARCH THESIS; EXECUTABLE CONTROLLER NOT YET VALIDATED
 - Version Label: causal_policy_freshness_mainline_v1
 
 # Causal Policy Freshness: the ICML 2027 research thesis
+
+## Evidence status as of 2026-09-09
+
+This remains a candidate research question, not a completed contribution.
+MW-PF-DEV-001 permanently rejected the exact cache-energy term as a sufficient
+continuation-value proxy: every cross-fitted fold selected zero reset weight
+and the candidate failed four mandatory learning-value gates.  The positive
+exact dynamic-oracle ceiling therefore cannot be presented as evidence for the
+proposed online controller.  The only current successor is the separately
+documented drift-structured residual-value formulation, whose learning,
+confidence, and MARL convergence guarantees remain open.  No standard-MARL or
+GPU efficacy experiment is authorized by the present evidence.
 
 ## Candidate title
 
