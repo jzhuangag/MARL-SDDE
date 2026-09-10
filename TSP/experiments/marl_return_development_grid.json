@@ -58,6 +58,14 @@
       "controller overhead"
     ]
   },
+  "frozen_analysis": {
+    "interpolation_points": 21,
+    "auc_rule": "trapezoid over equally spaced feasible-update-horizon fractions with endpoint hold",
+    "strong_fixed_rule": "maximize mean return AUC over both coupling regimes",
+    "per_regime_oracle_rule": "maximize return AUC within each coupling regime",
+    "relative_headroom_rule": "(mean oracle AUC - mean strong-fixed AUC) / abs(mean strong-fixed AUC)",
+    "smoothing_used_for_gates": false
+  },
   "development_seed_registry": {
     "base": 93001,
     "size": 17,

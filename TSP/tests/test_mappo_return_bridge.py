@@ -14,6 +14,14 @@ MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
 
+ANALYZER_PATH = ROOT / "experiments" / "analyze_mappo_returns.py"
+ANALYZER_SPEC = importlib.util.spec_from_file_location(
+    "tsp_mappo_analyzer", ANALYZER_PATH
+)
+ANALYZER = importlib.util.module_from_spec(ANALYZER_SPEC)
+assert ANALYZER_SPEC.loader is not None
+ANALYZER_SPEC.loader.exec_module(ANALYZER)
+
 
 def test_dual_budget_horizon_charges_every_rollout() -> None:
     # q=8 binds the message budget; q=1 binds the environment budget.
@@ -112,3 +120,59 @@ def test_development_grid_is_complete_and_contains_no_formal_seeds() -> None:
     assert expected == config["stage_d0_runs"] == 16
     assert "formal_seed_registry" not in config
     assert config["role"].startswith("development-only")
+
+
+def test_frozen_analyzer_selects_strong_fixed_and_regime_oracles(tmp_path) -> None:
+    config_path = ROOT / "experiments" / "marl_return_development_grid.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    audit_path = tmp_path / "audit.json"
+    audit_path.write_text(json.dumps({"pass": True}), encoding="utf-8")
+    rollout_length = 25
+    for coupling in config["coupling_regimes"]:
+        for q in config["fixed_action_grid"]["q_rollout_workers"]:
+            for critic_lr in config["fixed_action_grid"]["critic_lr"]:
+                value = 5.0
+                if q == 1 and critic_lr == 0.00025:
+                    value = 10.0
+                if coupling == "independent" and q == 4 and critic_lr == 0.0005:
+                    value = 12.0
+                if coupling == "shared" and q == 8 and critic_lr == 0.0005:
+                    value = 13.0
+                run_dir = tmp_path / f"{coupling}-{q}-{critic_lr}"
+                run_dir.mkdir()
+                message_cost = 100 + q * rollout_length
+                usable = min(5_000 // message_cost, 2_500 // rollout_length)
+                metadata = {
+                    "coupling": coupling,
+                    "q_rollout_workers": q,
+                    "rollout_length": rollout_length,
+                    "critic_lr": critic_lr,
+                    "message_budget": 5_000,
+                    "environment_budget": 2_500,
+                    "message_cost_per_update": message_cost,
+                    "environment_cost_per_update": rollout_length,
+                    "usable_updates": usable,
+                    "charged_training_messages": usable * message_cost,
+                    "charged_training_environment_ticks": usable * rollout_length,
+                    "seed": 93001,
+                    "upstream_modified": False,
+                    "harl_commit": config["upstream"]["commit"],
+                }
+                (run_dir / "tsp_bridge_metadata.json").write_text(
+                    json.dumps(metadata), encoding="utf-8"
+                )
+                (run_dir / "progress.txt").write_text(
+                    f"0,{value}\n{usable * q * rollout_length},{value}\n",
+                    encoding="utf-8",
+                )
+
+    result = ANALYZER.evaluate_development_gate(
+        tmp_path, config_path, audit_path
+    )
+    assert result["run_count"] == result["expected_run_count"] == 16
+    assert result["strong_global_fixed"]["q"] == 1
+    assert result["strong_global_fixed"]["critic_lr"] == pytest.approx(0.00025)
+    assert [row["q"] for row in result["per_regime_oracle"]] == [4, 8]
+    assert result["oracle_relative_headroom"] == pytest.approx(0.25)
+    assert result["all_mandatory_gates_pass"]
+    assert result["decision"] == "authorize-controller-design"

@@ -133,9 +133,13 @@ while correlating exploration across rollout workers.  Performance headroom
 remains to be tested on the frozen development grid.
 
 The current outcome-free development-grid SHA-256 is
-`8426643f383160876b9e319ad0982a9cd82f339c4e59bef25c9fc28c0fb5f0b6`; the
+`3833280e6a49d395be2b2c73791b7cb0b94700c5b76dfa23309ff27e689475b2`; the
 fixed-action runner SHA-256 is
 `77ba365b3cba64c6befaf4176b3d0b8d8034df2cd56e84d680cc744e10f0f9cc`.
+The gate analyzer SHA-256 is
+`c38cca687103f9d8d29b662018f997c7e989e15645b3fcf12efed17f521e4390`,
+and the Slurm payload SHA-256 is
+`ff632f8bc3f1f4fcf13dac21e3d984b7b3ce01141fdda467dee34706252859be`.
 
 ## Compute decision
 

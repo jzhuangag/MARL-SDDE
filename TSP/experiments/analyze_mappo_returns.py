@@ -11,6 +11,15 @@ import numpy as np
 import pandas as pd
 
 
+def _usable_updates(metadata: dict) -> int:
+    return min(
+        int(metadata["message_budget"])
+        // int(metadata["message_cost_per_update"]),
+        int(metadata["environment_budget"])
+        // int(metadata["environment_cost_per_update"]),
+    )
+
+
 def read_run(metadata_path: Path) -> pd.DataFrame:
     metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
     progress_path = metadata_path.with_name("progress.txt")
@@ -39,6 +48,153 @@ def read_run(metadata_path: Path) -> pd.DataFrame:
         "method", f"q={metadata['q_rollout_workers']}, eta={metadata['critic_lr']:g}"
     )
     return frame
+
+
+def run_auc(metadata_path: Path, checkpoints: int = 21) -> dict:
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    run = read_run(metadata_path).sort_values("resource_fraction")
+    grid = np.linspace(0.0, 1.0, checkpoints)
+    x = run["resource_fraction"].to_numpy(float)
+    y = run["team_return"].to_numpy(float)
+    values = np.interp(grid, x, y, left=y[0], right=y[-1])
+    expected_updates = _usable_updates(metadata)
+    accounting_ok = all(
+        (
+            int(metadata["usable_updates"]) == expected_updates,
+            int(metadata["charged_training_messages"])
+            == expected_updates * int(metadata["message_cost_per_update"]),
+            int(metadata["charged_training_environment_ticks"])
+            == expected_updates * int(metadata["environment_cost_per_update"]),
+            int(metadata["charged_training_messages"])
+            <= int(metadata["message_budget"]),
+            int(metadata["charged_training_environment_ticks"])
+            <= int(metadata["environment_budget"]),
+        )
+    )
+    return {
+        "metadata_path": str(metadata_path.resolve()),
+        "coupling": metadata["coupling"],
+        "q": int(metadata["q_rollout_workers"]),
+        "critic_lr": float(metadata["critic_lr"]),
+        "seed": int(metadata["seed"]),
+        "return_auc": float(
+            np.sum(0.5 * (values[1:] + values[:-1]) * np.diff(grid))
+        ),
+        "terminal_return": float(values[-1]),
+        "finite": bool(np.isfinite(values).all()),
+        "accounting_ok": accounting_ok,
+        "upstream_modified": bool(metadata["upstream_modified"]),
+        "harl_commit": metadata["harl_commit"],
+    }
+
+
+def evaluate_development_gate(
+    root: Path, config_path: Path, audit_path: Path, checkpoints: int = 21
+) -> dict:
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    records = [run_auc(path, checkpoints) for path in root.rglob("tsp_bridge_metadata.json")]
+
+    actions = config["fixed_action_grid"]
+    expected = {
+        (coupling, int(q), float(lr), int(seed))
+        for coupling in config["coupling_regimes"]
+        for q in actions["q_rollout_workers"]
+        for lr in actions["critic_lr"]
+        for seed in config["development_seed_registry"]["stage_d0_seeds"]
+    }
+    observed = [
+        (row["coupling"], row["q"], row["critic_lr"], row["seed"])
+        for row in records
+    ]
+    complete = len(observed) == len(set(observed)) and set(observed) == expected
+    finite = bool(records) and all(row["finite"] for row in records)
+    accounting = bool(records) and all(row["accounting_ok"] for row in records)
+    clean = bool(records) and all(not row["upstream_modified"] for row in records)
+    pinned = bool(records) and all(
+        row["harl_commit"] == config["upstream"]["commit"] for row in records
+    )
+
+    frame = pd.DataFrame(records)
+    action_table = (
+        frame.groupby(["q", "critic_lr"], as_index=False)["return_auc"].mean()
+        if complete and finite
+        else pd.DataFrame()
+    )
+    if action_table.empty:
+        strong = None
+        oracle_rows = []
+        baseline_auc = oracle_auc = headroom = float("nan")
+        regimes_improve = False
+    else:
+        strong_row = action_table.loc[action_table["return_auc"].idxmax()]
+        strong = {
+            "q": int(strong_row["q"]),
+            "critic_lr": float(strong_row["critic_lr"]),
+            "mean_return_auc": float(strong_row["return_auc"]),
+        }
+        oracle_rows = []
+        baseline_values = []
+        oracle_values = []
+        for coupling in config["coupling_regimes"]:
+            cell = frame[frame["coupling"] == coupling]
+            oracle = cell.loc[cell["return_auc"].idxmax()]
+            baseline = cell[
+                (cell["q"] == strong["q"])
+                & np.isclose(cell["critic_lr"], strong["critic_lr"])
+            ]["return_auc"].mean()
+            oracle_rows.append(
+                {
+                    "coupling": coupling,
+                    "q": int(oracle["q"]),
+                    "critic_lr": float(oracle["critic_lr"]),
+                    "return_auc": float(oracle["return_auc"]),
+                    "strong_fixed_return_auc": float(baseline),
+                    "strict_improvement": bool(oracle["return_auc"] > baseline),
+                }
+            )
+            baseline_values.append(float(baseline))
+            oracle_values.append(float(oracle["return_auc"]))
+        baseline_auc = float(np.mean(baseline_values))
+        oracle_auc = float(np.mean(oracle_values))
+        headroom = (oracle_auc - baseline_auc) / max(abs(baseline_auc), 1e-12)
+        regimes_improve = all(row["strict_improvement"] for row in oracle_rows)
+
+    threshold = float(
+        config["mandatory_stage_d0_gates"][
+            "oracle_auc_headroom_over_global_strong_fixed_min"
+        ]
+    )
+    gates = {
+        "finite_and_complete": complete and finite,
+        "exact_dual_budget_accounting": accounting,
+        "upstream_worktree_clean": clean and pinned,
+        "oracle_auc_headroom_over_global_strong_fixed_min": bool(
+            np.isfinite(headroom) and headroom >= threshold
+        ),
+        "oracle_improves_each_coupling_regime": regimes_improve,
+        "shared_and_independent_worker_marginals_match": bool(audit.get("pass")),
+    }
+    return {
+        "experiment_id": config["experiment_id"],
+        "analysis_role": config["role"],
+        "run_count": len(records),
+        "expected_run_count": len(expected),
+        "auc_definition": (
+            f"trapezoid over {checkpoints} equally spaced feasible-horizon fractions; "
+            "relative headroom divides by absolute strong-fixed AUC"
+        ),
+        "strong_global_fixed": strong,
+        "per_regime_oracle": oracle_rows,
+        "strong_fixed_mean_auc": baseline_auc,
+        "oracle_mean_auc": oracle_auc,
+        "oracle_relative_headroom": headroom,
+        "headroom_threshold": threshold,
+        "gates": gates,
+        "all_mandatory_gates_pass": all(gates.values()),
+        "decision": "authorize-controller-design" if all(gates.values()) else "stop",
+        "run_records": records,
+    }
 
 
 def aggregate(root: Path, checkpoints: int = 21) -> pd.DataFrame:
@@ -103,12 +259,41 @@ def main() -> None:
     parser.add_argument("--root", type=Path, default=tsp_root / "tmp" / "mr")
     parser.add_argument("--csv", type=Path, default=tsp_root / "tmp" / "marl_return_summary.csv")
     parser.add_argument("--figure", type=Path, default=tsp_root / "tmp" / "marl_return_curves.pdf")
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=tsp_root / "experiments" / "marl_return_development_grid.json",
+    )
+    parser.add_argument(
+        "--audit",
+        type=Path,
+        default=tsp_root / "internal" / "marl_coupling_audit.json",
+    )
+    parser.add_argument(
+        "--gate-json", type=Path, default=tsp_root / "tmp" / "marl_return_gate.json"
+    )
     args = parser.parse_args()
     result = aggregate(args.root)
     args.csv.parent.mkdir(parents=True, exist_ok=True)
     result.to_csv(args.csv, index=False)
     plot(result, args.figure)
-    print(json.dumps({"rows": len(result), "csv": str(args.csv), "figure": str(args.figure)}, sort_keys=True))
+    gate = evaluate_development_gate(args.root, args.config, args.audit)
+    args.gate_json.parent.mkdir(parents=True, exist_ok=True)
+    args.gate_json.write_text(
+        json.dumps(gate, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    print(
+        json.dumps(
+            {
+                "rows": len(result),
+                "csv": str(args.csv),
+                "figure": str(args.figure),
+                "gate_json": str(args.gate_json),
+                "decision": gate["decision"],
+            },
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":
