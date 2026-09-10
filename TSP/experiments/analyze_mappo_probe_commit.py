@@ -21,7 +21,12 @@ def auc_on_budget_fraction(frame: pd.DataFrame, checkpoints: int = 21) -> float:
         raise ValueError("invalid budget-fraction axis")
     grid = np.linspace(0.0, 1.0, checkpoints)
     values = np.interp(grid, x, y, left=y[0], right=y[-1])
-    return float(np.trapezoid(values, grid))
+    # NumPy 1.23 in the pinned HPC4 environment exposes the identical
+    # trapezoidal rule under the historical name ``trapz``.
+    trapezoid = getattr(np, "trapezoid", None)
+    if trapezoid is None:
+        trapezoid = np.trapz
+    return float(trapezoid(values, grid))
 
 
 def fixed_curve(metadata_path: Path) -> tuple[pd.DataFrame, dict]:
