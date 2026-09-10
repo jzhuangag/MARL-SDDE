@@ -160,3 +160,22 @@ The aggregate oracle AUC headroom was `5.032546%`, which passed the registered 5
 The frozen `oracle_improves_each_coupling_regime` gate therefore failed, and the registered stopping rule prohibits controller design and confirmation from this experiment.
 The development curve is retained only in the internal scratch record and is not a manuscript figure.
 Full validation and provenance are recorded in `marl_return_d0_validation.md`.
+
+## TSP-MARL-DEV-002 outcome
+
+A separately preregistered Pareto question retained the global strong fixed
+`q=8` action under independent rollout innovations and asked for improvement
+only in the shared regime where DEV-001 identified an internal optimum at
+`q=1`.  A fully charged, non-learning 128-block critic-residual probe and the
+Lyapunov variance--message score selected `q=8` for all four independent seeds
+and `q=1` for all four shared seeds without observing evaluation return.
+
+All 24 registered MAPPO cells completed.  Relative to fixed `q=8`, the
+controller's return AUC changed by -0.4134% in the independent regime, +6.3388%
+in the shared regime, and +2.9627% in the equal-weight mixture.  These values
+passed the frozen -2%, +5%, and +2.5% development thresholds, respectively;
+all selection, exact-accounting, probe-cost, overhead, coupling, and source
+integrity gates also passed.  DEV-002 therefore authorizes only a separate
+confirmation preregistration with new seeds.  Its development curve is not a
+manuscript figure.  Full validation is recorded in
+`marl_probe_commit_d1_validation.md`.
