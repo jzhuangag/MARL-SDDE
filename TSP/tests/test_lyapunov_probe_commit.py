@@ -33,6 +33,17 @@ assert ANALYZER_SPEC.loader is not None
 sys.modules[ANALYZER_SPEC.name] = ANALYZER
 ANALYZER_SPEC.loader.exec_module(ANALYZER)
 
+CONFIRM_ANALYZER_PATH = (
+    ROOT / "experiments" / "analyze_mappo_probe_commit_confirmation.py"
+)
+CONFIRM_ANALYZER_SPEC = importlib.util.spec_from_file_location(
+    "tsp_probe_commit_confirmation_analyzer", CONFIRM_ANALYZER_PATH
+)
+CONFIRM_ANALYZER = importlib.util.module_from_spec(CONFIRM_ANALYZER_SPEC)
+assert CONFIRM_ANALYZER_SPEC.loader is not None
+sys.modules[CONFIRM_ANALYZER_SPEC.name] = CONFIRM_ANALYZER
+CONFIRM_ANALYZER_SPEC.loader.exec_module(CONFIRM_ANALYZER)
+
 
 def common_factor_fingerprints(rho: float, seed: int = 17) -> np.ndarray:
     rng = np.random.default_rng(seed)
@@ -306,3 +317,66 @@ def test_duplicate_registered_result_stops_gate(tmp_path) -> None:
     result = ANALYZER.evaluate_gates(result_root, config_path, audit)
     assert result["gates"]["finite_complete_exact_accounting_and_clean_upstream"] is False
     assert result["decision"] == "stop"
+
+
+def test_one_sided_lower_t_uses_registered_formula() -> None:
+    values = np.arange(1.0, 9.0)
+    critical = 1.894578605061305
+    expected = values.mean() - critical * values.std(ddof=1) / np.sqrt(8)
+    assert CONFIRM_ANALYZER.one_sided_lower_t(values, critical) == pytest.approx(
+        expected
+    )
+
+
+def test_synthetic_confirmation_lattice_passes_all_gates(tmp_path) -> None:
+    config_path = ROOT / "experiments" / "marl_probe_commit_confirmation.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    commit = config["upstream"]["commit"]
+    result_root = tmp_path / "confirmation"
+    for coupling in config["coupling_regimes"]:
+        for seed in config["seed_registry"]["confirmation_training"]:
+            _write_fixed_result(result_root, coupling, seed, 1, -100.5, commit)
+            _write_fixed_result(result_root, coupling, seed, 8, -100.0, commit)
+            _write_controller_result(
+                result_root,
+                coupling,
+                seed,
+                8 if coupling == "independent" else 1,
+                -99.0 if coupling == "independent" else -90.0,
+                commit,
+            )
+    audit = tmp_path / "audit.json"
+    audit.write_text(json.dumps({"pass": True}), encoding="utf-8")
+    result = CONFIRM_ANALYZER.evaluate_confirmation(
+        result_root, config_path, audit
+    )
+    assert result["run_count"] == 48
+    assert result["independent_controller_vs_q8_mean"] == pytest.approx(0.01)
+    assert result["shared_controller_vs_q8_mean"] == pytest.approx(0.10)
+    assert result["shared_controller_vs_q1_lower"] > -0.02
+    assert result["all_mandatory_gates_pass"] is True
+    assert result["decision"] == "admit-confirmed-return-evidence"
+
+
+def test_confirmation_registry_is_disjoint_and_complete() -> None:
+    development = json.loads(
+        (ROOT / "experiments" / "marl_probe_commit_development.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    confirmation = json.loads(
+        (ROOT / "experiments" / "marl_probe_commit_confirmation.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    dev_seeds = set(development["seed_registry"]["development_training"]) | set(
+        development["seed_registry"]["development_probe"]
+    )
+    confirm_training = set(
+        confirmation["seed_registry"]["confirmation_training"]
+    )
+    confirm_probe = set(confirmation["seed_registry"]["confirmation_probe"])
+    assert dev_seeds.isdisjoint(confirm_training | confirm_probe)
+    assert confirm_training.isdisjoint(confirm_probe)
+    assert confirmation["planned_runs"]["total"] == 48
+    assert len(confirm_training) == len(confirm_probe) == 8
