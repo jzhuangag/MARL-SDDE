@@ -149,3 +149,14 @@ multi-method, multi-regime, multi-seed comparison.  Local CPU remains
 appropriate for wrapper tests and short smoke runs; development and
 confirmation should use HPC4 GPUs after the seven gates above are encoded in a
 preregistration.
+
+## TSP-MARL-DEV-001 outcome
+
+The frozen 16-cell, one-seed development scan completed on HPC4 with every allocation at exit code `0:0`.
+All runs were finite, exactly charged against both budgets, checksum-valid, and based on clean pinned source trees.
+The global strong fixed action was `(q,eta)=(8,0.0005)`.
+The per-regime oracle used the same action for independent streams and `(q,eta)=(1,0.0005)` for shared streams.
+The aggregate oracle AUC headroom was `5.032546%`, which passed the registered 5% threshold, but strict oracle improvement occurred in only the shared regime.
+The frozen `oracle_improves_each_coupling_regime` gate therefore failed, and the registered stopping rule prohibits controller design and confirmation from this experiment.
+The development curve is retained only in the internal scratch record and is not a manuscript figure.
+Full validation and provenance are recorded in `marl_return_d0_validation.md`.
