@@ -64,3 +64,17 @@ The Gaussian covariance-divergence formula
 therefore yields (31) and (32) of the main paper after substituting the shared eigenvectors and eigenvalues $1+q\theta_j\zeta_\ell$.
 The centered-Gaussian Bhattacharyya formula gives (33) under the same diagonalization.
 Its likelihood-ratio bound makes each directional error at most $\exp(-I_B)$, justifying the probe-length rule in Section~VI-B.
+
+\section{Experimental Estimands}
+At registered charged-resource fractions $0=u_0<\cdots<u_L=1$, let $E^x_{s,p}(u_\ell)$ be the seed-$s$, policy-$p$ squared parameter or initial-state return-estimation error, normalized by its value at $u_0$.
+The trajectory area under the curve is
+\begin{equation}
+{\rm AUC}_{s,p}^{x}=\sum_{\ell=1}^{L}
+\frac{u_\ell-u_{\ell-1}}{2}
+\left[E_{s,p}^{x}(u_\ell)+E_{s,p}^{x}(u_{\ell-1})\right],
+\end{equation}
+where $x\in\{{\rm par},{\rm ret}\}$.
+The resource axis charges skipped transitions, actor messages, and terminal delay.
+
+Intervals are the 2.5--97.5 percentiles of 2,000 frozen-seed bootstrap replicates that resample paired seeds and recompute the geometric-mean risk ratio over all registered cells; pairing preserves common-random-number variance reduction without treating checkpoints as independent.
+Finite-value and cumulative-budget checks precede aggregation, and the fixed-$q$ baseline is selected once on the disjoint development population and frozen for confirmation.

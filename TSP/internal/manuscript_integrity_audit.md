@@ -24,7 +24,7 @@ Audit date: 2026-09-11.
 
 ## Citation integrity
 
-- All 34 cited records passed a fresh authoritative proceedings, arXiv, OpenAlex, or Crossref DOI check.
+- All 36 cited records passed a fresh authoritative proceedings, arXiv, OpenAlex, or Crossref DOI check.
 - The report is `citation_verification_20260911.json`.
 - There are no unresolved material metadata conflicts.
 
@@ -32,7 +32,7 @@ Audit date: 2026-09-11.
 
 - `latexmk` and BibTeX complete without undefined references, undefined citations, or overfull boxes.
 - The final PDF has thirteen letter-size IEEE double-column pages.
-- The routine resource-geometry proof supplement compiles to one letter-size IEEE double-column page without undefined references or overfull boxes.
+- The routine resource-geometry and experimental-estimand supplement compiles to one letter-size IEEE double-column page without undefined references or overfull boxes.
 - Every rendered main-paper and supplementary page was visually inspected for clipping, broken formulas, unreadable figures, and reference overflow.
 - The frozen TSP-MARL-CONF-001 gate, curve summary, and figure are byte-identical under an independent analyzer replay.
 - The manuscript tests pass 37/37 and the full repository regression passes 2,131 tests with seven skips.

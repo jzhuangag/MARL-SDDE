@@ -9,13 +9,15 @@ The repository had no prior TSP bibliography, so the canonical IEEE skill templa
 
 ## Definite-error checks
 
-- 34 unique entries and 34 cited keys; no duplicate or orphan entry.
+- 36 unique entries and 36 cited keys; no duplicate or orphan entry.
 - No empty BibTeX field and no BibTeX warning.
 - Journal abbreviations, `Proc.` conference style, page ranges, and brace-protected acronyms were checked.
 - DOI fields are retained when an authoritative DOI was verified.
 - Standard published proceedings entries omit long access URLs from the typeset bibliography; their authoritative URLs remain in the machine-readable citation report.
 - The PettingZoo and MAPPO records match the manuscript's existing NeurIPS proceedings shape, including natural-order author names, abbreviated venue, volume, pages, and protected acronyms.
-- IEEEtran compilation produced no bibliography overflow, undefined citation, or overfull line-box warning. Four underfull introductory paragraphs remain visually benign in the rendered two-column layout.
+- The Yu--Chen--Poor record matches the authoritative IEEE and Crossref metadata for DOI `10.1109/TSP.2025.3546574`; its abbreviated journal, volume, pages, month, and year follow the manuscript's IEEE journal-entry style.
+- The Perazzone--Wang--Ji--Chan record matches IEEE, arXiv, DBLP, and Crossref metadata for DOI `10.1109/TON.2025.3539857`; its journal, issue, pages, month, and year follow the same style.
+- IEEEtran compilation produced no bibliography overflow, undefined citation, or overfull line-box warning. The remaining underfull boxes are visually benign in the rendered two-column layout.
 
 Definite errors: none.
 

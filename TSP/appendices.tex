@@ -230,22 +230,3 @@ The diffusion must retain the state-dependent quadratic variation induced by ran
 Near the fixed point, its multiplicative component obeys a quadratic bound proportional to $K_q\|E_t\|^2$.
 This representation explains why correlation changes both the noise floor and the mean-square stability margin.
 The paper's finite-time guarantees are provided by the exact discrete-time Lyapunov analysis above.
-
-\section{Experimental Estimands and Confidence Construction}
-Let $0=u_0<u_1<\cdots<u_L=1$ be the registered charged-resource fractions.
-For seed $s$ and policy $p$, $E^x_{s,p}(u_\ell)$ is the squared parameter error or initial-state return-estimation error divided by its value at $u_0$.
-The trajectory AUC is the trapezoidal integral
-\begin{equation}
-{\rm AUC}_{s,p}^{x}=\sum_{\ell=1}^{L}
-\frac{u_\ell-u_{\ell-1}}{2}
-\left[E_{s,p}^{x}(u_\ell)+E_{s,p}^{x}(u_{\ell-1})\right],
-\end{equation}
-where $x\in\{{\rm par},{\rm ret}\}$.
-The resource axis charges skipped transitions, actor messages, and terminal delay.
-
-Each bootstrap replicate resamples paired seeds and recomputes the ratio of geometric-mean risks over every registered cell.
-The reported interval uses the 2.5--97.5 percentiles of 2,000 replicates from the frozen bootstrap seed.
-Pairing retains common-random-number variance reduction without treating checkpoints as independent.
-
-Finite-value and cumulative budget checks precede aggregation.
-The fixed-$q$ baseline is selected once on the disjoint development population and frozen for confirmation.
