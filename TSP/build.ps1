@@ -9,6 +9,7 @@ if (-not (Test-Path -LiteralPath $Python)) {
 Push-Location $TspRoot
 try {
     latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+    latexmk -pdf -interaction=nonstopmode -halt-on-error supplementary.tex
     $PdfToPpm = Get-Command pdftoppm -ErrorAction SilentlyContinue
     if ($null -ne $PdfToPpm) {
         $RenderRoot = Join-Path $TspRoot 'tmp\rendered'
@@ -16,6 +17,11 @@ try {
         Get-ChildItem -LiteralPath $RenderRoot -Filter 'page-*.png' -File |
             Remove-Item -Force
         & $PdfToPpm.Source -png -r 130 main.pdf (Join-Path $RenderRoot 'page')
+        $SupplementRenderRoot = Join-Path $TspRoot 'tmp\supplementary-rendered'
+        New-Item -ItemType Directory -Force -Path $SupplementRenderRoot | Out-Null
+        Get-ChildItem -LiteralPath $SupplementRenderRoot -Filter 'page-*.png' -File |
+            Remove-Item -Force
+        & $PdfToPpm.Source -png -r 130 supplementary.pdf (Join-Path $SupplementRenderRoot 'page')
     }
 }
 finally {

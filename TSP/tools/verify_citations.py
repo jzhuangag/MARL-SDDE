@@ -66,6 +66,8 @@ RECORDS = (
     record("chernoff1959sequential", "Sequential Design of Experiments", ("Chernoff",), 1959, "https://doi.org/10.1214/aoms/1177706205", "10.1214/aoms/1177706205"),
     record("robbins1951stochastic", "A Stochastic Approximation Method", ("Robbins", "Monro"), 1951, "https://doi.org/10.1214/aoms/1177729586", "10.1214/aoms/1177729586"),
     record("polyak1992averaging", "Acceleration of Stochastic Approximation by Averaging", ("Polyak", "Juditsky"), 1992, "https://doi.org/10.1137/0330046", "10.1137/0330046"),
+    record("terry2021pettingzoo", "PettingZoo: Gym for Multi-Agent Reinforcement Learning", ("Terry", "Black", "Grammel", "Jayakumar", "Hari", "Sullivan", "Santos", "Dieffendahl", "Horsch", "Perez-Vicente", "Williams", "Lokesh", "Ravi"), 2021, "https://proceedings.neurips.cc/paper_files/paper/2021/hash/803f7c4c3ff61b71be53a0c803bfb57f-Abstract.html"),
+    record("yu2022mappo", "The Surprising Effectiveness of PPO in Cooperative Multi-Agent Games", ("Yu", "Velu", "Vinitsky", "Gao", "Wang", "Bayen", "Wu"), 2022, "https://doi.org/10.52202/068431-1787", "10.52202/068431-1787"),
 )
 
 

@@ -1,0 +1,54 @@
+{
+  "experiment_id": "TSP-MARL-CONF-001",
+  "decision": "admit-confirmed-return-evidence",
+  "preregistration_commit": "c8ac978987ee65960a3b8dc6e37a8c61a898405d",
+  "remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-CONF-001",
+  "storage_scope": {
+    "scratch_written": true,
+    "project_written": false,
+    "home_written": false
+  },
+  "upstream": {
+    "repository": "https://github.com/PKU-MARL/HARL",
+    "commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "clean": true
+  },
+  "frozen_hashes": {
+    "configuration": "536a613468b14f067448b9744f30c5e42e154983adeabecb9401baedb0885e3c",
+    "controller": "14e1f3941f734a7652726251aacb7f59fb21485b9e1387cf29100722d0c2b9c9",
+    "runner": "732b859408d4116729b81323280f842a5676f79de4ed69111d15d4d8b8be0877",
+    "analyzer": "f09be47a526b1222472c2e6d961a0ad95df160404a27f046c4278328e0107966"
+  },
+  "slurm_arrays": [
+    {"job_id": "1846514", "tasks": "0-7", "cell": "controller-independent", "completed": 8, "exit_code": "0:0"},
+    {"job_id": "1846655", "tasks": "8-15", "cell": "controller-shared", "completed": 8, "exit_code": "0:0"},
+    {"job_id": "1846941", "tasks": "16-23", "cell": "fixed_q1-independent", "completed": 8, "exit_code": "0:0"},
+    {"job_id": "1848265", "tasks": "24-31", "cell": "fixed_q1-shared", "completed": 8, "exit_code": "0:0"},
+    {"job_id": "1848550", "tasks": "32-39", "cell": "fixed_q8-independent", "completed": 8, "exit_code": "0:0"},
+    {"job_id": "1848644", "tasks": "40-47", "cell": "fixed_q8-shared", "completed": 8, "exit_code": "0:0"}
+  ],
+  "operational_validation": {
+    "expected_runs": 48,
+    "observed_unique_runs": 48,
+    "finite": true,
+    "exact_dual_budget_accounting": true,
+    "artifact_directories": 48,
+    "per_cell_manifests_verified": 48,
+    "fatal_log_scan_empty": true
+  },
+  "analysis_replay": {
+    "fresh_directories": true,
+    "gate_json_byte_identical": true,
+    "curve_summary_byte_identical": true,
+    "return_curve_pdf_byte_identical": true
+  },
+  "output_sha256": {
+    "gate_json": "fbb931d6e7f149d72a7b9ce42cf958e01d586a8fb21d0f952cf4657763efd178",
+    "curve_summary_csv": "6e2c5d1af24952f72d83ee6347b06f5322ac5dd55bd2fcbf1df22ca8d39d3c64",
+    "return_curves_pdf": "ea40c05bbb4bdba346c4fb964792ce7c061232190948a5a04cfc8cf44ad1b748",
+    "complete_manifest": "5d38096aafe792b42a3adf3a79a6602013100b30c3244b2eb7f56028d68c9436"
+  },
+  "mandatory_gates_passed": 12,
+  "mandatory_gates_total": 12,
+  "all_mandatory_gates_pass": true
+}

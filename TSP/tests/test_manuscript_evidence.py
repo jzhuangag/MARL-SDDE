@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
 MAIN = (ROOT / "main.tex").read_text(encoding="utf-8")
 APPENDICES = (ROOT / "appendices.tex").read_text(encoding="utf-8")
+SUPPLEMENTARY = (ROOT / "supplementary_resource_geometry.tex").read_text(encoding="utf-8")
 BIB = (ROOT / "references.bib").read_text(encoding="utf-8")
 
 
@@ -63,6 +64,25 @@ def test_convergence_confirmation_matches_validation_record() -> None:
     assert (ROOT / "figures" / "convergence_curves.pdf").is_file()
 
 
+def test_mappo_confirmation_matches_frozen_gate() -> None:
+    gate_path = ROOT / "internal" / "marl_probe_commit_conf1_gate.json"
+    gate = json.loads(gate_path.read_text(encoding="utf-8"))
+    figure_path = ROOT / "figures" / "marl_probe_commit_return_curves.pdf"
+    summary_path = ROOT / "internal" / "marl_probe_commit_conf1_curve_summary.csv"
+    assert gate["experiment_id"] == "TSP-MARL-CONF-001"
+    assert gate["run_count"] == 48
+    assert gate["expected_run_count"] == 48
+    assert gate["all_mandatory_gates_pass"] is True
+    assert all(gate["gates"].values())
+    assert gate["independent_selected_q8_fraction"] == 1.0
+    assert gate["shared_selected_q1_fraction"] == 1.0
+    assert f'{100 * gate["shared_controller_vs_q8_mean"]:.3f}' in MAIN
+    assert f'{100 * gate["mixture_controller_vs_q8_mean"]:.3f}' in MAIN
+    assert f'{100 * gate["mixture_controller_vs_q8_lower"]:.3f}' in MAIN
+    assert hashlib.sha256(figure_path.read_bytes()).hexdigest() == "ea40c05bbb4bdba346c4fb964792ce7c061232190948a5a04cfc8cf44ad1b748"
+    assert hashlib.sha256(summary_path.read_bytes()).hexdigest() == "6e2c5d1af24952f72d83ee6347b06f5322ac5dd55bd2fcbf1df22ca8d39d3c64"
+
+
 def test_every_citation_resolves_and_every_bib_entry_is_cited() -> None:
     cite_keys = set()
     for group in re.findall(r"\\cite\{([^}]+)\}", MAIN):
@@ -73,7 +93,7 @@ def test_every_citation_resolves_and_every_bib_entry_is_cited() -> None:
 
 
 def test_source_hygiene_and_front_matter() -> None:
-    for source in (MAIN, APPENDICES):
+    for source in (MAIN, APPENDICES, SUPPLEMENTARY):
         assert not any(ord(character) < 32 and character not in "\t\n\r" for character in source)
     abstract = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", MAIN, re.DOTALL)
     assert abstract is not None
@@ -82,7 +102,7 @@ def test_source_hygiene_and_front_matter() -> None:
     keywords = re.search(r"\\begin\{IEEEkeywords\}(.*?)\\end\{IEEEkeywords\}", MAIN, re.DOTALL)
     assert keywords is not None
     assert len([item for item in keywords.group(1).split(",") if item.strip()]) == 5
-    assert "\\qquad" not in MAIN + APPENDICES
+    assert "\\qquad" not in MAIN + APPENDICES + SUPPLEMENTARY
 
 
 def test_labels_and_references_are_closed() -> None:
@@ -95,5 +115,8 @@ def test_labels_and_references_are_closed() -> None:
 
 def test_compiled_manuscript_is_full_tsp_length() -> None:
     pdf = ROOT / "main.pdf"
+    supplement = ROOT / "supplementary.pdf"
     assert pdf.is_file()
+    assert supplement.is_file()
     assert len(PdfReader(str(pdf)).pages) == 13
+    assert len(PdfReader(str(supplement)).pages) == 1

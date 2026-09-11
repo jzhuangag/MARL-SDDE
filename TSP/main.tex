@@ -31,11 +31,11 @@ Parallel Markov trajectories can accelerate policy evaluation, but their value i
 We formulate their joint control as a finite-budget learning problem in which a server selects participation, physical sample spacing, and step size before observing the next update.
 A discrete-time Lyapunov certificate converts these decisions into an explicit terminal-risk objective for affine delayed temporal-difference learning.
 Its contraction and residual terms retain cross-agent second moments, finite-mixing bias, and the complete delay profile, so the same certificate both proves convergence and designs the resource action.
-An epochwise extension bounds critic tracking and advantage-estimation error when policy updates move the projected value target.
 When dependence is unknown, a learning-aware gate purchases a fully charged likelihood probe only when its downstream risk reduction exceeds message, transition, delay, and decision-error costs.
 We establish a stopped adaptive change-of-measure lower bound, a finite-horizon performance and safety theorem, and a necessary--sufficient budget-threshold sandwich on a separated Markov class.
-Across registered CPU studies, the method recovers correlation-limited speedup, calibrates all finite-time bounds, and reduces two finite-budget risks by 54.4 and 10.9 percent.
-On 64 held-out seeds, joint control reduces parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent relative to a development-selected strong fixed-participation baseline, while every trajectory satisfies both budgets.
+Registered CPU studies recover correlation-limited speedup, calibrate the finite-time bounds, and reduce two finite-budget risks by 54.4 and 10.9 percent.
+On 64 held-out seeds, joint control reduces parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent against a frozen strong fixed baseline.
+A preregistered 48-run multi-agent proximal policy optimization (MAPPO) study selects dependence-matched participation in all 16 controller runs and improves equal-mixture team-return AUC by 2.32 percent over fixed broad participation under identical budgets.
 \end{abstract}
 \begin{IEEEkeywords}
 Multi-agent learning, Markov data, temporal-difference learning, adaptive sensing, Lyapunov methods.
@@ -97,8 +97,9 @@ Its moving-policy extension quantifies how critic contraction competes with poli
 \item We characterize the price of learning dependence.
 A stopped adaptive change-of-measure identity and a controlled-belief occupation program give a necessary information cost, while a learning-aware gate gives a sufficient finite-budget performance and safety guarantee.
 On a compact separated class, the two thresholds match up to class constants and explicit oracle and safety scales.
-\item We validate the complete causal chain with fully charged CPU experiments.
-The studies recover the predicted participation phase, verify all finite-time confidence bounds, demonstrate 54.4 and 10.9 percent learning-value improvements, and show held-out convergence-curve reductions of 9.9 percent in parameter-error AUC and 11.3 percent in discounted-return-estimation AUC over a development-selected strong fixed-participation baseline.
+\item We validate the complete causal chain with fully charged experiments.
+Controlled studies recover the predicted participation phase, verify the finite-time confidence bounds, demonstrate 54.4 and 10.9 percent learning-value improvements, and reduce held-out parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent over a development-selected strong fixed-participation baseline.
+A separately preregistered multi-agent proximal policy optimization study selects broad participation for independent rollouts and local participation for shared rollouts in all 16 held-out controller runs, producing 5.00 percent shared-regime and 2.32 percent equal-mixture team-return AUC gains over fixed broad participation.
 \end{itemize}
 
 The remainder of the paper is organized as follows.
@@ -701,15 +702,17 @@ This separation makes the resource controller a training-layer component that le
 
 \section{Experiments}
 \subsection{Protocol and evaluation questions}
-The experiments test four predictions in increasing order of algorithmic scope.
+The experiments test five predictions in increasing order of algorithmic scope.
 The first asks whether cross-agent correlation produces the saturation in \eqref{eq:speedup} and moves the resource-optimal participation level.
 The second asks whether Theorem~\ref{thm:affine} is finite, empirically calibrated, and responsive to correlation, mixing, and delay when it jointly selects $(q,b,\eta)$.
 The third asks whether the learning-value gate in \eqref{eq:admission} improves risk over a controller that probes as soon as identification becomes reliable.
 The fourth asks whether joint control improves the entire resource-indexed convergence trajectory and the induced discounted-return estimate relative to a strong fixed-participation policy.
+The fifth asks whether the same observable dependence decision transfers to centralized-training--decentralized-execution policy learning and improves team return under equal resources.
 
 All studies use paired common random numbers across policies, charge every message and environment-clock unit, retain every registered cell, and use independent same-seed reproductions or disjoint confirmation seeds.
 The Markov temporal-difference task has seven states on a ring, a bounded sinusoidal reward, four stationary-distribution-orthonormal features, and an exact projected fixed point.
 Cross-agent dependence is induced by shared and private Markov sources while preserving every agent's marginal transition law.
+The policy-learning study uses the discrete PettingZoo multi-agent particle environment \texttt{simple\_spread\_v2} and multi-agent proximal policy optimization (MAPPO) with parameter-shared actors and a centralized critic~\cite{terry2021pettingzoo,yu2022mappo}.
 
 Parameter risk is $\|w-w^\star\|^2$ normalized by its value before learning.
 Return-estimation risk is $|V_w(s_0)-V_{w^\star}(s_0)|^2$ under the registered initial state and is normalized in the same way.
@@ -718,6 +721,7 @@ Bootstrap comparisons resample paired seeds and report percentile intervals for 
 
 \subsection{Correlation-limited participation}
 EXP-007A evaluates $q\in\{1,2,4,8,16,32\}$, six cross-agent correlation levels, three delays, three message-equivalent budgets, thirteen step sizes, and 32 paired seeds.
+All 134,784 rows are finite and budget-valid.
 At $q=32$, median effective participation is $30.996$ for independent trajectories and $1.111$ at correlation $0.9$.
 At the largest registered budget and delay eight, the resource-optimal participation moves from $q=16$ under independence to $q=1$ under high sharing.
 Using the endpoint action selected for the opposite correlation regime increases error by factors of approximately $4.29$ and $3.13$, respectively.
@@ -729,7 +733,7 @@ EXP-010B evaluates twelve $(\text{persistence},\rho,D)$ scenarios with 32 new pa
 The joint controller searches a stability-screened catalogue of $q\in\{1,2,4,8,16,32\}$, charged spacings, and scalar steps.
 All selected actions satisfy $0<c_{\rm aff}<1$, all 1,152 runs are finite and budget-valid, and the largest algebraic discrepancy between the two equivalent drift expressions is $2.22\times10^{-16}$.
 
-The finite-time bound beats the no-update risk in all twelve scenarios.
+The finite-time bound beats the no-update risk in all twelve scenarios (12/12).
 Every one-sided 99 percent bootstrap upper mean lies below its corresponding bound, with a maximum empirical-upper-bound to theorem-bound ratio of $0.305$.
 The median theorem-bound to empirical-mean ratio is $20.77$ and the maximum is $228.98$, so the certificate is conservative but finite and action-informative.
 
@@ -793,31 +797,34 @@ The joint Lyapunov certificate changes participation with the dependence regime 
 \label{fig:convergence-curves}
 \end{figure*}
 
-\begin{table}[t]
-\caption{Summary of positive finite-budget evidence}
-\label{tab:summary}
+\subsection{Transfer to cooperative policy learning}
+TSP-MARL-CONF-001 is a separately preregistered MAPPO experiment with eight new training seeds and eight disjoint probe seeds.
+Each method receives a message budget of five million and an environment budget of one million ticks; the controller first charges 128 non-learning critic-residual probe blocks and then commits to $q=1$ or $q=8$ without observing evaluation return.
+The 48 runs cross independent and shared rollout innovations with fixed $q=1$, fixed $q=8$, and the Lyapunov probe-then-commit controller.
+
+The controller selects $q=8$ in all eight independent-stream runs and $q=1$ in all eight shared-stream runs.
+Relative to fixed $q=8$, its mean team-return AUC change is $-0.357$ percent for independent streams and $+4.996$ percent for shared streams; the corresponding one-sided 95 percent lower bounds are $-0.393$ and $+2.189$ percent.
+The equal-weight mixture gain is $2.319$ percent with a $0.917$ percent lower bound, while the shared-stream comparison with regime-matched fixed $q=1$ remains within the preregistered two-percent noninferiority margin (lower bound $-1.345$ percent).
+
+Fig.~\ref{fig:marl-return} shows the unsmoothed deterministic team-return curves against the maximum charged dual-budget fraction.
+The probe consumes at most $0.768$ percent of the message budget, and scalar selection overhead is below $10^{-6}$ of training time.
+This experiment evaluates transfer of the observable dependence-selection mechanism through a frozen empirical correlation proxy; the theorem-facing confidence guarantee remains the affine delayed Markov result.
+\begin{figure*}[t]
 \centering
-\scriptsize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lrrr}
-\toprule
-Study & Seeds & Scale & Main result \\
-\midrule
-EXP-007A & 32 & 134,784 rows & $q^\star:16\to1$ \\
-EXP-010B & 32 & 1,152 runs & 12/12 calibrated \\
-EXP-016B & 192 & 2,752,512 rows & $54.43\%,10.85\%$ \\
-TSP-CURVE-001 & 64 & 157,440 rows & AUC $-9.91\%,-11.32\%$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\includegraphics[width=0.84\textwidth]{figures/marl_probe_commit_return_curves.pdf}
+\caption{Preregistered MAPPO team-return learning curves in TSP-MARL-CONF-001 (eight held-out seeds per dependence regime; bands show 95 percent confidence intervals).
+The fully charged return-free controller commits to fixed $q=8$ under independent rollout innovations and fixed $q=1$ under shared innovations, tracking the regime-matched fixed action while improving over globally fixed broad participation.}
+\label{fig:marl-return}
+\end{figure*}
 
 \subsection{Ablations, complexity, and reproducibility}
 For a finite catalogue, action evaluation is linear in the number of candidate triples.
 The exact likelihood update is scalar after the spatial reduction, and the affine certificate uses cached scalar moments and a one-dimensional step search.
 When temporal-difference Jacobians are rank one, online moment probes require $O(qd)$ arithmetic and $O(d)$ memory, matching the order of aggregating $q$ agent updates.
 
-All four studies ran on CPUs and reproduced their registered primary artifacts byte for byte.
+The four controlled Markov studies ran on CPUs and reproduced their registered primary artifacts byte for byte.
 For TSP-CURVE-001, the action set, metrics, 16 development seeds, 64 confirmation seeds, and bootstrap rule were fixed before confirmation; raw hashes, aggregate curves, and analysis code accompany the repository.
+TSP-MARL-CONF-001 ran as six immutable eight-cell arrays on NVIDIA A30 GPUs; all 48 runs were finite, exactly budgeted, and generated byte-identical gate, curve, and figure artifacts under an independent analysis replay.
 
 The ablations isolate all three coordinates: fixing $q$ removes the correlation response in Fig.~\ref{fig:convergence-curves}, fixing $b$ removes the $18.49$-fold persistence response, and fixing $\eta$ ignores the delay-dependent domain in \eqref{eq:certified-step-domain}.
 Their gaps distinguish the controller from an adaptive batch-size rule.
@@ -826,8 +833,9 @@ Their gaps distinguish the controller from an adaptive batch-size rule.
 Multi-agent Markov policy evaluation requires a resource decision before the next update's value is known.
 Our finite-budget Lyapunov certificate jointly chooses participation, physical spacing, and step size; a learning-aware gate measures dependence only when the remaining learner can use it.
 The theory identifies a spatial speedup ceiling, proves delayed Markov convergence and moving-policy critic tracking, lower-bounds adaptive identification cost, and separates the information and learning-value budget thresholds.
-Fully charged experiments connect action selection to parameter and return-estimation curves.
+Fully charged experiments connect action selection to parameter error, return estimation, and cooperative team-return curves.
 The low-complexity controller uses Lyapunov drift as a design tool and identifies when correlated parallelism is valuable.
+Routine resource-geometry derivations are provided in the supplementary material.
 
 \appendices
 \input{appendices}

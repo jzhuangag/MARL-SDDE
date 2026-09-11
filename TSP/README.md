@@ -6,14 +6,15 @@ The publication thesis is:
 
 > Under correlated multi-agent Markov data, a learning system should jointly control participation, temporal spacing, and step size, and should pay to identify the dependence regime only when the remaining learning horizon can amortize that information cost.
 
-The main paper is `main.tex`, the proof supplement is `appendices.tex`, the verified bibliography is `references.bib`, and the compiled manuscript is `main.pdf`.
+The main paper is `main.tex`, its principal proofs are in `appendices.tex`, and routine resource-geometry derivations are packaged through `supplementary.tex`.
+The verified bibliography is `references.bib`; the compiled artifacts are `main.pdf` and `supplementary.pdf`.
 Publication-facing prose is contribution-led and does not reproduce the project's exploratory chronology.
 Internal provenance, completion tasks, and evidence boundaries are kept under `internal/`.
 
 ## Build
 
 Run `powershell -ExecutionPolicy Bypass -File build.ps1` from this directory.
-The script regenerates the three manuscript figures from verified repository artifacts, compiles the paper, and writes rendered page images under `tmp/rendered/` for visual inspection.
+The script regenerates the controlled-study figures from verified repository artifacts, retains the frozen confirmatory MAPPO figure, compiles both PDFs, and writes rendered page images under `tmp/rendered/` and `tmp/supplementary-rendered/` for visual inspection.
 
 Run `..\.venv\Scripts\python.exe tools\verify_citations.py` for a fresh authoritative citation check and `..\.venv\Scripts\python.exe -m pytest tests\test_manuscript_evidence.py -q` for manuscript-to-evidence regression tests.
 
@@ -23,13 +24,14 @@ Run `..\.venv\Scripts\python.exe tools\verify_citations.py` for a fresh authorit
 - EXP-010B: a finite-time affine delayed Markov temporal-difference certificate and joint selection of participation, spacing, and step size.
 - EXP-016B: an independent 192-seed formal confirmation of the finite learning-value threshold and the learning-aware fallback rule.
 - TSP-CURVE-001: a disjoint 16-seed development and 64-seed confirmation study of parameter-error and discounted-return-estimation convergence curves.
+- TSP-MARL-CONF-001: a preregistered 48-run MAPPO confirmation with eight new training seeds and eight disjoint probe seeds on PettingZoo MPE `simple_spread_v2`.
 
 The frozen source artifacts remain in their original repository locations and are not copied or altered here.
 
 ## Current integrated artifact
 
-- Thirteen full IEEE double-column pages, including proof appendices and 32 verified references.
+- Thirteen full IEEE double-column pages, including the principal proof appendices and 34 verified references, plus a one-page routine-proof supplement.
 - Five theorem statements, five propositions/corollaries, and aligned proofs or proof reductions, including an epochwise moving-policy critic-tracking bridge.
-- Three figures regenerated from frozen or seed-separated repository evidence.
+- Five figures generated from frozen or seed-separated repository evidence, including deterministic team-return learning curves.
 - No unresolved citation, cross-reference, or BibTeX warning; no overfull box or visible layout defect in the rendered manuscript.
 - Anonymous author and funding placeholders remain for the authors to fill before submission.
