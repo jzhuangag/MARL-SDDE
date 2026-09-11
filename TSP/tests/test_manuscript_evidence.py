@@ -68,6 +68,9 @@ def test_mappo_confirmation_matches_frozen_gate() -> None:
     gate_path = ROOT / "internal" / "marl_probe_commit_conf1_gate.json"
     gate = json.loads(gate_path.read_text(encoding="utf-8"))
     figure_path = ROOT / "figures" / "marl_probe_commit_return_curves.pdf"
+    compact_figure_path = (
+        ROOT / "figures" / "marl_probe_commit_return_curves_compact.pdf"
+    )
     summary_path = ROOT / "internal" / "marl_probe_commit_conf1_curve_summary.csv"
     assert gate["experiment_id"] == "TSP-MARL-CONF-001"
     assert gate["run_count"] == 48
@@ -80,6 +83,8 @@ def test_mappo_confirmation_matches_frozen_gate() -> None:
     assert f'{100 * gate["mixture_controller_vs_q8_mean"]:.3f}' in MAIN
     assert f'{100 * gate["mixture_controller_vs_q8_lower"]:.3f}' in MAIN
     assert hashlib.sha256(figure_path.read_bytes()).hexdigest() == "ea40c05bbb4bdba346c4fb964792ce7c061232190948a5a04cfc8cf44ad1b748"
+    assert compact_figure_path.is_file()
+    assert "marl_probe_commit_return_curves_compact.pdf" in MAIN
     assert hashlib.sha256(summary_path.read_bytes()).hexdigest() == "6e2c5d1af24952f72d83ee6347b06f5322ac5dd55bd2fcbf1df22ca8d39d3c64"
 
 

@@ -380,3 +380,35 @@ def test_confirmation_registry_is_disjoint_and_complete() -> None:
     assert confirm_training.isdisjoint(confirm_probe)
     assert confirmation["planned_runs"]["total"] == 48
     assert len(confirm_training) == len(confirm_probe) == 8
+
+
+def test_second_task_development_is_outcome_free_and_disjoint() -> None:
+    development = json.loads(
+        (ROOT / "experiments" / "marl_probe_commit_development.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    confirmation = json.loads(
+        (ROOT / "experiments" / "marl_probe_commit_confirmation.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    transfer = json.loads(
+        (ROOT / "experiments" / "marl_second_task_development.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert transfer["task"]["scenario"] == "simple_reference_v2"
+    assert transfer["task"]["share_param"] is True
+    assert transfer["controller"] == confirmation["controller"]
+    assert transfer["budgets"] == confirmation["budgets"]
+    assert transfer["model"] == confirmation["model"]
+    assert transfer["planned_runs"]["total"] == 24
+    prior = set(development["seed_registry"]["development_training"])
+    prior |= set(development["seed_registry"]["development_probe"])
+    prior |= set(confirmation["seed_registry"]["confirmation_training"])
+    prior |= set(confirmation["seed_registry"]["confirmation_probe"])
+    transfer_seeds = set(transfer["seed_registry"]["development_training"])
+    transfer_seeds |= set(transfer["seed_registry"]["development_probe"])
+    assert prior.isdisjoint(transfer_seeds)
+    assert "confirmation" not in transfer["seed_registry"]

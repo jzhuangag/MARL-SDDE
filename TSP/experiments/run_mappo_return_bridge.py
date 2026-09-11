@@ -53,6 +53,7 @@ def specification(args: argparse.Namespace) -> dict:
     if updates < 2:
         raise ValueError("budgets admit fewer than two learner updates")
     return {
+        "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-001"),
         "experiment_role": "development fixed-action evaluator",
         "scenario": args.scenario,
         "continuous_actions": args.continuous_actions,
@@ -235,6 +236,7 @@ def parse_args() -> argparse.Namespace:
     tsp_root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser()
     parser.add_argument("--harl-root", type=Path, default=repo_root / "tmp" / "HARL")
+    parser.add_argument("--experiment-id", default="TSP-MARL-DEV-001")
     # Keep the default short enough for tensorboardX's nested tags on Windows.
     parser.add_argument("--results-root", type=Path, default=tsp_root / "tmp" / "mr")
     parser.add_argument("--exp-name", default="bridge")

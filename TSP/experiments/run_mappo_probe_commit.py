@@ -224,7 +224,9 @@ def dry_run_spec(args: argparse.Namespace) -> dict:
             server_overhead=args.server_overhead,
         ).to_dict()
     return {
-        "experiment_id": "TSP-MARL-DEV-002",
+        "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-002"),
+        "scenario": args.scenario,
+        "share_param": True,
         "coupling": args.coupling,
         "training_seed": args.seed,
         "probe_seed": args.probe_seed,
@@ -309,8 +311,10 @@ def run(args: argparse.Namespace) -> Path:
     write_charged_progress(charged_path, progress_rows)
 
     metadata = {
-        "experiment_id": "TSP-MARL-DEV-002",
+        "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-002"),
         "experiment_role": "development Lyapunov probe-then-commit controller",
+        "scenario": args.scenario,
+        "share_param": True,
         "method": "lyapunov_probe_commit",
         "coupling": args.coupling,
         "training_seed": args.seed,
@@ -357,6 +361,7 @@ def parse_args() -> argparse.Namespace:
     repo_root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser()
     parser.add_argument("--harl-root", type=Path, default=repo_root / "tmp" / "HARL")
+    parser.add_argument("--experiment-id", default="TSP-MARL-DEV-002")
     parser.add_argument("--results-root", type=Path, required=True)
     parser.add_argument("--scenario", default="simple_spread_v2")
     parser.add_argument("--coupling", choices=("independent", "shared"), required=True)

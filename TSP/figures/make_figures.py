@@ -164,6 +164,63 @@ def convergence_curve_figure() -> None:
     save(fig, "convergence_curves")
 
 
+def marl_return_figure() -> None:
+    """Render the frozen MAPPO confirmation curves in a compact two-panel form."""
+
+    source = ROOT / "TSP" / "internal" / "marl_probe_commit_conf1_curve_summary.csv"
+    data = pd.read_csv(source)
+    styles = {
+        "lyapunov_probe_commit": ("Lyapunov controller", "#000000", "-", 1.8),
+        "fixed_q1": (r"Fixed $q=1$", GREEN, "-.", 1.35),
+        "fixed_q8": (r"Fixed $q=8$", ORANGE, "--", 1.45),
+    }
+    regimes = ("independent", "shared")
+    fig, axes = plt.subplots(1, 2, figsize=(6.1, 1.78), sharex=True)
+    for ax, coupling in zip(axes, regimes):
+        cell = data[data["coupling"] == coupling]
+        for method, (label, color, linestyle, linewidth) in styles.items():
+            curve = cell[cell["method"] == method].sort_values("budget_fraction")
+            x = curve["budget_fraction"].to_numpy(dtype=float)
+            mean = curve["team_return_mean"].to_numpy(dtype=float)
+            std = curve["team_return_std"].fillna(0.0).to_numpy(dtype=float)
+            count = curve["seeds"].to_numpy(dtype=float)
+            ci = 1.96 * std / np.sqrt(count)
+            ax.plot(
+                x,
+                mean,
+                label=label,
+                color=color,
+                linestyle=linestyle,
+                linewidth=linewidth,
+            )
+            ax.fill_between(
+                x,
+                mean - ci,
+                mean + ci,
+                color=color,
+                alpha=0.11,
+                linewidth=0.0,
+            )
+        ax.set_title(f"{coupling.capitalize()} streams", fontsize=8.5)
+        ax.set_xlabel("Charged budget fraction")
+        ax.set_xlim(0.0, 1.0)
+        ax.grid(color="#dddddd", linewidth=0.65)
+        ax.set_axisbelow(True)
+    axes[0].set_ylabel("Team return")
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        labels,
+        frameon=False,
+        ncol=3,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 1.02),
+        fontsize=7.4,
+    )
+    fig.tight_layout(rect=(0, 0, 1, 0.82), w_pad=0.9)
+    save(fig, "marl_probe_commit_return_curves_compact")
+
+
 if __name__ == "__main__":
     plt.rcParams.update({
         "font.family": "serif",
@@ -176,3 +233,4 @@ if __name__ == "__main__":
     learning_value_figure()
     joint_action_figure()
     convergence_curve_figure()
+    marl_return_figure()
