@@ -412,3 +412,19 @@ def test_second_task_development_is_outcome_free_and_disjoint() -> None:
     transfer_seeds |= set(transfer["seed_registry"]["development_probe"])
     assert prior.isdisjoint(transfer_seeds)
     assert "confirmation" not in transfer["seed_registry"]
+
+
+def test_second_task_development_result_preserves_frozen_stop() -> None:
+    gate = json.loads(
+        (ROOT / "internal" / "marl_second_task_dev1_gate.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert gate["experiment_id"] == "TSP-MARL-XTASK-DEV-001"
+    assert gate["run_count"] == gate["expected_run_count"] == 24
+    assert gate["independent_selected_q8_fraction"] == 1.0
+    assert gate["shared_selected_q1_fraction"] == 1.0
+    assert gate["gates"]["shared_controller_relative_auc_vs_fixed_q8_min"] is False
+    assert gate["gates"]["mixture_controller_relative_auc_vs_fixed_q8_min"] is False
+    assert gate["all_mandatory_gates_pass"] is False
+    assert gate["decision"] == "stop"
