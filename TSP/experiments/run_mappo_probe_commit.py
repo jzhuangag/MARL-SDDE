@@ -49,7 +49,8 @@ def make_harl_runner(
     # coupling factory without altering the HARL checkout.
     on_policy_base_runner.make_train_env = envs_tools.make_train_env
 
-    algo_args, env_args = get_defaults_yaml_args("mappo", "pettingzoo_mpe")
+    env_name = getattr(args, "env_name", "pettingzoo_mpe")
+    algo_args, env_args = get_defaults_yaml_args("mappo", env_name)
     algo_args["seed"].update({"seed_specify": True, "seed": seed})
     algo_args["device"].update(
         {"cuda": args.cuda, "torch_threads": args.torch_threads}
@@ -89,13 +90,16 @@ def make_harl_runner(
         }
     )
     algo_args["logger"]["log_dir"] = str(results_root.resolve())
-    env_args.update(
-        {
-            "scenario": args.scenario,
-            "continuous_actions": args.continuous_actions,
-        }
-    )
-    main_args = {"algo": "mappo", "env": "pettingzoo_mpe", "exp_name": exp_name}
+    if env_name == "pettingzoo_mpe":
+        env_args.update(
+            {
+                "scenario": args.scenario,
+                "continuous_actions": args.continuous_actions,
+            }
+        )
+    else:
+        env_args["map_name"] = args.map_name
+    main_args = {"algo": "mappo", "env": env_name, "exp_name": exp_name}
     return RUNNER_REGISTRY["mappo"](main_args, algo_args, env_args)
 
 
@@ -175,7 +179,10 @@ def charged_progress(
     for line in progress_path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
-        actor_transitions_text, team_return_text = line.split(",")
+        fields = line.split(",")
+        if len(fields) not in {2, 3}:
+            raise ValueError("expected return or return-and-win-rate progress row")
+        actor_transitions_text, team_return_text = fields[:2]
         actor_transitions = int(actor_transitions_text)
         denominator = selected_q * rollout_length
         if actor_transitions % denominator:
@@ -187,8 +194,7 @@ def charged_progress(
         environment_ticks = probe_environment_ticks + updates * rollout_length
         if messages > message_budget or environment_ticks > environment_budget:
             raise ValueError("progress row exceeds a physical budget")
-        rows.append(
-            {
+        row = {
                 "budget_fraction": max(
                     messages / message_budget,
                     environment_ticks / environment_budget,
@@ -198,7 +204,9 @@ def charged_progress(
                 "training_actor_transitions": actor_transitions,
                 "team_return": float(team_return_text),
             }
-        )
+        if len(fields) == 3:
+            row["win_rate"] = float(fields[2])
+        rows.append(row)
     if not rows:
         raise ValueError("training run produced no evaluation rows")
     return rows
@@ -223,9 +231,12 @@ def dry_run_spec(args: argparse.Namespace) -> dict:
             environment_budget=args.environment_budget,
             server_overhead=args.server_overhead,
         ).to_dict()
+    env_name = getattr(args, "env_name", "pettingzoo_mpe")
     return {
         "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-002"),
-        "scenario": args.scenario,
+        "environment": env_name,
+        "map_name": getattr(args, "map_name", None) if env_name == "smacv2" else None,
+        "scenario": args.scenario if env_name == "pettingzoo_mpe" else None,
         "share_param": True,
         "coupling": args.coupling,
         "training_seed": args.seed,
@@ -310,10 +321,13 @@ def run(args: argparse.Namespace) -> Path:
     charged_path = results_root / "charged_progress.csv"
     write_charged_progress(charged_path, progress_rows)
 
+    env_name = getattr(args, "env_name", "pettingzoo_mpe")
     metadata = {
         "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-002"),
         "experiment_role": "development Lyapunov probe-then-commit controller",
-        "scenario": args.scenario,
+        "environment": env_name,
+        "map_name": getattr(args, "map_name", None) if env_name == "smacv2" else None,
+        "scenario": args.scenario if env_name == "pettingzoo_mpe" else None,
         "share_param": True,
         "method": "lyapunov_probe_commit",
         "coupling": args.coupling,
@@ -363,7 +377,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--harl-root", type=Path, default=repo_root / "tmp" / "HARL")
     parser.add_argument("--experiment-id", default="TSP-MARL-DEV-002")
     parser.add_argument("--results-root", type=Path, required=True)
+    parser.add_argument(
+        "--env-name", choices=("pettingzoo_mpe", "smacv2"), default="pettingzoo_mpe"
+    )
     parser.add_argument("--scenario", default="simple_spread_v2")
+    parser.add_argument("--map-name", default="terran_10_vs_10")
     parser.add_argument("--coupling", choices=("independent", "shared"), required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--probe-seed", type=int, required=True)

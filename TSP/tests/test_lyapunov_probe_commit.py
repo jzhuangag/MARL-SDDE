@@ -138,6 +138,37 @@ def test_development_two_config_has_disjoint_seeds_and_no_formal_registry() -> N
     assert config["controller"]["candidate_q"] == [1, 8]
 
 
+def test_smacv2_development_is_outcome_free_and_exactly_budgeted() -> None:
+    config = json.loads(
+        (ROOT / "experiments" / "marl_smacv2_development.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert config["role"].startswith("development-only")
+    assert config["task"]["environment"] == "smacv2"
+    assert config["task"]["strategic_agents"] == 10
+    assert config["controller"]["candidate_q"] == [1, 8]
+    assert config["planned_runs"]["total"] == 24
+    assert set(config["seed_registry"]["development_training"]).isdisjoint(
+        config["seed_registry"]["development_probe"]
+    )
+    assert "confirmation" not in json.dumps(config["seed_registry"]).lower()
+    budgets = config["budgets"]
+    assert budgets["controller_probe_messages"] == 64 * (800 + 8 * 200)
+    assert budgets["controller_probe_environment_ticks"] == 64 * 200
+    assert budgets["fixed_q1_updates"] == min(
+        budgets["message_budget"] // (800 + 200),
+        budgets["environment_budget"] // 200,
+    )
+    assert budgets["fixed_q8_updates"] == min(
+        budgets["message_budget"] // (800 + 8 * 200),
+        budgets["environment_budget"] // 200,
+    )
+    assert budgets["controller_probe_message_fraction"] <= config[
+        "mandatory_development_gates"
+    ]["probe_message_fraction_max"]
+
+
 def test_charged_progress_includes_probe_cost(tmp_path) -> None:
     progress = tmp_path / "progress.txt"
     progress.write_text("200000,-100.0\n400000,-80.0\n", encoding="utf-8")
@@ -171,6 +202,23 @@ def test_charged_progress_rejects_fractional_update(tmp_path) -> None:
             probe_messages=38_400,
             probe_environment_ticks=3_200,
         )
+
+
+def test_charged_progress_preserves_smacv2_win_rate(tmp_path) -> None:
+    progress = tmp_path / "progress.txt"
+    progress.write_text("1600,12.5,0.625\n", encoding="utf-8")
+    rows = RUNNER.charged_progress(
+        progress,
+        selected_q=8,
+        rollout_length=200,
+        server_overhead=800,
+        message_budget=15_000_000,
+        environment_budget=2_000_000,
+        probe_messages=0,
+        probe_environment_ticks=0,
+    )
+    assert rows[0]["team_return"] == pytest.approx(12.5)
+    assert rows[0]["win_rate"] == pytest.approx(0.625)
 
 
 def test_probe_fingerprint_reduction_preserves_only_worker_axis() -> None:

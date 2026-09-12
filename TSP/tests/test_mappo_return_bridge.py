@@ -38,6 +38,7 @@ def test_invalid_budget_arguments_are_rejected() -> None:
 
 def test_specification_has_exact_cost_identities() -> None:
     args = Namespace(
+        env_name="pettingzoo_mpe",
         q=4,
         rollout_length=25,
         message_budget=50_000,
@@ -59,6 +60,32 @@ def test_specification_has_exact_cost_identities() -> None:
     assert spec["charged_training_messages"] == updates * (100 + 4 * 25)
     assert spec["charged_training_messages"] <= args.message_budget
     assert spec["charged_training_environment_ticks"] <= args.environment_budget
+
+
+def test_smacv2_specification_records_map_not_mpe_scenario() -> None:
+    args = Namespace(
+        env_name="smacv2",
+        map_name="terran_10_vs_10",
+        q=8,
+        rollout_length=200,
+        message_budget=15_000_000,
+        environment_budget=2_000_000,
+        server_overhead=800,
+        scenario="unused",
+        continuous_actions=False,
+        coupling="shared",
+        critic_lr=5e-4,
+        actor_lr=5e-4,
+        seed=108001,
+        seed_registry_base=108001,
+        seed_registry_size=128,
+    )
+    spec = MODULE.specification(args)
+    assert spec["environment"] == "smacv2"
+    assert spec["task"] == "terran_10_vs_10"
+    assert spec["map_name"] == "terran_10_vs_10"
+    assert spec["scenario"] is None
+    assert spec["message_cost_per_update"] == 2400
 
 
 def test_cyclic_coupling_preserves_each_workers_seed_multiset() -> None:

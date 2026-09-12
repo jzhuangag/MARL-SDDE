@@ -52,10 +52,19 @@ def specification(args: argparse.Namespace) -> dict:
     )
     if updates < 2:
         raise ValueError("budgets admit fewer than two learner updates")
+    env_name = getattr(args, "env_name", "pettingzoo_mpe")
+    task_name = (
+        getattr(args, "map_name", "protoss_5_vs_5")
+        if env_name == "smacv2"
+        else args.scenario
+    )
     return {
         "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-001"),
         "experiment_role": "development fixed-action evaluator",
-        "scenario": args.scenario,
+        "environment": env_name,
+        "task": task_name,
+        "scenario": args.scenario if env_name == "pettingzoo_mpe" else None,
+        "map_name": task_name if env_name == "smacv2" else None,
         "continuous_actions": args.continuous_actions,
         "coupling": args.coupling,
         "q_rollout_workers": args.q,
@@ -116,16 +125,23 @@ def coupled_train_env_factory(coupling: str, registry_base: int, registry_size: 
     from harl.envs.env_wrappers import ShareDummyVecEnv, ShareSubprocVecEnv
 
     def make_train_env(env_name, seed, n_threads, env_args):
-        if env_name != "pettingzoo_mpe":
-            raise ValueError("the TSP bridge currently supports pettingzoo_mpe only")
+        if env_name not in {"pettingzoo_mpe", "smacv2"}:
+            raise ValueError(
+                "the TSP bridge supports pettingzoo_mpe and smacv2 only"
+            )
 
         def get_env_fn(rank):
             def init_env():
-                from harl.envs.pettingzoo_mpe.pettingzoo_mpe_env import (
-                    PettingZooMPEEnv,
-                )
+                if env_name == "pettingzoo_mpe":
+                    from harl.envs.pettingzoo_mpe.pettingzoo_mpe_env import (
+                        PettingZooMPEEnv,
+                    )
 
-                env = PettingZooMPEEnv(env_args)
+                    env = PettingZooMPEEnv(env_args)
+                else:
+                    from harl.envs.smacv2.smacv2_env import SMACv2Env
+
+                    env = SMACv2Env(env_args)
                 env_seed = worker_seed(
                     coupling, seed, rank, registry_base, registry_size
                 )
@@ -157,7 +173,8 @@ def run(args: argparse.Namespace, spec: dict) -> Path:
     # Import after patching: OnPolicyBaseRunner copies this symbol at import.
     from harl.runners import RUNNER_REGISTRY
 
-    algo_args, env_args = get_defaults_yaml_args("mappo", "pettingzoo_mpe")
+    env_name = getattr(args, "env_name", "pettingzoo_mpe")
+    algo_args, env_args = get_defaults_yaml_args("mappo", env_name)
     algo_args["seed"].update({"seed_specify": True, "seed": args.seed})
     algo_args["device"].update({"cuda": args.cuda, "torch_threads": args.torch_threads})
     algo_args["train"].update(
@@ -195,16 +212,19 @@ def run(args: argparse.Namespace, spec: dict) -> Path:
         }
     )
     algo_args["logger"]["log_dir"] = str(args.results_root.resolve())
-    env_args.update(
-        {
-            "scenario": args.scenario,
-            "continuous_actions": args.continuous_actions,
-        }
-    )
+    if env_name == "pettingzoo_mpe":
+        env_args.update(
+            {
+                "scenario": args.scenario,
+                "continuous_actions": args.continuous_actions,
+            }
+        )
+    else:
+        env_args["map_name"] = args.map_name
 
     main_args = {
         "algo": "mappo",
-        "env": "pettingzoo_mpe",
+        "env": env_name,
         "exp_name": args.exp_name,
     }
     runner = RUNNER_REGISTRY["mappo"](main_args, algo_args, env_args)
@@ -240,7 +260,11 @@ def parse_args() -> argparse.Namespace:
     # Keep the default short enough for tensorboardX's nested tags on Windows.
     parser.add_argument("--results-root", type=Path, default=tsp_root / "tmp" / "mr")
     parser.add_argument("--exp-name", default="bridge")
+    parser.add_argument(
+        "--env-name", choices=("pettingzoo_mpe", "smacv2"), default="pettingzoo_mpe"
+    )
     parser.add_argument("--scenario", default="simple_spread_v2")
+    parser.add_argument("--map-name", default="terran_10_vs_10")
     parser.add_argument("--coupling", choices=("independent", "shared"), required=True)
     parser.add_argument("--q", type=int, required=True)
     parser.add_argument("--rollout-length", type=int, default=25)
