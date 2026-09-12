@@ -1,5 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=tsp-smac-smoke
+#SBATCH --account=vincentlau
 #SBATCH --partition=gpu-a30
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
