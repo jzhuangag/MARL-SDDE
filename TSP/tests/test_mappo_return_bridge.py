@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 import torch
+import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,24 @@ def test_invalid_budget_arguments_are_rejected() -> None:
         MODULE.usable_updates(0, 25, 10_000, 2_000, 100)
     with pytest.raises(ValueError):
         MODULE.usable_updates(4, 25, 10_000, 2_000, -1)
+
+
+def test_pinned_harl_numpy_aliases_are_installed_without_source_edit() -> None:
+    previous_int = np.__dict__.pop("int", None)
+    previous_bool = np.__dict__.pop("bool", None)
+    try:
+        MODULE.install_numpy_legacy_aliases()
+        assert np.int is int
+        assert np.bool is bool
+    finally:
+        if previous_int is None:
+            np.__dict__.pop("int", None)
+        else:
+            np.int = previous_int
+        if previous_bool is None:
+            np.__dict__.pop("bool", None)
+        else:
+            np.bool = previous_bool
 
 
 def test_specification_has_exact_cost_identities() -> None:

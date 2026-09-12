@@ -16,6 +16,22 @@ import sys
 from pathlib import Path
 
 
+def install_numpy_legacy_aliases() -> None:
+    """Provide aliases required by the pinned HARL/SMAC logging stack.
+
+    NumPy 1.24 removed ``np.int`` and ``np.bool``.  The pinned upstream uses
+    those spellings in logger/environment code.  Installing the equivalent
+    builtin aliases at process scope keeps the upstream checkout immutable.
+    """
+
+    import numpy as np
+
+    if "int" not in np.__dict__:
+        np.int = int
+    if "bool" not in np.__dict__:
+        np.bool = bool
+
+
 def usable_updates(
     q: int,
     rollout_length: int,
@@ -161,6 +177,7 @@ def run(args: argparse.Namespace, spec: dict) -> Path:
     if not (harl_root / "harl" / "runners").is_dir():
         raise FileNotFoundError(f"invalid HARL root: {harl_root}")
     sys.path.insert(0, str(harl_root))
+    install_numpy_legacy_aliases()
 
     from harl.utils import envs_tools
     from harl.utils.configs_tools import get_defaults_yaml_args

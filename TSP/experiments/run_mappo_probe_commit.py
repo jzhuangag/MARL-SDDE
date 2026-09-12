@@ -32,6 +32,7 @@ def make_harl_runner(
         raise FileNotFoundError(f"invalid HARL root: {harl_root}")
     if str(harl_root) not in sys.path:
         sys.path.insert(0, str(harl_root))
+    bridge.install_numpy_legacy_aliases()
 
     from harl.utils import envs_tools
     from harl.utils.configs_tools import get_defaults_yaml_args
