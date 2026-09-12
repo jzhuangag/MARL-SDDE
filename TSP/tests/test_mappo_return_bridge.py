@@ -1,11 +1,13 @@
 import importlib.util
 import json
+import random
 from argparse import Namespace
 from pathlib import Path
 
 import pytest
 import torch
 import numpy as np
+from types import SimpleNamespace
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,6 +55,56 @@ def test_pinned_harl_numpy_aliases_are_installed_without_source_edit() -> None:
             np.__dict__.pop("bool", None)
         else:
             np.bool = previous_bool
+
+
+def test_smacv2_capability_streams_are_reproducible_and_distinct() -> None:
+    def fake_wrapper():
+        nested = SimpleNamespace(rng=np.random.default_rng())
+        parent = SimpleNamespace(
+            rng=np.random.default_rng(), pos_generator=nested
+        )
+        other = SimpleNamespace(rng=np.random.default_rng())
+        wrapper = SimpleNamespace(
+            env_key_to_distribution_map={"team": parent, "position": other}
+        )
+        wrapper.reset = lambda: random.random()
+        return wrapper
+
+    first = fake_wrapper()
+    second = fake_wrapper()
+    third = fake_wrapper()
+    assert MODULE.seed_smacv2_capability_generators(first, 17) == 3
+    assert MODULE.seed_smacv2_capability_generators(second, 17) == 3
+    assert MODULE.seed_smacv2_capability_generators(third, 18) == 3
+
+    def draws(wrapper):
+        parent, other = wrapper.env_key_to_distribution_map.values()
+        return (
+            parent.rng.normal(size=5),
+            parent.pos_generator.rng.normal(size=5),
+            other.rng.normal(size=5),
+        )
+
+    first_draws = draws(first)
+    second_draws = draws(second)
+    third_draws = draws(third)
+    for left, right in zip(first_draws, second_draws):
+        np.testing.assert_array_equal(left, right)
+    assert any(
+        not np.array_equal(left, right)
+        for left, right in zip(first_draws, third_draws)
+    )
+    assert not np.array_equal(first_draws[0], first_draws[1])
+
+    random.seed(1234)
+    caller_state = random.getstate()
+    first_reset = first.reset()
+    assert random.getstate() == caller_state
+    second_reset = first.reset()
+    assert random.getstate() == caller_state
+    same_seed_reset = second.reset()
+    assert first_reset == same_seed_reset
+    assert first_reset != second_reset
 
 
 def test_specification_has_exact_cost_identities() -> None:

@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import random
 import subprocess
 import sys
 from pathlib import Path
@@ -30,6 +31,70 @@ def install_numpy_legacy_aliases() -> None:
         np.int = int
     if "bool" not in np.__dict__:
         np.bool = bool
+
+
+def seed_smacv2_capability_generators(wrapper, seed: int) -> int:
+    """Deterministically seed every independent SMACv2 capability stream.
+
+    SMACv2 1.0 creates capability generators with ``default_rng()`` and does
+    not pass the environment seed to them.  We assign independent child
+    streams while preserving every generator's sampling distribution.  The
+    StarCraft engine itself already receives ``seed`` from SMACv2.
+
+    Returns the number of NumPy generator objects seeded.
+    """
+
+    import numpy as np
+
+    roots = list(wrapper.env_key_to_distribution_map.values())
+    stack = list(reversed(roots))
+    generators = []
+    seen = set()
+    nested_names = (
+        "surrounded_distribution",
+        "reflect_distribution",
+        "pos_generator",
+        "enemy_pos_generator",
+    )
+    while stack:
+        distribution = stack.pop()
+        identity = id(distribution)
+        if identity in seen:
+            continue
+        seen.add(identity)
+        if hasattr(distribution, "rng"):
+            generators.append(distribution)
+        children = [
+            getattr(distribution, name)
+            for name in nested_names
+            if hasattr(distribution, name)
+        ]
+        stack.extend(reversed(children))
+
+    streams = np.random.SeedSequence(int(seed)).spawn(len(generators) + 1)
+    for distribution, stream in zip(generators, streams[:-1]):
+        distribution.rng = np.random.default_rng(stream)
+
+    # WeightedTeamsDistribution also uses Python's module-level ``shuffle``.
+    # Keep that stream private to this environment: swapping the module state
+    # only while reset is executing prevents a q=1 dummy-vector environment
+    # from perturbing the learner's Python RNG stream.
+    if hasattr(wrapper, "reset"):
+        python_seed = int(streams[-1].generate_state(1, dtype=np.uint32)[0])
+        state_box = {"state": random.Random(python_seed).getstate()}
+        upstream_reset = wrapper.reset
+
+        def reset_with_private_python_rng(*args, **kwargs):
+            caller_state = random.getstate()
+            random.setstate(state_box["state"])
+            try:
+                return upstream_reset(*args, **kwargs)
+            finally:
+                state_box["state"] = random.getstate()
+                random.setstate(caller_state)
+
+        wrapper.reset = reset_with_private_python_rng
+    return len(generators)
 
 
 def usable_updates(
@@ -162,6 +227,8 @@ def coupled_train_env_factory(coupling: str, registry_base: int, registry_size: 
                     coupling, seed, rank, registry_base, registry_size
                 )
                 env.seed(env_seed)
+                if env_name == "smacv2":
+                    seed_smacv2_capability_generators(env.env, env_seed)
                 return env
 
             return init_env
@@ -170,6 +237,37 @@ def coupled_train_env_factory(coupling: str, registry_base: int, registry_size: 
         return ShareDummyVecEnv(constructors) if n_threads == 1 else ShareSubprocVecEnv(constructors)
 
     return make_train_env
+
+
+def deterministic_smacv2_eval_env_factory(upstream_make_eval_env):
+    """Wrap HARL evaluation so procedural SMACv2 tasks obey their seeds."""
+
+    from harl.envs.env_wrappers import ShareDummyVecEnv, ShareSubprocVecEnv
+
+    def make_eval_env(env_name, seed, n_threads, env_args):
+        if env_name != "smacv2":
+            return upstream_make_eval_env(env_name, seed, n_threads, env_args)
+
+        def get_env_fn(rank):
+            def init_env():
+                from harl.envs.smacv2.smacv2_env import SMACv2Env
+
+                env = SMACv2Env(env_args)
+                env_seed = seed * 50_000 + rank * 10_000
+                env.seed(env_seed)
+                seed_smacv2_capability_generators(env.env, env_seed)
+                return env
+
+            return init_env
+
+        constructors = [get_env_fn(rank) for rank in range(n_threads)]
+        return (
+            ShareDummyVecEnv(constructors)
+            if n_threads == 1
+            else ShareSubprocVecEnv(constructors)
+        )
+
+    return make_eval_env
 
 
 def run(args: argparse.Namespace, spec: dict) -> Path:
@@ -182,13 +280,21 @@ def run(args: argparse.Namespace, spec: dict) -> Path:
     from harl.utils import envs_tools
     from harl.utils.configs_tools import get_defaults_yaml_args
 
+    upstream_make_eval_env = envs_tools.make_eval_env
     envs_tools.make_train_env = coupled_train_env_factory(
         args.coupling, args.seed_registry_base, args.seed_registry_size
+    )
+    envs_tools.make_eval_env = deterministic_smacv2_eval_env_factory(
+        upstream_make_eval_env
     )
     if args.coupling == "shared":
         install_shared_action_coupling()
     # Import after patching: OnPolicyBaseRunner copies this symbol at import.
     from harl.runners import RUNNER_REGISTRY
+    from harl.runners import on_policy_base_runner
+
+    on_policy_base_runner.make_train_env = envs_tools.make_train_env
+    on_policy_base_runner.make_eval_env = envs_tools.make_eval_env
 
     env_name = getattr(args, "env_name", "pettingzoo_mpe")
     algo_args, env_args = get_defaults_yaml_args("mappo", env_name)

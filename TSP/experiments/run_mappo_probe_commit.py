@@ -37,8 +37,12 @@ def make_harl_runner(
     from harl.utils import envs_tools
     from harl.utils.configs_tools import get_defaults_yaml_args
 
+    upstream_make_eval_env = envs_tools.make_eval_env
     envs_tools.make_train_env = bridge.coupled_train_env_factory(
         args.coupling, args.seed_registry_base, args.seed_registry_size
+    )
+    envs_tools.make_eval_env = bridge.deterministic_smacv2_eval_env_factory(
+        upstream_make_eval_env
     )
     if args.coupling == "shared":
         bridge.install_shared_action_coupling()
@@ -49,6 +53,7 @@ def make_harl_runner(
     # explicitly so repeated probe/training construction uses the registered
     # coupling factory without altering the HARL checkout.
     on_policy_base_runner.make_train_env = envs_tools.make_train_env
+    on_policy_base_runner.make_eval_env = envs_tools.make_eval_env
 
     env_name = getattr(args, "env_name", "pettingzoo_mpe")
     algo_args, env_args = get_defaults_yaml_args("mappo", env_name)
