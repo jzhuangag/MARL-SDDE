@@ -41,7 +41,7 @@ case "$SLURM_ARRAY_TASK_ID" in
     ;;
 esac
 
-OUT="$ROOT/artifacts/smoke/${COUPLING}-q${Q}-seed${SEED}"
+OUT="$ROOT/artifacts/smoke/job${SLURM_ARRAY_JOB_ID}-${SLURM_ARRAY_TASK_ID}-${COUPLING}-q${Q}-seed${SEED}"
 "$PYTHON" "$ROOT/code/MARL-SDDE/TSP/experiments/run_mappo_return_bridge.py" \
   --harl-root "$HARL" \
   --experiment-id TSP-MARL-SMACV2-SMOKE-001 \
