@@ -1,0 +1,179 @@
+{
+  "experiment": "EXP-009A",
+  "status": "FAIL",
+  "registered_runs": 9216,
+  "gates": {
+    "certificate_coverage": {
+      "pass": true,
+      "observed_coverage": 0.9889322916666666,
+      "nominal_coverage": 0.99,
+      "online_pilots": 1536
+    },
+    "conditional_exact_safety": {
+      "pass": true,
+      "covered_runs": 1519,
+      "largest_covered_exact_radius": 0.9811781131410987
+    },
+    "online_trajectory_safety": {
+      "pass": true,
+      "divergences": 0
+    },
+    "naive_failure_detectable": {
+      "pass": true,
+      "unstable_rate_at_p0p98": 1.0
+    },
+    "oracle_competitiveness": {
+      "pass": false,
+      "largest_scenario_median_online_to_oracle": 16.305358204063435
+    },
+    "robust_baseline_improvement": {
+      "pass": false,
+      "improved_scenarios": 3,
+      "total_scenarios": 8
+    },
+    "participation_responds_to_correlation": {
+      "pass": true,
+      "median_q_rho0": 6.0,
+      "median_q_rho0p9": 2.0
+    }
+  },
+  "overall_pass": false,
+  "scenario_ratios": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 0.4883338554484198
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 1.2658884981175302
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 0.7770877378598706
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 0.8982397706789674
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 0.705043733446794
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 0.9111504204267935
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 2.2102247262331396
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 1.1175507370896967
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 1.7419877272663882
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 13.524003004017246
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 0.7868731226937704
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 16.305358204063435
+    }
+  ],
+  "low_persistence_medians": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "online_ucb": 9.257115291240415e-05,
+      "worst_mixing": 6.260318326764292e-05
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "online_ucb": 0.00022277498307595757,
+      "worst_mixing": 0.000811319685539015
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "online_ucb": 0.0035245064741300895,
+      "worst_mixing": 0.0015253930680768583
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "online_ucb": 0.0004904568046301723,
+      "worst_mixing": 0.000471602057696976
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "online_ucb": 7.036399973063494e-05,
+      "worst_mixing": 5.5246578253504046e-05
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "online_ucb": 0.000167909051951624,
+      "worst_mixing": 0.0007469013663071235
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "online_ucb": 0.0019975348798614836,
+      "worst_mixing": 0.001553435655167884
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "online_ucb": 0.00028579599245087564,
+      "worst_mixing": 0.0008173189054501831
+    }
+  ],
+  "artifacts": [
+    "controller_runs.csv",
+    "summary.json",
+    "fig1_policy_error.png",
+    "fig2_online_actions.png"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "development-only arrival-fresh commit-barrier audit on HARL SimpleSpread",
+  "upstream_harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "runner_sha256": "6b9268b7af6d355f5b6f7836dc6b19f42880b29c93505d9f1f20e2308e01ce22",
+  "primary_design": {
+    "seeds": [4701, 4702, 4703, 4704],
+    "agents": 3,
+    "profiles": ["balanced", "heterogeneous"],
+    "actor_transition_budget_per_run": 61200,
+    "modes": ["lsff_dual_resource", "never_refresh", "always_refresh", "periodic_phases_0_to_3"],
+    "summary_sha256": "682530e898ef3888b0e9be7bd52ef8823f6d65aba51d78bdbd758d80f2fdbf3d"
+  },
+  "return_results": {
+    "balanced": {
+      "lsff_mean_final_return": -103.17303980761189,
+      "lsff_minus_never": 3.8464336390925524,
+      "lsff_minus_always": 0.2368457528740464,
+      "lsff_minus_best_fixed_periodic": 0.33919079738019775
+    },
+    "heterogeneous": {
+      "lsff_mean_final_return": -100.94386096967204,
+      "lsff_minus_never": 1.546035335895823,
+      "lsff_minus_always": -2.557269167805842,
+      "lsff_minus_best_fixed_periodic": -1.2859200498019163
+    }
+  },
+  "risk_decomposition": {
+    "balanced": {
+      "mean_bias_square_upper": 0.000017265793710132695,
+      "mean_birth_variance_upper": 0.004313134464497396,
+      "bias_fraction": 0.003987112664102666,
+      "selected_bias_fraction": 0.0023357321242434225,
+      "descriptive_discrepancy_coverage": 1.0
+    },
+    "heterogeneous": {
+      "mean_bias_square_upper": 0.00001548588074892891,
+      "mean_birth_variance_upper": 0.004410665740780703,
+      "bias_fraction": 0.0034987235126792047,
+      "selected_bias_fraction": 0.0017369649300503377,
+      "descriptive_discrepancy_coverage": 1.0
+    }
+  },
+  "transition_only_control": {
+    "summary_sha256": "d5d957b96ad3cb580829d43752145afdb9e623797df72077d26d4693e84c0297",
+    "balanced_mean_final_return": -104.98436774327735,
+    "heterogeneous_mean_final_return": -101.72741309410478,
+    "conclusion": "removing the unbound wall-clock queue did not resolve the instability"
+  },
+  "six_agent_bias_smoke": {
+    "summary_sha256": "b959eeaa7cf96dc19832e7955d3bba367362441ff1fb34be7a099d4ddeda12a0",
+    "mean_bias_square_upper": 0.00013272020898023098,
+    "mean_birth_variance_upper": 0.00850402570475443,
+    "bias_fraction": 0.015364
+  },
+  "decision": "do not preregister confirmation; first reduce estimator variance and add equal-cost extra-birth batching baselines",
+  "gpu_authorized": false,
+  "formal_evidence": false
+}

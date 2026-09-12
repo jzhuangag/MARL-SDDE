@@ -1,0 +1,27 @@
+{
+  "experiment": "EXP-011B",
+  "comparison": "canonical versus clean same-seed execution",
+  "numerical_and_figure_artifacts_byte_identical": true,
+  "summary_json_semantically_identical": true,
+  "summary_json_byte_difference": "canonical metadata patch added one EOF newline",
+  "artifacts": {
+    "actions.csv": {
+      "match": true,
+      "sha256": "12D75CA5CBD22AAE904F15E09A09412AC0ADB82DC0A1AEE5DD099AC7D2E0200B"
+    },
+    "dual_anytime_summary.png": {
+      "match": true,
+      "sha256": "9415D408EEC73E5305FE20F4E38BEB6E676B93CE78C0E10EB36A58CD6D5AEA18"
+    },
+    "metrics.csv": {
+      "match": true,
+      "sha256": "9DC034FD3E8D899DAF70B2F438D9A7BEB886D6B223D283E324F6B3EB19665B57"
+    },
+    "summary.json": {
+      "match": false,
+      "canonical_sha256": "0BE3ED16B91A5DCE6E8B97C4DC009248023BEC6B0A811D793FD90898AC8964CC",
+      "reproduction_sha256": "DF30B2728A99D2EE33602E60272FF32443BD90A940D4D773A7F3EA736363F3B9",
+      "parsed_json_equal": true
+    }
+  }
+}

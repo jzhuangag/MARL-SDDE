@@ -1,0 +1,44 @@
+{
+  "experiment_id": "freshness_oracle_headroom_cpu_v1",
+  "preregistration_commit": "34956ee6d75abcf52effb01fdc6bc1f46c4521da",
+  "config_sha256": "0476f5b9da3666712f0df2e913154330126300f271983debb769db46af7e9278",
+  "source_sha256": {
+    "freshness_headroom.py": "c2a520ed65ab94fd12092094487804b00ef637de94d7eb7a53634bf7eda7b418",
+    "run_freshness_headroom_scan.py": "9292b007df9d8b2ca72aa2348c7f8c6aa833eb7efb4db54517f163cb7eb8fecc"
+  },
+  "execution": {
+    "device": "local CPU",
+    "primary_seconds": 3.71,
+    "reproduction_seconds": 3.85,
+    "rows": 20736,
+    "primary_rows_sha256": "2c9a11840620546c72d3bcf35fcc11c07c29034a77d4dba5b60fd4914e34bed4",
+    "reproduction_rows_sha256": "2c9a11840620546c72d3bcf35fcc11c07c29034a77d4dba5b60fd4914e34bed4",
+    "primary_summary_sha256": "bbafcc43847e82581ab04b95ff772fb4af18e2b76bec3885b0c164824c0dd442",
+    "reproduction_summary_sha256": "bbafcc43847e82581ab04b95ff772fb4af18e2b76bec3885b0c164824c0dd442"
+  },
+  "results": {
+    "dynamic_geometric_oracle_over_periodic_ratio": 0.8004865760358274,
+    "dynamic_mean_relative_oracle_improvement": 0.18102163524530435,
+    "dynamic_directional_fraction_at_5_percent": 0.7854295267489712,
+    "high_contrast_geometric_oracle_over_periodic_ratio": 0.7451050120176715,
+    "stationary_max_relative_oracle_improvement": 0.0,
+    "persistence_ratios": {
+      "0.0": 0.7808838779686432,
+      "0.8": 0.7831166012609521,
+      "0.98": 0.8387823295938716
+    }
+  },
+  "gates": {
+    "G1_finite_and_ordered": true,
+    "G2_stationary_zero_headroom": true,
+    "G3_dynamic_aggregate_headroom": true,
+    "G4_dynamic_directional_coverage": true,
+    "G5_high_contrast_headroom": true,
+    "G6_each_persistence_stratum": true,
+    "G7_exact_equal_refresh_charge": true,
+    "G8_byte_exact_reproduction": true
+  },
+  "decision": "authorize causal LSFF CPU development only",
+  "formal_evidence": false,
+  "gpu_authorized": false
+}

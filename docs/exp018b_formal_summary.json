@@ -1,0 +1,56 @@
+{
+  "experiment": "EXP-018B",
+  "date": "2026-08-02",
+  "preregistration_commit": "e4da74fc0240961ac90753c316067927f448c858",
+  "decision": "PASS_WITH_EXACT_REPRODUCTION",
+  "formal_claim_authorized": true,
+  "formal_claim_scope": "fixed_parameter_nonlinear_td_gradient_variance_calibration",
+  "rows": 18432,
+  "formal_seeds": 192,
+  "gates": {
+    "F1_shape_finite_unique": true,
+    "F2_manifest_and_parameter_freeze": true,
+    "F3_q1_crn_exact": true,
+    "F4_pairwise_share_calibration": true,
+    "F5_median_equivalence_upper": true,
+    "F6_p90_equivalence_upper": true,
+    "F7_path_independent_summary_schema": true,
+    "F8_scope_boundary": true,
+    "R1_exact_reproduction": true
+  },
+  "primary_endpoints": {
+    "observed_median_relative_error": 0.07737652686696828,
+    "median_one_sided_97_5_upper": 0.16190619410848417,
+    "median_tolerance": 0.2,
+    "observed_p90_relative_error": 0.13915907168970743,
+    "p90_one_sided_97_5_upper": 0.403932659824801,
+    "p90_tolerance": 0.5,
+    "bootstrap_replications": 5000,
+    "bootstrap_seed": 18240101,
+    "familywise_alpha": 0.05
+  },
+  "pairwise_share_estimates": {
+    "0.0": 0.0,
+    "0.5": 0.49753759240591394,
+    "0.9": 0.8997080813172044
+  },
+  "separated_direction_diagnostic": {
+    "passed": 45,
+    "total": 48,
+    "fraction": 0.9375,
+    "mandatory_gate": false
+  },
+  "scope_exclusions": {
+    "online_controller_claim": false,
+    "delay_or_dual_budget_claim": false,
+    "nonlinear_convergence_claim": false,
+    "actor_critic_claim": false,
+    "gpu_benchmark_claim": false
+  },
+  "artifacts": {
+    "projections_csv_sha256": "0a955971530c20efc88cc5dae7ac3859107b36d3ddf75c5142cf3e36037b35bf",
+    "static_manifest_sha256": "0cfe24c37f4bba2895cc000f5ffd688977b3e618e55bbb9759ef7099cd8fcb25",
+    "summary_sha256": "37de678a35c685d00b03baf391ed9b079c6c84485acdaac1f4b03d05c667072d"
+  }
+}
+

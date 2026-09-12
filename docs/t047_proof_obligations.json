@@ -1,0 +1,70 @@
+{
+  "experiment_line": "T-047 / EXP-021",
+  "status": "scheduled_pr_and_probe_oracle_core_implemented_static_design_pending",
+  "old_results_unchanged": [
+    "EXP-017A",
+    "T-020",
+    "T-043A",
+    "T-045A"
+  ],
+  "obligations": [
+    {
+      "id": "P47-1",
+      "claim": "Exact terminal risk for deterministic time-varying prefix participation",
+      "status": "proved_and_tested",
+      "artifact": "docs/t047_time_varying_participation_theorem.md"
+    },
+    {
+      "id": "P47-2",
+      "claim": "Exact affine dependence R_pi(rho)=a_pi+b_pi*rho",
+      "status": "proved_and_tested",
+      "artifact": "experiments/dependence_delay_linear/t047_scheduled_participation.py"
+    },
+    {
+      "id": "P47-3",
+      "claim": "Tail Polyak-Ruppert exact risk for a time-varying schedule",
+      "status": "proved_and_tested",
+      "artifact": "docs/t048_pr_probe_oracle_theorem.md"
+    },
+    {
+      "id": "P47-4",
+      "claim": "Mixing-corrected confidence sequence for observable gradient-correlation probes",
+      "status": "proved_for_registered_checkpoints_with_certified_geometric_beta_mixing",
+      "artifact": "experiments/dependence_delay_linear/t048_pr_probe_oracle.py"
+    },
+    {
+      "id": "P47-5",
+      "claim": "Finite-budget oracle inequality including probe opportunity cost",
+      "status": "proved_for_finite_affine_schedule_library",
+      "artifact": "docs/t048_pr_probe_oracle_theorem.md"
+    },
+    {
+      "id": "P47-6",
+      "claim": "Matching lower/upper dependence on correlation, mixing, delay, message budget, and environment budget",
+      "status": "partial_logarithmic_mixing_gap",
+      "proved": "separated-class correlation gap and confidence dependence; exact finite-table delay and dual-budget accounting",
+      "open": "constant-factor controlled-belief occupation matching",
+      "blocks": ["sharp constant-factor matching claim"]
+    },
+    {
+      "id": "P47-7",
+      "claim": "Nonvacuous T-046 affine-TD schedule-order preservation certificate",
+      "status": "open",
+      "blocks": ["multiplicative TD corollary"]
+    },
+    {
+      "id": "P47-8",
+      "claim": "Prospective exact/sampled standard-task gate",
+      "status": "failed_at_T049A_exact_static_gate",
+      "artifact": "docs/validation_t049a_exact_schedule_static.md",
+      "blocks": ["learned EXP-021A", "EXP-021B", "nonlinear benchmark claim"]
+    }
+  ],
+  "compute_authorization": {
+    "local_cpu_static": true,
+    "local_cpu_sampled_pilot": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

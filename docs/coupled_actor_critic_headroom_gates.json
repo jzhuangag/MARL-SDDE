@@ -1,0 +1,28 @@
+{
+  "experiment": "coupled_actor_critic_oracle_headroom",
+  "date": "2026-09-05",
+  "status": "frozen_before_outcomes",
+  "primary_scenarios": 128,
+  "control_scenarios": 32,
+  "horizon_events": 64,
+  "scenario_hash": "528fbc597015981f8868e2d7aab567003d5b0574fadecff6b462be2c8b746ae0",
+  "gates": {
+    "H1": {"finite": true, "primary": 128, "controls": 32},
+    "H2": {"all_qp_psd_and_actions_feasible": true},
+    "H3": {"coupled_over_best_fixed_geometric_auc_ratio_max": 0.90},
+    "H4": {"coupled_over_diagonal_geometric_auc_ratio_max": 0.95},
+    "H5": {
+      "strictly_better_than_fixed_fraction_min": 0.70,
+      "strictly_better_than_diagonal_fraction_min": 0.60
+    },
+    "H6": {
+      "positive_mean_scales_every_primary": true,
+      "jointly_interior_action_fraction_min": 0.05
+    },
+    "H7": {"zero_target_cross_and_reduction_tolerance": 1e-10},
+    "H8": {"high_target_median_improvement_strictly_exceeds_low": true},
+    "H9": {"fixed_refinement_not_worse_and_box_feasible": true},
+    "H10": {"byte_identical_reproduction": true}
+  },
+  "stop_rule": "any failed gate stops sampled CPU, formal, GPU and HPC4 work"
+}

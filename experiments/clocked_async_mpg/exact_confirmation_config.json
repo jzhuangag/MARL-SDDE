@@ -1,0 +1,16 @@
+{
+  "config_version": 1,
+  "couplings": [0.0, 0.08, 0.16, 0.24],
+  "development_namespaces_excluded": [
+    "development-tainted",
+    "development-tainted-2",
+    "static-test"
+  ],
+  "maximum_time": 120.0,
+  "policies": ["single_flight_async", "fully_utilized_shadow_barrier"],
+  "primary_service_ratios": [2.0, 4.0, 8.0],
+  "seed_count": 64,
+  "seed_namespace": "clocked-async-mpg-exact-confirmation-v1",
+  "service_ratios": [1.0, 2.0, 4.0, 8.0],
+  "target_normalized_gap": 0.15
+}

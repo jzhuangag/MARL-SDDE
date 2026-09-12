@@ -1,0 +1,53 @@
+{
+  "experiment": "coupled_actor_critic_oracle_headroom",
+  "date": "2026-09-05",
+  "scope": "privileged exact-moment oracle headroom; not efficacy",
+  "decision": "PASS_H1_H10_CONTINUE_PERFORMANCE_BOUND_ONLY",
+  "preregistration_commit": "fc8646b",
+  "theory_interface_commit": "7c69dfe",
+  "scenario_hash": "528fbc597015981f8868e2d7aab567003d5b0574fadecff6b462be2c8b746ae0",
+  "artifact": {
+    "sha256": "47446BA32CE70EB27C3FFF5CEA855D5EC6436EB86BB2E4AFBBFD22B61F4E37F1",
+    "bytes": 317361,
+    "byte_identical_reproduction": true
+  },
+  "counts": {
+    "primary": 128,
+    "zero_target": 16,
+    "zero_interaction": 16,
+    "events_per_scenario_method": 64
+  },
+  "metrics": {
+    "coupled_over_best_fixed_geometric_auc_ratio": 0.7328230906517814,
+    "coupled_over_diagonal_geometric_auc_ratio": 0.9481180355938437,
+    "coupled_better_than_fixed_fraction": 1.0,
+    "coupled_better_than_diagonal_fraction": 1.0,
+    "joint_interior_action_fraction": 0.9385986328125,
+    "low_target_median_diagonal_improvement": 0.019488382459094733,
+    "high_target_median_diagonal_improvement": 0.06812351133612299,
+    "zero_target_max_reduction_error": 0.0,
+    "coupled_over_best_fixed_terminal_geometric_ratio": 0.20639377899903577,
+    "coupled_over_diagonal_terminal_geometric_ratio": 0.9826356846727248,
+    "minimum_qp_eigenvalue": 0.016256369845022326
+  },
+  "gates": {
+    "H1": true,
+    "H2": true,
+    "H3": true,
+    "H4": true,
+    "H5": true,
+    "H6": true,
+    "H7": true,
+    "H8": true,
+    "H9": true,
+    "H10": true
+  },
+  "authorization": {
+    "performance_bound_derivation": true,
+    "sampled_cpu": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}
+

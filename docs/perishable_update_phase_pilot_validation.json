@@ -1,0 +1,76 @@
+{
+  "artifact_id": "PUB-PHASE-PILOT-20260901-VALIDATION",
+  "artifact_type": "cpu_mechanism_pilot_validation",
+  "created_date": "2026-09-01",
+  "preregistration_commit": "10967c4baada647c52802f9eca755637e3b5ad7e",
+  "manifest_sha256": "898e91eea61de5776d3d465357a1479b5d1a2165fb825e21d89e4b88203c61de",
+  "execution": {
+    "status": "completed",
+    "exit_code": 0,
+    "device": "local_cpu",
+    "rows": 74304,
+    "finite": true,
+    "original_artifact": "experiments/policy_update_backpressure/results/phase_pilot_20260901/trajectories.json",
+    "original_bytes": 52336350,
+    "original_sha256": "cbc1e1ad3c54fb52a9a7a7a126c5367eaa873d9c6d7e3a2ba91aa83919801611",
+    "summary_sha256": "7a829158424a5a8e1856feb8307b97f0c6ca5b23d8364984d8084a907cb748db"
+  },
+  "reproduction": {
+    "status": "reproducible",
+    "exit_code": 0,
+    "reproduction_artifact": "experiments/policy_update_backpressure/results/phase_pilot_20260901_reproduction/trajectories.json",
+    "reproduction_bytes": 52336350,
+    "reproduction_sha256": "cbc1e1ad3c54fb52a9a7a7a126c5367eaa873d9c6d7e3a2ba91aa83919801611",
+    "summary_sha256": "7a829158424a5a8e1856feb8307b97f0c6ca5b23d8364984d8084a907cb748db",
+    "byte_exact": true
+  },
+  "phase_summary": {
+    "low": {
+      "geometric_regret_ratio": 1.011977026352406,
+      "median_regret_gain": -0.009560990286129778,
+      "fraction_cells_five_percent": 0.0,
+      "geometric_gradient_ratio": 1.0004011464028373,
+      "median_acceptance_rate": 0.5471813456912964
+    },
+    "transition": {
+      "geometric_regret_ratio": 1.144500048399948,
+      "median_regret_gain": -0.03597362115745473,
+      "fraction_cells_five_percent": 0.0,
+      "geometric_gradient_ratio": 2090.294334486054,
+      "median_acceptance_rate": 0.4825943787018832
+    },
+    "high": {
+      "geometric_regret_ratio": 1.196085110011464,
+      "median_regret_gain": -0.20494346585678236,
+      "fraction_cells_five_percent": 0.0,
+      "geometric_gradient_ratio": 2.170837925956725,
+      "median_acceptance_rate": 0.4655770386397655
+    }
+  },
+  "complexity": {
+    "operations_per_event_n3": 22.446382190662163,
+    "operations_per_event_n5": 43.679942438236836,
+    "n5_to_n3_ratio": 1.9459680436345759,
+    "registered_max_ratio": 1.7166666666666668
+  },
+  "gate_results": {
+    "g1_complete_finite": true,
+    "g2_high_geometric_regret_ratio": false,
+    "g3_high_fraction_cells_five_percent": false,
+    "g4_transition_geometric_regret_ratio": false,
+    "g5_low_geometric_regret_ratio": true,
+    "g6_phase_gain_strict_order": false,
+    "g7_high_acceptance_rate": true,
+    "g8_high_final_gradient_ratio": false,
+    "g9_vectorized_complexity": false,
+    "g10_pub_no_harmful_steps": true,
+    "g11_reproduction_exact": true,
+    "g12_seed_and_provenance_freeze": true
+  },
+  "gates_passed": 6,
+  "gates_total": 12,
+  "decision": "pilot_failure_stop_formal_and_gpu",
+  "formal_authorized": false,
+  "gpu_authorized": false,
+  "interpretation": "The exact per-event safety certificate prevents harmful accepted steps but its myopic worst-case debt penalty is too conservative to improve finite-horizon wall-clock regret over the strong cellwise comparator envelope. The proposed high-load performance bridge is not empirically supported by this executable controller."
+}

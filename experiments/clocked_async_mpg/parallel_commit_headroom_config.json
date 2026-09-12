@@ -1,0 +1,15 @@
+{
+  "artifact_id": "LPC-DEVELOPMENT-HEADROOM-20260903",
+  "development_seeds": [19031, 19037, 19051, 19069],
+  "agent_counts": [4, 6],
+  "interaction_strengths": [0.0, 0.25, 0.75, 1.5],
+  "anisotropies": [1.0, 5.0],
+  "service_profiles": ["balanced", "two_tier", "skewed"],
+  "horizon": 80,
+  "step_cap": 0.25,
+  "fixed_scale_grid": [0.1, 0.2, 0.35, 0.5, 0.7, 1.0],
+  "tradeoff": 4.0,
+  "risk_budget": 0.02,
+  "scope": "deterministic development only; no confirmation or formal seeds",
+  "stopping_rule": "Failure of either oracle headroom gate stops this candidate before sampled learning or GPU work."
+}

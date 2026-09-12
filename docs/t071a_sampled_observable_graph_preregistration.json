@@ -1,0 +1,134 @@
+{
+  "experiment_id": "T-071A-sampled-observable-nonstationary-graph-pilot",
+  "classification": "sampled CPU pilot; design evidence only; not formal evidence",
+  "parent_commit": "57e31f1",
+  "source_experiment": {
+    "id": "T-070A-exact-nonstationary-collaboration-graph-scan",
+    "cells_sha256": "CF00672BBE4F58155C32E858B9E9ABA3FB5C42EC711A9A58B9B414D5668C0B7F",
+    "role": "strong static comparator identity only; source outcomes are forbidden controller inputs"
+  },
+  "model": {
+    "agents": 4,
+    "patterns": {
+      "A": [-1.0, -1.0, 1.0, 1.0],
+      "B": [-1.0, 1.0, -1.0, 1.0]
+    },
+    "curvature": 1.0,
+    "gain": 0.04,
+    "blocks": 24,
+    "learning_steps_per_block": 10,
+    "decision_blocks": [0, 4, 8, 12, 16, 20],
+    "probe_steps_per_decision": 4,
+    "probe_samples_are_learning_updates": false
+  },
+  "grid": {
+    "schedule_family": ["stationary", "single_switch", "alternating"],
+    "target_scale": [0.1, 0.3, 0.6],
+    "initial_common_parameter": [0.5, 1.5],
+    "noise_scale": [0.1, 0.5],
+    "spatial_correlation": [0.0, 0.9],
+    "temporal_correlation": [0.0, 0.9],
+    "delay": [0, 1, 3]
+  },
+  "actions": {
+    "alpha": [0.5, 1.0],
+    "catalogue": "local plus each of three single donors at each registered nonzero alpha",
+    "actions_per_recipient": 7,
+    "static_graphs": 2401
+  },
+  "probe": {
+    "steps_per_decision": 4,
+    "selection_steps": 2,
+    "validation_steps": 2,
+    "samples_are_learning_updates": false,
+    "selection_rule": "minimize squared distance from candidate model to the selection-half recipient fingerprint",
+    "screen_rule": "accept only when validation-half empirical squared loss is no larger than the same-data local shadow",
+    "uses_disjoint_halves": true
+  },
+  "budget": {
+    "environment_transitions": 240,
+    "message_units": 18,
+    "probe_message_units_per_decision": 2,
+    "mixing_message_units_per_decision": 1
+  },
+  "comparators": [
+    "local_no_probe",
+    "charged_shadow",
+    "t070_cellwise_best_static_graph",
+    "observable_crossfit_controller",
+    "charged_clairvoyant_dynamic_oracle",
+    "full_sharing"
+  ],
+  "pilot_seeds": [
+    1808804502,
+    2863024076,
+    2950424385,
+    3476054506,
+    859049474,
+    2088432960,
+    4057090488,
+    4197492090,
+    3445129534,
+    1554091691,
+    1360135080,
+    2498757706,
+    1598408979,
+    2984591295,
+    3736052005,
+    2446090982,
+    2759634938,
+    1796341307,
+    702779833,
+    3081155260,
+    3689771675,
+    1151854685,
+    2094958580,
+    1636281357,
+    830070239,
+    3490259395,
+    3512698917,
+    2341267830,
+    2814696786,
+    748652165,
+    4244158386,
+    3723470981
+  ],
+  "analysis": {
+    "primary_metric": "cell-mean personalized parameter MSE averaged over 24 blocks",
+    "primary_population": "288 nonstationary cells",
+    "common_random_numbers": true,
+    "strong_static_graph": "frozen T-070A exact best static graph, simulated with all 240 transitions as learning updates",
+    "uses_t070_outcomes_for_controller": false
+  },
+  "mandatory_gates": {
+    "S1": "all trajectories are finite, use exactly 240 environment transitions, at most 18 message units, and exactly 168 candidate scores",
+    "S2": "complete coverage of 432 cells, 32 seeds, and 13824 endpoints",
+    "S3": "observable controller improves aggregate geometric cumulative risk over the strong static graph by at least 5% on nonstationary cells",
+    "S4": "observable controller strictly improves at least 55% of nonstationary cells",
+    "S5": "observable controller improves both nonstationary schedule families by at least 2%",
+    "S6": "observable controller has nonnegative aggregate improvement in every delay group",
+    "S7": "observable controller is no worse than its charged shadow in aggregate and has ratio at most 1.05 in at least 90% of nonstationary cells",
+    "S8": "observable controller CVaR90 geometric ratio to strong static is at most 0.97",
+    "S9": "observable controller captures at least 35% of the charged clairvoyant oracle improvement over strong static",
+    "S10": "the observable graph changes at at least 60% of registered schedule-change boundaries",
+    "S11": "stationary-control observable-to-static geometric ratio is at most 1.10",
+    "S12": "a clean rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 432,
+    "nonstationary_cells": 288,
+    "pilot_seeds": 32,
+    "endpoints": 13824,
+    "policy_trajectories": 82944,
+    "recommended_hardware": "local CPU",
+    "gpu": false,
+    "hpc4": false
+  },
+  "authorization": {
+    "execute_only_after_independent_commit": true,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

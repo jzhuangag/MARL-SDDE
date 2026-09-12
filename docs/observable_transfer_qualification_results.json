@@ -1,0 +1,63 @@
+{
+  "date": "2026-08-31",
+  "parent_commit": "8a488b84469516cf1250af0ce9d096480b500ef6",
+  "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/observable_transfer_reference.py",
+  "replay_stdout_byte_identical": true,
+  "H64_n128_confidence": {
+    "delta": 0.01,
+    "entries": 2,
+    "gram_radius": 4.895493661361633,
+    "linear_radius": 195.81974645446536,
+    "return_bias_radius": 10.98778822493605
+  },
+  "H64_n128_cost": {
+    "QP_time_order": "O(k^3 + I*(k^2 + k*log(k))) for I projected-gradient iterations",
+    "core_mutable_numeric_scalars": 4,
+    "data_contract": "fresh independent conditional simulator/reset replicates; not a single uncontrolled continuing trajectory",
+    "expected_forward_TD_steps": 4032,
+    "expected_probe_transitions": 8128,
+    "initial_donor_scalars": 1,
+    "reset_requests": 256,
+    "time_order_dense_features": "O(n*(H*d*k + L*d + k^2)); not horizon-independent",
+    "time_order_tabular": "O(n*(d*k + H*k + L + k^2)); excludes external reset/communication latency",
+    "worst_probe_transitions": 12160
+  },
+  "decision": {
+    "cheap_long_horizon_final_candidate": "reject_this_direct_probe_implementation",
+    "formal_authorized": false,
+    "general_impossibility_claim": false,
+    "gpu_authorized": false,
+    "new_efficacy_pilot_authorized": false,
+    "observable_reference_contract": "qualified_with_fresh_reset_access",
+    "projected_only_recursion": "rejected_without_invariance_or_leakage_control"
+  },
+  "estimated_finite_return_contrast": -0.36471799447551995,
+  "exact_finite_return_contrast": -0.3647179944755201,
+  "exact_infinite_value_contrast": -0.3941572669235203,
+  "identity_residual": 1.6653345369377348e-16,
+  "kind": "exact_observable_estimator_qualification_not_efficacy",
+  "mean_G": [
+    [
+      0.2180492554240002,
+      -0.2612469923840003
+    ],
+    [
+      -0.2612469923840003,
+      0.4503331911680003
+    ]
+  ],
+  "mean_g": [
+    0.286971588352,
+    -0.7073492661119999
+  ],
+  "probability_mass": 1.0000000000000007,
+  "projection_closure": {
+    "exact_missed_leakage": 0.08100000000000002,
+    "missed_leakage": 0.08099999999999996,
+    "naive_closed_projected_recursion": 2,
+    "scope": "counterexample to projection-only closure, not to all matrix-free estimators",
+    "true_projected_two_step_risk": 2.081
+  },
+  "target_bias_absolute": 0.029439272448000375,
+  "target_bias_bound": 0.34019999999999995
+}

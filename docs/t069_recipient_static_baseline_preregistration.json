@@ -1,0 +1,53 @@
+{
+  "experiment_id": "T-069-recipient-specific-static-baseline-audit",
+  "classification": "exact-moment comparator audit; not sampled or formal evidence",
+  "parent_commit": "07db085",
+  "source_experiment": {
+    "id": "T-068A-exact-shadow-anchored-mixing-phase",
+    "cells_sha256": "F79F9D34BEA89EEDD243E3DB555E51133CD29227DE2A9CC05D551D0A0DA99BD8",
+    "validation_decision": "mandatory_gate_failure_stop_sampled"
+  },
+  "static_class": {
+    "agents": 4,
+    "alpha": [0.0, 0.1, 0.25, 0.5, 0.75, 1.0],
+    "vectors": 1296,
+    "time_invariant": true,
+    "recipient_specific": true,
+    "sensing_cost": 0,
+    "decision_blocks": [3, 7, 11, 15, 19, 23]
+  },
+  "analysis": {
+    "grid": "exactly the 648 frozen T-068A cells",
+    "primary_comparison": "fully charged T-068A dynamic safe oracle divided by the cellwise best recipient-specific static vector",
+    "scalar_consistency": "the common-alpha subset must reproduce every T-068A strong-fixed risk",
+    "uses_sampled_outcome": false
+  },
+  "mandatory_gates": {
+    "Q1": "all 648 cells and 839808 evaluated static-vector risks are finite",
+    "Q2": "the common-alpha subset reproduces every T-068A strong-fixed risk within 1e-10 relative tolerance",
+    "Q3": "the recipient-specific vector oracle is no worse than the common-alpha oracle in every cell",
+    "Q4": "the fully charged dynamic safe oracle improves aggregate geometric risk over the recipient-specific static oracle by at least 3%",
+    "Q5": "the fully charged dynamic safe oracle strictly improves at least 40% of cells",
+    "Q6": "dynamic safe mixing has nonnegative aggregate improvement in at least three of four heterogeneity groups",
+    "Q7": "dynamic safe mixing has nonnegative aggregate improvement in every registered delay group",
+    "Q8": "at least eight distinct recipient-specific static vectors are selected",
+    "Q9": "the frozen T-068A source hash and 648-cell identity are exact",
+    "Q10": "a clean rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 648,
+    "vectors_per_cell": 1296,
+    "evaluated_risks": 839808,
+    "output_rows": 648,
+    "recommended_hardware": "local CPU",
+    "gpu": false,
+    "hpc4": false
+  },
+  "authorization": {
+    "execute_only_after_independent_commit": true,
+    "sampled_pilot": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

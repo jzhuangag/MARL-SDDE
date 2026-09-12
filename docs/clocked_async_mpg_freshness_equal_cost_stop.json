@@ -1,0 +1,38 @@
+{
+  "scope": "development-only equal-cost falsification smoke",
+  "upstream_harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "runner_sha256": "5c15c488d3b0e1eeaf4765eda657fba43013fa777b6b6f07d34a489fa16482c2",
+  "summary_sha256": "e40ba2bd479ad9c52d6df86d846a942c385cfc4a945032ccd0e1bd5dc65fc9d2",
+  "design": {
+    "seed": 4901,
+    "agents": 6,
+    "service_profile": "heterogeneous",
+    "trajectories_per_estimate": 4,
+    "episode_length": 25,
+    "actor_transition_budget": 61200,
+    "modes": [
+      "lsff",
+      "never_refresh",
+      "always_refresh",
+      "always_extra_birth"
+    ]
+  },
+  "mean_final_return": {
+    "lsff": -250.8456264699047,
+    "never_refresh": -243.58462652765502,
+    "always_refresh": -243.65549233721921,
+    "always_extra_birth": -245.4298762295246
+  },
+  "lsff_return_difference": {
+    "versus_never": -7.2609999422496685,
+    "versus_always_refresh": -7.190134132685472,
+    "versus_always_extra_birth": -5.415750240380078
+  },
+  "lsff_bias_fraction": 0.018560346471557,
+  "lsff_refresh_fraction": 0.20481927710843373,
+  "all_modes_exact_actor_budget_utilization": true,
+  "interpretation": "ordinary Monte Carlo variance still dominates strategic staleness; neither freshness nor equal-cost birth batching produces a positive learning result in this smoke",
+  "decision": "stop seed expansion for freshness-only MPE; do not preregister confirmation or request GPU",
+  "formal_evidence": false,
+  "gpu_authorized": false
+}

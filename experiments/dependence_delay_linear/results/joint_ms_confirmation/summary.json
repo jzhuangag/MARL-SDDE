@@ -1,0 +1,94 @@
+{
+  "config": {
+    "agent_counts": [
+      16,
+      32
+    ],
+    "base_seed": 20270130,
+    "bootstrap_draws": 20000,
+    "bootstrap_seed": 20270730,
+    "checkpoints": [
+      250,
+      500,
+      1000,
+      2000,
+      4000
+    ],
+    "correlations": [
+      0.0,
+      0.9
+    ],
+    "grid_steps": [
+      0.005,
+      0.007632145998180043,
+      0.01164993050750713,
+      0.01778279410038923,
+      0.027144176165949066,
+      0.04143366309976846,
+      0.0632455532033676,
+      0.096539859156753,
+      0.1473612599456155,
+      0.2249365300761397,
+      0.3433496875730229,
+      0.524098988797363,
+      0.8
+    ],
+    "max_delays": [
+      8,
+      32
+    ],
+    "num_seeds": 64
+  },
+  "environment": {
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]"
+  },
+  "experiment_id": "EXP-007D-joint-ms-confirmation",
+  "gates": {
+    "accounting_determinism_numerical_validity": {
+      "divergence_threshold": 1000000000000.0,
+      "expected_runs": 9216,
+      "observed_runs": 9216,
+      "pass": true,
+      "reproducibility": "PENDING_EXTERNAL_RERUN"
+    },
+    "analytic_participation_saturation": {
+      "independent_curvature_drop_q16_to_q32": 0.22460994289175495,
+      "pass": true,
+      "rho0p9_curvature_drop_q16_to_q32": 0.003179667625736071,
+      "rho0p9_to_rho0_curvature_inflation": {
+        "16": 7.066215286764561,
+        "32": 9.084133857802929
+      }
+    },
+    "correlation_adaptation_retains_speed": {
+      "cells_at_least_fourfold_step": 4,
+      "cells_no_slower_than_worstcase": 4,
+      "pass": true
+    },
+    "correlation_awareness_value": {
+      "pass": true,
+      "smallest_lower_99_paired_ratio": 8.192756021096443
+    },
+    "delay_awareness_value": {
+      "pass": true,
+      "smallest_lower_99_paired_ratio": 1.1103484723719228
+    },
+    "joint_mean_square_contraction": {
+      "crossing_fraction": 0.0,
+      "largest_upper_99_bootstrap_mean": 0.6492418678848999,
+      "pass": true
+    },
+    "nonvacuous_tightness": {
+      "pass": true,
+      "smallest_joint_to_useful_grid_ratio": 0.5454360790377736
+    },
+    "statistical_overall": {
+      "criterion": "all seven statistical/accounting gates pass; final verdict also requires external exact reproduction",
+      "pass": true
+    }
+  },
+  "status": "PENDING_REPRODUCTION"
+}

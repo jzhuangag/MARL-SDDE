@@ -1,0 +1,40 @@
+{
+  "artifact": "signed_policy_graph_development_v1",
+  "date": "2026-09-06",
+  "status": "development_only",
+  "scientific_outcome_authorized": false,
+  "retained_candidate": "fixed_horizon_fixed_cap_signed_policy_version_graph",
+  "stopped_candidates": [
+    "online_horizon_unsigned_packet_debt",
+    "online_horizon_graph_fixed_cap"
+  ],
+  "complexity": "O(local_interaction_degree)",
+  "binding_budget_grid": {
+    "cells": 24,
+    "active_cells": 16,
+    "uncoupled_controls": 8,
+    "seeds": 4,
+    "launches": 80,
+    "active_median_terminal_gain": 0.10340610908150753,
+    "active_strict_terminal_gain_fraction": 1.0,
+    "active_minimum_terminal_gain": 0.05299443312597054,
+    "active_median_auc_gain": 0.014413523676823917,
+    "active_strict_auc_gain_fraction": 1.0,
+    "maximum_uncoupled_absolute_gain": 0.0,
+    "maximum_message_excess": -0.05937500000000001,
+    "maximum_environment_excess": 0.0,
+    "raw_sha256": "77F64A6D9D81F7974F257194239D9958C29A109663D42CD53AD2A83E12DC4DFA"
+  },
+  "nonbinding_grid": {
+    "cells": 32,
+    "seeds": 4,
+    "launches": 80,
+    "median_terminal_gain": 0.12318641822276016,
+    "strict_terminal_gain_fraction": 1.0,
+    "median_auc_gain": 0.017493999334613115,
+    "strict_auc_gain_fraction": 1.0,
+    "raw_sha256": "24482D363994CDB0A21CA852C246771DFD6D49933972EFE6E719DAA02A39175E"
+  },
+  "next_stage": "separate_exact_oracle_confirmation_preregistration",
+  "gpu_required": false
+}

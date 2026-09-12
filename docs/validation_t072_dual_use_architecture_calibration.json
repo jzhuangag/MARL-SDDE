@@ -1,0 +1,53 @@
+{
+  "experiment_id": "T-072-dual-use-graph-architecture-calibration",
+  "verification_status": "VERIFIED_DESIGN_CALIBRATION",
+  "decision": "C3_failure_stop_discrete_catalogue_and_do_not_preregister_T072A",
+  "provenance": {
+    "frozen_architecture_commit": "fceba7b520228d8cda3d4f521383588b87d70c66",
+    "source_t071a_endpoints_sha256": "1432FDBE403A2ADA3D4C1734BAB476AE0F47F4765491D33245FD76B4A26CE446",
+    "endpoints_sha256": "AF42D73EFEA5C0772662C410961DEEAEC66F5D27FC13CB103CE38DF347D38F4A",
+    "cells_sha256": "32B93F82C4595EAF9F0C540BFE0583C1C90A4E16E628B94CA14C54BCD3E25324",
+    "summary_sha256": "FAD178A6EC010D98660A7F4753E54DEB34605E595C100D49E9599A3942D54DA8",
+    "reproduction_byte_identical": true
+  },
+  "metrics": {
+    "nonstationary_improvement": 0.07674636181755146,
+    "nonstationary_strict_cell_fraction": 0.53125,
+    "single_switch_improvement": 0.046480413939075094,
+    "alternating_improvement": 0.10605162927123779,
+    "delay_0_improvement": 0.08898240012637848,
+    "delay_1_improvement": 0.08120022828754736,
+    "delay_3_improvement": 0.05981041195685921,
+    "stationary_ratio": 1.0840540856087264,
+    "accepted_nonlocal_rate": 0.2043879002700617,
+    "rollback_rate": 0.7787241994598766,
+    "mean_debt": 0.08923234742540516,
+    "max_debt": 3.920158227347779
+  },
+  "descriptive_criteria": {
+    "C1": true,
+    "C2": true,
+    "C3": false,
+    "C4": true,
+    "C5": true,
+    "C6": true,
+    "C7": true,
+    "C8": true
+  },
+  "phase_diagnosis": {
+    "target_scale_0_1_improvement": -0.062564,
+    "target_scale_0_3_improvement": 0.03103,
+    "target_scale_0_6_improvement": 0.23564,
+    "noise_scale_0_5_improvement": -0.001595,
+    "temporal_correlation_0_9_improvement": -0.004684
+  },
+  "authorization": {
+    "new_continuous_QP_architecture_audit": true,
+    "preregister_T072A": false,
+    "rerun_or_retune_T072": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

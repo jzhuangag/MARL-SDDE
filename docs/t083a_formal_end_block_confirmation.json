@@ -1,0 +1,88 @@
+{
+  "experiment_id": "T-083A-formal-causal-end-block-confirmation",
+  "classification": "independently seeded formal CPU confirmation",
+  "frozen_sources": {
+    "pilot_validation": "docs/validation_t082a_independent_end_block_pilot.json",
+    "pilot_validation_commit": "c2c47e3750b424de341c547a60b1968f904e0922",
+    "t080_cells_sha256": "434349484A23F0CBC8D2AE6FA20E90ED7AD90DC071E88EFDF7048E96D6C063B7",
+    "controller_sha256": "4EE4F31E18D55ED2162C34E8844B886A81AD45CC7607D8985433442CA57D1A2E",
+    "controller_changed_after_pilot": false,
+    "primary_population_changed_after_pilot": false,
+    "gates_changed_after_pilot": false
+  },
+  "controller": {
+    "decision_timing": "after all ten local updates in a block; action affects the next block",
+    "all_steps_are_learning_updates": true,
+    "extra_probe_transitions": 0,
+    "fingerprint_message_units_per_decision": 1,
+    "mixing_message_units_per_decision": 1,
+    "drift_weight": 4.0,
+    "variance_weight": 1.0,
+    "safety_slack": 0.0,
+    "certificate_delta": 0.1,
+    "rho_cap": 0.95
+  },
+  "primary_identifiable_class": {
+    "schedule_family": ["single_switch", "alternating"],
+    "target_scale": [0.3, 0.6],
+    "temporal_correlation": [0.0],
+    "other_registered_factors": "all",
+    "cells": 96
+  },
+  "formal_seeds": [
+    1665638098, 1524291097, 2004565286, 1398532508, 97548315, 1340827629,
+    1279011462, 661872824, 1073659043, 290027190, 1650002202, 97284385,
+    2036454655, 771503224, 1963493956, 1533180631, 1194365663, 44213906,
+    1389225677, 856568669, 1130742589, 2128448031, 1972668814, 1063652983,
+    1373015461, 1327711088, 1083349560, 467986376, 2010768403, 1176216806,
+    1030884875, 740594645, 44800230, 1392540155, 1185975305, 868951878,
+    1260150432, 1395025044, 1094592305, 2103233063, 2009999228, 1761638693,
+    1732870349, 1027910403, 1272900946, 342733129, 277463622, 784246810,
+    826366818, 840493997, 1495657904, 697166709, 1170698872, 2102100983,
+    1093262014, 1518160900, 2035401416, 838521803, 2128942665, 1205493189,
+    437795322, 672042298, 1982434456, 1447439835, 460677953, 880904234,
+    741431742, 36646364, 238478518, 2108089721, 601180413, 1487019631,
+    1320569340, 1548515176, 130139935, 474169849, 188385977, 364162966,
+    1072494003, 1989706374, 1075723320, 1277740509, 790087238, 1257981306,
+    334688202, 234671718, 1712071107, 401797799, 1614385091, 294353456,
+    618639246, 1388947863, 1129604321, 919461822, 1032469017, 270339241,
+    800538263, 1642573660, 1784280743, 1199459778, 1590803790, 1846808809,
+    1613266218, 73786648, 60623538, 1401133398, 159609281, 1671501244,
+    1330923572, 2144208178, 1285203566, 1141540369, 1210179020, 883384756,
+    1886909646, 827646272, 107880879, 967538349, 1400362301, 2112848751,
+    1402086748, 873048155, 411964931, 1923800829, 710820744, 1271120770,
+    198395633, 170217358
+  ],
+  "seed_rule": "first 128 distinct 31-bit SHA-256 prefixes of T083A-formal-confirmation-i not present in design or pilot registries",
+  "workload": {
+    "cells": 432,
+    "primary_cells": 96,
+    "formal_seeds": 128,
+    "endpoints": 55296,
+    "workers": 8,
+    "chunksize": 16,
+    "hard_timeout_minutes": 35
+  },
+  "mandatory_gates": {
+    "F1": "all endpoints and cells are finite and complete",
+    "F2": "primary improvement at least 10 percent against continuous static",
+    "F3": "strict primary improvement in at least 80 percent of cells",
+    "F4": "each primary schedule family improves at least 8 percent",
+    "F5": "each delay group improves at least 5 percent",
+    "F6": "primary improvement at least 10 percent over local learning",
+    "F7": "stationary controller/local ratio at most 1.06",
+    "F8": "primary ratio below low-signal and high-temporal boundary ratios",
+    "F9": "240 learning transitions, zero extra probes, at most 18 messages",
+    "F10": "certificate directions match temporal correlation",
+    "F11": "positive collaboration, finite debt, mean QP iterations at most 35",
+    "F12": "wall clock at most 35 minutes",
+    "F13": "endpoints.csv, cells.csv, and summary.json byte-identical on clean reproduction",
+    "F14": "complete repository experiment tests pass"
+  },
+  "authorization": {
+    "run_local_cpu_formal_after_independent_commit": true,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "experiment_id": "T-045A",
+  "kind": "final_outcome_free_pr_averaged_mixing_scaled_standard_task_scan",
+  "parent_commit": "9cd8e8c",
+  "scientific_execution_authorized_after_prereg_commit": true,
+  "sampled_learning_trajectory_authorized": false,
+  "formal_or_gpu_authorized": false,
+  "inherits_task_contract_from": "T-043A",
+  "software": {
+    "gymnasium": "1.0.0",
+    "tasks": {
+      "frozenlake4x4": {
+        "environment_id": "FrozenLake-v1",
+        "kwargs": {"map_name": "4x4", "is_slippery": true},
+        "feature_dimension": 4
+      },
+      "cliffwalking": {
+        "environment_id": "CliffWalking-v0",
+        "kwargs": {},
+        "feature_dimension": 8
+      }
+    },
+    "policy": "uniform_random_actions",
+    "terminal_handling": "zero_bootstrap_then_exact_initial_distribution_reset",
+    "discount": 0.9
+  },
+  "estimator": {
+    "name": "tail_Polyak_Ruppert_average",
+    "burn_in_fraction": 0.5,
+    "step_formula": "eta = multiplier * (1 - certified_SLEM) / projected_drift_operator_norm",
+    "mixing_step_multiplier": [0.1, 0.25, 0.5, 1.0],
+    "mixing_information": "exact public task kernel certificate; unrestricted unknown mixing remains forbidden by T-017"
+  },
+  "grid": {
+    "rho": [0.0, 0.1, 0.9, 1.0],
+    "delay": [0, 1, 3],
+    "q": [1, 4, 16],
+    "message_overhead": 2,
+    "budget_rays": {
+      "message": {
+        "message_budget": [192, 384, 768],
+        "environment_budget": 1000000
+      },
+      "environment": {
+        "message_budget": 1000000,
+        "environment_budget": [64, 128, 256]
+      }
+    }
+  },
+  "analysis": {
+    "risk": "T-044 exact scalar tail-PR finite-horizon risk",
+    "tie_break": ["risk", "q", "mixing_step_multiplier"],
+    "strong_fixed_q_group": ["task", "ray", "budget", "delay"],
+    "strong_fixed_q_uses_cellwise_best_registered_step": true,
+    "adaptation_ceiling_population": "message-binding cells only",
+    "no_seeds_or_confidence_intervals": true,
+    "T043A_results_as_inputs": false
+  },
+  "mandatory_gates": {
+    "M1": "both inherited public task kernels and exact projected-TD constants are valid and unchanged",
+    "M2": "all 1728 registered rows are finite, stable, and have a nonempty PR averaging window",
+    "M3": "under rho=0 message binding, q=16 improves risk over q=1 by at least 5 percent in at least 80 percent of cells",
+    "M4": "under rho=1 message binding, q=1 is optimal in at least 90 percent of cells",
+    "M5": "under rho=1 environment binding, oracle participation value over q=1 is at most 1 percent in every cell",
+    "M6": "best-q support contains q=1 and q=16 for each task",
+    "M7": "message-cell oracle versus strongest fixed-q aggregate geometric improvement is at least 5 percent",
+    "M8": "the message-cell oracle strictly improves at least 40 percent of cells",
+    "M9": "no T-043A result row, sampled trajectory, seed, confidence interval, pilot, formal run, or GPU job is used",
+    "M10": "a clean rerun is byte-identical and all configuration, runner, core, task-kernel, rows, and summary hashes are recorded"
+  },
+  "stop_rule": "This is the final standard-task feasibility attempt. Any failed mandatory gate forbids EXP-020B and stops further standard-task redesign under the ICML mainline.",
+  "expected_workload": {
+    "scenarios": 144,
+    "actions_per_scenario": 12,
+    "rows": 1728,
+    "maximum_scalar_horizon": 256,
+    "recommended_hardware": "local CPU",
+    "gpu": false
+  }
+}

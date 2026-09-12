@@ -1,0 +1,53 @@
+{
+  "active_sensing_survives": false,
+  "artifact": {
+    "path": "experiments/clocked_async_mpg/results/lco_u0_controlled_sensing_upper_bound/summary.json",
+    "sha256": "fa961fc4062b7ed52286c7d718fe2a015954e89d38442deb60c507aa71569fef",
+    "size_bytes": 132732
+  },
+  "config_sha256": "ca199339a419ef66e556769fdf4eea7e0dc3d0771fa19770b417f7d7813f523a",
+  "decision": "stop_action_dependent_only_sensing_interface",
+  "execution_commit": "263ef8b",
+  "formal_evidence": false,
+  "gates": {
+    "U1_solver_and_finite": true,
+    "U2_flow": true,
+    "U3_normalization": true,
+    "U4_calibration": true,
+    "U5_age_convergence": true,
+    "U6_ordering": true,
+    "U7_mean_headroom": true,
+    "U8_broad_headroom": true,
+    "U9_low_persistence": true,
+    "U10_low_budget": true,
+    "U11_capture": false,
+    "U12_budget": true,
+    "U13_stationary_potential": true,
+    "U14_analytic_only": true
+  },
+  "maxima": {
+    "age_convergence_gap": 3.1086244689504383e-15,
+    "budget_overshoot": 0.0,
+    "calibration_residual": 2.1094237467877974e-15,
+    "flow_residual": 2.498001805406602e-16,
+    "normalization_residual": 3.9968028886505635e-15,
+    "stationary_potential_call_rate": 0.0
+  },
+  "metrics": {
+    "dynamic_fraction_above_0_02": 0.75,
+    "low_budget_mean_upper_gain": 0.024013449535210212,
+    "low_persistence_mean_upper_gain": 0.032497955296965184,
+    "mean_dynamic_upper_gain": 0.04274746233569665,
+    "median_exact_headroom_capture": 0.5592615900985947
+  },
+  "reanalysis": {
+    "semantic_summary_exact": true,
+    "unique_cells": 120
+  },
+  "scope": {
+    "analytic_cells": 120,
+    "dynamic_cells": 32,
+    "linear_programs": 360,
+    "trajectory_seeds": 0
+  }
+}

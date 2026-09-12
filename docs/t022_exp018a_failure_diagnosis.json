@@ -1,0 +1,16 @@
+{
+  "experiment": "EXP-018A",
+  "status": "post_hoc_diagnosis_not_a_gate",
+  "by_rho": {
+    "0.0": {"monotone_path_fraction": 1.0, "calibration_median_relative_error": 0.1567002287141076, "calibration_p90_relative_error": 0.41773087165581296, "adjacent_direction_fractions": {"1>=4": 1.0, "4>=16": 1.0, "16>=32": 1.0}},
+    "0.5": {"monotone_path_fraction": 0.5546875, "calibration_median_relative_error": 0.11150951296742928, "calibration_p90_relative_error": 0.2822526079327972, "adjacent_direction_fractions": {"1>=4": 0.9921875, "4>=16": 1.0, "16>=32": 0.5546875}},
+    "0.9": {"monotone_path_fraction": 0.4453125, "calibration_median_relative_error": 0.024753057982071613, "calibration_p90_relative_error": 0.07379895609934572, "adjacent_direction_fractions": {"1>=4": 0.9921875, "4>=16": 0.8359375, "16>=32": 0.59375}}
+  },
+  "diagnosis": {
+    "G5": "finite-sample q1 variance spread from rho-specific iid source assignments; frozen median threshold missed by 0.027756",
+    "G6": "strict ordering includes theoretically near-tied contrasts below the 5 percent practical-effect scale",
+    "reproduction": "summary embeds absolute input path; scientific CSV is byte-identical"
+  },
+  "changes_to_preregistered_decision": false,
+  "formal_authorized": false
+}

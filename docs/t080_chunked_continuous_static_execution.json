@@ -1,0 +1,39 @@
+{
+  "experiment_id": "T-080-chunked-execution-of-T-079",
+  "classification": "execution-only recoverability wrapper; scientific configuration unchanged",
+  "source": {
+    "t079_config": "docs/t079_continuous_static_headroom_preregistration.json",
+    "t079_config_sha256": "97932A7114D98516A6E530B8B2D28E8D97BAFAAC291EF900AEBB7FD09FE98E19",
+    "t079_frozen_commit": "be8a4de4b59ef8db1fae9a16ea156fc1fc844389",
+    "t079_execution_status": "no scientific output"
+  },
+  "execution": {
+    "ordered_cells": 432,
+    "chunks": 12,
+    "cells_per_chunk": 36,
+    "workers_per_chunk": 8,
+    "chunks_run_sequentially": true,
+    "atomic_chunk_write": true,
+    "partial_chunk_interpretation_forbidden": true,
+    "scientific_function": "run_t079_continuous_static_headroom.run_cell",
+    "analysis_function": "run_t079_continuous_static_headroom.analyze"
+  },
+  "integrity_gates": {
+    "E1": "T-079 configuration hash and frozen commit match",
+    "E2": "the 12 ordered chunks are pairwise disjoint and cover all 432 cells exactly once",
+    "E3": "every completed chunk contains exactly 36 unique cells and a matching SHA-256 manifest",
+    "E4": "merge contains all 432 cells in the original deterministic order",
+    "E5": "final summary is produced only by the unchanged T-079 analyzer",
+    "E6": "clean chunked rerun is byte-identical"
+  },
+  "authorization": {
+    "run_local_cpu_chunks": true,
+    "interpret_partial_chunks": false,
+    "change_t079_science": false,
+    "sampled_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

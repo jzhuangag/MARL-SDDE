@@ -1,0 +1,194 @@
+{
+  "absorbing_state": {
+    "absorbing_by_induction": true,
+    "all_cells_select_q1": true,
+    "all_same_b_q1_weak_domination": true,
+    "pairwise_trials_added_at_q1": 0,
+    "registered_static_cells": 24
+  },
+  "adaptation_value_descriptive_screen": {
+    "passes": true,
+    "rule": "at least two cellwise q optima and strict-majority rho, delay, and budget directions; magnitude reported separately without a post-hoc threshold"
+  },
+  "aggregate_policy_metrics": {
+    "always_all": {
+      "cvar90_terminal_prediction_mse": 942.828466796875,
+      "geometric_terminal_prediction_mse": 173.36525935235156,
+      "mean_agent_transitions": 16368.0,
+      "mean_environment_steps": 511.5,
+      "mean_message_bytes": 335228864.0,
+      "mean_wall_seconds": 2.2061232782143634
+    },
+    "fixed_q16": {
+      "cvar90_terminal_prediction_mse": 800.1770955403646,
+      "geometric_terminal_prediction_mse": 127.36707813388689,
+      "mean_agent_transitions": 11168.0,
+      "mean_environment_steps": 698.0,
+      "mean_message_bytes": 251629184.0,
+      "mean_wall_seconds": 2.342012112564084
+    },
+    "fixed_q32": {
+      "cvar90_terminal_prediction_mse": 942.828466796875,
+      "geometric_terminal_prediction_mse": 173.36525935235156,
+      "mean_agent_transitions": 16368.0,
+      "mean_environment_steps": 511.5,
+      "mean_message_bytes": 335228864.0,
+      "mean_wall_seconds": 2.2077663984544214
+    },
+    "fixed_q4": {
+      "cvar90_terminal_prediction_mse": 36.777381896972656,
+      "geometric_terminal_prediction_mse": 33.860638686040176,
+      "mean_agent_transitions": 3974.0,
+      "mean_environment_steps": 993.5,
+      "mean_message_bytes": 138371096.0,
+      "mean_wall_seconds": 1.9270819705416216
+    },
+    "oracle_evaluation_only": {
+      "cvar90_terminal_prediction_mse": 915.8519368489583,
+      "geometric_terminal_prediction_mse": 166.53996082688107,
+      "mean_agent_transitions": 23718.63888888889,
+      "mean_environment_steps": 2504.3055555555557,
+      "mean_message_bytes": 151509677.9722222,
+      "mean_wall_seconds": 3.677186370243564
+    },
+    "single_agent": {
+      "cvar90_terminal_prediction_mse": 36.581913248697916,
+      "geometric_terminal_prediction_mse": 33.669194365138814,
+      "mean_agent_transitions": 1311.0,
+      "mean_environment_steps": 1311.0,
+      "mean_message_bytes": 110086652.0,
+      "mean_wall_seconds": 1.1491697650085877
+    }
+  },
+  "always_all_terminal_error_exactly_matches_fixed_q32": true,
+  "best_fixed_q_counts": {
+    "1": 23,
+    "16": 11,
+    "32": 18,
+    "4": 20
+  },
+  "best_fixed_q_counts_by_factor": {
+    "budget": {
+      "environment_binding": {
+        "1": 1,
+        "16": 11,
+        "32": 18,
+        "4": 6
+      },
+      "message_binding": {
+        "1": 22,
+        "4": 14
+      }
+    },
+    "delay_trace": {
+      "edge_jitter": {
+        "1": 7,
+        "16": 3,
+        "32": 6,
+        "4": 8
+      },
+      "wan_bursty": {
+        "1": 8,
+        "16": 5,
+        "32": 6,
+        "4": 5
+      },
+      "zero": {
+        "1": 8,
+        "16": 3,
+        "32": 6,
+        "4": 7
+      }
+    },
+    "mixing": {
+      "fast_regeneration": {
+        "1": 10,
+        "16": 2,
+        "32": 9,
+        "4": 15
+      },
+      "slow_regeneration": {
+        "1": 13,
+        "16": 9,
+        "32": 9,
+        "4": 5
+      }
+    },
+    "rho": {
+      "0.0": {
+        "1": 4,
+        "16": 3,
+        "32": 6,
+        "4": 11
+      },
+      "0.5": {
+        "1": 9,
+        "16": 4,
+        "32": 6,
+        "4": 5
+      },
+      "0.9": {
+        "1": 10,
+        "16": 4,
+        "32": 6,
+        "4": 4
+      }
+    },
+    "task": {
+      "acrobot": {
+        "1": 16,
+        "16": 11,
+        "4": 9
+      },
+      "cartpole": {
+        "1": 7,
+        "32": 18,
+        "4": 11
+      }
+    }
+  },
+  "cellwise_envelope_geometric_error": 33.11456634430467,
+  "cellwise_envelope_over_global_fixed_ratio": 0.9835271371563197,
+  "cellwise_envelope_relative_improvement": 0.016472862843680325,
+  "cvar90_two_seed_definition": "maximum of the two registered pilot-seed errors",
+  "evidence_status": "descriptive_post_pilot_audit_not_formal_evidence",
+  "exp017b_protocol_design_permitted": true,
+  "experiment": "T-019",
+  "future_gpu_pilot_design_condition_met": true,
+  "global_best_fixed_geometric_error": 33.669194365138814,
+  "global_best_fixed_policy": "single_agent",
+  "global_best_fixed_q": 1,
+  "gpu_execution_authorized": false,
+  "gpu_jobs_submitted": 0,
+  "input": {
+    "analysis_copy_sha256_verified": true,
+    "endpoint_rows_total": 1584,
+    "endpoint_rows_used": 864,
+    "policies": [
+      "single_agent",
+      "fixed_q4",
+      "fixed_q16",
+      "fixed_q32",
+      "always_all",
+      "oracle_evaluation_only"
+    ],
+    "sha256": "bc241c772d20b76c5f42f72bd8a5523bda2ba225e113811e695dd840007191f0",
+    "source_artifact": "/scratch/jzhuangag/exp017a-pilot-17a4c32/endpoints.csv"
+  },
+  "oracle_better_than_cellwise_best_fixed_cells": 5,
+  "oracle_over_cellwise_best_fixed_geometric_ratio": 5.029205549464309,
+  "phase_cells": 72,
+  "phase_direction": {
+    "budget_total_pairs": 36,
+    "delay_expected_nonincreasing_paths": 21,
+    "delay_total_paths": 24,
+    "environment_q_at_least_message_q_pairs": 36,
+    "environment_q_equal_message_q_pairs": 2,
+    "environment_q_strictly_above_message_q_pairs": 34,
+    "rho_expected_nonincreasing_paths": 22,
+    "rho_total_paths": 24
+  },
+  "phase_rows": 432,
+  "phase_transition_direction_supported_descriptively": true,
+  "pilot_seed_count_per_cell_arm": 2
+}

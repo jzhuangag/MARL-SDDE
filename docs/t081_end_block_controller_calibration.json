@@ -1,0 +1,68 @@
+{
+  "experiment_id": "T-081-causal-end-block-primal-dual-calibration",
+  "classification": "outcome-informed old-seed architecture calibration; not independent evidence",
+  "source": {
+    "t071_endpoints": "experiments/dependence_delay_linear/results/t071a_sampled_observable_graph_pilot/endpoints.csv",
+    "t071_endpoints_sha256": "1432FDBE403A2ADA3D4C1734BAB476AE0F47F4765491D33245FD76B4A26CE446",
+    "t080_cells": "experiments/dependence_delay_linear/results/t080_chunked_continuous_static_execution/cells.csv",
+    "t080_cells_sha256": "434349484A23F0CBC8D2AE6FA20E90ED7AD90DC071E88EFDF7048E96D6C063B7",
+    "reuse_all_old_seeds": true,
+    "new_scientific_seeds": false
+  },
+  "controller": {
+    "decision_timing": "after all ten local updates in a block; action affects the next block",
+    "all_steps_are_learning_updates": true,
+    "extra_probe_transitions": 0,
+    "fingerprint_message_units_per_decision": 1,
+    "mixing_message_units_per_decision": 1,
+    "drift_weight": 4.0,
+    "drift_weight_rule": "number of agents",
+    "variance_weight": 1.0,
+    "safety_slack": 0.0,
+    "certificate_delta": 0.1,
+    "rho_cap": 0.95,
+    "maximum_iterations_per_qp": 50,
+    "simplex_tolerance": 1e-7
+  },
+  "primary_identifiable_class": {
+    "schedule_family": ["single_switch", "alternating"],
+    "target_scale": [0.3, 0.6],
+    "temporal_correlation": [0.0],
+    "other_registered_factors": "all",
+    "selection_uses_t081_outcomes": false,
+    "theory_reason": "signal separated from zero and mixing bounded away from one"
+  },
+  "workload": {
+    "cells": 432,
+    "primary_cells": 96,
+    "old_design_seeds": 32,
+    "endpoints": 13824,
+    "workers": 8,
+    "chunksize": 16,
+    "hard_timeout_minutes": 12
+  },
+  "descriptive_gates": {
+    "C1": "all endpoints and cells are finite and complete",
+    "C2": "primary geometric cumulative-risk improvement at least 10 percent against the continuous static graph",
+    "C3": "strict primary improvement in at least 80 percent of cells",
+    "C4": "each primary schedule family improves at least 8 percent",
+    "C5": "each delay group improves at least 5 percent",
+    "C6": "primary controller improves at least 10 percent over local learning",
+    "C7": "stationary controller/local ratio at most 1.06",
+    "C8": "primary ratio is lower than both low-signal and high-temporal-correlation boundary ratios",
+    "C9": "exactly 240 learning transitions, zero extra probes, and at most 18 messages",
+    "C10": "rho upper increases and effective sample size decreases with temporal correlation",
+    "C11": "positive nonlocal collaboration, finite debt, and mean QP iterations at most 35",
+    "C12": "wall clock at most 12 minutes",
+    "C13": "clean reproduction is byte-identical",
+    "C14": "complete repository experiment tests pass"
+  },
+  "authorization": {
+    "run_old_seed_local_cpu_calibration_after_independent_commit": true,
+    "new_seed_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

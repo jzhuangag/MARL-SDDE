@@ -1,0 +1,46 @@
+{
+  "experiment_id": "PDSG-COMP-001",
+  "status": "frozen_before_execution",
+  "purpose": "Outcome-free local-CPU cost audit of a cross-policy alignment Hessian-vector product relative to an ordinary owner actor gradient.",
+  "scientific_exclusions": [
+    "no environment trajectory",
+    "no learning outcome",
+    "no PDSG-001 endpoint or seed",
+    "no GPU or HPC4",
+    "no claim about a specific MARL framework implementation"
+  ],
+  "runtime": {
+    "device": "cpu",
+    "torch_threads": 4,
+    "warmup_repetitions": 5,
+    "measured_repetitions": 20,
+    "dtype": "float32"
+  },
+  "model_grid": {
+    "agents": [4, 8, 16],
+    "hidden_widths": [64, 128],
+    "batch_sizes": [256, 1024],
+    "requested_degrees": [2, 4],
+    "observation_dimension": 24,
+    "action_dimension": 8,
+    "owner": 0,
+    "degree_rule": "min(requested_degree, agents - 1)"
+  },
+  "seeds": [76001, 76002, 76003],
+  "measurement": {
+    "baseline": "forward all actors, form the same smooth centralized interaction surrogate, and differentiate once with respect to owner parameters",
+    "alignment_hvp": "the baseline with create_graph plus one reverse derivative of the owner-gradient alignment scalar with respect to all eligible donor blocks",
+    "timing_order": "deterministic alternation of baseline-first and HVP-first repetitions",
+    "reported_units": "milliseconds per complete measured call",
+    "memory": "parameter and tensor sizes only; process RSS is not accepted as a peak-autograd-memory measurement"
+  },
+  "mandatory_gates": {
+    "C1": "all timings and derivative norms are finite and strictly positive",
+    "C2": "every donor block has a nonzero cross-policy alignment derivative",
+    "C3": "median across-configuration HVP-to-baseline time ratio is at most 4.0",
+    "C4": "maximum configuration HVP-to-baseline time ratio is at most 6.0",
+    "C5": "within each agents/width/batch cell, degree-4 HVP median time is at most 1.35 times degree-2 when both degrees are distinct",
+    "C6": "a clean same-machine rerun reproduces every configuration median within 15 percent; only authorized after C1-C5 pass"
+  },
+  "stopping_rule": "Any failure among C1-C5 stops clean reproduction and any claim that the estimator has acceptable low-complexity overhead. Thresholds, grid, repetition counts, and seeds may not change after the primary run."
+}

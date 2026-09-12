@@ -1,0 +1,156 @@
+{
+  "experiment": "EXP-013B",
+  "evidence_status": "preregistered_confirmation",
+  "all_gates_pass": false,
+  "gates": {
+    "all_finite": true,
+    "low_rho_large_q_upper_99_below_0_70": true,
+    "high_rho_small_q_upper_99_below_0_85": false,
+    "oracle_choice_shift": true,
+    "both_delays_preserve_direction_and_magnitude": false
+  },
+  "low_rho_q32_over_q1": {
+    "ratio": 0.06215755431275262,
+    "upper_99": 0.1119223874767819,
+    "num_seed_clusters": 32
+  },
+  "high_rho_q4_over_q32": {
+    "ratio": 0.831943914908557,
+    "upper_99": 1.293544071670733,
+    "num_seed_clusters": 32
+  },
+  "low_rho_ratios_by_delay": {
+    "0": 0.06744258376002862,
+    "8": 0.05728667768556967
+  },
+  "high_rho_ratios_by_delay": {
+    "0": 0.9087315715628829,
+    "8": 0.7616448016249889
+  },
+  "median_oracle_q_by_rho": {
+    "0.0": 32.0,
+    "0.25": 16.0,
+    "0.5": 16.0,
+    "0.9": 4.0
+  },
+  "oracle_choice_counts": [
+    {
+      "rho": 0.0,
+      "oracle_q": 1,
+      "count": 2
+    },
+    {
+      "rho": 0.0,
+      "oracle_q": 16,
+      "count": 7
+    },
+    {
+      "rho": 0.0,
+      "oracle_q": 32,
+      "count": 23
+    },
+    {
+      "rho": 0.25,
+      "oracle_q": 1,
+      "count": 2
+    },
+    {
+      "rho": 0.25,
+      "oracle_q": 4,
+      "count": 12
+    },
+    {
+      "rho": 0.25,
+      "oracle_q": 16,
+      "count": 7
+    },
+    {
+      "rho": 0.25,
+      "oracle_q": 32,
+      "count": 11
+    },
+    {
+      "rho": 0.5,
+      "oracle_q": 1,
+      "count": 5
+    },
+    {
+      "rho": 0.5,
+      "oracle_q": 4,
+      "count": 10
+    },
+    {
+      "rho": 0.5,
+      "oracle_q": 16,
+      "count": 8
+    },
+    {
+      "rho": 0.5,
+      "oracle_q": 32,
+      "count": 9
+    },
+    {
+      "rho": 0.9,
+      "oracle_q": 1,
+      "count": 13
+    },
+    {
+      "rho": 0.9,
+      "oracle_q": 4,
+      "count": 6
+    },
+    {
+      "rho": 0.9,
+      "oracle_q": 16,
+      "count": 5
+    },
+    {
+      "rho": 0.9,
+      "oracle_q": 32,
+      "count": 8
+    }
+  ],
+  "configuration": {
+    "num_seeds": 32,
+    "base_seed": 20270701,
+    "correlations": [
+      0.0,
+      0.25,
+      0.5,
+      0.9
+    ],
+    "delays": [
+      0,
+      8
+    ],
+    "agent_counts": [
+      1,
+      4,
+      16,
+      32
+    ],
+    "message_budget": 64000,
+    "server_overhead": 64,
+    "learning_rate": 0.03,
+    "reward_noise_standard_deviation": 1.0,
+    "teacher_seed": 20270522,
+    "bootstrap_replications": 20000,
+    "bootstrap_seed": 20270702
+  },
+  "environment": {
+    "python": "3.8.12",
+    "torch": "1.11.0+cpu",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "execution": {
+    "scheduler": "four_disjoint_eight_seed_cpu_chunks",
+    "chunk_directories": [
+      "experiments\\nonlinear_markov_td\\results\\realizable_td_confirmation_chunks\\chunk0",
+      "experiments\\nonlinear_markov_td\\results\\realizable_td_confirmation_chunks\\chunk1",
+      "experiments\\nonlinear_markov_td\\results\\realizable_td_confirmation_chunks\\chunk2",
+      "experiments\\nonlinear_markov_td\\results\\realizable_td_confirmation_chunks\\chunk3"
+    ]
+  }
+}

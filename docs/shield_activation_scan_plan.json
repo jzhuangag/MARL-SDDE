@@ -1,0 +1,17 @@
+{
+  "id": "shield-activation-analytic-audit-20260831",
+  "blocks": 16,
+  "block_lengths": [2, 8, 32],
+  "gains": [0.05, 0.2],
+  "temporal_correlations": [0.0, 0.5, 0.9],
+  "target_scales": [0.0, 0.5, 2.0],
+  "schedules": ["constant", "switch_at_half"],
+  "variance": 1.0,
+  "initial": 0.0,
+  "agents": 4,
+  "delta": 0.05,
+  "interpretation": "Exact marginal unrestricted-action strict-shield availability; not efficacy or coverage experiment",
+  "decision": "Descriptive only; no threshold authorizes efficacy. Preserve all rows. Analyze blockage before designing a controller.",
+  "formal_data_access": false,
+  "sampled_trajectories": false
+}

@@ -1,0 +1,150 @@
+{
+  "recorded_at": "2026-08-31T23:17:10.8291099+08:00",
+  "kind": "internal_mathematical_interface_qualification_not_efficacy",
+  "parent_commit": "07d53e4fcbdb2307b43ab85b4e35c96510fef7bd",
+  "branch": "codex/joint-ms-exp007c",
+  "workspace": "E:/HKUST-study/vin/SDDE",
+  "environment": {
+    "platform": "Windows",
+    "shell": "PowerShell",
+    "python": ".venv/Scripts/python.exe",
+    "python_version": "3.11.13",
+    "base_environment": "D:/anaconda/envs/ust2"
+  },
+  "decision": {
+    "efficacy_or_regret_gain_proved": false,
+    "formal_authorized": false,
+    "full_state_MSE_interface": "not_qualified",
+    "general_Lyapunov_convergence_proved": false,
+    "independent_novelty_established": false,
+    "pilot_authorized": false,
+    "visited_risk_interface": "qualified_under_stated_fixed_law_and_timing"
+  },
+  "scope": "Conditional fixed-law cumulative pre-update visited-state prediction risk relative to a separately trained local shadow. Not full-state MSE, post-update endpoint risk, general affine-TD convergence, or a complete dual-budget controller.",
+  "novelty_decision": "Reject generic delayed safety ledger plus shadow restoration as sufficient paper contribution. Existing conservative learning and delayed-baseline safety mechanisms are separately documented.",
+  "numerical_revision": {
+    "reason": "Ulp-by-ulp alpha backoff can take an enormous number of iterations when near-identical parameters quantize a whole alpha interval to the same executed value.",
+    "fix": "One conservative halving followed, if needed, by exact shadow restoration; charge the actual returned parameter. The real-arithmetic scale is maximal, the floating-point fallback need not be.",
+    "added_test": "Near-identical candidate/shadow with available allowance below the first nonzero rounded displacement.",
+    "final_source_full_repository_rerun": false,
+    "boundary": "Full regression below loaded the earlier implementation before this final guard. Final-source 105 dependency tests and standalone 19 tests cover the guard; do not report the full regression as final-source."
+  },
+  "checks": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q --junitxml=.pytest_cache/delayed_training_risk_regression.xml",
+      "exit_code": 0,
+      "passed": 853,
+      "skipped": 7,
+      "seconds": 746.96,
+      "source_boundary": "before final numerical guard",
+      "loaded_source_sha256": "DEB0EB68D8D2822DAD356667605990021137695AA8B69D6906250040760989E6",
+      "loaded_test_sha256": "ED8AEFD40EA26F645A2CFAA91E6B0882EB86D5A984A9979DE5D2411421B7C8AB",
+      "junit": ".pytest_cache/delayed_training_risk_regression.xml",
+      "junit_summary": {
+        "tests": 860,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 7,
+        "seconds": 746.826
+      }
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_delayed_training_risk_ledger.py experiments/dependence_delay_linear/test_td_contraction_certificate.py experiments/dependence_delay_linear/test_reusable_transfer_cache.py experiments/dependence_delay_linear/test_observable_transfer_reference.py experiments/dependence_delay_linear/test_rl_collaboration_interface_audit.py -q",
+      "exit_code": 0,
+      "passed": 105,
+      "seconds": 13.15,
+      "source_boundary": "final"
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_delayed_training_risk_ledger.py -q",
+      "exit_code": 0,
+      "passed": 19,
+      "seconds": 2.36,
+      "source_boundary": "final"
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/delayed_training_risk_ledger.py",
+      "runs": 2,
+      "exit_code_each": 0,
+      "stdout_byte_identical": true,
+      "stdout_sha256": "fe65696b7507c0ea0af975198ec40d727f80c259253108c8072f2f039cec2843",
+      "stderr_empty": true,
+      "semantic_match_to_saved_qualification": true,
+      "source_boundary": "final"
+    }
+  ],
+  "final_file_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/delayed_training_risk_ledger.py",
+      "sha256": "5D113BC89C639A894ED092169A8F1A186979844AB99AE1926DB6526A9624F27D"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/test_delayed_training_risk_ledger.py",
+      "sha256": "906077412A401D55E620D6381661B311FA4B4DEF933F164D80805C5D6C43A4CB"
+    },
+    {
+      "path": "docs/delayed_training_risk_decision.md",
+      "sha256": "51083F6058DF81797A77133AFCCABB268802A8CED0858499B116DAFB4E3E8CCC"
+    },
+    {
+      "path": "docs/delayed_training_risk_qualification.json",
+      "sha256": "E7AFE6EC952811FBF56D90D75E7E776EB342F3806084949C2EC953006079C975"
+    },
+    {
+      "path": "docs/delayed_training_risk_sources.json",
+      "sha256": "DC4F4AC1A3F72B22C98BC9BD134EE328C04D69C34483110E8520D9DDCA199761"
+    },
+    {
+      "path": "docs/cpu_autonomous_research_plan.md",
+      "sha256": "A885C275C6C15B3123EBB269AFE1C96F0243965F0E2371E2D8980C4CF43C88A4"
+    },
+    {
+      "path": ".pytest_cache/delayed_training_risk_regression.xml",
+      "sha256": "C557756EC8BDE067367E92BE7E0CF9DFC53332B4969166DC66B32F891ED09F9F"
+    }
+  ],
+  "frozen_t083a_artifact_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/endpoints.csv",
+      "sha256": "C10975BE82199FE82EF2853B18BD97A04AF0978A5E6CDAF6BC772CE4FC61114B"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/cells.csv",
+      "sha256": "61761F0B9472778B5073D2473A8FC9A1C994E269698E61F309AD6FDC63AF1EB6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/summary.json",
+      "sha256": "DD932FA9DBB5E203B3DE027E74A813FED737FE7CE9386C09DB4593E52A7CC228"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/endpoints.csv",
+      "sha256": "C10975BE82199FE82EF2853B18BD97A04AF0978A5E6CDAF6BC772CE4FC61114B"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/cells.csv",
+      "sha256": "61761F0B9472778B5073D2473A8FC9A1C994E269698E61F309AD6FDC63AF1EB6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/summary.json",
+      "sha256": "6DD44415AF441F96A580F3A54BFAE4DEAA03FB8D9181A5A067C9D45922417BCD"
+    }
+  ],
+  "integrity": {
+    "old_endpoints_and_cells_unchanged": true,
+    "old_original_and_reproduction_summaries_unchanged": true,
+    "F12_timeout_failure_preserved": true,
+    "F13_summary_mismatch_failure_preserved": true,
+    "frozen_controller_gates_or_seeds_modified": false,
+    "formal_data_used_for_tuning": false,
+    "new_scientific_trajectories": 0,
+    "deterministic_enumeration_is_performance_evidence": false,
+    "new_efficacy_preregistration": false,
+    "new_formal_seeds": false,
+    "gpu_or_hpc4_access": false,
+    "remote_storage_operations": false,
+    "destructive_cleanup": false,
+    "papers_or_bibliography_delivered": false
+  },
+  "next_authorized_cpu_work": "One paper-level model/claim/mechanism decision memo comparing qualified expensive full-state future-risk references with this cheap visited-risk reference; identify missing observable information and cost, differentiated mechanism, actual algorithm, theorem chain, strong baselines and a decisive CPU feasibility test. Do not run efficacy experiments unless that interface and novelty/feasibility pass and a separate protocol is frozen.",
+  "continuation": "CPU work remains; heartbeat not paused in this package. No acceptance or fixed-time completion guarantee."
+}

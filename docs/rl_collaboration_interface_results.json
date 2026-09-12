@@ -1,0 +1,149 @@
+{
+  "date": "2026-08-31",
+  "source_parent": "58b84c1",
+  "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/rl_collaboration_interface_audit.py",
+  "replay_stdout_byte_identical": true,
+  "Bellman_vs_value_ranking": {
+    "squared_mean_Bellman_residual": [
+      0.009999999999999995,
+      0.029584000000000006
+    ],
+    "value_mse": [
+      1,
+      0.010000000000000002
+    ]
+  },
+  "bounded_return_interface": {
+    "finite_horizon_value": [
+      2.32812202640625,
+      4.143246549062501
+    ],
+    "horizon": 8,
+    "infinite_horizon_value": [
+      4.909090909090913,
+      6.727272727272732
+    ],
+    "qualification": "conditionally centered for finite-H target with fresh rollout; NOT automatically infinite-horizon TD",
+    "return_variance": [
+      1.8538039801663562,
+      1.6341730997164667
+    ],
+    "tail_identity_residual": 1.3322676295501878e-15,
+    "transitions_per_full_length_return": 8,
+    "truncation_bias": [
+      -2.5809688826846626,
+      -2.584026178210231
+    ],
+    "uniform_tail_bound": 4.304672100000002
+  },
+  "decision": {
+    "direct_TD_plugin": "reject",
+    "formal_authorized": false,
+    "gpu_authorized": false,
+    "new_efficacy_pilot_authorized": false,
+    "readout_as_standalone_icml_candidate": "reject",
+    "reference_retained_as_baseline": true
+  },
+  "future_risk_vs_immediate_error": {
+    "discount": 0.9,
+    "expected_cumulative_squared_error_change": 9.854549573796673,
+    "future_advantage_of_immediate_error_QP": -0.28930105375619597,
+    "horizon": 64,
+    "immediate_squared_error_change": -0.3599999999999999,
+    "initial_error": [
+      -0.9298373257951918,
+      0.367970851505994
+    ],
+    "oracle_future_risk_QP_advantage": -2.6070004619507587,
+    "oracle_future_risk_QP_beta": 0.3138408048660089,
+    "oracle_immediate_error_QP_beta": 0.6097560975609755,
+    "post_transfer_error": [
+      0.2943766812047952,
+      0.7438698606361536
+    ],
+    "risk_metric_eigenvalues": [
+      8.306760693733851,
+      28.37704729301644
+    ],
+    "scope": "zero-reward homogeneous tabular TD; exact Markov jump moments; oracle-selected witness, not efficacy",
+    "stationary": [
+      0.8,
+      0.19999999999999996
+    ],
+    "td_step": 0.5,
+    "transition": [
+      [
+        0.9,
+        0.1
+      ],
+      [
+        0.4,
+        0.6
+      ]
+    ]
+  },
+  "kind": "exact_public_model_interface_audit_not_efficacy",
+  "nonreversible_dirichlet": {
+    "A": [
+      [
+        0.3033333333333334,
+        -0.2700000000000001,
+        0
+      ],
+      [
+        0,
+        0.3033333333333334,
+        -0.2700000000000001
+      ],
+      [
+        -0.27,
+        0,
+        0.30333333333333334
+      ]
+    ],
+    "gradient_at_true_value": [
+      0.006077522171701211,
+      -0.1598388331157431,
+      0.15376131094404175
+    ],
+    "skew_operator_norm": 0.6613622305514582,
+    "symmetric_dirichlet": [
+      [
+        0.30333333333333334,
+        -0.13500000000000004,
+        -0.135
+      ],
+      [
+        -0.13500000000000004,
+        0.3033333333333334,
+        -0.13500000000000004
+      ],
+      [
+        -0.135,
+        -0.13500000000000004,
+        0.30333333333333334
+      ]
+    ],
+    "value_error_of_symmetric_surrogate_minimizer": 0.08540461118266304
+  },
+  "recursive_comparator": {
+    "asymptotic_gap_per_block": 0.125,
+    "blocks": 32,
+    "closed_form_gap": 3.8333333333333335,
+    "counterfactual_I_loss": 0.3333333333333333,
+    "gap": 3.8333333333333326,
+    "same_history_I_loss": 4.166666666666666
+  },
+  "reversible_dirichlet": {
+    "novelty": "inherited_geometry",
+    "operator_identity_residual": 2.7755575615628914e-17
+  },
+  "td_direct_plugin": {
+    "executed_value_risk_contrast": -84.48000000000005,
+    "identity_residual_after_correction": -1.4210854715202004e-14,
+    "incorrect_unbiased_label_prediction": 30.720000000000006,
+    "missing_bootstrap_bias_term": -115.20000000000003,
+    "td_target_mean": 1,
+    "true_value": 10.000000000000002
+  }
+}

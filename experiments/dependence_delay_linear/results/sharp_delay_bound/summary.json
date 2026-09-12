@@ -1,0 +1,51 @@
+{
+  "experiment": "EXP-008E",
+  "status": "VALID",
+  "registered_cells": 72,
+  "gates": {
+    "numerical_checks": {
+      "sharp_root_and_rate_solve": {
+        "pass": true,
+        "maximum_root_factor_error": 1.1102230246251565e-16
+      },
+      "exact_boundary_validity": {
+        "pass": true,
+        "observed_cells": 72,
+        "maximum_eigen_residual": 6.405647715193129e-15
+      }
+    },
+    "scientific_gates": {
+      "sharp_boundary_exact_safety": {
+        "pass": true,
+        "largest_sharp_radius": 0.9999999930648613
+      },
+      "sharp_boundary_nonvacuity": {
+        "pass": true,
+        "cells_ratio_at_least_0p08": 72,
+        "smallest_sharp_to_exact_ratio": 0.08097054085327257,
+        "largest_sharp_to_exact_ratio": 0.9999999906867744
+      },
+      "rate_step_exact_safety": {
+        "pass": true,
+        "largest_rate_radius": 0.9809439892604892
+      },
+      "theorem_envelope_validity": {
+        "pass": true,
+        "minimum_envelope_slack": 0.0
+      },
+      "delay_improvement": {
+        "pass": true,
+        "smallest_sharp_to_coarse_step_ratio_delayed": 1.8665471308437316
+      }
+    },
+    "numerical_overall_pass": true,
+    "scientific_pass_count": 5,
+    "scientific_total": 5
+  },
+  "artifacts": [
+    "sharp_boundaries.csv",
+    "summary.json",
+    "fig1_sharp_boundary_tightness.png",
+    "fig2_coarse_vs_sharp.png"
+  ]
+}

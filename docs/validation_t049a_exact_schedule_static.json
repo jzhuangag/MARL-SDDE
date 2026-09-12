@@ -1,0 +1,71 @@
+{
+  "experiment_id": "T-049A",
+  "decision": "fail_stop_learned_EXP021A",
+  "preregistration_commit": "025a4fd21b15984a879af5587b21812e6e560102",
+  "computational_amendment_commit": "c6d80304dc72fd095321a9ddefdaabd17c16fc2a",
+  "configuration_sha256": "f29c1f6ae56922dab9a5211aec656410fb067d5ceacbb8b7f02acb2fcc83e06f",
+  "execution": {
+    "hardware": "local CPU",
+    "sampled_trajectories": 0,
+    "seeds": 0,
+    "gpu_jobs": 0,
+    "hpc4_jobs": 0,
+    "rows": 2268,
+    "rho_cells": 252,
+    "first_completed_run_seconds": 110.0,
+    "clean_rerun_seconds": 116.6
+  },
+  "primary_results": {
+    "full_cost_oracle_to_strong_fixed_geometric_ratio": 1.0098795628381403,
+    "full_cost_oracle_improvement": -0.009879562838140288,
+    "full_cost_oracle_strict_fraction": 0.28174603174603174,
+    "nonconstant_post_probe_to_cellwise_fixed_geometric_ratio": 1.1727731583742886,
+    "nonconstant_post_probe_improvement": -0.17277315837428864,
+    "nonconstant_post_probe_strict_fraction": 0.0,
+    "rho_direction_fraction": 1.0,
+    "post_probe_oracle_support": ["fixed-q1", "fixed-q4", "fixed-q16"]
+  },
+  "gates": {
+    "V1": true,
+    "V2": true,
+    "V3": false,
+    "V4": false,
+    "V5": false,
+    "V6": false,
+    "V7": true,
+    "V8": false,
+    "V9": true,
+    "V10": true
+  },
+  "mandatory_gates_passed": 5,
+  "mandatory_gates_total": 10,
+  "post_hoc_mechanism_diagnostics": {
+    "status": "descriptive_not_a_preregistered_gate",
+    "no_probe_cellwise_fixed_to_strong_fixed_geometric_ratio": 0.9792463991742519,
+    "no_probe_cellwise_fixed_improvement": 0.020753600825748064,
+    "no_probe_cellwise_fixed_strict_fraction": 0.3412698412698413,
+    "no_probe_all_schedule_oracle_equals_cellwise_fixed_oracle": true,
+    "no_probe_nonconstant_to_cellwise_fixed_geometric_ratio": 1.141667397368383,
+    "no_probe_nonconstant_improvement": -0.14166739736838307,
+    "no_probe_nonconstant_strict_cells": 0,
+    "no_probe_fixed_improvement_by_task": {
+      "frozenlake8x8": 0.024994331621331467,
+      "cliffwalking": 0.01816502037637968,
+      "taxi": 0.019087410143458605
+    }
+  },
+  "reproduction": {
+    "rows_sha256": "35b0fbe5bc542fd3dfcaacaf37655405862e5a977d244ea494651ee5bf75a1d1",
+    "task_constants_sha256": "daf8bd1f5a6d3ece2c163b3ee04d1ea69d93db0a83d874f305c7ebe006dc5a5a",
+    "summary_sha256": "c1289bfe97e5bdbcb644d0eeff2c5d18e682fc7d3e4a172f97d10518bcd00284",
+    "clean_rerun_byte_identical": true
+  },
+  "scientific_interpretation": "The exact T-047/T-048 risk law is not falsified. In the registered stationary fixed-policy standard-task population, the direction of correlation adaptation is exact but its cellwise fixed-q value is too small to amortize the registered probe cost, and no nonconstant schedule improves the cellwise fixed-q oracle.",
+  "authorization": {
+    "learned_EXP021A": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false,
+    "next": "T-050 stationary-schedule dominance and break-even theory audit only"
+  }
+}

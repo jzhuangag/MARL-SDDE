@@ -1,0 +1,137 @@
+{
+  "audit": "T-047 research-brief citation verification",
+  "checked_on": "2026-08-03",
+  "status": "pass_with_resolver_limitations",
+  "policy": "A reference passes only with an authoritative primary record and no unresolved material metadata conflict. Search-engine near matches are not accepted as evidence.",
+  "references": [
+    {
+      "key": "khodadadian22a",
+      "title": "Federated Reinforcement Learning: Linear Speedup Under Markovian Sampling",
+      "authors": [
+        "Sajad Khodadadian",
+        "Pranay Sharma",
+        "Gauri Joshi",
+        "Siva Theja Maguluri"
+      ],
+      "year": 2022,
+      "venue": "Proceedings of the 39th International Conference on Machine Learning",
+      "series": "Proceedings of Machine Learning Research",
+      "volume": "162",
+      "pages": "10997-11057",
+      "primary_url": "https://proceedings.mlr.press/v162/khodadadian22a.html",
+      "primary_match": "pass",
+      "cross_checks": {
+        "dblp": "pass: conf/icml/KhodadadianSJM22",
+        "arxiv": "pass: 2206.10185 via DBLP external identifier",
+        "crossref": "not_applicable: title query returned a different IEEE paper and was rejected",
+        "semantic_scholar": "unavailable: HTTP 429",
+        "openalex": "unavailable: API timeout"
+      },
+      "decision": "verified"
+    },
+    {
+      "key": "adibi24a",
+      "title": "Stochastic Approximation with Delayed Updates: Finite-Time Rates under Markovian Sampling",
+      "authors": [
+        "Arman Adibi",
+        "Nicolo Dal Fabbro",
+        "Luca Schenato",
+        "Sanjeev R. Kulkarni",
+        "H. Vincent Poor",
+        "George J. Pappas",
+        "Hamed Hassani",
+        "Aritra Mitra"
+      ],
+      "year": 2024,
+      "venue": "Proceedings of the 27th International Conference on Artificial Intelligence and Statistics",
+      "series": "Proceedings of Machine Learning Research",
+      "volume": "238",
+      "pages": "2746-2754",
+      "primary_url": "https://proceedings.mlr.press/v238/adibi24a.html",
+      "primary_match": "pass",
+      "cross_checks": {
+        "dblp": "pass: conf/aistats/AdibiF0KPPHM24",
+        "arxiv": "pass: 2402.11800 via DBLP external identifier",
+        "crossref": "failed_false_positive: exact-title search returned the unrelated Shah-Borkar paper and was rejected",
+        "semantic_scholar": "failed_false_positive: exact-title search returned the unrelated Shah-Borkar paper and was rejected",
+        "openalex": "unavailable: API timeout"
+      },
+      "decision": "verified"
+    },
+    {
+      "key": "cobbe20a",
+      "title": "Leveraging Procedural Generation to Benchmark Reinforcement Learning",
+      "authors": [
+        "Karl Cobbe",
+        "Chris Hesse",
+        "Jacob Hilton",
+        "John Schulman"
+      ],
+      "year": 2020,
+      "venue": "Proceedings of the 37th International Conference on Machine Learning",
+      "series": "Proceedings of Machine Learning Research",
+      "volume": "119",
+      "pages": "2048-2056",
+      "primary_url": "https://proceedings.mlr.press/v119/cobbe20a.html",
+      "primary_match": "pass",
+      "cross_checks": {
+        "dblp": "pass: conf/icml/CobbeHHS20",
+        "arxiv": "pass: 1912.01588 via DBLP external identifier",
+        "crossref": "not_applicable: title query returned a different procedural-generation paper and was rejected",
+        "semantic_scholar": "unavailable: HTTP 429",
+        "openalex": "unavailable: API timeout"
+      },
+      "decision": "verified"
+    },
+    {
+      "key": "young2019minatar",
+      "title": "MinAtar: An Atari-Inspired Testbed for Thorough and Reproducible Reinforcement Learning Experiments",
+      "authors": [
+        "Kenny Young",
+        "Tian Tian"
+      ],
+      "year": 2019,
+      "venue": "arXiv preprint",
+      "arxiv": "1903.03176",
+      "doi": "10.48550/arXiv.1903.03176",
+      "primary_url": "https://arxiv.org/abs/1903.03176",
+      "primary_match": "pass: current arXiv record",
+      "cross_checks": {
+        "dblp": "pass_with_version_title: DBLP records the earlier title 'MinAtar: An Atari-inspired Testbed for More Efficient Reinforcement Learning Experiments' for the same arXiv identifier",
+        "crossref": "not_applicable: search returned an unrelated networking testbed and was rejected",
+        "semantic_scholar": "unavailable: HTTP 429",
+        "openalex": "unavailable: API timeout"
+      },
+      "decision": "verified_using_current_arxiv_title"
+    },
+    {
+      "key": "park2026adaptive",
+      "title": "Scalable Reinforcement Learning via Adaptive Batch Scaling",
+      "authors": [
+        "Jongchan Park"
+      ],
+      "year": 2026,
+      "venue": "arXiv preprint",
+      "arxiv": "2605.21557",
+      "doi": "10.48550/arXiv.2605.21557",
+      "primary_url": "https://arxiv.org/abs/2605.21557",
+      "primary_match": "pass: arXiv API record",
+      "cross_checks": {
+        "dblp": "unavailable: HTTP 503",
+        "crossref": "not_applicable: search returned an unrelated 2025 paper and was rejected",
+        "semantic_scholar": "unavailable: HTTP 429",
+        "openalex": "unavailable: API timeout"
+      },
+      "publication_status": "recent_preprint_not_peer_reviewed",
+      "decision": "verified_as_preprint"
+    }
+  ],
+  "rejected_search_matches": [
+    "Federated TD Learning Over Finite-Rate Erasure Channels: Linear Speedup Under Markovian Sampling",
+    "Distributed Stochastic Approximation with Local Projections",
+    "Leveraging Reinforcement Learning and WaveFunctionCollapse for Improved Procedural Level Generation",
+    "WalT: A reproducible testbed for reproducible network experiments",
+    "Adaptive Policy Synchronization for Scalable Reinforcement Learning"
+  ],
+  "integrity_decision": "All five references used in the T-047 brief have authoritative existence matches and no unresolved material conflict. Resolver failures and false positives are retained explicitly and are not counted as positive evidence."
+}

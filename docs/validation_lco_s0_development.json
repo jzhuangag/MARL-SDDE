@@ -1,0 +1,56 @@
+{
+  "artifact": {
+    "path": "experiments/clocked_async_mpg/results/lco_s0_dual_use_sensor_development/summary.json",
+    "sha256": "77a0e31f1fb176952feabec97b99604764b9abc88ba62faa83c427b3749f3ec7",
+    "size_bytes": 6215206
+  },
+  "config_sha256": "43fac4f2ec52b478b729c61066a66afba287b8958415994a9cdd4b2bbf0f724d",
+  "decision": "stop_fixed_period_hidden_filter_architecture",
+  "development_survives": false,
+  "execution_commit": "2d74f47539bbb13f7bf20b3f89981717204e7cc5",
+  "formal_evidence": false,
+  "gates": {
+    "D1_finite_and_accounted": true,
+    "D2_each_noise_gain": false,
+    "D3_each_noise_capture": false,
+    "D4_each_noise_cells": false,
+    "D5_each_arrival": true,
+    "D6_stationary_potential": true,
+    "D7_budget": true,
+    "D8_development_only": true
+  },
+  "primary_metrics": {
+    "maximum_budget_overshoot": 0,
+    "noise_0": {
+      "dynamic_contraction_fraction": 1.0,
+      "dynamic_improvement_fraction": 0.71875,
+      "mean_dynamic_gain": 0.015853124301278502,
+      "median_exact_gain_capture": 0.31657933545640937
+    },
+    "noise_0_05": {
+      "dynamic_contraction_fraction": 1.0,
+      "dynamic_improvement_fraction": 0.71875,
+      "mean_dynamic_gain": 0.015974452326219125,
+      "median_exact_gain_capture": 0.339144662189098
+    },
+    "selected_arrival_group_gains": {
+      "0.1": 0.012815665973774973,
+      "0.5": 0.019011910653722656
+    },
+    "selected_probe_period": 16,
+    "stationary_potential_max_log_rate_loss": 0.0
+  },
+  "reanalysis": {
+    "budget_violations": 0,
+    "informative_fingerprint_count_violations": 0,
+    "probe_count_violations": 0,
+    "semantic_summary_exact": true,
+    "unique_specifications": 5760
+  },
+  "scope": {
+    "cells": 720,
+    "coordinate_events": 5898240,
+    "paths": 5760,
+    "seeds": 8
+  }
+}

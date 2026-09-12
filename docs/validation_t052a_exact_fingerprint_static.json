@@ -1,0 +1,52 @@
+{
+  "experiment_id": "T-052A-exact-fingerprint-static",
+  "decision": "pass_authorize_separate_T053_cpu_pilot_preregistration",
+  "preregistration_commit": "8049fd2b7869d3f084b090101cbc5871122b6a63",
+  "config_sha256": "351818433ee867076a22058d17798a35bc9cd3638c2b7945567cb23c821a7013",
+  "runner_sha256": "685d89f5333cb91dda61d93f2ca4c9eff3ee4bf31055142b4693c7641c3bf8e3",
+  "result_sha256": "30e70295fb877edb2af371f73785bcc5aa2b51a165d15c078242b56fe30905a4",
+  "cells": 126,
+  "sampled_trajectories": 0,
+  "primary_results": {
+    "aggregate_geometric_improvement": 0.13776086443551105,
+    "improvement_overhead_8": 0.15611229710906716,
+    "improvement_overhead_32": 0.11901035605553278,
+    "active_cells": 81,
+    "active_improved_fraction": 1.0,
+    "maximum_expected_risk_ratio": 1.0220585837408633
+  },
+  "worst_cell": {
+    "task": "cliffwalking",
+    "delay": 8,
+    "message_overhead": 32,
+    "rho": 0.3,
+    "baseline_q": 16,
+    "oracle_q": 16,
+    "expected_risk_ratio": 1.0220585837408633,
+    "frozen_gate": 1.05
+  },
+  "gates": {
+    "B1": true,
+    "B2": true,
+    "B3": true,
+    "B4": true,
+    "B5": true,
+    "B6": true,
+    "B7": true,
+    "B8": true,
+    "B9": true,
+    "B10": true,
+    "B11": true,
+    "B12": true
+  },
+  "gates_passed": 12,
+  "gates_total": 12,
+  "clean_rerun_byte_identical": true,
+  "authorization": {
+    "T053_sampled_cpu_pilot_preregistration": true,
+    "T053_execution_before_independent_preregistration": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "task": "T-032",
+  "status": "preregistration_only",
+  "config_sha256": "826bc4fde0231a017a719ddd76e937916400a1018e5815a69b97769b37511c25",
+  "model": "scalar strongly monotone delayed SA with block-correlated stationary AR(1) innovations",
+  "pool_sizes": [16, 32],
+  "participation_counts": [4, 8],
+  "rho_values": [0.0, 0.9],
+  "markov_lambda_values": [0.0, 0.8],
+  "delay_scales": [0, 1],
+  "layouts": ["balanced", "clustered", "permuted"],
+  "target_horizons": [64, 256],
+  "budget_rays": ["message", "environment", "wall"],
+  "expected_cells": 576,
+  "scientific_trajectories": 0,
+  "old_outcomes_allowed": false,
+  "gpu_authorized": false,
+  "run_authorized_after_preregistration_commit": true,
+  "formal_or_actual_learning_authorized": false,
+  "mandatory_gates": {
+    "F1_complete_finite": "all 576 cells finite",
+    "F2_zero_budget_violations": "zero",
+    "F3_active_oracle_improvement": ">= 0.15",
+    "F4_active_cell_effect_fraction": ">= 0.70 of active cells improve by >= 0.05",
+    "F5_homogeneous_no_artificial_gain": "geometric ratio in [0.98, 1.02]",
+    "F6_distinct_oracle_structures": ">= 3",
+    "F7_each_budget_ray_has_value": "at least one active cell per ray improves by >= 0.05",
+    "F8_count_only_separation": "median strong-baseline/oracle ratio >= 1.10",
+    "F9_exact_full_risk_not_variance_proxy": true,
+    "F10_no_old_outcome_taint": true,
+    "F11_cpu_only": true
+  }
+}

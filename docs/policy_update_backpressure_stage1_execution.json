@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-01",
+  "starting_commit": "4c55fabfcaa2b2f3794e8b4f80c9068a47da8064",
+  "scope": "Stage-1 asynchronous MARL research question, exact CPU value screen, phase algebra and conditional finite-time theorem interface",
+  "scientific_status": "theory_and_development_feasibility_not_formal_evidence",
+  "gpu_or_hpc4_used": false,
+  "remote_storage_used": false,
+  "sampled_scientific_trajectory_created": false,
+  "commands": [
+    ".\\.venv\\Scripts\\python.exe -m pytest experiments/policy_update_backpressure -q",
+    ".\\.venv\\Scripts\\python.exe -m experiments.policy_update_backpressure.phase_theory docs/perishable_update_phase_algebra.json",
+    ".\\.venv\\Scripts\\python.exe -m pytest experiments -q"
+  ],
+  "validation": {
+    "targeted": "14 passed",
+    "full_experiments_regression": "874 passed, 7 skipped in 99.61s",
+    "root_pytest_note": "A bare repository-root pytest invocation is invalid because preserved tmp/t021_* source snapshots duplicate test module names; it stopped at collection with 89 import-mismatch errors. No scientific test ran or failed in that invocation. The established experiments-only regression passed.",
+    "json_parse_audit": "pass",
+    "git_diff_check": "pass"
+  },
+  "algebra": {
+    "stale_bias_checks": 144,
+    "gain_bound_checks": 576,
+    "closed_form_optimizer_checks": 144,
+    "finite_time_event_checks": 405,
+    "minimum_true_gain_minus_bound": -4.440892098500626e-16,
+    "minimum_finite_time_event_slack": -1.4210854715202004e-14,
+    "maximum_closed_form_grid_gap": 0.00012029535489321841
+  },
+  "universal_value_screen": {
+    "cells": 144,
+    "median_regret_reduction": 0.07218275650788031,
+    "fraction_at_least_five_percent": 0.5416666666666666,
+    "mandatory_gates_passed": false,
+    "decision": "universal controller permanently stopped; phase successor only"
+  },
+  "sha256": {
+    "experiments/policy_update_backpressure/feasibility.py": "8af204b2f509cc66cfd37cef1245398e2ea43149278a5d3f02b82e08ccb2881b",
+    "experiments/policy_update_backpressure/phase_theory.py": "789c8568eb0be0da63f0cdff25eb397a69df0553a4171b296e5e1baf64bd6bdc",
+    "experiments/policy_update_backpressure/test_feasibility.py": "bcee68cdedaa2497ec57562a7be8419f63aac6a512af962516443c93a833ae35",
+    "experiments/policy_update_backpressure/test_phase_theory.py": "2607a31b733c4703f51e15813904531eb01d7e24875bb93ecd327030bac11716",
+    "docs/asynchronous_policy_update_backpressure_scope.md": "699448ab6acf9fbf402dae1c3c05dd6b7ca409d06b7c4776c0cf68bf31a976f7",
+    "docs/perishable_update_phase_theory.md": "345cc7c6b741ed45e52fc13bf49117bb60cb51fb4b3ffc3cc9c78862b8a99294",
+    "docs/policy_update_backpressure_feasibility_results.json": "e23d7b5b74540f53f8fcfd4d3124df6ed39e4be28fca9a7bebdb5d4cc36f2176",
+    "docs/policy_update_backpressure_beam_saturation.json": "42dd8f014a4fb5fccc0376ad2e836f2ad32c44302c9ae22a9a329f820e76a308",
+    "docs/perishable_update_phase_algebra.json": "ef8495cbe080d949c35baebdd294185ba682b8645ed26af4e4f0af7884d15e7a",
+    "docs/policy_update_backpressure_stage1_checkpoint.md": "def353ca3984715e3f7d3ca4efa1068a8f566db887ebe6c1b9ead2d2870f6274"
+  }
+}

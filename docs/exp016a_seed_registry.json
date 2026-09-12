@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "experiment": "EXP-016A",
+  "pilot": {
+    "start": 20300101,
+    "count": 64,
+    "step": 1,
+    "expanded_rule": "seed[k] = 20300101 + k for k=0,...,63",
+    "permanently_excluded_from_formal": true
+  },
+  "formal": {
+    "start": 20310101,
+    "count": 128,
+    "step": 1,
+    "expanded_rule": "seed[k] = 20310101 + k for k=0,...,127",
+    "accessible_to_pilot_runner": false,
+    "authorization": "No formal entry point exists in the preregistration runner. A later formal runner requires a separate commit after every mandatory pilot gate passes."
+  },
+  "overlap": 0,
+  "common_random_numbers": {
+    "key": "SHA256(pilot_seed|scenario_id|regime|physical_time|agent), first 64 bits",
+    "policy_in_key": false,
+    "rule": "Potential latent innovations and private noises align at equal physical time and agent; a policy observes only values at times and agents it actually requests. Unused future observations are never advanced or recycled."
+  },
+  "scientific_outcomes_present": false
+}

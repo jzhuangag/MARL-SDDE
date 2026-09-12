@@ -1,0 +1,29 @@
+{
+  "audit": "coupled_actor_critic_certificate_nonvacuity",
+  "status": "frozen_before_exact_static_outcomes",
+  "game_seeds": {
+    "start": 31001,
+    "count": 32
+  },
+  "horizons": [2, 4, 8],
+  "discounts": [0.6, 0.8, 0.95],
+  "owners": [0, 1],
+  "scheduled_packets": 256,
+  "failure_probability": 0.05,
+  "critic_error_radius": 0.5,
+  "trajectory_count_grid": [64, 256, 1024, 4096, 16384, 65536, 262144, 1048576],
+  "practical_transition_cap": 8192,
+  "extended_transition_cap": 16384,
+  "expected_case_count": 576,
+  "expected_scenario_hash": "5c15424c8461ef023a78d3e479bd4931104e2f2493d375050fc966a512d912a9",
+  "mandatory_gates": {
+    "N1": "case count and scenario hash match the frozen manifest",
+    "N2": "all analytic values are finite and every critic strong-convexity constant is positive",
+    "N3": "at least 50% of all owner cases are jointly nonvacuous within 8192 charged transitions",
+    "N4": "median minimum jointly nonvacuous charged transitions is at most 16384",
+    "N5": "at least 25% of horizon-at-least-4 owner cases are jointly nonvacuous within 16384 charged transitions",
+    "N6": "the audit uses zero coordinate variance, zero staleness and no actor critic bias beyond the declared exact critic radius",
+    "N7": "a second execution is byte-identical"
+  },
+  "decision_rule": "Any failed mandatory gate stops the per-packet high-probability safety-shield route. It does not invalidate the conditional theorem or authorize sampled efficacy."
+}

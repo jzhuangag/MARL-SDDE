@@ -1,0 +1,130 @@
+{
+  "confirmatory": false,
+  "decision": "authorize outcome-free design of the matched controller-headroom matrix",
+  "experiment_id": "PISTONBALL-SMOOTH-INTERFACE-QUALIFICATION",
+  "learner_gate": {
+    "evaluations": [
+      {
+        "actor_transitions": 0,
+        "launch": 0,
+        "optional_policy_bytes": 0,
+        "return": 1.930259844622266
+      },
+      {
+        "actor_transitions": 81920,
+        "launch": 1024,
+        "optional_policy_bytes": 1711944308,
+        "return": 4.386442258323856
+      },
+      {
+        "actor_transitions": 163840,
+        "launch": 2048,
+        "optional_policy_bytes": 3452789364,
+        "return": 4.780339674198783
+      },
+      {
+        "actor_transitions": 245760,
+        "launch": 3072,
+        "optional_policy_bytes": 5193634420,
+        "return": 4.041418781092868
+      },
+      {
+        "actor_transitions": 327680,
+        "launch": 4096,
+        "optional_policy_bytes": 6934479476,
+        "return": 4.037074317243158
+      }
+    ],
+    "initial_return": 1.930259844622266,
+    "learning_delta": 2.1068144726208917,
+    "mean_actor_parameter_drift_l2": 0.0843440036931796,
+    "mean_packet_gradient_norm": 0.04927071586690866,
+    "minimum_learning_delta": 2.0,
+    "optional_policy_bytes": 6934479476,
+    "passed": true,
+    "refresh_units": 77501,
+    "runtime_seconds": 614.2152805529768,
+    "terminal_return": 4.037074317243158
+  },
+  "pilot_or_formal_evidence": false,
+  "qualified": true,
+  "score_gate": {
+    "minimum_signed_favorable_fraction": 0.01,
+    "passed": true,
+    "scale_summary": {
+      "allowed_refresh_units": 1024,
+      "cache_component_nonzero": true,
+      "calibration_rule": "reciprocal median nonzero absolute raw component, clipped to [1e-3,1e8]",
+      "confirmatory": false,
+      "decision": "authorize an equal-resource controller-headroom matrix",
+      "descriptive_return_path": [
+        {
+          "actor_transitions": 0,
+          "launch": 0,
+          "optional_policy_bytes": 0,
+          "return": -1.6963262730297004
+        },
+        {
+          "actor_transitions": 81920,
+          "launch": 1024,
+          "optional_policy_bytes": 28363892,
+          "return": -1.4915835952609773
+        },
+        {
+          "actor_transitions": 163840,
+          "launch": 2048,
+          "optional_policy_bytes": 60485776,
+          "return": -3.995979691160205
+        }
+      ],
+      "experiment_id": "PISTONBALL-LYAPUNOV-SCORE-SCALE-AUDIT",
+      "learning_component_nonzero": true,
+      "legacy_net_edge_minus_null": {
+        "count": 968,
+        "maximum": 2.103669962643682,
+        "median": -0.28902130337765075,
+        "minimum": -471.1849547343039,
+        "p10": -1.9549360873545836,
+        "p90": 0.4985508498938671
+      },
+      "optional_policy_bytes": 60485776,
+      "outcome_blind_calibration": true,
+      "pilot_or_formal_evidence": false,
+      "queue_active_fraction": 0.7427685950413223,
+      "queue_component_active": true,
+      "queue_price": {
+        "count": 968,
+        "maximum": 3.0,
+        "median": 1.0,
+        "minimum": 0.0,
+        "p10": 0.0,
+        "p90": 2.0
+      },
+      "raw_cache_reset_energy": {
+        "count": 968,
+        "maximum": 0.0047268549635646195,
+        "median": 1.1938126150079498e-05,
+        "minimum": 0.0,
+        "p10": 3.2755058560707267e-06,
+        "p90": 2.8173709872181266e-05
+      },
+      "raw_learning_drift_delta": {
+        "count": 968,
+        "maximum": 4.635221391601136e-08,
+        "median": 4.1293046991453235e-11,
+        "minimum": -1.1180307245561441e-08,
+        "p10": -5.120459419512502e-10,
+        "p90": 2.8329235999832265e-09
+      },
+      "recommended_cache_debt_weight": 83650.1230871728,
+      "recommended_learning_weight": 100000000.0,
+      "runtime_seconds": 329.10953583198716,
+      "scale_audit_passed": true,
+      "scored_launches": 968,
+      "seed": 79004,
+      "selected_fraction_under_legacy_scale": 0.6983471074380165,
+      "signed_favorable_fraction": 0.42768595041322316,
+      "spent_refresh_units": 676
+    }
+  }
+}

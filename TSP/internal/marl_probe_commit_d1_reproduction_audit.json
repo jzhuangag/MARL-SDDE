@@ -1,0 +1,54 @@
+{
+  "analysis": {
+    "corrected_analyzer_sha256": "8138fadf4c68ffbd4a9ffe3c5621cc627cc5f998e79519195a81722c8ccb073b",
+    "curve_summary_sha256": "2efaf908d50fcf3b5fc397a02eccfe4db10534902889a13dd22e0a9dcd81747c",
+    "first_failed_output_directory": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-002/analysis",
+    "gate_sha256": "0f12063dc9725308a2d1c24174360ece9ef6cd295a31a1bcbfdf0a710d585c04",
+    "incompatible_analyzer_sha256": "36b60621c680b0a6eab2798d8c434a93bb3c062664baf91a1d9b8648fcec4ad4",
+    "primary_output_directory": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-002/analysis_v2",
+    "replay_output_directory": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-002/analysis_replay_v2",
+    "return_curves_sha256": "79011665cc7d91f817cc3186ae4624ec37b87594612ef24621a4831ae4dd1779",
+    "three_outputs_byte_identical_on_replay": true
+  },
+  "artifacts": {
+    "allocated_summary": "102M scientific artifacts; 7.2M non-scientific smoke",
+    "bridge_metadata_files": 24,
+    "controller_metadata_files": 8,
+    "file_count": 752,
+    "manifest_path": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-002/analysis_v2/artifact_SHA256SUMS",
+    "manifest_sha256": "101269bd7b275593afb074c8f5e8226006af9072a523ac8ffbee45db14e02416",
+    "manifest_verification": "pass"
+  },
+  "code": {
+    "analysis_erratum_commit": "fdbd45d4db37eb7601a53ac79245421707d1a9d5",
+    "config_sha256": "3082cd544596bf13592168034ea7ff2e936027d12d9b9592e03f3c7298ae9fbd",
+    "controller_sha256": "14e1f3941f734a7652726251aacb7f59fb21485b9e1387cf29100722d0c2b9c9",
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "preregistration_commit": "208333bce5fa824c94ecec9a4628cf1aaa4c4297",
+    "runner_sha256": "732b859408d4116729b81323280f842a5676f79de4ed69111d15d4d8b8be0877",
+    "smoke_payload_commit": "f91fa177a993ac02dcf2176d7bf017b351bbeecd"
+  },
+  "execution": {
+    "all_scientific_allocations_completed_exit_0": true,
+    "controller_array": "1845485_[0-7]",
+    "fixed_q1_array": "1845956_[8-15]",
+    "fixed_q8_array": "1846340_[16-23]",
+    "initial_missing_account_submission_created_job": false,
+    "qos_rejected_16_cell_submission_created_job": false,
+    "smoke_array": "1845470_[0-1]",
+    "upstream_clean_in_all_cells": true
+  },
+  "experiment_id": "TSP-MARL-DEV-002",
+  "remote": {
+    "environment": "symbolic link to the pinned DEV-001 venv",
+    "project_writes": false,
+    "scientific_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-002/artifacts",
+    "work_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-002"
+  },
+  "tests": {
+    "local_repository": "2131 passed, 7 skipped, 3 warnings",
+    "local_tsp": "33 passed",
+    "remote_numpy_1_23_targeted": "13 passed, 11 third-party deprecation warnings"
+  },
+  "verdict": "REPRODUCIBLE"
+}

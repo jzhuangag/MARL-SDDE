@@ -1,0 +1,37 @@
+{
+  "bound": {
+    "bound_checks": 1080,
+    "maximum_direct_tv_over_path_tv": 1.0,
+    "minimum_actual_minus_lower_bound": 0.18449347705841096
+  },
+  "decision": "STOP_CURRENT_POLICY_BACKPRESSURE_CONSTRUCTION",
+  "development_cells": 144,
+  "gates": {
+    "fraction_cells_headroom_ge_0_05_ge_0_60": false,
+    "median_wallclock_headroom_ge_0_10": false
+  },
+  "git_parent": "bab24105c1a86ebad945ac9601dbe5eb47bea377",
+  "kind": "deterministic_development_feasibility_not_scientific_evidence",
+  "results": {
+    "fraction_cells_headroom_ge_0_05": 0.0,
+    "maximum_endpoint_relative_headroom": 0.0,
+    "maximum_wallclock_relative_headroom": 0.022938956283223715,
+    "median_endpoint_relative_headroom": 0.0,
+    "median_path_bound_endpoint_relative_gap": -0.4778340861928921,
+    "median_wallclock_relative_headroom": -0.013834083918563743,
+    "path_bound_active_fraction": 1.0,
+    "path_bound_harmful_updates": 0
+  },
+  "reproduction": {
+    "audit_stdout_exact_replay": true,
+    "audit_stdout_sha256": "c7885c709e0159cde1786321dc61c564cb794f27dedc2a2a2b92058bee9c744f",
+    "full_regression": "860 passed, 7 skipped in 106.82s",
+    "full_regression_junit_sha256": "b650d64d89cafb4e5c813d2a4adac20ef0f87d715a5cadfee44f59fc6924dcac"
+  },
+  "source_sha256": {
+    "experiments/policy_backpressure/policy_backpressure_feasibility.py": "b605e78e76eeab99cdd43faf7ec460f3a0d1e53b7c8d365678599b1719ca4450",
+    "experiments/policy_backpressure/test_policy_backpressure_feasibility.py": "1191fef54b94b7bf2634eb4cc850273ba9bff7866f1e23910e3b6dac8627104a"
+  },
+  "targeted_tests": "6 passed",
+  "uses_frozen_formal_outcomes": false
+}
