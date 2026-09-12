@@ -57,4 +57,5 @@ OUT="$ROOT/artifacts/smoke/controller-job${SLURM_JOB_ID}-shared-seed80401"
 
 "$PYTHON" -c 'import json,numpy as np,sys; root=sys.argv[1]; x=np.load(root+"/probe_fingerprints.npy"); m=json.load(open(root+"/tsp_probe_commit_metadata.json")); assert x.shape==(4,8); assert np.max(np.ptp(x,axis=1))<=1e-10; assert m["decision"]["selected_q"]==1; print(json.dumps({"fingerprint_shape":list(x.shape),"max_within_block_range":float(np.max(np.ptp(x,axis=1))),"selected_q":m["decision"]["selected_q"]}))' "$OUT" \
   > "$OUT/controller_smoke_assertion.json"
-find "$OUT" -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/SHA256SUMS"
+find "$OUT" -type f ! -name SHA256SUMS -print0 | sort -z | \
+  xargs -0 sha256sum > "$OUT/SHA256SUMS"

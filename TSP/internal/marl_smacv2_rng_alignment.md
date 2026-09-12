@@ -36,5 +36,14 @@ streams.  A repeated shared-`q=8` controller smoke must show identical worker
 fingerprints and select `q=1` before the 24-cell development array is
 authorized.
 
-Runs `1851226`, `1851231`, and `1851244` remain integration diagnostics only;
-none enters the development analysis or the paper.
+Runs `1851226`, `1851231`, `1851244`, and `1851257` remain integration
+diagnostics only; none enters the development analysis or the paper.  In the
+post-fix run `1851257`, three of four blocks were bitwise equal, the fourth had
+a maximum range of `0.0196739`, the estimated correlation was `0.999504`, and
+the controller selected `q=1`.  The exact-equality smoke assertion therefore
+remained failed even though the intended decision was recovered.
+
+The first checksum command also included `SHA256SUMS` in its own manifest.
+Every scientific payload entry verified, but the self-entry necessarily did
+not.  The scripts now exclude the manifest itself; historical manifests are
+not rewritten.

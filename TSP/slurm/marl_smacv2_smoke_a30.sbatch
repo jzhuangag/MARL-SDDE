@@ -69,4 +69,5 @@ OUT="$ROOT/artifacts/smoke/job${SLURM_ARRAY_JOB_ID}-${SLURM_ARRAY_TASK_ID}-${COU
   --torch-threads 8 \
   --cuda
 
-find "$OUT" -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/SHA256SUMS"
+find "$OUT" -type f ! -name SHA256SUMS -print0 | sort -z | \
+  xargs -0 sha256sum > "$OUT/SHA256SUMS"

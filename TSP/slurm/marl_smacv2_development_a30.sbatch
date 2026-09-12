@@ -93,4 +93,5 @@ case "$METHOD_INDEX" in
     ;;
 esac
 
-find "$OUT" -type f -print0 | sort -z | xargs -0 sha256sum > "$OUT/SHA256SUMS"
+find "$OUT" -type f ! -name SHA256SUMS -print0 | sort -z | \
+  xargs -0 sha256sum > "$OUT/SHA256SUMS"
