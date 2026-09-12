@@ -32,7 +32,7 @@ case "$SLURM_ARRAY_TASK_ID" in
     ;;
   1)
     COUPLING=shared
-    Q=1
+    Q=8
     SEED=80302
     ;;
   *)
