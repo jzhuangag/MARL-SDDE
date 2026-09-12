@@ -28,12 +28,12 @@ case "$SLURM_ARRAY_TASK_ID" in
   0)
     COUPLING=independent
     Q=8
-    SEED=112001
+    SEED=80301
     ;;
   1)
     COUPLING=shared
     Q=1
-    SEED=112002
+    SEED=80302
     ;;
   *)
     echo "unexpected array index: $SLURM_ARRAY_TASK_ID" >&2
@@ -56,7 +56,7 @@ OUT="$ROOT/artifacts/smoke/job${SLURM_ARRAY_JOB_ID}-${SLURM_ARRAY_TASK_ID}-${COU
   --environment-budget 400 \
   --server-overhead 800 \
   --seed "$SEED" \
-  --seed-registry-base 112001 \
+  --seed-registry-base 80301 \
   --seed-registry-size 128 \
   --hidden-size 128 \
   --activation relu \

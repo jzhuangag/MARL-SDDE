@@ -167,6 +167,13 @@ def test_smacv2_development_is_outcome_free_and_exactly_budgeted() -> None:
     assert budgets["controller_probe_message_fraction"] <= config[
         "mandatory_development_gates"
     ]["probe_message_fraction_max"]
+    # HARL maps evaluation seeds to seed*50000 + rank*10000; SMACv2 requires
+    # the resulting protobuf uint32 to stay in range.
+    max_training_seed = max(config["seed_registry"]["development_training"])
+    max_eval_seed = max_training_seed * 50_000 + (
+        config["evaluation"]["threads"] - 1
+    ) * 10_000
+    assert max_eval_seed <= 2**32 - 1
 
 
 def test_charged_progress_includes_probe_cost(tmp_path) -> None:
