@@ -186,10 +186,21 @@ def common_categorical_sample(probabilities, uniform=None):
 
     if probabilities.ndim < 2:
         raise ValueError("expected worker-by-action probabilities")
+    totals = probabilities.sum(dim=-1, keepdim=True)
+    if not torch.isfinite(probabilities).all() or not torch.allclose(
+        totals, torch.ones_like(totals), rtol=1e-5, atol=1e-7
+    ):
+        raise ValueError("categorical probabilities must be finite and normalized")
     if uniform is None:
         shape = (1,) + tuple(probabilities.shape[1:-1]) + (1,)
         uniform = torch.rand(shape, device=probabilities.device)
     cumulative = probabilities.cumsum(dim=-1)
+    # Float32 accumulation can end a few ulps below one.  Preserve every
+    # interior inverse-CDF boundary and close only the final interval so the
+    # sampler can never emit the out-of-support index ``n_actions``.
+    cumulative = torch.cat(
+        (cumulative[..., :-1], torch.ones_like(cumulative[..., -1:])), dim=-1
+    )
     return (uniform > cumulative).sum(dim=-1, keepdim=True)
 
 

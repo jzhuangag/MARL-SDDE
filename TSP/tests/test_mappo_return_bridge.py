@@ -201,6 +201,22 @@ def test_public_uniform_preserves_each_categorical_inverse_cdf() -> None:
     assert high.squeeze(-1).tolist() == [2, 2]
 
 
+def test_common_categorical_closes_float32_final_interval() -> None:
+    probabilities = torch.tensor(
+        [[0.1, 0.2, 0.6999999], [0.4, 0.3, 0.2999999]],
+        dtype=torch.float32,
+    )
+    uniform = torch.tensor([[0.99999994]], dtype=torch.float32)
+    action = MODULE.common_categorical_sample(probabilities, uniform)
+    assert action.squeeze(-1).tolist() == [2, 2]
+
+
+def test_common_categorical_rejects_nonprobability_rows() -> None:
+    probabilities = torch.tensor([[0.1, 0.2, 0.2]], dtype=torch.float32)
+    with pytest.raises(ValueError, match="normalized"):
+        MODULE.common_categorical_sample(probabilities)
+
+
 def test_development_grid_is_complete_and_contains_no_formal_seeds() -> None:
     config = json.loads(
         (ROOT / "experiments" / "marl_return_development_grid.json").read_text(
