@@ -14,11 +14,12 @@ set -euo pipefail
 
 GLOBAL_INDEX=$((${OFFSET:?OFFSET must be exported}+SLURM_ARRAY_TASK_ID))
 ROOT=/scratch/jzhuangag/MARL-SDDE-TSP-MPE-QGRID-AUDIT-001
-BASE=/scratch/jzhuangag/MARL-SDDE-TwoClocks-20260902
-PYTHON="$BASE/envs/runtime-py39/bin/python"
-HARL="$BASE/external/HARL"
+REFERENCE=/scratch/jzhuangag/MARL-SDDE-TSP-MARL-CONF-001
+PYTHON="$REFERENCE/venv/bin/python"
+HARL="$REFERENCE/tmp/HARL"
 CODE="$ROOT/code/MARL-SDDE"
 export PYTHONPATH="$CODE/TSP/experiments:$HARL"
+export PYTHONNOUSERSITE=1
 export TMPDIR="$ROOT/tmp/${SLURM_ARRAY_JOB_ID}-${SLURM_ARRAY_TASK_ID}"
 export MPLCONFIGDIR="$ROOT/tmp/mpl-${SLURM_ARRAY_JOB_ID}-${SLURM_ARRAY_TASK_ID}"
 unset ROCR_VISIBLE_DEVICES
@@ -31,7 +32,7 @@ SEED_INDEX=$((GLOBAL_INDEX % 8))
 if [ "$Q_INDEX" -eq 0 ]; then Q=2; else Q=4; fi
 if [ "$REGIME_INDEX" -eq 0 ]; then COUPLING=independent; else COUPLING=shared; fi
 SEED=$((96001+SEED_INDEX))
-OUT="$ROOT/artifacts/fixed-q${Q}-${COUPLING}-seed${SEED}"
+OUT="$ROOT/artifacts/${ARTIFACT_SET:?ARTIFACT_SET must be exported}/fixed-q${Q}-${COUPLING}-seed${SEED}"
 
 "$PYTHON" "$CODE/TSP/experiments/run_mappo_return_bridge.py" \
   --harl-root "$HARL" \
