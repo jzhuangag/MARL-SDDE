@@ -31,7 +31,7 @@ wait_for_success() {
   done
 
   local audit
-  audit=$(sacct -X -n -P -j "$job_id" -o JobIDRaw,State,ExitCode | \
+  audit=$(sacct -X -n -P -j "$job_id" -o JobID,State,ExitCode | \
     awk -F'|' -v prefix="${job_id}_" '$1 ~ ("^" prefix "[0-9]+$") {print}')
   local count
   count=$(printf '%s\n' "$audit" | awk 'NF {n++} END {print n+0}')

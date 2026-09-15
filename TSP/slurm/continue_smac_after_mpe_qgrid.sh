@@ -41,7 +41,7 @@ while squeue -h -j "$job_id" | grep -q .; do
   sleep "$POLL_SECONDS"
 done
 
-audit=$(sacct -X -n -P -j "$job_id" -o JobIDRaw,State,ExitCode | \
+audit=$(sacct -X -n -P -j "$job_id" -o JobID,State,ExitCode | \
   awk -F'|' -v prefix="${job_id}_" '$1 ~ ("^" prefix "[0-9]+$") {print}')
 count=$(printf '%s\n' "$audit" | awk 'NF {n++} END {print n+0}')
 if [[ "$count" -ne 8 ]]; then
