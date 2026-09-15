@@ -1,0 +1,50 @@
+{
+  "audit_date": "2026-08-01",
+  "scope": "External sources introduced or retained in T-020/T-021 documents",
+  "status": "pass_with_resolver_limitations",
+  "records": [
+    {
+      "key": "young_tian_minatar_2019",
+      "title": "MinAtar: An Atari-Inspired Testbed for Thorough and Reproducible Reinforcement Learning Experiments",
+      "authors": ["Kenny Young", "Tian Tian"],
+      "year": 2019,
+      "arxiv": "1903.03176",
+      "primary": "https://arxiv.org/abs/1903.03176",
+      "checks": {"arxiv": "pass", "upstream_repository": "pass", "dblp": "pass_with_older_title_variant", "openalex": "rate_limited", "semantic_scholar": "rate_limited", "crossref": "not_applicable_no_doi"},
+      "material_conflict": false
+    },
+    {
+      "key": "machado_ale_2018",
+      "title": "Revisiting the Arcade Learning Environment: Evaluation Protocols and Open Problems for General Agents",
+      "authors": ["Marlos C. Machado", "Marc G. Bellemare", "Erik Talvitie", "Joel Veness", "Matthew J. Hausknecht", "Michael Bowling"],
+      "year": 2018,
+      "journal": "Journal of Artificial Intelligence Research",
+      "volume": 61,
+      "pages": "523-562",
+      "doi": "10.1613/jair.5699",
+      "arxiv": "1709.06009",
+      "primary": "https://arxiv.org/abs/1709.06009",
+      "checks": {"arxiv": "pass", "publisher_or_authoritative_metadata": "pass_google_research_publication_record", "dblp": "pass_extended_abstract_cross_record", "openalex": "rate_limited", "semantic_scholar": "not_attempted_after_rate_limit", "crossref": "search_endpoint_not_resolved_directly"},
+      "material_conflict": false
+    },
+    {
+      "key": "gymnasium_frozenlake",
+      "type": "software_documentation",
+      "title": "Frozen Lake - Gymnasium Documentation",
+      "primary": "https://gymnasium.farama.org/main/environments/toy_text/frozen_lake/",
+      "checks": {"official_documentation": "pass", "transition_probability_claim": "pass"},
+      "material_conflict": false
+    },
+    {
+      "key": "minatar_repository",
+      "type": "software_repository",
+      "title": "MinAtar",
+      "primary": "https://github.com/kenjyoung/MinAtar",
+      "checks": {"upstream_repository": "pass"},
+      "material_conflict": false
+    }
+  ],
+  "unverified_references_entering_manuscript": 0,
+  "notes": "T-021 introduces no new external bibliographic citation. Internal theorem and experiment documents are provenance links, not bibliography entries."
+}
+

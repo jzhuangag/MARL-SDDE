@@ -1,0 +1,67 @@
+{
+  "artifact_root": "/scratch/jzhuangag/exp017a-pilot-17a4c32",
+  "artifact_sha256": {
+    "SHA256SUMS.json": "b649ce9fc1cf59fdb5ea7150526ada1afb31adad0130cebd3c1054b8ce253209",
+    "cell_summary.csv": "2fec45646bcd4e571a632076b3d2a98a3b4cac9139bdadd75484237623029264",
+    "endpoints.csv": "bc241c772d20b76c5f42f72bd8a5523bda2ba225e113811e695dd840007191f0",
+    "environment_freeze.txt": "f7853132014511e51c1a36ffac4f05e96eff37e71a9016b4d3cebe05b49a800b",
+    "pilot_selected_best_fixed_q.csv": "6302ead5fdcaef6e2aa418522f6c27d180ad297c7bcdb2c45ec4fd8faa3b48ee",
+    "pilot_summary.json": "ebeb9ce78fdf2b0486641cd572f06de7481031d0eb7067c1a669dfb3ebc0fd9f",
+    "trajectories.csv": "5f0979038facf4e22536720f683cb37e350f166e2203202c30dd4d8f5007bce4"
+  },
+  "analyzer_rerun_core_hashes_identical": true,
+  "code": {
+    "analyzer_sha256": "da6c29172663cbc412f73c5661f86de6e791dcf8e8fd03b4b4a15566a50aa086",
+    "commit": "17a4c324763ccf38e2738240dc1c67608cad8337",
+    "config_sha256": "938b2b3424c094a578552c65fd229adfcdbd41d64ec19976f5dc741bdcae9422",
+    "preregistration_config_sha256": "28c1c24181c6de02fd0b48e7f420c3ea46887024ccb0551ccef9597f109ae5ea",
+    "remote_worktree_clean": true,
+    "runner_sha256": "0713b8ff2937f4d7c383acb2ef1b9114d1d9a17e82fb68cf79d3607b0237e452",
+    "sbatch_sha256": "51984c4a6cd294af065764eae762d64509b7ecfe30eef09260d0be49ae47d958"
+  },
+  "environment": {
+    "gpu": "NVIDIA A30",
+    "gymnasium": "1.0.0",
+    "numpy": "2.0.2",
+    "overlay": "/scratch/jzhuangag/exp017a-overlay-17a4c32",
+    "pandas": "2.3.3",
+    "python": "3.9.21",
+    "python_executable": "/project/vincentlau/jzhuangag/MARL-SDDE/envs/exp014a-py39/bin/python",
+    "torch": "2.8.0+cu128"
+  },
+  "formal_authorized": false,
+  "jobs": [
+    {
+      "array_task": 0,
+      "elapsed": "00:38:29",
+      "end": "2026-08-01T19:10:33",
+      "exit_code": "0:0",
+      "job_id": 1685696,
+      "max_rss_kib": 1565644,
+      "node": "gpu10",
+      "state": "COMPLETED",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d7a9cbb93c4cf4bd63493593c2f17c9c230e7a47556f6482b66a71af5f6163c4"
+    },
+    {
+      "array_task": 1,
+      "elapsed": "00:38:29",
+      "end": "2026-08-01T19:10:33",
+      "exit_code": "0:0",
+      "job_id": 1685697,
+      "max_rss_kib": 1595076,
+      "node": "gpu10",
+      "state": "COMPLETED",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "d7a9cbb93c4cf4bd63493593c2f17c9c230e7a47556f6482b66a71af5f6163c4"
+    }
+  ],
+  "pilot_seed_checksums_verified": [20550101, 20550102],
+  "scientific_status": "negative pilot; mandatory gates G7, G9, G11, and G12 failed; formal stopped",
+  "tests": {
+    "hpc_targeted": "10 passed in 6.73s",
+    "hpc_whole_repository": "collection blocked by pre-existing Python >=3.10 union syntax under the frozen Python 3.9 runtime",
+    "local_targeted": "10 passed",
+    "local_whole_repository": "216 passed; 3 pre-existing EXP-016B raw-byte registry failures caused by Windows CRLF working-tree conversion; Git blob hashes verified"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "experiment_id": "PDSG-CONE-001",
+  "verification_status": "VERIFIED",
+  "decision": "pass_certificate_phase_only",
+  "preregistration_commit": "1cf52a89542ccddb7212db38575e1ba619652f0c",
+  "runner_commit": "ddf6f9d0feaab0f49bacefd15fadd2036eb6f1a4",
+  "manifest_sha256": "B46BBCE028B7416DAF065F8F8362271CB7CD5EC8673E98E5EA998435736F54BA",
+  "runner_sha256": "9262972777E80D1D50FDC5B2357FB2A7193293B80169C510A08C51725C027922",
+  "cells": 27,
+  "trajectories": 10368,
+  "pooled_holdout_coverage": 0.9121817129629629,
+  "minimum_cell_coverage": 0.85546875,
+  "coverage_by_horizon": {
+    "4": {
+      "pooled": 0.89453125,
+      "median": 0.90625,
+      "minimum": 0.85546875
+    },
+    "6": {
+      "pooled": 0.9227430555555556,
+      "median": 0.9140625,
+      "minimum": 0.890625
+    },
+    "8": {
+      "pooled": 0.9192708333333334,
+      "median": 0.9296875,
+      "minimum": 0.87109375
+    }
+  },
+  "conformal_radius_by_horizon": {
+    "4": {
+      "median": 2.5007602060302103,
+      "p90": 3.4363657084570054,
+      "maximum": 3.9379744479397787
+    },
+    "6": {
+      "median": 4.234527862005747,
+      "p90": 5.460210071263701,
+      "maximum": 5.564515607398595
+    },
+    "8": {
+      "median": 6.3859958664777325,
+      "p90": 7.162619193422298,
+      "maximum": 7.3345476352090415
+    }
+  },
+  "edge_cost_by_horizon": {
+    "4": {
+      "median": 0.3473684210526316,
+      "p90": 0.5094736842105263,
+      "maximum": 0.631578947368421
+    },
+    "6": {
+      "median": 0.4789473684210526,
+      "p90": 0.92,
+      "maximum": 1.0
+    },
+    "8": {
+      "median": 0.5526315789473685,
+      "p90": 1.0,
+      "maximum": 1.0
+    }
+  },
+  "median_h8_minus_h4_edge_cost": 0.20526315789473687,
+  "nondecreasing_horizon_cost_paths": 9,
+  "total_horizon_cost_paths": 9,
+  "h4_burn5_vs_burn25_support_jaccard_values": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "median_h4_burn5_vs_burn25_support_jaccard": 0.0,
+  "maximum_shifted_escape_upper": 0.14714045207910317,
+  "maximum_edge_count": 380,
+  "gates": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": true,
+    "C11": true,
+    "C12": true
+  },
+  "reproduction": {
+    "verdict": "REPRODUCIBLE",
+    "primary_runtime_seconds": 1195.1752309799194,
+    "reproduction_runtime_seconds": 1181.7299602031708,
+    "artifact_sha256": {
+      "cells.json": "3F082733143B3A029F4D2773A578FCA5C83174CEE27627C6CC48EC234F46A879",
+      "summary.json": "196C787750421330F9531A1063CDAE5B2DBD97CC3C0B0453F4CE10629AAAD946",
+      "trajectories.csv": "3329AFFFED2E59E4B2A1FFA415C12EE07695F462CA66AE3659B3ABC39FAE1224"
+    }
+  },
+  "regression": {
+    "command": "D:/anaconda/envs/ust2/python.exe -m pytest experiments/policy_dependency_sync -q",
+    "passed": 90,
+    "failed": 0,
+    "runtime_seconds": 34.82
+  },
+  "fallacy_scan_coverage": "11/11",
+  "controller_preregistration_design_authorized": true,
+  "controller_execution_authorized": false,
+  "formal_controller_seeds_authorized": false,
+  "gpu_authorized": false,
+  "hpc4_authorized": false,
+  "next_stage": "close estimator and receipt-time theorem interfaces, then separately preregister a CPU synthetic Lyapunov-controller audit"
+}

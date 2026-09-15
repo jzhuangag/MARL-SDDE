@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-06",
+  "status": "outcome_free_source_audit",
+  "selected_development_candidate": {
+    "benchmark": "Multi-Agent MuJoCo",
+    "task": "HalfCheetah-v5",
+    "partition": "6x1",
+    "candidate_support": "published six-joint chain",
+    "maximum_degree": 2,
+    "claim": "approximate sparsity candidate only"
+  },
+  "sources": {
+    "multiagent_mujoco": "b212ddd74b258e7cea006ff1d642b5ffada4b99d",
+    "lb_foraging": "79f383b7db0a3530f14252d5b6cc0d85aa9fb385",
+    "robotic_warehouse": "43018983b5e42cd8050481a871eca0baf556ac7e",
+    "magent2": "0d2e0e344fa84411eeba4baf03dc3b7273c4f14d",
+    "harl": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2"
+  },
+  "candidate_decisions": {
+    "mamujoco_halfcheetah_6x1": "go_to_cpu_dependency_tail_development",
+    "rware_global_reward": "dense_control",
+    "lbf_shared_reward": "dense_control",
+    "magent2_battle": "scope_mismatch_general_sum",
+    "harl_mpe_simple_spread": "dense_small_agent_control"
+  },
+  "local_environment": {
+    "conda": "ust2",
+    "python": "3.11.13",
+    "gymnasium": "1.0.0",
+    "mujoco": "3.3.0",
+    "halfcheetah_v5_smoke": true,
+    "observation_dimension": 17,
+    "action_dimension": 6
+  },
+  "training_run_authorized": false,
+  "gpu_authorized": false,
+  "next_stage": "separately preregistered local CPU finite-horizon dependency-tail audit"
+}

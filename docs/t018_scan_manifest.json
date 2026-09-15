@@ -1,0 +1,140 @@
+{
+  "amendment_1_hash": "a6312a4769457c3d73aedea60f9c3523a2860d6fc0499ad1ccdb6124188412d0",
+  "budget_points_per_scenario": 10,
+  "definitions": {
+    "B_N": "minimum necessary identification scale from directional KL lower-bound samples",
+    "B_id": "minimum scale at which information-only can afford a statistically reliable fixed probe",
+    "B_value": "minimum scale at which learning-aware probing is worthwhile and S_mean-safe",
+    "Z": "{B: B_id <= B < B_value}",
+    "broad_prevalence_gate": 0.25,
+    "practical_effect_threshold": 0.03,
+    "safety_metric": "S_mean theorem-facing; S_path descriptive tail metric only"
+  },
+  "grid": {
+    "Q": [
+      8,
+      16,
+      32
+    ],
+    "budget_point_rules": [
+      {
+        "factor": 0.5,
+        "mode": "scale",
+        "name": "half_BN",
+        "reference": "B_N"
+      },
+      {
+        "factor": 0.9,
+        "mode": "scale",
+        "name": "near_BN",
+        "reference": "B_N"
+      },
+      {
+        "factor": 1.0,
+        "mode": "scale",
+        "name": "at_BN",
+        "reference": "B_N"
+      },
+      {
+        "factor": 1.0,
+        "mode": "ceil",
+        "name": "at_Bid",
+        "reference": "B_id"
+      },
+      {
+        "factor": 1.0,
+        "mode": "midpoint",
+        "name": "mid_id_value",
+        "reference": "B_id_B_value"
+      },
+      {
+        "factor": 0.1,
+        "mode": "minus_fraction",
+        "name": "near_value",
+        "reference": "B_value_minus_gap"
+      },
+      {
+        "factor": 1.0,
+        "mode": "minus_one",
+        "name": "last_Z_integer",
+        "reference": "B_value"
+      },
+      {
+        "factor": 1.0,
+        "mode": "ceil",
+        "name": "at_value",
+        "reference": "B_value"
+      },
+      {
+        "factor": 1.1,
+        "mode": "scale",
+        "name": "above_BS",
+        "reference": "B_value"
+      },
+      {
+        "factor": 2.0,
+        "mode": "scale",
+        "name": "double_BS",
+        "reference": "B_value"
+      }
+    ],
+    "budget_rays": [
+      "balanced",
+      "message_limited",
+      "environment_limited"
+    ],
+    "delay": [
+      0,
+      4,
+      12,
+      24
+    ],
+    "epsilon_safe": [
+      0.1,
+      0.2
+    ],
+    "finite_action_catalogue": {
+      "b": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "eta": [
+        1.0
+      ],
+      "q": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ]
+    },
+    "lambda": [
+      0.2,
+      0.7,
+      0.9,
+      0.94
+    ],
+    "overhead": [
+      4,
+      16,
+      32
+    ],
+    "theta_high": [
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "theta_low": 0.05
+  },
+  "grid_hash": "c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db",
+  "grid_scenario_count": 3456,
+  "no_outcome_statement": "This manifest freezes only analytic formulas and a deterministic scan grid; it contains no trajectory, pilot, formal, HPC4, GPU, or scientific outcome.",
+  "original_exp016a_hash": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+  "schema_version": 1,
+  "starting_head": "3bdca34c4c5f0f55e3534f64f47042790d8a3daf",
+  "task": "T-018"
+}

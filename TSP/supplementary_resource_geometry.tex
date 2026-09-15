@@ -1,0 +1,80 @@
+\section{Resource-Geometry Proofs}
+\subsection{Proof of Proposition 1}
+Under a message-only budget, the number of independent rounds is $T=B_{\rm msg}/(h+q)$ up to integer rounding.
+Substituting this horizon into (11) of the main paper and dropping the common positive factor $(\sigma_c^2+\sigma_e^2)/B_{\rm msg}$ gives (13).
+Expanding it yields
+\begin{equation}
+F(q;\rho,h)=h\rho+1-\rho+q\rho+\frac{h(1-\rho)}{q}.
+\end{equation}
+For $q>0$,
+\begin{equation}
+F'(q)=\rho-\frac{h(1-\rho)}{q^2},
+\quad
+F''(q)=\frac{2h(1-\rho)}{q^3}\ge0.
+\end{equation}
+The unique interior stationary point is therefore (14), and convexity makes it the continuous minimum.
+Clipping handles the interval boundary.
+For integer $q$, discrete convexity implies that a minimizer is a feasible neighbor of the clipped continuous optimum.
+
+\subsection{Geometric temporal-correlation sum}
+The identity
+\begin{equation}
+\sum_{s=1}^{N-1}(N-s)r^s
+=N\sum_{s=1}^{N-1}r^s-\sum_{s=1}^{N-1}sr^s
+\end{equation}
+together with the finite geometric-series derivative gives (15) of the main paper.
+This term is nondecreasing in $r\in[0,1)$.
+Because $r=\lambda^b$ is nonincreasing in $b$, physical spacing decreases correlation cost at a fixed $N$.
+Equation (8) of the main paper shows why the same monotonicity need not hold after charging the environment clock.
+
+\subsection{Exact risk of the running-mean learner}
+Let $\bar X_k=q^{-1}\sum_{i=1}^qX_{i,k}$ under the common-factor model.
+After subtracting its target mean, the stationary covariance is
+\begin{equation}
+\operatorname{Cov}(\bar X_k,\bar X_\ell)
+=\theta_jr^{|k-\ell|}+\frac{1}{q}\mathbf 1\{k=\ell\}.
+\label{eq:mean-observation-covariance-supp}
+\end{equation}
+The registered unit pseudo-observation gives the estimator
+\begin{equation}
+\widehat\vartheta_N=\frac{\widehat\vartheta_0+\sum_{k=1}^N\bar X_k}{N+1},
+\end{equation}
+with unit initial squared error independent of the observations.
+Summing every diagonal and off-diagonal covariance yields
+\begin{align}
+\E(\widehat\vartheta_N-\vartheta)^2
+&=\frac{1}{(N+1)^2}\left[1+\frac{N}{q}\right.\nonumber\\
+&\left.\quad+\theta_j\left\{N+2\sum_{s=1}^{N-1}(N-s)r^s\right\}\right],
+\end{align}
+which proves (10) of the main paper.
+
+\subsection{Proof of Proposition 3}
+Apply an orthogonal rotation across actors at every retained time.
+The $q-1$ spatial contrasts contain only unit-variance private noise and have the same law under both hypotheses.
+The normalized spatial mean $Y_k=q^{-1/2}\bm 1^\top X_k$ has covariance
+\begin{equation}
+\Sigma_j=I_n+q\theta_jT_n(r).
+\end{equation}
+Thus the contrasts cancel from every likelihood ratio, and the divergence is that of two centered Gaussian laws with covariances $\Sigma_0$ and $\Sigma_1$.
+The matrices are polynomials in the same symmetric Toeplitz matrix and hence simultaneously diagonalizable.
+The Gaussian covariance-divergence formula
+\begin{equation}
+\KL(P_0\|P_1)=\frac12\left\{\tr(\Sigma_1^{-1}\Sigma_0)-n-\log\det(\Sigma_1^{-1}\Sigma_0)\right\}
+\end{equation}
+therefore yields (31) and (32) of the main paper after substituting the shared eigenvectors and eigenvalues $1+q\theta_j\zeta_\ell$.
+The centered-Gaussian Bhattacharyya formula gives (33) under the same diagonalization.
+Its likelihood-ratio bound makes each directional error at most $\exp(-I_B)$, justifying the probe-length rule in Section~VI-B.
+
+\section{Experimental Estimands}
+At registered charged-resource fractions $0=u_0<\cdots<u_L=1$, let $E^x_{s,p}(u_\ell)$ be the seed-$s$, policy-$p$ squared parameter or initial-state return-estimation error, normalized by its value at $u_0$.
+The trajectory area under the curve is
+\begin{equation}
+{\rm AUC}_{s,p}^{x}=\sum_{\ell=1}^{L}
+\frac{u_\ell-u_{\ell-1}}{2}
+\left[E_{s,p}^{x}(u_\ell)+E_{s,p}^{x}(u_{\ell-1})\right],
+\end{equation}
+where $x\in\{{\rm par},{\rm ret}\}$.
+The resource axis charges skipped transitions, actor messages, and terminal delay.
+
+Intervals are the 2.5--97.5 percentiles of 2,000 frozen-seed bootstrap replicates that resample paired seeds and recompute the geometric-mean risk ratio over all registered cells; pairing preserves common-random-number variance reduction without treating checkpoints as independent.
+Finite-value and cumulative-budget checks precede aggregation, and the fixed-$q$ baseline is selected once on the disjoint development population and frozen for confirmation.

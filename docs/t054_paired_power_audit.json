@@ -1,0 +1,75 @@
+{
+  "audit_id": "T-054-paired-power-audit",
+  "bootstrap_replicates": 50000,
+  "bootstrap_seed": 54001,
+  "classification": "read-only post-pilot design audit; not new evidence",
+  "endpoints_path": "E:/HKUST-study/vin/SDDE/experiments/dependence_delay_linear/results/t053a_sampled_cpu_pilot/endpoints.csv",
+  "endpoints_sha256": "e4871aace2a0f25ca3d6a64a927f14a3e28e0108e723093fe1a665aba8cb0798",
+  "formal_authorized": false,
+  "gpu_authorized": false,
+  "hpc4_authorized": false,
+  "maximum_required_seed_count": 56,
+  "recommended_new_confirmation_seeds": 64,
+  "reuse_T053A_seeds": false,
+  "task_results": {
+    "cliffwalking": {
+      "T052A_theory_ratio": 0.8622344120516398,
+      "bootstrap_95_ratio_interval": [
+        0.8493102919017298,
+        1.1672234867562772
+      ],
+      "bootstrap_probability_ratio_at_most_0_97": 0.42244,
+      "cells": 28,
+      "influence_sd_one_sided_97_5_upper": 0.49087061139483074,
+      "influence_standard_deviation": 0.24118181230828378,
+      "influence_standard_error": 0.0852706474910243,
+      "normal_95_ratio_interval": [
+        0.8414636481150645,
+        1.1754469673029064
+      ],
+      "observed_ratio": 0.9945330026059932,
+      "pilot_seeds": 8,
+      "seeds_for_95_percent_assurance_under_theory_ratio": 48
+    },
+    "frozenlake8x8": {
+      "T052A_theory_ratio": 0.8622954077678552,
+      "bootstrap_95_ratio_interval": [
+        0.6112682587344417,
+        0.9025597641062629
+      ],
+      "bootstrap_probability_ratio_at_most_0_97": 0.99812,
+      "cells": 28,
+      "influence_sd_one_sided_97_5_upper": 0.5325057442976181,
+      "influence_standard_deviation": 0.26163860189007754,
+      "influence_standard_error": 0.09250321480832063,
+      "normal_95_ratio_interval": [
+        0.6256947513287483,
+        0.8991728062647636
+      ],
+      "observed_ratio": 0.7500718001747593,
+      "pilot_seeds": 8,
+      "seeds_for_95_percent_assurance_under_theory_ratio": 56
+    },
+    "taxi": {
+      "T052A_theory_ratio": 0.8621899073043947,
+      "bootstrap_95_ratio_interval": [
+        0.8670479664380398,
+        1.0216279307758933
+      ],
+      "bootstrap_probability_ratio_at_most_0_97": 0.76654,
+      "cells": 28,
+      "influence_sd_one_sided_97_5_upper": 0.2459902556353992,
+      "influence_standard_deviation": 0.12086357236938543,
+      "influence_standard_error": 0.042731725810411736,
+      "normal_95_ratio_interval": [
+        0.8703661349979775,
+        1.029081908867431
+      ],
+      "observed_ratio": 0.9464026857618731,
+      "pilot_seeds": 8,
+      "seeds_for_95_percent_assurance_under_theory_ratio": 12
+    }
+  },
+  "theory_path": "E:/HKUST-study/vin/SDDE/experiments/dependence_delay_linear/results/t052a_exact_fingerprint_static/results.json",
+  "theory_sha256": "30e70295fb877edb2af371f73785bcc5aa2b51a165d15c078242b56fe30905a4"
+}

@@ -1,0 +1,48 @@
+{
+  "experiment_id": "T-073-continuous-QP-collaboration-architecture-calibration",
+  "classification": "outcome-informed architecture calibration on frozen T-071A seeds; design evidence only",
+  "source": {
+    "experiment_id": "T-071A-sampled-observable-nonstationary-graph-pilot",
+    "endpoints_sha256": "1432FDBE403A2ADA3D4C1734BAB476AE0F47F4765491D33245FD76B4A26CE446",
+    "reuse_all_source_seeds": true,
+    "new_scientific_seeds": false
+  },
+  "controller": {
+    "pre_steps": 5,
+    "validation_steps": 5,
+    "all_steps_are_learning_updates": true,
+    "extra_probe_transitions": 0,
+    "fingerprint_message_units_per_decision": 1,
+    "mixing_message_units_per_decision": 1,
+    "drift_weight": 4.0,
+    "drift_weight_rule": "number of agents",
+    "variance_weight": 1.0,
+    "variance_weight_rule": "unit coefficient on the observable covariance-of-mean proxy",
+    "safety_slack": 0.0,
+    "rollback_margin": -0.02,
+    "rollback_margin_rule": "minus one half of the frozen gain",
+    "simplex_solver": "projected gradient",
+    "maximum_iterations_per_QP": 50,
+    "tolerance": 1e-7
+  },
+  "descriptive_criteria": {
+    "Q1": "finite complete reuse of all 432 cells and 32 T-071A seeds",
+    "Q2": "at least 5 percent geometric cumulative-risk improvement on nonstationary cells",
+    "Q3": "strict improvement in at least 55 percent of nonstationary cells",
+    "Q4": "at least 2 percent improvement in both nonstationary schedule families",
+    "Q5": "nonnegative improvement in every delay group",
+    "Q6": "stationary-control ratio at most 1.10",
+    "Q7": "exactly 240 learning transitions, zero extra probe transitions, and at most 18 message units",
+    "Q8": "positive continuous collaboration and finite nonnegative safety debt",
+    "Q9": "mean projected-gradient iterations per recipient-decision at most 35 and hard maximum at most 50"
+  },
+  "authorization": {
+    "run_local_cpu_calibration": true,
+    "claim_formal_evidence": false,
+    "preregister_T073A": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "all_gates_pass": false,
+  "artifact_id": "CAUS-HEADROOM-STATIC-20260901",
+  "decision": "stop_before_stochastic_learning_and_gpu",
+  "design_commit": "cc09594",
+  "design_hash": "06eba45b60bb1ba0b7bd7e2c43152bc09cad1910e87128ad08b2c6fd72aa1cac",
+  "diagnostics": {
+    "better_cells": 22,
+    "equal_cells": 6,
+    "maximum_cost_ratio": 2.064245810055866,
+    "minimum_cost_ratio": 0.47774480712166173,
+    "worse_cells": 20
+  },
+  "gates": {
+    "aggregate_cost_ratio_le_0_85": false,
+    "complete_finite_compatible": true,
+    "dynamic_no_worse_than_strong_baseline": false,
+    "full_actor_coverage": true,
+    "scenario_ten_percent_fraction_ge_0_60": false,
+    "throughput_ratio_vs_sequential_ge_2": true
+  },
+  "metrics": {
+    "geometric_cost_ratio": 1.0267566164777238,
+    "geometric_throughput_ratio_vs_sequential": 7.614700354847174,
+    "median_cost_reduction": 0.0,
+    "scenario_ten_percent_fraction": 0.1875
+  },
+  "primary_result": {
+    "bytes": 107213,
+    "path": "docs/compatible_schedule_headroom_results.json",
+    "sha256": "745F4ABEFC9BA162C0CA4C205BE3B850D319A8ADBA24214C1D456A72AA78BA00"
+  },
+  "reproduction": {
+    "byte_exact": true,
+    "sha256": "745F4ABEFC9BA162C0CA4C205BE3B850D319A8ADBA24214C1D456A72AA78BA00"
+  },
+  "tests": {
+    "full_experiment_regression": "924 passed, 7 skipped in 123.17s",
+    "targeted": "11 passed in 0.54s"
+  },
+  "runs": 240,
+  "scenarios": 48,
+  "stochastic_pilot_authorized": false
+}

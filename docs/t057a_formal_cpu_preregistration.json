@@ -1,0 +1,107 @@
+{
+  "experiment_id": "T-057A-formal-fixed-policy-Markov-TD",
+  "classification": "formal empirical evidence under the registered fixed-policy delayed Markov-TD scope",
+  "source_confirmation_config": "docs/t055a_confirmation_cpu_pilot_preregistration.json",
+  "theorem": "docs/t056_end_to_end_finite_budget_theorem.md",
+  "software_sha256": {
+    "source_confirmation_config": "8333060a59fe1325fb6b59fac059bacffc0508e68083102a98a7beacbcb1d97b",
+    "T057A_runner": "5052c12dd7ddfbcf0eb56c3c316f971827a258c91a058aa69ccc16e7dab78c17",
+    "T057A_analyzer": "e753a514f7fd4af1788978a67103adc4cded00e3a3f6c0cf0e24570cdfb3345d",
+    "T055A_wrapper": "34fc8646adb50423fc7b122098e2811e114f19c815b4b64f5f359513cd404009",
+    "frozen_T053A_runner": "ac466d42a9c40bc80a1bf4f3d5fdbc756604099df302ffb8b0843b1eb352c58d",
+    "sampled_standard_task_kernel": "78de76267c7b9086258509c6de8ac9c33b51527f5e7d26b70f486c5844f7826b",
+    "T056_finite_certificate": "42f27df41615eabb480ca3fa84cc2397ef81e161d935ac5458c706e0b25c7fb0"
+  },
+  "formal_seed_registry": {
+    "inclusive_start": 202608036001,
+    "inclusive_end": 202608036256,
+    "derivation": "every integer in the closed interval",
+    "count": 256,
+    "disjoint_from_T053A_and_T055A": true
+  },
+  "tasks": ["frozenlake8x8", "cliffwalking", "taxi"],
+  "kernel_sha256": {
+    "frozenlake8x8": "93dcc787c7d551f2c620d4bed29dc9245cd61bcade3cecde96bc99e85ae04dc3",
+    "cliffwalking": "55a3c9a49f29e2a9142e41f66c3134073e56626dbe43c192a9b1bf1f25acb90a",
+    "taxi": "0aad06a53cf55b339137944bfd38db65214cea99f36cd900603a0e88d78ae14f"
+  },
+  "grid": {
+    "participation_catalogue": [1, 4, 16],
+    "message_overheads": [8, 32],
+    "correlations": [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+    "delays": [0, 8]
+  },
+  "learning": {
+    "pr_burn_fraction": 0.5,
+    "contraction_target": 0.0001,
+    "post_probe_message_budget": "N_contraction * (overhead + 16)",
+    "initial_error": "-theta_star",
+    "step_size": "0.8 * (1-mixing_slem) / drift_norm",
+    "recursion": "e[t+1]=e[t]-eta*A*e[t-D]+eta*xi_bar[t]",
+    "risk": "squared Euclidean norm of half-tail PR average"
+  },
+  "probe": {
+    "blocks": 96,
+    "q_probe": 2,
+    "maximum_independent_path_collision": 0.01,
+    "fingerprint": "exact equality of sampled stationary state paths; SHA-256 is the implementation-equivalent message",
+    "decision": "exact T-052 plug-in action from observed match count",
+    "independent_of_learning_bank": true
+  },
+  "comparators": {
+    "strong_fixed_q": {"overhead_8": 4, "overhead_32": 16},
+    "fixed_q": [1, 4, 16],
+    "true_rho_oracle": "T-050 catalogue minimizer, using the full no-probe total budget",
+    "sample_path_oracle": "descriptive only; minimum fixed-q endpoint on the same seed"
+  },
+  "analysis": {
+    "cell_endpoint": "arithmetic mean risk over 256 formal master seeds",
+    "aggregate": "geometric mean of cell controller/strong-fixed ratios of seed means",
+    "common_random_numbers": "one common plus 16 private exact Gymnasium trajectory banks shared within each endpoint",
+    "uses_prior_outcome_rows": false,
+    "uses_pilot_outcomes_to_change_algorithm_or_thresholds": false,
+    "pilot_seeds_reused": false
+  },
+  "formal_analysis": {
+    "bootstrap": {
+      "unit": "complete master-seed column across every registered cell and comparator",
+      "replicates": 50000,
+      "seed": 57001,
+      "aggregate_one_sided_upper_quantile": 0.95,
+      "task_Bonferroni_one_sided_upper_quantile": 0.9833333333333333,
+      "delay_Bonferroni_one_sided_upper_quantile": 0.975,
+      "active_one_sided_lower_quantile": 0.05
+    }
+  },
+  "mandatory_gates": {
+    "F1": "exact provenance, 84 cells, 256 formal seeds, and 21504 endpoints",
+    "F2": "all risks finite and every message/environment/delay budget valid",
+    "F3": "aggregate point and one-sided 95% upper ratio <= 0.95",
+    "F4": "every task point and Bonferroni one-sided upper ratio <= 0.97",
+    "F5": "both delay point and Bonferroni one-sided upper ratio <= 0.97",
+    "F6": "active-cell improvement point and one-sided 95% lower fraction >= 0.60",
+    "F7": "inactive point and one-sided 95% upper ratio <= 1.05",
+    "F8": "true-rho-oracle point and one-sided 95% upper ratio <= 1.20",
+    "F9": "median selected q is nonincreasing on rho for each overhead",
+    "F10": "fingerprint standardized residual RMSE <= 1.5",
+    "F11": "stored summary replays from endpoints",
+    "F12": "clean rerun is byte-identical",
+    "F13": "formal seed registry is isolated from every pilot",
+    "F14": "complete dependence_delay_linear test suite passes"
+  },
+  "expected_workload": {
+    "cells": 84,
+    "seeds": 256,
+    "endpoints": 21504,
+    "long_learning_trajectories": 365568,
+    "stored_full_trajectories": 0,
+    "recommended_hardware": "local CPU"
+  },
+  "authorization": {
+    "execute_after_independent_commit": true,
+    "formal": true,
+    "gpu": false,
+    "hpc4": false,
+    "nonlinear_benchmark": false
+  }
+}

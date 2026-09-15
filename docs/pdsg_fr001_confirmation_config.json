@@ -1,0 +1,57 @@
+{
+  "experiment_id": "PDSG-FR-001",
+  "evidence_class": "independent_cpu_mechanism_confirmation",
+  "development_seeds_excluded": [97100, 97101, 97102, 97103, 97104, 97105, 97106, 97107],
+  "confirmation_seed_start": 98100,
+  "confirmation_seed_count": 32,
+  "grid": {
+    "cycle_probability": [0.05, 0.5, 0.8, 0.95],
+    "maximum_delay": [1, 4, 8],
+    "communication_budget": [0.25, 0.5],
+    "total_events": 4096
+  },
+  "policies": [
+    "plugin_joint",
+    "exact_joint",
+    "state_myopic",
+    "fixed_edge_0",
+    "fixed_edge_1",
+    "fixed_edge_2",
+    "fixed_initial",
+    "round_robin",
+    "random_edge",
+    "no_refresh"
+  ],
+  "primary_policy": "plugin_joint",
+  "primary_baseline": "state_myopic",
+  "oracle_diagnostic": "exact_joint",
+  "primary_population": {
+    "cycle_probability_minimum": 0.8,
+    "cell_count": 12,
+    "seed_cell_count": 384
+  },
+  "thresholds": {
+    "maximum_favorable_geometric_risk_ratio": 0.75,
+    "minimum_favorable_strict_cells": 12,
+    "minimum_favorable_seedwise_win_fraction": 0.9,
+    "minimum_median_oracle_headroom_recovery": 0.75,
+    "minimum_favorable_pareto_dominant_points": 12,
+    "minimum_low_to_favorable_phase_gap": 0.25,
+    "maximum_all_cell_geometric_risk_ratio": 0.85,
+    "maximum_oracle_geometric_risk_ratio": 0.8
+  },
+  "queue_step": 0.02,
+  "scientific_source_sha256": {
+    "experiments/policy_dependency_sync/certified_factor_async.py": "9efa732232bd3f8f306e1d01a6777d2f2fc4b11a9a68525e9358542af19266c3",
+    "experiments/policy_dependency_sync/joint_factor_lyapunov.py": "5342b2ac28a236d1639cab1d1a9c654d340de43a02f2a8e115b56df987e57a80",
+    "experiments/policy_dependency_sync/markov_alignment_certificate.py": "5cca9503e35a3bde2ac8aaea65bb45846e29f35c7a384ee6cc9562bf21f7b6fa",
+    "experiments/policy_dependency_sync/run_forecast_reversal_development.py": "b8aa31b8a2d88adf88a13608de1cf055885aedcd401ee307e59d32570687cf38"
+  },
+  "execution": {
+    "cpu_only": true,
+    "default_workers": 4,
+    "reproduction_required": true,
+    "gpu_authorized": false,
+    "formal_authorized": false
+  }
+}

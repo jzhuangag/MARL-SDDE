@@ -1,0 +1,25 @@
+{
+  "experiment": "LCO-U0-ANALYTIC-UPPER-BOUND",
+  "formal_evidence": false,
+  "normalized_steps": [0.2, 0.5, 0.8],
+  "first_agent_arrival_probabilities": [0.1, 0.5],
+  "phase_persistence": [0.8, 0.95],
+  "rotation_stationary_fractions": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "optimism_budgets": [0.25, 0.5],
+  "maximum_ages": [128, 256, 512],
+  "fixed_schedule_period": 4,
+  "dynamic_separation_margin": 0.05,
+  "survival_gates": {
+    "maximum_flow_residual": 1e-8,
+    "maximum_normalization_residual": 1e-8,
+    "maximum_calibration_residual": 1e-6,
+    "maximum_age_convergence_gap": 1e-6,
+    "minimum_mean_dynamic_upper_gain": 0.03,
+    "minimum_dynamic_fraction_above_0_02": 0.75,
+    "minimum_low_persistence_mean_upper_gain": 0.025,
+    "minimum_low_budget_mean_upper_gain": 0.015,
+    "minimum_median_exact_headroom_capture": 0.6,
+    "maximum_budget_overshoot": 1e-9,
+    "maximum_stationary_potential_call_rate": 1e-9
+  }
+}

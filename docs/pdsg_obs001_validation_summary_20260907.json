@@ -1,0 +1,50 @@
+{
+  "decision": "pass_exact_model_observable_controller_and_authorize_standard_task_integration",
+  "experiment_id": "PDSG-OBS-001",
+  "gates": {
+    "O1": true,
+    "O10": true,
+    "O11": true,
+    "O12": true,
+    "O13": true,
+    "O14": true,
+    "O2": true,
+    "O3": true,
+    "O4": true,
+    "O5": true,
+    "O6": true,
+    "O7": true,
+    "O8": true,
+    "O9": true
+  },
+  "metrics": {
+    "active_maximum_target_estimation_error": 0.7382591475375745,
+    "active_median_auc_gain": 0.053955629752453285,
+    "active_median_oracle_terminal_headroom_recovery": 0.9366646096431483,
+    "active_median_target_estimation_error": 0.31150598596743534,
+    "active_median_terminal_gain": 0.5898580004349783,
+    "active_minimum_oracle_terminal_headroom_recovery": 0.8711392613129467,
+    "active_minimum_terminal_gain": 0.3974185764106134,
+    "active_online_oracle_trace_agreement_fraction": 0.06640625,
+    "active_strict_auc_gain_fraction": 1.0,
+    "active_strict_terminal_gain_fraction": 1.0,
+    "endpoint_count_with_oracle_diagnostic": 9984,
+    "maximum_environment_charge_error": 0.0,
+    "maximum_message_excess": -0.076171875,
+    "maximum_uncoupled_absolute_auc_gain": 0.0,
+    "maximum_uncoupled_absolute_terminal_gain": 0.0,
+    "minimum_active_mean_distinct_graph_supports": 14.1875
+  },
+  "preregistration_commit": "079cab2",
+  "reproduction": {
+    "cells_sha256": "1F32F5CBF1B5C92CC270A8BCF1FC9D5D68D447298A333E07E6AFB542D2CD7E80",
+    "endpoints_sha256": "6C7498CC1953748C6D3091ABC72B338509EE9A9E3A9BB08E1BD17A8B258DFE08",
+    "primary_seconds": 658.7771757999872,
+    "reproduction_seconds": 629.6844270000001,
+    "summary_sha256": "B815F1457AB073295159540E08D5AE7D435C2D1C78C82C6F7372D96FAE633595",
+    "verdict": "byte_identical"
+  },
+  "standard_marl_result_established": false,
+  "status": "verified_confirmation",
+  "test_lifecycle_erratum": "post-result regression replaces the preregistration-time absence assertion with persistent gitignore path checks; scientific sources and outputs unchanged"
+}

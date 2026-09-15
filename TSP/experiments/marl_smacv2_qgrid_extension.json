@@ -1,0 +1,65 @@
+{
+  "experiment_id": "TSP-MARL-SMACV2-QGRID-DEV-001",
+  "role": "exploratory completion of the fixed-participation landscape; no controller or confirmatory claim",
+  "predecessor": {
+    "experiment_id": "TSP-MARL-SMACV2-HEADROOM-001",
+    "frozen_result_unchanged": true,
+    "outcomes_already_observed": ["fixed_q1", "fixed_q8"],
+    "reason": "the Lyapunov score over the full catalogue predicts an interior q under the measured moderate dependence"
+  },
+  "upstream": {
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "smacv2_commit": "577ab5a2cff2391f8df582da5731ea9cd6adf3c6",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "smacv2",
+    "map_name": "terran_10_vs_10",
+    "rollout_length": 200,
+    "ctde": true
+  },
+  "dependence_regimes": ["independent", "shared"],
+  "fixed_q_grid": [1, 2, 4, 8],
+  "new_fixed_q": [2, 4],
+  "development_seeds": [81101, 81102],
+  "calibrated_rho": {
+    "independent": -0.014843254112399264,
+    "shared": 0.5006613593703086,
+    "source": "TSP-SMACV2-COUPLING-CAL-001; return-free probe calibration"
+  },
+  "budgets": {
+    "message_budget": 6400000,
+    "environment_budget": 1200000,
+    "server_overhead": 800,
+    "rollout_length": 200
+  },
+  "model": {
+    "hidden_size": 128,
+    "activation": "relu",
+    "actor_lr": 0.0005,
+    "critic_lr": 0.0005,
+    "ppo_epoch": 5,
+    "critic_epoch": 5
+  },
+  "evaluation": {
+    "interval_training_updates": 200,
+    "episodes": 32,
+    "threads": 8,
+    "auc_grid_points": 21
+  },
+  "planned_new_runs": 8,
+  "admission_gates_for_a_future_controller_study": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "regime_oracle_relative_gain_over_strong_static_min": 0.02,
+    "lyapunov_predicted_action_relative_gap_to_regime_oracle_min_each_regime": -0.02,
+    "all_registered_fixed_q_present": true,
+    "analysis_replay_byte_identical": true
+  },
+  "stopping_rule": "Any failed gate stops a future SMACv2 controller study. This exploratory extension cannot revise the frozen HEADROOM-001 decision or enter the manuscript as confirmatory evidence.",
+  "storage": {
+    "existing_root": "/scratch/jzhuangag/MARL-SDDE-TSP-SMACV2-DEV-001/artifacts/headroom",
+    "new_root": "/scratch/jzhuangag/MARL-SDDE-TSP-SMACV2-QGRID-DEV-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

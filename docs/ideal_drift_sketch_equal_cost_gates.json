@@ -1,0 +1,74 @@
+{
+  "audit": "ideal_drift_sketch_equal_cost_upper_bound",
+  "date": "2026-09-05",
+  "status": "frozen_before_outcomes",
+  "source_population": "coupled_actor_critic_oracle_headroom frozen scenarios",
+  "source_scenario_hash": "528fbc597015981f8868e2d7aab567003d5b0574fadecff6b462be2c8b746ae0",
+  "horizon_events": 64,
+  "full_batch_trajectories": 256,
+  "sensor_trajectories_s1": 13,
+  "sensor_trajectories_s2": 13,
+  "update_trajectories_u": 230,
+  "primary_sensor_seeds": [
+    905001,
+    905002,
+    905003,
+    905004,
+    905005,
+    905006,
+    905007,
+    905008,
+    905009,
+    905010,
+    905011,
+    905012,
+    905013,
+    905014,
+    905015,
+    905016
+  ],
+  "gates": {
+    "I1": {
+      "description": "population, finiteness, action feasibility and positive-semidefinite sampled quadratics"
+    },
+    "I2": {
+      "description": "all S1, S2 and U trajectories charged exactly once and action chosen before U",
+      "required": true
+    },
+    "I3": {
+      "description": "geometric AUC ratio to per-scenario best fixed full-batch pair",
+      "maximum": 0.90
+    },
+    "I4": {
+      "description": "geometric AUC ratio to privileged exact online diagonal full-batch rule",
+      "maximum": 0.97
+    },
+    "I5": {
+      "description": "strictly better than exact online diagonal fraction",
+      "minimum": 0.60
+    },
+    "I6": {
+      "description": "fraction of exact coupled-versus-diagonal aggregate AUC gain recovered",
+      "minimum": 0.60
+    },
+    "I7": {
+      "description": "fraction of primary seed-scenario cells with coefficient decision regret at most 25 percent of oracle descent",
+      "minimum": 0.70,
+      "per_cell_regret_fraction_maximum": 0.25
+    },
+    "I8": {
+      "description": "target-sensitivity-zero full-sketch versus diagonal-sketch maximum absolute metric difference",
+      "maximum": 1e-10
+    },
+    "I9": {
+      "description": "constant two-action QP and five-scalar interface; no Hessian inverse or learning-rate scan",
+      "required": true
+    },
+    "I10": {
+      "description": "byte-identical clean reproduction",
+      "required": true
+    }
+  },
+  "stop_rule": "failure of I4, I5, I6 or I7 permanently stops the coupled-timescale sketch as the ICML mainline; any other failure forbids estimator construction until resolved without changing these outcomes",
+  "authorization_on_pass": "observable Markov coefficient-estimator derivation only; no formal, GPU or standard MARL benchmark"
+}

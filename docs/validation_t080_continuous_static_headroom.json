@@ -1,0 +1,77 @@
+{
+  "experiment_id": "T-080-chunked-execution-of-T-079",
+  "scientific_experiment_id": "T-079-continuous-static-graph-headroom-audit",
+  "status": "ALL_FROZEN_GATES_PASS",
+  "classification": "outcome-aware exact-moment architecture headroom; not sampled or formal evidence",
+  "gates": {
+    "H1": true,
+    "H2": true,
+    "H3": true,
+    "H4": true,
+    "H5": true,
+    "H6": true,
+    "H7": true,
+    "H8": true,
+    "H9": true,
+    "H10": true,
+    "H11": true,
+    "H12": true,
+    "H13": true,
+    "H14": true
+  },
+  "metrics": {
+    "cells": 432,
+    "nonstationary_cells": 288,
+    "nonstationary_dynamic_to_continuous_static_ratio": 0.7771157824736837,
+    "nonstationary_dynamic_improvement": 0.22288421752631626,
+    "nonstationary_strict_cell_fraction": 1.0,
+    "continuous_to_discrete_static_ratio": 0.9832786534296599,
+    "continuous_static_strictly_strengthened_fraction": 0.7685185185185185,
+    "single_switch_ratio": 0.8200256833870944,
+    "alternating_ratio": 0.7364512497648318,
+    "delay_0_ratio": 0.761761715975242,
+    "delay_1_ratio": 0.783753888778135,
+    "delay_3_ratio": 0.7860647770592986,
+    "stationary_dynamic_to_continuous_static_ratio": 0.9555870251957114,
+    "maximum_dynamic_row_kkt_residual": 5.527786145487212e-09,
+    "maximum_source_replay_relative_error": 5.170568819374106e-16,
+    "maximum_static_row_sum_residual": 2.220446049250313e-16,
+    "minimum_successful_static_starts": 10,
+    "dynamic_graph_change_fraction": 1.0,
+    "mean_dynamic_shadow_rate": 0.0
+  },
+  "reproduction": {
+    "original_chunks": 12,
+    "reproduction_chunks": 12,
+    "all_chunk_cells_byte_identical": true,
+    "merged_cells_sha256": "434349484A23F0CBC8D2AE6FA20E90ED7AD90DC071E88EFDF7048E96D6C063B7",
+    "merged_summary_sha256": "4833CA4109217F3729C990C9D77B40578A4D7CF4FBB01DA1C67725A69E8B0C7D",
+    "merged_cells_byte_identical": true,
+    "merged_summary_byte_identical": true,
+    "original_chunk_runtime_seconds": 17960.1876642001,
+    "reproduction_chunk_runtime_seconds": 10520.8480725,
+    "primary_stderr_bytes": 0,
+    "reproduction_stderr_bytes": 0
+  },
+  "regression": {
+    "environment": "project .venv; Python 3.11.13; CVXPY 1.6.5",
+    "passed": 646,
+    "skipped": 7,
+    "failed": 0,
+    "runtime_seconds": 161.94
+  },
+  "claim_boundary": {
+    "observable_controller_evidence": false,
+    "sampled_trajectory_evidence": false,
+    "standard_rl_benchmark_evidence": false,
+    "continuous_static_global_optimum_claim": false
+  },
+  "authorization": {
+    "design_and_independently_preregister_observable_cpu_pilot": true,
+    "execute_unregistered_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

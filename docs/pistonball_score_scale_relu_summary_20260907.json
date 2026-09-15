@@ -1,0 +1,75 @@
+{
+  "allowed_refresh_units": 1024,
+  "cache_component_nonzero": true,
+  "calibration_rule": "reciprocal median nonzero absolute raw component, clipped to [1e-3,1e8]",
+  "confirmatory": false,
+  "decision": "stop before controller headroom and repair the differentiable score interface",
+  "descriptive_return_path": [
+    {
+      "actor_transitions": 0,
+      "launch": 0,
+      "optional_policy_bytes": 0,
+      "return": -1.6963262730297004
+    },
+    {
+      "actor_transitions": 81920,
+      "launch": 1024,
+      "optional_policy_bytes": 31495552,
+      "return": -1.7775085317958523
+    },
+    {
+      "actor_transitions": 163840,
+      "launch": 2048,
+      "optional_policy_bytes": 65406956,
+      "return": -4.204602778781899
+    }
+  ],
+  "experiment_id": "PISTONBALL-LYAPUNOV-SCORE-SCALE-AUDIT",
+  "learning_component_nonzero": false,
+  "legacy_net_edge_minus_null": {
+    "count": 980,
+    "maximum": 2.026276006316493,
+    "median": -0.5500285919933248,
+    "minimum": -510.70221126489923,
+    "p10": -2.8307886721286644,
+    "p90": 0.45888852750542813
+  },
+  "optional_policy_bytes": 65406956,
+  "outcome_blind_calibration": true,
+  "pilot_or_formal_evidence": false,
+  "queue_active_fraction": 0.7846938775510204,
+  "queue_component_active": true,
+  "queue_price": {
+    "count": 980,
+    "maximum": 4.0,
+    "median": 1.0,
+    "minimum": 0.0,
+    "p10": 0.0,
+    "p90": 2.5
+  },
+  "raw_cache_reset_energy": {
+    "count": 980,
+    "maximum": 0.005137022112648992,
+    "median": 1.832183221939232e-05,
+    "minimum": 0.0,
+    "p10": 3.957579081181883e-06,
+    "p90": 3.946062236508398e-05
+  },
+  "raw_learning_drift_delta": {
+    "count": 980,
+    "maximum": 0.0,
+    "median": 0.0,
+    "minimum": 0.0,
+    "p10": 0.0,
+    "p90": 0.0
+  },
+  "recommended_cache_debt_weight": 54335.16637083416,
+  "recommended_learning_weight": null,
+  "runtime_seconds": 337.0755732419784,
+  "scale_audit_passed": false,
+  "scored_launches": 980,
+  "seed": 79004,
+  "selected_fraction_under_legacy_scale": 0.7459183673469387,
+  "signed_favorable_fraction": 0.0,
+  "spent_refresh_units": 731
+}

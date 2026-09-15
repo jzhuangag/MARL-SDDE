@@ -1,0 +1,98 @@
+{
+  "checked_on": "2026-08-31",
+  "scope": "Two internal source pointers; not final bibliography or exhaustive novelty audit",
+  "workflow": "academic-research-suite citation-integrity, primary record plus scholarly index cross-check",
+  "sources": [
+    {
+      "title": "Online Convex Programming and Generalized Infinitesimal Gradient Ascent",
+      "authors": [
+        "Martin Zinkevich"
+      ],
+      "year": 2003,
+      "venue": "Proceedings of the Twentieth International Conference on Machine Learning",
+      "doi": null,
+      "primary": [
+        "https://www.martin.zinkevich.org/publications/ICML03.pdf",
+        "https://aaai.org/papers/icml03-120-online-convex-programming-and-generalized-infinitesimal-gradient-ascent/",
+        "https://auld.aaai.org/Library/ICML/icml03contents.php"
+      ],
+      "resolvers": {
+        "semantic_scholar": {
+          "status": "api_unavailable",
+          "detail": "Title lookup returned HTTP 429"
+        },
+        "openalex": {
+          "status": "core_existence_title_author_year_match",
+          "id": "https://openalex.org/W2148825261"
+        },
+        "crossref": {
+          "status": "not_applicable_no_verified_doi"
+        },
+        "arxiv": {
+          "status": "not_applicable_to_this_conference_pointer"
+        }
+      },
+      "metadata_conflict": "OpenAlex lists 928-935; DBLP search record lists 928-936. Official contents confirms start 928 and next index 937. Final page range has not been resolved against the full PDF. Do not enter final bibliography until resolved.",
+      "site_date_warning": "AAAI migration date 2023 is not the paper year; author PDF/proceedings identify 2003.",
+      "evidence_type": "Primary theory; clinical I-VII hierarchy not applicable",
+      "predatory_check": "Author-hosted paper and official AAAI/ICML proceedings matched; no predatory indicator from these checks",
+      "coi": "Not independently assessed; no absence claim",
+      "status": "verified_existence_and_core_attribution_final_bibliography_hold",
+      "allowed_use": "Inherited online projected-gradient machinery, not proof of novelty of the new reference"
+    },
+    {
+      "title": "Multitask Online Mirror Descent",
+      "authors": [
+        "Nicolò Cesa-Bianchi",
+        "Pierre Laforgue",
+        "Andrea Paudice",
+        "Massimiliano Pontil"
+      ],
+      "year": 2021,
+      "version_note": "arXiv v1 2021-06-04; v3 2022-11-01",
+      "venue": "arXiv preprint",
+      "identifier": "arXiv:2106.02393",
+      "doi": "10.48550/arXiv.2106.02393",
+      "primary": [
+        "https://arxiv.org/abs/2106.02393",
+        "https://doi.org/10.48550/arXiv.2106.02393"
+      ],
+      "resolvers": {
+        "semantic_scholar": {
+          "status": "api_unavailable",
+          "detail": "ARXIV lookup returned HTTP 429"
+        },
+        "openalex": {
+          "status": "title_authors_year_identifier_match",
+          "id": "https://openalex.org/W3170706428",
+          "is_retracted": false
+        },
+        "crossref": {
+          "status": "not_applicable",
+          "detail": "arXiv DOI issued by DataCite"
+        },
+        "arxiv": {
+          "status": "verified",
+          "id": "2106.02393"
+        },
+        "doi_resolution": {
+          "status": "verified",
+          "http_status": 200,
+          "title_match": true
+        }
+      },
+      "metadata_conflict": null,
+      "evidence_type": "Primary theoretical preprint; clinical I-VII hierarchy not applicable",
+      "predatory_check": "Official arXiv record verified; peer-reviewed venue not asserted",
+      "coi": "Not independently assessed; no absence claim",
+      "status": "verified_for_arxiv_pointer",
+      "allowed_use": "Prior sharing, multitask OMD, similarity-dependent regret and closed-form updates; not asserted identical delayed-readout model"
+    }
+  ],
+  "limitations": [
+    "No final BibTeX or bibliography edited.",
+    "Unresolved page-range conflict explicitly held, not silently repaired.",
+    "S2 unavailable and aiinternational primary timeout recorded; author/AAAI and arXiv evidence available.",
+    "Retraction checks limited to retrieved index records."
+  ]
+}

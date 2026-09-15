@@ -1,0 +1,67 @@
+{
+  "experiment_id": "T-051A-fingerprint-static",
+  "decision": "fail_stop_sampled_pilot",
+  "preregistration_commit": "095f85514ba50ccd3930a5d7f23535e6c406d389",
+  "config_sha256": "18cf650e30a18399a64da2b92da6bed92faf677657398d35da20c478c4b8e7ba",
+  "runner_sha256": "3af0d642450dea15eb2cf9a251bd375cd347d39b5145e827fa658fc64c3e16a6",
+  "result_sha256": "d57f7a3f0c6d70e099bd4f5f79d18bd434c18f0670a3143102e8017da80090f6",
+  "cells": 126,
+  "sampled_trajectories": 0,
+  "primary_results": {
+    "aggregate_geometric_improvement": 0.12016146352548807,
+    "improvement_overhead_8": 0.12783717064751954,
+    "improvement_overhead_32": 0.11241820424709281,
+    "active_cells": 81,
+    "active_improved_fraction": 0.7777777777777778,
+    "maximum_expected_risk_ratio_upper_bound": 1.0501063678910794
+  },
+  "worst_cell": {
+    "task": "frozenlake8x8",
+    "delay": 8,
+    "message_overhead": 32,
+    "rho": 0.3,
+    "baseline_q": 16,
+    "oracle_q": 16,
+    "expected_risk_ratio_upper_bound": 1.0501063678910794,
+    "frozen_gate": 1.05,
+    "absolute_excess": 0.00010636789107931866
+  },
+  "fingerprints": {
+    "frozenlake8x8": {
+      "transitions": 2,
+      "collision_probability": 0.005197787350699335
+    },
+    "cliffwalking": {
+      "transitions": 12,
+      "collision_probability": 0.009567793406496924
+    },
+    "taxi": {
+      "transitions": 0,
+      "collision_probability": 0.008153474494692862
+    }
+  },
+  "gates": {
+    "S1": true,
+    "S2": true,
+    "S3": true,
+    "S4": true,
+    "S5": true,
+    "S6": true,
+    "S7": false,
+    "S8": true,
+    "S9": true,
+    "S10": true,
+    "S11": true,
+    "S12": true
+  },
+  "gates_passed": 11,
+  "gates_total": 12,
+  "clean_rerun_byte_identical": true,
+  "authorization": {
+    "sampled_cpu_pilot": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false,
+    "next": "T-052 exact Bernoulli fingerprint certificate theory audit only"
+  }
+}

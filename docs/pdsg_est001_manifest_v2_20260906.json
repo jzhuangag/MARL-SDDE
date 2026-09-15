@@ -1,0 +1,70 @@
+{
+  "experiment_id": "PDSG-EST-001",
+  "amendment": 1,
+  "title": "Sparse signed-alignment estimator nonvacuity audit",
+  "stage": "independent_cpu_development_gate",
+  "parent_manifest_sha256": "953EEDAE61D00B3E637573F83452273538187CFB4FAFF85CDE8D26070DD93146",
+  "scenario_generation_seed": 93000,
+  "pilot_seeds": [
+    93001, 93002, 93003, 93004, 93005, 93006, 93007, 93008,
+    93009, 93010, 93011, 93012, 93013, 93014, 93015, 93016,
+    93017, 93018, 93019, 93020, 93021, 93022, 93023, 93024,
+    93025, 93026, 93027, 93028, 93029, 93030, 93031, 93032,
+    93033, 93034, 93035, 93036, 93037, 93038, 93039, 93040,
+    93041, 93042, 93043, 93044, 93045, 93046, 93047, 93048,
+    93049, 93050, 93051, 93052, 93053, 93054, 93055, 93056,
+    93057, 93058, 93059, 93060, 93061, 93062, 93063, 93064
+  ],
+  "grid": {
+    "sample_count_per_half": [32, 128, 512],
+    "markov_correlation": [0.0, 0.5, 0.8, 0.95],
+    "dependency_degree": [2, 4, 8],
+    "displacement_norm": [0.08, 0.16],
+    "jacobian_lipschitz": [0.0, 0.25],
+    "sparse_tail": [0.0, 0.01],
+    "dimension": 4,
+    "curvature": 1.5,
+    "maximum_step": 0.35,
+    "queue": 0.08,
+    "edge_cost": 1.0,
+    "edge_reset_benefit": 0.08,
+    "gradient_noise_trace": 0.0016,
+    "jvp_noise_trace": 0.0025,
+    "base_gradient_cosine": 0.3,
+    "candidate_cosines": {
+      "2": [0.65, 0.95],
+      "4": [0.15, 0.45, 0.65, 0.95],
+      "8": [-0.25, -0.05, 0.15, 0.35, 0.5, 0.65, 0.8, 0.95]
+    },
+    "current_gradient_norm_bound": 1.0,
+    "candidate_gradient_norm_bound": 1.02
+  },
+  "favorable_population": {
+    "sample_count_per_half_min": 128,
+    "markov_correlation_max": 0.8,
+    "jacobian_lipschitz": 0.0,
+    "sparse_tail": 0.0,
+    "true_best_second_margin_min": 0.04
+  },
+  "adverse_population": {
+    "sample_count_per_half": 32,
+    "markov_correlation": 0.95,
+    "jacobian_lipschitz": 0.0,
+    "sparse_tail": 0.0,
+    "true_best_second_margin_min": 0.04
+  },
+  "uniform_error_rule": "Gaussian expected maximum-norm bound in Equation (11) of policy_dependency_alignment_estimator_20260906.md; no actionwise linear sum",
+  "mandatory_gates": {
+    "E1": "all rows finite, action sets complete, and total charged samples equal 2m",
+    "E2": "favorable mean absolute optimized-score error divided by its registered per-action bound <= 1.0",
+    "E3": "favorable best-action ranking accuracy >= 0.85",
+    "E4": "favorable median two-times-uniform-error to true best-second margin <= 0.75",
+    "E5": "adverse median relative error is at least 1.5 times the favorable median",
+    "E6": "analytic Markov RMS is nonincreasing in m and nondecreasing in rho for every matched cell",
+    "E7": "favorable ranking accuracy >= 0.75 for each registered dependency degree",
+    "E8": "control and update rollout identifiers are disjoint and every generated sample is charged",
+    "E9": "byte-identical clean reproduction, authorized only if E1-E8 all pass"
+  },
+  "stopping_rule": "Any failure among E1-E8 stops reproduction and any successor learning pilot. Gates, populations, seeds, and thresholds remain frozen after this amendment.",
+  "compute": "local CPU only; no GPU, HPC4, or remote storage"
+}

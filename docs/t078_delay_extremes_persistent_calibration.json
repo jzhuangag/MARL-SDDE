@@ -1,0 +1,49 @@
+{
+  "experiment_id": "T-078-delay-extremes-persistent-certificate-calibration",
+  "classification": "outcome-informed old-seed architecture calibration on theory-selected delay extremes",
+  "scientific_config": {
+    "path": "docs/t074_persistent_certificate_architecture_calibration.json",
+    "sha256": "BF7EB584B0AFA92D261849B2BBDE2929C4C464C56B91EC120D20AAB5A0819E8C",
+    "frozen_commit": "f94991416bd5497f2d0cd378a60585673b92fb57"
+  },
+  "source": {
+    "scientific_config_sha256": "BF7EB584B0AFA92D261849B2BBDE2929C4C464C56B91EC120D20AAB5A0819E8C",
+    "endpoint_source_sha256": "1432FDBE403A2ADA3D4C1734BAB476AE0F47F4765491D33245FD76B4A26CE446",
+    "selected_delay_levels": [0, 3],
+    "selection_uses_outcomes": false,
+    "selection_reason": "test no-delay and maximum registered-delay stability extremes"
+  },
+  "workload": {
+    "cells": 288,
+    "nonstationary_cells": 192,
+    "old_design_seeds": 32,
+    "endpoints": 9216,
+    "workers": 8,
+    "chunksize": 16,
+    "hard_timeout_minutes": 9
+  },
+  "mandatory_gates": {
+    "R1": "all 9,216 endpoints and 288 cells complete and finite",
+    "R2": "nonstationary geometric cumulative-risk improvement at least 7 percent",
+    "R3": "strict improvement in at least 55 percent of nonstationary cells",
+    "R4": "both nonstationary schedules improve at least 3 percent",
+    "R5": "delay 0 and delay 3 each improve at least 3 percent",
+    "R6": "stationary ratio at most 1.09",
+    "R7": "temporal-correlation 0.9 ratio at most 1.01",
+    "R8": "target-scale 0.1 ratio at most 1.06",
+    "R9": "240 learning transitions, zero extra probes, at most 18 messages",
+    "R10": "certificate rho/effective-sample directions match temporal correlation",
+    "R11": "positive collaboration, finite debt, mean QP iterations at most 35",
+    "R12": "wall clock at most 9 minutes",
+    "R13": "clean rerun is byte-identical",
+    "R14": "full repository tests pass"
+  },
+  "authorization": {
+    "run_local_CPU_calibration": true,
+    "new_seed_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "experiment_id": "EXP-010A-multistate-certificate-transfer",
+  "status": "COMPLETED_PENDING_REPRODUCTION",
+  "num_paired_seeds": 32,
+  "base_seed": 20261030,
+  "bootstrap_replications": 2000,
+  "resource_budget": 128000,
+  "gates": {
+    "numerical": {
+      "stochasticity_stationarity": {
+        "pass": true,
+        "maximum_residual": 3.3306690738754696e-16,
+        "minimum_monotonicity": 0.09999999999999992,
+        "minimum_effective_monotonicity": 0.050469181472678856
+      },
+      "certificate_accounting_numerics": {
+        "pass": true,
+        "rows": 1152,
+        "expected_rows": 1152,
+        "maximum_sharp_factor": 0.9999907725258502,
+        "divergences": 0
+      },
+      "independent_tv_reproduction": {
+        "pass": true,
+        "maximum_absolute_difference": 2.7222622485216508e-15
+      }
+    },
+    "scientific": {
+      "nonvacuity": {
+        "pass": true,
+        "minimum_updates": 98,
+        "minimum_eta": 0.009885142859986436
+      },
+      "correlation_response": {
+        "pass": true,
+        "weak_decreases": 6,
+        "strict_decreases": 6
+      },
+      "mixing_response": {
+        "pass": true,
+        "median_gap_kappa_0": 53.0,
+        "median_gap_kappa_098": 973.0,
+        "ratio": 18.358490566037737
+      },
+      "delay_response": {
+        "pass": true,
+        "nonincreasing_cells": 6,
+        "total_cells": 6
+      },
+      "endpoint_value": {
+        "pass": false,
+        "beats_both_scenarios": 7,
+        "maximum_ratio_to_better_endpoint": 1.0
+      }
+    },
+    "overall": {
+      "pass": true,
+      "numerical_passes": 3,
+      "scientific_passes": 4,
+      "criterion": "3/3 numerical and at least 4/5 scientific gates"
+    },
+    "maximum_joint_to_endpoint_ratio": 1.0
+  },
+  "environment": {
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "matplotlib": "3.5.1"
+  },
+  "artifacts": [
+    "candidate_actions.csv",
+    "selected_actions.csv",
+    "certificate_audit.csv",
+    "per_seed_metrics.csv",
+    "paired_bootstrap_comparisons.csv",
+    "fig1_certified_actions.png",
+    "fig2_endpoint_errors.png",
+    "summary.json"
+  ]
+}
