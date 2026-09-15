@@ -13,12 +13,24 @@ LOG="$ROOT/logs/mpe-qgrid-continuation.log"
 ARTIFACT_SET=recovery1
 POLL_SECONDS=60
 
-if [[ $# -ne 1 ]]; then
-  echo "usage: $0 CURRENT_ARRAY_JOB_ID" >&2
+if [[ $# -lt 1 ]]; then
+  echo "usage: $0 CURRENT_ARRAY_JOB_ID [NEXT_OFFSET ...]" >&2
   exit 2
 fi
 
 current_job="$1"
+shift
+if [[ $# -eq 0 ]]; then
+  next_offsets=(8 16 24)
+else
+  next_offsets=("$@")
+fi
+for offset in "${next_offsets[@]}"; do
+  [[ "$offset" == 8 || "$offset" == 16 || "$offset" == 24 ]] || {
+    echo "invalid frozen offset: $offset" >&2
+    exit 2
+  }
+done
 
 log() {
   printf '%s %s\n' "$(date --iso-8601=seconds)" "$*" | tee -a "$LOG"
@@ -57,8 +69,8 @@ submit_batch() {
     "$SBATCH_FILE"
 }
 
-log "START current_job=$current_job artifact_set=$ARTIFACT_SET"
-for offset in 8 16 24; do
+log "START current_job=$current_job artifact_set=$ARTIFACT_SET next_offsets=${next_offsets[*]}"
+for offset in "${next_offsets[@]}"; do
   wait_for_success "$current_job"
   current_job=$(submit_batch "$offset")
   log "SUBMITTED job=$current_job offset=$offset"

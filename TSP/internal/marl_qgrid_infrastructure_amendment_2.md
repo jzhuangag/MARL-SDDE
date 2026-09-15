@@ -32,6 +32,8 @@ No cell is retried.
 Both continuation scripts now parse Slurm's `JobID` display field rather than
 `JobIDRaw` while retaining the same exact eight-task, `COMPLETED`, and `0:0`
 requirements.
+The MPE continuation accepts an explicit suffix of the frozen offset sequence,
+so resuming after a verified batch cannot resubmit an already completed cell.
 This amendment changes no environment, method, hyperparameter, budget, seed,
 gate, analyzer, or scientific result.
 Execution may continue at the next untouched frozen batch, offset 8.
