@@ -166,15 +166,12 @@ def plot(summary: pd.DataFrame, output: Path) -> None:
         for method in styles:
             frame = summary[
                 (summary.coupling == regime) & (summary.method == method)
-            ]
-            stats = frame.groupby("budget_fraction").team_return.agg(
-                ["mean", "std", "count"]
-            )
+            ].sort_values("budget_fraction")
             label, color, line, width = styles[method]
-            x = stats.index.to_numpy(float)
-            mean = stats["mean"].to_numpy(float)
-            ci = 1.96 * stats["std"].fillna(0).to_numpy(float) / np.sqrt(
-                stats["count"].to_numpy(float)
+            x = frame["budget_fraction"].to_numpy(float)
+            mean = frame["team_return_mean"].to_numpy(float)
+            ci = 1.96 * frame["team_return_std"].fillna(0).to_numpy(float) / np.sqrt(
+                frame["seeds"].to_numpy(float)
             )
             ax.plot(x, mean, label=label, color=color, linestyle=line, linewidth=width)
             if method == "lyapunov_probe_commit":

@@ -31,8 +31,8 @@ wait_for_marker() {
 run_mpe_analysis() {
   local code="$MPE_ROOT/code/MARL-SDDE"
   local python="$MPE_BASE/venv/bin/python"
-  local out_a="$MPE_ROOT/analysis"
-  local out_b="$MPE_ROOT/analysis_replay"
+  local out_a="$MPE_ROOT/analysis_v2"
+  local out_b="$MPE_ROOT/analysis_v2_replay"
   [[ ! -e "$out_a" && ! -e "$out_b" ]] || {
     log "STOP experiment=MPE reason=analysis-output-already-exists"
     return 1
@@ -58,8 +58,8 @@ run_mpe_analysis() {
 run_smac_analysis() {
   local code="$SMAC_ROOT/code/MARL-SDDE"
   local python=/scratch/jzhuangag/MARL-SDDE-TwoClocks-20260902/envs/runtime-py39/bin/python
-  local out_a="$SMAC_ROOT/analysis"
-  local out_b="$SMAC_ROOT/analysis_replay"
+  local out_a="$SMAC_ROOT/analysis_v2"
+  local out_b="$SMAC_ROOT/analysis_v2_replay"
   [[ ! -e "$out_a" && ! -e "$out_b" ]] || {
     log "STOP experiment=SMACv2 reason=analysis-output-already-exists"
     return 1

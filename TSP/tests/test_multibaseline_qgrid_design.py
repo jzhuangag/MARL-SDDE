@@ -3,6 +3,8 @@ import json
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPERIMENTS = ROOT / "experiments"
@@ -20,6 +22,7 @@ def _load(name: str, filename: str):
 
 
 SMAC = _load("tsp_smac_qgrid", "analyze_mappo_smacv2_qgrid.py")
+MPE = _load("tsp_mpe_qgrid", "analyze_mappo_mpe_qgrid_audit.py")
 
 
 def test_mpe_qgrid_is_complete_and_does_not_relabel_confirmation():
@@ -73,3 +76,29 @@ def test_slurm_arrays_cover_every_new_cell_once():
         seed = 81101 + index % 2
         smac.append((q, regime, seed))
     assert len(smac) == len(set(smac)) == 8
+
+
+def test_mpe_qgrid_plot_accepts_preaggregated_curve_schema(tmp_path):
+    rows = []
+    for coupling in ("independent", "shared"):
+        for method in (
+            "fixed_q1",
+            "fixed_q2",
+            "fixed_q4",
+            "fixed_q8",
+            "lyapunov_probe_commit",
+        ):
+            for fraction in (0.0, 1.0):
+                rows.append(
+                    {
+                        "coupling": coupling,
+                        "method": method,
+                        "budget_fraction": fraction,
+                        "team_return_mean": fraction,
+                        "team_return_std": 0.1,
+                        "seeds": 8,
+                    }
+                )
+    output = tmp_path / "mpe-qgrid.pdf"
+    MPE.plot(pd.DataFrame(rows), output)
+    assert output.exists() and output.stat().st_size > 0
