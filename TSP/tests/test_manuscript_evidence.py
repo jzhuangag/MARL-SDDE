@@ -68,9 +68,9 @@ def test_mappo_confirmation_matches_frozen_gate() -> None:
     gate_path = ROOT / "internal" / "marl_probe_commit_conf1_gate.json"
     gate = json.loads(gate_path.read_text(encoding="utf-8"))
     figure_path = ROOT / "figures" / "marl_probe_commit_return_curves.pdf"
-    compact_figure_path = (
-        ROOT / "figures" / "marl_probe_commit_return_curves_compact.pdf"
-    )
+    qgrid_gate_path = ROOT / "internal" / "marl_mpe_qgrid_audit_gate.json"
+    qgrid_gate = json.loads(qgrid_gate_path.read_text(encoding="utf-8"))
+    qgrid_figure_path = ROOT / "figures" / "marl_mpe_qgrid_audit.pdf"
     summary_path = ROOT / "internal" / "marl_probe_commit_conf1_curve_summary.csv"
     assert gate["experiment_id"] == "TSP-MARL-CONF-001"
     assert gate["run_count"] == 48
@@ -83,8 +83,15 @@ def test_mappo_confirmation_matches_frozen_gate() -> None:
     assert f'{100 * gate["mixture_controller_vs_q8_mean"]:.3f}' in MAIN
     assert f'{100 * gate["mixture_controller_vs_q8_lower"]:.3f}' in MAIN
     assert hashlib.sha256(figure_path.read_bytes()).hexdigest() == "ea40c05bbb4bdba346c4fb964792ce7c061232190948a5a04cfc8cf44ad1b748"
-    assert compact_figure_path.is_file()
-    assert "marl_probe_commit_return_curves_compact.pdf" in MAIN
+    assert qgrid_gate["experiment_id"] == "TSP-MARL-MPE-QGRID-AUDIT-001"
+    assert qgrid_gate["run_count"] == 80
+    assert qgrid_gate["expected_run_count"] == 80
+    assert qgrid_gate["pass"] is True
+    assert all(qgrid_gate["gates"].values())
+    assert qgrid_gate["fixed_q_oracle_action"] == {"independent": 8, "shared": 1}
+    assert hashlib.sha256(qgrid_figure_path.read_bytes()).hexdigest() == "60ba047c4ce8e3290de3629c2016fd6361804ea6cb61a5028b47be1db6d7efd6"
+    assert "marl_mpe_qgrid_audit.pdf" in MAIN
+    assert f'{100 * qgrid_gate["controller_relative_gain_over_descriptive_strong_static"]:.3f}' in MAIN
     assert hashlib.sha256(summary_path.read_bytes()).hexdigest() == "6e2c5d1af24952f72d83ee6347b06f5322ac5dd55bd2fcbf1df22ca8d39d3c64"
 
 

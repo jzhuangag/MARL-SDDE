@@ -109,6 +109,7 @@ On a compact separated class, the two thresholds match up to class constants and
 \item \textbf{Fully Charged Mechanism and Policy-Learning Evidence:} We validate the complete causal chain with fully charged experiments.
 Controlled studies recover the predicted participation phase, verify the finite-time confidence bounds, demonstrate 54.4 and 10.9 percent learning-value improvements, and reduce held-out parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent over a development-selected strong fixed-participation baseline.
 A separately preregistered multi-agent proximal policy optimization study selects broad participation for independent rollouts and local participation for shared rollouts in all 16 held-out controller runs, producing 5.00 percent shared-regime and 2.32 percent equal-mixture team-return AUC gains over fixed broad participation.
+A complete fixed-participation audit over $q\in\{1,2,4,8\}$ places the controller within 1 percent of the regime-wise oracle in both dependence regimes.
 \end{itemize}
 
 The remainder of the paper develops this argument as follows.
@@ -791,19 +792,22 @@ The joint Lyapunov certificate changes participation with the dependence regime 
 TSP-MARL-CONF-001 is a separately preregistered MAPPO experiment with eight new training seeds and eight disjoint probe seeds.
 Each method receives a message budget of five million and an environment budget of one million ticks; the controller first charges 128 non-learning critic-residual probe blocks and then commits to $q=1$ or $q=8$ without observing evaluation return.
 The 48 runs cross independent and shared rollout innovations with fixed $q=1$, fixed $q=8$, and the Lyapunov probe-then-commit controller.
+A baseline-completeness audit adds fixed $q=2$ and $q=4$ on the same eight seeds without changing the controller, budgets, or original confirmation analysis.
 
 The controller selects $q=8$ in all eight independent-stream runs and $q=1$ in all eight shared-stream runs.
 Relative to fixed $q=8$, its mean team-return AUC change is $-0.357$ percent for independent streams and $+4.996$ percent for shared streams; the corresponding one-sided 95 percent lower bounds are $-0.393$ and $+2.189$ percent.
 The equal-weight mixture gain is $2.319$ percent with a $0.917$ percent lower bound, while the shared-stream comparison with regime-matched fixed $q=1$ remains within the preregistered two-percent noninferiority margin (lower bound $-1.345$ percent).
+Across the complete fixed catalogue, the regime-wise oracle remains $q=8$ for independent streams and $q=1$ for shared streams.
+The controller is within $0.357$ and $0.889$ percent of these two oracle AUCs, respectively, and exceeds the strongest single static action, fixed $q=8$, by $2.812$ percent across the equal-weight regime mixture.
 
 Fig.~\ref{fig:marl-return} shows the unsmoothed deterministic team-return curves against the maximum charged dual-budget fraction.
 The probe consumes at most $0.768$ percent of the message budget, and scalar selection overhead is below $10^{-6}$ of training time.
 This experiment evaluates transfer of the observable dependence-selection mechanism through a frozen empirical correlation proxy; the theorem-facing confidence guarantee remains the affine delayed Markov result.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.72\textwidth]{figures/marl_probe_commit_return_curves_compact.pdf}
-\caption{Preregistered MAPPO team-return learning curves in TSP-MARL-CONF-001 (eight held-out seeds per dependence regime; bands show 95 percent confidence intervals).
-The fully charged return-free controller commits to fixed $q=8$ under independent rollout innovations and fixed $q=1$ under shared innovations, tracking the regime-matched fixed action while improving over globally fixed broad participation.}
+\includegraphics[width=0.82\textwidth]{figures/marl_mpe_qgrid_audit.pdf}
+\caption{MAPPO team-return learning curves with the complete fixed-participation catalogue $q\in\{1,2,4,8\}$ (eight held-out seeds per dependence regime; controller bands show 95 percent confidence intervals).
+The fully charged return-free controller commits to $q=8$ under independent rollout innovations and $q=1$ under shared innovations, remaining within 1 percent of the regime-wise fixed-$q$ oracle while improving over the strongest single static action across the regime mixture.}
 \label{fig:marl-return}
 \end{figure*}
 
@@ -815,6 +819,7 @@ When temporal-difference Jacobians are rank one, online moment probes require $O
 The four controlled Markov studies ran on CPUs and reproduced their registered primary artifacts byte for byte.
 For TSP-CURVE-001, the action set, metrics, 16 development seeds, 64 confirmation seeds, and bootstrap rule were fixed before confirmation; raw hashes, aggregate curves, and analysis code accompany the repository.
 TSP-MARL-CONF-001 ran as six immutable eight-cell arrays on NVIDIA A30 GPUs; all 48 runs were finite, exactly budgeted, and generated byte-identical gate, curve, and figure artifacts under an independent analysis replay.
+The 32-run fixed-$q$ completion audit likewise passed all checksum, accounting, completeness, and byte-identical replay checks.
 
 The ablations isolate all three coordinates: fixing $q$ removes the correlation response in Fig.~\ref{fig:convergence-curves}, fixing $b$ removes the $18.49$-fold persistence response, and fixing $\eta$ ignores the delay-dependent domain in \eqref{eq:certified-step-domain}.
 Their gaps distinguish the controller from an adaptive batch-size rule.

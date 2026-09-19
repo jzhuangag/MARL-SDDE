@@ -1,6 +1,6 @@
 # IEEE bibliography style audit
 
-Audit date: 2026-09-13.
+Audit date: 2026-09-19.
 
 ## Baseline
 
@@ -10,7 +10,7 @@ The repository had no prior TSP bibliography, so the canonical IEEE skill templa
 ## Definite-error checks
 
 - 36 unique entries and 36 cited keys; no duplicate or orphan entry.
-- The Section I integration changes citation placement but introduces no new bibliography record; every retained record was freshly reverified on the audit date.
+- The final Section I and experimental integration changes no bibliography record; all 36 retained records were freshly reverified in `citation_verification_20260919.json`.
 - No empty BibTeX field and no BibTeX warning.
 - Journal abbreviations, `Proc.` conference style, page ranges, and brace-protected acronyms were checked.
 - DOI fields are retained when an authoritative DOI was verified.
