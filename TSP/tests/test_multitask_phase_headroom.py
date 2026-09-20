@@ -109,3 +109,27 @@ def test_frozen_multitask_analyzer_recovers_phase_and_headroom(tmp_path) -> None
     for metrics in result["task_metrics"].values():
         assert metrics["distinct_oracle_actions"] == [1, 8]
         assert metrics["oracle_relative_headroom"] > 0.02
+
+
+def test_stage_a_lattice_and_resource_boundaries_are_frozen() -> None:
+    config = json.loads(
+        (EXPERIMENTS / "marl_multitask_phase_headroom.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    expected = sum(
+        len(task["message_budgets"])
+        * len(config["coupling_regimes"])
+        * len(config["fixed_q_endpoints"])
+        * len(config["development_seeds"])
+        for task in config["tasks"]
+    )
+    assert expected == config["planned_runs"] == 32
+    assert "formal_seeds" not in config
+    for task in config["tasks"]:
+        assert task["server_overhead"] / task["rollout_length"] == 4
+        ratios = {
+            name: budget / task["environment_budget"]
+            for name, budget in task["message_budgets"].items()
+        }
+        assert ratios == {"message_binding": 5, "environment_binding": 12}
