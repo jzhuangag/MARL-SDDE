@@ -134,11 +134,12 @@ def specification(args: argparse.Namespace) -> dict:
     if updates < 2:
         raise ValueError("budgets admit fewer than two learner updates")
     env_name = getattr(args, "env_name", "pettingzoo_mpe")
-    task_name = (
-        getattr(args, "map_name", "protoss_5_vs_5")
-        if env_name == "smacv2"
-        else args.scenario
-    )
+    if env_name == "smacv2":
+        task_name = getattr(args, "map_name", "protoss_5_vs_5")
+    elif env_name == "mamujoco":
+        task_name = f"{args.scenario}/{args.agent_conf}"
+    else:
+        task_name = args.scenario
     return {
         "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-001"),
         "experiment_role": "development fixed-action evaluator",
@@ -146,7 +147,9 @@ def specification(args: argparse.Namespace) -> dict:
         "task": task_name,
         "scenario": args.scenario if env_name == "pettingzoo_mpe" else None,
         "map_name": task_name if env_name == "smacv2" else None,
+        "agent_conf": args.agent_conf if env_name == "mamujoco" else None,
         "continuous_actions": args.continuous_actions,
+        "share_param": getattr(args, "share_param", True),
         "coupling": args.coupling,
         "q_rollout_workers": args.q,
         "rollout_length": args.rollout_length,
@@ -204,22 +207,58 @@ def common_categorical_sample(probabilities, uniform=None):
     return (uniform > cumulative).sum(dim=-1, keepdim=True)
 
 
+def common_normal_sample(loc, scale, noise=None):
+    """Apply one public standard-normal innovation across rollout workers."""
+
+    import torch
+
+    if loc.shape != scale.shape or loc.ndim < 2:
+        raise ValueError("loc and scale must share a worker-by-action shape")
+    if not torch.isfinite(loc).all() or not torch.isfinite(scale).all():
+        raise ValueError("Normal parameters must be finite")
+    if torch.any(scale <= 0):
+        raise ValueError("Normal scales must be positive")
+    if noise is None:
+        noise = torch.randn(
+            (1,) + tuple(loc.shape[1:]), dtype=loc.dtype, device=loc.device
+        )
+    expected_shape = (1,) + tuple(loc.shape[1:])
+    if tuple(noise.shape) != expected_shape:
+        raise ValueError(f"public noise must have shape {expected_shape}")
+    return loc + scale * noise
+
+
 def install_shared_action_coupling() -> None:
-    from harl.models.base.distributions import FixedCategorical
+    from harl.models.base.distributions import FixedCategorical, FixedNormal
 
     def sample(self):
         return common_categorical_sample(self.probs)
 
     FixedCategorical.sample = sample
 
+    def normal_sample(self):
+        """Use one Gaussian innovation across rollout workers.
+
+        HARL evaluates one strategic agent at a time with rollout workers on
+        the leading tensor axis. Broadcasting one standard-normal row across
+        that axis preserves every worker's Normal marginal while coupling only
+        the exploration innovation; worker-specific means and scales remain.
+        """
+
+        if self.loc.ndim < 2:
+            return super(FixedNormal, self).sample()
+        return common_normal_sample(self.loc, self.scale)
+
+    FixedNormal.sample = normal_sample
+
 
 def coupled_train_env_factory(coupling: str, registry_base: int, registry_size: int):
     from harl.envs.env_wrappers import ShareDummyVecEnv, ShareSubprocVecEnv
 
     def make_train_env(env_name, seed, n_threads, env_args):
-        if env_name not in {"pettingzoo_mpe", "smacv2"}:
+        if env_name not in {"pettingzoo_mpe", "smacv2", "mamujoco"}:
             raise ValueError(
-                "the TSP bridge supports pettingzoo_mpe and smacv2 only"
+                "the TSP bridge supports pettingzoo_mpe, smacv2, and mamujoco only"
             )
 
         def get_env_fn(rank):
@@ -230,10 +269,16 @@ def coupled_train_env_factory(coupling: str, registry_base: int, registry_size: 
                     )
 
                     env = PettingZooMPEEnv(env_args)
-                else:
+                elif env_name == "smacv2":
                     from harl.envs.smacv2.smacv2_env import SMACv2Env
 
                     env = SMACv2Env(env_args)
+                else:
+                    from harl.envs.mamujoco.multiagent_mujoco.mujoco_multi import (
+                        MujocoMulti,
+                    )
+
+                    env = MujocoMulti(env_args=env_args)
                 env_seed = worker_seed(
                     coupling, seed, rank, registry_base, registry_size
                 )
@@ -341,7 +386,7 @@ def run(args: argparse.Namespace, spec: dict) -> Path:
         {
             "ppo_epoch": args.ppo_epoch,
             "critic_epoch": args.critic_epoch,
-            "share_param": True,
+            "share_param": args.share_param,
             "fixed_order": True,
         }
     )
@@ -353,8 +398,17 @@ def run(args: argparse.Namespace, spec: dict) -> Path:
                 "continuous_actions": args.continuous_actions,
             }
         )
-    else:
+    elif env_name == "smacv2":
         env_args["map_name"] = args.map_name
+    else:
+        env_args.update(
+            {
+                "scenario": args.scenario,
+                "agent_conf": args.agent_conf,
+                "agent_obsk": args.agent_obsk,
+                "episode_limit": args.episode_limit,
+            }
+        )
 
     main_args = {
         "algo": "mappo",
@@ -395,10 +449,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--results-root", type=Path, default=tsp_root / "tmp" / "mr")
     parser.add_argument("--exp-name", default="bridge")
     parser.add_argument(
-        "--env-name", choices=("pettingzoo_mpe", "smacv2"), default="pettingzoo_mpe"
+        "--env-name",
+        choices=("pettingzoo_mpe", "smacv2", "mamujoco"),
+        default="pettingzoo_mpe",
     )
     parser.add_argument("--scenario", default="simple_spread_v2")
     parser.add_argument("--map-name", default="terran_10_vs_10")
+    parser.add_argument("--agent-conf", default="2x3")
+    parser.add_argument("--agent-obsk", type=int, default=0)
+    parser.add_argument("--episode-limit", type=int, default=1000)
     parser.add_argument("--coupling", choices=("independent", "shared"), required=True)
     parser.add_argument("--q", type=int, required=True)
     parser.add_argument("--rollout-length", type=int, default=25)
@@ -411,6 +470,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed-registry-base", type=int, default=92001)
     parser.add_argument("--seed-registry-size", type=int, default=128)
     parser.add_argument("--continuous-actions", action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument(
+        "--share-param", action=argparse.BooleanOptionalAction, default=True
+    )
     parser.add_argument("--cuda", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--torch-threads", type=int, default=4)
     parser.add_argument("--eval-threads", type=int, default=2)

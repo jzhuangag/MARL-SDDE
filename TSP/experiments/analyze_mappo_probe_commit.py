@@ -71,6 +71,13 @@ def fixed_curve(metadata_path: Path) -> tuple[pd.DataFrame, dict]:
         )
     )
     record = {
+        "experiment_id": metadata.get("experiment_id"),
+        "environment": metadata.get("environment"),
+        "task": metadata.get("task")
+        or metadata.get("scenario")
+        or metadata.get("map_name"),
+        "message_budget": int(metadata["message_budget"]),
+        "environment_budget": int(metadata["environment_budget"]),
         "method": f"fixed_q{q}",
         "coupling": metadata["coupling"],
         "training_seed": int(metadata["seed"]),
@@ -104,6 +111,13 @@ def controller_curve(metadata_path: Path) -> tuple[pd.DataFrame, dict]:
         )
     )
     record = {
+        "experiment_id": metadata.get("experiment_id"),
+        "environment": metadata.get("environment"),
+        "task": metadata.get("task")
+        or metadata.get("scenario")
+        or metadata.get("map_name"),
+        "message_budget": int(metadata["message_budget"]),
+        "environment_budget": int(metadata["environment_budget"]),
         "method": "lyapunov_probe_commit",
         "coupling": metadata["coupling"],
         "training_seed": int(metadata["training_seed"]),

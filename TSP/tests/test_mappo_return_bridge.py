@@ -159,6 +159,50 @@ def test_smacv2_specification_records_map_not_mpe_scenario() -> None:
     assert spec["message_cost_per_update"] == 2400
 
 
+def test_mamujoco_specification_records_partition() -> None:
+    args = Namespace(
+        env_name="mamujoco",
+        agent_conf="2x3",
+        map_name="unused",
+        q=4,
+        rollout_length=200,
+        message_budget=8_000_000,
+        environment_budget=1_000_000,
+        server_overhead=800,
+        scenario="HalfCheetah-v2",
+        continuous_actions=True,
+        coupling="shared",
+        critic_lr=5e-4,
+        actor_lr=5e-4,
+        seed=109001,
+        seed_registry_base=109001,
+        seed_registry_size=128,
+    )
+    spec = MODULE.specification(args)
+    assert spec["environment"] == "mamujoco"
+    assert spec["task"] == "HalfCheetah-v2/2x3"
+    assert spec["agent_conf"] == "2x3"
+    assert spec["scenario"] is None
+    assert spec["map_name"] is None
+
+
+def test_public_gaussian_preserves_worker_marginals_and_standardizes_noise() -> None:
+    loc = torch.tensor([[1.0, -2.0], [3.0, 5.0]], dtype=torch.float64)
+    scale = torch.tensor([[2.0, 0.5], [4.0, 3.0]], dtype=torch.float64)
+    noise = torch.tensor([[0.25, -1.5]], dtype=torch.float64)
+    sample = MODULE.common_normal_sample(loc, scale, noise)
+    standardized = (sample - loc) / scale
+    torch.testing.assert_close(standardized[0], noise[0])
+    torch.testing.assert_close(standardized[1], noise[0])
+
+
+def test_public_gaussian_rejects_invalid_scales() -> None:
+    loc = torch.zeros((2, 1), dtype=torch.float32)
+    scale = torch.tensor([[1.0], [0.0]], dtype=torch.float32)
+    with pytest.raises(ValueError, match="positive"):
+        MODULE.common_normal_sample(loc, scale)
+
+
 def test_cyclic_coupling_preserves_each_workers_seed_multiset() -> None:
     base = 93001
     size = 17
