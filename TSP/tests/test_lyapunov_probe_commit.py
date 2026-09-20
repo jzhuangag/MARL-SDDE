@@ -123,6 +123,58 @@ def test_probe_exhaustion_is_rejected() -> None:
         )
 
 
+def test_finite_budget_score_uses_exact_post_probe_horizon() -> None:
+    low_message = MODULE.choose_finite_budget_participation(
+        common_factor_fingerprints(0.0),
+        [1, 8],
+        probe_q=8,
+        probe_blocks=4,
+        rollout_length=25,
+        message_budget=5 * 10_000,
+        environment_budget=100 * 10_000,
+        server_overhead=100,
+    )
+    high_message = MODULE.choose_finite_budget_participation(
+        common_factor_fingerprints(0.9),
+        [1, 8],
+        probe_q=8,
+        probe_blocks=4,
+        rollout_length=25,
+        message_budget=5 * 10_000,
+        environment_budget=100 * 10_000,
+        server_overhead=100,
+    )
+    low_environment = MODULE.choose_finite_budget_participation(
+        common_factor_fingerprints(0.0),
+        [1, 8],
+        probe_q=8,
+        probe_blocks=4,
+        rollout_length=25,
+        message_budget=100 * 10_000,
+        environment_budget=25 * 1_000,
+        server_overhead=100,
+    )
+    assert low_message.selected_q == 8
+    assert high_message.selected_q == 1
+    assert low_environment.selected_q == 8
+
+
+def test_finite_budget_rule_breaks_full_correlation_tie_toward_q1() -> None:
+    decision = MODULE.choose_finite_budget_participation(
+        np.ones((128, 8)),
+        [1, 8],
+        probe_q=8,
+        probe_blocks=4,
+        rollout_length=25,
+        message_budget=100 * 10_000,
+        environment_budget=25 * 1_000,
+        server_overhead=100,
+    )
+    assert decision.certificate.upper == 1.0
+    assert decision.scores[1] == decision.scores[8]
+    assert decision.selected_q == 1
+
+
 def test_development_two_config_has_disjoint_seeds_and_no_formal_registry() -> None:
     config = json.loads(
         (ROOT / "experiments" / "marl_probe_commit_development.json").read_text(

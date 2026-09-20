@@ -149,6 +149,69 @@ def choose_participation(
     )
 
 
+def finite_budget_variance_score(
+    q: int, rho_upper: float, training_updates: int
+) -> float:
+    """Return the certified variance proxy per usable learning update.
+
+    Unlike :func:`message_limited_lyapunov_score`, this score uses the exact
+    horizon left by both registered budgets.  It therefore remains meaningful
+    when the environment budget, rather than messages, is binding.
+    """
+
+    if q <= 0 or training_updates <= 0:
+        raise ValueError("q and training_updates must be positive")
+    if not 0.0 <= rho_upper <= 1.0:
+        raise ValueError("rho_upper must lie in [0,1]")
+    variance_factor = rho_upper + (1.0 - rho_upper) / q
+    return float(variance_factor / training_updates)
+
+
+def choose_finite_budget_participation(
+    fingerprints: np.ndarray,
+    candidates: Iterable[int],
+    *,
+    probe_q: int,
+    probe_blocks: int,
+    rollout_length: int,
+    message_budget: int,
+    environment_budget: int,
+    server_overhead: int,
+    delta: float = 0.05,
+) -> ParticipationDecision:
+    """Jointly certify dependence and select participation under two budgets.
+
+    Every candidate is evaluated with its exact post-probe feasible horizon.
+    The deterministic tie-break chooses the smaller participation level.
+    """
+
+    catalogue = sorted(set(int(q) for q in candidates))
+    if not catalogue or catalogue[0] <= 0:
+        raise ValueError("candidates must contain positive integers")
+    certificate = average_pairwise_correlation_certificate(fingerprints, delta)
+    scores: dict[int, float] = {}
+    for q in catalogue:
+        accounting = controller_accounting(
+            selected_q=q,
+            probe_q=probe_q,
+            probe_blocks=probe_blocks,
+            rollout_length=rollout_length,
+            message_budget=message_budget,
+            environment_budget=environment_budget,
+            server_overhead=server_overhead,
+        )
+        scores[q] = finite_budget_variance_score(
+            q, certificate.upper, accounting.training_updates
+        )
+    selected_q = min(catalogue, key=lambda q: (scores[q], q))
+    return ParticipationDecision(
+        selected_q=selected_q,
+        certificate=certificate,
+        scores=scores,
+        effective_overhead=server_overhead / rollout_length,
+    )
+
+
 def controller_accounting(
     *,
     selected_q: int,
