@@ -8,14 +8,19 @@
 #SBATCH --mem=40G
 #SBATCH --gres=gpu:a30:1
 #SBATCH --time=12:00:00
-#SBATCH --array=0-31%4
+#SBATCH --array=0-7%2
 
 set -euo pipefail
 
 ROOT=/scratch/jzhuangag/MARL-SDDE-TSP-MULTITASK-PHASE-A-001
 CODE="$ROOT/code/MARL-SDDE"
-TASK_INDEX=$((SLURM_ARRAY_TASK_ID / 16))
-LOCAL_INDEX=$((SLURM_ARRAY_TASK_ID % 16))
+GLOBAL_INDEX=$((${OFFSET:?OFFSET must be exported}+SLURM_ARRAY_TASK_ID))
+if [ "$GLOBAL_INDEX" -lt 0 ] || [ "$GLOBAL_INDEX" -ge 32 ]; then
+  echo "GLOBAL_INDEX out of frozen range: $GLOBAL_INDEX" >&2
+  exit 2
+fi
+TASK_INDEX=$((GLOBAL_INDEX / 16))
+LOCAL_INDEX=$((GLOBAL_INDEX % 16))
 RAY_INDEX=$((LOCAL_INDEX / 8))
 COUPLING_INDEX=$(((LOCAL_INDEX % 8) / 4))
 Q_INDEX=$(((LOCAL_INDEX % 4) / 2))
