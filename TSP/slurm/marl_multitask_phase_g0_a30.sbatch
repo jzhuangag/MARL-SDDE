@@ -24,6 +24,9 @@ else
   BASE=/scratch/jzhuangag/MARL-SDDE-TwoClocks-20260902
   PYTHON="$BASE/envs/runtime-py39/bin/python"
   HARL="$BASE/external/HARL"
+  export MUJOCO_PY_MUJOCO_PATH="$BASE/external/mujoco210"
+  export MUJOCO_PY_MJKEY_PATH="$BASE/external/mjkey.txt"
+  export LD_LIBRARY_PATH="$MUJOCO_PY_MUJOCO_PATH/bin:/usr/lib/nvidia:/usr/lib64:${LD_LIBRARY_PATH:-}"
 fi
 export PYTHONPATH="$CODE/TSP/experiments:$HARL"
 export TMPDIR="$ROOT/tmp/${SLURM_ARRAY_JOB_ID}-${SLURM_ARRAY_TASK_ID}"

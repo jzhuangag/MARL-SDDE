@@ -15,6 +15,13 @@ The Speaker--Listener cell uses the already pinned and previously validated MPE
 runtime under `/scratch/jzhuangag/MARL-SDDE-TSP-MARL-CONF-001`.
 The MaMuJoCo cell uses the already pinned runtime under
 `/scratch/jzhuangag/MARL-SDDE-TwoClocks-20260902`.
+Its MuJoCo path, key path, and library search path are exported exactly as in
+the previously validated Two-Clocks MaMuJoCo Slurm payload.
+
+An intermediate read-only import preflight stopped before submission because
+these environment variables were not yet exported in the login shell.
+It created no Slurm job or scientific output and motivated adding the frozen
+runtime paths to the task-specific payload.
 
 The task definitions, HARL commit, coupling rules, seeds, budgets, Stage-A
 training lattice, gates, and stopping rule remain unchanged.
