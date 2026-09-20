@@ -116,24 +116,30 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--harl-root", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
+    parser.add_argument("--task-id", required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
     harl_root = args.harl_root.resolve()
     sys.path.insert(0, str(harl_root))
     bridge.install_numpy_legacy_aliases()
-    audits = []
-    for task_index, task in enumerate(config["tasks"]):
-        for coupling_index, coupling in enumerate(config["coupling_regimes"]):
-            audits.append(
-                _environment_audit(
-                    harl_root,
-                    task,
-                    coupling,
-                    config["seed_registry_base"] + 10 * task_index + coupling_index,
-                )
-            )
-    continuous = _continuous_coupling_audit()
+    matching = [task for task in config["tasks"] if task["task_id"] == args.task_id]
+    if len(matching) != 1:
+        raise ValueError(f"expected one registered task named {args.task_id}")
+    task = matching[0]
+    task_index = [row["task_id"] for row in config["tasks"]].index(args.task_id)
+    audits = [
+        _environment_audit(
+            harl_root,
+            task,
+            coupling,
+            config["seed_registry_base"] + 10 * task_index + coupling_index,
+        )
+        for coupling_index, coupling in enumerate(config["coupling_regimes"])
+    ]
+    continuous = (
+        _continuous_coupling_audit() if task["continuous_actions"] else None
+    )
     pinned = subprocess.check_output(
         ["git", "-C", str(harl_root), "rev-parse", "HEAD"], text=True
     ).strip()
@@ -143,7 +149,9 @@ def main() -> None:
     gates = {
         "task_interfaces_finite": all(row["finite"] for row in audits),
         "reset_coupling_relation": all(row["reset_relation_ok"] for row in audits),
-        "continuous_marginal_and_public_noise": continuous["pass"],
+        "continuous_marginal_and_public_noise": bool(
+            continuous is None or continuous["pass"]
+        ),
         "pinned_clean_upstream": bool(
             clean and pinned == config["upstream"]["harl_commit"]
         ),
@@ -152,6 +160,7 @@ def main() -> None:
     result = {
         "experiment_id": config["experiment_id"],
         "role": "outcome-free compatibility audit",
+        "task_id": args.task_id,
         "environment_audits": audits,
         "continuous_coupling_audit": continuous,
         "harl_commit": pinned,
