@@ -123,6 +123,65 @@ def test_probe_exhaustion_is_rejected() -> None:
         )
 
 
+def test_mamujoco_controller_dry_run_uses_dual_budget_catalogue(
+    monkeypatch, tmp_path
+) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            str(RUNNER_PATH),
+            "--results-root",
+            str(tmp_path / "result"),
+            "--env-name",
+            "mamujoco",
+            "--scenario",
+            "HalfCheetah-v2",
+            "--agent-conf",
+            "2x3",
+            "--continuous-actions",
+            "--coupling",
+            "independent",
+            "--seed",
+            "120001",
+            "--probe-seed",
+            "121001",
+            "--seed-registry-base",
+            "120001",
+            "--seed-registry-size",
+            "2000",
+            "--candidate-q",
+            "1",
+            "2",
+            "4",
+            "8",
+            "--probe-q",
+            "8",
+            "--probe-blocks",
+            "64",
+            "--rollout-length",
+            "200",
+            "--message-budget",
+            "5000000",
+            "--environment-budget",
+            "1000000",
+            "--server-overhead",
+            "800",
+            "--dry-run",
+        ],
+    )
+    args = RUNNER.parse_args()
+    spec = RUNNER.dry_run_spec(args)
+    assert spec["environment"] == "mamujoco"
+    assert spec["scenario"] == "HalfCheetah-v2"
+    assert spec["agent_conf"] == "2x3"
+    assert spec["candidate_q"] == [1, 2, 4, 8]
+    assert set(spec["possible_accounting"]) == {"1", "2", "4", "8"}
+    for accounting in spec["possible_accounting"].values():
+        assert accounting["total_messages"] <= 5_000_000
+        assert accounting["total_environment_ticks"] <= 1_000_000
+
+
 def test_finite_budget_score_uses_exact_post_probe_horizon() -> None:
     low_message = MODULE.choose_finite_budget_participation(
         common_factor_fingerprints(0.0),

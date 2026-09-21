@@ -12,7 +12,10 @@ from pathlib import Path
 import numpy as np
 
 import run_mappo_return_bridge as bridge
-from lyapunov_probe_commit import choose_participation, controller_accounting
+from lyapunov_probe_commit import (
+    choose_finite_budget_participation,
+    controller_accounting,
+)
 
 
 def make_harl_runner(
@@ -91,7 +94,7 @@ def make_harl_runner(
         {
             "ppo_epoch": args.ppo_epoch,
             "critic_epoch": args.critic_epoch,
-            "share_param": True,
+            "share_param": args.share_param,
             "fixed_order": True,
         }
     )
@@ -103,8 +106,17 @@ def make_harl_runner(
                 "continuous_actions": args.continuous_actions,
             }
         )
-    else:
+    elif env_name == "smacv2":
         env_args["map_name"] = args.map_name
+    else:
+        env_args.update(
+            {
+                "scenario": args.scenario,
+                "agent_conf": args.agent_conf,
+                "agent_obsk": args.agent_obsk,
+                "episode_limit": args.episode_limit,
+            }
+        )
     main_args = {"algo": "mappo", "env": env_name, "exp_name": exp_name}
     return RUNNER_REGISTRY["mappo"](main_args, algo_args, env_args)
 
@@ -238,12 +250,19 @@ def dry_run_spec(args: argparse.Namespace) -> dict:
             server_overhead=args.server_overhead,
         ).to_dict()
     env_name = getattr(args, "env_name", "pettingzoo_mpe")
+    task_name = (
+        f"{args.scenario}/{args.agent_conf}"
+        if env_name == "mamujoco"
+        else (args.map_name if env_name == "smacv2" else args.scenario)
+    )
     return {
         "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-002"),
         "environment": env_name,
+        "task": task_name,
         "map_name": getattr(args, "map_name", None) if env_name == "smacv2" else None,
-        "scenario": args.scenario if env_name == "pettingzoo_mpe" else None,
-        "share_param": True,
+        "scenario": args.scenario if env_name != "smacv2" else None,
+        "agent_conf": args.agent_conf if env_name == "mamujoco" else None,
+        "share_param": args.share_param,
         "coupling": args.coupling,
         "training_seed": args.seed,
         "probe_seed": args.probe_seed,
@@ -280,12 +299,16 @@ def run(args: argparse.Namespace) -> Path:
     np.save(results_root / "probe_fingerprints.npy", fingerprints)
 
     selection_start = time.perf_counter()
-    decision = choose_participation(
+    decision = choose_finite_budget_participation(
         fingerprints,
         args.candidate_q,
-        args.server_overhead,
-        args.rollout_length,
-        args.correlation_delta,
+        probe_q=args.probe_q,
+        probe_blocks=args.probe_blocks,
+        rollout_length=args.rollout_length,
+        message_budget=args.message_budget,
+        environment_budget=args.environment_budget,
+        server_overhead=args.server_overhead,
+        delta=args.correlation_delta,
     )
     selection_seconds = time.perf_counter() - selection_start
     accounting = controller_accounting(
@@ -328,13 +351,20 @@ def run(args: argparse.Namespace) -> Path:
     write_charged_progress(charged_path, progress_rows)
 
     env_name = getattr(args, "env_name", "pettingzoo_mpe")
+    task_name = (
+        f"{args.scenario}/{args.agent_conf}"
+        if env_name == "mamujoco"
+        else (args.map_name if env_name == "smacv2" else args.scenario)
+    )
     metadata = {
         "experiment_id": getattr(args, "experiment_id", "TSP-MARL-DEV-002"),
         "experiment_role": "development Lyapunov probe-then-commit controller",
         "environment": env_name,
+        "task": task_name,
         "map_name": getattr(args, "map_name", None) if env_name == "smacv2" else None,
-        "scenario": args.scenario if env_name == "pettingzoo_mpe" else None,
-        "share_param": True,
+        "scenario": args.scenario if env_name != "smacv2" else None,
+        "agent_conf": args.agent_conf if env_name == "mamujoco" else None,
+        "share_param": args.share_param,
         "method": "lyapunov_probe_commit",
         "coupling": args.coupling,
         "training_seed": args.seed,
@@ -384,10 +414,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--experiment-id", default="TSP-MARL-DEV-002")
     parser.add_argument("--results-root", type=Path, required=True)
     parser.add_argument(
-        "--env-name", choices=("pettingzoo_mpe", "smacv2"), default="pettingzoo_mpe"
+        "--env-name",
+        choices=("pettingzoo_mpe", "smacv2", "mamujoco"),
+        default="pettingzoo_mpe",
     )
     parser.add_argument("--scenario", default="simple_spread_v2")
     parser.add_argument("--map-name", default="terran_10_vs_10")
+    parser.add_argument("--agent-conf", default="2x3")
+    parser.add_argument("--agent-obsk", type=int, default=0)
+    parser.add_argument("--episode-limit", type=int, default=1000)
     parser.add_argument("--coupling", choices=("independent", "shared"), required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--probe-seed", type=int, required=True)
@@ -403,8 +438,25 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--server-overhead", type=int, default=100)
     parser.add_argument("--critic-lr", type=float, default=5e-4)
     parser.add_argument("--actor-lr", type=float, default=5e-4)
-    parser.add_argument("--continuous-actions", action=argparse.BooleanOptionalAction, default=False)
-    parser.add_argument("--cuda", action=argparse.BooleanOptionalAction, default=False)
+    action_mode = parser.add_mutually_exclusive_group()
+    action_mode.add_argument(
+        "--continuous-actions", dest="continuous_actions", action="store_true"
+    )
+    action_mode.add_argument(
+        "--no-continuous-actions", dest="continuous_actions", action="store_false"
+    )
+    parameter_mode = parser.add_mutually_exclusive_group()
+    parameter_mode.add_argument(
+        "--share-param", dest="share_param", action="store_true"
+    )
+    parameter_mode.add_argument(
+        "--no-share-param", dest="share_param", action="store_false"
+    )
+    parser.set_defaults(continuous_actions=False, share_param=True)
+    device_mode = parser.add_mutually_exclusive_group()
+    device_mode.add_argument("--cuda", dest="cuda", action="store_true")
+    device_mode.add_argument("--no-cuda", dest="cuda", action="store_false")
+    parser.set_defaults(cuda=False)
     parser.add_argument("--torch-threads", type=int, default=4)
     parser.add_argument("--eval-threads", type=int, default=4)
     parser.add_argument("--eval-episodes", type=int, default=32)
