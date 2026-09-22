@@ -1,0 +1,54 @@
+{
+  "scope": "controller development on the prior feasibility paths; not formal evidence",
+  "input_config_sha256": "0476f5b9da3666712f0df2e913154330126300f271983debb769db46af7e9278",
+  "rows": 103680,
+  "tradeoffs": [0.25, 0.5, 1.0, 2.0, 4.0],
+  "by_tradeoff": {
+    "0.25": {
+      "geometric_causal_over_periodic_ratio": 0.9298838937783795,
+      "fraction_better_than_periodic": 0.7712191358024691,
+      "mean_budget_utilization": 1.0,
+      "median_oracle_headroom_captured": 0.10569105691056485
+    },
+    "0.5": {
+      "geometric_causal_over_periodic_ratio": 0.9026731305276421,
+      "fraction_better_than_periodic": 0.884130658436214,
+      "mean_budget_utilization": 1.0,
+      "median_oracle_headroom_captured": 0.3043478260869679
+    },
+    "1.0": {
+      "geometric_causal_over_periodic_ratio": 0.8805120067827634,
+      "fraction_better_than_periodic": 0.9379501028806584,
+      "mean_budget_utilization": 1.0,
+      "median_oracle_headroom_captured": 0.5499999999999927
+    },
+    "2.0": {
+      "geometric_causal_over_periodic_ratio": 0.8628689029737968,
+      "fraction_better_than_periodic": 0.9508744855967078,
+      "mean_budget_utilization": 1.0,
+      "median_oracle_headroom_captured": 0.7537346711259674
+    },
+    "4.0": {
+      "geometric_causal_over_periodic_ratio": 0.850165613206294,
+      "fraction_better_than_periodic": 0.9549254115226338,
+      "mean_budget_utilization": 1.0,
+      "median_oracle_headroom_captured": 0.8499999999999972
+    }
+  },
+  "development_selected_tradeoff": 4.0,
+  "selection_taint": "selected on the same development paths; must use fresh confirmation seeds",
+  "runtime_audit": {
+    "reference_seconds": 3154.72,
+    "optimized_seconds": 56.39,
+    "speedup": 55.95,
+    "fieldwise_unit_equivalence": true,
+    "byte_exact_rows": true,
+    "byte_exact_summary": true
+  },
+  "artifact_sha256": {
+    "rows.csv": "7ac37f0a1d68f70fa8b26ed17cafcb050fd17d03ac34e508bbccb97191e0ad49",
+    "summary.json": "d58293536e0cce068241d088261082fa1ba101e46ee6ff6e6ed47b5a0d3e9c5a"
+  },
+  "decision": "positive causal mechanism development; require new-seed CPU confirmation and MPE certificate validation",
+  "gpu_authorized": false
+}

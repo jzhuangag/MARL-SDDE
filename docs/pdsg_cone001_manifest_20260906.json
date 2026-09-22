@@ -1,0 +1,65 @@
+{
+  "experiment_id": "PDSG-CONE-001",
+  "status": "frozen_before_confirmation_outputs",
+  "date": "2026-09-06",
+  "purpose": "independent CPU confirmation of the shifted conformal trajectory cone; no controller return",
+  "environment": {
+    "name": "PettingZoo pistonball_v6",
+    "pettingzoo_version": "1.26.1",
+    "pygame_ce_version": "2.5.8",
+    "pymunk_version": "7.3.0",
+    "n_pistons": 20,
+    "continuous": true,
+    "random_drop": false,
+    "random_rotate": false,
+    "reset_seed": 17
+  },
+  "reference_policy": {
+    "parameterization": "one transformed-Gaussian scalar mean per piston",
+    "parameter_scale": 0.18,
+    "policy_seeds": [913, 1201, 1777],
+    "policy_noise_std": 0.3
+  },
+  "grid": {
+    "burn_in_cycles": [5, 15, 25],
+    "rollout_horizons": [4, 6, 8],
+    "contact_padding_piston_widths": 2.0,
+    "calibration_miscoverage": 0.1,
+    "declared_joint_mean_l2_policy_shift": 0.01
+  },
+  "seeds": {
+    "calibration_start": 101001,
+    "calibration_count": 128,
+    "holdout_start": 111001,
+    "holdout_count": 256,
+    "calibration_and_holdout_disjoint": true,
+    "reuse_across_cells": "common random numbers only; no independence claim across cells"
+  },
+  "analysis": {
+    "conformal_rank_rule": "ceil((n_calibration+1)*(1-alpha)); infinity if rank exceeds n_calibration",
+    "residual": "maximum absolute deviation from launch position-plus-velocity center line, in piston widths",
+    "tube": "predicted index interval expanded by ceil(conformal_radius+contact_padding)",
+    "graph": "complete directed cache-refresh graph among pistons in the tube",
+    "edge_cost_denominator": 380,
+    "holdout_coverage": "fraction of holdout residuals no larger than the frozen calibration radius",
+    "support_jaccard": "edge-set Jaccard between burn-in 5 and burn-in 25 at matched policy seed and horizon"
+  },
+  "mandatory_gates": {
+    "C1": "all 27 strata and all 10368 trajectories complete and finite; seed groups disjoint",
+    "C2": "runner reads no reward field and uses no controller-performance outcome",
+    "C3": "all 27 conformal radii finite with the frozen rank rule",
+    "C4": "pooled holdout coverage at least 0.88",
+    "C5": "minimum per-stratum holdout coverage at least 0.80",
+    "C6": "horizon-4 median edge-cost fraction at most 0.45 and p90 at most 0.65",
+    "C7": "median horizon-8 minus horizon-4 edge-cost fraction at least 0.10 and nondecreasing cost in at least 7 of 9 policy-by-launch paths",
+    "C8": "median burn-in-5 versus burn-in-25 horizon-4 support Jaccard at most 0.40",
+    "C9": "shift-corrected escape upper bound at most 0.15 for every horizon",
+    "C10": "reported edge counts exactly equal graph cardinality and no graph exceeds 380 edges",
+    "C11": "development seeds and outputs are excluded from all calibration and holdout calculations",
+    "C12": "byte-identical clean reproduction, evaluated only if C1-C11 all pass"
+  },
+  "stopping_rule": "any failure among C1-C11 stops controller preregistration; do not modify thresholds, seeds, strata, or results",
+  "authorization_if_passed": "may design, but not run, a separately preregistered CPU synthetic Lyapunov controller audit",
+  "gpu_authorized": false,
+  "hpc4_authorized": false
+}

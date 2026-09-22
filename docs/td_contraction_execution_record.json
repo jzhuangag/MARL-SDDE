@@ -1,0 +1,139 @@
+{
+  "date": "2026-08-31",
+  "completed_local": "2026-08-31T22:37:36+08:00",
+  "parent_commit": "938a7dc68587af325a1c063a56cd92ba59b1d598",
+  "kind": "CPU deterministic mathematical and cost qualification; no sampled efficacy experiment",
+  "environment": {
+    "python": "3.11.13 Anaconda",
+    "executable": "E:/HKUST-study/vin/SDDE/.venv/Scripts/python.exe",
+    "base_prefix": "D:/anaconda/envs/ust2",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "completed": [
+    "Implemented one-vector observable TD product norm with independent fixed-n state-conditioned blocks.",
+    "Derived first/second moment joint bounds and conditional Markov block iteration, without assuming independent successive learning blocks.",
+    "Derived global and basis-directional omitted-risk bounds, residual charging and convex QP composition.",
+    "Proved Phi1 >= m forces the global shield to reject strictly beneficial certification on its coverage event; kappa1 < 1 is not enough.",
+    "Derived full collection costs and equal-n strict saving condition 3m < H; no equal-accuracy claim.",
+    "Preserved all 30 exact qualification cells and rejected both implemented absolute-tail shields as the current low-cost algorithm candidate.",
+    "Recorded T-071A shadow restoration and Conservative Bandits cumulative credit as existing components, not new contributions."
+  ],
+  "commands": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_td_contraction_certificate.py -q",
+      "stage": "final source with directional refinement",
+      "result": "25 passed in 0.42s",
+      "exit_code": 0
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_td_contraction_certificate.py experiments/dependence_delay_linear/test_reusable_transfer_cache.py experiments/dependence_delay_linear/test_observable_transfer_reference.py experiments/dependence_delay_linear/test_rl_collaboration_interface_audit.py -q",
+      "result": "86 passed in 0.79s",
+      "exit_code": 0
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q --junitxml=.pytest_cache/td_contraction_regression.xml",
+      "result": "835 passed, 7 skipped in 107.82s (0:01:47)",
+      "exit_code": 0,
+      "session_id": 30338,
+      "source_unchanged_during_and_after_run": true,
+      "junit": {
+        "path": ".pytest_cache/td_contraction_regression.xml",
+        "tests": 842,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 7,
+        "time_seconds": 107.806,
+        "timestamp": "2026-08-31T22:25:40.438662+08:00",
+        "ignored_local_file": true
+      }
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/td_contraction_certificate.py",
+      "stage": "final source; replayed twice through subprocess.run(check=True,capture_output=True)",
+      "runs": 2,
+      "exit_codes": [
+        0,
+        0
+      ],
+      "stdout_byte_identical": true,
+      "stdout_sha256": "d751c592b3bdb50742e147635047292eae9801f6e4772c72158b80c80015f185",
+      "stderr_empty": true,
+      "saved_json_semantically_matches_canonical_run": true
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "qualification": {
+    "cells": 30,
+    "necessary_activation_and_cost_screen_pass": 5,
+    "global_population_plus_radii_positive_actions": 0,
+    "global_zero_uncertainty_positive_actions": 0,
+    "directional_population_plus_radii_positive_actions": 0,
+    "directional_zero_uncertainty_positive_actions": 0,
+    "uses_population_moments_not_observed_certificate": true,
+    "perfect_donor_is_privileged_diagnostic": true,
+    "diagnostic_not_preregistered_performance_evidence": true,
+    "universal_impossibility_claim": false
+  },
+  "provenance": {
+    "final_sha256": [
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\experiments\\dependence_delay_linear\\td_contraction_certificate.py",
+        "Hash": "F288C7DD83E916A6F01612EDA4AD27C283A96E4FA08BD9B7FEE8C4AEC16C6697"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\experiments\\dependence_delay_linear\\test_td_contraction_certificate.py",
+        "Hash": "3AA1671DCF0FC4976C0F9B99BA7C35D7C70D9C249537B97BF531A6F3C267DE70"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\td_contraction_feasibility_decision.md",
+        "Hash": "9358F8270E3C5CA92E24664552A7B4B2CF0DADB026908AF9404023F9A073232F"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\td_contraction_qualification.json",
+        "Hash": "9EB5E90CFDE761E0C0728E49ED2F00237CC2A906A3D8692A492B8FE9D110F490"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\td_contraction_source_verification.json",
+        "Hash": "EDBF7D4586E6AF2FBF01DA185490DDE0897891937321868F0AFFD2AA45638284"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\cpu_autonomous_research_plan.md",
+        "Hash": "5758877674B59217465FD8E8689859B44B1F6859305BFC76093F83025FA50F67"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\.pytest_cache\\td_contraction_regression.xml",
+        "Hash": "C28095D8C401F781AFC19BA2D6E19C5AF78E0884AC27A58A90DA28B71B22D360"
+      }
+    ],
+    "raw_pytest_stdout": "Tool session 30338; JUnit additionally retained locally.",
+    "source_verification": "docs/td_contraction_source_verification.json",
+    "qualification": "docs/td_contraction_qualification.json",
+    "proof_and_decision": "docs/td_contraction_feasibility_decision.md"
+  },
+  "decision": {
+    "conditional_norm_and_tail_bounds": "qualified under declared fixed-law conditional reset access",
+    "implemented_shields_as_final_mechanism": "REJECT",
+    "nontrivial_efficacy_shown": false,
+    "equal_total_resource_benefit_proved": false,
+    "novelty_established": false,
+    "new_pilot_authorized": false,
+    "formal_authorized": false,
+    "gpu_or_hpc4_used": false,
+    "remote_storage_operations": false,
+    "destructive_cleanup": false
+  },
+  "frozen_evidence": {
+    "T083A_F12": "FAIL preserved",
+    "T083A_F13": "FAIL preserved",
+    "frozen_controllers_gates_seeds_results_changed": false,
+    "formal_outcomes_used_for_tuning": false
+  },
+  "next": "Keep the recursive collaborative-training problem. Before any new run, confront T-071A/T-072 and Conservative Bandits, then judge an actual-trajectory cumulative-risk/restoration mechanism with explicit risk metric, pending/final feedback, initial allowance, full costs, nontriviality and a defensible distinction. This candidate is not yet proved or selected as the paper's final mechanism.",
+  "automation": {
+    "pause_required": false,
+    "reason": "Authorized bounded CPU theory/interface and prior-design confrontation remains; no user decision or GPU required yet."
+  }
+}

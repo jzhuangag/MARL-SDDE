@@ -1,0 +1,73 @@
+{
+  "experiment_id": "clocked_mpg_layer0_cpu_pilot_v1",
+  "scope": "fresh-seed CPU feasibility pilot; not paper formal evidence",
+  "upstream_harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "seeds": [3701, 3702, 3703, 3704, 3705, 3706, 3707, 3708],
+  "modes": [
+    "strategic_split",
+    "raw_full_data",
+    "raw_half_data"
+  ],
+  "service_profiles": {
+    "balanced": [1.0, 1.0, 1.0],
+    "heterogeneous": [1.0, 1.55, 4.0]
+  },
+  "packets_per_run": 400,
+  "episode_length": 25,
+  "baseline_episodes": 16,
+  "gamma": 0.99,
+  "learning_rate": 0.0005,
+  "maximum_step_norm": 0.05,
+  "curvature_upper": 5.0,
+  "mixed_drift_coefficient": 1.0,
+  "risk_budget": 0.0001,
+  "tradeoff": 0.0001,
+  "workers": 4,
+  "expected_rows": 48,
+  "expected_actor_transitions_per_run": 61200,
+  "gates": {
+    "L1_validity_and_accounting": {
+      "mandatory": true,
+      "rule": "48 finite rows; exact 61,200 charged/completed actor transitions per row; zero self-fresh error"
+    },
+    "L2_positive_learning": {
+      "mandatory": true,
+      "rule": "strategic mean return change is strictly positive in both service profiles"
+    },
+    "L3_heterogeneous_lower_tail": {
+      "mandatory": true,
+      "minimum_relative_improvement": 0.02,
+      "rule": "strategic lower-quartile mean return exceeds raw-full-data by at least 2% of the absolute raw lower-quartile return"
+    },
+    "L4_heterogeneous_mean_safety": {
+      "mandatory": true,
+      "maximum_relative_shortfall": 0.01,
+      "rule": "strategic mean return is no more than 1% below raw-full-data"
+    },
+    "L5_heterogeneous_directionality": {
+      "mandatory": true,
+      "minimum_fraction": 0.625,
+      "rule": "strategic final return strictly exceeds paired raw-full-data in at least 5/8 seeds"
+    },
+    "L6_nontrivial_debt_control": {
+      "mandatory": true,
+      "minimum_intermediate_scale_fraction": 0.1,
+      "maximum_intermediate_scale_fraction": 0.8,
+      "rule": "mean fraction of strategic packet scales strictly between zero and one lies in [0.1, 0.8] in both profiles"
+    },
+    "L7_balanced_mean_safety": {
+      "mandatory": true,
+      "maximum_relative_shortfall": 0.01,
+      "rule": "strategic mean return is no more than 1% below raw-full-data under balanced service"
+    },
+    "L8_split_cost_value": {
+      "mandatory": true,
+      "rule": "strategic exceeds raw-half-data in mean and lower-quartile return in both profiles"
+    },
+    "L9_reproducibility": {
+      "mandatory": true,
+      "rule": "primary and isolated-reproduction summary files are byte-identical"
+    }
+  },
+  "decision_rule": "all mandatory gates must pass before any GPU pilot is preregistered; no gate, seed, threshold, mode, profile, or budget may be changed after outcome access"
+}

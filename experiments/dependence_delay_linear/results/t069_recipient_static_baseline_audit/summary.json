@@ -1,0 +1,54 @@
+{
+  "experiment_id": "T-069-recipient-specific-static-baseline-audit",
+  "gates": {
+    "Q1": true,
+    "Q10": false,
+    "Q2": true,
+    "Q3": true,
+    "Q4": false,
+    "Q5": true,
+    "Q6": true,
+    "Q7": true,
+    "Q8": true,
+    "Q9": true
+  },
+  "metrics": {
+    "delay_groups": {
+      "0": {
+        "improvement": 0.030694245779121054,
+        "ratio": 0.969305754220879
+      },
+      "1": {
+        "improvement": 0.00015294129586918004,
+        "ratio": 0.9998470587041308
+      },
+      "3": {
+        "improvement": 0.029132604190351907,
+        "ratio": 0.9708673958096481
+      }
+    },
+    "dynamic_aggregate_improvement": 0.020093225137894688,
+    "dynamic_strict_cell_fraction": 0.5895061728395061,
+    "dynamic_to_recipient_static_geometric_ratio": 0.9799067748621053,
+    "heterogeneity_groups": {
+      "0.0": {
+        "improvement": 0.029356541989297935,
+        "ratio": 0.9706434580107021
+      },
+      "0.05": {
+        "improvement": 0.008659420213624425,
+        "ratio": 0.9913405797863756
+      },
+      "0.2": {
+        "improvement": 0.01648782410900773,
+        "ratio": 0.9835121758909923
+      },
+      "0.5": {
+        "improvement": 0.025735934475140776,
+        "ratio": 0.9742640655248592
+      }
+    },
+    "recipient_static_to_scalar_geometric_ratio": 0.9661898680726351,
+    "selected_static_vector_count": 25
+  }
+}

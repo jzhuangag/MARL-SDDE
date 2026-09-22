@@ -1,0 +1,121 @@
+{
+  "experiment_id": "TSP-MARL-SMACV2-DEV-001",
+  "role": "development-only external CTDE benchmark; no confirmatory claim",
+  "predecessor_evidence": {
+    "confirmed_experiment": "TSP-MARL-CONF-001",
+    "unsuccessful_transfer_kept_internal": "TSP-MARL-XTASK-DEV-001",
+    "reuse_of_previous_outcomes_for_thresholds": false
+  },
+  "upstream": {
+    "harl_repository": "https://github.com/PKU-MARL/HARL",
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "smacv2_repository": "https://github.com/oxwhirl/smacv2",
+    "smacv2_commit": "577ab5a2cff2391f8df582da5731ea9cd6adf3c6",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "smacv2",
+    "map_name": "terran_10_vs_10",
+    "strategic_agents": 10,
+    "enemies": 10,
+    "episode_limit": 200,
+    "procedural_team_and_start_positions": true,
+    "ctde": true,
+    "decentralized_evaluation": true,
+    "share_param": true,
+    "discrete_actions": true
+  },
+  "controlled_dependence": {
+    "regimes": ["independent", "shared"],
+    "independent": "cyclically permuted worker seeds and ordinary per-worker categorical uniforms",
+    "shared": "one environment seed and one inverse-CDF categorical uniform shared across rollout workers",
+    "marginal_law_change": false,
+    "evaluation_streams": "independent deterministic HARL evaluation streams in both regimes"
+  },
+  "methods": ["lyapunov_probe_commit", "fixed_q1", "fixed_q8"],
+  "controller": {
+    "probe_q": 8,
+    "probe_blocks": 64,
+    "probe_updates_model": false,
+    "probe_is_fully_charged": true,
+    "candidate_q": [1, 8],
+    "correlation_delta": 0.05,
+    "selection_score": "(server_overhead/rollout_length+q)*(rho_upper+(1-rho_upper)/q)",
+    "selection_boundary_for_q1_q8": 0.3333333333333333,
+    "benchmark_return_or_win_rate_used_by_controller": false,
+    "commit_rule": "one participation decision after the separated probe; no later switching"
+  },
+  "budgets": {
+    "message_budget": 16000000,
+    "environment_budget": 3000000,
+    "server_overhead_per_rollout_packet": 800,
+    "rollout_length": 200,
+    "message_cost_per_block": "800+200q",
+    "environment_cost_per_block": 200,
+    "fixed_q1_updates": 15000,
+    "fixed_q8_updates": 6666,
+    "fixed_q1_actor_transitions": 3000000,
+    "fixed_q8_actor_transitions": 10665600,
+    "controller_probe_messages": 153600,
+    "controller_probe_environment_ticks": 12800,
+    "controller_probe_message_fraction": 0.0096
+  },
+  "model": {
+    "hidden_sizes": [128, 128],
+    "activation": "relu",
+    "actor_lr": 0.0005,
+    "critic_lr": 0.0005,
+    "ppo_epochs": 5,
+    "critic_epochs": 5,
+    "value_normalization": true,
+    "linear_lr_decay": false
+  },
+  "evaluation": {
+    "interval_training_updates": 250,
+    "episodes": 64,
+    "threads": 8,
+    "deterministic": true,
+    "auc_grid_points": 21,
+    "primary_metric": "area under evaluation win-rate versus fully charged budget fraction",
+    "secondary_metrics": [
+      "area under evaluation team-return versus fully charged budget fraction",
+      "terminal evaluation win rate",
+      "selection accuracy",
+      "probe cost",
+      "controller arithmetic overhead"
+    ],
+    "smoothing_used_for_tests": false
+  },
+  "seed_registry": {
+    "development_training": [80101, 80102, 80103, 80104],
+    "development_probe": [80201, 80202, 80203, 80204],
+    "amendment": "TSP-MARL-SMACV2-DEV-001 Amendment 1",
+    "smacv2_uint32_eval_seed_checked": true
+  },
+  "planned_runs": {
+    "controller": 8,
+    "fixed_q1": 8,
+    "fixed_q8": 8,
+    "total": 24
+  },
+  "mandatory_development_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "independent_selected_q8_fraction_min": 0.75,
+    "shared_selected_q1_fraction_min": 0.75,
+    "static_oracle_win_rate_auc_headroom_absolute_min": 0.05,
+    "controller_equal_mixture_win_rate_auc_gain_over_strong_static_absolute_min": 0.025,
+    "controller_per_regime_win_rate_auc_gap_from_matching_fixed_min": -0.02,
+    "team_return_auc_direction_agrees_with_win_rate_in_shared_regime": true,
+    "probe_message_fraction_max": 0.011,
+    "controller_wall_clock_overhead_fraction_max": 0.05,
+    "marginal_preserving_coupling_audit": true,
+    "analysis_replay_byte_identical": true
+  },
+  "strong_static_rule": "Choose q in {1,8} with the larger equal-regime mean win-rate AUC, breaking exact ties toward q=1.",
+  "stopping_rule": "Any mandatory development gate failure preserves the result and prohibits confirmation. Passing authorizes only a separately preregistered confirmation with new seeds and an intermediate-dependence regime.",
+  "storage": {
+    "remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-SMACV2-DEV-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

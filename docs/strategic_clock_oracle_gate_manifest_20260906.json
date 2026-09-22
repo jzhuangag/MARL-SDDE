@@ -1,0 +1,77 @@
+{
+  "date": "2026-09-06",
+  "status": "frozen_outcome_free_design_only",
+  "scientific_question": "Can a causal Lyapunov strategic-clock controller recover synchronous policy-path quality under unknown Markov-modulated actor availability at matched arrivals?",
+  "environment": {
+    "class": "one_state_two_agent_cooperative_markov_game",
+    "reward_matrices": [
+      [[0.4, 0.0], [0.0, 1.0]],
+      [[0.7, 0.0], [0.0, 1.5]],
+      [[0.4, -0.2], [-0.2, 2.0]]
+    ],
+    "initial_action1_probabilities": [
+      [0.35, 0.55],
+      [0.45, 0.55],
+      [0.35, 0.65],
+      [0.55, 0.35],
+      [0.55, 0.45],
+      [0.65, 0.35]
+    ]
+  },
+  "availability": {
+    "horizon_events": 400,
+    "profiles": [
+      "iid_balanced_control",
+      "iid_stationary_80_20",
+      "equal_count_early_burst_reversal",
+      "symmetric_markov_bursts"
+    ],
+    "markov_persistence": [0.8, 0.95],
+    "seeds": [91001, 91002, 91003, 91004, 91005, 91006, 91007, 91008, 91009, 91010, 91011, 91012, 91013, 91014, 91015, 91016]
+  },
+  "gradient": {
+    "base_step": 0.05,
+    "maximum_update_mass": 0.2,
+    "noise_standard_deviation": [0.0, 0.05],
+    "same_noise_stream_across_methods": true
+  },
+  "comparators": [
+    "synchronous_reference",
+    "raw_async",
+    "barrier_fresh_sequential",
+    "true_stationary_rate_inverse",
+    "ewma_rate_inverse",
+    "count_only_debt",
+    "best_fixed_block_scaling_selected_on_population_not_seed_or_path"
+  ],
+  "primary_population": "opposite_side_initializations_with_nonhomogeneous_availability",
+  "controls": [
+    "iid_balanced_availability",
+    "same_side_single_basin_initialization",
+    "uncoupled_additive_reward"
+  ],
+  "metrics": {
+    "primary": "normalized_learning_auc_gap_to_synchronous_reference_at_matched_arrivals",
+    "secondary": [
+      "terminal_expected_reward",
+      "strategic_clock_discrepancy",
+      "accepted_update_mass",
+      "wall_clock_proxy"
+    ]
+  },
+  "mandatory_gates": {
+    "G1_validity": "all finite, identical arrival/noise streams, no future-arrival access, and exact resource ledger",
+    "G2_raw_headroom": "median raw-to-synchronous normalized AUC loss in the primary population is at least 0.05",
+    "G3_recovery": "median Lyapunov recovery of raw-to-synchronous AUC loss is at least 0.50",
+    "G4_strong_baseline": "median additional recovery over the strongest causal non-Lyapunov baseline is at least 0.10 of raw-to-synchronous loss",
+    "G5_directionality": "Lyapunov is strictly better than the strongest causal non-Lyapunov baseline in at least 0.60 of headroom-active cells",
+    "G6_homogeneous_control": "absolute normalized AUC loss versus the best control baseline is at most 0.01",
+    "G7_single_basin_control": "absolute normalized AUC loss versus the best control baseline is at most 0.01",
+    "G8_nontriviality": "update masses differ from count-only debt in at least 0.10 of primary events and the performance term is active",
+    "G9_queue_feasibility": "no update exceeds maximum mass and declared feasible cells have sublinear terminal debt",
+    "G10_reproducibility": "clean rerun is byte-identical"
+  },
+  "stopping_rule": "Any failed mandatory gate closes strategic-clock equalization as an ICML mainline; do not alter populations, thresholds, baselines, or seeds after outcomes.",
+  "gpu_authorized": false,
+  "hpc4_authorized": false
+}

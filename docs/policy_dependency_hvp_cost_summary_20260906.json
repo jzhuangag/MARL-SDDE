@@ -1,0 +1,39 @@
+{
+  "experiment_id": "PDSG-COMP-001",
+  "decision": "fail_C5_stop_before_reproduction",
+  "provenance": {
+    "preregistration_commit": "aaa0288bc2338b6c483dfc96c74ab2ff83b17c4a",
+    "runner_freeze_commit": "e622189ac80ebdf28607533164fa23e3301704df",
+    "manifest_sha256": "C33FDC006AD53E541AB9EA0332EDBCDD286C4326A8D0FA1821CC6521D4654292",
+    "runner_sha256": "E519C40BE029E76450028D030502C3B8E676A2C483D4A94511AA390A73C08D26",
+    "primary_result_sha256": "C8B11F85337486797F26077FB189B3735128129CFDBB67FDE23DC18F6BB7FFA7"
+  },
+  "workload": {
+    "configuration_rows": 72,
+    "device": "cpu",
+    "torch_threads": 4,
+    "gpu_or_hpc4": false
+  },
+  "metrics": {
+    "median_hvp_to_baseline_ratio": 1.5019921679129287,
+    "maximum_hvp_to_baseline_ratio": 1.8226528012324827,
+    "maximum_degree_scaling": 1.5759309618498198,
+    "maximum_degree_scaling_cell": {
+      "agents": 8,
+      "hidden_width": 128,
+      "batch_size": 256,
+      "low_degree": 2,
+      "high_degree": 4,
+      "low_degree_hvp_median_ms": 3.1808500000000004,
+      "high_degree_hvp_median_ms": 5.0128
+    }
+  },
+  "gates": {
+    "C1_finite_positive": true,
+    "C2_nonzero_cross_derivatives": true,
+    "C3_median_ratio_le_4": true,
+    "C4_maximum_ratio_le_6": true,
+    "C5_degree_scaling_le_1_35": false,
+    "C6_clean_reproduction": "not_run"
+  }
+}

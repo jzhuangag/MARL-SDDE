@@ -1,0 +1,74 @@
+{
+  "cpu_bridge_survives": false,
+  "formal_authorized": false,
+  "gpu_authorized": false,
+  "public_quality_anchor": "not_run_due_to_failed_cpu_survival_gates",
+  "gates": {
+    "P1_validity_pairing_and_accounting": true,
+    "P2_positive_learning": false,
+    "P3_heterogeneous_auc_gain": false,
+    "P4_heterogeneous_directionality": true,
+    "P5_async_reference_safety": true,
+    "P6_rate_coupling_order": false,
+    "P7_nontrivial_lyapunov_design": true,
+    "P8_motion_and_work_disclosure": true,
+    "P9_no_outcome_selected_setting": true,
+    "P11_no_formal_or_gpu_escalation": true,
+    "P12_reproducibility": true
+  },
+  "metrics": {
+    "heterogeneous_normalized_auc_gain": 0.004920393694658041,
+    "heterogeneous_directionality": 0.6875,
+    "heterogeneous_gain_by_task": {
+      "simple_reference_v2": 0.011417407939512524,
+      "simple_spread_v2": -0.0015766205501964422
+    },
+    "offdiag_vs_stronger_async_normalized_auc_gap": -0.006087879965156792,
+    "reference_gap_by_task": {
+      "simple_reference_v2": -0.00865692660698898,
+      "simple_spread_v2": -0.003518833323324605
+    },
+    "phase_order": {
+      "simple_reference_v2": {
+        "balanced_gain": -0.0029158807822565478,
+        "heterogeneous_gain": 0.011417407939512524
+      },
+      "simple_spread_v2": {
+        "balanced_gain": 0.010728122796123844,
+        "heterogeneous_gain": -0.0015766205501964422
+      }
+    },
+    "positive_learning_cells": {
+      "simple_reference_v2/delay_scaled_async": 4.322851718617573,
+      "simple_reference_v2/frozen_barrier": 4.933793369362105,
+      "simple_reference_v2/offdiag_async": 5.712218185537479,
+      "simple_reference_v2/raw_async": 5.823717019648749,
+      "simple_spread_v2/delay_scaled_async": -0.1586815604153804,
+      "simple_spread_v2/frozen_barrier": -0.6818685974447307,
+      "simple_spread_v2/offdiag_async": 0.23830075711511345,
+      "simple_spread_v2/raw_async": -1.4961276248830897
+    },
+    "mean_policy_kl": {
+      "delay_scaled_async": 1.9332148482364517,
+      "frozen_barrier": 11.615719510964123,
+      "offdiag_async": 7.061592876196752,
+      "raw_async": 16.674615912430255
+    },
+    "offdiag_scales": [
+      0.5757278810041391,
+      0.6928095518838442
+    ]
+  },
+  "provenance": {
+    "source_commit": "b6aa00d271167834f68b89f5c1ae8e4f34838c1f",
+    "config_sha256": "a06f250c4edf07b0dc7db74d9df5c6edac662a2f77386c6857cd47d99c269cda",
+    "endpoints_sha256": "d4bb72e5a9a28539a0533507375513f001da2d6f8a9cc6ba266288ddf3763554",
+    "curves_sha256": "7a5905c001e187b5bb3d31ac3d55ee848911dab57ed728dff73ff138240b812d",
+    "manifest_sha256": "0c2d8456e51188f3d69863992b7b1f7b721c1bd7745445e26472e6a24e480c10",
+    "analyzer_output_sha256": "ceaceebe5babd0a37bfb82d5d294d4c24a705eedd7216657e64159507d37ff3a",
+    "primary_runtime_seconds": 1764.4089839,
+    "reproduction_runtime_seconds": 1958.7358733,
+    "endpoint_rows": 128,
+    "curve_rows": 640
+  }
+}

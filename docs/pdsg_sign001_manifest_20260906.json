@@ -1,0 +1,79 @@
+{
+  "experiment_id": "PDSG-SIGN-001",
+  "status": "frozen_preregistration",
+  "scientific_scope": "exact-model signed-oracle confirmation only",
+  "model": {
+    "agents": 6,
+    "rollout_horizon": 4,
+    "launches": 160,
+    "step_cap": 0.04,
+    "learning_weight": "sqrt(launches)",
+    "graph_action": "null or one causal-cone edge",
+    "receipt_step": "fixed full cap",
+    "agent_labels": "common random permutation per seed"
+  },
+  "grid": {
+    "coupling": [0.0, 0.6, 0.9],
+    "maximum_extra_delay": [2, 5],
+    "message_budget": [0.5, 1.0],
+    "environment_budget": [4.0],
+    "mode_switch_probability": [0.03, 0.12],
+    "cell_count": 24,
+    "active_cell_count": 16,
+    "uncoupled_control_count": 8
+  },
+  "seeds": {
+    "start": 51001,
+    "count": 16,
+    "development_seeds_excluded": [43001, 43002, 43003, 43004]
+  },
+  "policies": [
+    "signed_oracle_graph_h4",
+    "no_refresh_full_h4",
+    "packet_debt_full_h4",
+    "largest_mismatch_h4",
+    "active_donor_h4",
+    "largest_coefficient_h4",
+    "top2_mismatch_h4",
+    "top2_coefficient_h4",
+    "round_robin_h4",
+    "periodic_full_h4",
+    "fixed_offset0_h4",
+    "fixed_offset1_h4",
+    "fixed_offset2_h4",
+    "fixed_offset3_h4",
+    "fixed_offset4_h4",
+    "fixed_offsets01_h4",
+    "fixed_offsets02_h4",
+    "fixed_offsets03_h4",
+    "fixed_offsets04_h4",
+    "fixed_offsets12_h4",
+    "fixed_offsets13_h4",
+    "fixed_offsets14_h4",
+    "fixed_offsets23_h4",
+    "fixed_offsets24_h4",
+    "fixed_offsets34_h4"
+  ],
+  "baseline_selection": {
+    "auc": "minimum geometric mean cumulative risk among resource-feasible baselines within each cell",
+    "terminal": "minimum geometric mean terminal risk among resource-feasible baselines within each cell",
+    "message_tolerance": 0.0125,
+    "environment_tolerance": 0.0
+  },
+  "gates": {
+    "S1": "exact row counts, finite outputs, disjoint development and confirmation seeds",
+    "S2": "every policy uses exactly four environment transitions per launch",
+    "S3": "signed policy average messages do not exceed each budget plus 1/launches",
+    "S4": "active-cell median terminal-risk improvement is at least 0.10",
+    "S5": "signed policy strictly improves terminal risk in at least 0.80 of active cells and is not worse in any active cell",
+    "S6": "active-cell median cumulative-risk improvement is positive and strict improvement fraction is at least 0.80",
+    "S7": "median terminal improvement is positive in every registered nonzero coupling, delay, budget, and switch group",
+    "S8": "maximum absolute terminal and cumulative difference in uncoupled controls is at most 1e-12",
+    "S9": "minimum mean number of signed graph supports over active cells is at least 5",
+    "S10": "all 24 declared strong baselines are present and resource feasibility is checked before envelope selection",
+    "S11": "no scientific result or output path exists before the preregistration commit",
+    "S12": "isolated rerun is byte-identical for endpoints, cells, and core summary"
+  },
+  "stopping_rule": "any failure of S1-S11 records an honest failure and forbids estimator integration under this identifier; S12 still reproduces the pass or failure without retuning",
+  "formal_or_gpu_authorized": false
+}

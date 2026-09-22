@@ -1,0 +1,33 @@
+{
+  "audit_id": "T-043-source-verification",
+  "audit_date": "2026-08-02",
+  "scope": "official task-definition sources used by the T-043A preregistration",
+  "entries": [
+    {
+      "source": "Gymnasium Frozen Lake documentation",
+      "url": "https://gymnasium.farama.org/environments/toy_text/frozen_lake/",
+      "authority": "official Gymnasium documentation",
+      "verified": true,
+      "verified_claims": [
+        "FrozenLake-v1 has Discrete(16) observations and Discrete(4) actions on the default 4x4 map",
+        "the slippery transition law randomizes among the intended and perpendicular directions",
+        "goal and hole states terminate an episode"
+      ],
+      "local_execution_pin": "gymnasium==1.0.0"
+    },
+    {
+      "source": "Gymnasium Cliff Walking documentation",
+      "url": "https://gymnasium.farama.org/environments/toy_text/cliff_walking/",
+      "authority": "official Gymnasium documentation",
+      "verified": true,
+      "verified_claims": [
+        "CliffWalking has 48 encoded observations and four actions",
+        "the task uses the documented cliff penalty and terminal goal",
+        "version history records v0 and the later v1 slippery addition"
+      ],
+      "local_execution_pin": "CliffWalking-v0 from gymnasium==1.0.0"
+    }
+  ],
+  "bibliographic_references_added": false,
+  "unresolved_conflicts": []
+}

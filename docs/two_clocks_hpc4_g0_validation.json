@@ -1,0 +1,45 @@
+{
+  "decision": "pass_outcome_free_g0_only",
+  "final_job": {
+    "code_commit": "af83e94f875f971cc5374a1e5f3f19658deec3f5",
+    "elapsed_seconds": 14,
+    "exit_code": "0:0",
+    "job_id": 1810485,
+    "node": "gpu07",
+    "partition": "gpu-a30",
+    "sha256_manifest_sha256": "ebb436cf2c52666824c5b4878fc19ee4d9d08af565ef18801ced98241782fe37",
+    "state": "COMPLETED",
+    "summary_sha256": "7f9166628efa33a843b1d17d47e6f5f017af06865b0b57bab45ec6611faff03f"
+  },
+  "invariants": {
+    "cuda_available": true,
+    "distinct_actor_blocks": true,
+    "exact_task_set": true,
+    "finite_timing": true,
+    "fully_charged_actor_transitions": true,
+    "no_descendant_process_leak": true,
+    "one_environment_transition_per_task": true,
+    "pinned_sources_clean": true
+  },
+  "jobs": [
+    {"elapsed_seconds": 54, "exit_code": "1:0", "job_id": 1810470, "state": "FAILED"},
+    {"elapsed_seconds": 47, "exit_code": "1:0", "job_id": 1810475, "state": "FAILED"},
+    {"elapsed_seconds": 47, "exit_code": "1:0", "job_id": 1810482, "state": "FAILED"},
+    {"elapsed_seconds": 70, "exit_code": "0:0", "job_id": 1810484, "state": "COMPLETED"},
+    {"elapsed_seconds": 14, "exit_code": "0:0", "job_id": 1810485, "state": "COMPLETED"}
+  ],
+  "root": "/scratch/jzhuangag/MARL-SDDE-TwoClocks-20260902",
+  "scientific_outcome_generated": false,
+  "scope": "outcome-free Two Clocks HPC4 G0",
+  "sources": {
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "mujoco_archive_sha256": "a436ca2f4144c38b837205635bbd60ffe1162d5b44c87df22232795978d7d012",
+    "sc2_archive_sha256": "1052f249f30a242bf5e17cc3315324919f9689307ca6dbcdb30bb41ea3004884",
+    "smac_maps_archive_sha256": "e507cc53b49f0ac334732d62628a42e0be2c53e9df29eeeaf608bb861a2a76cd",
+    "smacv2_commit": "577ab5a2cff2391f8df582da5731ea9cd6adf3c6"
+  },
+  "tasks": [
+    {"action": "Box(2)", "actor_transitions": 4, "agents": 4, "observation_size": 115, "state_size": 111, "task": "mamujoco_ant_4x2"},
+    {"action": "Discrete(11)", "actor_transitions": 5, "agents": 5, "observation_size": 82, "state_size": 120, "task": "smacv2_terran_5v5"}
+  ]
+}

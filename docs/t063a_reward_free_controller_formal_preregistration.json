@@ -1,0 +1,128 @@
+{
+  "experiment_id": "T-063A-formal-reward-free-correlation-adaptive-MinAtar-TD",
+  "classification": "formal empirical evidence under the fixed-policy delayed nonlinear-feature Markov-TD scope",
+  "configuration_sha256": "8e90b08f18a14b777356ab3c575c738d9c8b62c5a9a0d7b2ff06ae78605d457d",
+  "source_pilot_config": {
+    "path": "docs/t061a_reward_free_controller_pilot_preregistration.json",
+    "sha256": "479f29cce9d66f846a7dc60c26a4dae6de67f9ae14623e85e6bc1afb8b9c03f4"
+  },
+  "power_audit": {
+    "path": "docs/t062_t061a_power_audit.json",
+    "sha256": "d48189f06e7c4c8bf4e2ea404c8ae13613d3002744ceb10cba7660849cc149dd",
+    "recommended_new_formal_seeds": 512
+  },
+  "software_paths": {
+    "formal_runner": "experiments/nonlinear_markov_td/run_t063a_reward_free_controller_formal.py",
+    "formal_analyzer": "experiments/nonlinear_markov_td/analyze_t063a_reward_free_controller_formal.py",
+    "formal_tests": "experiments/nonlinear_markov_td/test_t063a_reward_free_controller_formal.py",
+    "pilot_runner_and_point_analyzer": "experiments/nonlinear_markov_td/run_t061a_reward_free_controller_pilot.py",
+    "reward_free_fingerprint_controller": "experiments/nonlinear_markov_td/t061_reward_free_fingerprint.py",
+    "fixed_nonlinear_encoder": "experiments/nonlinear_markov_td/t059_minatar_fixed_encoder.py"
+  },
+  "software_sha256": {
+    "formal_runner": "bdc1eb4f37a11fc22a383110609cf684d5351845fcddb4c34e16e7c1f910428b",
+    "formal_analyzer": "82f975680d2b9b1e589a75ff2a0c9853eaeb6d1467e515927f116cabbc810ab6",
+    "formal_tests": "bd3e4343a51023ccf38c3119c4613215dc06c630a13d1816e1096f2d80677a58",
+    "pilot_runner_and_point_analyzer": "3936d736e16009d4da87c328744183391693a16bfd9fa85bc5f8e71cddf74189",
+    "reward_free_fingerprint_controller": "37fde4c9567b90b7dd0ed3c25bac27889e2b3b634d248741edaa477c7e8ef412",
+    "fixed_nonlinear_encoder": "6242669ca110aed133613691dc4625729dd64435c779edd83d92ea26ee6f9959"
+  },
+  "formal_seed_registry": {
+    "inclusive_start": 202608056201,
+    "inclusive_end": 202608056712,
+    "derivation": "every integer in the closed interval",
+    "count": 512
+  },
+  "seed_isolation": {
+    "excluded_intervals": [
+      [202608056001, 202608056032],
+      [202608056101, 202608056132]
+    ],
+    "excludes_T060A_and_T061A": true
+  },
+  "scientific_scope": {
+    "tasks": ["asterix", "breakout", "seaquest"],
+    "environment": "official MinAtar 1.0.15 with sticky action 0.1 and difficulty ramping disabled",
+    "policy": "fixed uniform policy over the full six-action set",
+    "representation": "frozen random convolution-ReLU-pooling-tanh encoder with 33-dimensional feature vector",
+    "trainable_parameters": "regularized affine TD head only",
+    "participation": [1, 4, 16],
+    "correlations": [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+    "overheads": [8, 32],
+    "delays": [0, 8],
+    "controller": "96 fully charged reward-free two-agent length-four fingerprint probes followed by the closed-form phase action",
+    "strong_comparator": "T060A-frozen task-overhead fixed q with no probe and the full dual budget"
+  },
+  "point_gates": {
+    "maximum_aggregate_ratio": 0.95,
+    "maximum_task_ratio": 0.98,
+    "maximum_delay_ratio": 0.97,
+    "minimum_strict_cell_fraction": 0.60,
+    "maximum_true_rho_ratio": 1.15,
+    "minimum_directional_path_fraction": 1.0,
+    "maximum_fingerprint_rmse": 1.5,
+    "maximum_seed_level_rho0_match_rate": 0.02,
+    "all_P1_through_P11_required": true,
+    "byte_exact_clean_rerun_required": true,
+    "failure_stops_claim": true
+  },
+  "formal_analysis": {
+    "unit": "complete master-seed column across every registered cell and comparator",
+    "bootstrap_replicates": 50000,
+    "bootstrap_seed": 63001,
+    "aggregate_threshold": 0.95,
+    "aggregate_upper_quantile": 0.95,
+    "task_threshold": 0.98,
+    "task_upper_quantile": "1-0.05/3 Bonferroni",
+    "delay_threshold": 0.97,
+    "delay_upper_quantile": "1-0.05/2 Bonferroni",
+    "breadth_threshold": 0.60,
+    "breadth_lower_quantile": 0.05,
+    "oracle_threshold": 1.15,
+    "oracle_upper_quantile": 0.95,
+    "maximum_fingerprint_rmse": 1.5,
+    "maximum_seed_level_rho0_match_rate": 0.02,
+    "endpoint_rows_are_independent": false,
+    "pilot_rows_used_in_formal_inference": false
+  },
+  "mandatory_gates": {
+    "F1": "exact 84-cell, 512-seed, 43008-endpoint coverage and pilot-seed isolation",
+    "F2": "all risks finite and every probe plus learning message/environment/delay cost valid",
+    "F3": "aggregate point and one-sided 95 percent upper ratio at most 0.95",
+    "F4": "every task point and Bonferroni one-sided upper ratio at most 0.98",
+    "F5": "both delay point and Bonferroni one-sided upper ratio at most 0.97",
+    "F6": "strict-cell point and one-sided 95 percent lower fraction at least 0.60",
+    "F7": "true-rho no-probe full-budget point and one-sided upper proximity ratio at most 1.15",
+    "F8": "selected participation is nonincreasing in rho on all 12 task-overhead-delay paths",
+    "F9": "fingerprint standardized residual RMSE at most 1.5",
+    "F10": "maximum seed-level rho-zero match rate at most 0.02",
+    "F11": "stored point summary exactly replays from raw endpoints",
+    "F12": "primary and clean reproduction artifacts are byte-identical",
+    "F13": "complete nonlinear_markov_td test suite passes"
+  },
+  "expected_workload": {
+    "cells": 84,
+    "formal_seed_clusters": 512,
+    "endpoints": 43008,
+    "generated_transitions": 305986560,
+    "stored_full_trajectories": 0,
+    "parallel_workers": 4,
+    "estimated_peak_gib": 6.0,
+    "recommended_device": "local CPU"
+  },
+  "runtime_model": {
+    "T061A_wall_seconds": 1324.0,
+    "T061A_seed_clusters": 32,
+    "ideal_primary_hours_with_four_workers": 1.471111111111111,
+    "runtime_is_not_a_scientific_gate": true
+  },
+  "authorization": {
+    "execute_after_independent_preregistration_commit": true,
+    "formal": true,
+    "local_cpu": true,
+    "gpu": false,
+    "hpc4": false,
+    "project_storage": false,
+    "change_any_seed_task_threshold_or_analysis_after_commit": false
+  }
+}

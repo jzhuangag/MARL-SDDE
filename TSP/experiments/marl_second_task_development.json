@@ -1,0 +1,86 @@
+{
+  "experiment_id": "TSP-MARL-XTASK-DEV-001",
+  "role": "outcome-free development transfer of the frozen controller to a communication-conditioned CTDE task",
+  "predecessor": {
+    "experiment_id": "TSP-MARL-CONF-001",
+    "controller_change": "none",
+    "task_change": "simple_spread_v2 to simple_reference_v2"
+  },
+  "upstream": {
+    "repository": "https://github.com/PKU-MARL/HARL",
+    "commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo",
+    "pettingzoo_version": "1.22.2"
+  },
+  "task": {
+    "environment": "pettingzoo_mpe",
+    "scenario": "simple_reference_v2",
+    "continuous_actions": false,
+    "rollout_length": 25,
+    "ctde": true,
+    "decentralized_evaluation": true,
+    "share_param": true,
+    "padded_observation_shape": [21],
+    "padded_action_space": "Discrete(50)",
+    "global_state_shape": [42]
+  },
+  "coupling_regimes": ["independent", "shared"],
+  "methods": ["lyapunov_probe_commit", "fixed_q1", "fixed_q8"],
+  "controller": {
+    "probe_q": 8,
+    "probe_blocks": 128,
+    "probe_updates_model": false,
+    "probe_is_fully_charged": true,
+    "candidate_q": [1, 8],
+    "critic_lr": 0.0005,
+    "actor_lr": 0.0005,
+    "correlation_delta": 0.05,
+    "selection_score": "(server_overhead/rollout_length+q)*(rho_upper+(1-rho_upper)/q)",
+    "benchmark_return_used_by_controller": false,
+    "commit_rule": "one decision after the separated probe; no later switching"
+  },
+  "budgets": {
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "server_overhead_per_rollout_packet": 100,
+    "message_cost_per_block": "100+25q",
+    "environment_cost_per_block": 25
+  },
+  "model": {
+    "hidden_sizes": [64, 64],
+    "activation": "tanh",
+    "ppo_epochs": 2,
+    "critic_epochs": 2
+  },
+  "evaluation": {
+    "interval_training_updates": 1000,
+    "episodes": 32,
+    "threads": 4,
+    "deterministic": true,
+    "auc_grid_points": 21,
+    "primary_axis": "maximum of cumulative message-budget and environment-budget fractions",
+    "smoothing_used_for_tests": false
+  },
+  "seed_registry": {
+    "development_training": [106001, 106002, 106003, 106004],
+    "development_probe": [107001, 107002, 107003, 107004]
+  },
+  "planned_runs": {
+    "controller": 8,
+    "fixed_q1": 8,
+    "fixed_q8": 8,
+    "total": 24
+  },
+  "mandatory_development_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "independent_selected_q8_fraction_min": 0.75,
+    "shared_selected_q1_fraction_min": 0.75,
+    "independent_controller_relative_auc_vs_fixed_q8_min": -0.02,
+    "shared_controller_relative_auc_vs_fixed_q8_min": 0.03,
+    "mixture_controller_relative_auc_vs_fixed_q8_min": 0.015,
+    "probe_message_fraction_max": 0.01,
+    "controller_wall_clock_overhead_fraction_max": 0.05,
+    "marginal_preserving_coupling_audit": true
+  },
+  "stopping_rule": "Any mandatory development gate failure preserves the complete result and prohibits confirmatory claims or replacement development seeds. Passing authorizes only a separately preregistered confirmation with new seeds."
+}

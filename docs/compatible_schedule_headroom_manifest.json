@@ -1,0 +1,47 @@
+{
+  "artifact_id": "CAUS-HEADROOM-STATIC-20260901",
+  "design": {
+    "graphs": [
+      "path",
+      "tree",
+      "grid",
+      "clustered"
+    ],
+    "horizon": 240,
+    "n_agents": [
+      16,
+      36,
+      64
+    ],
+    "policies": [
+      "compatible_maxweight",
+      "best_color",
+      "cycle_color",
+      "static_priority",
+      "sequential_maxweight"
+    ],
+    "potential_weight": 0.75,
+    "scenario_policy_runs": 240,
+    "scenarios": 48,
+    "workloads": [
+      "homogeneous",
+      "two_tier",
+      "rotating_burst",
+      "color_skew"
+    ]
+  },
+  "design_hash": "06eba45b60bb1ba0b7bd7e2c43152bc09cad1910e87128ad08b2c6fd72aa1cac",
+  "evidence_class": "outcome_free_deterministic_queue_ceiling",
+  "gates": {
+    "aggregate_cost_ratio_le_0_85": 0.85,
+    "complete_finite_compatible": true,
+    "dynamic_no_worse_than_strong_baseline": true,
+    "full_actor_coverage": true,
+    "scenario_ten_percent_fraction_ge_0_60": 0.6,
+    "throughput_ratio_vs_sequential_ge_2": 2.0
+  },
+  "parent_decision_commit": "31b74e8",
+  "run_authorized_only_after_this_manifest_is_committed": true,
+  "stochastic_pilot_authorized": false,
+  "stop_rule": "Any failed gate stops compatible-update scheduling before stochastic learning or GPU work."
+}

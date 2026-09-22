@@ -1,0 +1,90 @@
+{
+  "experiment_id": "PDSG-OBS-001",
+  "status": "frozen_preregistration",
+  "scientific_scope": "exact-model observable signed-controller confirmation only",
+  "model": {
+    "agents": 6,
+    "rollout_horizon": 4,
+    "launches": 160,
+    "step_cap": 0.04,
+    "learning_weight": "sqrt(launches)",
+    "graph_action": "null or one causal-cone edge",
+    "receipt_step": "fixed full cap",
+    "agent_labels": "common random permutation per seed",
+    "reference_estimator": "translation-equivariant normalized LMS from completed ordinary packets",
+    "reference_estimator_gain": 0.25
+  },
+  "grid": {
+    "coupling": [0.0, 0.6, 0.9],
+    "maximum_extra_delay": [2, 5],
+    "message_budget": [0.5, 1.0],
+    "environment_budget": [4.0],
+    "mode_switch_probability": [0.03, 0.12],
+    "cell_count": 24,
+    "active_cell_count": 16,
+    "uncoupled_control_count": 8
+  },
+  "seeds": {
+    "start": 61001,
+    "count": 16,
+    "development_seeds_excluded": [43001, 43002, 43003, 43004, 43005, 43006, 43007, 43008, 43009, 43010, 43011, 43012, 51001, 51002, 51003, 51004, 51005, 51006, 51007, 51008, 51009, 51010, 51011, 51012, 51013, 51014, 51015, 51016],
+    "excluded": [43001, 43002, 43003, 43004, 43005, 43006, 43007, 43008, 43009, 43010, 43011, 43012, 51001, 51002, 51003, 51004, 51005, 51006, 51007, 51008, 51009, 51010, 51011, 51012, 51013, 51014, 51015, 51016]
+  },
+  "policies": [
+    "signed_online_model_graph_h4",
+    "no_refresh_full_h4",
+    "packet_debt_full_h4",
+    "largest_mismatch_h4",
+    "active_donor_h4",
+    "largest_coefficient_h4",
+    "top2_mismatch_h4",
+    "top2_coefficient_h4",
+    "round_robin_h4",
+    "periodic_full_h4",
+    "fixed_offset0_h4",
+    "fixed_offset1_h4",
+    "fixed_offset2_h4",
+    "fixed_offset3_h4",
+    "fixed_offset4_h4",
+    "fixed_offsets01_h4",
+    "fixed_offsets02_h4",
+    "fixed_offsets03_h4",
+    "fixed_offsets04_h4",
+    "fixed_offsets12_h4",
+    "fixed_offsets13_h4",
+    "fixed_offsets14_h4",
+    "fixed_offsets23_h4",
+    "fixed_offsets24_h4",
+    "fixed_offsets34_h4"
+  ],
+  "oracle_diagnostic_policy": "signed_oracle_graph_h4",
+  "baseline_selection": {
+    "auc": "minimum geometric mean cumulative risk among resource-feasible baselines within each cell",
+    "terminal": "minimum geometric mean terminal risk among resource-feasible baselines within each cell",
+    "message_tolerance": 0.0125,
+    "environment_tolerance": 0.0
+  },
+  "gates": {
+    "O1": "9984 complete finite endpoints, 24 cells, and no excluded seed",
+    "O2": "every policy including oracle diagnostic uses exactly four environment transitions per launch",
+    "O3": "online policy average messages do not exceed each budget plus 1/launches",
+    "O4": "active-cell median terminal-risk improvement is at least 0.10",
+    "O5": "online policy strictly improves terminal risk in at least 0.80 of active cells and is not worse in any active cell",
+    "O6": "active-cell median cumulative-risk improvement is positive and strict improvement fraction is at least 0.80",
+    "O7": "median terminal improvement is positive in every nonzero coupling, delay, budget, and switch group",
+    "O8": "maximum absolute terminal and cumulative difference in uncoupled controls is at most 1e-12",
+    "O9": "minimum mean number of online graph supports over active cells is at least 5",
+    "O10": "all 24 strong baselines are present and feasibility precedes outcome-wise envelope selection",
+    "O11": "manifest status, source hash, estimator gain, and no-preexisting-output provenance are frozen",
+    "O12": "every active oracle denominator is positive and median online terminal-headroom recovery is at least 0.75",
+    "O13": "online endpoints contain finite estimator error and a 64-character action-trace hash",
+    "O14": "isolated rerun is byte-identical for endpoints, cells, and core summary"
+  },
+  "implementation": {
+    "game_source_sha256": "0D9623C90CF16CC8BE50CA5E691C480748C736820440980893325F7362143DAF",
+    "online_scorer_has_environment_target_argument": false,
+    "extra_probe_trajectories": 0
+  },
+  "stopping_rule": "any O1-O13 failure records an honest failure and forbids standard-MARL integration under this controller; O14 reproduces the same outcome without retuning",
+  "formal_or_gpu_authorized": false
+}

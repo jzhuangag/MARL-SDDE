@@ -1,0 +1,519 @@
+{
+  "date": "2026-08-31",
+  "parent_commit": "87a1dd9fb49f02cd812f319b195dde9889d8bc29",
+  "purpose": "Unified-paper novelty confrontation and research design",
+  "exhaustive_review": false,
+  "manuscript_ready": false,
+  "bibliography_edited": false,
+  "search_scope": {
+    "queries": [
+      "personalized federated learning learning collaboration weights validation FedFomo pFedGraph",
+      "learning to transfer reinforcement learning meta gradient transfer weights future learning performance",
+      "learning-aware collaboration temporal difference transfer Lyapunov finite horizon risk",
+      "federated learning personalized collaboration graph lookahead meta learning weights 2025 2026",
+      "Learning to Reweight Examples for Robust Deep Learning"
+    ],
+    "selection": "Five primary-source overlaps in recipient benefit, adaptive graphs and meta-learning; selected to challenge rather than support coarse novelty claims.",
+    "excluded": "Search results outside these bounded claims, secondary summaries and unrelated duplicates were not used as evidence."
+  },
+  "resolver_correction": "Initial Invoke-RestMethod projections produced null OpenAlex fields and were discarded, not called successful verification. Explicit JSON parsing with title filters produced the retained records. Full/short title filters returned no pFedGraph result.",
+  "source_quality": "Primary ML papers/preprints; clinical evidence hierarchy is inapplicable. Publisher/author provenance checked, no independent conflict-of-interest review. Retraction status limited to returned OpenAlex fields; no such status established for the unmatched pFedGraph record.",
+  "sources": [
+    {
+      "key": "fedfomo",
+      "primary": "https://arxiv.org/abs/2012.08565",
+      "cited": {
+        "type": "arXiv preprint",
+        "year": 2020,
+        "id": "2012.08565",
+        "authors": [
+          "Michael Zhang",
+          "Karan Sapra",
+          "Sanja Fidler",
+          "Serena Yeung",
+          "Jose M. Alvarez"
+        ]
+      },
+      "matched": "W3111777903",
+      "role": "Recipient-specific weighted model combinations based on recipient benefit.",
+      "note": "The preprint began in 2020; its ICLR 2021 comment is not relabelled as a 2020 conference publication.",
+      "retrieval": {
+        "primary_status": "positive_title_author_year_match",
+        "original_doi_and_S2_observation": {
+          "key": "fedfomo",
+          "query": "Personalized Federated Learning with First Order Model Optimization",
+          "semantic_scholar_error": "Response status code does not indicate success: 429 ().",
+          "doi_http": 200,
+          "primary_metadata": [
+            "<meta name=\"citation_title\" content=\"Personalized Federated Learning with First Order Model Optimization\"",
+            "<meta name=\"citation_author\" content=\"Zhang, Michael\"",
+            "<meta name=\"citation_author\" content=\"Sapra, Karan\"",
+            "<meta name=\"citation_author\" content=\"Fidler, Sanja\"",
+            "<meta name=\"citation_author\" content=\"Yeung, Serena\"",
+            "<meta name=\"citation_author\" content=\"Alvarez, Jose M.\"",
+            "<meta name=\"citation_date\" content=\"2020/12/15\"",
+            "<meta name=\"citation_arxiv_id\" content=\"2012.08565\""
+          ]
+        },
+        "openalex_parsed_title_search": {
+          "key": "fedfomo",
+          "http": 200,
+          "results": [
+            {
+              "id": "https://openalex.org/W3111777903",
+              "title": "Personalized Federated Learning with First Order Model Optimization",
+              "year": 2020,
+              "doi": "https://doi.org/10.48550/arxiv.2012.08565",
+              "authors": [
+                "Michael Zhang",
+                "Karan Sapra",
+                "Sanja Fidler",
+                "Serena Yeung",
+                "Jose M. Álvarez"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            }
+          ]
+        }
+      },
+      "index_verdict": "positive_OpenAlex_match",
+      "semantic_scholar": "HTTP 429; not bypassed",
+      "crossref": "No conference DOI asserted; arXiv DOIs use DataCite, so Crossref is not the required DOI resolver.",
+      "read_scope": "Primary abstract and bibliographic record, with method summary where returned; not a complete proof/code review.",
+      "claim_strength": "Supports existence of overlapping problem/method families, not a claim that the proposed final method is absent from all literature."
+    },
+    {
+      "key": "pfedgraph",
+      "primary": "https://proceedings.mlr.press/v202/ye23b.html",
+      "cited": {
+        "type": "conference proceedings",
+        "year": 2023,
+        "venue": "Proceedings of the 40th International Conference on Machine Learning",
+        "series": "Proceedings of Machine Learning Research",
+        "volume": "202",
+        "pages": "39801-39817",
+        "authors": [
+          "Rui Ye",
+          "Zhenyang Ni",
+          "Fangzhao Wu",
+          "Siheng Chen",
+          "Yanfeng Wang"
+        ]
+      },
+      "matched": null,
+      "role": "Graph-based personalization from model similarity and dataset size.",
+      "note": "Official proceedings, official author repository, ICML event and DBLP agree. No DOI/arXiv identifier is invented. OpenAlex title searches found no match and S2 was unavailable; the positive authoritative metadata match is retained without claiming successful index verification.",
+      "additional": "https://dblp.org/rec/conf/icml/YeNWCW23",
+      "retrieval": {
+        "primary_status": "positive_title_author_year_match",
+        "original_doi_and_S2_observation": {
+          "key": "pfedgraph",
+          "query": "Personalized Federated Learning with Inferred Collaboration Graphs",
+          "semantic_scholar_error": "Response status code does not indicate success: 429 ()."
+        },
+        "openalex_parsed_title_search": {
+          "key": "pfedgraph",
+          "http": 200,
+          "results": []
+        }
+      },
+      "index_verdict": "no_OpenAlex_match_S2_unavailable_authoritative_proceedings_and_DBLP_match",
+      "semantic_scholar": "HTTP 429; not bypassed",
+      "crossref": "No conference DOI asserted; arXiv DOIs use DataCite, so Crossref is not the required DOI resolver.",
+      "read_scope": "Primary abstract and bibliographic record, with method summary where returned; not a complete proof/code review.",
+      "claim_strength": "Supports existence of overlapping problem/method families, not a claim that the proposed final method is absent from all literature."
+    },
+    {
+      "key": "meta_gradient",
+      "primary": "https://arxiv.org/abs/1805.09801",
+      "cited": {
+        "type": "arXiv preprint",
+        "year": 2018,
+        "id": "1805.09801",
+        "authors": [
+          "Zhongwen Xu",
+          "Hado van Hasselt",
+          "David Silver"
+        ]
+      },
+      "matched": "W2803767077",
+      "role": "Online meta-gradient adaptation of RL return parameters.",
+      "note": "Used to establish prior learning-through-learning, not to assert an identical transfer controller.",
+      "retrieval": {
+        "primary_status": "positive_title_author_year_match",
+        "original_doi_and_S2_observation": {
+          "key": "meta_gradient",
+          "query": "Meta-Gradient Reinforcement Learning",
+          "semantic_scholar_error": "Response status code does not indicate success: 429 ().",
+          "doi_http": 200,
+          "primary_metadata": [
+            "<meta name=\"citation_title\" content=\"Meta-Gradient Reinforcement Learning\"",
+            "<meta name=\"citation_author\" content=\"Xu, Zhongwen\"",
+            "<meta name=\"citation_author\" content=\"van Hasselt, Hado\"",
+            "<meta name=\"citation_author\" content=\"Silver, David\"",
+            "<meta name=\"citation_date\" content=\"2018/05/24\"",
+            "<meta name=\"citation_arxiv_id\" content=\"1805.09801\""
+          ]
+        },
+        "openalex_parsed_title_search": {
+          "key": "meta_gradient",
+          "http": 200,
+          "results": [
+            {
+              "id": "https://openalex.org/W2803767077",
+              "title": "Meta-Gradient Reinforcement Learning",
+              "year": 2018,
+              "doi": "https://doi.org/10.48550/arxiv.1805.09801",
+              "authors": [
+                "Zhongwen Xu",
+                "Hado van Hasselt",
+                "David Silver"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W2964296021",
+              "title": "Meta-gradient reinforcement learning",
+              "year": 2018,
+              "doi": null,
+              "authors": [
+                "Zhongwen Xu",
+                "Hado van Hasselt",
+                "David Silver"
+              ],
+              "biblio": {
+                "volume": "31",
+                "issue": null,
+                "first_page": "2402",
+                "last_page": "2413"
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W3042933240",
+              "title": "Meta-Gradient Reinforcement Learning with an Objective Discovered Online",
+              "year": 2020,
+              "doi": "https://doi.org/10.48550/arxiv.2007.08433",
+              "authors": [
+                "Zhongwen Xu",
+                "Hado van Hasselt",
+                "Matteo Hessel",
+                "Junhyuk Oh",
+                "Satinder Singh",
+                "David Silver"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W4226483404",
+              "title": "Adaptive Incentive Design with Multi-Agent Meta-Gradient Reinforcement Learning",
+              "year": 2021,
+              "doi": "https://doi.org/10.48550/arxiv.2112.10859",
+              "authors": [
+                "Jiachen Yang",
+                "Ethan Wang",
+                "Rakshit Trivedi",
+                "Tuo Zhao",
+                "Hongyuan Zha"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            }
+          ]
+        }
+      },
+      "index_verdict": "positive_OpenAlex_match",
+      "semantic_scholar": "HTTP 429; not bypassed",
+      "crossref": "No conference DOI asserted; arXiv DOIs use DataCite, so Crossref is not the required DOI resolver.",
+      "read_scope": "Primary abstract and bibliographic record, with method summary where returned; not a complete proof/code review.",
+      "claim_strength": "Supports existence of overlapping problem/method families, not a claim that the proposed final method is absent from all literature."
+    },
+    {
+      "key": "reweight",
+      "primary": "https://proceedings.mlr.press/v80/ren18a.html",
+      "cited": {
+        "type": "conference proceedings",
+        "year": 2018,
+        "venue": "Proceedings of the 35th International Conference on Machine Learning",
+        "series": "Proceedings of Machine Learning Research",
+        "volume": "80",
+        "pages": "4334-4343",
+        "authors": [
+          "Mengye Ren",
+          "Wenyuan Zeng",
+          "Bin Yang",
+          "Raquel Urtasun"
+        ],
+        "related_arxiv": "1803.09050"
+      },
+      "matched": "W2795282075",
+      "role": "Example reweighting through a training step and clean validation objective.",
+      "note": "Conference metadata verified on PMLR; arXiv DOI identifies the preprint, not a proceedings DOI. OpenAlex W2963371670 also matches conference title/authors/pages.",
+      "retrieval": {
+        "primary_status": "positive_title_author_year_match",
+        "original_doi_and_S2_observation": {
+          "key": "reweight",
+          "query": "Learning to Reweight Examples for Robust Deep Learning",
+          "semantic_scholar_error": "Response status code does not indicate success: 429 ().",
+          "doi_http": 200,
+          "primary_metadata": [
+            "<meta name=\"citation_title\" content=\"Learning to Reweight Examples for Robust Deep Learning\"",
+            "<meta name=\"citation_author\" content=\"Ren, Mengye\"",
+            "<meta name=\"citation_author\" content=\"Zeng, Wenyuan\"",
+            "<meta name=\"citation_author\" content=\"Yang, Bin\"",
+            "<meta name=\"citation_author\" content=\"Urtasun, Raquel\"",
+            "<meta name=\"citation_date\" content=\"2018/03/24\"",
+            "<meta name=\"citation_arxiv_id\" content=\"1803.09050\""
+          ]
+        },
+        "openalex_parsed_title_search": {
+          "key": "reweight",
+          "http": 200,
+          "results": [
+            {
+              "id": "https://openalex.org/W2795282075",
+              "title": "Learning to Reweight Examples for Robust Deep Learning",
+              "year": 2018,
+              "doi": "https://doi.org/10.48550/arxiv.1803.09050",
+              "authors": [
+                "Mengye Ren",
+                "Wenyuan Zeng",
+                "Bin Yang",
+                "Raquel Urtasun"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W2963371670",
+              "title": "Learning to Reweight Examples for Robust Deep Learning",
+              "year": 2018,
+              "doi": null,
+              "authors": [
+                "Mengye Ren",
+                "Wenyuan Zeng",
+                "Bin Yang",
+                "Raquel Urtasun"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": "4334",
+                "last_page": "4343"
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W4396913067",
+              "title": "Reimplementation of Learning to Reweight Examples for Robust Deep Learning",
+              "year": 2024,
+              "doi": "https://doi.org/10.48550/arxiv.2405.06859",
+              "authors": [
+                "Parth Patil",
+                "Boardley, Ben",
+                "J. H. GARDNER",
+                "Emily Loiselle",
+                "Deerajkumar Parthipan"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            }
+          ]
+        }
+      },
+      "index_verdict": "positive_OpenAlex_match",
+      "semantic_scholar": "HTTP 429; not bypassed",
+      "crossref": "No conference DOI asserted; arXiv DOIs use DataCite, so Crossref is not the required DOI resolver.",
+      "read_scope": "Primary abstract and bibliographic record, with method summary where returned; not a complete proof/code review.",
+      "claim_strength": "Supports existence of overlapping problem/method families, not a claim that the proposed final method is absent from all literature."
+    },
+    {
+      "key": "fedaghn",
+      "primary": "https://arxiv.org/abs/2501.16379",
+      "cited": {
+        "type": "arXiv preprint",
+        "year": 2025,
+        "id": "2501.16379",
+        "authors": [
+          "Jiarui Song",
+          "Yunheng Shen",
+          "Chengbin Hou",
+          "Pengyu Wang",
+          "Jinbao Wang",
+          "Ke Tang",
+          "Hairong Lv"
+        ]
+      },
+      "matched": "W4406936328",
+      "role": "Stage-dependent client-specific collaboration graphs through attentive graph hypernetworks.",
+      "note": "OpenAlex name hyphenation differs for Yunheng Shen; authoritative arXiv and Crossref agree on the person/order. Related journal DOI metadata separately verified; not conflated with the preprint.",
+      "retrieval": {
+        "primary_status": "positive_title_author_year_match",
+        "original_doi_and_S2_observation": {
+          "key": "fedaghn",
+          "query": "FedAGHN: Personalized Federated Learning with Attentive Graph HyperNetworks",
+          "semantic_scholar_error": "Response status code does not indicate success: 429 ().",
+          "doi_http": 200,
+          "primary_metadata": [
+            "<meta name=\"citation_title\" content=\"FedAGHN: Personalized Federated Learning with Attentive Graph HyperNetworks\"",
+            "<meta name=\"citation_author\" content=\"Song, Jiarui\"",
+            "<meta name=\"citation_author\" content=\"Shen, Yunheng\"",
+            "<meta name=\"citation_author\" content=\"Hou, Chengbin\"",
+            "<meta name=\"citation_author\" content=\"Wang, Pengyu\"",
+            "<meta name=\"citation_author\" content=\"Wang, Jinbao\"",
+            "<meta name=\"citation_author\" content=\"Tang, Ke\"",
+            "<meta name=\"citation_author\" content=\"Lv, Hairong\"",
+            "<meta name=\"citation_date\" content=\"2025/01/24\"",
+            "<meta name=\"citation_arxiv_id\" content=\"2501.16379\""
+          ]
+        },
+        "openalex_parsed_title_search": {
+          "key": "fedaghn",
+          "http": 200,
+          "results": [
+            {
+              "id": "https://openalex.org/W4410333243",
+              "title": "Fedaghn: Personalized Federated Learning with Attentive Graph Hypernetworks",
+              "year": 2025,
+              "doi": "https://doi.org/10.2139/ssrn.5253438",
+              "authors": [
+                "Jiarui Song",
+                "Yun‐Heng Shen",
+                "Chengbin Hou",
+                "Pengyu Wang",
+                "Jinbao Wang",
+                "Ke Tang",
+                "Hairong Lv"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W4413805483",
+              "title": "FedAGHN: Personalized federated learning with attentive graph hypernetworks",
+              "year": 2025,
+              "doi": "https://doi.org/10.1016/j.knosys.2025.114355",
+              "authors": [
+                "Jiarui Song",
+                "Yunheng Shen",
+                "Chengbin Hou",
+                "Pengyu Wang",
+                "Jinbao Wang",
+                "Ke Tang",
+                "Hairong Lv"
+              ],
+              "biblio": {
+                "volume": "329",
+                "issue": null,
+                "first_page": "114355",
+                "last_page": "114355"
+              },
+              "is_retracted": false
+            },
+            {
+              "id": "https://openalex.org/W4406936328",
+              "title": "FedAGHN: Personalized Federated Learning with Attentive Graph HyperNetworks",
+              "year": 2025,
+              "doi": "https://doi.org/10.48550/arxiv.2501.16379",
+              "authors": [
+                "Jiarui Song",
+                "Yun‐Heng Shen",
+                "Chengbin Hou",
+                "Pengyu Wang",
+                "Jinbao Wang",
+                "Ke Tang",
+                "Hairong Lv"
+              ],
+              "biblio": {
+                "volume": null,
+                "issue": null,
+                "first_page": null,
+                "last_page": null
+              },
+              "is_retracted": false
+            }
+          ]
+        }
+      },
+      "index_verdict": "positive_OpenAlex_match",
+      "semantic_scholar": "HTTP 429; not bypassed",
+      "crossref": {
+        "status": "positive_match_for_related_journal_version",
+        "url": "https://api.crossref.org/works/10.1016/j.knosys.2025.114355",
+        "doi": "10.1016/j.knosys.2025.114355",
+        "year": 2025,
+        "month": 11,
+        "volume": "329",
+        "article_number": "114355",
+        "title": "FedAGHN: Personalized federated learning with attentive graph hypernetworks",
+        "authors": [
+          "Jiarui Song",
+          "Yunheng Shen",
+          "Chengbin Hou",
+          "Pengyu Wang",
+          "Jinbao Wang",
+          "Ke Tang",
+          "Hairong Lv"
+        ]
+      },
+      "read_scope": "Primary abstract and bibliographic record, with method summary where returned; not a complete proof/code review.",
+      "claim_strength": "Supports existence of overlapping problem/method families, not a claim that the proposed final method is absent from all literature."
+    }
+  ],
+  "internal_challenges": [
+    {
+      "stage": "question",
+      "issue": "Online collaboration and future-oriented optimization already exist.",
+      "decision": "Prospective core is affordable certified long-horizon transfer credit, not dynamic weights."
+    },
+    {
+      "stage": "evidence",
+      "issue": "The current constructed oracle witness is not a deployable estimator or a general efficacy result.",
+      "decision": "Preserve oracle-only scope; require observable estimator feasibility before experiments."
+    },
+    {
+      "stage": "narrative",
+      "issue": "Combining familiar tools or adding system complications does not establish novelty.",
+      "decision": "One estimator-controller-guarantee-evidence chain; no acceptance prediction or general novelty claim."
+    }
+  ],
+  "next_required_check": "Read full closest methods and implement matched baselines before claiming superiority or a submission-ready novelty gap."
+}

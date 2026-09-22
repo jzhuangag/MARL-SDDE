@@ -1,0 +1,66 @@
+{
+  "material_passport": {
+    "schema": "ARS-9-compatible experiment validation",
+    "status": "VERIFIED_NEGATIVE_CALIBRATION",
+    "data_scope": "old T-071A design seeds; theory-selected delay extremes",
+    "claim_scope": "architecture evidence only"
+  },
+  "experiment_id": "T-078-delay-extremes-persistent-certificate-calibration",
+  "decision": "mandatory_gate_failure_stop_new_seed_pilot",
+  "provenance": {
+    "frozen_commit": "234b65f8017bd402c4020373d10e718c5cb4129f",
+    "endpoints_sha256": "E9D4E8BA3B01A0BF9B6854DDB3A122489CC5526DDBEE732CE9EF123FA65CE41E",
+    "cells_sha256": "4BA127D54D77DD80A00BA3FE0A411B921FFFE893870B884EA9AC3CE39856BAE8",
+    "summary_sha256": "0302473DD8098D4FC6DB8BC8BFA2E8067C390E3C3DA6A00CD1FF99727B08F169",
+    "reproduction_endpoints_byte_identical": true,
+    "reproduction_cells_byte_identical": true,
+    "reproduction_summary_byte_identical": false,
+    "scientific_summary_equal_after_removing_runtime": true
+  },
+  "metrics": {
+    "nonstationary_improvement": 0.08123651893694928,
+    "strict_cell_fraction": 0.5260416666666666,
+    "single_switch_improvement": 0.04743581996088,
+    "alternating_improvement": 0.113837837046919,
+    "delay_0_improvement": 0.0873001765465132,
+    "delay_3_improvement": 0.0751325765123112,
+    "stationary_ratio": 1.083923889252089,
+    "high_temporal_ratio": 1.0108377230663583,
+    "low_scale_ratio": 1.0642831704969273,
+    "mean_iterations_per_recipient_decision": 32.307960792824076,
+    "accepted_nonlocal_rate": 0.24403211805555555,
+    "rollback_rate": 0.7502893518518517,
+    "original_runtime_seconds": 471.3784323,
+    "reproduction_runtime_seconds": 150.83359150000615
+  },
+  "gates": {
+    "R1": true,
+    "R2": true,
+    "R3": false,
+    "R4": true,
+    "R5": true,
+    "R6": true,
+    "R7": false,
+    "R8": false,
+    "R9": true,
+    "R10": true,
+    "R11": true,
+    "R12": true,
+    "R13": false,
+    "R14": true
+  },
+  "fallacy_scan": {
+    "coverage": "11/11",
+    "critical_findings": 0,
+    "timing_field_reproducibility_defect_retained": true
+  },
+  "authorization": {
+    "theory_phase_boundary_program": true,
+    "new_seed_pilot": false,
+    "retune_T078": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "experiment_id": "TSP-MARL-MAMUJOCO-DEV-001",
+  "role": "prospective development follow-up motivated by the task-level Stage-A pass; not confirmation evidence",
+  "upstream": {
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "mamujoco",
+    "scenario": "HalfCheetah-v2",
+    "agent_conf": "2x3",
+    "share_param": true,
+    "continuous_actions": true,
+    "rollout_length": 200,
+    "server_overhead": 800,
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "hidden_size": 128,
+    "activation": "tanh",
+    "actor_lr": 0.0005,
+    "critic_lr": 0.0005,
+    "ppo_epoch": 5,
+    "critic_epoch": 5,
+    "eval_interval": 200,
+    "eval_episodes": 20
+  },
+  "coupling_regimes": ["independent", "shared"],
+  "methods": ["fixed_q1", "fixed_q2", "fixed_q4", "fixed_q8", "lyapunov_probe_commit"],
+  "controller": {
+    "candidate_q": [1, 2, 4, 8],
+    "probe_q": 8,
+    "probe_blocks": 16,
+    "correlation_delta": 0.05,
+    "score": "certified variance factor divided by exact post-probe dual-budget horizon"
+  },
+  "seed_registry": {
+    "development_training": [125001, 125002, 125003, 125004],
+    "development_probe": [126001, 126002, 126003, 126004],
+    "registry_base": 125001,
+    "registry_size": 2048
+  },
+  "planned_runs": 40,
+  "auc_grid_points": 21,
+  "mandatory_development_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "full_fixed_q_catalogue": true,
+    "controller_within_two_percent_of_regime_fixed_q_envelope_each_regime": true,
+    "controller_relative_auc_over_strong_single_fixed_q_min": 0.01,
+    "probe_message_fraction_max": 0.01,
+    "selection_overhead_fraction_max": 0.02,
+    "analysis_replay_byte_identical": true
+  },
+  "stopping_rule": "Any failed mandatory gate stops confirmation and prevents this result from entering the manuscript. Development outcomes cannot change the task, methods, budgets, controller, seeds, or thresholds.",
+  "storage": {
+    "remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MAMUJOCO-DEV-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "decision": "stop_current_icml_empirical_line_continue_theory_tsp_characterization",
+  "gpu_authorized": false,
+  "mainline": "Beyond Linear Speedup: Sharp Limits of Parallel Markov Learning under Correlation and Delay",
+  "obligations": [
+    {
+      "id": "P1",
+      "status": "proved_exact_vector_additive_and_nonlinear_fixed_parameter_identity",
+      "statement": "Exact equicorrelated speedup q/[1+(q-1)rho] and nonlinear fixed-parameter covariance identity",
+      "remaining_boundary": "sample-iterate-coupled nonlinear learning dynamics"
+    },
+    {
+      "id": "P2",
+      "status": "proved_additive_terminal_and_pr_exact_finite_state_exact_poisson_decomposition_and_bounded_multiplicative_small_gain",
+      "statement": "Finite-time affine delayed Markov-TD upper bound",
+      "required_extension": "report T-046 nonvacuity for any headline multiplicative class; sharper unthinned Poisson mean-square absorption remains open when the robust envelope overlaps"
+    },
+    {
+      "id": "P3",
+      "status": "proved_exact_predictable_gaussian_markov_location_subclass",
+      "statement": "Correlation-limited minimax lower bound",
+      "remaining_boundary": "finite-budget comparison of T-044 PR-averaged SA risk to the exact GLS minimax value"
+    },
+    {
+      "id": "P4",
+      "status": "proved",
+      "statement": "Adaptive stopped change of measure under known mixing"
+    },
+    {
+      "id": "P5",
+      "status": "proved_negative",
+      "statement": "No uniform unknown-mixing adaptation as lambda approaches one"
+    },
+    {
+      "id": "P6",
+      "status": "proved_compact_threshold_sandwich_and_first_order_downstream_matching",
+      "statement": "Finite-budget necessary/sufficient threshold on a separated class",
+      "remaining_boundary": "second-order finite-budget matching to the controlled-belief identification-opportunity occupation value"
+    },
+    {
+      "id": "P7",
+      "status": "proved_terminal_and_pr_averaged_vector_additive_stationary_base_poisson_bridge_exact_multiplicative_absorption_open",
+      "statement": "Sharp three-regime speedup/saturation/reversal theorem under full resource accounting, with T-044 PR averaging aligned to the minimax information law",
+      "required_extension": "predictable within-horizon policies, multiplicative Markov TD, and all registered budget rays"
+    },
+    {
+      "id": "P8",
+      "status": "open_optional_headline",
+      "statement": "Quantitative discrete-to-SDDE bridge with matching Lyapunov-Krasovskii phase boundary",
+      "fallback": "appendix interpretation only"
+    }
+  ],
+  "scientific_experiment_authorized": false,
+  "latest_empirical_gate": "T-045A final PR/mixing standard-task scan fails practical adaptation value: 0.704 percent aggregate and 1.404 percent on the strongest task; EXP-020B, further standard-task redesign, nonlinear transfer, and GPU are forbidden",
+  "theory_work_authorized": true
+}

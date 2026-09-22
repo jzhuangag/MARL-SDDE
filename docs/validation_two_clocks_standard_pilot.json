@@ -1,0 +1,62 @@
+{
+  "aggregate": {
+    "async_vs_delay_auc_relative_gain": -0.1969095632707415,
+    "async_vs_delay_positive_cells": 1,
+    "heterogeneous_async_vs_barrier_auc_relative_gain": -0.07736702398051569,
+    "heterogeneous_positive_cells": 3,
+    "mean_clipped_packet_fraction": 0.09970801767676767
+  },
+  "artifacts": {
+    "ant_primary_summary_sha256": "21194f78e79b08928d660e2d870d291af93af576386c5c36377f877f14ddaeff",
+    "ant_reproduction_summary_sha256": "21194f78e79b08928d660e2d870d291af93af576386c5c36377f877f14ddaeff",
+    "remote_root": "/scratch/jzhuangag/MARL-SDDE-TwoClocks-20260902/results/standard-pilot-a0786824972d8203ad803970b586eebda9665105",
+    "smacv2_primary_summary_sha256": "a0b8d29b56c9edd4ddf0620bc4f785f3bd222a3c51bb9d8f433064d2a9fd59ef",
+    "smacv2_reproduction_summary_sha256": "1329f8409297f2ffd71ff12596d868f46d7388c85a81e92233cc729ae0a5c6bf",
+    "validation_sha256": "0678ec1fae6768978447efc27e14e71b21ce91359a66d3c192f5162e4eed7334"
+  },
+  "decision": "stop_without_formal_escalation",
+  "experiment_id": "two_clocks_standard_pilot_v1",
+  "formal_authorized": false,
+  "frozen_analyzer_gates": {
+    "P10_byte_reproducibility": false,
+    "P11_provenance": true,
+    "P12_no_formal_seeds_or_claim": true,
+    "P1_validity_and_equal_work": true,
+    "P2_adaptive_depth_ratio_minimum": true,
+    "P3_heterogeneous_auc_improvement_minimum": false,
+    "P4_positive_heterogeneous_cells_minimum": false,
+    "P5_delay_scaled_comparison": false,
+    "P6_heterogeneous_gain_exceeds_balanced": false,
+    "P7_terminal_relative_shortfall_floor": false,
+    "P8_positive_learning_change_each_task": false,
+    "P9_clipped_packet_fraction_maximum": true
+  },
+  "jobs": {
+    "outcome_free_failed_setup": [1810507, 1810508, 1810509, 1810510],
+    "valid": [1810518, 1810519, 1810520, 1810521]
+  },
+  "operational_amendment_commit": "a0786824972d8203ad803970b586eebda9665105",
+  "preregistration_commit": "b3a99190f6e6ec345e49ec63f88fcc9c2e0ee758",
+  "supplemental_pairing_audit": {
+    "ant_max_initial_return_range": 0.0,
+    "interpretation": "SMACv2 common-random-number pairing was not achieved; frozen analyzer P1 is preserved but the intended pairing contract fails.",
+    "smacv2_primary_max_initial_return_range": 1.73957856161246,
+    "smacv2_reproduction_max_initial_return_range": 3.03474699716699
+  },
+  "task_metrics": {
+    "mamujoco_ant_4x2": {
+      "balanced_auc_relative_gain": -0.007515362210305569,
+      "heterogeneous_async_return_change": -2.5051152392443985,
+      "heterogeneous_auc_relative_gain": -0.03145326326170321,
+      "heterogeneous_terminal_relative_gain": -0.13861435825978885,
+      "heterogeneous_update_ratio": 2.75
+    },
+    "smacv2_terran_5v5": {
+      "balanced_auc_relative_gain": -0.2955822756239965,
+      "heterogeneous_async_return_change": -0.3821630805205263,
+      "heterogeneous_auc_relative_gain": -0.12328078469932816,
+      "heterogeneous_terminal_relative_gain": -0.33149329200853644,
+      "heterogeneous_update_ratio": 2.6
+    }
+  }
+}

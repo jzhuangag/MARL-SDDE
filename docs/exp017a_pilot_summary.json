@@ -1,0 +1,40 @@
+{
+  "all_mandatory_gates_pass": false,
+  "controller_wall_fraction": 0.5013680725988339,
+  "endpoint_rows": 1584,
+  "evidence_status": "implementation_only_gpu_pilot",
+  "experiment": "EXP-017A",
+  "formal_authorized": false,
+  "gates": {
+    "G10_both_standard_tasks_directionally_consistent": true,
+    "G11_best_fixed_q_noninferiority_and_tail": false,
+    "G12_controller_overhead_and_metrics_complete": false,
+    "G1_all_finite_and_dual_budget_valid": true,
+    "G2_exact_registered_population": true,
+    "G3_known_mixing_certificates_valid": true,
+    "G4_common_private_marginal_construction_recorded": true,
+    "G5_information_only_taint_audit": true,
+    "G6_communication_matched_budgets": true,
+    "G7_correlation_response_high_q_below_low_q": false,
+    "G8_delay_response_b_nondecreasing": true,
+    "G9_primary_high_correlation_delayed_improvement": false
+  },
+  "high_rho_median_q": 1.0,
+  "learning_over_pilot_best_fixed_cvar90_ratio": 25.045025789859157,
+  "learning_over_pilot_best_fixed_geometric_ratio": 5.0006221798389445,
+  "low_rho_median_q": 1.0,
+  "negative_result_rule": "any failed gate stops formal without threshold, seed, or population changes",
+  "nonzero_delay_median_b": 4.0,
+  "pilot_seeds_excluded_from_formal": [
+    20550101,
+    20550102
+  ],
+  "primary_learning_over_information_geometric_ratio": 0.9999275454459337,
+  "primary_relative_improvement": 7.245455406634793e-05,
+  "task_primary_ratios": {
+    "acrobot": 0.9998550961415297,
+    "cartpole": 1.0
+  },
+  "trajectory_rows": 77847,
+  "zero_delay_median_b": 4.0
+}

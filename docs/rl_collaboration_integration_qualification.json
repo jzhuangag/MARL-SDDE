@@ -1,0 +1,106 @@
+{
+  "date": "2026-08-31",
+  "parent_commit": "58b84c1e3c436c740eb493483f743fb7f9f12ff9",
+  "branch": "codex/joint-ms-exp007c",
+  "kind": "RL integration decision and exact public-model qualification; not an efficacy experiment",
+  "decision": {
+    "readout_reference_retained_as_baseline": true,
+    "readout_as_final_standalone_candidate": "rejected",
+    "ordinary_TD_label_plugin": "rejected",
+    "same_history_readout_as_counterfactual_training_guarantee": "rejected",
+    "known_model_future_risk_interface": "qualified_conditionally",
+    "model_free_low_complexity_controller": "not_yet_derived",
+    "final_novelty": "unestablished",
+    "new_efficacy_pilot_authorized": false,
+    "formal_authorized": false,
+    "gpu_authorized": false
+  },
+  "mathematical_qualification": {
+    "method": "Exact finite-state moment recursion, exhaustive small transition trees and algebraic counterexamples; floating-point tests with tolerances.",
+    "numerical_tests_are_not_a_general_proof": true,
+    "oracle_access": [
+      "transition law",
+      "true value/error",
+      "full finite-horizon risk metric"
+    ],
+    "proved_scope_in_note": [
+      "finite-horizon Markov-jump quadratic risk recursion",
+      "baseline-relative full-trajectory advantage telescoping",
+      "conditional oracle no-harm against actual local training"
+    ],
+    "missing": [
+      "observable projected advantage estimator",
+      "valid adaptive confidence and failure-event risk control",
+      "cheap implementation with nontrivial gain after full sensing cost",
+      "joint heterogeneous/delayed-agent guarantees",
+      "strong-static training comparison and benchmark validation"
+    ]
+  },
+  "execution": {
+    "cwd": "E:/HKUST-study/vin/SDDE",
+    "python": ".venv/Scripts/python.exe",
+    "commands": [
+      {
+        "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_rl_collaboration_interface_audit.py -q",
+        "exit_code": 0,
+        "passed": 20,
+        "seconds": 0.36
+      },
+      {
+        "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q",
+        "exit_code": 0,
+        "passed": 769,
+        "skipped": 7,
+        "seconds": 108.86
+      },
+      {
+        "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/rl_collaboration_interface_audit.py",
+        "executions_of_final_source": 2,
+        "exit_codes": [
+          0,
+          0
+        ],
+        "stdout_byte_identical": true,
+        "result_file": "docs/rl_collaboration_interface_results.json",
+        "scope": "Same local environment; not a claim of cross-platform byte identity."
+      }
+    ],
+    "output_provenance": "Test outputs were inspected through the task terminal tools; no separate raw pytest stdout file was saved.",
+    "python_processes_running_at_final_check": 0,
+    "scientific_trajectories_generated": 0,
+    "new_seeds_used": 0,
+    "gpu_jobs": 0,
+    "remote_storage_operations": 0,
+    "old_formal_results_or_frozen_controllers_modified": false,
+    "cleanup_performed": false
+  },
+  "files_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/rl_collaboration_interface_audit.py",
+      "sha256": "8d1c6f7e50d21ef5f2d1330f666943c577e6016417b0b11b949890e0355cf8c6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/test_rl_collaboration_interface_audit.py",
+      "sha256": "8a8e3d9344c3abd503d9b38fdab9bd36b6ad259b59aa4cec487977cbd7bb0741"
+    },
+    {
+      "path": "docs/rl_collaboration_interface_results.json",
+      "sha256": "127618107a8c9d3a200ebecf78ddce2916c7e6c3f7a9ddbd9f14fea99a178880"
+    },
+    {
+      "path": "docs/rl_collaboration_integration_decision.md",
+      "sha256": "346d555c6677dfd8d32b08ee7a94dcc5a9a466c765b77545c983bad9f2d1a32d"
+    },
+    {
+      "path": "docs/rl_collaboration_source_verification.json",
+      "sha256": "0e67d33e075493e0b24735613a607f1529d444d711fa1d9d5ce5c9d2fcbcac37"
+    },
+    {
+      "path": "docs/cpu_autonomous_research_plan.md",
+      "sha256": "2aa81b52cea6af12a7f93a337494e92826488d10db19a5135fc5195dac7bc25f"
+    }
+  ],
+  "hash_scope": "Exact local file bytes for this qualification commit; future legitimate plan updates do not rewrite this historical record.",
+  "next_action": "Resolve observable low-cost projected future-risk advantage estimation/certification before any new CPU efficacy protocol; reject oracle-only or permanently inactive implementations.",
+  "publication_status": "Internal AI-assisted qualification, not an ICML-ready manuscript, final algorithm or acceptance prediction."
+}

@@ -1,0 +1,72 @@
+{
+  "experiment_id": "T-070A-exact-nonstationary-collaboration-graph-scan",
+  "verification_status": "VERIFIED",
+  "decision": "pass_exact_feasibility_authorize_separate_sampled_cpu_preregistration",
+  "provenance": {
+    "preregistration_commit": "b2533eb",
+    "config_sha256": "08a0621afc6c28fca79c64eaa1c9e5cb89e3bf2c00a4b6d4533b2b01827ebb43",
+    "cells_sha256": "CF00672BBE4F58155C32E858B9E9ABA3FB5C42EC711A9A58B9B414D5668C0B7F",
+    "summary_sha256": "B3C25D4D319BAF33FD5FFD5FBA3CE6CD387C611117C0BFF05DDFF042E4CFD14F",
+    "reproduction_cells_sha256": "CF00672BBE4F58155C32E858B9E9ABA3FB5C42EC711A9A58B9B414D5668C0B7F",
+    "reproduction_summary_sha256": "B3C25D4D319BAF33FD5FFD5FBA3CE6CD387C611117C0BFF05DDFF042E4CFD14F"
+  },
+  "workload": {
+    "cells": 432,
+    "nonstationary_cells": 288,
+    "static_graphs_per_cell": 2401,
+    "evaluated_static_graph_risks": 1037232
+  },
+  "primary_metrics": {
+    "dynamic_to_static_auc_geometric_ratio": 0.8609150247451722,
+    "dynamic_improvement": 0.13908497525482777,
+    "strict_cell_fraction": 0.6979166666666666,
+    "checkpoint_safe_fraction": 1.0,
+    "action_change_fraction": 1.0,
+    "stationary_dynamic_improvement": -0.07336063600111276
+  },
+  "schedule_improvement": {
+    "single_switch": 0.09650310866945655,
+    "alternating": 0.1796599557299169,
+    "stationary": -0.07336063600111276
+  },
+  "delay_improvement": {
+    "0": 0.16140386177224852,
+    "1": 0.13452063964161387,
+    "3": 0.12083318249822972
+  },
+  "target_scale_descriptive": {
+    "0.1": {
+      "improvement": -0.0420699796118569,
+      "strict_fraction": 0.40625
+    },
+    "0.3": {
+      "improvement": 0.112099025469582,
+      "strict_fraction": 0.6875
+    },
+    "0.6": {
+      "improvement": 0.310364762129529,
+      "strict_fraction": 1.0
+    }
+  },
+  "gates": {
+    "R1": true,
+    "R2": true,
+    "R3": true,
+    "R4": true,
+    "R5": true,
+    "R6": true,
+    "R7": true,
+    "R8": true,
+    "R9": true,
+    "R10": true,
+    "R11": true,
+    "R12": true
+  },
+  "authorization": {
+    "separate_sampled_cpu_preregistration": true,
+    "sampled_execution": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}
