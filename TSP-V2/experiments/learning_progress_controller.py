@@ -62,6 +62,122 @@ class LearningProgressDecision:
         return asdict(self)
 
 
+@dataclass(frozen=True)
+class AdditiveDriftCertificate:
+    """Family-wise lower certificate for one-step Lyapunov progress."""
+
+    progress_lower: float
+    confidence: float
+    samples: int
+    effective_samples: float
+    mixing_bias: float
+
+    def __post_init__(self) -> None:
+        if not 0.0 < self.confidence < 1.0:
+            raise ValueError("confidence must lie in (0,1)")
+        if self.samples <= 0 or not 0.0 < self.effective_samples <= self.samples:
+            raise ValueError("effective samples must lie in (0,samples]")
+        if self.mixing_bias < 0.0:
+            raise ValueError("mixing_bias must be nonnegative")
+
+
+@dataclass(frozen=True)
+class AdditiveDriftDecision:
+    selected_q: int
+    horizons: dict[int, int]
+    certified_progress: dict[int, float]
+    used_fallback: bool
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+def fit_bounded_additive_drift_certificate(
+    before: np.ndarray,
+    after: np.ndarray,
+    *,
+    confidence: float,
+    family_size: int,
+    effective_samples: float | None = None,
+    mixing_bias: float = 0.0,
+) -> AdditiveDriftCertificate:
+    """Lower-certify mean progress for a bounded Lyapunov observation.
+
+    The observations must lie in ``[0,1]``, so paired progress lies in
+    ``[-1,1]``.  ``effective_samples`` and ``mixing_bias`` are explicit inputs
+    supplied by the registered Markov/dependence certificate; they are never
+    inferred as if the pairs were i.i.d.
+    """
+
+    before = np.asarray(before, dtype=float).reshape(-1)
+    after = np.asarray(after, dtype=float).reshape(-1)
+    if before.shape != after.shape or before.size < 2:
+        raise ValueError("before and after must contain at least two pairs")
+    if not np.isfinite(before).all() or not np.isfinite(after).all():
+        raise ValueError("Lyapunov observations must be finite")
+    if np.any((before < 0.0) | (before > 1.0)) or np.any(
+        (after < 0.0) | (after > 1.0)
+    ):
+        raise ValueError("Lyapunov observations must lie in [0,1]")
+    if not 0.0 < confidence < 1.0 or family_size <= 0:
+        raise ValueError("confidence and family_size are invalid")
+    if mixing_bias < 0.0:
+        raise ValueError("mixing_bias must be nonnegative")
+    n_eff = float(before.size if effective_samples is None else effective_samples)
+    if not 0.0 < n_eff <= before.size:
+        raise ValueError("effective_samples must lie in (0,n]")
+    per_candidate_delta = (1.0 - confidence) / family_size
+    radius = np.sqrt(2.0 * np.log(1.0 / per_candidate_delta) / n_eff)
+    progress_lower = float(np.mean(before - after) - radius - mixing_bias)
+    return AdditiveDriftCertificate(
+        progress_lower=progress_lower,
+        confidence=confidence,
+        samples=int(before.size),
+        effective_samples=n_eff,
+        mixing_bias=float(mixing_bias),
+    )
+
+
+def select_additive_drift_action(
+    *,
+    budget: ResourceBudget,
+    costs: Mapping[int, ActionCost],
+    certificates: Mapping[int, AdditiveDriftCertificate],
+    fallback_q: int,
+) -> AdditiveDriftDecision:
+    """Maximize certified finite-budget Lyapunov progress.
+
+    The score is the exact feasible update horizon multiplied by the positive
+    part of the simultaneous lower drift certificate.  If no action has a
+    positive certificate, the registered fallback is returned.
+    """
+
+    catalogue = sorted(set(costs) & set(certificates))
+    if not catalogue or set(costs) != set(certificates):
+        raise ValueError("costs and certificates must share one nonempty catalogue")
+    if fallback_q not in catalogue:
+        raise ValueError("fallback_q must belong to the catalogue")
+    horizons = {q: feasible_horizon(budget, costs[q]) for q in catalogue}
+    if any(value <= 0 for value in horizons.values()):
+        raise ValueError("every action must admit at least one update")
+    scores = {
+        q: float(horizons[q] * max(certificates[q].progress_lower, 0.0))
+        for q in catalogue
+    }
+    if max(scores.values()) <= 0.0:
+        selected_q = fallback_q
+        used_fallback = True
+    else:
+        selected_q = min(catalogue, key=lambda q: (-scores[q], q))
+        used_fallback = False
+    return AdditiveDriftDecision(
+        selected_q=selected_q,
+        horizons=horizons,
+        certified_progress=scores,
+        used_fallback=used_fallback,
+    )
+
+
 def fit_affine_drift_certificate(
     x: np.ndarray,
     y: np.ndarray,
