@@ -69,7 +69,13 @@ def fixed_feasible(action: int, *, horizon: int, messages: int, environment: int
 
 
 def run_one(
-    *, scenario: Scenario, seed: int, horizon: int, messages: int, environment: int
+    *,
+    scenario: Scenario,
+    seed: int,
+    horizon: int,
+    messages: int,
+    environment: int,
+    bonus_scale: float,
 ) -> dict:
     rng = np.random.default_rng(seed)
     noise = rng.normal(0.0, 0.0008, size=(horizon, len(CATALOGUE)))
@@ -79,7 +85,7 @@ def run_one(
         total_environment_ticks=environment,
         decisions=horizon,
         window=8,
-        bonus_scale=0.08,
+        bonus_scale=bonus_scale,
         probe_interval=40,
         progress_scale=0.004,
         queue_weight=80.0,
@@ -158,6 +164,7 @@ def main() -> None:
     parser.add_argument("--horizon", type=int, default=120)
     parser.add_argument("--messages", type=int, default=3000)
     parser.add_argument("--environment", type=int, default=1200)
+    parser.add_argument("--bonus-scale", type=float, default=0.08)
     args = parser.parse_args()
     if args.output.exists():
         raise FileExistsError(f"refusing to overwrite {args.output}")
@@ -168,6 +175,7 @@ def main() -> None:
             horizon=args.horizon,
             messages=args.messages,
             environment=args.environment,
+            bonus_scale=args.bonus_scale,
         )
         for scenario in SCENARIOS
         for seed in range(args.seeds)
@@ -178,6 +186,7 @@ def main() -> None:
         "horizon": args.horizon,
         "message_budget": args.messages,
         "environment_budget": args.environment,
+        "bonus_scale": args.bonus_scale,
         "catalogue": list(CATALOGUE),
         "costs": {str(q): asdict(COSTS[q]) for q in CATALOGUE},
         "summary": summarize(rows),

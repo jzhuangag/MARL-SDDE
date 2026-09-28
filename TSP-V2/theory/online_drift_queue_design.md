@@ -51,16 +51,14 @@ matrix, global policy Lipschitz constant, or counterfactual branch rollout.
 
 ## Performance bridge
 
-The validation risks telescope exactly along the executed trajectory:
-
-\[
-V_T=V_0-\sum_{t=0}^{T-1}g_t.
-\]
-
-Therefore maximizing realized cumulative validation drift minimizes final
-validation risk on that trajectory.  A separate final evaluation stream is
-still required for the manuscript return comparison; it is never fed back to
-the controller.
+Pathwise telescoping is not asserted across distinct validation seeds.  Let
+(F_H(\theta)) be the expected bounded finite-horizon validation risk under a
+fresh registered seed.  Reusing the same seed for the before/after pair makes
+each unclipped difference conditionally unbiased for
+(F_H(\theta_t)-F_H(\theta_{t+1})), so the population differences telescope in
+expectation.  Clipping contributes an explicit tail residual that must be
+reported.  A separate final evaluation stream is required for the manuscript
+return comparison and is never fed back to the controller.
 
 For any predictable bounded gain vector, the importance-weighted selected
 gain is unbiased conditional on the past.  Standard exponential-weights

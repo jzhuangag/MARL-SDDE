@@ -108,6 +108,17 @@ class OnlineDriftQueueController:
 
         cheapest_messages = min(c.messages for c in self.costs.values())
         cheapest_environment = min(c.environment_ticks for c in self.costs.values())
+        joint_reserve = tuple(
+            q
+            for q, cost in self.costs.items()
+            if cost.messages == cheapest_messages
+            and cost.environment_ticks == cheapest_environment
+        )
+        if not joint_reserve:
+            raise ValueError(
+                "one registered reserve action must jointly minimize both costs"
+            )
+        self.reserve_action = min(joint_reserve)
         if (
             cheapest_messages * decisions > total_messages
             or cheapest_environment * decisions > total_environment_ticks
@@ -118,13 +129,12 @@ class OnlineDriftQueueController:
         if self.decisions_remaining <= 0:
             return ()
         future = self.decisions_remaining - 1
-        min_messages = min(c.messages for c in self.costs.values())
-        min_environment = min(c.environment_ticks for c in self.costs.values())
+        reserve = self.costs[self.reserve_action]
         feasible = []
         for q, cost in self.costs.items():
             if (
-                cost.messages + future * min_messages <= self.message_remaining
-                and cost.environment_ticks + future * min_environment
+                cost.messages + future * reserve.messages <= self.message_remaining
+                and cost.environment_ticks + future * reserve.environment_ticks
                 <= self.environment_remaining
             ):
                 feasible.append(q)
@@ -153,7 +163,7 @@ class OnlineDriftQueueController:
         softmax = np.exp(logits_array)
         softmax /= float(np.sum(softmax))
         mixed = (1.0 - self.exploration) * softmax + self.exploration / len(feasible)
-        return {q: float(p) for q, p in zip(feasible, mixed, strict=True)}
+        return {q: float(p) for q, p in zip(feasible, mixed)}
 
     def decide(self) -> OnlineDecision:
         probabilities = self.probabilities()
@@ -233,6 +243,8 @@ class SlidingWindowDriftQueueController:
         probe_interval: int,
         progress_scale: float,
         queue_weight: float,
+        confidence_delta: float = 0.05,
+        markov_bias: float = 0.0,
     ) -> None:
         if not costs or any(q <= 0 for q in costs):
             raise ValueError("cost catalogue must be nonempty and positive")
@@ -242,6 +254,10 @@ class SlidingWindowDriftQueueController:
             raise ValueError("window and probe interval must be positive")
         if min(bonus_scale, progress_scale, queue_weight) <= 0.0:
             raise ValueError("scales and queue_weight must be positive")
+        if not 0.0 < confidence_delta < 1.0:
+            raise ValueError("confidence_delta must lie in (0,1)")
+        if markov_bias < 0.0:
+            raise ValueError("markov_bias cannot be negative")
         self.costs = dict(sorted(costs.items()))
         self.actions = tuple(self.costs)
         self.total_decisions = int(decisions)
@@ -255,6 +271,8 @@ class SlidingWindowDriftQueueController:
         self.probe_interval = int(probe_interval)
         self.progress_scale = float(progress_scale)
         self.queue_weight = float(queue_weight)
+        self.confidence_delta = float(confidence_delta)
+        self.markov_bias = float(markov_bias)
         self.message_queue = 0.0
         self.environment_queue = 0.0
         self.histories: dict[int, list[float]] = {q: [] for q in self.actions}
@@ -266,6 +284,17 @@ class SlidingWindowDriftQueueController:
         min_environment = min(
             cost.environment_ticks for cost in self.costs.values()
         )
+        joint_reserve = tuple(
+            q
+            for q, cost in self.costs.items()
+            if cost.messages == min_messages
+            and cost.environment_ticks == min_environment
+        )
+        if not joint_reserve:
+            raise ValueError(
+                "one registered reserve action must jointly minimize both costs"
+            )
+        self.reserve_action = min(joint_reserve)
         if (
             min_messages * decisions > total_messages
             or min_environment * decisions > total_environment_ticks
@@ -276,13 +305,12 @@ class SlidingWindowDriftQueueController:
         if self.decisions_remaining <= 0:
             return ()
         future = self.decisions_remaining - 1
-        min_messages = min(c.messages for c in self.costs.values())
-        min_environment = min(c.environment_ticks for c in self.costs.values())
+        reserve = self.costs[self.reserve_action]
         return tuple(
             q
             for q, cost in self.costs.items()
-            if cost.messages + future * min_messages <= self.message_remaining
-            and cost.environment_ticks + future * min_environment
+            if cost.messages + future * reserve.messages <= self.message_remaining
+            and cost.environment_ticks + future * reserve.environment_ticks
             <= self.environment_remaining
         )
 
@@ -309,8 +337,15 @@ class SlidingWindowDriftQueueController:
                 scores[q] = float("inf")
                 continue
             sample = np.asarray(history[-self.window :], dtype=float)
-            bonus = self.bonus_scale * np.sqrt(
-                np.log(max(total_observations, 2)) / sample.size
+            log_term = np.log(
+                2.0
+                * len(self.actions)
+                * max(self.total_decisions, 1) ** 2
+                / self.confidence_delta
+            )
+            bonus = (
+                self.bonus_scale * np.sqrt(2.0 * log_term / sample.size)
+                + self.markov_bias
             )
             scores[q] = float(np.mean(sample) + bonus - self._price(q))
         return scores
