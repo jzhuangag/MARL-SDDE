@@ -8,7 +8,8 @@
 - Seeds: 256 per synthetic regime
 - Horizon: 120 decisions
 - Catalogue: `q={1,2,4,8}`
-- Result SHA-256: `5F74B8E650134C2098DA348B187A33FDFC9F4E21E224AF1E4B4C568F732AA5BE`
+- Executed local CRLF result SHA-256: `5F74B8E650134C2098DA348B187A33FDFC9F4E21E224AF1E4B4C568F732AA5BE`
+- Repository-normalized LF result SHA-256: `805DAC705DF75C768A30C1DE5F178EFFA45551FE2D84C46191C4EFEBB3ACF10F`
 - Byte-identical replay: pass
 
 ## Why this resolves the certificate dead end
