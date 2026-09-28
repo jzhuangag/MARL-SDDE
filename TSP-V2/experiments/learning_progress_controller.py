@@ -9,7 +9,7 @@ separate, domain-specific layer.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
-from typing import Mapping
+from typing import Mapping, Sequence
 
 import numpy as np
 
@@ -90,6 +90,182 @@ class AdditiveDriftDecision:
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class MixingBlockingPlan:
+    """Registered separated-sample plan for a beta-mixing trace.
+
+    ``beta_at_stride`` is an externally proved upper bound on the beta-mixing
+    coefficient at the registered stride.  The plan spends part of the
+    family-wise error probability on Berbee coupling and the remainder on a
+    one-sided Hoeffding bound.  It therefore cannot be replaced by an
+    unverified scalar ``effective_samples`` value.
+    """
+
+    raw_samples: int
+    burn_in: int
+    stride: int
+    selected_indices: tuple[int, ...]
+    beta_at_stride: float
+    coupling_failure: float
+    concentration_failure: float
+    radius: float
+    confidence: float
+    family_size: int
+
+    @property
+    def selected_samples(self) -> int:
+        return len(self.selected_indices)
+
+
+@dataclass(frozen=True)
+class ValidationCharge:
+    """Exact charge of one disjoint validation block."""
+
+    messages: int
+    environment_ticks: int
+
+    def __post_init__(self) -> None:
+        if min(self.messages, self.environment_ticks) <= 0:
+            raise ValueError("validation charges must be positive")
+
+
+def bounded_validation_risk(
+    validation_return: np.ndarray | Sequence[float],
+    *,
+    center: float,
+    scale: float,
+) -> np.ndarray:
+    """Map a disjoint validation return to a bounded Lyapunov observation.
+
+    This transform is deterministic, monotone, and fixed before outcomes.
+    It is not a certificate by itself: confidence requires the separated
+    validation construction represented by :class:`MixingBlockingPlan`.
+    """
+
+    values = np.asarray(validation_return, dtype=float)
+    if not np.isfinite(values).all():
+        raise ValueError("validation returns must be finite")
+    if not np.isfinite(center) or not np.isfinite(scale) or scale <= 0.0:
+        raise ValueError("center must be finite and scale must be positive")
+    return 0.5 - np.arctan((values - center) / scale) / np.pi
+
+
+def make_beta_mixing_blocking_plan(
+    *,
+    raw_samples: int,
+    burn_in: int,
+    stride: int,
+    beta_at_stride: float,
+    confidence: float,
+    family_size: int,
+) -> MixingBlockingPlan:
+    """Create a family-wise valid separated-sample concentration plan.
+
+    For ``m`` selected observations, Berbee coupling contributes at most
+    ``(m-1) beta(stride)`` failure probability.  The remaining per-candidate
+    error probability is used in the one-sided Hoeffding radius for variables
+    in ``[-1,1]``.  The function rejects plans whose claimed mixing bound is
+    too weak for the requested confidence instead of silently inventing an
+    effective sample size.
+    """
+
+    if raw_samples <= 0 or burn_in < 0 or stride <= 0 or burn_in >= raw_samples:
+        raise ValueError("invalid raw sample, burn-in, or stride configuration")
+    if not 0.0 <= beta_at_stride <= 1.0:
+        raise ValueError("beta_at_stride must lie in [0,1]")
+    if not 0.0 < confidence < 1.0 or family_size <= 0:
+        raise ValueError("confidence and family_size are invalid")
+    indices = tuple(range(burn_in, raw_samples, stride))
+    if len(indices) < 2:
+        raise ValueError("blocking plan must retain at least two samples")
+    per_candidate_failure = (1.0 - confidence) / family_size
+    coupling_failure = (len(indices) - 1) * beta_at_stride
+    concentration_failure = per_candidate_failure - coupling_failure
+    if concentration_failure <= 0.0:
+        raise ValueError(
+            "mixing coupling exhausts the family-wise confidence budget"
+        )
+    radius = float(
+        np.sqrt(2.0 * np.log(1.0 / concentration_failure) / len(indices))
+    )
+    return MixingBlockingPlan(
+        raw_samples=raw_samples,
+        burn_in=burn_in,
+        stride=stride,
+        selected_indices=indices,
+        beta_at_stride=float(beta_at_stride),
+        coupling_failure=float(coupling_failure),
+        concentration_failure=float(concentration_failure),
+        radius=radius,
+        confidence=confidence,
+        family_size=family_size,
+    )
+
+
+def fit_blocked_additive_drift_certificate(
+    before: np.ndarray,
+    after: np.ndarray,
+    *,
+    plan: MixingBlockingPlan,
+    mean_bias: float = 0.0,
+    transfer_penalty: float = 0.0,
+) -> AdditiveDriftCertificate:
+    """Fit a strict certificate from the samples fixed by ``plan``.
+
+    ``mean_bias`` covers a separately proved initialization/nonstationarity
+    allowance. ``transfer_penalty`` is the registered upper bound between the
+    calibration drift and the post-calibration epoch (for example ``L R``
+    under a proved Lipschitz drift and trust-region radius).  Both are exposed
+    and subtracted; neither may be learned from the same outcomes.
+    """
+
+    before = np.asarray(before, dtype=float).reshape(-1)
+    after = np.asarray(after, dtype=float).reshape(-1)
+    if before.shape != after.shape or before.size != plan.raw_samples:
+        raise ValueError("trace length must match the registered blocking plan")
+    if not np.isfinite(before).all() or not np.isfinite(after).all():
+        raise ValueError("Lyapunov observations must be finite")
+    if np.any((before < 0.0) | (before > 1.0)) or np.any(
+        (after < 0.0) | (after > 1.0)
+    ):
+        raise ValueError("Lyapunov observations must lie in [0,1]")
+    if mean_bias < 0.0 or transfer_penalty < 0.0:
+        raise ValueError("bias and transfer penalties must be nonnegative")
+    index = np.asarray(plan.selected_indices, dtype=int)
+    empirical_progress = float(np.mean(before[index] - after[index]))
+    progress_lower = empirical_progress - plan.radius - mean_bias - transfer_penalty
+    return AdditiveDriftCertificate(
+        progress_lower=float(progress_lower),
+        confidence=plan.confidence,
+        samples=plan.raw_samples,
+        effective_samples=float(plan.selected_samples),
+        mixing_bias=float(mean_bias + transfer_penalty),
+    )
+
+
+def trust_region_transfer_penalty(
+    *, drift_lipschitz_upper: float, policy_radius: float
+) -> float:
+    """Return the explicit drift-transfer remainder ``L * R``."""
+
+    if drift_lipschitz_upper < 0.0 or policy_radius < 0.0:
+        raise ValueError("Lipschitz bound and policy radius must be nonnegative")
+    return float(drift_lipschitz_upper * policy_radius)
+
+
+def charge_validation_block(
+    *, workers: int, horizon: int, messages_per_worker_tick: int = 1
+) -> ValidationCharge:
+    """Charge every validation transition and worker message exactly once."""
+
+    if min(workers, horizon, messages_per_worker_tick) <= 0:
+        raise ValueError("workers, horizon, and message multiplier must be positive")
+    return ValidationCharge(
+        messages=workers * horizon * messages_per_worker_tick,
+        environment_ticks=workers * horizon,
+    )
 
 
 def fit_bounded_additive_drift_certificate(
