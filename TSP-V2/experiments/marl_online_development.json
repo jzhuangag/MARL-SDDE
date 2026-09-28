@@ -1,0 +1,94 @@
+{
+  "experiment_id": "TSP-V2-MARL-ONLINE-DEV-001",
+  "implementation_commit": "654b7b6",
+  "role": "development only; not manuscript confirmation evidence",
+  "methods": [
+    "controller",
+    "fixed_q1",
+    "fixed_q2",
+    "fixed_q4",
+    "fixed_q8"
+  ],
+  "couplings": [
+    "independent",
+    "shared"
+  ],
+  "seeds": [
+    151001,
+    151002
+  ],
+  "validation_seed_bases": [
+    181001,
+    181201
+  ],
+  "evaluation_seeds": [
+    171001,
+    171002
+  ],
+  "common_controller": {
+    "candidate_q": [1, 2, 4, 8],
+    "window": 8,
+    "bonus_scale": 0.25,
+    "confidence_delta": 0.05,
+    "markov_bias": 0.0,
+    "probe_interval": 40,
+    "progress_scale": 0.005
+  },
+  "tasks": [
+    {
+      "id": "mpe_simple_spread",
+      "environment": "pettingzoo_mpe",
+      "scenario": "simple_spread_v2",
+      "continuous_actions": false,
+      "share_param": true,
+      "rollout_length": 25,
+      "train_updates_per_decision": 8,
+      "validation_horizon": 25,
+      "evaluation_horizon": 25,
+      "evaluation_interval": 5,
+      "validation_return_scale": 5.0,
+      "controller_decisions": 100,
+      "message_budget": 220000,
+      "environment_budget": 25000,
+      "server_overhead": 100,
+      "queue_weight": 1000.0,
+      "hidden_size": 64,
+      "ppo_epoch": 2,
+      "critic_epoch": 2
+    },
+    {
+      "id": "mamujoco_halfcheetah_2x3",
+      "environment": "mamujoco",
+      "scenario": "HalfCheetah-v2",
+      "agent_conf": "2x3",
+      "continuous_actions": true,
+      "share_param": true,
+      "rollout_length": 200,
+      "train_updates_per_decision": 4,
+      "validation_horizon": 50,
+      "evaluation_horizon": 1000,
+      "evaluation_interval": 5,
+      "validation_return_scale": 5.0,
+      "controller_decisions": 100,
+      "message_budget": 900000,
+      "environment_budget": 90000,
+      "server_overhead": 800,
+      "queue_weight": 5000.0,
+      "hidden_size": 128,
+      "ppo_epoch": 5,
+      "critic_epoch": 5
+    }
+  ],
+  "mandatory_development_gates": {
+    "complete_unique_runs": 40,
+    "all_exit_codes_zero": true,
+    "all_values_finite": true,
+    "exact_dual_budget_accounting": true,
+    "evaluation_used_by_controller": false,
+    "byte_identical_analysis_replay": true,
+    "each_task_auc_gain_over_strong_fixed": 0.01,
+    "each_task_final_return_noninferiority": -0.02,
+    "at_least_two_selected_q_per_controller_cell": true
+  },
+  "stop_rule": "Any mandatory failure stops confirmation; no seed, task, method, constant, budget, or gate may be altered after observing development outcomes."
+}
