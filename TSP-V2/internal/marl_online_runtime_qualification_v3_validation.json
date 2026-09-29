@@ -1,0 +1,36 @@
+{
+  "experiment_id": "TSP-V2-MARL-ONLINE-QUAL-003",
+  "decision": "pass",
+  "performance_evidence": false,
+  "development_authorized": true,
+  "execution_commit": "f773bae520403dd973de14adc7d7b80f6d934675",
+  "implementation_commit": "a6f6716c388da74255c21f46463a8bba6f596b88",
+  "slurm_array": "1918632_[0-7]",
+  "scratch_root": "/scratch/jzhuangag/MARL-SDDE-TSP-V2-ONLINE-QUAL-003",
+  "project_writes": false,
+  "array_exit_codes": ["0:0", "0:0", "0:0", "0:0", "0:0", "0:0", "0:0", "0:0"],
+  "artifact_directories": 8,
+  "log_files": 16,
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "controller_decisions": 9,
+  "statistical_window": 8,
+  "controller_selected_counts": {
+    "mpe_independent": {"1": 2, "2": 3, "4": 2, "8": 2},
+    "mpe_shared": {"1": 6, "2": 1, "4": 1, "8": 1},
+    "mamujoco_independent": {"1": 1, "2": 2, "4": 2, "8": 4},
+    "mamujoco_shared": {"1": 2, "2": 2, "4": 3, "8": 2}
+  },
+  "gates": {
+    "all_jobs_completed": true,
+    "unique_registered_mapping": true,
+    "finite_payloads": true,
+    "no_evaluation_leakage": true,
+    "ledger_length_and_indices": true,
+    "cumulative_counts_beyond_window": true,
+    "ledger_metadata_count_agreement": true,
+    "exact_message_accounting": true,
+    "exact_environment_accounting": true,
+    "fixed_dual_budget_replay": true,
+    "clean_source_and_hash_manifests": true
+  }
+}
