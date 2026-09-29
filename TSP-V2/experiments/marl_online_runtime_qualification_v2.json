@@ -1,0 +1,69 @@
+{
+  "experiment_id": "TSP-V2-MARL-ONLINE-QUAL-002",
+  "role": "outcome-free runtime qualification; not scientific evidence",
+  "implementation_commit": "ef08d1f56e62f3094dded54299a5acfa361344db",
+  "pinned_harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-V2-ONLINE-QUAL-002",
+  "source_sha256": {
+    "TSP-V2/experiments/harl_online_runtime_bridge_v2.py": "0b04fd1ed6a41855b5f1ed7cb4b1a5014dfbe801b25156136651a7d00287e316",
+    "TSP-V2/experiments/run_marl_online_drift_queue_v2b.py": "ce1a498bc24dc3c50c1ff4e883df18e7c72a511fd43808d1325218870583fe70",
+    "TSP-V2/experiments/run_marl_online_drift_queue.py": "5979b34ac234be73d7fe15956bd5f40dce9149e55cbd0777e33462118af07259",
+    "TSP-V2/experiments/online_drift_queue_controller.py": "f61a5bc1e1e92d366d8396c223003eaa9e3152fa4307badb970381326ce9a2fd",
+    "TSP-V2/slurm/marl_online_runtime_qualification_v2_a30.sbatch": "926607557d484dc979e00f22007e0f40f770f9622b4f21289243fb1d0b367492"
+  },
+  "tasks": [
+    "mpe_simple_spread",
+    "mamujoco_halfcheetah_2x3"
+  ],
+  "couplings": [
+    "independent",
+    "shared"
+  ],
+  "methods": [
+    "controller",
+    "fixed_q1"
+  ],
+  "training_seeds": [
+    994101,
+    994102,
+    994103,
+    994104,
+    994105,
+    994106,
+    994107,
+    994108
+  ],
+  "validation_seed_bases": [
+    995101,
+    995121,
+    995141,
+    995161,
+    995181,
+    995201,
+    995221,
+    995241
+  ],
+  "evaluation_seeds": [
+    996101,
+    996102,
+    996103,
+    996104,
+    996105,
+    996106,
+    996107,
+    996108
+  ],
+  "mandatory_pass_conditions": {
+    "complete_unique_runs": 8,
+    "all_exit_codes_zero": true,
+    "all_values_finite": true,
+    "pinned_harl_commit_unchanged": true,
+    "initial_and_post_update_evaluation_present": true,
+    "at_least_one_training_update": true,
+    "controller_validation_observation_present": true,
+    "exact_message_and_environment_accounting": true,
+    "per_artifact_sha256sums_valid": true,
+    "project_write": false
+  },
+  "stop_rule": "Any payload or mandatory pass-condition failure stops this qualification without retry or gate modification."
+}
