@@ -79,4 +79,3 @@ Remote evidence remains under
 `/scratch/jzhuangag/MARL-SDDE-TSP-V3-MAMUJOCO-CAL-CONF-001`. The compact
 confirmed analysis outputs are versioned under
 `TSP-V3/results/marl_mamujoco_calibrated_confirmation_20260930`.
-
