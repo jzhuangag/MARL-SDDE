@@ -33,8 +33,8 @@ A discrete Lyapunov certificate converts these decisions into a terminal-risk ob
 Its terms retain cross-agent second moments, finite-mixing bias, and the delay profile, so the certificate both proves convergence and designs the resource action.
 When dependence is unknown, a learning-aware gate purchases a fully charged likelihood probe only when its downstream risk reduction exceeds message, transition, delay, and decision-error costs.
 We establish a stopped adaptive change-of-measure lower bound, a finite-horizon performance and safety theorem, and a necessary--sufficient budget-threshold sandwich on a separated Markov class.
-Registered CPU studies recover correlation-limited speedup, calibrate the finite-time bounds, and reduce two finite-budget risks by 54.4 and 10.9 percent.
-On 64 held-out seeds, joint control reduces parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent against a frozen strong fixed baseline.
+Controlled CPU studies recover correlation-limited speedup, calibrate the finite-time bounds, and reduce two finite-budget risks by 54.4 and 10.9 percent.
+On 64 held-out seeds, joint control reduces parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent against a development-selected strong fixed baseline.
 Held-out multi-agent proximal policy optimization (MAPPO) studies on particle coordination and continuous-control locomotion select dependence-matched participation in all 32 controller runs.
 Under identical charged budgets, the controller improves equal-mixture team-return AUC by 2.32 and 8.34 percent over each task's strongest single fixed-participation comparator.
 \end{abstract}
@@ -110,7 +110,7 @@ On a compact separated class, the two thresholds match up to class constants and
 \item \textbf{Fully Charged Mechanism and Policy-Learning Evidence:} We validate the complete causal chain with fully charged experiments.
 Controlled studies recover the predicted participation phase, verify the finite-time confidence bounds, demonstrate 54.4 and 10.9 percent learning-value improvements, and reduce held-out parameter-error and discounted-return-estimation AUC by 9.9 and 11.3 percent over a development-selected strong fixed-participation baseline.
 Held-out MAPPO studies on two cooperative environments select the dependence-matched action in all 32 controller runs and improve equal-mixture team-return AUC by 2.32 and 8.34 percent over the strongest single fixed action.
-Complete fixed-participation comparisons over $q\in\{1,2,4,8\}$ place both task-specific controllers within the registered two-percent margin of their regime-wise fixed envelopes.
+Complete fixed-participation comparisons over $q\in\{1,2,4,8\}$ place both task-specific controllers within a prespecified two-percent noninferiority margin of their regime-wise fixed envelopes.
 \end{itemize}
 
 The remainder of the paper develops this argument as follows.
@@ -118,8 +118,8 @@ Section~II defines the Markov policy-evaluation model, budgets, and risks.
 Section~III develops the correlation and resource geometry.
 Section~IV derives the Lyapunov controller.
 Section~V establishes the learning-aware adaptation theory.
-Section~VI describes implementation and the controlled-SDDE interpretation.
-Section~VII presents the experiments, and Section~VIII concludes the paper.
+Section~VI describes implementation and the stochastic-delay interpretation.
+Section~VII presents the simulations, and Section~VIII concludes the paper.
 
 \section{Model and Finite-Budget Objective}
 \subsection{Fixed-policy evaluation with multiple actors}
@@ -210,7 +210,7 @@ N_a(B,D)=\left[\min\left\{\left\lfloor\frac{B_{\rm msg}}{h+q}\right\rfloor,
 \end{equation}
 The controller minimizes a finite-time certificate $\overline R_j(a;B,D)$ satisfying $\E_j\|e_{N_a}\|^2\le\overline R_j(a;B,D)$.
 The primary risk is parameter mean-square error.
-It also controls fixed-policy return estimation because, for a registered initial distribution $\nu$,
+It also controls fixed-policy return estimation because, for a specified initial distribution $\nu$,
 \begin{equation}
 \E\left|J_\nu(w)-J_\nu(w^\star)\right|^2
 \le \left\|\E_{s\sim\nu}\phi(s)\right\|^2\E\|e\|^2,
@@ -218,7 +218,7 @@ It also controls fixed-policy return estimation because, for a registered initia
 \end{equation}
 where $J_\nu(w)=\E_{s\sim\nu}[V_w(s)]$.
 
-The Gaussian running-mean learner used in the mechanism experiment starts from the registered unit pseudo-observation.
+The Gaussian running-mean learner used in the mechanism study starts from a unit pseudo-observation.
 For $r=\lambda^b$, its exact risk is
 \begin{equation}
 R_j^{\rm mean}(a,N)=
@@ -428,7 +428,7 @@ The dependence on $q$ is the unavoidable cost of aggregating the selected actor 
 \subsection{Why minimizing one-step drift is insufficient}
 A purely myopic drift rule would minimize $c_{\rm aff}(a)R_k+d_{\rm aff}(a)$.
 Such a rule can prefer a large $q$ or $b$ even when its resource cost leaves too few future contractions.
-Equation~\eqref{eq:certificate-score} instead composes the drift over the action-dependent horizon in \eqref{eq:usable-horizon}.
+Eq.~\eqref{eq:certificate-score} instead composes the drift over the action-dependent horizon in \eqref{eq:usable-horizon}.
 This changes the role of the Lyapunov function from a stability test to a finite-budget control objective.
 
 The transient and noise-floor phases are also explicit.
@@ -602,11 +602,11 @@ If $\lambda$ can approach one without an independent mixing certificate, finite 
 If $|\theta_1-\theta_0|$ can vanish, the required identification budget diverges.
 The positive theorem therefore states precisely the regime in which learning-aware adaptation is possible rather than hiding these quantities inside an unspecified mixing constant.
 
-\section{Implementation and SDDE Interpretation}
+\section{Implementation and Stochastic-Delay Interpretation}
 \subsection{End-to-end controller}
 Algorithm~\ref{alg:controller} shows the complete decision path.
 The public catalogue and confidence level are fixed before observations are drawn.
-Moment and mixing certificates may come from a system specification or a disjoint calibration stream; the likelihood probe is used only to select between registered dependence instances.
+Moment and mixing certificates may come from a system specification or a disjoint calibration stream; the likelihood probe is used only to select between prespecified dependence instances.
 
 \begin{figure}[t]
 \centering
@@ -618,7 +618,7 @@ Moment and mixing certificates may come from a system specification or a disjoin
 \STATE solve the scalar problem in \eqref{eq:mixed-controller}
 \ENDFOR
 \STATE obtain the instance actions $a_j^\star$ and their finite-budget risks
-\FOR{each feasible registered probe $d$}
+\FOR{each feasible prespecified probe $d$}
 \STATE charge its message, environment, and delay costs
 \STATE evaluate $C_j^{\rm probe}$, $C_j^D$, $G_j$, $W_j$, and $\epsilon_{\rm safe}$
 \ENDFOR
@@ -660,8 +660,8 @@ The confidence mechanism is deliberately modular.
 Finite-state chains can use spectral or regeneration certificates, while geometrically ergodic continuous-state chains can use an externally supplied mixing upper bound.
 The controller's guarantee is conditional on the declared simultaneous coverage event, and its failure probability adds directly to the risk statement by total probability.
 
-\subsection{Lyapunov design through a controlled SDDE}
-The controlled stochastic delay differential equation associated with one fixed resource action is
+\subsection{Lyapunov design through a controlled stochastic delay differential equation}
+The controlled stochastic delay differential equation (SDDE) associated with one fixed resource action is
 \begin{equation}
 dE(t)=-A_qE(t-\tau(t))dt
 +\sqrt{\eta}\,\Sigma_q^{1/2}(E_t)dW(t).
@@ -678,7 +678,7 @@ For $V(E)=\|E\|^2$, It\^o's formula gives the infinitesimal drift
 Participation controls the spatial covariance in $\Sigma_q$, spacing controls the finite-mixing remainder in both terms, and $\eta$ controls their relative scale.
 This calculation motivates optimizing a drift-based resource action rather than attaching a stability proof to a variance heuristic.
 
-Equation~\eqref{eq:controlled-sdde} is not used to replace the implementable recursion with a continuous approximation.
+Eq.~\eqref{eq:controlled-sdde} is not used to replace the implementable recursion with a continuous approximation.
 Bounding the delayed cross term in \eqref{eq:ito-drift} produces the same contraction--forcing decomposition as \eqref{eq:affine-terms}, while Theorem~\ref{thm:affine} retains finite steps, integer delays, and exact budget rounding.
 The SDDE therefore supplies the design geometry; the discrete Lyapunov theorem supplies the finite-time guarantee used by the algorithm.
 
@@ -692,23 +692,23 @@ The method concerns centralized training of a common fixed-policy value function
 After training, policy execution is decentralized and needs no communication because the target policy is already fixed.
 This separation makes the resource controller a training-layer component that leaves the deployed policy and its execution interface unchanged.
 
-\section{Experiments}
+\section{Simulations}
 \subsection{Protocol and evaluation questions}
-The experiments test five predictions in increasing order of algorithmic scope.
+The simulations test five predictions in increasing order of algorithmic scope.
 The first asks whether cross-agent correlation produces the saturation in \eqref{eq:speedup} and moves the resource-optimal participation level.
 The second asks whether Theorem~\ref{thm:affine} is finite, empirically calibrated, and responsive to correlation, mixing, and delay when it jointly selects $(q,b,\eta)$.
 The third asks whether the learning-value gate in \eqref{eq:admission} improves risk over a controller that probes as soon as identification becomes reliable.
 The fourth asks whether joint control improves the entire resource-indexed convergence trajectory and the induced discounted-return estimate relative to a strong fixed-participation policy.
 The fifth asks whether the same observable dependence decision transfers to centralized-training--decentralized-execution policy learning and improves team return under equal resources.
 
-All studies use paired common random numbers across policies, charge every message and environment-clock unit, retain every registered cell, and use independent same-seed reproductions or disjoint confirmation seeds.
+All studies use paired common random numbers across policies, charge every message and environment-clock unit, retain every prespecified cell, and use independent same-seed reproductions or disjoint confirmation seeds.
 The Markov temporal-difference task has seven states on a ring, a bounded sinusoidal reward, four stationary-distribution-orthonormal features, and an exact projected fixed point.
 Cross-agent dependence is induced by shared and private Markov sources while preserving every agent's marginal transition law.
 The policy-learning studies use multi-agent proximal policy optimization (MAPPO) with parameter-shared actors and a centralized critic~\cite{yu2022mappo}.
 They cover the discrete PettingZoo multi-agent particle environment \texttt{simple\_spread\_v2}~\cite{terry2021pettingzoo} and the continuous-control MaMuJoCo \texttt{HalfCheetah-v2/2x3} environment introduced with the FACMAC benchmark~\cite{peng2021facmac}.
 
 Parameter risk is $\|w-w^\star\|^2$ normalized by its value before learning.
-Return-estimation risk is $|V_w(s_0)-V_{w^\star}(s_0)|^2$ under the registered initial state and is normalized in the same way.
+Return-estimation risk is $|V_w(s_0)-V_{w^\star}(s_0)|^2$ under the specified initial state and is normalized in the same way.
 Area under the convergence curve is computed against charged resource fraction, so a policy cannot appear faster by ignoring the samples or messages used to create its updates.
 Bootstrap comparisons resample paired seeds and report percentile intervals for the ratio of geometric-mean risks.
 
@@ -716,10 +716,10 @@ Bootstrap comparisons resample paired seeds and report percentile intervals for 
 EXP-007A evaluates $q\in\{1,2,4,8,16,32\}$, six cross-agent correlation levels, three delays, three message-equivalent budgets, thirteen step sizes, and 32 paired seeds.
 All 134,784 rows are finite and budget-valid.
 At $q=32$, median effective participation is $30.996$ for independent trajectories and $1.111$ at correlation $0.9$.
-At the largest registered budget and delay eight, the resource-optimal participation moves from $q=16$ under independence to $q=1$ under high sharing.
+At the largest evaluated budget and delay eight, the resource-optimal participation moves from $q=16$ under independence to $q=1$ under high sharing.
 Using the endpoint action selected for the opposite correlation regime increases error by factors of approximately $4.29$ and $3.13$, respectively.
 These results isolate the statistical and resource mechanism that motivates controlling participation.
-They also rule out an update-count interpretation of the gain: every endpoint is compared after applying the same registered message-equivalent budget.
+They also rule out an update-count interpretation of the gain: every endpoint is compared after applying the same message-equivalent budget.
 
 \subsection{Finite-time certificate and joint actions}
 EXP-010B evaluates twelve $(\text{persistence},\rho,D)$ scenarios with 32 new paired seeds and 1,152 policy runs.
@@ -742,8 +742,8 @@ The left panel reports participation and the right panel reports Markov spacing.
 \end{figure}
 
 \subsection{Learning-value adaptation}
-EXP-016B uses 96 finite-threshold scenario families, two model layers, eight policies, and 192 independent formal seeds.
-The resulting 2,752,512 rows were generated after the implementation, scenario manifest, analysis, and seeds were frozen.
+EXP-016B uses 96 finite-threshold scenario families, two model layers, eight policies, and 192 independent evaluation seeds.
+The analysis covers 2,752,512 finite, budget-valid rows across the prespecified scenario grid.
 The primary estimand is the paired risk difference between probing at $B_{\rm id}$ and applying the learning-value gate in the separation phase.
 
 The learning-aware controller reduces Layer-A risk by $54.43$ percent and affine delayed temporal-difference risk by $10.85$ percent.
@@ -757,17 +757,17 @@ The result supports the mechanism in \eqref{eq:value-decomposition}: a reliable 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/exp016b_risk_reduction.pdf}
-\caption{Registered relative risk reductions of the learning-aware rule over information-only probing in EXP-016B.
+\caption{Relative risk reductions of the learning-aware rule over information-only probing in EXP-016B.
 The dashed line marks the three-percent practical-effect threshold.}
 \label{fig:risk-reduction}
 \end{figure}
 
 \subsection{Convergence and return-estimation curves}
 TSP-CURVE-001 tests the complete joint controller on the seven-state policy-evaluation problem over a budget of 128,000 resource units.
-The registered grid crosses persistence $\{0,0.9,0.98\}$, correlation $\{0,0.9\}$, and delay $\{0,8\}$, producing twelve cells and 41 charged-resource checkpoints per trajectory.
+The prespecified grid crosses persistence $\{0,0.9,0.98\}$, correlation $\{0,0.9\}$, and delay $\{0,8\}$, producing twelve cells and 41 charged-resource checkpoints per trajectory.
 The fixed policies use $q\in\{1,4,16,32\}$; within every cell, each fixed $q$ receives its own certified spacing and step, so the comparison isolates the value of jointly changing participation rather than handicapping its optimizer.
 
-The strong fixed comparator is selected using 16 development seeds and then frozen.
+The strong fixed comparator is selected using 16 development seeds and is used without reselection on the confirmation population.
 It is $q=4$, which has geometric normalized parameter-error AUC $0.2441$ on the development population, compared with $0.3342$, $0.4649$, and $0.4851$ for $q=1,16,32$.
 The final comparison uses 64 disjoint confirmation seeds and 157,440 finite checkpoint rows.
 
@@ -794,14 +794,15 @@ The joint Lyapunov certificate changes participation with the dependence regime 
 Two held-out MAPPO studies test whether the return-free dependence decision transfers from the affine theory to nonlinear cooperative policy learning.
 Every method receives the same message and environment budgets, all probe costs reduce the learning horizon, and participation is selected from a disjoint critic-residual probe without evaluation return.
 Both studies use eight fresh seeds per dependence regime and compare against fixed $q\in\{1,2,4,8\}$.
+The evaluation separates two claims: noninferiority to the regime-wise fixed envelope and improvement over the strongest single fixed action when the dependence regime is unknown.
 
 In PettingZoo \texttt{simple\_spread\_v2}, the controller commits to $q=8$ in all eight independent-stream runs and $q=1$ in all eight shared-stream runs.
 It lies within $0.357$ and $0.889$ percent of the corresponding regime-wise fixed envelopes and improves equal-mixture team-return AUC by $2.319$ percent over the strongest single fixed action, $q=8$.
 
-In MaMuJoCo \texttt{HalfCheetah-v2/2x3}, the task-specific registered catalogue is $\{2,8\}$, while evaluation still includes all four fixed actions.
+In MaMuJoCo \texttt{HalfCheetah-v2/2x3}, the task-specific prespecified catalogue is $\{2,8\}$, while evaluation still includes all four fixed actions.
 The controller selects $q=8$ in all eight independent-stream runs and $q=2$ in all eight shared-stream runs.
-Its AUC changes relative to those regime-matched actions are $-0.542$ and $-0.997$ percent, both inside the two-percent margin.
-Against the strongest single fixed action, $q=8$, the equal-mixture AUC gain is $8.341$ percent with a one-sided 95 percent lower bound of $1.107$ percent; seven of eight paired seeds improve ($p=0.0352$), and final return improves by $4.637$ percent.
+Relative to the corresponding regime-wise fixed envelopes, its AUC changes are $-0.542$ and $-0.997$ percent, both within the prespecified two-percent noninferiority margin.
+When the regime is unknown, the strongest single fixed action is $q=8$; against it, the controller improves equal-mixture AUC by $8.341$ percent with a one-sided 95 percent lower bound of $1.107$ percent, improves seven of eight paired seeds ($p=0.0352$), and raises final return by $4.637$ percent.
 
 Fig.~\ref{fig:marl-return} shows the unsmoothed deterministic team-return curves against the maximum charged dual-budget fraction.
 The probe uses at most $0.768$ percent of the message budget, selection overhead is below $10^{-6}$ of training time, and the two environments show that one Lyapunov learning-value principle supports different task-specific catalogues.
@@ -818,8 +819,8 @@ For a finite catalogue, action evaluation is linear in the number of candidate t
 The exact likelihood update is scalar after the spatial reduction, and the affine certificate uses cached scalar moments and a one-dimensional step search.
 When temporal-difference Jacobians are rank one, online moment probes require $O(qd)$ arithmetic and $O(d)$ memory, matching the order of aggregating $q$ agent updates.
 
-The four controlled Markov studies ran on CPUs and reproduced their registered primary artifacts byte for byte.
-The action set, metrics, 16 development seeds, 64 confirmation seeds, and bootstrap rule were fixed before confirmation; aggregate curves and analysis code accompany the repository.
+The four controlled Markov studies ran on CPUs, and their aggregate statistics and curves reproduce byte for byte from the versioned data and analysis code.
+The convergence study uses a fixed action set and metrics, 16 development seeds for comparator selection, and 64 disjoint confirmation seeds for the reported comparison.
 The MPE study comprises 80 complete controller and fixed-catalogue runs across both dependence regimes.
 The MaMuJoCo study adds 80 fresh-seed runs with the same complete comparator set.
 All 160 policy-learning runs are finite and exactly budgeted, and both analyses reproduce their aggregate curves byte for byte.
