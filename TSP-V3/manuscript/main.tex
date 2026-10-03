@@ -808,7 +808,7 @@ Fig.~\ref{fig:marl-return} shows the unsmoothed deterministic team-return curves
 The probe uses at most $0.768$ percent of the message budget, selection overhead is below $10^{-6}$ of training time, and the two environments show that one Lyapunov learning-value principle supports different task-specific catalogues.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.92\textwidth]{figures/marl_multienvironment_returns.pdf}
+\includegraphics[width=0.96\textwidth]{figures/marl_multienvironment_returns.pdf}
 \caption{Fully charged MAPPO team-return learning curves on two cooperative environments with fixed $q\in\{1,2,4,8\}$ and the Lyapunov probe-then-commit controller (eight held-out seeds per regime; shaded bands are controller 95 percent confidence intervals).
 The controller selects $q=8$ for independent streams in both environments, $q=1$ for shared MPE streams, and $q=2$ for shared MaMuJoCo streams.}
 \label{fig:marl-return}
