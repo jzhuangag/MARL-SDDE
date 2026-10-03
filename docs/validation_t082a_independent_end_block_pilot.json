@@ -1,0 +1,69 @@
+{
+  "experiment_id": "T-082A-independent-causal-end-block-pilot",
+  "status": "ALL_FROZEN_GATES_PASS",
+  "classification": "independently seeded sampled CPU pilot",
+  "preregistration_commit": "2cf5f509a42a2b55b0f17bc79461f07a4431b532",
+  "gates": {
+    "P1": true,
+    "P2": true,
+    "P3": true,
+    "P4": true,
+    "P5": true,
+    "P6": true,
+    "P7": true,
+    "P8": true,
+    "P9": true,
+    "P10": true,
+    "P11": true,
+    "P12": true,
+    "P13": true,
+    "P14": true
+  },
+  "metrics": {
+    "cells": 432,
+    "primary_cells": 96,
+    "pilot_seeds": 64,
+    "endpoints": 27648,
+    "old_seed_overlap": 0,
+    "primary_ratio": 0.7623942486561714,
+    "primary_improvement": 0.23760575134382855,
+    "primary_strict_cell_fraction": 0.9375,
+    "primary_to_local_ratio": 0.7211076099854238,
+    "single_switch_ratio": 0.8272208881077772,
+    "alternating_ratio": 0.702647864361325,
+    "delay_0_ratio": 0.7242621096710573,
+    "delay_1_ratio": 0.7756389260369,
+    "delay_3_ratio": 0.7888300974282936,
+    "stationary_to_local_ratio": 1.0516470020946067,
+    "low_signal_ratio": 1.0059131601559534,
+    "high_temporal_ratio": 0.9844778522168383,
+    "accepted_nonlocal_rate": 0.7337767047646605,
+    "mean_debt": 0.026695876917854713,
+    "max_debt": 2.09520063308467,
+    "mean_iterations_per_recipient_decision": 30.69674418885031
+  },
+  "reproduction": {
+    "endpoints_byte_identical": true,
+    "cells_byte_identical": true,
+    "summary_byte_identical": true,
+    "endpoints_sha256": "3D566DFD77C6C4DDF72D87DCFA2EC0C46141C2A8A6424404081353B88118C889",
+    "cells_sha256": "0C8FF1BB903F401EE93BF154F7ADCDCFC2755A5000F4200E14C4FFD5C65779DB",
+    "summary_sha256": "6C91A3C55EB3288CCD820E705D84AB1C8534950513B1011D34F9B083773CCBBE",
+    "original_runtime_seconds": 499.16031529999964,
+    "reproduction_runtime_seconds": 556.9382101000001,
+    "stderr_bytes": 0
+  },
+  "regression": {
+    "passed": 660,
+    "skipped": 7,
+    "failed": 0,
+    "runtime_seconds": 110.90
+  },
+  "authorization": {
+    "independently_preregister_formal_cpu_confirmation": true,
+    "execute_unregistered_formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

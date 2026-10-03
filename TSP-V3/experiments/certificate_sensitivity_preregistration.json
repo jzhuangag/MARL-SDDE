@@ -1,0 +1,56 @@
+{
+  "experiment_id": "TSP-V3-CERT-SENS-001",
+  "resource_budget": 128000,
+  "checkpoints": 41,
+  "persistences": [0.0, 0.9, 0.98],
+  "correlations": [0.0, 0.9],
+  "maximum_delays": [0, 8],
+  "candidate_agent_counts": [1, 4, 16, 32],
+  "policies": [
+    "finite_horizon",
+    "conservative_moderate",
+    "conservative_strong",
+    "one_step_myopic",
+    "correlation_only"
+  ],
+  "sensitivity_levels": {
+    "conservative_moderate": {
+      "curvature_factor": 1.1,
+      "noise_factor": 1.1,
+      "log_rate_weakening": 0.05
+    },
+    "conservative_strong": {
+      "curvature_factor": 1.25,
+      "noise_factor": 1.25,
+      "log_rate_weakening": 0.1
+    }
+  },
+  "development_seeds": {
+    "start": 33000001,
+    "count": 8
+  },
+  "confirmation_seeds": {
+    "start": 34000001,
+    "count": 64
+  },
+  "bootstrap_seed": 20261003,
+  "bootstrap_replicates": 4000,
+  "mandatory_development_gates": {
+    "payload_validity": true,
+    "all_conservative_bounds_finite_and_stable": true,
+    "moderate_terminal_parameter_ratio_at_most": 1.10,
+    "strong_terminal_parameter_ratio_at_most": 1.25,
+    "finite_horizon_vs_myopic_terminal_parameter_ratio_at_most": 0.95,
+    "finite_horizon_vs_correlation_only_terminal_parameter_ratio_at_most": 0.98
+  },
+  "mandatory_confirmation_gates": {
+    "payload_validity": true,
+    "conservative_99pct_upper_mean_coverage": "24/24 level-by-cell comparisons",
+    "moderate_terminal_parameter_ratio_at_most": 1.10,
+    "strong_terminal_parameter_ratio_at_most": 1.25,
+    "finite_horizon_vs_myopic_terminal_parameter_ratio_at_most": 0.95,
+    "finite_horizon_vs_correlation_only_terminal_parameter_ratio_at_most": 0.98,
+    "paired_bootstrap_upper_ratio_below_one_for_both_ablations": true
+  },
+  "stopping_rule": "Any failed mandatory development gate stops confirmation. Any failed confirmation gate keeps the result out of the manuscript without changing thresholds, tasks, policies, or seeds."
+}

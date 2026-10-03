@@ -1,0 +1,180 @@
+{
+  "experiment_id": "T-055A-independent-confirmation-CPU-pilot",
+  "classification": "independent sampled CPU confirmation pilot; not formal evidence",
+  "source_task_config": "docs/t049a_exact_schedule_static_preregistration.json",
+  "power_audit": "docs/t054_paired_power_audit.json",
+  "software_sha256": {
+    "source_task_config": "f29c1f6ae56922dab9a5211aec656410fb067d5ceacbb8b7f02acb2fcc83e06f",
+    "frozen_T053A_runner": "ac466d42a9c40bc80a1bf4f3d5fdbc756604099df302ffb8b0843b1eb352c58d",
+    "sampled_standard_task_kernel": "78de76267c7b9086258509c6de8ac9c33b51527f5e7d26b70f486c5844f7826b",
+    "T055A_wrapper": "34fc8646adb50423fc7b122098e2811e114f19c815b4b64f5f359513cd404009"
+  },
+  "tasks": [
+    "frozenlake8x8",
+    "cliffwalking",
+    "taxi"
+  ],
+  "kernel_sha256": {
+    "frozenlake8x8": "93dcc787c7d551f2c620d4bed29dc9245cd61bcade3cecde96bc99e85ae04dc3",
+    "cliffwalking": "55a3c9a49f29e2a9142e41f66c3134073e56626dbe43c192a9b1bf1f25acb90a",
+    "taxi": "0aad06a53cf55b339137944bfd38db65214cea99f36cd900603a0e88d78ae14f"
+  },
+  "pilot_seeds": [
+    202608035001,
+    202608035002,
+    202608035003,
+    202608035004,
+    202608035005,
+    202608035006,
+    202608035007,
+    202608035008,
+    202608035009,
+    202608035010,
+    202608035011,
+    202608035012,
+    202608035013,
+    202608035014,
+    202608035015,
+    202608035016,
+    202608035017,
+    202608035018,
+    202608035019,
+    202608035020,
+    202608035021,
+    202608035022,
+    202608035023,
+    202608035024,
+    202608035025,
+    202608035026,
+    202608035027,
+    202608035028,
+    202608035029,
+    202608035030,
+    202608035031,
+    202608035032,
+    202608035033,
+    202608035034,
+    202608035035,
+    202608035036,
+    202608035037,
+    202608035038,
+    202608035039,
+    202608035040,
+    202608035041,
+    202608035042,
+    202608035043,
+    202608035044,
+    202608035045,
+    202608035046,
+    202608035047,
+    202608035048,
+    202608035049,
+    202608035050,
+    202608035051,
+    202608035052,
+    202608035053,
+    202608035054,
+    202608035055,
+    202608035056,
+    202608035057,
+    202608035058,
+    202608035059,
+    202608035060,
+    202608035061,
+    202608035062,
+    202608035063,
+    202608035064
+  ],
+  "grid": {
+    "participation_catalogue": [
+      1,
+      4,
+      16
+    ],
+    "message_overheads": [
+      8,
+      32
+    ],
+    "correlations": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      1.0
+    ],
+    "delays": [
+      0,
+      8
+    ]
+  },
+  "learning": {
+    "pr_burn_fraction": 0.5,
+    "contraction_target": 0.0001,
+    "post_probe_message_budget": "N_contraction * (overhead + 16)",
+    "initial_error": "-theta_star",
+    "step_size": "0.8 * (1-mixing_slem) / drift_norm",
+    "recursion": "e[t+1]=e[t]-eta*A*e[t-D]+eta*xi_bar[t]",
+    "risk": "squared Euclidean norm of half-tail PR average"
+  },
+  "probe": {
+    "blocks": 96,
+    "q_probe": 2,
+    "maximum_independent_path_collision": 0.01,
+    "fingerprint": "exact equality of sampled stationary state paths; SHA-256 is the implementation-equivalent message",
+    "decision": "exact T-052 plug-in action from observed match count",
+    "independent_of_learning_bank": true
+  },
+  "comparators": {
+    "strong_fixed_q": {
+      "overhead_8": 4,
+      "overhead_32": 16
+    },
+    "fixed_q": [
+      1,
+      4,
+      16
+    ],
+    "true_rho_oracle": "T-050 catalogue minimizer, using the full no-probe total budget",
+    "sample_path_oracle": "descriptive only; minimum fixed-q endpoint on the same seed"
+  },
+  "analysis": {
+    "cell_endpoint": "arithmetic mean PR squared error over the 64 frozen seeds",
+    "aggregate": "geometric mean of cell controller/strong-fixed mean-error ratios",
+    "active_cell": "true-rho oracle q differs from the overhead-specific strong fixed q",
+    "inactive_cell": "true-rho oracle q equals the overhead-specific strong fixed q",
+    "common_random_numbers": "one common plus 16 private exact Gymnasium trajectory banks shared by controller and all fixed-q comparators",
+    "uses_T053A_for_power_only": true,
+    "uses_prior_outcome_rows": false,
+    "T053A_seeds_reused": false
+  },
+  "mandatory_gates": {
+    "P1": "all sampling-table transition, innovation-mean, and second-moment residuals pass their frozen tolerances",
+    "P2": "all endpoints are finite and obey separate message/environment/delay budgets",
+    "P3": "aggregate controller/strong-fixed geometric mean-error ratio <= 0.95",
+    "P4": "controller/strong-fixed geometric ratio <= 0.97 on every task",
+    "P5": "controller/strong-fixed geometric ratio <= 0.97 at each registered delay",
+    "P6": "controller improves the cell mean error in at least 0.60 of oracle-active cells",
+    "P7": "inactive-cell aggregate controller/strong-fixed geometric ratio <= 1.05",
+    "P8": "aggregate controller/true-rho-oracle geometric ratio <= 1.20",
+    "P9": "median selected q is nonincreasing on the registered rho grid for each overhead",
+    "P10": "root-mean-square standardized fingerprint match residual <= 1.5",
+    "P11": "all 64 seeds are new, all 84 cells and 5376 endpoints are present, and sampled/fixed marginal provenance is unchanged",
+    "P12": "clean rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 84,
+    "seeds": 64,
+    "endpoints": 5376,
+    "long_learning_trajectories": 91392,
+    "stored_full_trajectories": 0,
+    "recommended_hardware": "local CPU"
+  },
+  "authorization": {
+    "execute_after_independent_commit": true,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

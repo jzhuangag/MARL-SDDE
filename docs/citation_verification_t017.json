@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "task": "T-017",
+  "workflow": {
+    "requested_skill": "academic-research-suite",
+    "skill_available": false,
+    "fallback": "complete-paper review using primary author, journal, and official proceedings sources only",
+    "secondary_sources_used": false
+  },
+  "records": [
+    {
+      "key": "nitinawarat_veeravalli_2015",
+      "title": "Controlled Sensing for Sequential Multihypothesis Testing with Controlled Markovian Observations and Non-Uniform Control Cost",
+      "authors": ["Sirin Nitinawarat", "Venugopal V. Veeravalli"],
+      "venue": "Sequential Analysis 34(1)",
+      "year": 2015,
+      "doi": "10.1080/07474946.2014.961864",
+      "primary_url": "https://www.tandfonline.com/doi/full/10.1080/07474946.2014.961864",
+      "full_text_pages_checked": 24,
+      "claims_checked": [
+        "finite controlled Markov observation model",
+        "arbitrary causal randomized control kernels",
+        "common control-kernel cancellation in likelihood ratios",
+        "nonuniform positive scalar control cost",
+        "asymptotic lower and self-tuning upper expected-cost bounds"
+      ],
+      "integrity": "verified_primary"
+    },
+    {
+      "key": "garivier_kaufmann_2016",
+      "title": "Optimal Best Arm Identification with Fixed Confidence",
+      "authors": ["Aurelien Garivier", "Emilie Kaufmann"],
+      "venue": "COLT, PMLR 49",
+      "year": 2016,
+      "primary_url": "https://proceedings.mlr.press/v49/garivier16a.html",
+      "full_text_pages_checked": 30,
+      "claims_checked": [
+        "nonasymptotic fixed-confidence allocation lower bound",
+        "Track-and-Stop",
+        "asymptotic optimality as delta tends to zero"
+      ],
+      "integrity": "verified_primary"
+    },
+    {
+      "key": "moulos_2019",
+      "title": "Optimal Best Markovian Arm Identification with Fixed Confidence",
+      "authors": ["Vrettos Moulos"],
+      "venue": "NeurIPS",
+      "year": 2019,
+      "primary_url": "https://papers.nips.cc/paper_files/paper/2019/hash/71887f62f073a78511cbac56f8cab53f-Abstract.html",
+      "full_text_pages_checked": 10,
+      "claims_checked": [
+        "independent rested finite-state Markov arms",
+        "Markov likelihood lower bound",
+        "factor-four asymptotic Markov Track-and-Stop guarantee"
+      ],
+      "integrity": "verified_primary"
+    },
+    {
+      "key": "saad_blanchard_verzelen_2023",
+      "title": "Covariance Adaptive Best Arm Identification",
+      "authors": ["D. Saad", "G. Blanchard", "N. Verzelen"],
+      "venue": "NeurIPS",
+      "year": 2023,
+      "doi": "10.52202/075280-3204",
+      "primary_url": "https://papers.neurips.cc/paper_files/paper/2023/hash/e82ef7865f29b40640f486bbbe7959a7-Abstract-Conference.html",
+      "full_text_pages_checked": 12,
+      "claims_checked": [
+        "iid joint reward vectors with unknown covariance",
+        "simultaneous subset queries change observation dimension",
+        "covariance-adaptive query complexity",
+        "near-optimality for specified classes up to logarithmic factors"
+      ],
+      "integrity": "verified_primary"
+    },
+    {
+      "key": "vannella_proutiere_jeong_2023",
+      "title": "Best Arm Identification in Multi-Agent Multi-Armed Bandits",
+      "authors": ["Francesco Vannella", "Alexandre Proutiere", "Jungseul Jeong"],
+      "venue": "ICML, PMLR 202",
+      "year": 2023,
+      "primary_url": "https://proceedings.mlr.press/v202/vannella23a.html",
+      "full_text_pages_checked": 33,
+      "claims_checked": [
+        "factored Gaussian multi-agent rewards",
+        "semi-bandit group observations",
+        "instance lower bound",
+        "MF-TaS asymptotically matches the approximated lower bound"
+      ],
+      "integrity": "verified_primary"
+    }
+  ],
+  "all_required_papers_fully_checked": true,
+  "machine_validation": "python json.load"
+}

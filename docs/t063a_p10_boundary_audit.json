@@ -1,0 +1,30 @@
+{
+  "experiment_id": "T-063A",
+  "classification": "post-result diagnostic; does not alter formal failure",
+  "formal_gate": "P10_independent_collision",
+  "observed": {
+    "unique_seed_task_blocks": 1536,
+    "blocks_zero_matches": 1472,
+    "blocks_one_match": 63,
+    "blocks_two_matches": 1,
+    "maximum_match_rate": 0.020833333333333332,
+    "threshold": 0.02,
+    "maximum_block": {
+      "game": "seaquest",
+      "master_seed": 202608056481,
+      "matches": 2,
+      "probe_blocks": 96
+    }
+  },
+  "diagnostic_null": {
+    "c_L": 0.0007716049382716049,
+    "probe_blocks_per_seed_task": 96,
+    "p_zero": 0.9285763550365159,
+    "p_one": 0.06883654832703129,
+    "p_at_least_two": 0.0025870966364527903,
+    "expected_blocks_at_least_two": 3.973780433591486,
+    "probability_any_block_at_least_two": 0.9812943487224537
+  },
+  "retrospective_action": "none",
+  "future_design_note": "Use a prospective family-wise exact-binomial or aggregate collision gate; do not apply to T-063A."
+}

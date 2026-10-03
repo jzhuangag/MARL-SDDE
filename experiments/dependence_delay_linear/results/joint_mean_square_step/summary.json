@@ -1,0 +1,89 @@
+{
+  "config": {
+    "agent_counts": [
+      16,
+      32
+    ],
+    "base_seed": 20261230,
+    "checkpoints": [
+      250,
+      500,
+      1000,
+      2000,
+      4000
+    ],
+    "correlations": [
+      0.0,
+      0.9
+    ],
+    "grid_steps": [
+      0.005,
+      0.007632145998180043,
+      0.01164993050750713,
+      0.01778279410038923,
+      0.027144176165949066,
+      0.04143366309976846,
+      0.0632455532033676,
+      0.096539859156753,
+      0.1473612599456155,
+      0.2249365300761397,
+      0.3433496875730229,
+      0.524098988797363,
+      0.8
+    ],
+    "max_delays": [
+      8,
+      32
+    ],
+    "num_seeds": 32
+  },
+  "environment": {
+    "numpy": "1.20.3",
+    "pandas": "1.4.1",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.8.12 (default, Oct 12 2021, 03:01:40) [MSC v.1916 64 bit (AMD64)]"
+  },
+  "experiment_id": "EXP-007C-joint-mean-square-step",
+  "gates": {
+    "accounting_determinism_numerical_validity": {
+      "divergence_threshold": 1000000000000.0,
+      "expected_runs": 4608,
+      "observed_runs": 4608,
+      "pass": true
+    },
+    "analytic_correlation_saturation": {
+      "independent_curvature_drop_q16_to_q32": 0.22460994289175495,
+      "pass": true,
+      "rho0p9_curvature_drop_q16_to_q32": 0.003179667625736071,
+      "rho0p9_to_rho0_curvature_inflation": {
+        "16": 7.066215286764561,
+        "32": 9.084133857802929
+      }
+    },
+    "correlation_awareness_value": {
+      "correlation_blind_rho0p9_crossing_fraction": 0.0,
+      "joint_rho0p9_crossing_fraction": 0.0,
+      "pass": false
+    },
+    "delay_awareness_value": {
+      "delay_blind_q32_d32_crossing_fraction": 0.0,
+      "joint_q32_d32_crossing_fraction": 0.0,
+      "pass": false
+    },
+    "joint_safety_and_contraction": {
+      "crossing_fraction": 0.0,
+      "largest_cell_median_final_error": 0.5612328885762221,
+      "pass": true
+    },
+    "nonvacuous_tightness_and_speed": {
+      "independent_cells_no_slower_than_worstcase": 4,
+      "pass": false,
+      "tight_cells_at_least_quarter_oracle": 4
+    },
+    "overall": {
+      "criterion": "all six joint mean-square gates pass",
+      "pass": false
+    }
+  },
+  "status": "FAIL"
+}

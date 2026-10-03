@@ -1,0 +1,32 @@
+{
+  "all_gates_pass": true,
+  "audit_id": "MCERT-DEV-001",
+  "config_hash": "2e9f28a600f40b3fdc4b612f6d5217e8b6070cdf2c4452c9876d90c2e55c03fb",
+  "correct_edge_rate": 1.0,
+  "gates": {
+    "N1_correct_edge_rate_at_4096": true,
+    "N2_median_value_recovery_at_4096": true,
+    "N3_p05_value_recovery_at_4096": true,
+    "N4_wrong_edge_positive_rate_at_4096": true,
+    "N5_median_recovery_monotone": true,
+    "N6_exact_transition_charging": true,
+    "N7_local_robust_dp_scalar_work": true,
+    "N8_all_rows_finite": true
+  },
+  "maximum_local_robust_dp_scalar_work": 32,
+  "median_recovery_by_sample_size": {
+    "256": -0.44980565130623934,
+    "512": -0.11399654642642092,
+    "1024": 0.17786332791071216,
+    "2048": 0.37289091316511846,
+    "4096": 0.5451051913506078,
+    "8192": 0.6658335516149595
+  },
+  "median_value_recovery": 0.5451051913506078,
+  "p05_value_recovery": 0.49563335840985695,
+  "primary_and_reproduction_sha256": "048bb60e4f2aaf36b071b7b0555bef3f9d0ab4be6443c9d78105c390124c07eb",
+  "row_count": 768,
+  "selected_sample_size_per_positive_action": 4096,
+  "selected_total_charged_transitions": 8192,
+  "wrong_edge_positive_rate": 0.0
+}

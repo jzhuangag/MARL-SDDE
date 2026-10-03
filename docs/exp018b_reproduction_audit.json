@@ -1,0 +1,39 @@
+{
+  "experiment": "EXP-018B",
+  "audit": "independent_local_cpu_exact_reproduction",
+  "date": "2026-08-02",
+  "result": "PASS",
+  "formal_directory": "experiments/nonlinear_markov_td/results/exp018b_formal_20260802",
+  "reproduction_directory": "experiments/nonlinear_markov_td/results/exp018b_reproduction_20260802",
+  "comparisons": {
+    "projections.csv": {
+      "formal_sha256": "0a955971530c20efc88cc5dae7ac3859107b36d3ddf75c5142cf3e36037b35bf",
+      "reproduction_sha256": "0a955971530c20efc88cc5dae7ac3859107b36d3ddf75c5142cf3e36037b35bf",
+      "formal_bytes": 11328371,
+      "reproduction_bytes": 11328371,
+      "byte_identical": true
+    },
+    "static_manifest.json": {
+      "formal_sha256": "0cfe24c37f4bba2895cc000f5ffd688977b3e618e55bbb9759ef7099cd8fcb25",
+      "reproduction_sha256": "0cfe24c37f4bba2895cc000f5ffd688977b3e618e55bbb9759ef7099cd8fcb25",
+      "formal_bytes": 5041,
+      "reproduction_bytes": 5041,
+      "byte_identical": true
+    },
+    "summary.json": {
+      "formal_sha256": "37de678a35c685d00b03baf391ed9b079c6c84485acdaac1f4b03d05c667072d",
+      "reproduction_sha256": "37de678a35c685d00b03baf391ed9b079c6c84485acdaac1f4b03d05c667072d",
+      "formal_bytes": 1761,
+      "reproduction_bytes": 1761,
+      "byte_identical": true
+    }
+  },
+  "formal_analyzer_gates_pass": true,
+  "reproduction_analyzer_gates_pass": true,
+  "exact_reproduction_gate_R1_pass": true,
+  "environment": "local Windows CPU, conda environment ust2",
+  "hpc4_used": false,
+  "gpu_used": false,
+  "remote_project_storage_used": false
+}
+

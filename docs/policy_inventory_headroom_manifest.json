@@ -1,0 +1,49 @@
+{
+  "artifact_id": "PIC-HEADROOM-STATIC-20260901",
+  "design": {
+    "events_per_scenario": 72,
+    "geometries": [
+      "away",
+      "mixed",
+      "rotating"
+    ],
+    "max_step": 1.0,
+    "n_agents": [
+      3,
+      5,
+      8
+    ],
+    "policies": 30,
+    "policy_variances": [
+      0.75,
+      1.25
+    ],
+    "potential_weight": 4.0,
+    "scenarios": 72,
+    "states": 5184,
+    "workloads": [
+      "steady_low",
+      "steady_high",
+      "alternating",
+      "bursty"
+    ]
+  },
+  "design_hash": "f3324deff3276d034c52293f0d0c56b68a6e9aa7a19548e3ce258c4fcb788d52",
+  "evidence_class": "outcome_free_deterministic_design_ceiling",
+  "gates": {
+    "aggregate_utility_ratio_ge_1_05": 1.05,
+    "complete_finite": true,
+    "high_inventory_nonzero_fraction_ge_0_30": 0.3,
+    "pointwise_dynamic_dominance": true,
+    "scenario_five_percent_fraction_ge_0_60": 0.6,
+    "zero_pending_base_recovery_ge_0_99": 0.99
+  },
+  "parent_theory_commit": "cdff41e",
+  "policies": {
+    "continuous_inventory_controller": 1,
+    "strong_global_causal_baselines": 29
+  },
+  "run_authorized_only_after_this_manifest_is_committed": true,
+  "stochastic_pilot_authorized": false,
+  "stop_rule": "Any failed mandatory gate stops this policy-inventory candidate before stochastic or GPU experiments."
+}

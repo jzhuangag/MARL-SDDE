@@ -1,0 +1,73 @@
+{
+  "alpha_familywise_one_sided": 0.01,
+  "cell_practical_effect_threshold_relative": 0.03,
+  "configuration_sha256": "6dfdf87521700c2ddae9b81947e0ecc01ee33ebcf5fcda34b09e9e3c3f7f7ee5",
+  "coverage_denominator": "all registered practical-effect finite scenario families fixed in the scenario manifest",
+  "formal_authorization_rule": "no formal run if any mandatory P1-P12 gate fails",
+  "gates": [
+    {
+      "id": "P1",
+      "mandatory": true,
+      "statement": "all outputs finite; zero actual dual-budget violations and hidden-state leaks"
+    },
+    {
+      "id": "P2",
+      "mandatory": true,
+      "statement": "below-B_id policies do not fabricate a reliable certificate"
+    },
+    {
+      "id": "P3",
+      "mandatory": true,
+      "statement": "in every Z-active cell information-only probes while learning-aware falls back"
+    },
+    {
+      "id": "P4",
+      "mandatory": true,
+      "statement": "Layer-A practical-Z aggregate paired mean difference is positive, its simultaneous one-sided lower bound is positive, and its point estimate is at least 3% of always-all risk"
+    },
+    {
+      "id": "P5",
+      "mandatory": true,
+      "statement": "at least 60% of registered scenario-level practical-Z families satisfy the P4 sign and 3% point-estimate criteria; denominator is frozen and neutral cells cannot enter it"
+    },
+    {
+      "id": "P6",
+      "mandatory": true,
+      "statement": "all neutral-Z cells are retained and reported without contributing to P4/P5"
+    },
+    {
+      "id": "P7",
+      "mandatory": true,
+      "statement": "at/above-B-value learning-aware adapts and convergent policies have plan agreement without a forced nonzero gap"
+    },
+    {
+      "id": "P8",
+      "mandatory": true,
+      "statement": "aggregate empirical crossover direction lies within or adjacent to the registered [B_id,B_value] bracket"
+    },
+    {
+      "id": "P9",
+      "mandatory": true,
+      "statement": "theorem-facing S_mean upper bound is at most epsilon_safe; S_path is descriptive only"
+    },
+    {
+      "id": "P10",
+      "mandatory": true,
+      "statement": "delay-active, message-binding, and environment-binding subsets are nonempty and match preregistered directional contrasts"
+    },
+    {
+      "id": "P11",
+      "mandatory": true,
+      "statement": "Layer-B affine-TD aggregate strata have the same risk-difference sign as Layer A; every registered task is retained"
+    },
+    {
+      "id": "P12",
+      "mandatory": true,
+      "statement": "clean same-seed rerun reproduces core CSV/JSON byte for byte"
+    }
+  ],
+  "scenario_level_coverage_gate": 0.6,
+  "schema_version": 1,
+  "scientific_outcomes_present": false,
+  "task": "EXP-016B"
+}

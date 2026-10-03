@@ -1,0 +1,42 @@
+{
+  "artifact_id": "CAGT-HEADROOM-STATIC-20260901",
+  "artifact_type": "outcome_free_analytic_feasibility_scan",
+  "parent_commit": "3c9d142",
+  "created_date": "2026-09-01",
+  "grid": {
+    "n_agents": [3, 5, 8],
+    "coupling": [0.2, 0.5, 0.8],
+    "latency_pattern": ["one_straggler", "two_tier"],
+    "slow_latency": [4.0, 12.0],
+    "initial_condition": ["sparse", "alternating", "ramp"],
+    "hvp_overhead": [0.0, 0.25, 1.0],
+    "horizon": 96.0,
+    "cells": 324,
+    "phase_cells": {"low": 54, "transition": 216, "high": 54}
+  },
+  "policies": {
+    "exact_transport": 1,
+    "nontransport_comparators": 54,
+    "total": 55,
+    "trajectories": 17820
+  },
+  "gates": {
+    "complete_finite": true,
+    "high_geometric_ratio_max": 0.9,
+    "high_fraction_ten_percent_gain_min": 0.6,
+    "transition_geometric_ratio_max": 0.95,
+    "low_geometric_ratio_max": 1.05,
+    "high_full_hvp_cost_geometric_ratio_max": 0.95,
+    "transport_harmful_steps_max": 0
+  },
+  "stopping_rule": "Any failed gate stops the full-transport performance route; a pass only permits theorem completion and a separately preregistered stochastic pilot.",
+  "formal_authorized": false,
+  "gpu_authorized": false,
+  "source_sha256": {
+    "experiments/policy_update_backpressure/transport_headroom.py": "eff50e7c54616cd2067106d3f6d24e28b76c7a4f03b32ee3b6b5839c9a0b1324",
+    "experiments/policy_update_backpressure/test_transport_headroom.py": "235970c54b378c6f45db62435ee6ae8620758051dceb9a204617e7ffbecf3808",
+    "docs/cross_agent_transport_headroom_plan.md": "b1cc628b0e601106fd1621d38194d1d683087f21dccd723dc50e667f79779170",
+    "experiments/policy_update_backpressure/transport_theory.py": "97f097d99829e7e11476af070e202cca0df93c77ccdb99f055be4c4be823045e",
+    "docs/cross_agent_transport_proof_program.md": "fe05f8d424643c27d4fe9e0aad3de875fc4e257b974ce0ab1d0bc1c3cb35b38f"
+  }
+}

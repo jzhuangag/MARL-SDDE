@@ -1,0 +1,182 @@
+{
+  "experiment": "EXP-009B",
+  "status": "FAIL",
+  "registered_runs": 9216,
+  "gates": {
+    "certificate_coverage": {
+      "pass": true,
+      "observed_coverage": 0.9889322916666666
+    },
+    "conditional_exact_safety": {
+      "pass": true,
+      "covered_runs": 1519,
+      "largest_covered_radius": 0.9937144556687854
+    },
+    "online_trajectory_safety": {
+      "pass": true,
+      "divergences": 0
+    },
+    "naive_failure_detectable": {
+      "pass": false,
+      "unstable_rate_at_p0p98": 0.75
+    },
+    "expected_oracle_competitiveness": {
+      "pass": false,
+      "largest_scenario_median_ratio": 11.634653512134712
+    },
+    "expected_robust_baseline_improvement": {
+      "pass": true,
+      "improved_scenarios": 8,
+      "total_scenarios": 8
+    },
+    "participation_response": {
+      "pass": true,
+      "median_q_rho0": 6.0,
+      "median_q_rho0p9": 1.0
+    },
+    "correction_efficacy": {
+      "pass": false,
+      "exp009b_largest_ratio": 11.634653512134712,
+      "exp009a_reference_largest_ratio": 11.387503064754728
+    }
+  },
+  "overall_pass": false,
+  "scenario_ratios": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 1.2535141007064723
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 1.7953028773018762
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 1.1888275687327892
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 1.0533204824904476
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 1.1828924072747768
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 0.996403599004745
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 1.2019032563310497
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 1.0025708239978557
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 2.1325663404793604
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 11.634653512134712
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 1.5587807132912055
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 9.846982793522992
+    }
+  ],
+  "low_persistence_medians": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "online_ucb": 2.8272855437000684e-05,
+      "worst_mixing": 0.00010181475283613054
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "online_ucb": 0.0007920716903023207,
+      "worst_mixing": 0.001276580842650051
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "online_ucb": 0.0001734090686474736,
+      "worst_mixing": 0.001218978180957751
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "online_ucb": 0.0007811185367203853,
+      "worst_mixing": 0.0015160529739082272
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "online_ucb": 5.646488249504361e-05,
+      "worst_mixing": 0.0001018159276916185
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "online_ucb": 0.0005156009188809818,
+      "worst_mixing": 0.0012765882217211913
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "online_ucb": 0.00046680792308835295,
+      "worst_mixing": 0.001218984126294789
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "online_ucb": 0.0005187922229635541,
+      "worst_mixing": 0.0015160604993906816
+    }
+  ],
+  "artifacts": [
+    "finite_budget_runs.csv",
+    "summary.json",
+    "fig1_expected_policy_error.png",
+    "fig2_online_actions.png"
+  ]
+}

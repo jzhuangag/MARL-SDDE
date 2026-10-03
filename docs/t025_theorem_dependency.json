@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "task": "T-025",
+  "date": "2026-08-02",
+  "supersedes": "docs/t021_theorem_dependency.json",
+  "mainline": "fixed-q correlation- and delay-limited learning under dual budgets",
+  "claims": [
+    {
+      "id": "FQ-1",
+      "source": "proof_program_joint_ms.md Theorem 3",
+      "status": "proved",
+      "scope": "decorrelated/thinned delayed homogeneous vector TD mean-square contraction",
+      "evidence": ["EXP-007B--D mechanism diagnostics"],
+      "main_text": true
+    },
+    {
+      "id": "FQ-2",
+      "source": "proof_program_joint_ms.md Theorem 4",
+      "status": "proved_and_formally_supported",
+      "scope": "affine decorrelated/thinned delayed finite-time TD bound",
+      "evidence": ["EXP-016B Layer B formal, exact reproduction"],
+      "main_text": true
+    },
+    {
+      "id": "FQ-3",
+      "source": "proof_program_joint_ms.md Theorem 5",
+      "status": "proved",
+      "scope": "Gaussian common-factor exact speedup and single additive round-cost participation lower bound",
+      "evidence": ["analytic Gaussian subclass checks"],
+      "main_text": true
+    },
+    {
+      "id": "DB-1",
+      "source": "adaptive_change_of_measure.md, adaptive_pareto_lower_bound.md, and learning_value_separation_theorem.md",
+      "status": "proved_and_formally_supported_in_registered_model",
+      "scope": "known or separately certified mixing, stopped dual budgets, delay opportunity cost, and compact separated regimes",
+      "evidence": ["EXP-016B Layer A formal, exact reproduction"],
+      "does_not_imply": "uniform unrestricted-unknown-mixing online adaptation",
+      "main_text": true
+    },
+    {
+      "id": "FQ-4",
+      "source": "proof_program_joint_ms.md Theorem 9",
+      "status": "proved_identity_and_formally_calibrated",
+      "scope": "fixed-parameter nonlinear averaged-gradient variance identity",
+      "evidence": ["EXP-018B formal, 192 seeds, exact reproduction"],
+      "does_not_imply": [
+        "nonlinear optimization convergence",
+        "online participation performance",
+        "delay or dual-budget nonlinear learning"
+      ],
+      "main_text": true
+    },
+    {
+      "id": "UM-1",
+      "source": "unknown_mixing_impossibility.md",
+      "status": "proved_negative",
+      "scope": "unrestricted unknown mixing approaching one has no uniform finite-budget guarantee",
+      "main_text": true
+    },
+    {
+      "id": "AS-1",
+      "source": "adaptation_threshold_sandwich.md and EXP-016B",
+      "status": "proved_and_formally_supported_on_compact_separated_class",
+      "scope": "certified separated mixing and nonvanishing oracle gap",
+      "main_text": true,
+      "does_not_imply": "uniform controlled-belief occupation matching"
+    },
+    {
+      "id": "ADAPT-ONLINE",
+      "source": "EXP-014A through T-020",
+      "status": "excluded_by_negative_experiments",
+      "main_text": false
+    },
+    {
+      "id": "UNTHINNED",
+      "source": "proof_program_joint_ms.md Section 7",
+      "status": "open",
+      "required_for_current_mainline": false
+    },
+    {
+      "id": "SDDE-DISCRETE",
+      "source": "proof_program_joint_ms.md Section 8",
+      "status": "open",
+      "required_for_current_mainline": false,
+      "allowed_role": "Lyapunov-Krasovskii interpretation only"
+    },
+    {
+      "id": "NL-LEARNING-BREADTH",
+      "source": "future outcome-free benchmark",
+      "status": "open",
+      "required_for_submission_readiness": true,
+      "gpu_authorized": false,
+      "authorization_condition": "pass all T-020 static value and integrity conditions in a separate preregistration commit"
+    }
+  ],
+  "direct_nonlinear_covariance_gate": "closed_by_EXP-018B",
+  "claim_boundary_pass": true,
+  "icml_candidate": true,
+  "submission_ready": false,
+  "gpu_execution_authorized": false
+}

@@ -1,0 +1,71 @@
+{
+  "experiment_id": "TSP-MARL-SMACV2-HEADROOM-001",
+  "role": "development-only fixed-policy headroom test; no controller and no confirmatory claim",
+  "predecessor": {
+    "stopped_experiment": "TSP-MARL-SMACV2-DEV-001",
+    "calibration": "TSP-SMACV2-COUPLING-CAL-001",
+    "performance_outcome_used_for_design": false
+  },
+  "upstream": {
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "smacv2_commit": "577ab5a2cff2391f8df582da5731ea9cd6adf3c6",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "smacv2",
+    "map_name": "terran_10_vs_10",
+    "strategic_agents": 10,
+    "enemies": 10,
+    "episode_limit": 200,
+    "ctde": true,
+    "decentralized_evaluation": true
+  },
+  "dependence_regimes": {
+    "independent": "cyclically distinct environment seeds and ordinary action uniforms",
+    "shared": "common procedural and StarCraft seed plus common inverse-CDF action uniforms; empirically moderate rather than near-replicated dependence"
+  },
+  "fixed_methods": ["fixed_q1", "fixed_q8"],
+  "budgets": {
+    "message_budget": 6400000,
+    "environment_budget": 1200000,
+    "server_overhead_per_rollout_packet": 800,
+    "rollout_length": 200,
+    "fixed_q1_updates": 6000,
+    "fixed_q8_updates": 2666,
+    "fixed_q1_actor_transitions": 1200000,
+    "fixed_q8_actor_transitions": 4265600
+  },
+  "model": {
+    "hidden_sizes": [128, 128],
+    "activation": "relu",
+    "actor_lr": 0.0005,
+    "critic_lr": 0.0005,
+    "ppo_epochs": 5,
+    "critic_epochs": 5,
+    "value_normalization": true
+  },
+  "evaluation": {
+    "interval_training_updates": 200,
+    "episodes": 32,
+    "threads": 8,
+    "auc_grid_points": 21,
+    "primary_metric": "area under evaluation team return versus fully charged budget fraction",
+    "secondary_metric": "evaluation win-rate AUC"
+  },
+  "development_seeds": [81101, 81102],
+  "planned_runs": 8,
+  "mandatory_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "independent_q8_return_auc_relative_gain_min": 0.05,
+    "shared_q1_return_auc_relative_gain_min": 0.05,
+    "regime_oracle_return_auc_relative_gain_over_strong_static_min": 0.03,
+    "terminal_return_directions_agree_with_auc": true,
+    "analysis_replay_byte_identical": true
+  },
+  "stopping_rule": "Any failed gate stops the SMACv2 controller stage. Passing authorizes only a separately preregistered controller development stage with new seeds.",
+  "storage": {
+    "remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-SMACV2-DEV-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

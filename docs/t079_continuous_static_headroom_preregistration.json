@@ -1,0 +1,98 @@
+{
+  "experiment_id": "T-079-continuous-static-graph-headroom-audit",
+  "classification": "outcome-aware comparator strengthening on exact moments; no sampled trajectory and no formal evidence",
+  "source": {
+    "parent_config": "docs/t070a_exact_nonstationary_graph_preregistration.json",
+    "parent_config_sha256": "08A0621AFC6C28FCA79C64EAA1C9E5CB89E3BF2C00A4B6D4533B2B01827EBB43",
+    "discrete_cells": "experiments/dependence_delay_linear/results/t070a_exact_nonstationary_graph_scan/cells.csv",
+    "discrete_cells_sha256": "CF00672BBE4F58155C32E858B9E9ABA3FB5C42EC711A9A58B9B414D5668C0B7F",
+    "source_role": "initialization_and_dominance_check_only"
+  },
+  "model": {
+    "agents": 4,
+    "patterns": {
+      "A": [-1.0, -1.0, 1.0, 1.0],
+      "B": [-1.0, 1.0, -1.0, 1.0]
+    },
+    "curvature": 1.0,
+    "gain": 0.04,
+    "blocks": 24,
+    "learning_steps_per_block": 10,
+    "decision_blocks": [0, 4, 8, 12, 16, 20],
+    "probe_steps_per_decision": 2,
+    "probe_samples_are_learning_updates": false
+  },
+  "grid": {
+    "schedule_family": ["stationary", "single_switch", "alternating"],
+    "target_scale": [0.1, 0.3, 0.6],
+    "initial_common_parameter": [0.5, 1.5],
+    "noise_scale": [0.1, 0.5],
+    "spatial_correlation": [0.0, 0.9],
+    "temporal_correlation": [0.0, 0.9],
+    "delay": [0, 1, 3]
+  },
+  "actions": {
+    "alpha": [0.5, 1.0]
+  },
+  "static_optimizer": {
+    "parameterization": "one arbitrary row-stochastic 4-by-4 matrix reused at all six decision blocks",
+    "objective": "exact 24-block cumulative personalized mean-square risk",
+    "solver": "deterministic 10-start SLSQP including identity, uniform, three shrinkages, three permutations, the best discrete graph, and its smoothed version",
+    "deterministic_starts": 10,
+    "maximum_iterations_per_start": 250,
+    "uses_sampled_outcomes": false,
+    "claim_boundary": "strong best-found continuous static comparator; no unsupported global-optimality claim"
+  },
+  "dynamic_oracle": {
+    "class": "exact next-block row-simplex risk minimizer with charged local-shadow rollback",
+    "solver": "enumerate all nonempty row supports and solve each equality-constrained convex quadratic",
+    "dual_use_learning_steps": true,
+    "extra_probe_transitions": 0,
+    "role": "outcome-aware architecture ceiling, not a deployable controller"
+  },
+  "budget": {
+    "environment_transitions": 240,
+    "message_units": 18,
+    "fingerprint_message_units_per_decision": 1,
+    "mixing_message_units_per_decision": 1
+  },
+  "analysis": {
+    "primary_population": "all 288 nonstationary cells",
+    "primary_metric": "geometric mean of dynamic-continuous to optimized-static-continuous cumulative-risk ratios",
+    "graph_change_tolerance": 1e-6,
+    "no_cell_selection_from_outcomes": true
+  },
+  "mandatory_gates": {
+    "H1": "all 432 cells complete, finite, and positive",
+    "H2": "replayed discrete static risk matches the frozen source within relative error 1e-10",
+    "H3": "the optimized continuous static comparator is no worse than the source discrete static comparator in every cell",
+    "H4": "at least one successful static start per cell, row-sum residual at most 1e-9, and no negative weight below -1e-12",
+    "H5": "dynamic oracle uses exactly 240 learning transitions, zero extra probes, and at most 18 message units",
+    "H6": "maximum exact row-simplex KKT residual at most 1e-7",
+    "H7": "dynamic continuous oracle improves aggregate nonstationary risk by at least 5 percent over the strengthened continuous static graph",
+    "H8": "strict dynamic improvement in at least 60 percent of nonstationary cells",
+    "H9": "single-switch and alternating schedules each improve by at least 3 percent",
+    "H10": "every delay group has nonnegative improvement",
+    "H11": "stationary dynamic improvement is at most 5 percent",
+    "H12": "the dynamic graph changes at least once in at least 60 percent of nonstationary cells",
+    "H13": "clean rerun cells and scientific summary are byte-identical",
+    "H14": "complete repository experiment tests pass"
+  },
+  "expected_workload": {
+    "cells": 432,
+    "nonstationary_cells": 288,
+    "optimizer_starts": 10,
+    "workers": 8,
+    "recommended_hardware": "local CPU",
+    "gpu": false,
+    "hpc4": false
+  },
+  "authorization": {
+    "run_local_cpu_audit_after_independent_commit": true,
+    "new_seed_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

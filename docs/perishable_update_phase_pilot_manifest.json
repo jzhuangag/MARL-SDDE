@@ -1,0 +1,104 @@
+{
+  "artifact_id": "PUB-PHASE-PILOT-20260901",
+  "artifact_type": "cpu_mechanism_pilot_preregistration",
+  "created_date": "2026-09-01",
+  "parent_commit": "ba1aeb9f8ec820743366e586df81b3d886d07650",
+  "research_question": "Does one outcome-independent Lyapunov backpressure rule improve wall-clock policy-optimization regret over a cellwise selected 42-policy comparator envelope precisely when cross-agent update expiry is theoretically high, while remaining within a 3% low-load regret margin?",
+  "scientific_scope": {
+    "model": "cooperative strictly concave quadratic potential game",
+    "policies": "distinct scalar policy parameters",
+    "asynchrony": "independent per-agent two-state Markov completion streams",
+    "controller": "closed-form perishable-update backpressure rule",
+    "not_claimed": [
+      "general nonlinear reinforcement-learning performance",
+      "neural policy-gradient convergence",
+      "universal no-harm",
+      "formal paper evidence"
+    ]
+  },
+  "population": {
+    "phase_rays": [
+      {"name": "low", "coupling": 0.05, "slow_latency": 2},
+      {"name": "transition", "coupling": 0.45, "slow_latency": 5},
+      {"name": "high", "coupling": 0.85, "slow_latency": 10}
+    ],
+    "n_agents": [3, 5],
+    "latency_families": ["persistent", "bursty"],
+    "initial_conditions": ["sparse", "alternating", "dense"],
+    "cells": 36,
+    "cells_per_phase": 12,
+    "horizon": 64,
+    "potential_weight": 8.0
+  },
+  "seeds": {
+    "role": "pilot_common_random_numbers",
+    "values": [
+      910001, 910002, 910003, 910004, 910005, 910006, 910007, 910008,
+      910009, 910010, 910011, 910012, 910013, 910014, 910015, 910016,
+      910017, 910018, 910019, 910020, 910021, 910022, 910023, 910024,
+      910025, 910026, 910027, 910028, 910029, 910030, 910031, 910032,
+      910033, 910034, 910035, 910036, 910037, 910038, 910039, 910040,
+      910041, 910042, 910043, 910044, 910045, 910046, 910047, 910048
+    ],
+    "formal_seeds": []
+  },
+  "policies": {
+    "controller": ["pub"],
+    "fixed_eta": [0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1.0],
+    "fresh_serial_eta": [0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1.0],
+    "barrier_eta": [0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1.0],
+    "age_decay_eta": [0.2, 0.5, 1.0],
+    "age_decay_power": [0.5, 1.0, 2.0],
+    "rho_gate_eta": [0.2, 0.5, 1.0],
+    "rho_threshold": [0.25, 0.5, 0.75, 1.0],
+    "comparator_count": 42,
+    "total_policy_count": 43
+  },
+  "analysis": {
+    "primary_metric": "normalized_wall_clock_potential_regret",
+    "secondary_metric": "final_gradient_norm",
+    "comparator_rule": "within each cell select the comparator with the smallest mean pilot normalized regret over all 48 pilot seeds",
+    "comparator_interpretation": "outcome-aware strong cellwise envelope favorable to the baseline; not a deployable selector",
+    "aggregation": "cell means followed by phase-level geometric ratios; cell fractions are unweighted",
+    "multiplicity": "no null-hypothesis significance test; all practical gates are jointly mandatory"
+  },
+  "gates": {
+    "g1_complete_finite": true,
+    "g2_high_geometric_regret_ratio_max": 0.85,
+    "g3_high_fraction_cells_five_percent_min": 0.6,
+    "g4_transition_geometric_regret_ratio_max": 0.95,
+    "g5_low_geometric_regret_ratio_max": 1.03,
+    "g6_phase_gain_strict_order": true,
+    "g7_high_acceptance_rate_interval": [0.05, 0.95],
+    "g8_high_final_gradient_ratio_max": 1.05,
+    "g9_n5_to_n3_operations_per_event_ratio_max": 1.7166666666666668,
+    "g10_pub_harmful_steps_max": 0,
+    "g11_reproduction_exact": true,
+    "g12_seed_and_provenance_freeze": true
+  },
+  "cardinality": {
+    "trajectories": 74304,
+    "rows": 74304
+  },
+  "taint_and_stopping": {
+    "excluded_design_data": "all prior role-switch, participation, T-083A, EXP-017A and T-020 scientific outcomes",
+    "pilot_failure_rule": "failure of any mandatory gate stops formal preregistration and nonlinear/GPU escalation for this mechanism",
+    "pilot_success_rule": "success only permits a separately committed formal preregistration with disjoint seeds",
+    "formal_authorized_by_this_artifact": false,
+    "gpu_authorized_by_this_artifact": false
+  },
+  "planned_commands": {
+    "validate": ".\\.venv\\Scripts\\python.exe -m experiments.policy_update_backpressure.phase_pilot validate",
+    "run": ".\\.venv\\Scripts\\python.exe -m experiments.policy_update_backpressure.phase_pilot run --output experiments/policy_update_backpressure/results/phase_pilot_20260901",
+    "analyze": ".\\.venv\\Scripts\\python.exe -m experiments.policy_update_backpressure.analyze_phase_pilot experiments/policy_update_backpressure/results/phase_pilot_20260901/trajectories.json experiments/policy_update_backpressure/results/phase_pilot_20260901/summary.json",
+    "reproduce": ".\\.venv\\Scripts\\python.exe -m experiments.policy_update_backpressure.phase_pilot run --output experiments/policy_update_backpressure/results/phase_pilot_20260901_reproduction"
+  },
+  "source_sha256": {
+    "experiments/policy_update_backpressure/phase_pilot.py": "86b8bc5a57f5b2c15b95f783de2ca44204dd65f2a4ca7d62d3d8c840a932fa63",
+    "experiments/policy_update_backpressure/analyze_phase_pilot.py": "a633f24cb60a43bf5cf2db4ca6928bda2e35ef1ec3c7fb77a0589eb69ab7e75b",
+    "experiments/policy_update_backpressure/test_phase_pilot.py": "56faa76ead124994f0c7da11855e4b57f25ef0bea3d73e6becbaf80c7bf2f19e",
+    "experiments/policy_update_backpressure/test_analyze_phase_pilot.py": "5c5406319c7708c537d31acbaccc77c78971c6ecaf31021174194c63ba677234",
+    "experiments/policy_update_backpressure/phase_theory.py": "789c8568eb0be0da63f0cdff25eb397a69df0553a4171b296e5e1baf64bd6bdc",
+    "docs/perishable_update_phase_theory.md": "345cc7c6b741ed45e52fc13bf49117bb60cb51fb4b3ffc3cc9c78862b8a99294"
+  }
+}

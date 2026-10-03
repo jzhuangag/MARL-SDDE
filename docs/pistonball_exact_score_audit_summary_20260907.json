@@ -1,0 +1,85 @@
+{
+  "allowed_refresh_units": 512,
+  "cache_reset_energy": {
+    "count": 487,
+    "maximum": 0.001107670833789598,
+    "median": 1.1332269633790302e-05,
+    "minimum": 0.0,
+    "p90": 0.000199250970638332
+  },
+  "confirmatory": false,
+  "decision": "stop the Pistonball policy-cache mainline",
+  "descriptive_returns_not_used_by_gates": {
+    "exact": [
+      {
+        "actor_transitions": 0,
+        "launch": 0,
+        "optional_policy_bytes": 0,
+        "return": -13.4831460674157
+      },
+      {
+        "actor_transitions": 81920,
+        "launch": 1024,
+        "optional_policy_bytes": 23353236,
+        "return": -13.4831460674157
+      }
+    ],
+    "no_refresh": [
+      {
+        "actor_transitions": 0,
+        "launch": 0,
+        "optional_policy_bytes": 0,
+        "return": -13.4831460674157
+      },
+      {
+        "actor_transitions": 81920,
+        "launch": 1024,
+        "optional_policy_bytes": 0,
+        "return": -13.4831460674157
+      }
+    ]
+  },
+  "exact_refresh_units": 261,
+  "exact_runtime_seconds": 199.94108571799006,
+  "experiment_id": "PISTONBALL-EXACT-SPARSE-SCORE-AUDIT",
+  "gates": {
+    "E1_nonzero_signed_component": true,
+    "E2_nonzero_cache_component": true,
+    "E3_signed_favorable": true,
+    "E4_queue_active": true,
+    "E5_sparse_reverse_bound": false,
+    "E6_runtime": true
+  },
+  "learning_drift_delta": {
+    "count": 487,
+    "maximum": 3.168359398840882e-08,
+    "median": 1.8189894035458565e-12,
+    "minimum": -9.74163413044321e-09,
+    "p90": 2.731569111355494e-09
+  },
+  "no_refresh_runtime_seconds": 145.3675537389936,
+  "outcome_blind_calibration": true,
+  "passed": false,
+  "pilot_or_formal_evidence": false,
+  "queue_active_fraction": 0.459958932238193,
+  "queue_price": {
+    "count": 487,
+    "maximum": 0.5,
+    "median": 0.0,
+    "minimum": 0.0,
+    "p90": 0.5
+  },
+  "recommended_cache_debt_weight": 88009.15148128525,
+  "recommended_learning_weight": 100000000.0,
+  "reverse_calls": {
+    "count": 487,
+    "maximum": 18.0,
+    "median": 10.0,
+    "minimum": 9.0,
+    "p90": 13.0
+  },
+  "runtime_ratio_to_no_refresh": 1.3754175576001153,
+  "scored_launches": 487,
+  "selected_fraction": 0.5359342915811088,
+  "signed_favorable_fraction": 0.4887063655030801
+}

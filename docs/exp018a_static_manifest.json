@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment": "EXP-018A",
+  "parent_head": "4ab73b536b0aa94b6c0ebbcd4d3fc18b48ab80e9",
+  "static_manifest_hash": "421b3f433671ee7f35920eeac20746786893bfe10fe598140cbc84cd8dc4fc0d",
+  "execution": "local_CPU_only",
+  "tasks": ["cartpole", "acrobot"],
+  "mixing_profiles": {"fast_regeneration": 0.20, "slow_regeneration": 0.05},
+  "checkpoints": {"init_a": 18210101, "init_b": 18210102},
+  "q_levels": [1, 4, 16, 32],
+  "rho_levels": [0.0, 0.5, 0.9],
+  "block_length": 64,
+  "projection_count": 16,
+  "pilot_seed_count": 64,
+  "formal_seeds": null,
+  "expected_rows": 6144,
+  "expected_source_gradient_evaluations": 16896,
+  "base_environment_transitions": 540672,
+  "parameter_updates": 0,
+  "scientific_trajectories_before_preregistration": 0,
+  "gpu_or_hpc4_authorized": false
+}

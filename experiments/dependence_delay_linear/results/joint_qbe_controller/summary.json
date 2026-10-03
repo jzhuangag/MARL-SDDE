@@ -1,0 +1,192 @@
+{
+  "experiment": "EXP-009C",
+  "status": "FAIL",
+  "registered_runs": 9216,
+  "gates": {
+    "certificate_coverage": {
+      "pass": true,
+      "observed_coverage": 0.9889322916666666
+    },
+    "conditional_exact_safety": {
+      "pass": true,
+      "covered_runs": 1519,
+      "largest_covered_radius": 0.9937144548708687
+    },
+    "expected_oracle_competitiveness": {
+      "pass": false,
+      "largest_scenario_median_ratio": 10.464074324341452
+    },
+    "robust_baseline_improvement": {
+      "pass": true,
+      "improved_scenarios": 8,
+      "total_scenarios": 8
+    },
+    "participation_response": {
+      "pass": true,
+      "median_q_rho0": 18.0,
+      "median_q_rho0p9": 1.0
+    },
+    "exp009b_improvement": {
+      "pass": true,
+      "exp009c_largest_ratio": 10.464074324341452,
+      "exp009b_frozen_ratio": 11.634653512134712
+    },
+    "gap_is_active": {
+      "pass": true,
+      "distinct_scenario_median_gaps": 7,
+      "scenario_median_gaps": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        24.0,
+        20.0,
+        20.0,
+        19.0,
+        136.0,
+        125.0,
+        128.0,
+        128.0
+      ]
+    }
+  },
+  "overall_pass": false,
+  "scenario_ratios": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 1.13754680239816
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 1.990986964926623
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 1.2086588181461293
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 1.18458684042366
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 1.1692542678098903
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 1.0088004166464717
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 1.2210779459430117
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 1.0118499239575134
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 0,
+      "online_to_oracle": 1.5657282263924042
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 2,
+      "online_to_oracle": 10.464074324341452
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 0,
+      "online_to_oracle": 1.6155317515955323
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 2,
+      "online_to_oracle": 8.647805258309228
+    }
+  ],
+  "low_persistence_medians": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "online_ucb": 2.56572273729526e-05,
+      "worst_mixing": 7.65534121982137e-05
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "online_ucb": 0.0008784057374615897,
+      "worst_mixing": 0.0009774429086138322
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "online_ucb": 0.00017630176610911895,
+      "worst_mixing": 0.00121543743953191
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "online_ucb": 0.0008784627113100723,
+      "worst_mixing": 0.0014701452206930016
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "online_ucb": 3.9282427514116665e-05,
+      "worst_mixing": 7.655341223191054e-05
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "online_ucb": 0.0009150072601057057,
+      "worst_mixing": 0.0009774429104128465
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "online_ucb": 0.00043866097000143215,
+      "worst_mixing": 0.0012154374412559363
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "online_ucb": 0.0009177732396625185,
+      "worst_mixing": 0.0014701452228596487
+    }
+  ],
+  "artifacts": [
+    "joint_qbe_runs.csv",
+    "summary.json",
+    "fig1_joint_policy_error.png",
+    "fig2_joint_actions.png"
+  ]
+}

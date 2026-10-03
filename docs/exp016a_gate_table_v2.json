@@ -1,0 +1,105 @@
+{
+  "all_mandatory": true,
+  "amendment_configuration_sha256": "a6312a4769457c3d73aedea60f9c3523a2860d6fc0499ad1ccdb6124188412d0",
+  "experiment": "EXP-016A",
+  "familywise_alpha": 0.05,
+  "gates": [
+    {
+      "id": "G1",
+      "mandatory": true,
+      "name": "validity_and_leakage",
+      "pass_rule": "all metrics finite, zero charged budget violations, zero hidden-state leakage, and no analytic risk copied into observed MSE",
+      "scope": "all generated rows plus static source/runtime audit"
+    },
+    {
+      "id": "G2",
+      "mandatory": true,
+      "name": "below_B_N_fallback",
+      "pass_rule": "learning_aware fallback fraction equals 1 exactly by deterministic runtime path audit",
+      "scope": "all theorem-scope below_bn cells"
+    },
+    {
+      "id": "G3",
+      "mandatory": true,
+      "name": "above_B_S_qualification",
+      "pass_rule": "100% of paths satisfy frozen probe, delay, dual-budget, epsilon_safe, and commit-reserve qualification predicates",
+      "scope": "all theorem-scope above_bs cells"
+    },
+    {
+      "id": "G4",
+      "mandatory": true,
+      "name": "high_regime_gain",
+      "pass_rule": "all cells must have positive analytic expected paired gain direction; only the outcome-free practical-effect subset with analytic relative gain >=0.02 is required to pass the 2% practical-effect claim and simultaneous lower-bound calibration",
+      "scope": "all theorem-scope above_bs high-regime cells, with practical-effect subset reported separately"
+    },
+    {
+      "id": "G5",
+      "mandatory": true,
+      "name": "low_regime_safety",
+      "pass_rule": "mandatory theorem/runtime compliance audit for epsilon_safe; empirical CI calibration is reported as calibration and may not be an impossible per-cell pass/fail gate",
+      "scope": "all theorem-scope above_bs low-regime cells"
+    },
+    {
+      "id": "G6a",
+      "mandatory": true,
+      "name": "directional_identification_theorem_runtime_audit",
+      "pass_rule": "frozen bidirectional test thresholds are used, both directional analytic bounds are <=0.025, runtime likelihood/stopping/q/b/delay/budget path equals manifest, zero threshold mismatch, and zero hidden-state leakage",
+      "scope": "all theorem-scope above_bs cells, low-to-high and high-to-low separately"
+    },
+    {
+      "id": "G6b",
+      "mandatory": true,
+      "name": "directional_identification_empirical_calibration",
+      "pass_rule": "one-sided exact binomial/Clopper-Pearson simultaneous aggregate directional upper bound <=0.025; any single-cell observed error rate >0.10 triggers failure or manual implementation audit",
+      "scope": "all preregistered above_bs seed blocks aggregated by direction, with per-cell intervals reported"
+    },
+    {
+      "id": "G7",
+      "mandatory": true,
+      "name": "break_even_bracket",
+      "pass_rule": "at least 0.75 of base scenarios place first registered positive paired mean gain in closed [B_N,B_S]",
+      "scope": "positive theorem scenarios only"
+    },
+    {
+      "id": "G8",
+      "mandatory": true,
+      "name": "novelty_learning_value",
+      "pass_rule": "subset must be nonempty; within it, learning_aware must beat information_only by >=0.03 relative with positive simultaneous lower-bound calibration and no charged-violation advantage; identical-path cells are reported but excluded from the novelty effect requirement",
+      "scope": "learning-value-active delayed dual-budget subset defined before outcomes"
+    },
+    {
+      "id": "G9",
+      "mandatory": true,
+      "name": "delay_mechanism",
+      "pass_rule": "no-delay ablation must have worse intended plan or worse oracle regret only where planning paths differ; identical-path cells receive consistency checks only",
+      "scope": "delay-active D=12 cells only"
+    },
+    {
+      "id": "G10",
+      "mandatory": true,
+      "name": "dual_budget_mechanism",
+      "pass_rule": "single-budget ablations must ignore the corresponding budget and produce a different intended plan before worse-outcome claims are tested; nonbinding/identical cells are consistency-only",
+      "scope": "message-active and environment-active cells only"
+    },
+    {
+      "id": "G11",
+      "mandatory": true,
+      "name": "exp015a_freeze",
+      "pass_rule": "EXP-015A remains 7/8 failure; threshold 0.80 and observed 0.777778 are unchanged",
+      "scope": "repository and report audit"
+    },
+    {
+      "id": "G12",
+      "mandatory": true,
+      "name": "reproducibility",
+      "pass_rule": "core raw CSV, aggregate CSV, gate JSON, metadata JSON, and configuration hash reproduce byte-for-byte",
+      "scope": "clean rerun with identical pilot seeds and committed configuration"
+    }
+  ],
+  "gray_zone_core_gate_eligible": false,
+  "original_configuration_sha256": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+  "progression": "All revised mandatory gates must pass. There is no aggregate k-of-n override.",
+  "schema_version": 2,
+  "scientific_outcomes_present": false,
+  "supersedes": "docs/exp016a_gate_table.json"
+}

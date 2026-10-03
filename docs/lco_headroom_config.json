@@ -1,0 +1,29 @@
+{
+  "experiment": "LCO-H1",
+  "scope": "current-oracle asynchronous coordinate-game phase headroom",
+  "horizon": 1024,
+  "seeds": {
+    "start": 81001,
+    "count": 32
+  },
+  "normalized_steps": [0.2, 0.5, 0.8],
+  "first_agent_arrival_probabilities": [0.1, 0.3, 0.5],
+  "phase_persistence": [0.8, 0.95],
+  "rotation_stationary_fractions": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "optimism_budgets": [0.25, 0.5, 0.75],
+  "fixed_schedule_period": 4,
+  "lyapunov_v_rule": "sqrt_horizon",
+  "dynamic_separation_margin": 0.05,
+  "mandatory_gates": {
+    "L1_finite_and_exact_accounting": true,
+    "L2_separated_dynamic_log_rate_gain_min": 0.005,
+    "L3_separated_dynamic_cell_improvement_fraction_min": 0.8,
+    "L4_separated_dynamic_contraction_fraction_min": 0.8,
+    "L5_median_phase_oracle_gain_capture_min": 0.6,
+    "L6_potential_anchor_fraction_max": 0.0,
+    "L7_potential_controller_never_log_rate_abs_error_max": 1e-12,
+    "L8_each_arrival_group_log_rate_gain_min": 0.002,
+    "L9_budget_overshoot_max": 0,
+    "L10_no_standard_marl_or_gpu_on_failure": true
+  }
+}

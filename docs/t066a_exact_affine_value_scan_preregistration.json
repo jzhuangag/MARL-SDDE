@@ -1,0 +1,66 @@
+{
+  "experiment_id": "T-066A-exact-delayed-affine-value-scan",
+  "classification": "outcome-free analytic feasibility scan; not sampled or formal evidence",
+  "parent_commit": "86ff92d",
+  "tasks": {
+    "balanced": {"drift": [[0.5, 0.0], [0.0, 1.0]], "initial_direction": [1.0, -0.5]},
+    "slow": {"drift": [[0.25, 0.0], [0.0, 0.75]], "initial_direction": [1.0, -0.5]},
+    "coupled": {"drift": [[0.6, 0.1], [0.1, 0.9]], "initial_direction": [1.0, -0.5]}
+  },
+  "grid": {
+    "delays": [0, 4, 8],
+    "rho": [0.0, 0.3, 0.6, 0.9],
+    "noise_scale": [0.1, 1.0, 10.0],
+    "initial_error_energy": [0.1, 1.0, 10.0]
+  },
+  "actions": {
+    "participation": [1, 2, 4, 8, 16, 32],
+    "gain": [0.005, 0.0075, 0.01, 0.0125, 0.015, 0.0175, 0.02]
+  },
+  "budget_regimes": {
+    "message_binding": {"message_overhead": 32, "message_budget": 6000, "environment_budget": 50000},
+    "environment_binding": {"message_overhead": 4, "message_budget": 50000, "environment_budget": 1500}
+  },
+  "sensor": {
+    "paired_replicates": 8,
+    "residual_block_length": 8,
+    "q_residual": 1,
+    "fingerprint_blocks": 32,
+    "fingerprint_length": 4,
+    "q_fingerprint": 2,
+    "probe_samples_are_learning_updates": false
+  },
+  "analysis": {
+    "risk": "exact terminal mean-square parameter error from propagated first and second moments",
+    "strong_fixed_pair": "task-by-budget pair minimizing geometric risk over every registered non-task cell",
+    "cellwise_oracle": "best registered pair within the cell under the same fully charged budgets",
+    "q_only": "cellwise best q while fixing eta to the strong fixed pair eta",
+    "eta_only": "cellwise best eta while fixing q to the strong fixed pair q",
+    "uses_sampled_outcome": false
+  },
+  "mandatory_gates": {
+    "S1": "every task-delay pair has a positive common quadratic certificate for the full gain interval",
+    "S2": "all 648 cells and 27216 action rows are finite and satisfy exact dual-budget accounting",
+    "S3": "cellwise joint oracle improves aggregate geometric risk over strong task-by-budget fixed pairs by at least 10%",
+    "S4": "cellwise joint oracle strictly improves at least 60% of cells",
+    "S5": "joint oracle strictly beats both q-only and eta-only restrictions in at least 30% of cells",
+    "S6": "both message-binding and environment-binding regimes contain at least two distinct oracle q values and two distinct oracle eta values",
+    "S7": "environment horizon divides remaining actor-transition budget by q",
+    "S8": "rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 648,
+    "actions_per_cell": 42,
+    "action_rows": 27216,
+    "recommended_hardware": "local CPU",
+    "gpu": false,
+    "hpc4": false
+  },
+  "authorization": {
+    "execute_only_after_independent_commit": true,
+    "sampled_pilot": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

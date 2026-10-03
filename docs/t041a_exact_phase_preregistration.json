@@ -1,0 +1,75 @@
+{
+  "experiment_id": "T-041A",
+  "kind": "prospective_exact_cpu_phase_map",
+  "parent_commit": "a6a9c02",
+  "scientific_execution_authorized_after_prereg_commit": true,
+  "formal_or_gpu_authorized": false,
+  "action_catalogue": {
+    "q": [1, 4, 16],
+    "stride": [1, 4],
+    "message_overhead": 2
+  },
+  "shared_grid": {
+    "matrices": {
+      "scalar": [[1.0]],
+      "diagonal_2d": [[0.7, 0.0], [0.0, 1.2]],
+      "coupled_2d": [[1.0, 0.2], [0.2, 0.8]]
+    },
+    "delay": [0, 1, 3],
+    "markov_lambda": [0.0, 0.6, 0.9],
+    "step_size": [0.04, 0.08],
+    "single_agent_covariance": "identity"
+  },
+  "families": {
+    "speedup": {
+      "rho": [0.0, 0.1],
+      "initial_scale": 0.0,
+      "message_budget": 100000,
+      "environment_budget": 96,
+      "predicted_label": "q16_better_than_q1"
+    },
+    "saturation": {
+      "rho": [1.0],
+      "initial_scale": 1.0,
+      "message_budget": 100000,
+      "environment_budget": 96,
+      "predicted_label": "q16_equal_q1"
+    },
+    "reversal": {
+      "rho": [0.8, 1.0],
+      "initial_scale": 10.0,
+      "message_budget": 180,
+      "environment_budget": 100000,
+      "predicted_label": "q16_worse_than_q1"
+    }
+  },
+  "analysis": {
+    "primary_stride": 1,
+    "primary_large_q": 16,
+    "primary_small_q": 1,
+    "tie_break": ["risk", "q", "stride"],
+    "minimax_private_variance_floor": 1e-06,
+    "all_cells_are_analytic": true,
+    "no_seeds_or_confidence_intervals": true
+  },
+  "mandatory_gates": {
+    "P1": "all rows finite, dual-budget feasible, and companion spectral radius below one",
+    "P2": "speedup directional fraction with risk(q16)/risk(q1) <= 0.95 is at least 0.95",
+    "P3": "every saturation primary comparison has absolute relative difference at most 1e-10",
+    "P4": "reversal directional fraction with risk(q16)/risk(q1) >= 1.05 is at least 0.90",
+    "P5": "best-q support across scenario cells contains at least two distinct participation levels",
+    "P6": "all speedup and saturation primary cells are environment-binding; all reversal primary cells are message-binding",
+    "P7": "all scalar T-037 risks match the independent T-035 formula within relative error 1e-10",
+    "P8": "both at-least-5-percent positive cells and at-most-1-percent no-value cells are present",
+    "P9": "clean rerun produces byte-identical rows and summary",
+    "P10": "configuration, runner, output rows, and summary SHA-256 values are recorded"
+  },
+  "stop_rule": "Any failed mandatory gate permanently stops T-041A as a positive phase-map result and forbids a fresh-seed tabular experiment under this mainline.",
+  "expected_workload": {
+    "scenarios": 270,
+    "actions_per_scenario": 6,
+    "rows": 1620,
+    "recommended_hardware": "local CPU",
+    "gpu": false
+  }
+}

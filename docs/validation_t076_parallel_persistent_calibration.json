@@ -1,0 +1,34 @@
+{
+  "experiment_id": "T-076-parallel-execution-of-frozen-T074-calibration",
+  "verification_status": "COMPUTE_GATE_FAILURE",
+  "decision": "E3_hard_timeout_stop_without_grid_outcome",
+  "provenance": {
+    "frozen_execution_commit": "098249270d24f39909d5efcacf8d057d4bbb60ff",
+    "scientific_config_sha256": "BF7EB584B0AFA92D261849B2BBDE2929C4C464C56B91EC120D20AAB5A0819E8C"
+  },
+  "execution": {
+    "workers": 4,
+    "declared_hard_timeout_minutes": 12,
+    "observed_stop_after_minutes": 13.4,
+    "worker_processes_responsive": true,
+    "worker_rss_bytes_approximately": 35000000,
+    "parent_rss_bytes_approximately": 87000000,
+    "result_directory_created": false,
+    "partial_outcome_retained": false
+  },
+  "compute_gates": {
+    "E1": true,
+    "E2": false,
+    "E3": false,
+    "E4": false,
+    "E5": false
+  },
+  "authorization": {
+    "retry_T076": false,
+    "new_eight_worker_execution_audit": true,
+    "scientific_interpretation": false,
+    "new_seed_pilot": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "experiment": "LCO-V0-DEVELOPMENT",
+  "formal_evidence": false,
+  "horizon": 1024,
+  "seeds": {
+    "start": 83001,
+    "count": 8
+  },
+  "normalized_steps": [0.2, 0.5, 0.8],
+  "first_agent_arrival_probabilities": [0.1, 0.5],
+  "phase_persistence": [0.8, 0.95],
+  "rotation_stationary_fractions": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "optimism_budgets": [0.25, 0.5],
+  "fingerprint_noise_standard_deviations": [0.0, 0.05],
+  "fixed_schedule_period": 4,
+  "lyapunov_v_rule": "sqrt_horizon",
+  "dynamic_separation_margin": 0.05,
+  "minimum_gradient_energy": 1e-8,
+  "likelihood_sigma_floor": 0.05,
+  "likelihood_sigma_noise_multiplier": 4.0,
+  "development_survival_gates": {
+    "minimum_each_noise_mean_dynamic_gain": 0.02,
+    "minimum_each_noise_median_exact_gain_capture": 0.4,
+    "minimum_each_noise_dynamic_cell_improvement_fraction": 0.75,
+    "minimum_each_arrival_mean_dynamic_gain": 0.005,
+    "minimum_low_persistence_mean_dynamic_gain": 0.01,
+    "minimum_low_budget_mean_dynamic_gain": 0.0,
+    "minimum_each_noise_gain_over_myopic": 0.002,
+    "minimum_information_induced_call_fraction": 0.001,
+    "maximum_stationary_potential_log_rate_loss": 0.0,
+    "maximum_budget_overshoot": 0
+  }
+}

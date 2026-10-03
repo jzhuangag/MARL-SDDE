@@ -1,0 +1,69 @@
+{
+  "all_mandatory": true,
+  "experiment": "EXP-017A",
+  "formal_rule": "any failed G1-G12 gate stops formal; no threshold, seed, policy, or population amendment is allowed",
+  "gates": [
+    {
+      "id": "G1",
+      "mandatory": true,
+      "statement": "all runs and registered metrics are finite; zero message/environment budget violations"
+    },
+    {
+      "id": "G2",
+      "mandatory": true,
+      "statement": "the exact registered task/mixing/correlation/delay/budget/policy/seed population is present"
+    },
+    {
+      "id": "G3",
+      "mandatory": true,
+      "statement": "every public joint regeneration certificate satisfies lambda_upper <= 1-gamma"
+    },
+    {
+      "id": "G4",
+      "mandatory": true,
+      "statement": "common/private complete-trajectory coupling and source-bank hashes are recorded; no observation-noise dependence shortcut"
+    },
+    {
+      "id": "G5",
+      "mandatory": true,
+      "statement": "information-only API contains no true rho, source mask, held-out error, MC return, teacher, or outcome input"
+    },
+    {
+      "id": "G6",
+      "mandatory": true,
+      "statement": "all paired policies receive identical message and environment budgets and remain communication matched"
+    },
+    {
+      "id": "G7",
+      "mandatory": true,
+      "statement": "learning-aware median selected q is strictly smaller at rho=0.9 than rho=0"
+    },
+    {
+      "id": "G8",
+      "mandatory": true,
+      "statement": "learning-aware median b under nonzero delay is not smaller than under zero delay"
+    },
+    {
+      "id": "G9",
+      "mandatory": true,
+      "statement": "in high-correlation nonzero-delay cells, geometric terminal prediction risk learning-aware/information-only <= 0.98"
+    },
+    {
+      "id": "G10",
+      "mandatory": true,
+      "statement": "the same primary ratio is <=1.05 separately on CartPole-v1 and Acrobot-v1"
+    },
+    {
+      "id": "G11",
+      "mandatory": true,
+      "statement": "learning-aware is <=1.10 versus the pilot best-fixed-q envelope in geometric mean and CVaR90"
+    },
+    {
+      "id": "G12",
+      "mandatory": true,
+      "statement": "controller wall fraction <=0.10 and every run reports server ticks, agent transitions, Bellman error, prediction error, AUC, resources, and q/b traces"
+    }
+  ],
+  "schema_version": 1,
+  "scientific_outcomes_present": false
+}

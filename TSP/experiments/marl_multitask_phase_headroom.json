@@ -1,0 +1,75 @@
+{
+  "experiment_id": "TSP-MARL-MULTITASK-PHASE-A-001",
+  "role": "development-only endpoint headroom scan; no controller and no confirmatory claim",
+  "upstream": {
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "tasks": [
+    {
+      "task_id": "mpe_speaker_listener",
+      "environment": "pettingzoo_mpe",
+      "scenario": "simple_speaker_listener_v3",
+      "share_param": false,
+      "continuous_actions": false,
+      "rollout_length": 25,
+      "server_overhead": 100,
+      "environment_budget": 1000000,
+      "message_budgets": {
+        "message_binding": 5000000,
+        "environment_binding": 12000000
+      },
+      "hidden_size": 64,
+      "activation": "tanh",
+      "actor_lr": 0.0005,
+      "critic_lr": 0.0005,
+      "ppo_epoch": 2,
+      "critic_epoch": 2,
+      "eval_interval": 1000,
+      "eval_episodes": 32
+    },
+    {
+      "task_id": "mamujoco_halfcheetah_2x3",
+      "environment": "mamujoco",
+      "scenario": "HalfCheetah-v2",
+      "agent_conf": "2x3",
+      "share_param": true,
+      "continuous_actions": true,
+      "rollout_length": 200,
+      "server_overhead": 800,
+      "environment_budget": 1000000,
+      "message_budgets": {
+        "message_binding": 5000000,
+        "environment_binding": 12000000
+      },
+      "hidden_size": 128,
+      "activation": "tanh",
+      "actor_lr": 0.0005,
+      "critic_lr": 0.0005,
+      "ppo_epoch": 5,
+      "critic_epoch": 5,
+      "eval_interval": 200,
+      "eval_episodes": 20
+    }
+  ],
+  "coupling_regimes": ["independent", "shared"],
+  "fixed_q_endpoints": [1, 8],
+  "development_seeds": [112001, 112002],
+  "seed_registry_base": 112001,
+  "seed_registry_size": 128,
+  "auc_grid_points": 21,
+  "planned_runs": 32,
+  "mandatory_stage_a_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "distinct_oracle_actions_min_per_task": 2,
+    "oracle_relative_headroom_over_task_static_min_each_task": 0.02,
+    "message_binding_regime_reversal_each_task": true,
+    "analysis_replay_byte_identical": true
+  },
+  "stopping_rule": "Any failed mandatory gate stops q=2/q=4 completion and controller design for this frozen task suite. Stage A outcomes cannot alter tasks, rays, seeds, endpoints, or thresholds.",
+  "storage": {
+    "remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MULTITASK-PHASE-A-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "continuous_coupling_audit": {
+    "draws": 20000,
+    "mean_error_max": 0.020189824207660245,
+    "pass": true,
+    "standardized_cross_worker_error_max": 8.881784197001252e-16,
+    "variance_error_max": 0.055165630582002745
+  },
+  "environment_audits": [
+    {
+      "agents": 2,
+      "coupling": "independent",
+      "environment": "mamujoco",
+      "finite": true,
+      "observation_shape": [
+        19
+      ],
+      "reset_relation_ok": true,
+      "state_shape": [
+        17
+      ],
+      "task_id": "mamujoco_halfcheetah_2x3",
+      "workers": 4
+    },
+    {
+      "agents": 2,
+      "coupling": "shared",
+      "environment": "mamujoco",
+      "finite": true,
+      "observation_shape": [
+        19
+      ],
+      "reset_relation_ok": true,
+      "state_shape": [
+        17
+      ],
+      "task_id": "mamujoco_halfcheetah_2x3",
+      "workers": 4
+    }
+  ],
+  "experiment_id": "TSP-MARL-MULTITASK-PHASE-A-001",
+  "gates": {
+    "continuous_marginal_and_public_noise": true,
+    "no_return_or_policy_update": true,
+    "pinned_clean_upstream": true,
+    "reset_coupling_relation": true,
+    "task_interfaces_finite": true
+  },
+  "harl_clean": true,
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "pass": true,
+  "role": "outcome-free compatibility audit",
+  "scientific_outcome_generated": false,
+  "task_id": "mamujoco_halfcheetah_2x3"
+}

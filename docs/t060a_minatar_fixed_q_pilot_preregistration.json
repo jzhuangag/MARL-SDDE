@@ -1,0 +1,141 @@
+{
+  "experiment_id": "T-060A",
+  "stage": "prospective fixed-q CPU feasibility pilot",
+  "configuration_sha256": "2a8b9b5f80174a2440c21d7c9a62c1bc372495188569596cc560eda9542604c1",
+  "source_sha256": {
+    "bridge": "6242669ca110aed133613691dc4625729dd64435c779edd83d92ea26ee6f9959",
+    "bridge_tests": "09d61ba0687bd5c329eeae05283a05de4adf0157c48a0610800caa88389e1ed0",
+    "runner_analyzer": "f29cecd47d5110c7c2ff0fd02ac611e7188d02d764c8b7427e7a97f545c19aa1",
+    "validator": "779808861848b32ec6ab2d1c46ec51c1f1cae697080d4a1fa2cd745f7ad8dbb7",
+    "tests": "cc4f29e50cef3029d42ebca26e084a2aae97ef0a95bd5fcfb56d8439f167e5c3",
+    "validator_tests": "b00a56550ef88b7e653d8b7189bf9c8d8ffbce6b77082011ec84443a34b9288b"
+  },
+  "environment": {
+    "package": "MinAtar==1.0.15",
+    "wheel_sha256": "f40450e133c552b97222702bb7b1c5254b47758390f4bd25e411399af0b21d42",
+    "policy": "uniform over the public full six-action set",
+    "sticky_action_probability": 0.1,
+    "difficulty_ramping": false,
+    "terminal_successor": "zero feature followed by public reset"
+  },
+  "tasks": {
+    "asterix": {
+      "channels": 4,
+      "encoder_seed": 590101,
+      "reference_seeds": [
+        {"environment": 202608050101, "policy": 202608050102},
+        {"environment": 202608050103, "policy": 202608050104}
+      ]
+    },
+    "breakout": {
+      "channels": 4,
+      "encoder_seed": 590102,
+      "reference_seeds": [
+        {"environment": 202608050201, "policy": 202608050202},
+        {"environment": 202608050203, "policy": 202608050204}
+      ]
+    },
+    "seaquest": {
+      "channels": 10,
+      "encoder_seed": 590103,
+      "reference_seeds": [
+        {"environment": 202608050301, "policy": 202608050302},
+        {"environment": 202608050303, "policy": 202608050304}
+      ]
+    }
+  },
+  "encoder": {
+    "filters": 8,
+    "output_features": 32,
+    "feature_dimension_with_constant": 33,
+    "batch_size": 8192,
+    "torch_threads": 4,
+    "parameters_trainable": 0
+  },
+  "reference": {
+    "banks": 2,
+    "transitions_per_bank": 131072,
+    "prediction_scale_floor": 0.001,
+    "reference_seeds_disjoint_from_pilot": true
+  },
+  "learning": {
+    "discount": 0.97,
+    "regularization": 0.08,
+    "maximum_step_size": 0.05,
+    "spectral_step_fraction": 0.20,
+    "step_size_rule": "min(maximum_step_size, spectral_step_fraction / reference drift spectral norm)",
+    "target_updates_qmax": 8192,
+    "pr_burn_fraction": 0.5,
+    "initial_head": "zero",
+    "risk": "reference feature-covariance-weighted squared prediction error of the half-tail PR head",
+    "secondary": "squared regularized reference Bellman-vector residual"
+  },
+  "grid": {
+    "participation": [1, 4, 16],
+    "overheads": [8, 32],
+    "correlations": [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+    "delays": [0, 8]
+  },
+  "pilot_seeds": [
+    202608056001, 202608056002, 202608056003, 202608056004,
+    202608056005, 202608056006, 202608056007, 202608056008,
+    202608056009, 202608056010, 202608056011, 202608056012,
+    202608056013, 202608056014, 202608056015, 202608056016,
+    202608056017, 202608056018, 202608056019, 202608056020,
+    202608056021, 202608056022, 202608056023, 202608056024,
+    202608056025, 202608056026, 202608056027, 202608056028,
+    202608056029, 202608056030, 202608056031, 202608056032
+  ],
+  "selection_seeds": [
+    202608056001, 202608056002, 202608056003, 202608056004,
+    202608056005, 202608056006, 202608056007, 202608056008,
+    202608056009, 202608056010, 202608056011, 202608056012,
+    202608056013, 202608056014, 202608056015, 202608056016
+  ],
+  "validation_seeds": [
+    202608056017, 202608056018, 202608056019, 202608056020,
+    202608056021, 202608056022, 202608056023, 202608056024,
+    202608056025, 202608056026, 202608056027, 202608056028,
+    202608056029, 202608056030, 202608056031, 202608056032
+  ],
+  "coupling": {
+    "construction": "one common plus sixteen private complete streams; actor i selects common with probability sqrt(rho)",
+    "prefix_common_random_numbers": true,
+    "marginal_law_unchanged": true
+  },
+  "costs": {
+    "message_budget": "(overhead + 16) * 8192",
+    "environment_budget": "16 * 8192 actor transitions",
+    "usable_updates": "min(floor(B_msg/(overhead+q)), floor(B_env/q)) - delay",
+    "delay_reserve_charged": true,
+    "probe_cost": "not applicable; no probe or controller is present"
+  },
+  "selection_analysis": {
+    "strong_fixed_q": "selected per task and overhead on the first 16 seeds by geometric mean over rho and delay",
+    "cellwise_oracle": "selected per task, overhead, rho, and delay on the first 16 seeds",
+    "value_evaluation": "both frozen selections evaluated only on the disjoint final 16 seeds",
+    "formal_evidence": false
+  },
+  "gates": {
+    "maximum_reference_drift_disagreement": 0.08,
+    "maximum_reference_prediction_disagreement": 0.15,
+    "maximum_condition_number": 500.0,
+    "maximum_oracle_strong_ratio": 0.95,
+    "minimum_strict_cell_fraction": 0.60,
+    "maximum_task_oracle_strong_ratio": 0.98,
+    "minimum_directional_path_fraction": 0.75,
+    "all_gates_required": true,
+    "failure_stops_controller": true
+  },
+  "expected": {
+    "tasks": 3,
+    "pilot_seeds": 32,
+    "selection_seeds": 16,
+    "validation_seeds": 16,
+    "cells": 84,
+    "endpoints": 8064,
+    "device": "local CPU",
+    "gpu_authorized": false,
+    "hpc4_authorized": false
+  }
+}

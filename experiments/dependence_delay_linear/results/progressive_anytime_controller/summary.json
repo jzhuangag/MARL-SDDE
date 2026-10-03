@@ -1,0 +1,192 @@
+{
+  "experiment": "EXP-009D",
+  "status": "FAIL",
+  "registered_seeds": 1536,
+  "registered_action_rows": 15360,
+  "gates": {
+    "anytime_coverage": {
+      "pass": true,
+      "observed_simultaneous_coverage": 0.9947916666666666
+    },
+    "conditional_exact_safety": {
+      "pass": true,
+      "covered_seeds": 1528,
+      "largest_covered_action_radius": 0.9937968017752902
+    },
+    "near_oracle_expected_risk": {
+      "pass": false,
+      "largest_scenario_median_ratio": 7.571045146283255
+    },
+    "static_pilot_improvement": {
+      "pass": true,
+      "progressive_ratio": 7.571045146283255,
+      "static_exp009c_ratio": 10.464074324341452
+    },
+    "worst_baseline_improvement": {
+      "pass": false,
+      "improved_scenarios": 3
+    },
+    "progressive_refinement": {
+      "pass": true,
+      "persistent_first_gaps": [
+        207.0,
+        198.0,
+        190.0,
+        174.0
+      ],
+      "persistent_final_gaps": [
+        128.0,
+        112.0,
+        112.0,
+        112.0
+      ]
+    },
+    "participation_response": {
+      "pass": true,
+      "median_q_rho0": 18.0,
+      "median_q_rho0p9": 1.0
+    }
+  },
+  "overall_pass": false,
+  "scenario_summary": [
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 0,
+      "ratio": 1.1936637775204368,
+      "online": 0.0002978830939954414,
+      "worst": 7.655341239517966e-05,
+      "first_gap": 4.0,
+      "final_gap": 3.0,
+      "median_q": 32.0
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.0,
+      "delay": 2,
+      "ratio": 0.9845155073600798,
+      "online": 0.0010094417405434601,
+      "worst": 0.000977443083371627,
+      "first_gap": 3.0,
+      "final_gap": 2.0,
+      "median_q": 1.0
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 0,
+      "ratio": 1.186632542424047,
+      "online": 0.0013697108101487954,
+      "worst": 0.0012154374370398533,
+      "first_gap": 3.0,
+      "final_gap": 2.0,
+      "median_q": 1.0
+    },
+    {
+      "persistence": 0.5,
+      "rho": 0.9,
+      "delay": 2,
+      "ratio": 0.9840126173126169,
+      "online": 0.0010089261181880807,
+      "worst": 0.0014701451585273579,
+      "first_gap": 3.0,
+      "final_gap": 2.0,
+      "median_q": 1.0
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 0,
+      "ratio": 1.1923828922071202,
+      "online": 0.0006784886170420634,
+      "worst": 7.655341242887668e-05,
+      "first_gap": 44.0,
+      "final_gap": 24.0,
+      "median_q": 32.0
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.0,
+      "delay": 2,
+      "ratio": 1.0335322499896304,
+      "online": 0.0009381386465828469,
+      "worst": 0.000977443085170651,
+      "first_gap": 43.0,
+      "final_gap": 19.0,
+      "median_q": 1.0
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 0,
+      "ratio": 1.1959249273107737,
+      "online": 0.004011524721162421,
+      "worst": 0.001215437438763884,
+      "first_gap": 40.0,
+      "final_gap": 20.0,
+      "median_q": 2.0
+    },
+    {
+      "persistence": 0.9,
+      "rho": 0.9,
+      "delay": 2,
+      "ratio": 1.0394661749858911,
+      "online": 0.0009435248784735031,
+      "worst": 0.001470145160693988,
+      "first_gap": 40.0,
+      "final_gap": 20.5,
+      "median_q": 1.0
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 0,
+      "ratio": 0.94126094936075,
+      "online": 0.001968463258965373,
+      "worst": 7.736700836631871e-05,
+      "first_gap": 207.0,
+      "final_gap": 128.0,
+      "median_q": 32.0
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.0,
+      "delay": 2,
+      "ratio": 7.571045146283255,
+      "online": 0.007065759230017503,
+      "worst": 0.000987508816310244,
+      "first_gap": 198.0,
+      "final_gap": 112.0,
+      "median_q": 3.0
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 0,
+      "ratio": 1.068857295468995,
+      "online": 0.010880970457624978,
+      "worst": 0.001225119567267376,
+      "first_gap": 190.0,
+      "final_gap": 112.0,
+      "median_q": 4.0
+    },
+    {
+      "persistence": 0.98,
+      "rho": 0.9,
+      "delay": 2,
+      "ratio": 5.902545416831661,
+      "online": 0.008948875905043202,
+      "worst": 0.0014822602445651698,
+      "first_gap": 174.0,
+      "final_gap": 112.0,
+      "median_q": 2.0
+    }
+  ],
+  "artifacts": [
+    "progressive_metrics.csv",
+    "progressive_actions.csv",
+    "summary.json",
+    "fig1_progressive_ratios.png",
+    "fig2_gap_refinement.png"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "academic_research_suite_available": false,
+  "analysis": {
+    "analyzer_sha256": "4da3dfe486c7f4aaebe0ecb68f128e116881415b0feb4716423cc1b5d0e05721",
+    "exp017b_static_design_sha256": "15ccb79d1cb5f781df6afa9f432c13774f9b58f831209d1a73d06bf439a12877",
+    "test_exp017b_static_design_sha256": "e733e2aef3f9efad4650b1b24442aef4372bbd0984e21bcf7ad3fa503afc1021",
+    "test_t019_sha256": "8879ec67e71944df17941419ffb6027076e1c82836c7c2a0ff4213e8d5221e40"
+  },
+  "base_result_head": "5ad09e3a50de5566363d370c47ee63a3d4c8f0e1",
+  "evidence_status": "descriptive_post_pilot_audit_not_formal_evidence",
+  "exp017a_mutated": false,
+  "gpu_jobs_submitted": 0,
+  "hpc4": {
+    "access": "read_only",
+    "artifact_root": "/scratch/jzhuangag/exp017a-pilot-17a4c32",
+    "artifact_root_size": "46M",
+    "squeue_at_final_read": "empty"
+  },
+  "input": {
+    "endpoint_rows": 1584,
+    "endpoints_sha256": "bc241c772d20b76c5f42f72bd8a5523bda2ba225e113811e695dd840007191f0",
+    "path": "/scratch/jzhuangag/exp017a-pilot-17a4c32/endpoints.csv",
+    "rows_used": 864
+  },
+  "outputs": {
+    "t019_fixed_q_best_cells.csv": "a59685b13842bbbf313f90f7cdd00e2faa8ef3d7f39c5f9eb08b5222e5115df8",
+    "t019_fixed_q_phase_diagram.csv": "7f1afc30ba36552a42e809b56fe3d82240b211e3716b8511df2d378bb8c7969d",
+    "t019_fixed_q_phase_summary.json": "15048626b222c5173d314708b28f1f7cd26aa0571019603dbe9fda2fc00cb451"
+  },
+  "tests": {
+    "command": "python -m pytest -q test_t019_fixed_q_audit.py test_exp017b_static_design.py",
+    "result": "14 passed"
+  }
+}

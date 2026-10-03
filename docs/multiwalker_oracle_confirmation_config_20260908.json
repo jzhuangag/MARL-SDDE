@@ -1,0 +1,23 @@
+{
+  "action_class": "null_or_one_directed_neighbor_refresh",
+  "actor_seed": 95200,
+  "budget_rates": [0.25, 0.5],
+  "confirmation_seeds": [96100, 96101, 96102, 96103, 96104, 96105, 96106, 96107],
+  "discount": 0.99,
+  "drift_scales": [0.01, 0.04],
+  "events": 40,
+  "horizon": 8,
+  "primary_active_drift_scale": 0.04,
+  "random_policy_seed_base": 95800,
+  "strong_envelope_excludes": ["oracle_h8", "no_refresh"],
+  "thresholds": {
+    "active_direction_rate_min": 0.75,
+    "active_median_normalized_absolute_headroom_min": 0.001,
+    "active_oracle_gain_min": 0.0,
+    "active_recovery_gap_min": 0.1,
+    "maximum_mip_gap": 1e-9,
+    "maximum_no_refresh_replay_error": 1e-10,
+    "maximum_prefix_excess": 0
+  },
+  "walkers": 5
+}

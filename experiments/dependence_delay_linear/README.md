@@ -135,6 +135,20 @@ python run_linear_td_correlation.py `
   --num-seeds 32 --bootstrap-replications 2000 --workers 4
 python run_td_delay_stability.py `
   --output-dir results/td_delay_stability --num-seeds 16
+python run_joint_mean_square_step.py `
+  --output-dir results/joint_mean_square_step --num-seeds 32
+python run_joint_ms_confirmation.py `
+  --output-dir results/joint_ms_confirmation --num-seeds 64
+python run_exact_lifted_boundary.py `
+  --output-dir results/exact_lifted_boundary
+python run_markov_jump_boundary.py
+python run_expanding_markov_td.py
+python run_decorrelated_theorem.py
+python run_sharp_delay_bound.py
+python run_predictable_mixing_controller.py
+python run_finite_budget_controller.py
+python run_joint_qbe_controller.py
+python run_progressive_anytime_controller.py
 ```
 
 Run deterministic implementation checks with:
@@ -143,6 +157,9 @@ Run deterministic implementation checks with:
 python -m unittest -v test_linear_model.py test_stagewise_controller.py `
   test_budget_participation.py test_online_participation.py `
   test_sparse_dynamic.py test_oracle_phase.py
+python -m pytest -q test_markov_jump_ms.py `
+  test_predictable_mixing_controller.py `
+  test_progressive_mixing_controller.py
 ```
 
 The default experiment uses 500 server iterations, \(q\in
@@ -220,9 +237,110 @@ spectral boundary, especially under strong cross-agent correlation. This
 motivates a correlation-aware mean-square Lyapunov bound for random delayed
 Jacobians.
 
+EXP-007C combines the exact mean boundary with the analytic aggregate-Jacobian
+second moment through a scalar parallel-sum step. It contracts in all eight
+cells, but formally fails three crossing-based gates because the blind rules
+remain finite despite very large error. EXP-007D freezes the formula and uses
+64 fresh seeds with 99% bootstrap mean-square endpoints. All seven gates pass,
+all 9,216 rows are valid, and all ten artifacts reproduce byte-for-byte.
+Doubling \(q\) reduces multiplicative curvature by 22.46% under independence
+but only 0.32% at correlation 0.9. The correlation-blind/joint paired
+final-error ratio has a 99% lower limit of at least 8.19 in every
+high-correlation cell.
+
+EXP-008A constructs the exact heterogeneous-delay covariance operator without
+materializing its Kronecker matrix. The formal result passes four of seven
+gates. The scalar joint rule is strictly stable in all 12 exact cells, and the
+zero-delay agent-count effect saturates under high correlation as predicted.
+The rule is not uniformly tight: it uses 13.3%--54.1% of the independent-time
+exact boundary. The exact analysis also shows that delay dominates the
+independent \(q=32,D=32\) cell, whereas multiplicative correlation dominates
+the low-delay high-correlation cells.
+
+EXP-008B validates the mode-conditioned Markov-jump covariance construction
+but retains its weak temporal effect as a negative control. EXP-008C activates
+a locally expanding conditional TD regime: at persistence 0.98, every exact
+boundary is only 1.9%--4.0% of its i.i.d. counterpart, and the uninflated rule
+is unstable in all 24 high-persistence cells.
+
+EXP-008D validates a coarse proof-derived decorrelation rule and identifies a
+delay-constant loss. EXP-008E replaces that loss with a sharp \(L_2\) bound;
+all five gates pass in 72 exact cells. The online computation is a scalar
+search using aggregate curvature, a total-variation certificate, and RMS
+delay. It does not form a covariance matrix or preconditioner.
+
+EXP-009A--C test predictable one-shot mixing certificates. Coverage and exact
+safety pass, and participation falls sharply under high sharing. Finite-budget
+and joint \((q,b,\eta)\) search beat the worst-mixing baseline in all
+low/medium-persistence cells, but the worst high-persistence delayed
+online/oracle expected-error ratio remains 10.46. These experiments reject a
+uniform near-oracle claim for the static-pilot controller and motivate an
+anytime progressive certificate.
+
+EXP-009D implements that time-uniform progressive certificate. Simultaneous
+coverage is 99.479%, all covered actions are exactly stable, and persistent
+gaps shrink across blocks. The worst online/oracle ratio improves to 7.57 but
+still fails the registered threshold five. This rules out a uniform
+near-oracle claim under finite-budget high-confidence mixing estimation.
+
+EXP-010A transfers the sharp homogeneous certificate to a seven-state,
+four-feature TD family. All numerical gates and four of five scientific gates
+pass, with zero divergences in 1,152 charged runs. Correlation reduces the
+selected participation in every matched cell, temporal persistence increases
+the median certified separation by \(18.36\times\), and all eight primary
+artifacts reproduce byte-for-byte. The joint action is never worse than the
+better endpoint in mean, but the frozen strict endpoint gate fails because the
+joint optimizer selects an endpoint in five cells. The stationary-noise
+finite-budget expression remains a controller surrogate until a generic
+affine Markov-TD finite-time argument is proved.
+
+EXP-010B supplies that finite-gap affine argument. It does not assume
+conditional centering or orthogonality of the TD innovation, and it retains
+innovation terms generated by stale-iterate telescoping. The 32-seed audit
+passes all nine gates with zero divergences. Every proved bound beats no
+update, all one-sided 99% empirical upper means lie below the theorem bound,
+and the median bound/mean ratio is 20.77. The theorem-selected action remains
+conservative in one fast-mixing endpoint comparison, so empirical near-oracle
+participation is not claimed.
+
+EXP-011A supplies the complementary impossibility result. In an exact Gaussian
+one-step-mixing Markov subclass, the minimax speedup is
+\(q/[1+(q-1)\rho]\), so any positive shared-noise fraction caps the benefit of
+additional agents. Under a pathwise resource budget, even predictable adaptive
+participation cannot beat the best information-per-cost action. The
+deterministic audit passes all nine gates and reproduces all five core
+artifacts byte-for-byte. At \(\rho=.9\), 32 agents provide only
+\(1.1073\times\) speedup.
+
+EXP-011B makes both mixing and observable pair sharing unknown. Two
+beta-binomial mixture e-processes provide joint optional-stopping-valid
+confidence sequences, and the next block uses only their past-data upper
+bounds. The formal CPU run has 100% simultaneous coverage and no unsafe
+covered action. Median participation falls from 9.5 at zero sharing to one at
+\(\rho=.9\). Four of five scientific gates pass; correlation adaptation does
+not strictly improve two delayed cells in which delay already reduces both
+policies to effectively single-agent behavior.
+
+EXP-012A hides the pair-sharing masks and observes only whether two agent
+Markov samples collide. Theorem 7 corrects the natural independent collision
+rate and adds a time-uniform mixing-bias term. All six formal gates pass over
+1,152 fresh trajectories. At fast mixing and zero delay, certified
+participation changes from \(8\) to \(2\) to \(1\) as true correlation moves
+from zero to .5 to .9. Near-unit persistence remains conservative, as the
+theory predicts.
+
+EXP-012B replaces exact collision by a periodic radial basis function kernel
+on continuous lazy-refresh Markov states and learns the independent-similarity
+baseline from a lagged control stream. All seven formal gates pass over 1,152
+fresh trajectories. Fast-mixing participation changes from \(8\) to \(2\) to
+\(1\) at zero delay and from \(2\) to \(1\) to \(1\) at delay two. This
+finishes the controlled CPU certificate program.
+
 ## Scope
 
 This first experiment intentionally uses a linear fixed-policy-style model. It
 tests whether the proposed mechanism exists before investing in a full
 multi-agent temporal-difference or deep reinforcement-learning implementation.
 No claim about nonlinear multi-agent reinforcement learning is made here.
+The current CPU evidence establishes a controlled linear-TD mechanism and an
+algorithmic prototype; nonlinear MARL remains a later GPU-backed validation.

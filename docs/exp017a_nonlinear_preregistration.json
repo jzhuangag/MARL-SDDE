@@ -1,0 +1,198 @@
+{
+  "b_candidates": [
+    1,
+    2,
+    4
+  ],
+  "best_fixed_q_rule": "pilot reports the lower envelope of q in {4,16,32}; if pilot passes, a later outcome-free formal registry freezes one task/mixing-specific fixed-q choice using pilot only",
+  "budgets": {
+    "environment_binding": {
+      "environment_steps": 1024,
+      "message_bytes": 536870912
+    },
+    "message_binding": {
+      "environment_steps": 4096,
+      "message_bytes": 134217728
+    }
+  },
+  "communication_accounting": {
+    "agent_transitions_reported_separately": true,
+    "communication_matched": true,
+    "per_server_tick": "server_overhead_bytes + q * parameter_count * float_bytes"
+  },
+  "configuration_sha256": "28c1c24181c6de02fd0b48e7f420c3ea46887024ccb0551ccef9597f109ae5ea",
+  "correlations": [
+    0.0,
+    0.5,
+    0.9
+  ],
+  "cross_agent_dependence": {
+    "construction": "each agent selects a common complete trajectory source with probability sqrt(rho), otherwise its private iid source",
+    "marginal_invariance": "common and private source trajectories have the same task/mixing law, so source mixing leaves every single-agent marginal unchanged",
+    "observation_noise_added": false,
+    "pairwise_common_source_probability": "rho"
+  },
+  "delay_traces": {
+    "edge_jitter": {
+      "base": [
+        0,
+        1,
+        0,
+        2,
+        1,
+        3,
+        0,
+        1
+      ],
+      "description": "low-latency heterogeneous edge/metro jitter with rare spikes",
+      "kind": "periodic_heterogeneous",
+      "maximum": 5,
+      "spike_add": 2,
+      "spike_period": 31,
+      "summary": {
+        "count": 131072,
+        "maximum": 5,
+        "mean": 1.0645294189453125,
+        "median": 1.0,
+        "p90": 3.0,
+        "p99": 3.0
+      }
+    },
+    "wan_bursty": {
+      "base": [
+        1,
+        2,
+        4,
+        8,
+        2,
+        6,
+        12,
+        3
+      ],
+      "burst_add": 4,
+      "burst_length": 8,
+      "burst_period": 128,
+      "burst_start": 32,
+      "description": "wide-area heterogeneous delays with deterministic burst windows",
+      "kind": "periodic_heterogeneous",
+      "maximum": 16,
+      "summary": {
+        "count": 131072,
+        "maximum": 16,
+        "mean": 5.0,
+        "median": 4.0,
+        "p90": 12.0,
+        "p99": 12.0
+      }
+    },
+    "zero": {
+      "description": "synchronous reference",
+      "kind": "constant",
+      "maximum": 0,
+      "summary": {
+        "count": 131072,
+        "maximum": 0,
+        "mean": 0.0,
+        "median": 0.0,
+        "p90": 0.0,
+        "p99": 0.0
+      }
+    }
+  },
+  "experiment": "EXP-017A",
+  "formal_seeds": null,
+  "metrics": [
+    "terminal_MC_prediction_MSE",
+    "heldout_mean_squared_Bellman_error",
+    "normalized_prediction_error_AUC",
+    "message_bytes",
+    "environment_steps",
+    "agent_transitions",
+    "CVaR90_terminal_prediction_error",
+    "wall_seconds",
+    "controller_wall_seconds",
+    "selected_q_b_trajectory"
+  ],
+  "mixing_profiles": {
+    "fast_regeneration": {
+      "gamma_certificate": 0.2,
+      "joint_regeneration_probability": 0.2,
+      "lambda_upper": 0.8
+    },
+    "slow_regeneration": {
+      "gamma_certificate": 0.05,
+      "joint_regeneration_probability": 0.05,
+      "lambda_upper": 0.95
+    }
+  },
+  "model": {
+    "algorithm": "semi-gradient neural TD(0)",
+    "covariance_matrix_inverse": false,
+    "hessian_inverse": false,
+    "learning_rate": 0.002,
+    "network": "MLP-ReLU-64-64-1",
+    "optimizer": "plain SGD",
+    "preconditioner": false
+  },
+  "multiple_comparisons": {
+    "familywise_alpha": 0.05,
+    "formal_only": true,
+    "pilot_inference": "descriptive progression gates only",
+    "procedure": "one-sided paired seed-block sign-flip maxT with Holm-compatible ordered reporting",
+    "replications": 100000,
+    "resampling_seed": 20560101
+  },
+  "parent_head": "a5f25667217bea72cce55a9aa44a6b991f6847f9",
+  "pilot_expected_runs": 1584,
+  "pilot_scenario_count": 72,
+  "pilot_seeds": [
+    20550101,
+    20550102
+  ],
+  "policies": [
+    "oracle_evaluation_only",
+    "always_all",
+    "fixed_q4",
+    "fixed_q16",
+    "fixed_q32",
+    "single_agent",
+    "information_only",
+    "learning_aware",
+    "no_delay_ablation",
+    "correlation_blind_ablation",
+    "mixing_blind_ablation"
+  ],
+  "q_candidates": [
+    1,
+    4,
+    16,
+    32
+  ],
+  "schema_version": 1,
+  "scientific_boundaries": [
+    "known joint mixing from public regeneration certificate only",
+    "no unrestricted unknown-mixing claim",
+    "no global occupation-optimality claim",
+    "no general nonlinear MARL claim",
+    "policy evaluation only; no actor-critic claim"
+  ],
+  "scientific_outcomes_present": false,
+  "static_manifest_sha256": "bf83f1031533205a7395338cae0bcff716692c95214ecaede8956f621bdfb75b",
+  "tasks": {
+    "acrobot": {
+      "action_count": 3,
+      "behavior_policy": "fixed_acrobot_energy_epsilon_0.20",
+      "discount": 0.97,
+      "gym_id": "Acrobot-v1",
+      "observation_dimension": 6
+    },
+    "cartpole": {
+      "action_count": 2,
+      "behavior_policy": "fixed_cartpole_stabilizing_epsilon_0.20",
+      "discount": 0.97,
+      "gym_id": "CartPole-v1",
+      "observation_dimension": 4
+    }
+  },
+  "title": "Standard nonlinear Markov-TD participation benchmark"
+}

@@ -1,0 +1,75 @@
+{
+  "experiment": "EXP-008D",
+  "status": "VALID",
+  "registered_cells": 72,
+  "gates": {
+    "numerical_checks": {
+      "boundary_validity": {
+        "pass": true,
+        "observed_cells": 72,
+        "maximum_eigen_residual": 3.66058057978084e-15
+      },
+      "minimal_gap_and_polynomial": {
+        "pass": true,
+        "gap_table": [
+          {
+            "original_persistence": 0.5,
+            "decorrelation_gap": 1,
+            "target_delta": 0.07443181818181818,
+            "actual_delta": 0.0
+          },
+          {
+            "original_persistence": 0.9,
+            "decorrelation_gap": 9,
+            "target_delta": 0.07443181818181818,
+            "actual_delta": 0.06710886400000003
+          },
+          {
+            "original_persistence": 0.98,
+            "decorrelation_gap": 47,
+            "target_delta": 0.07443181818181818,
+            "actual_delta": 0.07340370094697085
+          }
+        ],
+        "largest_polynomial_to_rhs_ratio": 0.9999999900000001
+      }
+    },
+    "scientific_gates": {
+      "exact_safety": {
+        "pass": true,
+        "largest_theorem_radius": 0.9796145148687999
+      },
+      "strict_theorem_slack": {
+        "pass": true,
+        "largest_contraction_coefficient": 0.9999999998947129
+      },
+      "nonvacuity": {
+        "pass": false,
+        "cells_ratio_at_least_0p05": 57,
+        "smallest_theorem_to_exact_ratio": 0.04283704264468586,
+        "largest_theorem_to_exact_ratio": 0.8586051265258384
+      },
+      "mixing_adaptation": {
+        "pass": true,
+        "selected_gaps": [
+          1,
+          9,
+          47
+        ]
+      },
+      "correlation_limited_participation": {
+        "pass": true,
+        "largest_rho0p9_q32_to_q16_gain": 1.0007832078097956
+      }
+    },
+    "numerical_overall_pass": true,
+    "scientific_pass_count": 4,
+    "scientific_total": 5
+  },
+  "artifacts": [
+    "decorrelated_boundaries.csv",
+    "summary.json",
+    "fig1_theorem_tightness.png",
+    "fig2_best_participation.png"
+  ]
+}

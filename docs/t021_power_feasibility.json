@@ -1,0 +1,48 @@
+{
+  "claim_decision": {
+    "fixed_q_correlation_delay_mainline": "retain",
+    "future_gpu_preregistration_authorized": false,
+    "next_stage": "outcome_free_implementation_and_preregistration_under_new_id",
+    "nonlinear_role": "mechanism_validation_not_general_convergence_theorem",
+    "online_adaptive_controller_main_claim": "exclude",
+    "sdde_role": "interpretation_only_until_discretization_error_is_closed"
+  },
+  "descriptive_design_checks": {
+    "adaptive_controller_value_gate_passed": false,
+    "budget_direction_fraction": 1.0,
+    "delay_direction_fraction": 0.875,
+    "multiple_fixed_q_optima_observed": true,
+    "rho_direction_fraction": 0.9166666666666666
+  },
+  "execution_mode": "cpu_static_outcome_free_no_trajectory",
+  "experiment": "T-021",
+  "gpu_jobs_submitted": 0,
+  "power_design": {
+    "familywise_alpha": 0.05,
+    "maximum_authorizable_replications": 192,
+    "normal_approximation_rows": [
+      {"n_for_80pct_power": 38, "n_for_90pct_power": 49, "paired_log_ratio_sd": 0.1, "power_at_192": 0.9999981937773923},
+      {"n_for_80pct_power": 84, "n_for_90pct_power": 110, "paired_log_ratio_sd": 0.15, "power_at_192": 0.9913200930835808},
+      {"n_for_80pct_power": 149, "n_for_90pct_power": 196, "paired_log_ratio_sd": 0.2, "power_at_192": 0.8947581494511874}
+    ],
+    "one_sided_alpha_per_family": 0.016666666666666666,
+    "practical_log_effect": 0.04879016416943204,
+    "practical_ratio": 1.05,
+    "primary_families": ["correlation_saturation", "dual_budget_phase", "delay_degradation"],
+    "replication_rule": "A separate implementation pilot may estimate only the paired log-ratio SD. Freeze formal N as the smallest listed value achieving 90% power, capped at 192; if the required N exceeds 192, stop rather than weaken the effect or alpha."
+  },
+  "scientific_trajectories_generated": 0,
+  "source_artifacts": {
+    "t019_phase_cells": 72,
+    "t019_phase_rows": 432,
+    "t019_pilot_seeds_per_cell_arm": 2,
+    "t020_evidence_status": "descriptive_two_seed_design_audit_no_inference",
+    "t020_exp017b_permanently_stopped": true
+  },
+  "theoretical_variance_grid": {
+    "0.0": {"1": {"effective_speedup": 1.0, "variance_factor": 1.0}, "4": {"effective_speedup": 4.0, "variance_factor": 0.25}, "16": {"effective_speedup": 16.0, "variance_factor": 0.0625}, "32": {"effective_speedup": 32.0, "variance_factor": 0.03125}},
+    "0.5": {"1": {"effective_speedup": 1.0, "variance_factor": 1.0}, "4": {"effective_speedup": 1.6, "variance_factor": 0.625}, "16": {"effective_speedup": 1.8823529411764706, "variance_factor": 0.53125}, "32": {"effective_speedup": 1.9393939393939394, "variance_factor": 0.515625}},
+    "0.9": {"1": {"effective_speedup": 1.0, "variance_factor": 1.0}, "4": {"effective_speedup": 1.081081081081081, "variance_factor": 0.925}, "16": {"effective_speedup": 1.103448275862069, "variance_factor": 0.90625}, "32": {"effective_speedup": 1.107266435986159, "variance_factor": 0.9031250000000001}}
+  }
+}
+

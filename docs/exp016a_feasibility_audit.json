@@ -1,0 +1,96 @@
+{
+  "amendment_configuration_sha256": "a6312a4769457c3d73aedea60f9c3523a2860d6fc0499ad1ccdb6124188412d0",
+  "audit": "preregistration_feasibility_amendment_1",
+  "experiment": "EXP-016A",
+  "final_pilot_seed_count": 64,
+  "g6_zero_error_feasibility": {
+    "a_min": 0.000462962962962963,
+    "above_bs_budget_points_per_scenario": 2,
+    "amendment_rule": "replace per-cell mandatory rare-event CI with deterministic theorem/runtime audit plus aggregate directional calibration",
+    "cells_per_direction": 108,
+    "directional_delta": 0.025,
+    "familywise_alpha": 0.05,
+    "n_zero_events_with_holm_floor": 304,
+    "n_zero_events_without_multiplicity": 119,
+    "original_per_cell_gate_feasible": false,
+    "pilot_seeds_per_cell": 64,
+    "positive_base_scenarios": 54,
+    "reason": "per-cell directional rare-event CI cannot pass with 64 seeds, even with zero observed errors",
+    "status": "RED_FLAG",
+    "zero_event_bound_at_64_with_holm_floor": 0.11304995489939718,
+    "zero_event_bound_at_64_without_multiplicity": 0.045729702330762456
+  },
+  "gate_feasibility": {
+    "G1": "feasible_static_and_runtime_audit",
+    "G10": "feasible_on_binding_budget_active_subsets",
+    "G11": "feasible_byte_freeze_audit",
+    "G12": "feasible_byte_reproducibility_audit",
+    "G2": "feasible_deterministic_fallback",
+    "G3": "feasible_deterministic_theorem_qualification",
+    "G4": "feasible_after_practical_effect_subset_revision",
+    "G5": "feasible_as_theorem_compliance_plus_empirical_calibration",
+    "G6a": "feasible_deterministic_theorem_runtime_audit",
+    "G6b": "feasible_aggregate_directional_calibration_not_per_cell_CI",
+    "G7": "feasible_empirical_bracket_gate",
+    "G8": "infeasible_empty_learning_value_active_subset",
+    "G9": "feasible_on_delay_active_subset"
+  },
+  "identical_path_counts": {
+    "learning_vs_ignore_environment_high": 108,
+    "learning_vs_ignore_message_high": 108,
+    "learning_vs_information_only_high": 54,
+    "learning_vs_no_delay_high": 36
+  },
+  "minimum_margins": {
+    "g4_min_expected_relative_gain_all_high_cells": 0.14865002914813402,
+    "g4_min_expected_relative_gain_practical_subset": 0.14865002914813402,
+    "g5_min_expected_safety_margin_to_epsilon": -0.015104078773273008,
+    "g8_min_expected_relative_gain_active_subset": 0.0
+  },
+  "notes": [
+    "352000 rows equals 550 expanded cells times 10 policies times 64 seeds",
+    "each future row is one real trajectory outcome; CRN pairing does not increase effective sample size",
+    "bootstrap resampling unit remains the complete seed block",
+    "cross-budget shared random prefixes must not be treated as independent repetitions",
+    "CVaR90 at 64 seeds is secondary only",
+    "gray-zone and negative-control cells cannot rescue core theorem gates",
+    "analytic risks remain forbidden as observed MSE"
+  ],
+  "original_configuration_sha256": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+  "original_manifest_sha256": "bb3ab51bc64d4ee334e7c5da6b6e7a4e7ffd303692abb6a5e48d06e48bb9baf5",
+  "pilot_authorization": false,
+  "prospective_family_sizes": {
+    "above_bs_high_cells": 108,
+    "above_bs_low_cells": 108,
+    "g10_environment_active_high_cells": 0,
+    "g10_message_active_high_cells": 0,
+    "g4_practical_effect_subset": 108,
+    "g8_learning_value_active_subset": 0,
+    "g9_delay_active_high_cells": 36
+  },
+  "prospective_power_proxy": {
+    "g4_critical_value": 3.3121176662593372,
+    "g4_subset_power_ready_cells_at_64": 28,
+    "g5_cells_with_positive_analytic_margin_at_64": 100,
+    "g8_critical_value": 1.6448536269514715,
+    "g8_subset_power_ready_cells_at_64": 0,
+    "method": "outcome-free Gaussian paired moments plus Bonferroni normal critical values"
+  },
+  "schema_version": 1,
+  "scientific_outcomes_present": false,
+  "seed_decision": "keep_original_64_pilot_seeds",
+  "stop_gate_decision": "B",
+  "workload": {
+    "estimate_basis": "static operation/row accounting; no scientific trajectory was executed",
+    "estimated_cpu_wall_hours_single_process": 1.1733333333333333,
+    "estimated_disk_gb": 0.4928,
+    "estimated_peak_memory_gb": 1.5,
+    "estimated_rows": 352000,
+    "estimated_trajectories": 352000,
+    "expanded_cells": 550,
+    "negative_control_families": 2,
+    "pilot_seed_count": 64,
+    "policy_count": 10,
+    "positive_base_scenarios": 54
+  }
+}

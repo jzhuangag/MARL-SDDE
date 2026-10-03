@@ -1,0 +1,83 @@
+{
+  "best_fresh_code": "fresh_s10",
+  "confirmatory": false,
+  "decision": "retain the deterministic actor--critic backbone for controller development",
+  "experiment_id": "PISTONBALL-BACKBONE-LEARNING-QUALIFICATION",
+  "initial_return": -5.989934627123646,
+  "minimum_learning_delta": 2.0,
+  "pilot_or_formal_evidence": false,
+  "qualified": true,
+  "rows": {
+    "fresh_c1_s3": {
+      "actor_receipt_step": 0.003,
+      "critic_step": 0.001,
+      "learning_delta": 1.644134139326515,
+      "maximum_actor_parameter_drift_l2": 0.08458260427664245,
+      "mean_actor_parameter_drift_l2": 0.031246712685196538,
+      "mean_packet_gradient_norm": 0.09562826737635863,
+      "mean_td_loss": 0.8105010798221578,
+      "optional_policy_bytes": 6934479476,
+      "refresh_units": 77501,
+      "runtime_seconds": 632.6549586680194,
+      "scheduler": "complete_burst",
+      "terminal_return": -4.345800487797131
+    },
+    "fresh_s1": {
+      "actor_receipt_step": 0.001,
+      "critic_step": 0.0003,
+      "learning_delta": 0.765426347765537,
+      "maximum_actor_parameter_drift_l2": 0.021117072937428094,
+      "mean_actor_parameter_drift_l2": 0.006938659693269576,
+      "mean_packet_gradient_norm": 0.0534746179549128,
+      "mean_td_loss": 0.7890455254642158,
+      "optional_policy_bytes": 6934479476,
+      "refresh_units": 77501,
+      "runtime_seconds": 616.4180041470099,
+      "scheduler": "complete_burst",
+      "terminal_return": -5.224508279358109
+    },
+    "fresh_s10": {
+      "actor_receipt_step": 0.01,
+      "critic_step": 0.0003,
+      "learning_delta": 4.8263853543453745,
+      "maximum_actor_parameter_drift_l2": 0.24605484395452543,
+      "mean_actor_parameter_drift_l2": 0.06495415323592615,
+      "mean_packet_gradient_norm": 0.049155062732900885,
+      "mean_td_loss": 0.908712173575104,
+      "optional_policy_bytes": 6934479476,
+      "refresh_units": 77501,
+      "runtime_seconds": 604.5252999160148,
+      "scheduler": "complete_burst",
+      "terminal_return": -1.163549272778272
+    },
+    "fresh_s3": {
+      "actor_receipt_step": 0.003,
+      "critic_step": 0.0003,
+      "learning_delta": 1.0626706109439947,
+      "maximum_actor_parameter_drift_l2": 0.048782517928726704,
+      "mean_actor_parameter_drift_l2": 0.02256260320509832,
+      "mean_packet_gradient_norm": 0.05366913257729516,
+      "mean_td_loss": 0.795910512952088,
+      "optional_policy_bytes": 6934479476,
+      "refresh_units": 77501,
+      "runtime_seconds": 616.1731689579901,
+      "scheduler": "complete_burst",
+      "terminal_return": -4.9272640161796515
+    },
+    "no_s3": {
+      "actor_receipt_step": 0.003,
+      "critic_step": 0.001,
+      "learning_delta": -0.7563210505867195,
+      "maximum_actor_parameter_drift_l2": 0.06059560773272805,
+      "mean_actor_parameter_drift_l2": 0.030723270857776864,
+      "mean_packet_gradient_norm": 0.08801067752743258,
+      "mean_td_loss": 0.7577445432609806,
+      "optional_policy_bytes": 0,
+      "refresh_units": 0,
+      "runtime_seconds": 597.2804542809899,
+      "scheduler": "no_refresh",
+      "terminal_return": -6.746255677710366
+    }
+  },
+  "seed": 79003
+}

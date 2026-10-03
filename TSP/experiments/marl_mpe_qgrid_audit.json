@@ -1,0 +1,59 @@
+{
+  "experiment_id": "TSP-MARL-MPE-QGRID-AUDIT-001",
+  "role": "post-confirmation baseline-completeness audit; not a new confirmatory experiment",
+  "predecessor": {
+    "experiment_id": "TSP-MARL-CONF-001",
+    "frozen_result_unchanged": true,
+    "reason": "the original confirmation compared only fixed q=1 and q=8"
+  },
+  "upstream": {
+    "repository": "https://github.com/PKU-MARL/HARL",
+    "commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "pettingzoo_mpe",
+    "scenario": "simple_spread_v2",
+    "rollout_length": 25,
+    "ctde": true
+  },
+  "coupling_regimes": ["independent", "shared"],
+  "fixed_q_grid": [1, 2, 4, 8],
+  "existing_methods": ["lyapunov_probe_commit", "fixed_q1", "fixed_q8"],
+  "new_methods": ["fixed_q2", "fixed_q4"],
+  "training_seeds": [96001, 96002, 96003, 96004, 96005, 96006, 96007, 96008],
+  "budgets": {
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "server_overhead": 100,
+    "rollout_length": 25
+  },
+  "model": {
+    "hidden_size": 64,
+    "activation": "tanh",
+    "actor_lr": 0.0005,
+    "critic_lr": 0.0005,
+    "ppo_epoch": 2,
+    "critic_epoch": 2
+  },
+  "evaluation": {
+    "interval_training_updates": 1000,
+    "episodes": 32,
+    "threads": 4,
+    "auc_grid_points": 21
+  },
+  "planned_new_runs": 32,
+  "audit_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "controller_relative_gap_to_fixed_q_envelope_min_each_regime": -0.02,
+    "all_registered_fixed_q_present": true,
+    "analysis_replay_byte_identical": true
+  },
+  "interpretation_rule": "This audit may retain or invalidate the baseline-completeness of the existing MPE transfer claim. It cannot convert the post-confirmation q-grid into new confirmatory evidence. A multi-task claim requires a separately frozen experiment with new seeds.",
+  "storage": {
+    "existing_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-CONF-001",
+    "new_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MPE-QGRID-AUDIT-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

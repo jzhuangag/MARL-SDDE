@@ -1,0 +1,71 @@
+{
+  "experiment_id": "two_clocks_standard_pilot_v1",
+  "scope": "fresh-seed standard neural pilot; not formal evidence",
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "smacv2_commit": "577ab5a2cff2391f8df582da5731ea9cd6adf3c6",
+  "methods": [
+    "two_clocks_async",
+    "delay_scaled_async",
+    "frozen_barrier"
+  ],
+  "service_profiles": [
+    "balanced",
+    "heterogeneous"
+  ],
+  "pilot_seeds": {
+    "mamujoco_ant_4x2": [91402731, 91402749, 91402763, 91402788],
+    "smacv2_terran_5v5": [91402807, 91402829, 91402854, 91402873]
+  },
+  "formal_seeds": [],
+  "hidden_sizes": [64, 64],
+  "gamma": 0.99,
+  "baseline_episodes": 4,
+  "evaluation_episodes": 2,
+  "evaluation_fractions": [0.0, 0.25, 0.5, 0.75, 1.0],
+  "delay_scale_coefficient": 0.25,
+  "torch_threads": 4,
+  "tasks": {
+    "mamujoco_ant_4x2": {
+      "public_environment": "HARL MAMuJoCo Ant-v2 4x2",
+      "agents": 4,
+      "discrete": false,
+      "episode_length": 25,
+      "logical_horizon": 24.0,
+      "learning_rate": 0.0005,
+      "maximum_step_norm": 0.02,
+      "service_profiles": {
+        "balanced": [1.0, 1.0, 1.0, 1.0],
+        "heterogeneous": [1.0, 1.0, 2.0, 4.0]
+      }
+    },
+    "smacv2_terran_5v5": {
+      "public_environment": "SMACv2 procedurally generated Terran 5v5",
+      "agents": 5,
+      "discrete": true,
+      "episode_length": 30,
+      "logical_horizon": 16.0,
+      "learning_rate": 0.0005,
+      "maximum_step_norm": 0.02,
+      "service_profiles": {
+        "balanced": [1.0, 1.0, 1.0, 1.0, 1.0],
+        "heterogeneous": [1.0, 1.0, 2.0, 2.0, 4.0]
+      }
+    }
+  },
+  "mandatory_gates": {
+    "P1_validity_and_equal_work": true,
+    "P2_adaptive_depth_ratio_minimum": 1.5,
+    "P3_heterogeneous_auc_improvement_minimum": 0.03,
+    "P4_positive_heterogeneous_cells_minimum": 5,
+    "P5_delay_scaled_auc_tolerance": -0.02,
+    "P5_delay_scaled_strict_cells_minimum": 4,
+    "P6_heterogeneous_gain_exceeds_balanced": true,
+    "P7_terminal_relative_shortfall_floor": -0.1,
+    "P8_positive_learning_change_each_task": true,
+    "P9_clipped_packet_fraction_maximum": 0.5,
+    "P10_byte_reproducibility": true,
+    "P11_provenance": true,
+    "P12_no_formal_seeds_or_claim": true
+  },
+  "stopping_rule": "Any failed mandatory gate permanently stops formal escalation for this frozen pilot without changing seeds, thresholds, tasks, profiles, methods, or outcomes."
+}

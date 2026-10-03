@@ -1,0 +1,67 @@
+{
+  "experiment_id": "TSP-V3-MARL-MAMUJOCO-CAL-DEV-001",
+  "role": "development crossover; not confirmation evidence",
+  "baseline_source": {
+    "experiment_id": "TSP-MARL-MAMUJOCO-DEV-001",
+    "root": "/scratch/jzhuangag/MARL-SDDE-TSP-MAMUJOCO-DEV-001",
+    "seeds": [125001, 125002, 125003, 125004]
+  },
+  "upstream": {
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "mamujoco",
+    "scenario": "HalfCheetah-v2",
+    "agent_conf": "2x3",
+    "share_param": true,
+    "rollout_length": 200,
+    "server_overhead": 800,
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "hidden_size": 128,
+    "activation": "tanh",
+    "actor_lr": 0.0005,
+    "critic_lr": 0.0005,
+    "ppo_epoch": 5,
+    "critic_epoch": 5,
+    "eval_interval": 200,
+    "eval_episodes": 20
+  },
+  "coupling_regimes": ["independent", "shared"],
+  "fixed_methods": ["fixed_q1", "fixed_q2", "fixed_q4", "fixed_q8"],
+  "controller_method": "lyapunov_probe_commit",
+  "controller": {
+    "candidate_q": [2, 8],
+    "probe_q": 8,
+    "probe_blocks": 16,
+    "correlation_delta": 0.05,
+    "selection_score": "certified variance factor divided by exact post-probe dual-budget horizon",
+    "benchmark_return_used_by_controller": false
+  },
+  "seed_registry": {
+    "development_training": [125001, 125002, 125003, 125004],
+    "development_probe": [136001, 136002, 136003, 136004],
+    "registry_base": 125001,
+    "registry_size": 16384
+  },
+  "planned_new_runs": 8,
+  "combined_analysis_runs": 40,
+  "auc_grid_points": 21,
+  "mandatory_development_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "independent_selected_q8_fraction_min": 0.75,
+    "shared_selected_q2_fraction_min": 0.75,
+    "controller_within_two_percent_of_regime_fixed_q_envelope_each_regime": true,
+    "controller_relative_auc_over_strong_single_fixed_q_min": 0.01,
+    "probe_message_fraction_max": 0.01,
+    "selection_overhead_fraction_max": 0.02,
+    "analysis_replay_byte_identical": true
+  },
+  "stopping_rule": "Any failed mandatory gate stops fresh-seed confirmation. Baseline and controller development data are never promoted to manuscript evidence.",
+  "storage": {
+    "new_remote_root": "/scratch/jzhuangag/MARL-SDDE-TSP-V3-MAMUJOCO-CAL-DEV-001",
+    "write_project": false,
+    "write_home": false
+  }
+}

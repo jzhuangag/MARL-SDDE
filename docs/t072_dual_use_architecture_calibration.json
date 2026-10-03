@@ -1,0 +1,47 @@
+{
+  "experiment_id": "T-072-dual-use-graph-architecture-calibration",
+  "classification": "outcome-informed architecture calibration on frozen T-071A pilot seeds; design evidence only",
+  "source": {
+    "experiment_id": "T-071A-sampled-observable-nonstationary-graph-pilot",
+    "preregistration_commit": "7d4a4ee",
+    "endpoints_sha256": "1432FDBE403A2ADA3D4C1734BAB476AE0F47F4765491D33245FD76B4A26CE446",
+    "reuse_all_source_seeds": true,
+    "new_scientific_seeds": false
+  },
+  "controller": {
+    "pre_steps": 5,
+    "selection_steps": 2,
+    "validation_steps": 5,
+    "all_steps_are_learning_updates": true,
+    "extra_probe_transitions": 0,
+    "fingerprint_message_units_per_decision": 1,
+    "mixing_message_units_per_decision": 1,
+    "drift_weight": 4.0,
+    "drift_weight_rule": "number of agents",
+    "safety_slack": 0.0,
+    "rollback_margin": -0.02,
+    "rollback_margin_rule": "minus one half of the frozen gain",
+    "candidate_rule": "first-half empirical prediction loss plus safety-debt times squared mixing displacement",
+    "verification_rule": "rollback when disjoint second-half proposal excess loss exceeds the frozen margin",
+    "queue_rule": "Q_next=max(0,Q+validation_excess-safety_slack)"
+  },
+  "descriptive_criteria": {
+    "C1": "finite complete reuse of all 432 cells and 32 T-071A seeds",
+    "C2": "at least 5 percent geometric cumulative-risk improvement on nonstationary cells",
+    "C3": "strict improvement in at least 55 percent of nonstationary cells",
+    "C4": "at least 2 percent improvement in both nonstationary schedule families",
+    "C5": "nonnegative improvement in every delay group",
+    "C6": "stationary-control ratio at most 1.10",
+    "C7": "exactly 240 learning transitions, zero extra probe transitions, at most 18 message units",
+    "C8": "positive accepted nonlocal action rate and finite nonnegative safety debt"
+  },
+  "authorization": {
+    "run_local_cpu_calibration": true,
+    "claim_formal_evidence": false,
+    "reuse_results_as_new_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}
