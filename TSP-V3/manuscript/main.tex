@@ -104,6 +104,7 @@ An exact Gaussian subclass exposes the opposing variance, mixing, and horizon ef
 \item \textbf{Lyapunov-Certified Joint Resource Control:} We derive a finite-time Lyapunov certificate for affine delayed temporal-difference recursions with conditional Markov bias and dependent random Jacobian--innovation pairs.
 The certificate supplies both the convergence theorem and an implementable joint action score, with scalar step search and no matrix inversion or preconditioning.
 Its moving-policy extension quantifies how critic contraction competes with policy-induced target motion and transfers the tracking bound to advantage error.
+We further prove that predictable conservative moment and mixing certificates preserve safety and quantify their finite-horizon selection loss.
 \item \textbf{Information-to-Learning Phase Characterization:} We characterize the price of learning dependence.
 A stopped adaptive change-of-measure identity and a controlled-belief occupation program give a necessary information cost, while a learning-aware gate gives a sufficient finite-budget performance and safety guarantee.
 On a compact separated class, the two thresholds match up to class constants and explicit oracle and safety scales.
@@ -615,7 +616,7 @@ Moment and mixing certificates may come from a system specification or a disjoin
 \STATE \textbf{Input:} budgets $B$, delay profile, action sets ${\cal Q},{\cal B}$, step interval, risk allowance $\bar\epsilon$
 \FOR{each dependence instance $j$ and pair $(q,b)$}
 \STATE form $\delta$, $K_q$, $\Omega_q$, and the certified set ${\cal E}_{q,b}$
-\STATE solve the scalar problem in \eqref{eq:mixed-controller}
+\STATE apply upper bounds as a feasibility shield and solve \eqref{eq:mixed-controller} with the predictable central score
 \ENDFOR
 \STATE obtain the instance actions $a_j^\star$ and their finite-budget risks
 \FOR{each feasible prespecified probe $d$}
@@ -656,6 +657,29 @@ On the joint coverage event, substituting these upper quantities preserves every
 If $r_q^+=1$, or if the resulting $\mu_\delta$ or step domain is invalid, that action is removed rather than optimistically extrapolated.
 This predictable interface prevents current-block residuals from being counted repeatedly as independent evidence.
 
+The upper quantities need not also rank the actions.
+They define a robust-feasibility shield and a valid risk envelope; a predictable central score may rank only the actions that pass this shield.
+This separation prevents conservative uncertainty radii from needlessly shrinking the executed step while retaining the upper risk guarantee.
+
+\begin{corollary}[Robust certificate and selection sensitivity]
+Suppose $K_q^+\ge K_q$, $\Omega_q^+\ge\Omega_q$, and $r_q^+\ge r_q$ jointly, and form $c_a^+,d_a^+$ from the upper values using $\lambda_a^+=\sqrt{h_a/a_a^+}$.
+Every action satisfying $\mu_{\delta^+}>0$ and $c_a^+<1$ obeys the true recursion $R_{m+1}\le c_a^+R_m+d_a^+$.
+Moreover, if $c_a,c_a^+\le\bar c<1$ and $d_a,d_a^+\le\bar d$, then
+\begin{equation}
+|\mathcal U_a^+-\mathcal U_a|
+\le
+\left(nR_0+\frac{\bar d}{(1-\bar c)^2}\right)\Delta c_a
++\frac{\Delta d_a}{1-\bar c}
+=:\varepsilon_a.
+\label{eq:robust-score-gap}
+\end{equation}
+Consequently, minimizing the upper score incurs at most $2\max_a\varepsilon_a$ certified risk beyond the exact-certificate oracle.
+\label{cor:robust-certificate}
+\end{corollary}
+
+Here $\Delta c_a=|c_a^+-c_a|$ and $\Delta d_a=|d_a^+-d_a|$ admit the explicit moment- and mixing-slack bounds in Appendix~A.
+Thus coverage controls safety exactly, while certificate tightness controls performance continuously.
+
 The confidence mechanism is deliberately modular.
 Finite-state chains can use spectral or regeneration certificates, while geometrically ergodic continuous-state chains can use an externally supplied mixing upper bound.
 The controller's guarantee is conditional on the declared simultaneous coverage event, and its failure probability adds directly to the risk statement by total probability.
@@ -694,12 +718,13 @@ This separation makes the resource controller a training-layer component that le
 
 \section{Simulations}
 \subsection{Protocol and evaluation questions}
-The simulations test five predictions in increasing order of algorithmic scope.
+The simulations test six predictions in increasing order of algorithmic scope.
 The first asks whether cross-agent correlation produces the saturation in \eqref{eq:speedup} and moves the resource-optimal participation level.
 The second asks whether Theorem~\ref{thm:affine} is finite, empirically calibrated, and responsive to correlation, mixing, and delay when it jointly selects $(q,b,\eta)$.
 The third asks whether the learning-value gate in \eqref{eq:admission} improves risk over a controller that probes as soon as identification becomes reliable.
 The fourth asks whether joint control improves the entire resource-indexed convergence trajectory and the induced discounted-return estimate relative to a strong fixed-participation policy.
-The fifth asks whether the same observable dependence decision transfers to centralized-training--decentralized-execution policy learning and improves team return under equal resources.
+The fifth asks whether a conservative upper-certificate shield preserves safety without sacrificing the nominal action and whether the finite-horizon score improves terminal risk over myopic and correlation-only rules.
+The sixth asks whether the same observable dependence decision transfers to centralized-training--decentralized-execution policy learning and improves team return under equal resources.
 
 All studies use paired common random numbers across policies, charge every message and environment-clock unit, retain every prespecified cell, and use independent same-seed reproductions or disjoint confirmation seeds.
 The Markov temporal-difference task has seven states on a ring, a bounded sinusoidal reward, four stationary-distribution-orthonormal features, and an exact projected fixed point.
@@ -815,12 +840,21 @@ The controller selects $q=8$ for independent streams in both environments, $q=1$
 \end{figure*}
 
 \subsection{Ablations, complexity, and reproducibility}
+TSP-V3-CERT-SHIELD-002 evaluates the confidence interface with 64 disjoint confirmation seeds and 157,440 checkpoint rows.
+The moderate stress inflates $K_q$ and $\Omega_q$ by 10 percent and weakens the certified mixing log-rate by 0.05; the strong stress uses 25 percent and 0.10.
+Both shields retain the nominal action in all twelve cells, all 24 stress-by-cell one-sided 99 percent upper means remain below the robust certificate, and neither shield changes empirical terminal risk.
+
+The same study also isolates the finite-horizon objective.
+Against one-step myopic drift, terminal parameter risk falls by 12.20 percent; against a correlation-only participation rule, it falls by 64.22 percent.
+The respective ratios and paired-bootstrap 95 percent intervals are $0.878$ $[0.836,0.923]$ and $0.358$ $[0.307,0.412]$, both strictly below one.
+
 For a finite catalogue, action evaluation is linear in the number of candidate triples.
 The exact likelihood update is scalar after the spatial reduction, and the affine certificate uses cached scalar moments and a one-dimensional step search.
 When temporal-difference Jacobians are rank one, online moment probes require $O(qd)$ arithmetic and $O(d)$ memory, matching the order of aggregating $q$ agent updates.
 
-The four controlled Markov studies ran on CPUs, and their aggregate statistics and curves reproduce byte for byte from the versioned data and analysis code.
+The five controlled Markov studies ran on CPUs, and their aggregate statistics and curves reproduce byte for byte from the versioned data and analysis code.
 The convergence study uses a fixed action set and metrics, 16 development seeds for comparator selection, and 64 disjoint confirmation seeds for the reported comparison.
+The robustness study uses eight development and 64 disjoint confirmation seeds; its five scientific tables reproduce byte for byte.
 The MPE study comprises 80 complete controller and fixed-catalogue runs across both dependence regimes.
 The MaMuJoCo study adds 80 fresh-seed runs with the same complete comparator set.
 All 160 policy-learning runs are finite and exactly budgeted, and both analyses reproduce their aggregate curves byte for byte.

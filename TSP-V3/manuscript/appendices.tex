@@ -51,58 +51,57 @@ After $2D+1$ updates, every value in the old envelope has been replaced, so $R_{
 If $R_k<R_\star$, the same inequality keeps the enlarged envelope below $R_\star$.
 Iterating the two cases proves Theorem~\ref{thm:affine}.
 
+\subsection{Proof of Corollary~\ref{cor:robust-certificate}}
+Write $\delta^+=C_q(r_q^+)^b$.
+On the coverage event, $\delta^+\ge\delta$ and monotonicity on $\mu-2L\delta^+>0$ gives $a^+\ge a$ and $\beta^+\ge\beta$.
+Evaluating the delayed Young inequality at the shared $\lambda^+=\sqrt{h/a^+}$ proves the upper recursion; separately optimized forcing terms need not be monotone.
+For $\Delta\delta=\delta^+-\delta$, $\Delta K=K_q^+-K_q$, and $\Delta\Omega=\Omega_q^+-\Omega_q$,
+\begin{align}
+\Delta a
+&=2\eta^2\Delta K+(2\eta L+4\eta^2L^2)\Delta\delta,\nonumber\\
+\Delta\beta
+&=2\eta^2\Delta\Omega+4\eta^2G^2\Delta\delta\nonumber\\
+&\quad+4\eta G^2\left[
+\frac{(\delta^+)^2}{\mu-2L\delta^+}
+-\frac{\delta^2}{\mu-2L\delta}
+\right],\nonumber\\
+\Delta c
+&=(\sqrt{a^+}+\sqrt h)^2-(\sqrt a+\sqrt h)^2.
+\label{eq:certificate-perturbations}
+\end{align}
+For $h>0$,
+\begin{align}
+\Delta d
+&\le(1+\sqrt{h/a^+})\Delta\beta
++\sqrt h\left(\frac1{\sqrt a}-\frac1{\sqrt{a^+}}\right)\beta\nonumber\\
+&\quad+\frac{\sqrt{a^+}-\sqrt a}{\sqrt h}g,
+\label{eq:certificate-delta-d}
+\end{align}
+and $\Delta d=\Delta\beta$ when $h=0$.
+For $U(c,d)=d/(1-c)+c^n(R_0-d/(1-c))_+$, $|\partial_dU|\le(1-\bar c)^{-1}$ and $|\partial_cU|\le nR_0+\bar d(1-\bar c)^{-2}$.
+The mean-value bound proves \eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\widehat a}\le U_{a^\star}+2\max_a\varepsilon_a$.
+
 \subsection{Return transfer and arbitrary terminal indices}
 Let $n=\lfloor N_a/(2D+1)\rfloor$.
-The envelope argument used above shows that all iterates after index $n(2D+1)$ and before the next completed replacement block remain below the larger of the current envelope and $R_\star$.
-The right-hand side of \eqref{eq:affine-bound} already has this form because its transient part is truncated by $(R_0-R_\star)_+$ in \eqref{eq:certificate-score}.
-
-Furthermore,
-\begin{equation}
-J_\nu(w)-J_\nu(w^\star)=\psi_\nu^\top e,
-\quad
-\psi_\nu=\E_{s\sim\nu}\phi(s).
-\end{equation}
-Cauchy--Schwarz gives $|\psi_\nu^\top e|^2\le\|\psi_\nu\|^2\|e\|^2$.
-Taking expectations and applying the terminal envelope proves Corollary~\ref{cor:return}.
+The envelope argument keeps every later incomplete-block iterate below $\max\{R_{n(2D+1)},R_\star\}$, which is the truncated-transient form in \eqref{eq:certificate-score}.
+Since $J_\nu(w)-J_\nu(w^\star)=\psi_\nu^\top e$ for $\psi_\nu=\E_{s\sim\nu}\phi(s)$, Cauchy--Schwarz and the terminal envelope prove Corollary~\ref{cor:return}.
 
 \subsection{Proof of Theorem~\ref{thm:tracking}}
-During epoch $r$, hold the target $w_r^\star$ fixed and apply one replacement-block step from the proof of Theorem~\ref{thm:affine}.
-If $\widetilde Z_{r+1}$ denotes the terminal history envelope measured relative to $w_r^\star$, then
-\begin{equation}
-\widetilde Z_{r+1}\le c_{\rm aff}(a_r)Z_r+d_{\rm aff}(a_r)\le cZ_r+d.
-\label{eq:tracking-old-target}
-\end{equation}
-For every iterate $w_s$ in that terminal history and every $\chi>0$, Young's inequality gives
+Holding $w_r^\star$ fixed for one replacement block and then applying Young's inequality to the target shift gives
 \begin{align}
-\|w_s-w_{r+1}^\star\|^2
-&\le(1+\chi)\|w_s-w_r^\star\|^2\nonumber\\
-&\quad +(1+\chi^{-1})\|w_{r+1}^\star-w_r^\star\|^2.
+\widetilde Z_{r+1}
+&\le c_{\rm aff}(a_r)Z_r+d_{\rm aff}(a_r)\le cZ_r+d,\nonumber\\
+Z_{r+1}
+&\le(1+\chi)cZ_r+(1+\chi)d+(1+\chi^{-1})v^2.
+\label{eq:tracking-old-target}
 \end{align}
-Taking expectations and the maximum over the history yields
-\begin{equation}
-Z_{r+1}\le (1+\chi)cZ_r+(1+\chi)d+(1+\chi^{-1})v^2.
-\end{equation}
 Iteration proves \eqref{eq:tracking-bound} whenever $\bar c=(1+\chi)c<1$.
-
-For a one-step TD advantage,
-\begin{equation}
-\widehat A_w-A^\star
-=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star).
-\end{equation}
-The feature bound implies
-$\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$.
-Cauchy--Schwarz followed by the definition of $Z_n$ proves \eqref{eq:advantage-transfer}.
+Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves \eqref{eq:advantage-transfer}.
 
 \subsection{Existence and complexity of the mixed controller}
-For fixed $(q,b)$, $a_\delta$, $\beta_\delta$, $h_\tau$, and $g_\tau$ are continuous functions of $\eta$.
-The optimized Young coefficient and hence $c_{\rm aff}$ and $d_{\rm aff}$ are continuous wherever their denominators are positive, with the zero-delay values defined by continuity.
-The score in \eqref{eq:certificate-score} is therefore continuous on each certified component.
-Restricting to its closed feasible portion gives existence by the extreme-value theorem.
-
-The controller evaluates at most $N_qN_b$ scalar problems.
-If a deterministic scalar routine uses $L_\eta$ score evaluations per pair, the control arithmetic is $O(N_qN_bL_\eta)$.
-For rank-one $H_{i,k}$, matrix--vector products can be accumulated from feature inner products without forming a dense $d\times d$ matrix.
-The calibration update is consequently $O(qd)$ in arithmetic and $O(d)$ in working memory, which proves Proposition~\ref{prop:computation}.
+For fixed $(q,b)$, every coefficient and \eqref{eq:certificate-score} is continuous in $\eta$ on each certified component, including the zero-delay limit; the extreme-value theorem gives existence on its closed feasible portion.
+The $N_qN_b$ scalar searches cost $O(N_qN_bL_\eta)$ evaluations.
+For rank-one $H_{i,k}$, feature inner products avoid dense matrices, so calibration costs $O(qd)$ arithmetic and $O(d)$ memory, proving Proposition~\ref{prop:computation}.
 
 \section{Correlation-Limited Minimax Risk}
 For one round of the Gaussian location subclass, the agent average has variance $\sigma_c^2+\sigma_e^2/q$.
@@ -112,15 +111,9 @@ Since $1+(q-1)\rho\ge q\rho$ for $\rho>0$, the speedup is at most $\rho^{-1}$.
 
 \section{Proof of the Stopped Adaptive Information Identity}
 Condition on the pre-action history and realized action $A_k$.
-An orthogonal rotation maps $X_k$ to the normalized mean $Y_k=q_k^{-1/2}\bm{1}^\top X_k$ and $q_k-1$ contrasts.
-The contrasts are independent standard normal variables under both hypotheses and therefore contribute zero to the likelihood ratio.
-
-The Kalman predictive law of $Y_k$ under hypothesis $j$ is $\mathcal{N}(\sqrt{q_k}m^-_{j,k},V_{j,k})$.
-Factoring the stopped path law into action kernels and conditional observation kernels makes the common predictable action factors cancel pointwise.
-The log likelihood ratio is therefore the sum of scalar innovation log likelihood ratios.
-Conditional expectation under hypothesis zero gives the Gaussian divergence in \eqref{eq:conditional-kl}.
-Tonelli's theorem applies because each conditional divergence is nonnegative and the budget bounds $\tau$.
-This proves \eqref{eq:adaptive-kl}; exchanging the hypotheses proves the reverse identity.
+An orthogonal rotation maps $X_k$ to $Y_k=q_k^{-1/2}\bm{1}^\top X_k$ and hypothesis-invariant standard-normal contrasts.
+Because the predictable action kernels cancel, the stopped log likelihood is the sum of scalar Kalman innovation ratios, where $Y_k\sim\mathcal N(\sqrt{q_k}m^-_{j,k},V_{j,k})$.
+Conditional expectation and Tonelli's theorem give \eqref{eq:conditional-kl} and \eqref{eq:adaptive-kl}; exchanging hypotheses gives the reverse identity.
 
 For a decision $\widehat J$, data processing gives
 \begin{equation}
@@ -140,27 +133,21 @@ Every $\delta$-correct policy induces an occupation measure satisfying the contr
 \int(h+q(a))\nu_j(dz,da)&\le B_{\rm msg},\nonumber\\
 \int b(a)\nu_j(dz,da)+D\Pp_j(\tau>0)&\le B_{\rm env}.
 \end{align}
-Hence its expected identification opportunity cost is at least the infimum of $\int\Delta_j(z,a)\nu_j(dz,da)$ over this feasible occupation set.
-This formulation retains the belief-state dependence created by irregular Markov gaps and changing participation.
-
-For completeness, let $T_a(z,dz')$ be the belief-state transition kernel created by action $a$ and the scalar Kalman innovation.
-The stopped occupation measure and terminal belief law $\zeta_j$ obey, for every bounded measurable test function $f$,
+Let $T_a$ be the belief transition and $\zeta_j$ the terminal belief law.
+For every bounded measurable $f$, predictability and stopped telescoping give
 \begin{align}
 \int f(z)\zeta_j(dz)-f(z_1)
 &=\int\left[\int f(z')T_a(z,dz')\right.\nonumber\\
 &\left.\hspace{18mm}-f(z)\right]\nu_j(dz,da).
 \label{eq:belief-flow}
 \end{align}
-This is the controlled flow constraint included in ${\cal M}_j$.
-Predictability ensures that $T_a$ is chosen before the current innovation is observed.
-
-The expected accumulated opportunity loss is exactly
+Moreover,
 \begin{equation}
 \E_j^\pi\sum_{k\le\tau}\Delta_j(Z_k,A_k)
 =\int\Delta_j(z,a)\nu_j(dz,da).
 \end{equation}
-Equations \eqref{eq:adaptive-kl}, \eqref{eq:budgets}, and \eqref{eq:belief-flow} show that the occupation measure of every admissible policy belongs to ${\cal M}_j$.
-Taking an infimum over the larger set of all feasible measures gives \eqref{eq:occupation-lower-bound} and proves Proposition~\ref{prop:occupation}.
+Equations \eqref{eq:adaptive-kl}, \eqref{eq:budgets}, and \eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
+Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
 
 \section{Proof of the Main Learning-Value Guarantee}
 Condition on whether the likelihood test identifies instance $j$ correctly.
@@ -178,53 +165,17 @@ The fallback statement follows directly from the strict admission rule.
 
 \section{Proof of the Threshold Sandwich}
 Write $d_\delta=\operatorname{kl}(1-\delta,\delta)$.
-Compact separation, $\lambda\le1-\gamma$, and continuity of the scalar Kalman recursion imply that the directional information of every feasible observation is at most a finite class constant $i_+$.
-Every action has a positive resource cost, so the information constraint \eqref{eq:info-constraint} implies $B_N\ge c_Nd_\delta$ for a constant $c_N>0$ depending only on the class and the budget ray.
-
-For the fixed probe in the theorem assumptions, compactness gives a positive lower Bhattacharyya information $i_-$ per retained observation.
-Thus a block of
-\begin{equation}
-n_\delta=\left\lceil i_-^{-1}\log(1/\delta)\right\rceil
-\end{equation}
-has both directional errors at most $\delta$.
-Its two resource costs are at most $c_pn_\delta+D_{\max}$ in budget-ray units.
-For $0<\delta\le\delta_0<1/2$, continuity of $\log(1/\delta)/d_\delta$ on $(0,\delta_0]$, together with its finite limit at zero, yields
-\begin{equation}
-n_\delta\le c_0+c_1d_\delta\le c_0+c_2B_N.
-\label{eq:probe-versus-necessary}
-\end{equation}
-
-For a stationary action $a=(q,b,\eta)$, the exact running-mean risk has the expansion
-\begin{equation}
-R_j^{\rm mean}(a;s)=\frac{K_j(a)}{s}+O_{\mathcal K}(s^{-2})
-\end{equation}
-uniformly along the budget ray.
-The same expansion is assumed for every certified catalogue risk.
-Removing $n_\delta$ probe blocks and at most $D_{\max}$ terminal transitions perturbs each certificate by at most
-\begin{equation}
-\frac{L_{\mathcal K}(n_\delta+D_{\max}+1)}{s^2}
-\label{eq:risk-perturbation}
-\end{equation}
-for a class constant $L_{\mathcal K}$ once all catalogue actions are feasible.
-The high-instance all-agent-to-oracle improvement is at least $g_{\min}/s-O_{\mathcal K}(s^{-2})$.
-By the wrong-commit assumption, the term $\delta W_1$ consumes at most half of this leading gain.
-Equations \eqref{eq:probe-versus-necessary}--\eqref{eq:risk-perturbation} therefore make the strict high-instance admission inequality hold when
-\begin{equation}
-s\ge c_3B_N+c_4(B_{\rm oracle}+1).
-\end{equation}
-All low-instance certificate differences are $O_{\mathcal K}(s^{-1})$.
-For a fixed admissible safety target, they fall below that target once $s\ge B_\epsilon$.
-Taking the maximum of these sufficient scales and increasing class constants gives
-\begin{equation}
-B_S\le C_{\mathcal K}B_N+C'_{\mathcal K}(B_{\rm oracle}+B_\epsilon+1).
-\end{equation}
-The inequality $B_N\le B_S$ follows from the necessity of the two directional information constraints for every admitted $\delta$-correct probe.
-This proves \eqref{eq:threshold-sandwich}.
+Compact separation and $\lambda\le1-\gamma$ upper-bound every feasible observation's directional information by $i_+<\infty$; positive action cost and \eqref{eq:info-constraint} therefore imply $B_N\ge c_Nd_\delta$.
+The fixed probe has information at least $i_->0$, so $n_\delta=\lceil i_-^{-1}\log(1/\delta)\rceil$ observations suffice and cost at most $c_pn_\delta+D_{\max}$.
+Continuity of $\log(1/\delta)/d_\delta$ gives $n_\delta\le c_0+c_1d_\delta\le c_0+c_2B_N$.
+Uniformly along the budget ray, every stationary catalogue risk is $K_j(a)/s+O_{\mathcal K}(s^{-2})$, so probing perturbs it by at most $L_{\mathcal K}(n_\delta+D_{\max}+1)/s^2$.
+The high-instance gain is $g_{\min}/s-O_{\mathcal K}(s^{-2})$ and the wrong-commit term consumes at most half, hence admission holds for $s\ge c_3B_N+c_4(B_{\rm oracle}+1)$.
+Low-instance differences are $O_{\mathcal K}(s^{-1})$ and satisfy safety once $s\ge B_\epsilon$.
+Taking the maximum proves the upper bound in \eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\delta$-correct probe obeys both information constraints.
 
 \section{Secondary SDDE Interpretation}
 The controlled discrete recursion has the local stochastic delay differential equation representation
 \begin{equation}
 dE(t)=-\frac1q\sum_{i=1}^{q}A_iE(t-\tau_i(t))dt+\sqrt{\eta}\,\Sigma_q^{1/2}(E_t)dW(t).
 \end{equation}
-The diffusion must retain the state-dependent quadratic variation induced by random temporal-difference Jacobians.
-Near the fixed point, this variation is bounded by $K_q\|E_t\|^2$, explaining how correlation changes the noise floor and stability margin while the exact discrete recursion supplies the finite-time guarantee.
+The diffusion retains the Jacobian-induced state-dependent variation, bounded near the fixed point by $K_q\|E_t\|^2$; this explains the correlation-dependent noise floor and stability margin, while the discrete recursion supplies the finite-time guarantee.
