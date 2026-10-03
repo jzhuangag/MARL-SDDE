@@ -61,7 +61,10 @@ def normalized_auc(frame: pd.DataFrame, metric: str) -> float:
     ordered = frame.sort_values("resource_fraction")
     x = ordered["resource_fraction"].to_numpy(dtype=float)
     y = ordered[metric].to_numpy(dtype=float)
-    return float(np.trapezoid(y, x) / max(x[-1] - x[0], np.finfo(float).eps))
+    trapezoid = getattr(np, "trapezoid", None)
+    if trapezoid is None:
+        trapezoid = np.trapz
+    return float(trapezoid(y, x) / max(x[-1] - x[0], np.finfo(float).eps))
 
 
 def build_actions(config: Mapping[str, object]) -> Tuple[pd.DataFrame, Dict[Tuple[float, float, int, str], Dict[str, float]]]:
