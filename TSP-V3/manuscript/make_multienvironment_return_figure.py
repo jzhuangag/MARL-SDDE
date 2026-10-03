@@ -17,9 +17,9 @@ from figure_style import (
     Q_COLORS,
     Q_LINESTYLES,
     TEXT_WIDTH_IN,
-    TITLE_FONT_SIZE,
     apply_publication_style,
     set_fraction_axis,
+    set_panel_label_below,
     style_axis,
 )
 
@@ -69,7 +69,7 @@ def draw(ax: plt.Axes, frame: pd.DataFrame, title: str) -> None:
                 alpha=CONFIDENCE_ALPHA,
                 linewidth=0.0,
             )
-    ax.set_title(title, fontsize=TITLE_FONT_SIZE)
+    set_panel_label_below(ax, title)
     set_fraction_axis(ax, label="Charged budget fraction")
     style_axis(ax)
 
@@ -118,7 +118,7 @@ def main() -> None:
         handlelength=2.5,
         fontsize=LEGEND_FONT_SIZE,
     )
-    fig.subplots_adjust(left=0.075, right=0.975, bottom=0.23, top=0.69, wspace=0.55)
+    fig.subplots_adjust(left=0.075, right=0.975, bottom=0.31, top=0.69, wspace=0.55)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(
         OUTPUT,

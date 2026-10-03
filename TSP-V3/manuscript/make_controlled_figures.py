@@ -19,9 +19,9 @@ from figure_style import (
     Q_COLORS,
     Q_LINESTYLES,
     TEXT_WIDTH_IN,
-    TITLE_FONT_SIZE,
     apply_publication_style,
     set_fraction_axis,
+    set_panel_label_below,
     style_axis,
 )
 
@@ -128,7 +128,7 @@ def joint_action_figure() -> None:
     axes[0].bar(x - 0.5 * width, q_independent[:, 1], width, color=colors[1], label=labels[1])
     axes[0].bar(x + 0.5 * width, q_shared[:, 0], width, color=colors[2], label=labels[2])
     axes[0].bar(x + 1.5 * width, q_shared[:, 1], width, color=colors[3], label=labels[3])
-    axes[0].set_title("(a) Participation")
+    set_panel_label_below(axes[0], "(a) Participation", y=-0.43)
     axes[0].set_ylabel(r"Selected $q$")
     axes[0].set_xticks(x, ["0", "0.9", "0.98"])
     axes[0].set_xlabel("Temporal persistence")
@@ -138,7 +138,7 @@ def joint_action_figure() -> None:
     axes[1].plot(persistence, gaps_independent[:, 1], "s--", color=colors[1], label=labels[1], markersize=3.1)
     axes[1].plot(persistence, gaps_shared[:, 0], "o-", color=colors[2], label=labels[2], markersize=3.1)
     axes[1].plot(persistence, gaps_shared[:, 1], "s--", color=colors[3], label=labels[3], markersize=3.1)
-    axes[1].set_title("(b) Spacing")
+    set_panel_label_below(axes[1], "(b) Spacing", y=-0.43)
     axes[1].set_yscale("log")
     axes[1].set_ylabel(r"Selected $b$")
     axes[1].set_xlabel("Temporal persistence")
@@ -157,7 +157,7 @@ def joint_action_figure() -> None:
         handlelength=2.0,
         fontsize=6.6,
     )
-    fig.subplots_adjust(left=0.15, right=0.985, bottom=0.22, top=0.70, wspace=0.43)
+    fig.subplots_adjust(left=0.15, right=0.985, bottom=0.34, top=0.70, wspace=0.43)
     save(fig, "exp010b_joint_actions")
 
 
@@ -209,7 +209,7 @@ def convergence_curve_figure() -> None:
                     linewidth=0.0,
                 )
     for ax, title in zip(axes, titles):
-        ax.set_title(title, fontsize=TITLE_FONT_SIZE)
+        set_panel_label_below(ax, title)
         ax.set_yscale("log")
         set_fraction_axis(ax, label="Charged budget fraction")
         style_axis(ax)
@@ -227,7 +227,7 @@ def convergence_curve_figure() -> None:
         handlelength=2.5,
         fontsize=LEGEND_FONT_SIZE,
     )
-    fig.subplots_adjust(left=0.075, right=0.975, bottom=0.23, top=0.69, wspace=0.55)
+    fig.subplots_adjust(left=0.075, right=0.975, bottom=0.31, top=0.69, wspace=0.55)
     save(fig, "convergence_curves")
 
 

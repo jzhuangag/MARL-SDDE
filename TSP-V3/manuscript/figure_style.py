@@ -18,6 +18,7 @@ BASE_FONT_SIZE = 8.0
 TICK_FONT_SIZE = 7.0
 LEGEND_FONT_SIZE = 7.2
 TITLE_FONT_SIZE = 8.0
+PANEL_LABEL_Y = -0.40
 
 GRID_COLOR = "#9E9E9E"
 GRID_ALPHA = 0.28
@@ -105,6 +106,26 @@ def set_fraction_axis(
     ax.set_xticks(tuple(ticks))
     ax.xaxis.set_major_formatter(FormatStrFormatter("%.2f"))
     ax.set_xlabel(label)
+
+
+def set_panel_label_below(
+    ax: Axes,
+    label: str,
+    *,
+    y: float = PANEL_LABEL_Y,
+) -> None:
+    """Place a subfigure label below the x-axis label with shared typography."""
+
+    ax.text(
+        0.5,
+        y,
+        label,
+        transform=ax.transAxes,
+        ha="center",
+        va="top",
+        fontsize=TITLE_FONT_SIZE,
+        clip_on=False,
+    )
 
 
 PDF_METADATA = {
