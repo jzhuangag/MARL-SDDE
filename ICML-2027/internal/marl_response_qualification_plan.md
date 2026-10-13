@@ -67,8 +67,11 @@ or presenting the same pilot as a fresh confirmation.
 
 ## Concrete current stop boundary
 
-The actual HARL critic replication audit is complete and nearly invariant.
-The actor response, nonlinear score-to-risk link, and state-transfer guarantee
-are not yet qualified. No new multi-environment return result or GPU job is
+The actual HARL critic replication audit and 32-payload actor replication
+audit are complete and nearly invariant. The latter covers discrete/continuous
+action spaces, tanh/relu networks, and two matched seeds. Maximum actor
+parameter difference is 3.28e-7 after five full-batch updates.
+Genuine independent-data actor response, the nonlinear score-to-risk link, and
+state-transfer guarantee are not yet qualified. No new multi-environment return result or GPU job is
 reported in the CPU package. The next work item is those operational/model
 checks, not another unqualified task sweep.

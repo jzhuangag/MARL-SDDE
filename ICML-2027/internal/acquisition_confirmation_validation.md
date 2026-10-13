@@ -65,6 +65,9 @@ subset. The oracle comparison is a diagnostic, not a deployable method.
 
 These uncertainty intervals quantify calibration randomness for the declared
 finite population. They do not estimate generalization over unobserved tasks.
+They are Student-based intervals for paired seed-mean log ratios, not exact
+distribution-free performance guarantees. The exact Gaussian parameter
+coverage theorem is a different claim.
 The primary endpoint integrates future learning noise exactly; rows are not
 independent training trajectories. Risk improvement is aggregate, not a
 per-cell no-harm guarantee.
@@ -157,8 +160,10 @@ addresses that identifiable acquisition-cost mechanism prospectively, then
 confirms it on independent seeds. No prior threshold or result was changed.
 
 The actual pinned HARL full-batch critic audit is near replication-invariant
-(maximum parameter difference 2.98e-8). Therefore a shared-stream interior
+(maximum parameter difference 2.98e-8). A further 32-payload MAPPO actor audit
+also passes duplication invariance over discrete/continuous actions and
+tanh/relu networks (maximum difference 3.28e-7). Therefore a shared-stream interior
 q optimum cannot be explained by duplicated critic batches alone. Actual
-actor/critic dynamics, optimizer work, horizon, and calibration-to-training
+independent-data actor/critic dynamics, optimizer work, horizon, and calibration-to-training
 transfer must pass the next interface qualification before multi-environment
 return confirmation or an ICML-ready manuscript is claimed.

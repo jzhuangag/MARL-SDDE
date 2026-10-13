@@ -1,0 +1,655 @@
+{
+  "role": "synthetic-buffer CPU operational audit; not MARL return or performance evidence",
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "torch_version": "2.6.0+cpu",
+  "rows": [
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "e6d552d3e1164aecf1c36c1e859b7cb37ad1f1c72c2e44c8292754ebd1ecffff",
+      "losses": [
+        -7.1525572131747595e-09,
+        -0.008556505665183067,
+        -0.017166590318083763,
+        -0.025961551815271378,
+        -0.03502491116523743
+      ],
+      "policy_kl_on_fixed_buffer": 0.002968875225633383,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "e6d552d3e1164aecf1c36c1e859b7cb37ad1f1c72c2e44c8292754ebd1ecffff",
+      "losses": [
+        -4.76837147544984e-09,
+        -0.008556499145925045,
+        -0.017166582867503166,
+        -0.025961551815271378,
+        -0.03502490371465683
+      ],
+      "policy_kl_on_fixed_buffer": 0.0029688754584640265,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "e6d552d3e1164aecf1c36c1e859b7cb37ad1f1c72c2e44c8292754ebd1ecffff",
+      "losses": [
+        0.0,
+        -0.008556501939892769,
+        -0.017166582867503166,
+        -0.025961555540561676,
+        -0.03502490743994713
+      ],
+      "policy_kl_on_fixed_buffer": 0.00296887313015759,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "e6d552d3e1164aecf1c36c1e859b7cb37ad1f1c72c2e44c8292754ebd1ecffff",
+      "losses": [
+        0.0,
+        -0.008556499145925045,
+        -0.017166586592793465,
+        -0.02596154622733593,
+        -0.03502490743994713
+      ],
+      "policy_kl_on_fixed_buffer": 0.002968875225633383,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "2d73486952c70b4b9c52b01c74d40fa82ac673cd1229df5da57c4567ebc62892",
+      "losses": [
+        4.76837147544984e-09,
+        -0.02634466253221035,
+        -0.03872288390994072,
+        -0.04607388377189636,
+        -0.052248287945985794
+      ],
+      "policy_kl_on_fixed_buffer": 0.030831143260002136,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "2d73486952c70b4b9c52b01c74d40fa82ac673cd1229df5da57c4567ebc62892",
+      "losses": [
+        7.1525572131747595e-09,
+        -0.02634466253221035,
+        -0.03872288390994072,
+        -0.04607386887073517,
+        -0.0522482730448246
+      ],
+      "policy_kl_on_fixed_buffer": 0.030831146985292435,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "2d73486952c70b4b9c52b01c74d40fa82ac673cd1229df5da57c4567ebc62892",
+      "losses": [
+        7.1525572131747595e-09,
+        -0.026344671845436096,
+        -0.03872288763523102,
+        -0.046073876321315765,
+        -0.052248284220695496
+      ],
+      "policy_kl_on_fixed_buffer": 0.030831139534711838,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000001,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "2d73486952c70b4b9c52b01c74d40fa82ac673cd1229df5da57c4567ebc62892",
+      "losses": [
+        7.1525572131747595e-09,
+        -0.02634466625750065,
+        -0.03872287645936012,
+        -0.046073876321315765,
+        -0.052248284220695496
+      ],
+      "policy_kl_on_fixed_buffer": 0.030831139534711838,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "0343025c76101401600fa5b49baec18e5979fe1b672d2cda02e6ca6ab2a30e05",
+      "losses": [
+        -7.1525572131747595e-09,
+        -0.00827523972839117,
+        -0.016599906608462334,
+        -0.025118885561823845,
+        -0.03392655402421951
+      ],
+      "policy_kl_on_fixed_buffer": 0.0016550433356314898,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "0343025c76101401600fa5b49baec18e5979fe1b672d2cda02e6ca6ab2a30e05",
+      "losses": [
+        -4.76837147544984e-09,
+        -0.008275236003100872,
+        -0.01659991778433323,
+        -0.025118902325630188,
+        -0.03392655774950981
+      ],
+      "policy_kl_on_fixed_buffer": 0.0016550422878935933,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "0343025c76101401600fa5b49baec18e5979fe1b672d2cda02e6ca6ab2a30e05",
+      "losses": [
+        0.0,
+        -0.008275232277810574,
+        -0.016599904745817184,
+        -0.02511889673769474,
+        -0.03392655774950981
+      ],
+      "policy_kl_on_fixed_buffer": 0.0016550475265830755,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "0343025c76101401600fa5b49baec18e5979fe1b672d2cda02e6ca6ab2a30e05",
+      "losses": [
+        0.0,
+        -0.00827523972839117,
+        -0.01659991219639778,
+        -0.025118889287114143,
+        -0.03392656520009041
+      ],
+      "policy_kl_on_fixed_buffer": 0.0016550486907362938,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "214b053d7d0a88b7944b90902ef2fb6d07cc1b99fe1787c823c1c3e443046a94",
+      "losses": [
+        3.33786012163273e-08,
+        -0.02821565605700016,
+        -0.05150909721851349,
+        -0.0667136088013649,
+        -0.07793277502059937
+      ],
+      "policy_kl_on_fixed_buffer": 0.01953630894422531,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "214b053d7d0a88b7944b90902ef2fb6d07cc1b99fe1787c823c1c3e443046a94",
+      "losses": [
+        3.099441414633475e-08,
+        -0.028215641155838966,
+        -0.05150908976793289,
+        -0.0667136162519455,
+        -0.07793277502059937
+      ],
+      "policy_kl_on_fixed_buffer": 0.01953631080687046,
+      "max_parameter_difference_from_q1": 2.9802322387695312e-08
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "214b053d7d0a88b7944b90902ef2fb6d07cc1b99fe1787c823c1c3e443046a94",
+      "losses": [
+        3.814697180359872e-08,
+        -0.028215641155838966,
+        -0.05150909349322319,
+        -0.0667136088013649,
+        -0.07793277502059937
+      ],
+      "policy_kl_on_fixed_buffer": 0.01953631453216076,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000001,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "214b053d7d0a88b7944b90902ef2fb6d07cc1b99fe1787c823c1c3e443046a94",
+      "losses": [
+        3.814697180359872e-08,
+        -0.028215648606419563,
+        -0.05150909349322319,
+        -0.0667136088013649,
+        -0.07793277502059937
+      ],
+      "policy_kl_on_fixed_buffer": 0.01953631266951561,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "55579ed0d1700f0f225db0e5071deeaa686f3ccb89f7279a455e2bb8cc6bd813",
+      "losses": [
+        -7.1525572131747595e-09,
+        -0.007773072924464941,
+        -0.015605039894580841,
+        -0.0236019566655159,
+        -0.031833991408348083
+      ],
+      "policy_kl_on_fixed_buffer": 0.002923782216385007,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "55579ed0d1700f0f225db0e5071deeaa686f3ccb89f7279a455e2bb8cc6bd813",
+      "losses": [
+        -4.76837147544984e-09,
+        -0.007773072924464941,
+        -0.01560504175722599,
+        -0.023601949214935303,
+        -0.03183400630950928
+      ],
+      "policy_kl_on_fixed_buffer": 0.0029237810522317886,
+      "max_parameter_difference_from_q1": 2.9802322387695312e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "55579ed0d1700f0f225db0e5071deeaa686f3ccb89f7279a455e2bb8cc6bd813",
+      "losses": [
+        -8.344650304081824e-09,
+        -0.007773082237690687,
+        -0.015605046413838863,
+        -0.02360195852816105,
+        -0.03183399513363838
+      ],
+      "policy_kl_on_fixed_buffer": 0.0029237831477075815,
+      "max_parameter_difference_from_q1": 2.9802322387695312e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Discrete",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "55579ed0d1700f0f225db0e5071deeaa686f3ccb89f7279a455e2bb8cc6bd813",
+      "losses": [
+        -9.53674295089968e-09,
+        -0.007773072924464941,
+        -0.015605045482516289,
+        -0.023601964116096497,
+        -0.03183400258421898
+      ],
+      "policy_kl_on_fixed_buffer": 0.002923781517893076,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "5c14e504fb3ba5e9dffc2b0cb0540715d7b7828e5e76ff165fe6824696eaec4e",
+      "losses": [
+        1.668930060816365e-08,
+        -0.03251739963889122,
+        -0.05255360156297684,
+        -0.0650370866060257,
+        -0.07273665070533752
+      ],
+      "policy_kl_on_fixed_buffer": 0.042192745953798294,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "5c14e504fb3ba5e9dffc2b0cb0540715d7b7828e5e76ff165fe6824696eaec4e",
+      "losses": [
+        1.1920929132713809e-08,
+        -0.03251740336418152,
+        -0.052553582936525345,
+        -0.0650370717048645,
+        -0.07273663580417633
+      ],
+      "policy_kl_on_fixed_buffer": 0.042192742228507996,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "5c14e504fb3ba5e9dffc2b0cb0540715d7b7828e5e76ff165fe6824696eaec4e",
+      "losses": [
+        0.0,
+        -0.032517410814762115,
+        -0.052553582936525345,
+        -0.06503705680370331,
+        -0.07273665070533752
+      ],
+      "policy_kl_on_fixed_buffer": 0.042192742228507996,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "tanh",
+      "action_space": "Box",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "5c14e504fb3ba5e9dffc2b0cb0540715d7b7828e5e76ff165fe6824696eaec4e",
+      "losses": [
+        -4.76837147544984e-09,
+        -0.032517414540052414,
+        -0.05255359783768654,
+        -0.06503705680370331,
+        -0.07273664325475693
+      ],
+      "policy_kl_on_fixed_buffer": 0.042192745953798294,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "49e281202db219dad2b78214d20bb26832c6361c303d5791f5d25cfaaed494a4",
+      "losses": [
+        -7.1525572131747595e-09,
+        -0.007833579555153847,
+        -0.015749746933579445,
+        -0.023885563015937805,
+        -0.032339517027139664
+      ],
+      "policy_kl_on_fixed_buffer": 0.0014579108683392406,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "49e281202db219dad2b78214d20bb26832c6361c303d5791f5d25cfaaed494a4",
+      "losses": [
+        -4.76837147544984e-09,
+        -0.007833583280444145,
+        -0.015749752521514893,
+        -0.023885570466518402,
+        -0.03233950957655907
+      ],
+      "policy_kl_on_fixed_buffer": 0.0014579161070287228,
+      "max_parameter_difference_from_q1": 5.960464477539063e-08
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "49e281202db219dad2b78214d20bb26832c6361c303d5791f5d25cfaaed494a4",
+      "losses": [
+        -8.344650304081824e-09,
+        -0.007833587937057018,
+        -0.0157497376203537,
+        -0.023885564878582954,
+        -0.03233950957655907
+      ],
+      "policy_kl_on_fixed_buffer": 0.0014579173875972629,
+      "max_parameter_difference_from_q1": 1.1920928955078125e-07
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Discrete",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "49e281202db219dad2b78214d20bb26832c6361c303d5791f5d25cfaaed494a4",
+      "losses": [
+        -9.53674295089968e-09,
+        -0.007833581417798996,
+        -0.01574976183474064,
+        -0.023885564878582954,
+        -0.03233950957655907
+      ],
+      "policy_kl_on_fixed_buffer": 0.0014579147100448608,
+      "max_parameter_difference_from_q1": 3.2782554626464844e-07
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 1,
+      "base_rows": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "rows_processed": 1000,
+      "initial_parameters_sha256": "330df8af07ce17a613ef342864d2fa0f77acace55944c1cc401cf13e34cfe8b8",
+      "losses": [
+        3.814697180359872e-08,
+        -0.032581306993961334,
+        -0.05875929817557335,
+        -0.0725061297416687,
+        -0.08359482884407043
+      ],
+      "policy_kl_on_fixed_buffer": 0.02527652308344841,
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 2,
+      "base_rows": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "rows_processed": 2000,
+      "initial_parameters_sha256": "330df8af07ce17a613ef342864d2fa0f77acace55944c1cc401cf13e34cfe8b8",
+      "losses": [
+        4.2915345943583816e-08,
+        -0.03258129581809044,
+        -0.058759309351444244,
+        -0.0725061297416687,
+        -0.08359482139348984
+      ],
+      "policy_kl_on_fixed_buffer": 0.02527652494609356,
+      "max_parameter_difference_from_q1": 2.5331974029541016e-07
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 4,
+      "base_rows": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "rows_processed": 4000,
+      "initial_parameters_sha256": "330df8af07ce17a613ef342864d2fa0f77acace55944c1cc401cf13e34cfe8b8",
+      "losses": [
+        5.0067900048134106e-08,
+        -0.03258131071925163,
+        -0.05875929817557335,
+        -0.0725061446428299,
+        -0.08359482139348984
+      ],
+      "policy_kl_on_fixed_buffer": 0.02527652308344841,
+      "max_parameter_difference_from_q1": 2.2351741790771484e-07
+    },
+    {
+      "seed": 63000002,
+      "activation": "relu",
+      "action_space": "Box",
+      "q": 8,
+      "base_rows": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "rows_processed": 8000,
+      "initial_parameters_sha256": "330df8af07ce17a613ef342864d2fa0f77acace55944c1cc401cf13e34cfe8b8",
+      "losses": [
+        4.7683716530855236e-08,
+        -0.03258131071925163,
+        -0.05875929445028305,
+        -0.0725061297416687,
+        -0.08359482139348984
+      ],
+      "policy_kl_on_fixed_buffer": 0.02527652308344841,
+      "max_parameter_difference_from_q1": 1.9371509552001953e-07
+    }
+  ],
+  "configurations": 8,
+  "payloads": 32,
+  "replication_tolerance": 1e-05,
+  "maximum_parameter_difference": 3.2782554626464844e-07,
+  "all_finite": true,
+  "replication_within_tolerance": true,
+  "source_sha256": "7f327999fd8d15a212f89c233e85e61652530b3d346d2888544850478f8981ed",
+  "interpretation": "Exact duplicated data and matched full-batch optimizer steps do not identify a learning-efficiency benefit. Distinct trajectories, optimizer work, and evolving-policy state must be qualified separately."
+}

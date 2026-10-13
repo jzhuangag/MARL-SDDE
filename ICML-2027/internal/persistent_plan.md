@@ -82,6 +82,11 @@ No new manuscript claim is admitted until it is supported at the declared scope.
 - HARL critic duplication changes parameters by at most 2.98e-8. The next
   interface must measure actor/critic response, optimizer work, and transfer,
   rather than attribute a shared-stream q=2 optimum to critic duplication.
+- A separately frozen 32-payload CPU MAPPO actor audit covers two seeds,
+  discrete/continuous action spaces, tanh/relu, and every q. All payloads are
+  finite and replication-invariant within 1e-5 (maximum 3.28e-7).
+  The audit JSON also reproduces byte for byte in a disjoint execution.
+  Actual independent-data and evolving-policy response remain the next boundary.
 - Next-stage requirements are in marl_response_qualification_plan.md. No new
   GPU performance study, nonlinear return claim, or manuscript migration is
   authorized by the Gaussian qualification alone.
