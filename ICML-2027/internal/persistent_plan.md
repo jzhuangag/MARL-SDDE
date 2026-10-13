@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-13.
-- Status: CPU development and independent byte replay passed; fresh confirmation lock ready.
+- Status: exact-risk CPU qualification confirmed; strengthened efficient-learner acquisition design passed development and byte replay, with a fresh confirmation lock ready.
 
 ## Decisions
 
@@ -50,3 +50,22 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   population, complete catalogue, and all gates.
 - The myopic comparator is a one-step-then-commit ablation. A strong repeatedly
   replanning adaptive baseline is still required before an ICML algorithm claim.
+
+## Strengthened learner and acquisition design
+
+- Implemented causal scalar gains from minimizing exact quadratic Lyapunov risk.
+  They attain the Gaussian linear-unbiased information bound in the declared model.
+- Efficient fixed-q opponents use that same stronger learner. A global-single-q
+  positive result was insufficient: the public-budget-wise diagnostic exposed a
+  6.61% loss due to acquisition cost. This diagnostic is preserved.
+- Added a uniform, outcome-free perfect-information futility theorem. It permits
+  skipping acquisition when even the paid oracle cannot improve the full-budget
+  public fallback. Every q remains available.
+- CPU-003: 360 contexts, 16 fresh seeds; all original gates and byte replay pass.
+  The budget-wise efficient-fixed risk ratio is 0.947742; interior selection is
+  99.7024%; 80 contexts correctly skip acquisition without reading the sensor.
+- Freeze 64 additional seeds before confirmation of CPU-003.
+- The pinned HARL critic replication audit runs on CPU. TensorBoard logging is
+  unnecessary. A missing PyYAML import was resolved by reading the already
+  installed pure-Python package from the base environment; no environment was
+  installed or upgraded and no experiment payload was retried.
