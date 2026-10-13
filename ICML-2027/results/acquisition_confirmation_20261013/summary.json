@@ -1,0 +1,51 @@
+{
+  "all_gates_without_replay_pass": true,
+  "cells": 360,
+  "comparisons": {
+    "admissible_oracle": {
+      "ci95_high": 1.0102046359360677,
+      "ci95_low": 1.0100455613106485,
+      "ratio": 1.0101250954919716
+    },
+    "always_probe_efficient": {
+      "ci95_high": 0.9858786879530086,
+      "ci95_low": 0.9858345216685541,
+      "ratio": 0.9858566045634507
+    },
+    "budgetwise_fixed": {
+      "ci95_high": 0.9478170428580309,
+      "ci95_low": 0.9476677922649381,
+      "ratio": 0.9477424146234843
+    }
+  },
+  "experiment_id": "ICML27-LEARNING-VALUE-ACQUISITION-CPU-003",
+  "gates_without_replay": {
+    "budgetwise_paired_ci95_upper_max": true,
+    "complete_finite_exact_accounting": true,
+    "coverage_event_implies_true_risk_intervals": true,
+    "full_catalogue": true,
+    "interior_qualified_cells_min": true,
+    "interior_selection_fraction_min": true,
+    "joint_parameter_coverage_fraction_min": true,
+    "no_charge_or_observation_when_futile": true,
+    "ratio_to_admissible_oracle_max": true,
+    "ratio_to_budgetwise_efficient_fixed_max": true
+  },
+  "gpu_performance_authorized": false,
+  "interior_qualified_cells": 84,
+  "interior_selection_fraction": 0.9973958333333334,
+  "phase": "confirmation",
+  "plan_sha256": "b7b00383b1a877a0e9a35f376008b1a309180adf179b64b7a604fd319f175b70",
+  "probed_all_action_risk_coverage_fraction": 0.9963727678571429,
+  "probed_joint_coverage_fraction": 0.9900111607142857,
+  "rows": 184320,
+  "scope": "Known-mixing stationary Gaussian Markov reward process and a constant-feature critic. Online Lyapunov-optimal gains; q and spacing chosen before learning. No nonlinear MARL or universal no-harm claim.",
+  "seeds": 64,
+  "skip_probe_cells": 80,
+  "source_hashes": {
+    "acquisition_gate.py": "863029294fbd4d8becd082c27d81f2aa0c5494b841fa2c48c0fa2c136bc77bfd",
+    "efficient_critic.py": "8e44490c5af1842e78433122c84390cabcd5c8eed5d4596cb31731461711de94",
+    "learning_value.py": "b3ea7ea319eb052d923f4ff1fe184ea996b41c19cb48cdeb050a749e9e79161b",
+    "run_acquisition_cpu.py": "a119e5b556ac925665c46fb2bc772224c9ce6a4b2cffce7e73c5297fb3af1b53"
+  }
+}

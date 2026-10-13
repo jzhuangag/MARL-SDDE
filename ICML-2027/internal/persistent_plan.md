@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-13.
-- Status: exact-risk CPU qualification confirmed; strengthened efficient-learner acquisition design passed development and byte replay, with a fresh confirmation lock ready.
+- Status: independent acquisition-aware efficient-learner confirmation and byte replay complete; fresh stochastic learning curves and independent accounting audit verified. Actual MARL actor/critic response qualification remains open.
 
 ## Decisions
 
@@ -64,8 +64,24 @@ No new manuscript claim is admitted until it is supported at the declared scope.
 - CPU-003: 360 contexts, 16 fresh seeds; all original gates and byte replay pass.
   The budget-wise efficient-fixed risk ratio is 0.947742; interior selection is
   99.7024%; 80 contexts correctly skip acquisition without reading the sensor.
-- Freeze 64 additional seeds before confirmation of CPU-003.
+- CPU-003 confirmation: 64 independently locked seeds, 184,320 method rows;
+  every frozen numerical gate and scientific byte replay pass. The budget-wise
+  efficient-fixed risk ratio is 0.947742415 [0.947667792,0.947817043]; interior
+  q selection is 99.7396%. Eighty contexts skip acquisition before sensing.
+- Fresh learning verification: 18 method paths, 2,048 replicas per path,
+  378 checkpoints; exact-risk diagnostics and byte replay pass. Figure checked
+  visually; value-estimation MSE is not relabelled as team return.
+- Independent recurrence audit verifies all actual total charges and horizons.
+  Preserve the diagnostic-oracle prefix-label erratum in a derived sidecar;
+  do not alter raw scientific outputs, frozen code, or any threshold.
+- Relevant regression: 173 passed; existing TSP/V2/V3 evidence preserved.
 - The pinned HARL critic replication audit runs on CPU. TensorBoard logging is
   unnecessary. A missing PyYAML import was resolved by reading the already
   installed pure-Python package from the base environment; no environment was
   installed or upgraded and no experiment payload was retried.
+- HARL critic duplication changes parameters by at most 2.98e-8. The next
+  interface must measure actor/critic response, optimizer work, and transfer,
+  rather than attribute a shared-stream q=2 optimum to critic duplication.
+- Next-stage requirements are in marl_response_qualification_plan.md. No new
+  GPU performance study, nonlinear return claim, or manuscript migration is
+  authorized by the Gaussian qualification alone.

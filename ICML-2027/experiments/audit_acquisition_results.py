@@ -7,7 +7,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from learning_value import calibration_cost
 from run_cpu import CONFIG, dump, sha256
 
 
@@ -22,10 +21,14 @@ def audit(source:Path,replay:Path,out:Path) -> None:
     frame=pd.read_csv(source/"endpoints.csv")
     summary=json.loads((source/"summary.json").read_text())
     base=json.loads(CONFIG.read_text())
+    plan_path=Path(__file__).resolve().parent/"acquisition_preregistration.json"
+    plan=json.loads(plan_path.read_text())
+    if summary["plan_sha256"]!=sha256(plan_path):
+        raise AssertionError("audit configuration differs from frozen source")
     frame["derived_probe_messages"]=frame.messages-frame.updates*(frame.overhead+frame.q)
     frame["derived_probe_actor_transitions"]=frame.actor_transitions-frame.updates*frame.q*frame.spacing
-    expected_m=(64+1)*(frame.overhead+8)
-    expected_e=(64+1)*8
+    expected_m=(plan["calibration_innovations"]+1)*(frame.overhead+base["calibration_workers"])
+    expected_e=(plan["calibration_innovations"]+1)*base["calibration_workers"]
     free=frame.derived_probe_messages.eq(0)&frame.derived_probe_actor_transitions.eq(0)
     paid=frame.derived_probe_messages.eq(expected_m)&frame.derived_probe_actor_transitions.eq(expected_e)
     if not (free|paid).all():
