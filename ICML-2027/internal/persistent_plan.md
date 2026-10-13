@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-13.
-- Status: implementation and preregistration preparation; no scientific outcomes yet.
+- Status: CPU development and independent byte replay passed; fresh confirmation lock ready.
 
 ## Decisions
 
@@ -39,3 +39,14 @@ batch baseline; return versus total actor transitions and messages; separate
 wall time and calibration cost; development before fresh confirmation.
 
 No new manuscript claim is admitted until it is supported at the declared scope.
+
+## Completed on 2026-10-13
+
+- Preregistration source: f584d76.
+- Ten targeted tests passed.
+- Development: 360 contexts, 16 fresh seeds, 46,080 method rows; all gates pass.
+- Five scientific files reproduce byte for byte.
+- A separate 64-seed confirmation lock retains the original implementation,
+  population, complete catalogue, and all gates.
+- The myopic comparator is a one-step-then-commit ablation. A strong repeatedly
+  replanning adaptive baseline is still required before an ICML algorithm claim.
