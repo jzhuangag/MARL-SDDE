@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
 import pandas as pd
 
@@ -18,6 +19,7 @@ from figure_style import apply_publication_style, style_axis, set_panel_label_be
 
 def plot(source: Path) -> None:
     apply_publication_style()
+    mpl.rcParams["svg.hashsalt"] = "ICML27-learning-value"
     frame = pd.read_csv(source/"curves.csv")
     styles = {
         "finite_horizon": ("Observable finite-horizon", "#0072B2", "-", 2.),
@@ -53,7 +55,9 @@ def plot(source: Path) -> None:
     fig.legend(handles, labels, loc="upper center", ncol=3, frameon=False, fontsize=7.0)
     fig.subplots_adjust(left=.085, right=.99, bottom=.26, top=.72, wspace=.30)
     fig.savefig(source/"conditional_risk_curves.png", dpi=240)
-    fig.savefig(source/"conditional_risk_curves.svg", metadata={"Date": None})
+    svg_path = source/"conditional_risk_curves.svg"
+    fig.savefig(svg_path, metadata={"Date": None})
+    svg_path.write_text("\n".join(line.rstrip() for line in svg_path.read_text(encoding="utf-8").splitlines())+"\n", encoding="utf-8", newline="\n")
     plt.close(fig)
 
     certificates = pd.read_csv(source/"certificates.csv")
