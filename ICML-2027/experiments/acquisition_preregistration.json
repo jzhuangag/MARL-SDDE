@@ -1,0 +1,63 @@
+{
+  "experiment_id": "ICML27-LEARNING-VALUE-ACQUISITION-CPU-003",
+  "role": "Prospective acquisition-value test against public-budget-wise efficient fixed-q learning.",
+  "base_config_sha256": "246f38ad11ddb778743f28dc1769a841ebbdfe82c30a90c93282ebb9cfea889f",
+  "calibration_innovations": 64,
+  "rationale": "Exact sufficient-statistic calibration; one-time budget tax is reduced without changing confidence delta. A mathematically uniform perfect-information futility test precedes acquisition.",
+  "development_seeds": [
+    51000001,
+    51000002,
+    51000003,
+    51000004,
+    51000005,
+    51000006,
+    51000007,
+    51000008,
+    51000009,
+    51000010,
+    51000011,
+    51000012,
+    51000013,
+    51000014,
+    51000015,
+    51000016
+  ],
+  "confirmation_reservation": {
+    "first": 52000001,
+    "count": 64,
+    "authorized": false
+  },
+  "methods": [
+    "learning_value_gated",
+    "always_probe_efficient",
+    "budgetwise_fixed",
+    "fixed_q1",
+    "fixed_q2",
+    "fixed_q4",
+    "fixed_q8",
+    "admissible_oracle"
+  ],
+  "public_fallback": "At each public persistence/delay/overhead/budget configuration, exact prior-geometric-risk-optimal single q and optimal spacing; no calibration or evaluation outcomes.",
+  "rho_prior": [
+    0,
+    0.2,
+    0.5,
+    0.8,
+    1
+  ],
+  "mandatory_gates": {
+    "complete_finite_exact_accounting": true,
+    "full_catalogue": true,
+    "no_charge_or_observation_when_futile": true,
+    "coverage_event_implies_true_risk_intervals": true,
+    "joint_parameter_coverage_fraction_min": 0.985,
+    "ratio_to_budgetwise_efficient_fixed_max": 0.98,
+    "budgetwise_paired_ci95_upper_max": 1,
+    "ratio_to_admissible_oracle_max": 1.1,
+    "interior_qualified_cells_min": 12,
+    "interior_selection_fraction_min": 0.75,
+    "replay_byte_identical": true
+  },
+  "stopping_rule": "Keep every original context and fresh seed. Do not change this configuration after outcomes. Any mandatory failure stops confirmation.",
+  "scope": "Known-mixing stationary Gaussian Markov reward process and a constant-feature critic. Online Lyapunov-optimal gains; q and spacing chosen before learning. No nonlinear MARL or universal no-harm claim."
+}
