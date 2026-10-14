@@ -100,15 +100,19 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   score observes candidate displacements after q-specific data and training,
   so it is not an executable pre-action controller and probe cost may consume
   the oracle gap.
-- The next candidate is distinct-policy CTDE asynchronous actor-block
-  scheduling. One already charged joint rollout supplies per-agent gradient
-  packets; the prospective design variable is the subset of policy blocks
-  applied jointly plus their step sizes. Lyapunov drift would jointly account
-  for message/environment budgets and a certified lower bound on return gain.
+- The candidate has been sharpened after checking the HAPPO/HAML literature:
+  it is not generic asynchronous actor-block scheduling, but certified
+  parallel batching of HAPPO-like sequential updates. One already charged
+  joint rollout supplies per-agent gradient packets; the prospective design
+  variable is the subset of policy blocks applied jointly plus their step
+  sizes. Lyapunov drift would jointly account for message/environment budgets
+  and a certified lower bound on return gain.
 - This is only a candidate. Async MARL, stale-gradient scheduling, gradient
   conflict, and generic candidate-descent scoring are established prior work.
-  The specific novelty hypothesis is an interaction-aware, stale-packet,
-  resource-constrained scheduling theorem for distinct policy blocks.
+  HAPPO/HAML already provide sequential heterogeneous-agent updates and
+  monotonic-improvement theory. The specific novelty hypothesis is a
+  certified condition for parallelizing subsets of those updates under
+  cross-agent interactions and stale packets, with resource-aware drift.
 - CPU kill tests and proof obligations are recorded in
   `async_policy_block_scheduler_candidate.md`; no new seed, scientific run,
   experiment number, or GPU task is authorized until the observable path,

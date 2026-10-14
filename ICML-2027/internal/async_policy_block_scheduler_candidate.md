@@ -1,4 +1,4 @@
-# Candidate redesign: interaction-aware asynchronous policy-block scheduling
+# Candidate redesign: certified parallel blocks for sequential MARL updates
 
 Date: 2026-10-14
 Status: research candidate only; no performance claim, experiment number, or
@@ -104,13 +104,34 @@ and measured solver cost.
   asynchronous updates by predicted loss descent. Generic candidate-update
   scoring is not sufficient novelty:
   https://proceedings.mlr.press/v119/xie20c.html
+- Zhong et al., *Heterogeneous-Agent Reinforcement Learning*, JMLR 2024,
+  already has distinct heterogeneous policies and a sequential update scheme
+  with monotonic-improvement theory (HAPPO/HATRPO/HAML). A scheduler over
+  independent actor blocks is not enough:
+  https://jmlr.org/papers/v25/23-0488.html
 
-The only plausible differentiation is a theorem-backed, resource-constrained
-choice of *which distinct strategic policy blocks may be applied jointly*
-under stale actor packets, where cross-policy return interactions appear in
-the certified drift and are available from the shared training batch. This
-distinction is a hypothesis requiring a broader literature audit, not an
-established novelty result.
+The candidate is therefore sharpened to a specific question: **can HAPPO's
+provably safe sequential policy updates be batched and applied asynchronously
+when a certified bound on cross-agent interaction permits it?** At each event,
+the controller would choose a concurrently updated subset and step sizes,
+while Lyapunov drift-plus-penalty trades certified joint-return improvement
+against communication, environment work, and synchronization cost. The
+cross-block interaction remainder is the proposed certificate that decides
+which updates may safely commute. This is still only a novelty hypothesis:
+the relationship to HAPPO's advantage factorization must be derived, not
+assumed, and a broader priority/related-work review remains necessary.
+
+One possible route to an actual return theorem is to treat a concurrently
+updated block as a composite policy over its product action space, and apply a
+HAPPO/HAML-style trust-region improvement step to that composite policy. If
+blocks are then processed sequentially, the existing advantage-decomposition
+logic may extend at the block level. This would provide a return-level
+certificate without claiming that critic MSE is return. It does **not** yet
+cover independently stale actor packets: those require valid joint
+importance-ratio estimates or a proved staleness remainder, which may become
+too conservative. Nor does simply grouping agents prove lower wall-clock time;
+parallel hardware and fully charged synchronization/optimization measurements
+are still required.
 
 ## Mandatory CPU kill tests before any new GPU study
 
@@ -135,6 +156,16 @@ established novelty result.
 5. **Compute test:** charge gradient/HVP/score and subset-optimization work;
    enumerate only where team size permits, and report scaling. No uncharged
    exhaustive oracle may be presented as the deployable controller.
+6. **HAPPO comparison:** use pinned HAPPO/HAML sequential updates as the
+   theory-matched reference, not only MAPPO or fixed-color schedules. The new
+   theorem must state when a parallel block update preserves monotonic
+   improvement or quantifies its degradation relative to the sequential
+   reference.
+7. **Return-theorem route:** derive the block-level performance-difference
+   inequality from the HAPPO/HAML advantage decomposition and joint
+   trust-region penalty, then add stale-version correction. A critic-only
+   Taylor expansion is not an acceptable substitute for this policy-return
+   argument.
 
 Only after items 1--5 have a frozen protocol and CPU gates should a new
 preregistration be considered. A positive synthetic result alone is not
