@@ -37,10 +37,41 @@ J(\theta+u)-J(\theta)
 \sum_{(i,j)\in E}L_{ij}\lVert u_i\rVert\lVert u_j\rVert-\epsilon_{\rm omitted}.
 \]
 
-The asynchronous penalty must explicitly cover version lag, sampling noise,
-and omitted/dynamic graph interactions. This inequality is only a target
-interface: no valid MARL-return bound has yet been proved for the implemented
-actor/critic pipeline.
+If an episode-cluster confidence argument supplies simultaneous errors
+\(\lVert\widehat g_i-\nabla_iJ(\theta_t)\rVert\le\varepsilon_i\), then a
+conservative action score would be
+
+\[
+B(S,\alpha)=\sum_{i\in S}\alpha_i
+(\lVert\widehat g_i\rVert^2-\varepsilon_i\lVert\widehat g_i\rVert)
+-\frac12\sum_{i,j\in S}\bar L_{ij}\alpha_i\alpha_j
+\lVert\widehat g_i\rVert\lVert\widehat g_j\rVert,
+\]
+
+where \(\bar L\) is a positive-semidefinite majorant of the block-smoothness
+matrix. The confidence radius must include sampling error and stale-version
+bias; simply using the current minibatch gradient norm is not a certificate.
+This score is computed before applying any packet. It does not itself prove
+that a critic surrogate predicts policy return: that bridge must be supplied
+by the exact policy-gradient estimator and the declared finite-horizon/Markov
+assumptions.
+
+For virtual-budget queues
+\(Q^r_{t+1}=[Q^r_t+c^r(S_t)-b^r]^+\), \(r\in\{m,e\}\), the controller
+would choose
+
+\[
+(S_t,\alpha_t)\in\arg\max_{S,\alpha\in\mathcal A_S}
+\left\{V B(S,\alpha)-Q^m_t c^m(S)-Q^e_t c^e(S)\right\}.
+\]
+
+For each subset, the step-size subproblem is a concave QP when the majorant is
+PSD; enumerating all subsets and solving each QP exactly is not a heuristic
+catalogue scan, though it is exponential in team size. A large-team method
+would need a separate approximation guarantee. This inequality and optimizer
+are a proposed proof target only: no valid MARL-return bound has yet been
+proved for the implemented actor/critic pipeline, and the simultaneous
+confidence/mixing certificate is open.
 
 ## Where Lyapunov drift would design the action
 
