@@ -1,8 +1,8 @@
 # Real-trajectory MAPPO response development decision
 
-Date: 2026-10-14  
-Experiment: `ICML27-MAPPO-OBSERVABLE-RESPONSE-CPU-001`  
-Preregistration commit: `4e5d1c3`  
+Date: 2026-10-14
+Experiment: `ICML27-MAPPO-OBSERVABLE-RESPONSE-CPU-001`
+Preregistration commit: `4e5d1c3`
 Status: **stop the frozen design; do not authorize MARL performance runs**
 
 ## Frozen-run integrity
