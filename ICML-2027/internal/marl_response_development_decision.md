@@ -27,7 +27,7 @@ record, no evaluation-return input to the candidate score, and no GPU run.
 | critic same-sensor quadratic relative error, median | 0.0273 (limit 0.10) | pass |
 | critic direction on independent current-stage trajectories | 0.8099 (minimum 0.75) | pass |
 | previous-stage critic direction on the next-stage truth | 0.5052 (minimum 0.75) | **fail** |
-| current-stage q-risk normalized regret, median | 0.000; 24 numerically tied contexts | descriptive only |
+| shadow-candidate q-risk normalized regret, median | 0.000 across 96 contexts; 24 ties | descriptive only |
 
 The frozen stop rule is triggered by cross-stage prediction failure. No replay,
 seed retry, tuning, task removal, gate edit, or performance experiment followed.
@@ -38,9 +38,13 @@ Within a fixed training snapshot, the critic's local quadratic response agrees
 well with its independent-trajectory risk change and gets its direction right
 about 81% of the time. The actor diagnostic is weaker: its independent-truth
 direction accuracy is 61.7%, and its objective is an unclipped PPO diagnostic,
-not episodic return. The current-stage q ranking has zero median normalized
-regret, but this small development set includes 24 near-tie contexts and is not
-confirmation of a deployable q controller.
+not episodic return. Shadow-candidate q ranking has zero median normalized
+regret across all contexts and 0.0828 among the 72 non-tied contexts. Predicted
+q counts were {1: 43, 2: 19, 4: 14, 8: 20}; held-out best-q counts were {1: 38,
+2: 17, 4: 9, 8: 32}. These are descriptive only: the runner observes each q
+candidate's realized parameter displacement before scoring it. This is a
+shadow-candidate diagnostic, not a pre-action controller or evidence for a
+deployable q policy. The 24 near-tie contexts further limit interpretation.
 
 The previous-stage prediction fails across both tasks. At stage 1, critic sign
 accuracy grouped by task and coupling ranges from 21.9% to 71.9%; the failure is
@@ -67,6 +71,19 @@ test on CPU whether fresh-sensor direction and q ranking replicate on new seeds;
 only a pass can motivate a separate return experiment. If local prediction
 fails on fresh seeds, stop this controller path and redesign its observable
 response model before any GPU allocation.
+
+Refreshing a sensor at every snapshot is necessary for this local predictor,
+but by itself does not make the score actionable. The current runner forms a
+candidate displacement by actually training each q-specific shadow update and
+then scores that displacement. A deployed controller must forecast candidate
+displacements before collecting q-specific data. Therefore the next CPU gate
+must first test a pre-action score built only from already charged history
+(for example, per-stream gradient moments with an explicit stale-policy
+correction), against fresh, disjoint outcomes on new seeds. It must include
+the actual cost and uncertainty of that score. If no pre-action predictor can
+rank the full q set without acquiring every candidate batch, stop the q
+controller path; do not move the current shadow-candidate score into an online
+performance experiment.
 
 The refresh rule is a design implication, not a result of this experiment. The
 development evidence remains immutable and must not be reused as confirmation.
