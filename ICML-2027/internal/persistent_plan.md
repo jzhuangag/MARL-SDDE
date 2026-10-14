@@ -90,3 +90,27 @@ No new manuscript claim is admitted until it is supported at the declared scope.
 - Next-stage requirements are in marl_response_qualification_plan.md. No new
   GPU performance study, nonlinear return claim, or manuscript migration is
   authorized by the Gaussian qualification alone.
+
+## Decision after real-MAPPO response development (2026-10-14)
+
+- The frozen `ICML27-MAPPO-OBSERVABLE-RESPONSE-CPU-001` cross-stage gate failed
+  and is preserved at `marl_response_development_decision.md`; it is not to be
+  rerun, tuned, or presented as return evidence.
+- Do not immediately repeat q-specific fresh sensing: the existing shadow
+  score observes candidate displacements after q-specific data and training,
+  so it is not an executable pre-action controller and probe cost may consume
+  the oracle gap.
+- The next candidate is distinct-policy CTDE asynchronous actor-block
+  scheduling. One already charged joint rollout supplies per-agent gradient
+  packets; the prospective design variable is the subset of policy blocks
+  applied jointly plus their step sizes. Lyapunov drift would jointly account
+  for message/environment budgets and a certified lower bound on return gain.
+- This is only a candidate. Async MARL, stale-gradient scheduling, gradient
+  conflict, and generic candidate-descent scoring are established prior work.
+  The specific novelty hypothesis is an interaction-aware, stale-packet,
+  resource-constrained scheduling theorem for distinct policy blocks.
+- CPU kill tests and proof obligations are recorded in
+  `async_policy_block_scheduler_candidate.md`; no new seed, scientific run,
+  experiment number, or GPU task is authorized until the observable path,
+  confidence/certificate, oracle headroom, and charged compute are fully
+  specified outcome-free.
