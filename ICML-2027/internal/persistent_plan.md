@@ -114,3 +114,8 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   experiment number, or GPU task is authorized until the observable path,
   confidence/certificate, oracle headroom, and charged compute are fully
   specified outcome-free.
+- An exact small-team optimizer for the proposed concave drift surrogate is
+  implemented in `experiments/async_policy_block_scheduler.py`; its six unit
+  tests and the full 27-test ICML-2027 suite pass in the existing `ust2`
+  environment. This is software verification only, not evidence for MARL
+  return improvement or a valid gradient/curvature certificate.

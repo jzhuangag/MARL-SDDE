@@ -139,3 +139,15 @@ established novelty result.
 Only after items 1--5 have a frozen protocol and CPU gates should a new
 preregistration be considered. A positive synthetic result alone is not
 standard-MARL evidence.
+
+## CPU implementation status
+
+`experiments/async_policy_block_scheduler.py` implements the finite action
+optimizer for the stated surrogate: exhaustive policy-subset enumeration and
+a bounded concave quadratic step-size solve for each subset. Six tests cover a
+closed-form one-block solution, interaction-aware subset selection, budget
+queues, uncertainty-induced idling, PSD validation, and the exact outer
+surrogate objective. The complete `ICML-2027/tests` suite passes (27 tests,
+Python 3.11 / `ust2`). This validates only the optimizer implementation. The
+gradient/mixing confidence certificate, policy-return bridge, MARL oracle
+headroom, and practical scaling remain unimplemented and unverified.
