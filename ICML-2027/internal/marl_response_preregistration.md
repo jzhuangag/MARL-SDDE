@@ -43,7 +43,10 @@ for `simple_spread_v3.py` and
 for `simple_reference_v3.py`; the shared `simple_env.py` is
 `360C9BAEC80D610F8BBB38F08926CBE462D74A1DFA67B5D64F1A636C3D8A066B`.
 The qualification-only all-task smoke produced 16 finite candidate rows on
-seed 64999991, and 39 ICML-2027/V3 targeted tests passed before this freeze.
+seed 64999991; an earlier one-task smoke with the same non-scientific seed is
+retained separately as implementation provenance. Both smoke outputs are
+excluded from scientific metrics. The final source passed 39 ICML-2027/V3
+targeted tests before this freeze.
 The separate qualification-only smoke seed is 64999991; smoke outputs cannot
 tune any scientific constant or gate. A failed scientific payload or mandatory
 gate stops this design without retries, task removal, or automatic GPU launch.
