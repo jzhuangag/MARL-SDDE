@@ -133,6 +133,122 @@ too conservative. Nor does simply grouping agents prove lower wall-clock time;
 parallel hardware and fully charged synchronization/optimization measurements
 are still required.
 
+## Return-bound audit against the HAPPO sequential guarantee
+
+The relevant reference is not a generic smoothness argument. HARL's policy
+improvement lemma writes the joint-return change as a sum of agent terms whose
+objectives condition on the already-updated prefix, minus a trust-region
+penalty. In the notation of its Lemma 19, for an ordering
+\(i_1,\ldots,i_n\),
+
+\[
+J(\bar\pi)\ge J(\pi)+\sum_{m=1}^n
+\left[\mathcal L_{\pi}^{i_m}
+(\bar\pi^{i_{1:m-1}},\bar\pi^{i_m})
+-C D_{\rm KL}^{\max}(\pi^{i_m},\bar\pi^{i_m})\right].
+\]
+
+This prefix dependence is exactly what a simultaneous frozen-snapshot score
+omits. It cannot be dropped without paying for the change in the conditional
+advantage objective.
+
+Here is a sufficient interaction correction. Let \(d_\pi\) be the normalized
+discounted state occupancy, and define the frozen-prefix surrogate
+\(\widetilde{\mathcal L}_i(\bar\pi_i;\pi)\) by evaluating agent \(i\)'s
+decomposed advantage with every other agent in the old policy \(\pi\). For
+each ordered pair \(j\prec i\), let \(\omega_{ij}\) upper-bound the
+oscillation of this conditional advantage as agent \(j\)'s action changes,
+uniformly over the state and the remaining actions. Write
+\(\delta_j=\sup_s D_{\rm TV}(\pi_j(\cdot|s),\bar\pi_j(\cdot|s))\).
+Telescoping the product action distribution over the updated prefix and using
+the total-variation expectation inequality gives
+
+\[
+\left|\mathcal L_{\pi}^{i}
+(\bar\pi^{i_{1:m-1}},\bar\pi_i)
+-\widetilde{\mathcal L}_i(\bar\pi_i;\pi)\right|
+\le {1\over 1-\gamma}\sum_{j\prec i}\omega_{ij}\delta_j.
+\]
+
+Consequently, if every frozen-prefix surrogate has a lower confidence bound
+that is simultaneous and uniform over the *entire* candidate policy class
+(including the subset and step-size choices made after seeing the batch), then
+a candidate simultaneous subset \(S\) satisfies the return lower bound
+
+\[
+J(\bar\pi_S)-J(\pi)\ge
+\sum_{i\in S}\left[\underline{\mathcal L}_i
+-C\overline D_{\rm KL,i}\right]
+-{1\over 1-\gamma}\sum_{j\prec i,\,i,j\in S}\omega_{ij}\delta_j
+-\epsilon_{\rm stale}.
+\]
+
+Inactive agents have \(\delta_j=0\). With fresh on-policy data the stale-bias
+term is zero, but the finite-sample confidence radius is still required. For
+delayed data, \(\epsilon_{\rm stale}\) must cover both occupancy shift and
+likelihood-ratio estimation, not merely parameter distance. A nonnegative
+right-hand side certifies non-decrease relative to the old joint policy. It
+does **not** certify that the simultaneous update beats the actual HAPPO
+sequential update. A relative-to-HAPPO guarantee needs a matched bound on the
+return gap between their different final policies; the HAPPO monotonic bound
+alone does not provide that comparison.
+
+The correction is not formal decoration. For the two-action cooperative payoff
+\(J(a_1,a_2)=a_1+a_2-\kappa a_1a_2\), starting from \((0,0)\), changing either
+agent alone from 0 to 1 has frozen-prefix gain 1. Changing both simultaneously
+has gain \(2-\kappa\), which is negative for \(\kappa>2\). The second
+sequential HAPPO term sees the first update and equals \(1-\kappa\); the
+pairwise interaction correction is at least \(\kappa\), so the frozen score
+cannot falsely certify the harmful joint move. This is an algebraic sanity
+example, not a MARL experiment.
+
+This establishes a plausible theorem interface, not a usable controller yet.
+The result assumes exact advantage decomposition, a uniform pairwise
+oscillation bound, valid confidence bounds for every candidate frozen-prefix
+surrogate, and a valid stale-data correction. In neural MARL the oscillation
+constants may be unavailable or so loose that the bound rejects every
+multi-agent batch. A local Hessian/Taylor certificate on actor parameters is a
+different possible route, but the current implementation's generic quadratic
+score is not thereby converted into the HAPPO return bound above. Before any
+scientific run, an outcome-free CPU audit must test whether these constants can
+be computed from training-time quantities and whether the lower bound is
+nonvacuous on independent held-out rollouts. Even a positive nonvacuous bound
+would establish only safety versus the old policy; practical superiority over
+HAPPO must be tested separately under matched budgets and, if speed is claimed,
+measured on parallel hardware.
+
+The novelty bar is higher than this derivation alone. CoPPO already develops a
+coordinated joint objective with an approximately monotonic improvement
+argument for concurrent agent-policy updates, and the Multi-Agent Transformer
+uses advantage decomposition to obtain a monotonicity guarantee through its
+sequence-modeling construction. FP3O is another relevant parallel-pipeline
+proposal with a monotonic-improvement theorem (available as a 2023 preprint).
+Thus neither "simultaneous updates plus monotonic improvement" nor
+"parallel optimization pipelines" can be the contribution by themselves. The
+remaining candidate distinction would have to be a *budgeted online choice of
+which independently parameterized policy blocks to commit*, using a
+nonvacuous, stale-aware lower bound derived from the sequential advantage
+decomposition, with explicit message/transition constraints. That distinction
+still needs a direct literature comparison and an empirical advantage over
+HAPPO, CoPPO, and a strong adaptive scheduler.
+
+Primary-source checks for this novelty boundary: CoPPO appeared in NeurIPS
+2021 ([paper](https://proceedings.neurips.cc/paper_files/paper/2021/hash/de73998802680548b916f1947ffbad76-Abstract.html)); MAT appeared in NeurIPS 2022 ([paper](https://proceedings.neurips.cc/paper_files/paper/2022/hash/69413f87e5a34897cd010ca698097d0a-Abstract-Conference.html)); FP3O is currently treated only as a 2023 preprint, not as a peer-reviewed publication ([arXiv record](https://arxiv.org/abs/2310.05053)). The baseline HAPPO/HAML result is the 2024 JMLR paper ([article](https://jmlr.org/papers/v25/23-0488.html)).
+
+## Deterministic prefix-interaction counterexample
+
+For two binary actions, set \(J(a_1,a_2)=a_1+a_2-\kappa a_1a_2\), with old
+policies choosing \((0,0)\) and candidate policies choosing \((1,1)\). The
+frozen-prefix surrogate assigns gain 1 to each actor, hence predicts 2. The
+true joint-return change is \(2-\kappa\). Under order \(1\prec2\), the exact
+sequential terms are 1 and \(1-\kappa\); the oscillation of the second term
+with respect to agent 1 is \(\omega_{21}=\kappa\), and
+\(D_{\rm TV}(\delta_0,\delta_1)=1\). The corrected lower bound is therefore
+\(2-\kappa\), exact in this example. For \(\kappa=3\), it rejects a joint
+move whose return falls by 1 although both stale local scores are positive.
+This is an algebraic theorem-interface test only, not evidence from a learned
+policy or an RL environment.
+
 ## Mandatory CPU kill tests before any new GPU study
 
 1. **Observable-path test:** from a single charged joint training batch,

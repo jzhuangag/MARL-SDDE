@@ -123,3 +123,31 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   tests and the full 27-test ICML-2027 suite pass in the existing `ust2`
   environment. This is software verification only, not evidence for MARL
   return improvement or a valid gradient/curvature certificate.
+
+## HAPPO return-bound audit (2026-10-14)
+
+- Derived a sufficient bridge from the HARL Lemma-19 sequential return bound
+  to a frozen-prefix simultaneous candidate: subtract a uniform pairwise
+  conditional-advantage oscillation remainder
+  `(1-gamma)^(-1) sum_{j before i} omega_ij TV(pi_j, pi'_j)`, a uniform
+  post-selection confidence radius, and a separately justified stale-data
+  bias term.
+- The bridge only certifies non-decrease relative to the old policy when its
+  RHS is nonnegative; it does not certify superiority over HAPPO's resulting
+  policy. A monotonicity lower bound for each method is not a paired method
+  comparison.
+- Exact binary two-agent counterexample: frozen local gains sum to 2 while
+  true simultaneous return change is `2-kappa`; the interaction correction
+  recovers the exact HAPPO prefix term and rejects harmful updates.
+- Novelty audit found existing concurrent/joint monotonic-update work
+  (CoPPO, MAT) and a parallel-pipeline monotonicity proposal (FP3O preprint).
+  The candidate cannot claim first parallel monotonic MARL optimization. The
+  remaining hypothesis is budgeted online selection of policy blocks under a
+  nonvacuous stale-aware return certificate; direct comparison and novelty
+  remain open.
+- Current step is still theorem-interface feasibility, not a scientific run.
+  Do not start MARL learning or GPU experiments until (i) exact finite-sample
+  confidence is uniform over the candidate family, (ii) interaction and
+  staleness terms are computable without evaluation leakage and are
+  nonvacuous, (iii) a relative-to-HAPPO comparison protocol is frozen, and
+  (iv) an outcome-free independent-data CPU headroom screen is preregistered.
