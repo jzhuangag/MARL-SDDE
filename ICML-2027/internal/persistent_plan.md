@@ -282,3 +282,8 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   finite-budget result; an empirical covariance is not a variance upper bound.
   Freeze a successor learning experiment only after that interface genuinely
   passes. No GPU, remote storage, TSP manuscript migration or threshold changes.
+- Autonomous bounded continuation is scheduled in this chat as
+  `advance-variance-sensitive-marl-causal-controller`; it starts from verified
+  evidence commit `ee795d7`, stays quiet on unchanged state, and deletes itself
+  after the causal-controller feasibility decision. No scientific run is active
+  at handoff, and no old qualification is authorized for retry.
