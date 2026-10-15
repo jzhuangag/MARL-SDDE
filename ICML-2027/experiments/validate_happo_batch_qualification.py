@@ -84,6 +84,9 @@ def validate(root):
                                            and totals["oracle_search_joint_transitions"] == 0
                                            and totals["oracle_counterfactual_optimizer_rows"] == 0
                                            and totals["oracle_diagnostic_joint_transitions"] == 0)
+            if method in ("happo_cyclic", "happo_full_cadence", "parallel_cyclic",
+                          "stale_cyclic", "age_first"):
+                item["fixed_budget_exhausted"] = totals["packet_messages"] == blocks * task["launch_credit_per_block"]
             checks.append({"task": task["name"], "method": method, "checks": item})
             initial_hashes.setdefault(task["name"], set()).add(meta["initial_parameters_sha256"])
     initial_match = all(len(values) == 1 for values in initial_hashes.values())

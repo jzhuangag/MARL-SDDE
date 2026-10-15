@@ -356,8 +356,12 @@ def run_payload(task_index, seed, method, out, smoke=False):
                 del history[old]
         totals["training_joint_transitions"] += len(data["states"])
         totals["training_actor_transitions"] += len(data["states"]) * n
-        totals["unused_credit_overflow"] += max(0, credit + k - n)
-        credit = min(n, credit + k)
+        # Full-cadence HAPPO launches the entire team. A cap of N would drop
+        # credits whenever K does not divide N; N+K-1 is the smallest lossless
+        # cap. Subset rules need at most N credits for their current action.
+        bank_cap = n + k - 1 if method == "happo_full_cadence" else n
+        totals["unused_credit_overflow"] += max(0, credit + k - bank_cap)
+        credit = min(bank_cap, credit + k)
         ages = np.roll(np.asarray(p["ages"][task["name"]]), block % n).tolist()
         versions = [max(0, block - int(age)) for age in ages]
         proxy_score, oracle_margin = 0.0, 0.0

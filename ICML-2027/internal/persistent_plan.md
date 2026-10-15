@@ -177,3 +177,8 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   observable-score and confidence qualification. A failure requires a causal
   design change tied to the failed mechanism; gates, tasks, and failed seeds
   remain unchanged.
+- Before reading any scientific return, Amendment 1 corrected a deterministic
+  full-cadence credit-bank defect found during live ledger inspection. The
+  first two unopened payloads are ineligible; every scientific seed was
+  replaced. The amended one-worker qualification passed 14/14 payloads,
+  including exact equal-budget exhaustion by every fixed schedule.

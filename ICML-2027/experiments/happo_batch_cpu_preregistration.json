@@ -1,5 +1,5 @@
 {
-  "experiment_id": "ICML27-HAPPO-ASYNC-BATCH-CPU-001",
+  "experiment_id": "ICML27-HAPPO-ASYNC-BATCH-CPU-001-A1",
   "role": "Staged end-to-end CPU feasibility screen; outcome-aware selector is a diagnostic, not a deployable controller or formal oracle upper bound",
   "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
   "pettingzoo_version": "1.24.3",
@@ -7,9 +7,9 @@
     {"name": "spread", "scenario": "simple_spread_v3", "N": 3, "launch_credit_per_block": 2},
     {"name": "reference", "scenario": "simple_reference_v3", "launch_credit_per_block": 1}
   ],
-  "development_seeds": [72200001, 72200002],
-  "holdout_seeds": [72200003, 72200004, 72200005, 72200006],
-  "qualification_seed": 72299991,
+  "development_seeds": [72200101, 72200102],
+  "holdout_seeds": [72200103, 72200104, 72200105, 72200106],
+  "qualification_seed": 72299992,
   "oracle_development_runs": false,
   "methods": ["happo_cyclic", "happo_full_cadence", "parallel_cyclic", "stale_cyclic", "age_first", "history_surrogate", "outcome_aware_oracle"],
   "blocks": 24,
@@ -31,7 +31,7 @@
   "reward": "Mean of agents' native rewards, without shaping; stochastic-policy undiscounted episodic return is the reported benchmark metric",
   "sampling": "Native independent joint episodes; common environment seeds and per-episode action uniforms across methods and candidate policies",
   "controller_roles": "history_surrogate sees current training data and only previously completed packet increments before launch; only the outcome_aware_oracle reads its separately charged search returns; benchmark evaluation returns never control a deployable method",
-  "resource_semantics": "Joint environment sampling is paid for all agents; selected actors do not save already collected transitions. One launched packet costs five full-batch actor optimizer passes and one gradient-packet message. Credits accrue before launch, with a bank capped at team size. HAPPO full cadence may spend a banked full-team credit. Oracle counterfactual packet work, search rollouts, and proxy forward work are recorded separately, never free deployable evidence.",
+  "resource_semantics": "Joint environment sampling is paid for all agents; selected actors do not save already collected transitions. One launched packet costs five full-batch actor optimizer passes and one gradient-packet message. Credits accrue before launch. Subset policies use a bank capped at team size; HAPPO full cadence uses the minimal lossless cap N+K-1 and spends N credits per full-team update, so all registered methods that follow a fixed schedule exhaust the same total packet budget. Oracle counterfactual packet work, search rollouts, and proxy forward work are recorded separately, never free deployable evidence.",
   "baseline_selection": "Select one strongest non-oracle method per task by development-seed mean raw-return AUC; freeze that selection before holdout analysis. Also retain separate HAPPO-cyclic comparison.",
   "mandatory_gates": {
     "complete_finite_payloads_and_exact_accounting": true,
@@ -44,7 +44,7 @@
     ,"happo_holdout_task_mean_final_gain_from_initial_min": 0.02
   },
   "relative_gain": "(method AUC - comparator AUC) / max(abs(comparator AUC), 1); computed separately for each seed before averaging",
-  "replay": {"seed": 72200003, "methods": ["happo_cyclic", "history_surrogate", "outcome_aware_oracle"], "tasks": ["spread", "reference"], "files": ["curves.csv", "decisions.csv", "scientific.json"]},
+  "replay": {"seed": 72200103, "methods": ["happo_cyclic", "history_surrogate", "outcome_aware_oracle"], "tasks": ["spread", "reference"], "files": ["curves.csv", "decisions.csv", "scientific.json"]},
   "decision": "A Stage-A pass permits fresh-seed qualification of an observable action score and fully charged uniform return certificate, not GPU confirmation or manuscript admission. Any failed gate is a no-go for the tested candidate menu. A noisy outcome-aware selector is not a mathematical upper bound and cannot rule out all asynchronous MARL designs.",
   "stop_rule": "Preserve every method/task/seed; no threshold changes, outcome retries, or environment removal. Diagnose the failure and make a substantive action/estimator redesign before any separately frozen new experiment. Payload errors stop the scientific run and are recorded."
 }
