@@ -6,6 +6,25 @@
 - Date: 2026-10-16 (latest decision).
 - Status: old causal-recycle science remains NO_GO. Genuine five-epoch native current-packet integration now passes all6 originals/all6 semantic replays and byte-identical analysis (425.6875 CPU seconds); qualification returns remain outcome-ineligible. One amortized packet-response correction is implemented as a separate cost/expected-risk prototype; complete new integration and useful precision/learning-response development remain pending. No positive ICML MARL performance claim or manuscript admission.
 
+## Amortized native qualification registration (2026-10-16)
+
+- Separate complete algorithm is implemented under experiments/amortized_packet_native;
+  predecessor sources, seeds, raw data and TSP manuscripts are unchanged. One
+  recomputed five-epoch unit PPO block supplies parameter-line variants. The
+  receipt selects current full actual-return scores; meta(m,lambda,geometry),
+  basis and past-only potential precede data. The interaction floor remains.
+- Five non-native controller/geometry/optimizer tests pass. New state-copy,
+  interpolation, geometry-work and eligible-only probe counters join the full
+  program/source/critic/policy ledger. Work units remain declared proxies.
+- Prospective qualification is amortized_packet_native_qualification_preregistration_20261016.md,
+  fresh seed79516031, two tasks, three methods,6 originals+6 replays,1800 CPU
+  seconds and one worker. Hash lock must be committed/pushed BEFORE execution.
+  The single driver owns all cells/replays/two analyses; do not duplicate it.
+- No qualification return may rank/tune candidates or qualify useful learning
+  precision. Operational pass is required but not positive return evidence.
+  Separate development needs a new source/gate/seed freeze and a cost-only
+  runtime estimate, and must jointly test precision, learning and full costs.
+
 ## Decisions
 
 1. Preserve TSP/, TSP-V2/, TSP-V3/, all historical gates and results.
