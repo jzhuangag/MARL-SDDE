@@ -317,3 +317,35 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   fixed/online controls (including HAPPO LR grid), full controller and two
   ablations, forty-round return/resource curves. All gates remain prospective.
   No GPU, old-controller changes, old-threshold rescue, or manuscript admission.
+
+## Complete-learning development launched (2026-10-16)
+
+- Qualification and all20 semantic replay cells pass at `ce7f2ba`; both analyzer
+  decision/integrity files are byte-identical. Both tasks have genuine version
+  staleness. Current four interface tests pass. No qualification return ranked
+  or tuned a method; these are operational, not positive learning results.
+- Separate science preregistration/source lock is pushed at `d543363`.
+  Active command is `causal_recycle_development/workflow.py --lock
+  internal/causal_recycle_development_lock_20261016.json --qualification-decision
+  results/causal_recycle_qualification_analysis_a_20261016/decision.json --output
+  results/causal_recycle_development_20261016`, all paths under ICML-2027.
+  It owns its60 learning cells,6 selected replay cells, two analyses and all-
+  method native/communication plots. Do NOT start any duplicate worker, replay
+  or analyzer while that workflow process is alive. Local tool session83501.
+- Untouched science seeds79311001--3; all ten methods and both native tasks;
+  controller/constants/catalogue unchanged from qualification. Evaluation-only
+  cadence32 episodes/eight rounds is prospectively frozen for a bounded screen;
+  no old output selected it. Native training transitions remain16000/cell.
+  Whole science/replay CPU limit12000 seconds at cell boundaries, one worker.
+- Primary gates remain strict complete-algorithm gains versus strongest of all
+  seven registered controls in EACH task: mean native AUC>=1%, at least2/3
+  positive seeds, final-return change>=-2%, actual baseline learning>=2%, and
+  complete causal/resource/replay checks. Communication AUC and all costs are
+  mandatory reports, not hidden if native AUC passes. Neither current empirical
+  variance reductions nor interface tests count as learning superiority.
+- Read only execution/progress while running, not incomplete return values.
+  The driver automatically replays and double-analyzes only after all learning
+  cells pass payload checks. It never retries failed scientific or operational
+  payloads. Preserve any failed decision and diagnose the complete mechanism
+  before a separately frozen substantive successor, not small-test accumulation
+  or gate changes. GPU/HPC4 and manuscript migration remain out of this workflow.
