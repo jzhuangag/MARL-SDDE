@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (latest decision).
-- Status: full causal-recycle development complete and NO_GO (60 learning cells, six semantic replays, double byte-identical analysis, complete cost audit). A separate current-packet controller and conditional selection-risk/queue derivation are implemented; native standard-learner integration and useful precision/cost feasibility remain open. No positive ICML MARL performance claim or manuscript admission.
+- Status: old causal-recycle science remains NO_GO. Genuine five-epoch native current-packet integration now passes all6 originals/all6 semantic replays and byte-identical analysis (425.6875 CPU seconds); qualification returns remain outcome-ineligible. One amortized packet-response correction is implemented as a separate cost/expected-risk prototype; complete new integration and useful precision/learning-response development remain pending. No positive ICML MARL performance claim or manuscript admission.
 
 ## Decisions
 
@@ -413,3 +413,39 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   both analyzers. Any failed mandatory payload gate stops without retry. No
   native performance, precision-usefulness, confirmation or manuscript claim is
   authorized solely by operational qualification.
+
+## Native integration completed; one amortized correction selected (2026-10-16)
+
+- Source/preregistration d8f1e7a. All6 original native cells and all6 semantic
+  replay cells pass every operational gate; both analyses are byte-identical.
+  Actual whole-driver CPU425.6875s. The process has exited; do NOT restart it,
+  its replay or analyzers. Evidence and full validation are at
+  `results/current_packet_native_qualification_20261016*` and
+  `current_packet_native_qualification_validation_20261016.md`.
+- Five-epoch recomputed PPO, server-owned moments, current-bank selection,
+  independent service/versions, same-world frozen-policy controls and complete
+  charges now work in the real native loop. This is operational GO, not return
+  superiority or numerical precision evidence. No qualification return ranked.
+- Cost-only audit identifies exact3x proposal optimizer work versus the matched
+  ready-packet reference and unnecessary all-actor probe records. Selected ONE
+  substantive correction: amortized packet-response control, not another task
+  switch. `experiments/amortized_packet_value.py` shares a single PPO unit block
+  across line candidates, uses full-versus-basis expected-risk geometry with an
+  explicit interaction remainder, and prices eligible-only early probe records.
+- Proof/feedback/cost interface: `amortized_packet_value_interface_20261016.md`.
+  New three-test algebra/optimizer protocol suite passes; five qualified
+  controller tests pass. Neither is native performance evidence. The amortized
+  helper is not yet an integrated new native controller or registered run.
+- The derived composite Lyapunov function uses actual finite-episode return,
+  not just virtual debt. True own-policy signed gains telescope to final return
+  in a fixed game; the finite-time lower bound keeps estimation, queue and
+  interaction terms. It is not superiority over a separate HAPPO trajectory.
+  Local policy-likelihood smoothness explains the interaction remainder's
+  second-order scale, but no Hessian computation or unknown L upper bound is
+  silently required by the measured residual feedback.
+- Decision: GO to this one complete-loop amortized integration; NO_GO for an
+  immediate broad sweep or confirmation. Freeze a separate new source/plan and
+  fresh seeds before native work. Preserve exact actual costs, selected-score
+  bias, finite-probe/interaction floors, strongest anchors and all old failures.
+  Next development must test precision, learning and cost jointly, not just
+  estimator variance. No GPU/HPC4 or manuscript edits in this bounded stage.
