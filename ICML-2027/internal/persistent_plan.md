@@ -3,8 +3,8 @@
 ## Material Passport
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
-- Date: 2026-10-13.
-- Status: independent acquisition-aware efficient-learner confirmation and byte replay complete; fresh stochastic learning curves and independent accounting audit verified. Actual MARL actor/critic response qualification remains open.
+- Date: 2026-10-16 (latest decision).
+- Status: full causal-recycle development complete and NO_GO (60 learning cells, six semantic replays, double byte-identical analysis, complete cost audit). A separate current-packet controller and conditional selection-risk/queue derivation are implemented; native standard-learner integration and useful precision/cost feasibility remain open. No positive ICML MARL performance claim or manuscript admission.
 
 ## Decisions
 
@@ -349,3 +349,35 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   payloads. Preserve any failed decision and diagnose the complete mechanism
   before a separately frozen substantive successor, not small-test accumulation
   or gate changes. GPU/HPC4 and manuscript migration remain out of this workflow.
+
+## Complete development decision and causal correction (2026-10-16)
+
+- The driver has exited successfully. All60 cells and6 semantic replays pass
+  integrity; both analyses are byte-identical. Actual performance is NO_GO:
+  native AUC -1.149852% Spread and -0.778903% Reference versus strongest HAPPO
+  LR x2; communication AUC also negative. Spread fails the registered learning
+  signal. All frozen gates, seeds, sources and evidence remain unchanged.
+- Full validation and mechanism diagnosis are in
+  `causal_recycle_development_validation_20261016.md`; independent offline audit
+  is `results/causal_recycle_development_audit_20261016`. Whole CPU8675.40625s.
+  Do not restart the old driver or launch its completed replay/analyzers.
+- Full method rejects about two thirds of latest-ready packets although all
+  source gradients, materialized proposals and incoming payloads are paid.
+  Current scores affect future historical patterns, not the current packet.
+  These are structural design issues, not grounds for loosening old gates.
+- Implemented NEW `experiments/current_packet_value_control.py`: m chosen
+  before data, current packet selected after current actual-return scores,
+  explicit expected selection bias and (m,lambda) variance-feedback meta-loss,
+  two full-charge resource queues and frozen policy/commit identities. Four
+  deterministic algebra/interface tests pass; not native performance evidence.
+- Proof/interface is `current_packet_value_design_20261016.md`. It compares
+  current eligible actions at the learner's own states, with an explicit
+  nonvanishing finite-probe error term. No HAPPO trajectory superiority,
+  high-probability certificate, hard budget shield or stationarity is claimed.
+- Next: integrate a standard explicitly accounted multi-epoch server-owned
+  PPO/HAPPO learner and this current-context selector; audit a same-world frozen
+  policy learning control, matched eligible async reference and feasible
+  precision costs. Freeze any new native qualification/development before its
+  data; one CPU worker, no old scientific retry, no GPU/HPC4 or manuscript edits.
+  A learning-return-based admission pilot is development, not outcome-free
+  qualification. A complete useful interface must precede new performance runs.

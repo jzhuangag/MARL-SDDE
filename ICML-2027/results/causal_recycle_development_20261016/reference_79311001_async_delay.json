@@ -1,0 +1,4243 @@
+{
+  "actor_parameter_bytes": [
+    14320,
+    14320
+  ],
+  "charges": {
+    "advantage_bytes": 128000,
+    "advantage_messages": 80,
+    "committed_adam_steps": 49,
+    "critic_backward_rows": 80000,
+    "critic_steps": 200,
+    "evaluation_policy_rows": 9600,
+    "evaluation_transitions": 4800,
+    "extra_potential_rows": 0,
+    "extra_score_policy_rows": 0,
+    "gradient_bytes": 1145600,
+    "gradient_messages": 80,
+    "policy_broadcast_bytes": 701680,
+    "policy_messages": 49,
+    "proposal_adam_steps": 49,
+    "sampling_policy_rows": 32000,
+    "source_actor_steps": 80,
+    "source_backward_rows": 32000,
+    "training_transitions": 16000,
+    "trajectory_bytes": 6016000,
+    "trajectory_messages": 120
+  },
+  "cpu_seconds": 104.78125,
+  "curves": [
+    {
+      "frame": 0,
+      "logical_communication_bytes": 0,
+      "return": -28.919333387613953,
+      "training_transitions": 0
+    },
+    {
+      "frame": 8,
+      "logical_communication_bytes": 1586800,
+      "return": -29.51468061575689,
+      "training_transitions": 3200
+    },
+    {
+      "frame": 16,
+      "logical_communication_bytes": 3173600,
+      "return": -26.594681801931703,
+      "training_transitions": 6400
+    },
+    {
+      "frame": 24,
+      "logical_communication_bytes": 4817680,
+      "return": -27.919526310252117,
+      "training_transitions": 9600
+    },
+    {
+      "frame": 32,
+      "logical_communication_bytes": 6418800,
+      "return": -27.32857560872769,
+      "training_transitions": 12800
+    },
+    {
+      "frame": 40,
+      "logical_communication_bytes": 7991280,
+      "return": -25.80694681556532,
+      "training_transitions": 16000
+    }
+  ],
+  "evaluation_episode_ids": [
+    1048521668,
+    1629952973,
+    457956833,
+    187903483,
+    463419743,
+    180602555,
+    758642832,
+    869356118,
+    632804727,
+    520511991,
+    918249196,
+    154290754,
+    1746238215,
+    188002954,
+    1215753350,
+    1262181007,
+    634420202,
+    1044277414,
+    1941453526,
+    1278677058,
+    1386435965,
+    1480265755,
+    862871756,
+    462697439,
+    1749976076,
+    653107273,
+    13213176,
+    835313476,
+    634375146,
+    265556844,
+    323083427,
+    1863777812,
+    830082649,
+    1159870929,
+    1676316732,
+    1930144603,
+    1931527151,
+    1765884497,
+    86578255,
+    1107740502,
+    283869633,
+    1976515617,
+    1325943649,
+    1474817167,
+    1656386272,
+    848580936,
+    764371372,
+    1819026192,
+    640955369,
+    1659806316,
+    1727379117,
+    87197222,
+    72836096,
+    1288605528,
+    2014961379,
+    314543135,
+    422815688,
+    779624288,
+    708279961,
+    658024619,
+    1035001425,
+    575510350,
+    680553726,
+    1975066381,
+    1356430233,
+    595231468,
+    276966416,
+    1730967809,
+    319380066,
+    1513778382,
+    1297325296,
+    2012876558,
+    1156952795,
+    1626653642,
+    122293096,
+    481314660,
+    434260484,
+    723407934,
+    656145987,
+    514534413,
+    1260565875,
+    2016576358,
+    1827903662,
+    591425985,
+    1034823189,
+    2007918956,
+    14668769,
+    576521817,
+    597940317,
+    1625851723,
+    189377252,
+    1303624749,
+    749909048,
+    1358274059,
+    1895239902,
+    1328777762,
+    799483056,
+    969434804,
+    493405678,
+    1876966978,
+    546600352,
+    77704325,
+    2102058874,
+    169329945,
+    928096341,
+    1974782776,
+    1570766235,
+    491176500,
+    443299792,
+    2143623187,
+    996637998,
+    777318476,
+    1267591005,
+    830581713,
+    1048216101,
+    871146966,
+    220718626,
+    1837826775,
+    215498459,
+    616610163,
+    549540484,
+    993556075,
+    742605999,
+    1198299552,
+    1847642157,
+    509420875,
+    833969244,
+    320795509,
+    1832349727,
+    1474082466,
+    1306047039,
+    1011183059,
+    1516650796,
+    1292352417,
+    315296382,
+    560622852,
+    1917206208,
+    126018978,
+    1406724768,
+    1019583343,
+    1819019443,
+    1891921013,
+    168555728,
+    1750236396,
+    1925413549,
+    1000106689,
+    356573595,
+    997035541,
+    426235070,
+    1798596175,
+    813470793,
+    944623710,
+    1301811586,
+    1391553377,
+    1600896777,
+    659941235,
+    256764646,
+    151727294,
+    1014162461,
+    420939753,
+    237925039,
+    487604858,
+    1984136473,
+    1101974606,
+    798145488,
+    971798396,
+    14629146,
+    641616488,
+    1535860601,
+    374964399,
+    361329530,
+    2038174949,
+    266893089,
+    1659232134,
+    881972486,
+    1809574667,
+    447473449,
+    1251754881,
+    1093058226,
+    995533438,
+    361740135,
+    691544599,
+    1937394879,
+    821763236,
+    1577184209,
+    1713336688,
+    2038358698,
+    1623533303,
+    1483431726,
+    1982727906,
+    672122189,
+    604899494
+  ],
+  "evaluation_used_by_controller": false,
+  "final_hash": "d9a15bd0ddbd518c8645569093328c6952cc573524cc24605298231551913386",
+  "frames": 40,
+  "initial_hash": "4344c96a28891a62b2e11976f1867fb940645921881049b79e2cc8382f4e284a",
+  "ledger": [
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 3200,
+        "advantage_messages": 2,
+        "committed_adam_steps": 0,
+        "critic_backward_rows": 2000,
+        "critic_steps": 5,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 28640,
+        "gradient_messages": 2,
+        "policy_broadcast_bytes": 0,
+        "policy_messages": 0,
+        "proposal_adam_steps": 0,
+        "sampling_policy_rows": 800,
+        "source_actor_steps": 2,
+        "source_backward_rows": 800,
+        "training_transitions": 400,
+        "trajectory_bytes": 150400,
+        "trajectory_messages": 3
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 0,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        0,
+        0
+      ],
+      "source_policy_hash": "4344c96a28891a62b2e11976f1867fb940645921881049b79e2cc8382f4e284a",
+      "source_versions": [
+        0,
+        0
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        1.0
+      ],
+      "arrival_version_ages": [
+        1
+      ],
+      "arrived_packet_ids": [
+        1
+      ],
+      "charges": {
+        "advantage_bytes": 6400,
+        "advantage_messages": 4,
+        "committed_adam_steps": 1,
+        "critic_backward_rows": 4000,
+        "critic_steps": 10,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 57280,
+        "gradient_messages": 4,
+        "policy_broadcast_bytes": 14320,
+        "policy_messages": 1,
+        "proposal_adam_steps": 1,
+        "sampling_policy_rows": 1600,
+        "source_actor_steps": 4,
+        "source_backward_rows": 1600,
+        "training_transitions": 800,
+        "trajectory_bytes": 300800,
+        "trajectory_messages": 6
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 1,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        1
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        0,
+        1
+      ],
+      "source_policy_hash": "71d8d8962b500c327f6dd54ffe796a3f8125140994467c56fe1524de74527c40",
+      "source_versions": [
+        0,
+        1
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.5,
+        0.0
+      ],
+      "arrival_version_ages": [
+        2
+      ],
+      "arrived_packet_ids": [
+        0
+      ],
+      "charges": {
+        "advantage_bytes": 9600,
+        "advantage_messages": 6,
+        "committed_adam_steps": 2,
+        "critic_backward_rows": 6000,
+        "critic_steps": 15,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 85920,
+        "gradient_messages": 6,
+        "policy_broadcast_bytes": 28640,
+        "policy_messages": 2,
+        "proposal_adam_steps": 2,
+        "sampling_policy_rows": 2400,
+        "source_actor_steps": 6,
+        "source_backward_rows": 2400,
+        "training_transitions": 1200,
+        "trajectory_bytes": 451200,
+        "trajectory_messages": 9
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 2,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        0
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        1,
+        1
+      ],
+      "source_policy_hash": "dd5441a64da7223d1538f2b2348d6334b9638639f3d75d938196818d99b0c3f2",
+      "source_versions": [
+        1,
+        1
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 12800,
+        "advantage_messages": 8,
+        "committed_adam_steps": 2,
+        "critic_backward_rows": 8000,
+        "critic_steps": 20,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 114560,
+        "gradient_messages": 8,
+        "policy_broadcast_bytes": 28640,
+        "policy_messages": 2,
+        "proposal_adam_steps": 2,
+        "sampling_policy_rows": 3200,
+        "source_actor_steps": 8,
+        "source_backward_rows": 3200,
+        "training_transitions": 1600,
+        "trajectory_bytes": 601600,
+        "trajectory_messages": 12
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 3,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        1,
+        1
+      ],
+      "source_policy_hash": "dd5441a64da7223d1538f2b2348d6334b9638639f3d75d938196818d99b0c3f2",
+      "source_versions": [
+        1,
+        1
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        1.0,
+        1.0
+      ],
+      "arrival_version_ages": [
+        3,
+        3,
+        2,
+        2
+      ],
+      "arrived_packet_ids": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "charges": {
+        "advantage_bytes": 16000,
+        "advantage_messages": 10,
+        "committed_adam_steps": 4,
+        "critic_backward_rows": 10000,
+        "critic_steps": 25,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 143200,
+        "gradient_messages": 10,
+        "policy_broadcast_bytes": 57280,
+        "policy_messages": 4,
+        "proposal_adam_steps": 4,
+        "sampling_policy_rows": 4000,
+        "source_actor_steps": 10,
+        "source_backward_rows": 4000,
+        "training_transitions": 2000,
+        "trajectory_bytes": 752000,
+        "trajectory_messages": 15
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 4,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        6,
+        7
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        2,
+        2
+      ],
+      "source_policy_hash": "1b48fba6e2be5e32b9eca5d757bec7d0ddfa85066c4cb77451ecc9b00f3f81f1",
+      "source_versions": [
+        2,
+        2
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "arrival_version_ages": [
+        4,
+        4
+      ],
+      "arrived_packet_ids": [
+        4,
+        5
+      ],
+      "charges": {
+        "advantage_bytes": 19200,
+        "advantage_messages": 12,
+        "committed_adam_steps": 6,
+        "critic_backward_rows": 12000,
+        "critic_steps": 30,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 171840,
+        "gradient_messages": 12,
+        "policy_broadcast_bytes": 85920,
+        "policy_messages": 6,
+        "proposal_adam_steps": 6,
+        "sampling_policy_rows": 4800,
+        "source_actor_steps": 12,
+        "source_backward_rows": 4800,
+        "training_transitions": 2400,
+        "trajectory_bytes": 902400,
+        "trajectory_messages": 18
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 5,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        4,
+        5
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        3,
+        3
+      ],
+      "source_policy_hash": "2c94a893e0c74a713ef40428c6f9ed4624edde2399c2e2d36b2e742d9bf99d49",
+      "source_versions": [
+        3,
+        3
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        1.0,
+        0.3333333333333333
+      ],
+      "arrival_version_ages": [
+        4,
+        2
+      ],
+      "arrived_packet_ids": [
+        9,
+        10
+      ],
+      "charges": {
+        "advantage_bytes": 22400,
+        "advantage_messages": 14,
+        "committed_adam_steps": 8,
+        "critic_backward_rows": 14000,
+        "critic_steps": 35,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 200480,
+        "gradient_messages": 14,
+        "policy_broadcast_bytes": 114560,
+        "policy_messages": 8,
+        "proposal_adam_steps": 8,
+        "sampling_policy_rows": 5600,
+        "source_actor_steps": 14,
+        "source_backward_rows": 5600,
+        "training_transitions": 2800,
+        "trajectory_bytes": 1052800,
+        "trajectory_messages": 21
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 6,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        10,
+        9
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        4,
+        4
+      ],
+      "source_policy_hash": "d9fd445648b94090a1bf7c96776b89fbbdf667652d17fbcda282fd1b42710f37",
+      "source_versions": [
+        4,
+        4
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        1.0
+      ],
+      "arrival_version_ages": [
+        3,
+        1
+      ],
+      "arrived_packet_ids": [
+        11,
+        13
+      ],
+      "charges": {
+        "advantage_bytes": 25600,
+        "advantage_messages": 16,
+        "committed_adam_steps": 9,
+        "critic_backward_rows": 16000,
+        "critic_steps": 40,
+        "evaluation_policy_rows": 1600,
+        "evaluation_transitions": 800,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 229120,
+        "gradient_messages": 16,
+        "policy_broadcast_bytes": 128880,
+        "policy_messages": 9,
+        "proposal_adam_steps": 9,
+        "sampling_policy_rows": 6400,
+        "source_actor_steps": 16,
+        "source_backward_rows": 6400,
+        "training_transitions": 3200,
+        "trajectory_bytes": 1203200,
+        "trajectory_messages": 24
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 7,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        13
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        4,
+        5
+      ],
+      "source_policy_hash": "66a8f8155690a2e9e8f4b3e196ba22a09f929f1abc471db099c522a289d6972e",
+      "source_versions": [
+        4,
+        5
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        1.0,
+        0.0
+      ],
+      "arrival_version_ages": [
+        6,
+        1
+      ],
+      "arrived_packet_ids": [
+        8,
+        14
+      ],
+      "charges": {
+        "advantage_bytes": 28800,
+        "advantage_messages": 18,
+        "committed_adam_steps": 10,
+        "critic_backward_rows": 18000,
+        "critic_steps": 45,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 257760,
+        "gradient_messages": 18,
+        "policy_broadcast_bytes": 143200,
+        "policy_messages": 10,
+        "proposal_adam_steps": 10,
+        "sampling_policy_rows": 7200,
+        "source_actor_steps": 18,
+        "source_backward_rows": 7200,
+        "training_transitions": 3600,
+        "trajectory_bytes": 1353600,
+        "trajectory_messages": 27
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 8,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        14
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        5,
+        5
+      ],
+      "source_policy_hash": "5264ec85f23412cb43025282473c00777449f47da20d84f2622cc0797cd7453b",
+      "source_versions": [
+        5,
+        5
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        1.0,
+        0.0
+      ],
+      "arrival_version_ages": [
+        1
+      ],
+      "arrived_packet_ids": [
+        16
+      ],
+      "charges": {
+        "advantage_bytes": 32000,
+        "advantage_messages": 20,
+        "committed_adam_steps": 11,
+        "critic_backward_rows": 20000,
+        "critic_steps": 50,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 286400,
+        "gradient_messages": 20,
+        "policy_broadcast_bytes": 157520,
+        "policy_messages": 11,
+        "proposal_adam_steps": 11,
+        "sampling_policy_rows": 8000,
+        "source_actor_steps": 20,
+        "source_backward_rows": 8000,
+        "training_transitions": 4000,
+        "trajectory_bytes": 1504000,
+        "trajectory_messages": 30
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 9,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        16
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        6,
+        5
+      ],
+      "source_policy_hash": "12a97cc86c363dc77469d1ab388d4a3512998bf175570f01f1a1a2535a43cc05",
+      "source_versions": [
+        6,
+        5
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.25,
+        0.0
+      ],
+      "arrival_version_ages": [
+        4
+      ],
+      "arrived_packet_ids": [
+        12
+      ],
+      "charges": {
+        "advantage_bytes": 35200,
+        "advantage_messages": 22,
+        "committed_adam_steps": 12,
+        "critic_backward_rows": 22000,
+        "critic_steps": 55,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 315040,
+        "gradient_messages": 22,
+        "policy_broadcast_bytes": 171840,
+        "policy_messages": 12,
+        "proposal_adam_steps": 12,
+        "sampling_policy_rows": 8800,
+        "source_actor_steps": 22,
+        "source_backward_rows": 8800,
+        "training_transitions": 4400,
+        "trajectory_bytes": 1654400,
+        "trajectory_messages": 33
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 10,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        12
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        7,
+        5
+      ],
+      "source_policy_hash": "510ca0ec8e9fb15b0b55ca274a4fff08b15d55f7dcbeda4c6d149bf074687d97",
+      "source_versions": [
+        7,
+        5
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        1.0
+      ],
+      "arrival_version_ages": [
+        4,
+        1
+      ],
+      "arrived_packet_ids": [
+        15,
+        21
+      ],
+      "charges": {
+        "advantage_bytes": 38400,
+        "advantage_messages": 24,
+        "committed_adam_steps": 13,
+        "critic_backward_rows": 24000,
+        "critic_steps": 60,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 343680,
+        "gradient_messages": 24,
+        "policy_broadcast_bytes": 186160,
+        "policy_messages": 13,
+        "proposal_adam_steps": 13,
+        "sampling_policy_rows": 9600,
+        "source_actor_steps": 24,
+        "source_backward_rows": 9600,
+        "training_transitions": 4800,
+        "trajectory_bytes": 1804800,
+        "trajectory_messages": 36
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 11,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        21
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        7,
+        6
+      ],
+      "source_policy_hash": "b7e1a04601e3522826328c294268767b998d7dd0ccc7a61d20d397dcc7ffeb6b",
+      "source_versions": [
+        7,
+        6
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        1.0
+      ],
+      "arrival_version_ages": [
+        5,
+        4,
+        2
+      ],
+      "arrived_packet_ids": [
+        17,
+        18,
+        23
+      ],
+      "charges": {
+        "advantage_bytes": 41600,
+        "advantage_messages": 26,
+        "committed_adam_steps": 15,
+        "critic_backward_rows": 26000,
+        "critic_steps": 65,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 372320,
+        "gradient_messages": 26,
+        "policy_broadcast_bytes": 214800,
+        "policy_messages": 15,
+        "proposal_adam_steps": 15,
+        "sampling_policy_rows": 10400,
+        "source_actor_steps": 26,
+        "source_backward_rows": 10400,
+        "training_transitions": 5200,
+        "trajectory_bytes": 1955200,
+        "trajectory_messages": 39
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 12,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        18,
+        23
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        8,
+        7
+      ],
+      "source_policy_hash": "102eacc96a60d6d2f43e1373b30baab99bccd5a3714429e8e3e94622f97f47fb",
+      "source_versions": [
+        8,
+        7
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.2
+      ],
+      "arrival_version_ages": [
+        6,
+        5,
+        4
+      ],
+      "arrived_packet_ids": [
+        19,
+        20,
+        22
+      ],
+      "charges": {
+        "advantage_bytes": 44800,
+        "advantage_messages": 28,
+        "committed_adam_steps": 17,
+        "critic_backward_rows": 28000,
+        "critic_steps": 70,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 400960,
+        "gradient_messages": 28,
+        "policy_broadcast_bytes": 243440,
+        "policy_messages": 17,
+        "proposal_adam_steps": 17,
+        "sampling_policy_rows": 11200,
+        "source_actor_steps": 28,
+        "source_backward_rows": 11200,
+        "training_transitions": 5600,
+        "trajectory_bytes": 2105600,
+        "trajectory_messages": 42
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 13,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        22,
+        19
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        9,
+        8
+      ],
+      "source_policy_hash": "926ccb7c08d271b580b78635445fa895e623d51169cc61804bd2a23103026e25",
+      "source_versions": [
+        9,
+        8
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.0
+      ],
+      "arrival_version_ages": [
+        3
+      ],
+      "arrived_packet_ids": [
+        24
+      ],
+      "charges": {
+        "advantage_bytes": 48000,
+        "advantage_messages": 30,
+        "committed_adam_steps": 18,
+        "critic_backward_rows": 30000,
+        "critic_steps": 75,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 429600,
+        "gradient_messages": 30,
+        "policy_broadcast_bytes": 257760,
+        "policy_messages": 18,
+        "proposal_adam_steps": 18,
+        "sampling_policy_rows": 12000,
+        "source_actor_steps": 30,
+        "source_backward_rows": 12000,
+        "training_transitions": 6000,
+        "trajectory_bytes": 2256000,
+        "trajectory_messages": 45
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 14,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        24
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        10,
+        8
+      ],
+      "source_policy_hash": "6755965572ab8e840c9777ee36ff811d2b6904661677015da57c34aa84b5cb19",
+      "source_versions": [
+        10,
+        8
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 51200,
+        "advantage_messages": 32,
+        "committed_adam_steps": 18,
+        "critic_backward_rows": 32000,
+        "critic_steps": 80,
+        "evaluation_policy_rows": 3200,
+        "evaluation_transitions": 1600,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 458240,
+        "gradient_messages": 32,
+        "policy_broadcast_bytes": 257760,
+        "policy_messages": 18,
+        "proposal_adam_steps": 18,
+        "sampling_policy_rows": 12800,
+        "source_actor_steps": 32,
+        "source_backward_rows": 12800,
+        "training_transitions": 6400,
+        "trajectory_bytes": 2406400,
+        "trajectory_messages": 48
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 15,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        10,
+        8
+      ],
+      "source_policy_hash": "6755965572ab8e840c9777ee36ff811d2b6904661677015da57c34aa84b5cb19",
+      "source_versions": [
+        10,
+        8
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.5,
+        0.25
+      ],
+      "arrival_version_ages": [
+        5,
+        3
+      ],
+      "arrived_packet_ids": [
+        25,
+        26
+      ],
+      "charges": {
+        "advantage_bytes": 54400,
+        "advantage_messages": 34,
+        "committed_adam_steps": 20,
+        "critic_backward_rows": 34000,
+        "critic_steps": 85,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 486880,
+        "gradient_messages": 34,
+        "policy_broadcast_bytes": 286400,
+        "policy_messages": 20,
+        "proposal_adam_steps": 20,
+        "sampling_policy_rows": 13600,
+        "source_actor_steps": 34,
+        "source_backward_rows": 13600,
+        "training_transitions": 6800,
+        "trajectory_bytes": 2556800,
+        "trajectory_messages": 51
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 16,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        26,
+        25
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        11,
+        9
+      ],
+      "source_policy_hash": "9493eaa46d8ce07e6222c1dde82cabd1f7a273d9faba6a1c2e27163dba41946c",
+      "source_versions": [
+        11,
+        9
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.25
+      ],
+      "arrival_version_ages": [
+        4
+      ],
+      "arrived_packet_ids": [
+        27
+      ],
+      "charges": {
+        "advantage_bytes": 57600,
+        "advantage_messages": 36,
+        "committed_adam_steps": 21,
+        "critic_backward_rows": 36000,
+        "critic_steps": 90,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 515520,
+        "gradient_messages": 36,
+        "policy_broadcast_bytes": 300720,
+        "policy_messages": 21,
+        "proposal_adam_steps": 21,
+        "sampling_policy_rows": 14400,
+        "source_actor_steps": 36,
+        "source_backward_rows": 14400,
+        "training_transitions": 7200,
+        "trajectory_bytes": 2707200,
+        "trajectory_messages": 54
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 17,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        27
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        11,
+        10
+      ],
+      "source_policy_hash": "b6c793d54eba67a0a49b1f15dfbfcecdc0e4255fd904bb3ee58b6fab21c7293f",
+      "source_versions": [
+        11,
+        10
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.25,
+        0.25
+      ],
+      "arrival_version_ages": [
+        5,
+        5,
+        5
+      ],
+      "arrived_packet_ids": [
+        28,
+        29,
+        31
+      ],
+      "charges": {
+        "advantage_bytes": 60800,
+        "advantage_messages": 38,
+        "committed_adam_steps": 23,
+        "critic_backward_rows": 38000,
+        "critic_steps": 95,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 544160,
+        "gradient_messages": 38,
+        "policy_broadcast_bytes": 329360,
+        "policy_messages": 23,
+        "proposal_adam_steps": 23,
+        "sampling_policy_rows": 15200,
+        "source_actor_steps": 38,
+        "source_backward_rows": 15200,
+        "training_transitions": 7600,
+        "trajectory_bytes": 2857600,
+        "trajectory_messages": 57
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 18,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        28,
+        31
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        12,
+        11
+      ],
+      "source_policy_hash": "fb09e93e66adc81fd5dcd9ed4efc4799ca9de89042bef1c4c1ca197f35d8632c",
+      "source_versions": [
+        12,
+        11
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        1.0,
+        0.25
+      ],
+      "arrival_version_ages": [
+        7,
+        5,
+        5,
+        2
+      ],
+      "arrived_packet_ids": [
+        30,
+        32,
+        33,
+        36
+      ],
+      "charges": {
+        "advantage_bytes": 64000,
+        "advantage_messages": 40,
+        "committed_adam_steps": 25,
+        "critic_backward_rows": 40000,
+        "critic_steps": 100,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 572800,
+        "gradient_messages": 40,
+        "policy_broadcast_bytes": 358000,
+        "policy_messages": 25,
+        "proposal_adam_steps": 25,
+        "sampling_policy_rows": 16000,
+        "source_actor_steps": 40,
+        "source_backward_rows": 16000,
+        "training_transitions": 8000,
+        "trajectory_bytes": 3008000,
+        "trajectory_messages": 60
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 19,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        36,
+        33
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        13,
+        12
+      ],
+      "source_policy_hash": "b5835a49e7e65351bdc668c69d12f8292235ff7724ad8055d798f5afab65db60",
+      "source_versions": [
+        13,
+        12
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.2,
+        1.0
+      ],
+      "arrival_version_ages": [
+        6,
+        6,
+        2
+      ],
+      "arrived_packet_ids": [
+        34,
+        35,
+        39
+      ],
+      "charges": {
+        "advantage_bytes": 67200,
+        "advantage_messages": 42,
+        "committed_adam_steps": 27,
+        "critic_backward_rows": 42000,
+        "critic_steps": 105,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 601440,
+        "gradient_messages": 42,
+        "policy_broadcast_bytes": 386640,
+        "policy_messages": 27,
+        "proposal_adam_steps": 27,
+        "sampling_policy_rows": 16800,
+        "source_actor_steps": 42,
+        "source_backward_rows": 16800,
+        "training_transitions": 8400,
+        "trajectory_bytes": 3158400,
+        "trajectory_messages": 63
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 20,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        34,
+        39
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        14,
+        13
+      ],
+      "source_policy_hash": "7343839856fdb56754b434d89124f0b9c004d7789fd7cee64d48e9a0f48b0c74",
+      "source_versions": [
+        14,
+        13
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 70400,
+        "advantage_messages": 44,
+        "committed_adam_steps": 27,
+        "critic_backward_rows": 44000,
+        "critic_steps": 110,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 630080,
+        "gradient_messages": 44,
+        "policy_broadcast_bytes": 386640,
+        "policy_messages": 27,
+        "proposal_adam_steps": 27,
+        "sampling_policy_rows": 17600,
+        "source_actor_steps": 44,
+        "source_backward_rows": 17600,
+        "training_transitions": 8800,
+        "trajectory_bytes": 3308800,
+        "trajectory_messages": 66
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 21,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        14,
+        13
+      ],
+      "source_policy_hash": "7343839856fdb56754b434d89124f0b9c004d7789fd7cee64d48e9a0f48b0c74",
+      "source_versions": [
+        14,
+        13
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.2
+      ],
+      "arrival_version_ages": [
+        6,
+        4
+      ],
+      "arrived_packet_ids": [
+        37,
+        38
+      ],
+      "charges": {
+        "advantage_bytes": 73600,
+        "advantage_messages": 46,
+        "committed_adam_steps": 29,
+        "critic_backward_rows": 46000,
+        "critic_steps": 115,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 658720,
+        "gradient_messages": 46,
+        "policy_broadcast_bytes": 415280,
+        "policy_messages": 29,
+        "proposal_adam_steps": 29,
+        "sampling_policy_rows": 18400,
+        "source_actor_steps": 46,
+        "source_backward_rows": 18400,
+        "training_transitions": 9200,
+        "trajectory_bytes": 3459200,
+        "trajectory_messages": 69
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 22,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        38,
+        37
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        15,
+        14
+      ],
+      "source_policy_hash": "d379161e3fea3c4ad0faa537b24625ae06ab2e94f75c1dfa9e0562e0eaa92e8d",
+      "source_versions": [
+        15,
+        14
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        1.0,
+        0.3333333333333333
+      ],
+      "arrival_version_ages": [
+        4,
+        2
+      ],
+      "arrived_packet_ids": [
+        43,
+        44
+      ],
+      "charges": {
+        "advantage_bytes": 76800,
+        "advantage_messages": 48,
+        "committed_adam_steps": 31,
+        "critic_backward_rows": 48000,
+        "critic_steps": 120,
+        "evaluation_policy_rows": 4800,
+        "evaluation_transitions": 2400,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 687360,
+        "gradient_messages": 48,
+        "policy_broadcast_bytes": 443920,
+        "policy_messages": 31,
+        "proposal_adam_steps": 31,
+        "sampling_policy_rows": 19200,
+        "source_actor_steps": 48,
+        "source_backward_rows": 19200,
+        "training_transitions": 9600,
+        "trajectory_bytes": 3609600,
+        "trajectory_messages": 72
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 23,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        44,
+        43
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        16,
+        15
+      ],
+      "source_policy_hash": "ae093ae4d9ba17a23e2eaf60a562b46194d74eda6b53b37ecc2b84dfbeb359c4",
+      "source_versions": [
+        16,
+        15
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 80000,
+        "advantage_messages": 50,
+        "committed_adam_steps": 31,
+        "critic_backward_rows": 50000,
+        "critic_steps": 125,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 716000,
+        "gradient_messages": 50,
+        "policy_broadcast_bytes": 443920,
+        "policy_messages": 31,
+        "proposal_adam_steps": 31,
+        "sampling_policy_rows": 20000,
+        "source_actor_steps": 50,
+        "source_backward_rows": 20000,
+        "training_transitions": 10000,
+        "trajectory_bytes": 3760000,
+        "trajectory_messages": 75
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 24,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        16,
+        15
+      ],
+      "source_policy_hash": "ae093ae4d9ba17a23e2eaf60a562b46194d74eda6b53b37ecc2b84dfbeb359c4",
+      "source_versions": [
+        16,
+        15
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.2,
+        0.0
+      ],
+      "arrival_version_ages": [
+        5
+      ],
+      "arrived_packet_ids": [
+        42
+      ],
+      "charges": {
+        "advantage_bytes": 83200,
+        "advantage_messages": 52,
+        "committed_adam_steps": 32,
+        "critic_backward_rows": 52000,
+        "critic_steps": 130,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 744640,
+        "gradient_messages": 52,
+        "policy_broadcast_bytes": 458240,
+        "policy_messages": 32,
+        "proposal_adam_steps": 32,
+        "sampling_policy_rows": 20800,
+        "source_actor_steps": 52,
+        "source_backward_rows": 20800,
+        "training_transitions": 10400,
+        "trajectory_bytes": 3910400,
+        "trajectory_messages": 78
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 25,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        42
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        17,
+        15
+      ],
+      "source_policy_hash": "3f05a2349313197fa9edd5c3f6cb5045ec3ccd84944f4d3bc6ccf98680599b32",
+      "source_versions": [
+        17,
+        15
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 86400,
+        "advantage_messages": 54,
+        "committed_adam_steps": 32,
+        "critic_backward_rows": 54000,
+        "critic_steps": 135,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 773280,
+        "gradient_messages": 54,
+        "policy_broadcast_bytes": 458240,
+        "policy_messages": 32,
+        "proposal_adam_steps": 32,
+        "sampling_policy_rows": 21600,
+        "source_actor_steps": 54,
+        "source_backward_rows": 21600,
+        "training_transitions": 10800,
+        "trajectory_bytes": 4060800,
+        "trajectory_messages": 81
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 26,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        17,
+        15
+      ],
+      "source_policy_hash": "3f05a2349313197fa9edd5c3f6cb5045ec3ccd84944f4d3bc6ccf98680599b32",
+      "source_versions": [
+        17,
+        15
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.5,
+        0.5
+      ],
+      "arrival_version_ages": [
+        7,
+        7,
+        5,
+        3,
+        3
+      ],
+      "arrived_packet_ids": [
+        40,
+        41,
+        45,
+        46,
+        47
+      ],
+      "charges": {
+        "advantage_bytes": 89600,
+        "advantage_messages": 56,
+        "committed_adam_steps": 34,
+        "critic_backward_rows": 56000,
+        "critic_steps": 140,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 801920,
+        "gradient_messages": 56,
+        "policy_broadcast_bytes": 486880,
+        "policy_messages": 34,
+        "proposal_adam_steps": 34,
+        "sampling_policy_rows": 22400,
+        "source_actor_steps": 56,
+        "source_backward_rows": 22400,
+        "training_transitions": 11200,
+        "trajectory_bytes": 4211200,
+        "trajectory_messages": 84
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 27,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        46,
+        47
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        18,
+        16
+      ],
+      "source_policy_hash": "6edde2ade8a4cc25c2a42ed5eb8036837dce2d7f4936228f96f77e724004a53e",
+      "source_versions": [
+        18,
+        16
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.25,
+        0.3333333333333333
+      ],
+      "arrival_version_ages": [
+        5,
+        4
+      ],
+      "arrived_packet_ids": [
+        48,
+        51
+      ],
+      "charges": {
+        "advantage_bytes": 92800,
+        "advantage_messages": 58,
+        "committed_adam_steps": 36,
+        "critic_backward_rows": 58000,
+        "critic_steps": 145,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 830560,
+        "gradient_messages": 58,
+        "policy_broadcast_bytes": 515520,
+        "policy_messages": 36,
+        "proposal_adam_steps": 36,
+        "sampling_policy_rows": 23200,
+        "source_actor_steps": 58,
+        "source_backward_rows": 23200,
+        "training_transitions": 11600,
+        "trajectory_bytes": 4361600,
+        "trajectory_messages": 87
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 28,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        48,
+        51
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        19,
+        17
+      ],
+      "source_policy_hash": "b512d7169a5775a58176480a9d32428cbabc6daea5551adb77d425a97c2957ed",
+      "source_versions": [
+        19,
+        17
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.16666666666666666
+      ],
+      "arrival_version_ages": [
+        6
+      ],
+      "arrived_packet_ids": [
+        49
+      ],
+      "charges": {
+        "advantage_bytes": 96000,
+        "advantage_messages": 60,
+        "committed_adam_steps": 37,
+        "critic_backward_rows": 60000,
+        "critic_steps": 150,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 859200,
+        "gradient_messages": 60,
+        "policy_broadcast_bytes": 529840,
+        "policy_messages": 37,
+        "proposal_adam_steps": 37,
+        "sampling_policy_rows": 24000,
+        "source_actor_steps": 60,
+        "source_backward_rows": 24000,
+        "training_transitions": 12000,
+        "trajectory_bytes": 4512000,
+        "trajectory_messages": 90
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 29,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        49
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        19,
+        18
+      ],
+      "source_policy_hash": "ae0f9cb46af6ccd326a23510017fe15a052249fd17d4ae822e329a213739b0d4",
+      "source_versions": [
+        19,
+        18
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.5,
+        0.16666666666666666
+      ],
+      "arrival_version_ages": [
+        7,
+        7,
+        3
+      ],
+      "arrived_packet_ids": [
+        52,
+        53,
+        56
+      ],
+      "charges": {
+        "advantage_bytes": 99200,
+        "advantage_messages": 62,
+        "committed_adam_steps": 39,
+        "critic_backward_rows": 62000,
+        "critic_steps": 155,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 887840,
+        "gradient_messages": 62,
+        "policy_broadcast_bytes": 558480,
+        "policy_messages": 39,
+        "proposal_adam_steps": 39,
+        "sampling_policy_rows": 24800,
+        "source_actor_steps": 62,
+        "source_backward_rows": 24800,
+        "training_transitions": 12400,
+        "trajectory_bytes": 4662400,
+        "trajectory_messages": 93
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 30,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        56,
+        53
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        20,
+        19
+      ],
+      "source_policy_hash": "872fd8acb27b73a4ccc75513eb394b1198bc35962bd0c5ab5288fe30bd938eec",
+      "source_versions": [
+        20,
+        19
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "arrival_version_ages": [
+        9,
+        7,
+        4,
+        4
+      ],
+      "arrived_packet_ids": [
+        50,
+        55,
+        58,
+        59
+      ],
+      "charges": {
+        "advantage_bytes": 102400,
+        "advantage_messages": 64,
+        "committed_adam_steps": 41,
+        "critic_backward_rows": 64000,
+        "critic_steps": 160,
+        "evaluation_policy_rows": 6400,
+        "evaluation_transitions": 3200,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 916480,
+        "gradient_messages": 64,
+        "policy_broadcast_bytes": 587120,
+        "policy_messages": 41,
+        "proposal_adam_steps": 41,
+        "sampling_policy_rows": 25600,
+        "source_actor_steps": 64,
+        "source_backward_rows": 25600,
+        "training_transitions": 12800,
+        "trajectory_bytes": 4812800,
+        "trajectory_messages": 96
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 31,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        58,
+        59
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        21,
+        20
+      ],
+      "source_policy_hash": "ae3a049c70b5b12a399b8f318360f56e099b75f63c0481d57b6141c7d118f928",
+      "source_versions": [
+        21,
+        20
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.0
+      ],
+      "arrival_version_ages": [
+        3
+      ],
+      "arrived_packet_ids": [
+        60
+      ],
+      "charges": {
+        "advantage_bytes": 105600,
+        "advantage_messages": 66,
+        "committed_adam_steps": 42,
+        "critic_backward_rows": 66000,
+        "critic_steps": 165,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 945120,
+        "gradient_messages": 66,
+        "policy_broadcast_bytes": 601440,
+        "policy_messages": 42,
+        "proposal_adam_steps": 42,
+        "sampling_policy_rows": 26400,
+        "source_actor_steps": 66,
+        "source_backward_rows": 26400,
+        "training_transitions": 13200,
+        "trajectory_bytes": 4963200,
+        "trajectory_messages": 99
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 32,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        60
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        22,
+        20
+      ],
+      "source_policy_hash": "f5ac1722e9dc62d19c01ed5e8e6b9cec2352a33af4ceaa28ee27bb71be25775b",
+      "source_versions": [
+        22,
+        20
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.1111111111111111,
+        0.0
+      ],
+      "arrival_version_ages": [
+        9
+      ],
+      "arrived_packet_ids": [
+        54
+      ],
+      "charges": {
+        "advantage_bytes": 108800,
+        "advantage_messages": 68,
+        "committed_adam_steps": 43,
+        "critic_backward_rows": 68000,
+        "critic_steps": 170,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 973760,
+        "gradient_messages": 68,
+        "policy_broadcast_bytes": 615760,
+        "policy_messages": 43,
+        "proposal_adam_steps": 43,
+        "sampling_policy_rows": 27200,
+        "source_actor_steps": 68,
+        "source_backward_rows": 27200,
+        "training_transitions": 13600,
+        "trajectory_bytes": 5113600,
+        "trajectory_messages": 102
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 33,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        54
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        23,
+        20
+      ],
+      "source_policy_hash": "937c78d6f6ad3c8fddfb0d326c37364588853f8aaf0093fbe8e6a96c250c64cc",
+      "source_versions": [
+        23,
+        20
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.3333333333333333,
+        0.0
+      ],
+      "arrival_version_ages": [
+        3
+      ],
+      "arrived_packet_ids": [
+        62
+      ],
+      "charges": {
+        "advantage_bytes": 112000,
+        "advantage_messages": 70,
+        "committed_adam_steps": 44,
+        "critic_backward_rows": 70000,
+        "critic_steps": 175,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 1002400,
+        "gradient_messages": 70,
+        "policy_broadcast_bytes": 630080,
+        "policy_messages": 44,
+        "proposal_adam_steps": 44,
+        "sampling_policy_rows": 28000,
+        "source_actor_steps": 70,
+        "source_backward_rows": 28000,
+        "training_transitions": 14000,
+        "trajectory_bytes": 5264000,
+        "trajectory_messages": 105
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 34,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        62
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        24,
+        20
+      ],
+      "source_policy_hash": "79a4e26d0d262f67e8d373ee1fc99097a8207cbc19f2fb84a178ea487cf4c3c9",
+      "source_versions": [
+        24,
+        20
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.1111111111111111
+      ],
+      "arrival_version_ages": [
+        9
+      ],
+      "arrived_packet_ids": [
+        57
+      ],
+      "charges": {
+        "advantage_bytes": 115200,
+        "advantage_messages": 72,
+        "committed_adam_steps": 45,
+        "critic_backward_rows": 72000,
+        "critic_steps": 180,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 1031040,
+        "gradient_messages": 72,
+        "policy_broadcast_bytes": 644400,
+        "policy_messages": 45,
+        "proposal_adam_steps": 45,
+        "sampling_policy_rows": 28800,
+        "source_actor_steps": 72,
+        "source_backward_rows": 28800,
+        "training_transitions": 14400,
+        "trajectory_bytes": 5414400,
+        "trajectory_messages": 108
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 35,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        57
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        24,
+        21
+      ],
+      "source_policy_hash": "d8d7e9e75c5357c0f33cc233d4e3b426565d58f3c6f968ba04a04a5c662f6be6",
+      "source_versions": [
+        24,
+        21
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.25,
+        0.0
+      ],
+      "arrival_version_ages": [
+        4
+      ],
+      "arrived_packet_ids": [
+        64
+      ],
+      "charges": {
+        "advantage_bytes": 118400,
+        "advantage_messages": 74,
+        "committed_adam_steps": 46,
+        "critic_backward_rows": 74000,
+        "critic_steps": 185,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 1059680,
+        "gradient_messages": 74,
+        "policy_broadcast_bytes": 658720,
+        "policy_messages": 46,
+        "proposal_adam_steps": 46,
+        "sampling_policy_rows": 29600,
+        "source_actor_steps": 74,
+        "source_backward_rows": 29600,
+        "training_transitions": 14800,
+        "trajectory_bytes": 5564800,
+        "trajectory_messages": 111
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 36,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        64
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        25,
+        21
+      ],
+      "source_policy_hash": "1e5989cc4614de7de47bbe3f3847eab2ec8ba88438f162693a76c2589f15389e",
+      "source_versions": [
+        25,
+        21
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        0.0
+      ],
+      "arrival_version_ages": [],
+      "arrived_packet_ids": [],
+      "charges": {
+        "advantage_bytes": 121600,
+        "advantage_messages": 76,
+        "committed_adam_steps": 46,
+        "critic_backward_rows": 76000,
+        "critic_steps": 190,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 1088320,
+        "gradient_messages": 76,
+        "policy_broadcast_bytes": 658720,
+        "policy_messages": 46,
+        "proposal_adam_steps": 46,
+        "sampling_policy_rows": 30400,
+        "source_actor_steps": 76,
+        "source_backward_rows": 30400,
+        "training_transitions": 15200,
+        "trajectory_bytes": 5715200,
+        "trajectory_messages": 114
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 37,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 0,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 0,
+      "ready_packet_ids": [],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        25,
+        21
+      ],
+      "source_policy_hash": "1e5989cc4614de7de47bbe3f3847eab2ec8ba88438f162693a76c2589f15389e",
+      "source_versions": [
+        25,
+        21
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.25,
+        0.2
+      ],
+      "arrival_version_ages": [
+        9,
+        6,
+        5
+      ],
+      "arrived_packet_ids": [
+        61,
+        65,
+        66
+      ],
+      "charges": {
+        "advantage_bytes": 124800,
+        "advantage_messages": 78,
+        "committed_adam_steps": 48,
+        "critic_backward_rows": 78000,
+        "critic_steps": 195,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 1116960,
+        "gradient_messages": 78,
+        "policy_broadcast_bytes": 687360,
+        "policy_messages": 48,
+        "proposal_adam_steps": 48,
+        "sampling_policy_rows": 31200,
+        "source_actor_steps": 78,
+        "source_backward_rows": 31200,
+        "training_transitions": 15600,
+        "trajectory_bytes": 5865600,
+        "trajectory_messages": 117
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 38,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 28640,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 2,
+      "ready_packet_ids": [
+        66,
+        65
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        26,
+        22
+      ],
+      "source_policy_hash": "a8102a3a663176c68369de5f6920655335bd81531086576823f6a79f88cd8716",
+      "source_versions": [
+        26,
+        22
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    },
+    {
+      "action": [
+        0.0,
+        1.0
+      ],
+      "arrival_version_ages": [
+        8,
+        6,
+        1
+      ],
+      "arrived_packet_ids": [
+        63,
+        67,
+        77
+      ],
+      "charges": {
+        "advantage_bytes": 128000,
+        "advantage_messages": 80,
+        "committed_adam_steps": 49,
+        "critic_backward_rows": 80000,
+        "critic_steps": 200,
+        "evaluation_policy_rows": 8000,
+        "evaluation_transitions": 4000,
+        "extra_potential_rows": 0,
+        "extra_score_policy_rows": 0,
+        "gradient_bytes": 1145600,
+        "gradient_messages": 80,
+        "policy_broadcast_bytes": 701680,
+        "policy_messages": 49,
+        "proposal_adam_steps": 49,
+        "sampling_policy_rows": 32000,
+        "source_actor_steps": 80,
+        "source_backward_rows": 32000,
+        "training_transitions": 16000,
+        "trajectory_bytes": 6016000,
+        "trajectory_messages": 120
+      },
+      "control": {},
+      "current_bank_used_only_after_decision": false,
+      "decision_before_bank": false,
+      "frame": 39,
+      "hint_policy_rows": 0,
+      "outbound_bytes": 14320,
+      "potential_rows": 0,
+      "probe_episodes": 0,
+      "proposal_adam_steps": 1,
+      "ready_packet_ids": [
+        77
+      ],
+      "score_policy_rows": 0,
+      "server_versions_after": [
+        26,
+        23
+      ],
+      "source_policy_hash": "d9a15bd0ddbd518c8645569093328c6952cc573524cc24605298231551913386",
+      "source_versions": [
+        26,
+        23
+      ],
+      "trajectory_bytes": 150400,
+      "weight_max": 1.0
+    }
+  ],
+  "logical_transport_not_measured_network": true,
+  "method": "async_delay",
+  "native_environment": true,
+  "packet_events": [
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 2,
+      "gradient_hash": "64894a244ee6a69172358aa4d237bbf9d89426870d773bbdb96d8ac1a331d3dc",
+      "id": 0,
+      "launch": 0,
+      "source_versions": [
+        0,
+        0
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 1,
+      "gradient_hash": "46c6fac7f988819a0a42c78df7ce29aeee7eebc93c7ec441922eb920f893f692",
+      "id": 1,
+      "launch": 0,
+      "source_versions": [
+        0,
+        0
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 4,
+      "gradient_hash": "9ee82336f29c0be6fb912fc61d619d9f3f0275026565f4c236e6e531d8a893f2",
+      "id": 2,
+      "launch": 1,
+      "source_versions": [
+        0,
+        1
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 4,
+      "gradient_hash": "069370ff25f8044be75f588d0aa91ccb45d08a5c7ac9690028e867d366672c0b",
+      "id": 3,
+      "launch": 1,
+      "source_versions": [
+        0,
+        1
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 5,
+      "gradient_hash": "a03a543e21b4a4326de64bdb39c5d2b5173ebe8a91fa53f0da69d57fc84f565c",
+      "id": 4,
+      "launch": 2,
+      "source_versions": [
+        1,
+        1
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 5,
+      "gradient_hash": "f4d821459005df831355a3059cebec3ed23a7efcef6cb243f15a44afb839667a",
+      "id": 5,
+      "launch": 2,
+      "source_versions": [
+        1,
+        1
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 4,
+      "gradient_hash": "b49c60bd2627d3d2f17eb80f5e3e6b1ad196677db35a2b6b7eed411652706b58",
+      "id": 6,
+      "launch": 3,
+      "source_versions": [
+        1,
+        1
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 4,
+      "gradient_hash": "65f545121ee82fc69af69d17c49586c568d186b54c01edb5ffe4f4e608612da0",
+      "id": 7,
+      "launch": 3,
+      "source_versions": [
+        1,
+        1
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 8,
+      "gradient_hash": "e1a17367cd55ef98a4dd19c89908e85a90ac3259bfc5c5c90b519bde79a91ab2",
+      "id": 8,
+      "launch": 4,
+      "source_versions": [
+        2,
+        2
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 6,
+      "gradient_hash": "08d224a15891f76d3cb55c4d95018ab599a5f4ceb3b8173bac99621ff38fe458",
+      "id": 9,
+      "launch": 4,
+      "source_versions": [
+        2,
+        2
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 6,
+      "gradient_hash": "83884f66d302521b3691778e8afdf25dc3b68fbbb71e39f264457553e0e067f8",
+      "id": 10,
+      "launch": 5,
+      "source_versions": [
+        3,
+        3
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 7,
+      "gradient_hash": "68dcb524d3a5ebc9df216b41bc52c498c302abdbfe873e34de16322e09c03c78",
+      "id": 11,
+      "launch": 5,
+      "source_versions": [
+        3,
+        3
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 10,
+      "gradient_hash": "63f895c345086492e90766aec972c0f364da6655b2405de62d6c99e44fbcfb45",
+      "id": 12,
+      "launch": 6,
+      "source_versions": [
+        4,
+        4
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 7,
+      "gradient_hash": "ed51f2769e3564eda961d22dfc8d8eda758d570417d864d771905ea17f5ef55b",
+      "id": 13,
+      "launch": 6,
+      "source_versions": [
+        4,
+        4
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 8,
+      "gradient_hash": "85d7d8f475c904b7b72fd3c57289fa666db947a95d68a5b3a4b321aad61f194b",
+      "id": 14,
+      "launch": 7,
+      "source_versions": [
+        4,
+        5
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 11,
+      "gradient_hash": "3291bf29992b1852e55b1e93362fa9204e1c7a1b91900ad7766ea38f04e5eb1b",
+      "id": 15,
+      "launch": 7,
+      "source_versions": [
+        4,
+        5
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 9,
+      "gradient_hash": "2c4de2e3e92636f5a33b342e669e6bd9dfde735d2f24d2219557297cd3bf81d7",
+      "id": 16,
+      "launch": 8,
+      "source_versions": [
+        5,
+        5
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 12,
+      "gradient_hash": "ef6d05bdcb55b24e90708cd7963d44a959426e0b1134d4bda19e040e40481144",
+      "id": 17,
+      "launch": 8,
+      "source_versions": [
+        5,
+        5
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 12,
+      "gradient_hash": "04a7e5b0bc5a14a6d8e1f4621324b3cc0cc3dd73f6079af260b5aff8b325e7f7",
+      "id": 18,
+      "launch": 9,
+      "source_versions": [
+        6,
+        5
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 13,
+      "gradient_hash": "49442b801306f3ac076746e7fdf770721986f4fda79fcb74aa6249cf36086258",
+      "id": 19,
+      "launch": 9,
+      "source_versions": [
+        6,
+        5
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 13,
+      "gradient_hash": "317c7e404eaaebad8f757732330766d6cbd507478d2e02de550f91637d7ed91f",
+      "id": 20,
+      "launch": 10,
+      "source_versions": [
+        7,
+        5
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 11,
+      "gradient_hash": "483b7a0abe9400d5371f1b5faeca9a934fe877ac4eebc7417aa52d206031fa26",
+      "id": 21,
+      "launch": 10,
+      "source_versions": [
+        7,
+        5
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 13,
+      "gradient_hash": "31d6b226413a47100e191f0826d46dc2133fe468f9ddace3815eed8b3ffdc89d",
+      "id": 22,
+      "launch": 11,
+      "source_versions": [
+        7,
+        6
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 12,
+      "gradient_hash": "99dff94e758c6fff3a124f5bbfee44d56b30cd4d1d0e1db243658f0431b6a9d5",
+      "id": 23,
+      "launch": 11,
+      "source_versions": [
+        7,
+        6
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 14,
+      "gradient_hash": "cc64237051b8a26d697426242756e1eb78cee45ba718efe5fb2def6e1c49b069",
+      "id": 24,
+      "launch": 12,
+      "source_versions": [
+        8,
+        7
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 16,
+      "gradient_hash": "4149d623caa61e65372f97094ae5ada4679985447fd48b55e18b80d9d4e91644",
+      "id": 25,
+      "launch": 12,
+      "source_versions": [
+        8,
+        7
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 16,
+      "gradient_hash": "593c0264f6e1b64c85392895cbf1e333f0662a7753fdc07f157e27ca90198a15",
+      "id": 26,
+      "launch": 13,
+      "source_versions": [
+        9,
+        8
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 17,
+      "gradient_hash": "dbb16754933b9e8bd2356b932e9856ba886359a078085de46d51f8ed14444bf3",
+      "id": 27,
+      "launch": 13,
+      "source_versions": [
+        9,
+        8
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 18,
+      "gradient_hash": "3ee6b774ab391e0b2220ce1433659b0f9054240ce420b5397f741a96e1294b19",
+      "id": 28,
+      "launch": 14,
+      "source_versions": [
+        10,
+        8
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 18,
+      "gradient_hash": "dcea23955d07a3fd15c388f92c219624c9300c4953ecaedd630c8c24e7603b47",
+      "id": 29,
+      "launch": 14,
+      "source_versions": [
+        10,
+        8
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 19,
+      "gradient_hash": "d75c6a9941906ae290301bf96de3bb3cb164643beaedbcdc672248a49850e1bd",
+      "id": 30,
+      "launch": 15,
+      "source_versions": [
+        10,
+        8
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 18,
+      "gradient_hash": "3b72f55adf58d299e346b7d9f0f243bb80b8eaa977d57ef0ef7210d68eda77a6",
+      "id": 31,
+      "launch": 15,
+      "source_versions": [
+        10,
+        8
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 19,
+      "gradient_hash": "7efec1ba366a8998a4cbb15c0903cc17b3081e2f043b2d1c7bf108faecf427f5",
+      "id": 32,
+      "launch": 16,
+      "source_versions": [
+        11,
+        9
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 19,
+      "gradient_hash": "69406d3dcb41045014aa6bbec3654437d8da3730a53e1edbb578d4e6e79ca903",
+      "id": 33,
+      "launch": 16,
+      "source_versions": [
+        11,
+        9
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 20,
+      "gradient_hash": "7137d032309268dc3069d6b00d0bd9af07a903c65924e10c8154225e99405bf9",
+      "id": 34,
+      "launch": 17,
+      "source_versions": [
+        11,
+        10
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 20,
+      "gradient_hash": "0aa351276e4f974c7f5dea8e7bdc0de06baa574a79c6acae14a7a9f891406c33",
+      "id": 35,
+      "launch": 17,
+      "source_versions": [
+        11,
+        10
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 19,
+      "gradient_hash": "0fec47654a0374f85617f36b03274fa710dd84e122bdfa179c0af369dfd9ccb9",
+      "id": 36,
+      "launch": 18,
+      "source_versions": [
+        12,
+        11
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 22,
+      "gradient_hash": "2178c621880561c3f7bcd070a97cad6fde6a8e58387c759acba907782787bbfd",
+      "id": 37,
+      "launch": 18,
+      "source_versions": [
+        12,
+        11
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 22,
+      "gradient_hash": "1fb41d7fa4737d4ed21abf8221ccad33f5987cbdcbc8da490aa40b43dafac7a9",
+      "id": 38,
+      "launch": 19,
+      "source_versions": [
+        13,
+        12
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 20,
+      "gradient_hash": "b6edf5915921296f1b413a68d058decbb1789137eb2c4b63cf18fd9cdef42f47",
+      "id": 39,
+      "launch": 19,
+      "source_versions": [
+        13,
+        12
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 27,
+      "gradient_hash": "5a7e0a1196a8479605796e8b2c512f80833129ecadd7844d91194b6f92c66fdc",
+      "id": 40,
+      "launch": 20,
+      "source_versions": [
+        14,
+        13
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 27,
+      "gradient_hash": "09cce55030789051be2e7ec9a91cd13934312e2e444fd04b82c1fc618fd1a50b",
+      "id": 41,
+      "launch": 20,
+      "source_versions": [
+        14,
+        13
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 25,
+      "gradient_hash": "c5d092f34baf4235a82a44c47376bf5cc409157289ac0eee7e72cbe3e9dae5f8",
+      "id": 42,
+      "launch": 21,
+      "source_versions": [
+        14,
+        13
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 23,
+      "gradient_hash": "adc3881d029a9750c079c052ea7314634998ad91838a01b910ee8de2697a421d",
+      "id": 43,
+      "launch": 21,
+      "source_versions": [
+        14,
+        13
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 23,
+      "gradient_hash": "33b99855e981f62ab223e4464729842494037c7ae83ea4607282ced89b8a345b",
+      "id": 44,
+      "launch": 22,
+      "source_versions": [
+        15,
+        14
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 27,
+      "gradient_hash": "beeefad64a4fa68cc782e21d6d79907e7c16fcbea4184da6f1bd39989fa84785",
+      "id": 45,
+      "launch": 22,
+      "source_versions": [
+        15,
+        14
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 27,
+      "gradient_hash": "cd2359274a358b847db37c5dacd0c7558831cb7b0571eda36fddbabf7f9c923d",
+      "id": 46,
+      "launch": 23,
+      "source_versions": [
+        16,
+        15
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 27,
+      "gradient_hash": "fc4a1ad027e48370b4d0a5d53164d2c88385c863f8a3dcaf49d236d72ba494d5",
+      "id": 47,
+      "launch": 23,
+      "source_versions": [
+        16,
+        15
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 28,
+      "gradient_hash": "3c7e6b9f047cb39e731aaa7fdff54efa0c671051454f9a73269f4e9813a9c1be",
+      "id": 48,
+      "launch": 24,
+      "source_versions": [
+        16,
+        15
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 29,
+      "gradient_hash": "c8fa3b5cc7630c01a895d899e26ef3405d95e86d44dea933cddc375d948c686e",
+      "id": 49,
+      "launch": 24,
+      "source_versions": [
+        16,
+        15
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 31,
+      "gradient_hash": "0f137c92e57124b51ca81400e2bea1b772709e5ed2c126229c422e480925456a",
+      "id": 50,
+      "launch": 25,
+      "source_versions": [
+        17,
+        15
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 28,
+      "gradient_hash": "904c78e849d3a3d72c9c74fd86df738d397e81c72eff685b0779eabe29de83b4",
+      "id": 51,
+      "launch": 25,
+      "source_versions": [
+        17,
+        15
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 30,
+      "gradient_hash": "aa9c5ce180f5948606a369319b0c40a86e47fba23cb24a802f8cbdcca7c3f347",
+      "id": 52,
+      "launch": 26,
+      "source_versions": [
+        17,
+        15
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 30,
+      "gradient_hash": "317a88ad357bf9b27a4d0f6fccaef1cadb612f230f1b06e5f4da58fcb3f64c64",
+      "id": 53,
+      "launch": 26,
+      "source_versions": [
+        17,
+        15
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 33,
+      "gradient_hash": "971decbc788fd8a91d5c5b14d559c8cdb0e2b7da3f61b19c12ed2cc9b68618a4",
+      "id": 54,
+      "launch": 27,
+      "source_versions": [
+        18,
+        16
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 31,
+      "gradient_hash": "22d849ef982d4ca3ae992fa79a5f9360836a954216e17693dc31d9f83698e2db",
+      "id": 55,
+      "launch": 27,
+      "source_versions": [
+        18,
+        16
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 30,
+      "gradient_hash": "b4a685fcf8ec2c854047ba1bf032ef7ddb9fa54973ba6bf49d095d299eea5820",
+      "id": 56,
+      "launch": 28,
+      "source_versions": [
+        19,
+        17
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 35,
+      "gradient_hash": "8d799ea4fbb905031564a405baf656822ebae9baaf6b14ebcea2af690c14208d",
+      "id": 57,
+      "launch": 28,
+      "source_versions": [
+        19,
+        17
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 31,
+      "gradient_hash": "92573c38037513b9339c8ed2f6488712a40437f7e0fb98bc5ebb18f539204699",
+      "id": 58,
+      "launch": 29,
+      "source_versions": [
+        19,
+        18
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 31,
+      "gradient_hash": "704a058a6f2701b824a363e035d4b345666463ceae1537efb5ac0fd5c6df4943",
+      "id": 59,
+      "launch": 29,
+      "source_versions": [
+        19,
+        18
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 32,
+      "gradient_hash": "7ea3d3b0969f8cb3b4382e6df4d8351c06a24a4d3684423681169a5e2e28e897",
+      "id": 60,
+      "launch": 30,
+      "source_versions": [
+        20,
+        19
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 38,
+      "gradient_hash": "7e285b3580bbd9e11854c8ad0b632d3b42f43881e62d4ff3abef9dc69e10ebd2",
+      "id": 61,
+      "launch": 30,
+      "source_versions": [
+        20,
+        19
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 34,
+      "gradient_hash": "757e7c2eee65260bf7b4ba64e2f94ffe1790b03908662dc4f8d10070fbf0c402",
+      "id": 62,
+      "launch": 31,
+      "source_versions": [
+        21,
+        20
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 39,
+      "gradient_hash": "9be84c86d6bc65f1f2ec9a7313738b8f2af0dc10868009e9c8e971b4db6bda17",
+      "id": 63,
+      "launch": 31,
+      "source_versions": [
+        21,
+        20
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 36,
+      "gradient_hash": "705a20008007adf1a3020eb126aa6e69fe75b4204e8ebd7a7f99e495f3f3026d",
+      "id": 64,
+      "launch": 32,
+      "source_versions": [
+        22,
+        20
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 38,
+      "gradient_hash": "46e9020013fd6060ad4171e7449127a1c93f39428f9374d3561d6f8da3cdd7e3",
+      "id": 65,
+      "launch": 32,
+      "source_versions": [
+        22,
+        20
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 38,
+      "gradient_hash": "d9677bd1e0e90cc7a69af599c2f419e7c035771dc0a64339b76d4d15ec2ec571",
+      "id": 66,
+      "launch": 33,
+      "source_versions": [
+        23,
+        20
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 39,
+      "gradient_hash": "7664f76b851685a681eaba2744fbd02ab63d78116a3c629b867d5bd3369f76cb",
+      "id": 67,
+      "launch": 33,
+      "source_versions": [
+        23,
+        20
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 41,
+      "gradient_hash": "aee08cfa64cdfc913cd8209dd505aa06c53fb292b58f173fcdddac1e1896fe8a",
+      "id": 68,
+      "launch": 34,
+      "source_versions": [
+        24,
+        20
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 41,
+      "gradient_hash": "0740fa8194a383e7eff71c20d28b4ca8629846ecb8a47db855789f12b89f6169",
+      "id": 69,
+      "launch": 34,
+      "source_versions": [
+        24,
+        20
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 41,
+      "gradient_hash": "8896fc8ff254b5cf5674f462b0b45cc39c705d4cb2a08824f81bc29db7fef3b1",
+      "id": 70,
+      "launch": 35,
+      "source_versions": [
+        24,
+        21
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 40,
+      "gradient_hash": "0d46efcdf7086852f90020d6964043d0059dc58110bd58b2802c93d67247cc25",
+      "id": 71,
+      "launch": 35,
+      "source_versions": [
+        24,
+        21
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 41,
+      "gradient_hash": "1c4649f86eee2e45ad491b0bad72efe5e869976b10e5e742b4c2f9fd0a48a8a7",
+      "id": 72,
+      "launch": 36,
+      "source_versions": [
+        25,
+        21
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 42,
+      "gradient_hash": "1dcb01c9ed8010a23c5611fd827ff8d8b4b2b7756f14a5c4fe9cc2d1e960e639",
+      "id": 73,
+      "launch": 36,
+      "source_versions": [
+        25,
+        21
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 45,
+      "gradient_hash": "8464efaa65d7f0bc5ab4535f90e7da4cd169db826e9ebcce4e957aea9b05e953",
+      "id": 74,
+      "launch": 37,
+      "source_versions": [
+        25,
+        21
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 44,
+      "gradient_hash": "b4cbe6b7f9261fc8fce58968f35806ddbe7b86b3d238ba78e35ca32c4905fd3c",
+      "id": 75,
+      "launch": 37,
+      "source_versions": [
+        25,
+        21
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 40,
+      "gradient_hash": "621174e405a29079499350bd8599698ced8905b0d4d8f5d701328809cf5c5c04",
+      "id": 76,
+      "launch": 38,
+      "source_versions": [
+        26,
+        22
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 39,
+      "gradient_hash": "1b697123ba21cb1d5d430fd2f939a04d88ed595be46fef6a6183855d632a27f1",
+      "id": 77,
+      "launch": 38,
+      "source_versions": [
+        26,
+        22
+      ]
+    },
+    {
+      "agent": 0,
+      "bytes": 14320,
+      "due": 41,
+      "gradient_hash": "d4e7142b9402e68016632d8f53421d903d4ada35d84b6178157458b9a6965bc5",
+      "id": 78,
+      "launch": 39,
+      "source_versions": [
+        26,
+        23
+      ]
+    },
+    {
+      "agent": 1,
+      "bytes": 14320,
+      "due": 42,
+      "gradient_hash": "c38209af4d1e1d3f0957976a034cbe41be1f5db148440d63d067caa11cad4b22",
+      "id": 79,
+      "launch": 39,
+      "source_versions": [
+        26,
+        23
+      ]
+    }
+  ],
+  "packet_transmitted_bytes": 1145600,
+  "seed": 79311001,
+  "task": "reference",
+  "training_episode_ids": [
+    1288743992,
+    358234048,
+    347975992,
+    1632387742,
+    1079661162,
+    158152401,
+    730478930,
+    601398988,
+    2119110301,
+    2013211684,
+    150336426,
+    1296279888,
+    2072242183,
+    1198977225,
+    214365447,
+    564422945,
+    1026595741,
+    1075965028,
+    946551753,
+    2092932885,
+    693129689,
+    1223746132,
+    2015596627,
+    2117037162,
+    1106075560,
+    1894434566,
+    89948279,
+    1328110951,
+    1079834983,
+    894051318,
+    1129017875,
+    206295039,
+    2018053340,
+    259590540,
+    980938652,
+    977650883,
+    1321950558,
+    295628284,
+    751022334,
+    1368456258,
+    842560276,
+    1813456000,
+    1481354417,
+    1920090012,
+    674843725,
+    1595834390,
+    864216460,
+    1789519339,
+    221642911,
+    1305661339,
+    276954056,
+    1964481976,
+    1507359093,
+    878486996,
+    786404491,
+    1149316202,
+    1582215209,
+    408727480,
+    998211839,
+    1437886573,
+    393575652,
+    1949086000,
+    1749276918,
+    491134750,
+    648349628,
+    1816324216,
+    751229722,
+    1318315040,
+    944898341,
+    1279168005,
+    1929893747,
+    577474842,
+    1696005612,
+    629986915,
+    449426563,
+    1321064491,
+    1563616593,
+    1176566874,
+    1945172400,
+    50180885,
+    576586219,
+    1518446205,
+    2096440487,
+    1733750102,
+    125555364,
+    650708909,
+    112934076,
+    1254266495,
+    883597489,
+    634717354,
+    1058673263,
+    1615016872,
+    1764779182,
+    1406316550,
+    1502385045,
+    1719736493,
+    308034680,
+    1116108461,
+    677997146,
+    397566698,
+    2090735978,
+    2081529561,
+    2022429717,
+    37912720,
+    739388473,
+    134069707,
+    1108589427,
+    2112888834,
+    1793437704,
+    2143378891,
+    1196055254,
+    1884541064,
+    1042345144,
+    1005136336,
+    1409653190,
+    1129317388,
+    542598315,
+    1898672852,
+    29018406,
+    403090440,
+    1061230507,
+    841519855,
+    2048886416,
+    1326688899,
+    71042334,
+    2097934324,
+    2057869429,
+    1601676719,
+    1813528424,
+    163717593,
+    1619636957,
+    1418544872,
+    2082820475,
+    771045025,
+    2064065025,
+    1360359023,
+    2056839194,
+    1427168357,
+    1246178482,
+    1001870994,
+    191350805,
+    1620035616,
+    876213209,
+    657670105,
+    1403843206,
+    1941479092,
+    2012476582,
+    1664868031,
+    1194165747,
+    1339934424,
+    680970769,
+    1267018487,
+    2055868175,
+    1955504059,
+    556159123,
+    1520593981,
+    644081903,
+    1885888099,
+    1268163121,
+    189315019,
+    2009686499,
+    2124030586,
+    1060530567,
+    1943320030,
+    696598762,
+    1029099677,
+    1713576549,
+    1120015537,
+    1990444539,
+    58082815,
+    864552450,
+    1645155529,
+    567780511,
+    1654115421,
+    1483872324,
+    1301132303,
+    94868045,
+    576244584,
+    486016199,
+    1448431131,
+    792782902,
+    628494717,
+    2059840844,
+    811724273,
+    1539090384,
+    1666278654,
+    1773719380,
+    1956608234,
+    728429026,
+    866241852,
+    1437270805,
+    221946939,
+    1400239786,
+    419717875,
+    1803442576,
+    76719756,
+    1355264319,
+    1753690336,
+    477714169,
+    1882716899,
+    1131130442,
+    423832628,
+    1185464729,
+    1960642518,
+    2110369694,
+    1734306003,
+    942453467,
+    2137256903,
+    278478815,
+    1568213702,
+    1329206142,
+    1211719173,
+    1582253358,
+    500571968,
+    1703373710,
+    317548372,
+    1916967896,
+    1767308555,
+    268311785,
+    1351534205,
+    1291108348,
+    281083625,
+    2050500892,
+    635732011,
+    1048807116,
+    654729568,
+    1899052494,
+    767392242,
+    333176383,
+    892366681,
+    381815567,
+    714661945,
+    210036842,
+    260629187,
+    1033143003,
+    871426249,
+    484566216,
+    1715204131,
+    545789813,
+    123008965,
+    375943945,
+    360133606,
+    836451461,
+    370553834,
+    1807312444,
+    570227916,
+    1615940870,
+    94603930,
+    1628390465,
+    109835193,
+    911685417,
+    30380703,
+    1423720342,
+    898802706,
+    303446538,
+    1050298571,
+    678162091,
+    2095322580,
+    1033344712,
+    76773190,
+    216707439,
+    148324292,
+    66951697,
+    1472553924,
+    1823990443,
+    712003957,
+    2077165124,
+    1564744364,
+    1603791087,
+    1583124534,
+    978767129,
+    767548943,
+    1001050869,
+    661957997,
+    1484181214,
+    886397207,
+    1081746208,
+    878032698,
+    1106517833,
+    1766980025,
+    1837464250,
+    2057936915,
+    958777466,
+    732241703,
+    310493026,
+    991776891,
+    1553247847,
+    1484328865,
+    1926251336,
+    769455721,
+    513150234,
+    34286007,
+    1851720893,
+    730755851,
+    1005517524,
+    1861149032,
+    32375858,
+    642858636,
+    2099876215,
+    354032591,
+    467754069,
+    1594842960,
+    1679826353,
+    22392643,
+    1624270451,
+    642454642,
+    1226327265,
+    414582022,
+    955836374,
+    1860476789,
+    309292313,
+    465357558,
+    470644606,
+    5130216,
+    1258060799,
+    1472017716,
+    228732761,
+    231507231,
+    42732330,
+    616486541,
+    1951267919,
+    1595505209,
+    1322974187,
+    1685569502,
+    252382508,
+    1671515409,
+    24355580,
+    479635413,
+    1157181777,
+    1688493038,
+    1720778585,
+    509757731,
+    2138641969,
+    1254169211,
+    1538962181,
+    202820262,
+    655125172,
+    1667541805,
+    1441204590,
+    1668580896,
+    195732471,
+    1980942922,
+    609482536,
+    58236161,
+    953999632,
+    1278740759,
+    282487158,
+    205170139,
+    1055002308,
+    1870192071,
+    733765786,
+    358207154,
+    1961851016,
+    1635585668,
+    299936304,
+    69068502,
+    921768691,
+    842680971,
+    1792693058,
+    1155887827,
+    2092073869,
+    1505193829,
+    2090960697,
+    803104959,
+    2012691082,
+    843712879,
+    960701488,
+    74369074,
+    588354012,
+    2078009262,
+    1096981090,
+    47144567,
+    587734914,
+    676397534,
+    755512241,
+    926585812,
+    365107882,
+    1940557225,
+    1674464881,
+    397509234,
+    788981584,
+    31404955,
+    596476717,
+    604486819,
+    1070402269,
+    1894180041,
+    1252730781,
+    1736274074,
+    774532199,
+    672095216,
+    1972734832,
+    1652645097,
+    692135016,
+    467424592,
+    1828692776,
+    661093645,
+    2016659805,
+    323496472,
+    1091783447,
+    1692302504,
+    73444704,
+    1439331994,
+    1672788439,
+    627620870,
+    1467291274,
+    41367588,
+    460758754,
+    1589461885,
+    1994231193,
+    627142173,
+    1949583345,
+    1627222250,
+    712059947,
+    73962897,
+    1060479279,
+    1629946360,
+    1436925001,
+    494122300,
+    750687871,
+    1668467738,
+    215657953,
+    921530787,
+    1226735628,
+    666883009,
+    1859155322,
+    1373971208,
+    1665444994,
+    349938984,
+    680134557,
+    322145702,
+    152784049,
+    553324174,
+    1848552692,
+    2086573197,
+    46236418,
+    1909651337,
+    623911082,
+    811139739,
+    1203680496,
+    1862587234,
+    148545201,
+    6584348,
+    1071701692,
+    268633277,
+    745081172,
+    247509149,
+    982610474,
+    602749752,
+    117766073,
+    404239357,
+    342288748,
+    185238953,
+    970285869,
+    306353789,
+    1700188455,
+    1244316038,
+    264344281,
+    2054831747,
+    30854346,
+    723504740,
+    73524054,
+    1890076102,
+    432200520,
+    159254220,
+    893868448,
+    1605638798,
+    150700754,
+    269131378,
+    150510469,
+    2061133858,
+    1834609821,
+    1250411040,
+    2055367538,
+    1216544445,
+    1416896037,
+    2142150878,
+    36186953,
+    2121216128,
+    7500632,
+    1382778627,
+    858307225,
+    582654540,
+    585163287,
+    1400709522,
+    1915417574,
+    976370995,
+    922978023,
+    467400268,
+    1594246209,
+    2071918094,
+    465601928,
+    1333247032,
+    1510788854,
+    1795519582,
+    233673656,
+    1245742400,
+    1275371810,
+    1462312022,
+    1283294666,
+    442743150,
+    1310446274,
+    1809285708,
+    1078192899,
+    1473667148,
+    845417604,
+    423877420,
+    1891526510,
+    1492092168,
+    7201489,
+    679851768,
+    343498968,
+    1763093307,
+    50588226,
+    1536577364,
+    1797325459,
+    596519634,
+    1625334254,
+    247612241,
+    1042090969,
+    483439138,
+    864015270,
+    1109129573,
+    695682876,
+    743584438,
+    161737578,
+    1100162395,
+    1737013757,
+    363952592,
+    261632845,
+    494645324,
+    34923948,
+    412760282,
+    2069461979,
+    1677919333,
+    2101303702,
+    533224623,
+    515839039,
+    248476102,
+    566244462,
+    264604471,
+    707667961,
+    1462668803,
+    1161757677,
+    1931013454,
+    1779828368,
+    584727925,
+    32917329,
+    1023217947,
+    1364826950,
+    121931935,
+    551163823,
+    23941613,
+    660945889,
+    2041158734,
+    1753545425,
+    1439554553,
+    231869709,
+    1896945640,
+    2063241229,
+    711718044,
+    889487682,
+    931510187,
+    1464363360,
+    136406983,
+    588263273,
+    1441396062,
+    1254384997,
+    920294888,
+    309311993,
+    978414787,
+    1308545321,
+    44135002,
+    1487456455,
+    2039502805,
+    580691204,
+    335513747,
+    373415106,
+    1009668837,
+    970506261,
+    1290843230,
+    1315830139,
+    1382574045,
+    1910859034,
+    193193096,
+    253731630,
+    1224676738,
+    2098988802,
+    1118239603,
+    544996793,
+    765440576,
+    42146900,
+    954151716,
+    623894642,
+    1930711533,
+    2055888307,
+    1167679400,
+    1966115140,
+    662869084,
+    876420983,
+    623138939,
+    1662955247,
+    1676697433,
+    1895913761,
+    810806809,
+    932106670,
+    50471941,
+    1743171541,
+    446009722,
+    740255148,
+    918399560,
+    1874882539,
+    1408248035,
+    1679580190,
+    1570748692,
+    737106487,
+    1853618366,
+    1123700888,
+    286752361,
+    136579463,
+    1946809895,
+    1056583272,
+    158276020,
+    1552536713,
+    2111487631,
+    1767047074,
+    2053965874,
+    912351772,
+    91827557,
+    439352307,
+    2142323893,
+    1656773893,
+    1861726416,
+    1336601007,
+    689179450,
+    794849252,
+    181656727,
+    951159903,
+    2022409884,
+    802548099,
+    834932069
+  ]
+}
