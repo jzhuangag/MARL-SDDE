@@ -234,3 +234,51 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   A sharper, resource-feasible return estimator is a necessary new design
   ingredient. The bounded follow-up ends here; do not automatically increase
   batch size, rerun A1, or launch another performance experiment.
+
+## Variance-sensitive relative-return qualification (2026-10-15)
+
+- User explicitly authorized a substantive variance-sensitive estimator
+  successor. Original A1 MARL performance failure and old bounded-gradient
+  certificate decisions remain unchanged; no old outcomes were reused for tuning.
+- First-disagreement conditional Monte Carlo is unbiased for native team-return
+  contrasts and has a second-moment dominance identity relative to ordinary
+  maximal coupling. Qualification/source locks were committed before outcomes.
+- Exact-identity roundoff caused an operational stop before scientific means
+  were inspected. A separate exact-equality amendment and entirely fresh seeds
+  preserve all old sources and partial ineligible artifacts.
+- Eight amended contexts, 24 candidates, exact accounting, independent roles,
+  source/runtime hashes, byte-identical payload/analyzer replay all pass.
+  Cost-adjusted variance ratios to the better paired estimator are 0.632125
+  (Spread) and 0.259178 (Reference), with 7/8 contexts improving. These are
+  positive estimator-efficiency results, not learning-return superiority.
+- Overall A1 estimator qualification fails its positive independently validated
+  action gate (0/8). The paired validation resolves only 2/24 effects. Known-
+  support simultaneous lower bounds remain nonpositive on all 24 candidates.
+- A prospectively registered shared-bank extension reduces native sampling by
+  ninefold but fails Reference's cost-variance gate (ratio 2.156551; Spread
+  0.543423). Its full replay and both complete analyzer outputs are exact.
+  A serialization-only NumPy-boolean amendment preserves frozen formulas and
+  both partial failed analysis roots. No primary method is post-selected.
+- `relative_return_variance_decision_20261015.md` records all results and the
+  eleven-type statistical interpretation audit. The new mathematical probe-
+  allocation interface in `variance_sensitive_probe_action_interface_20261015.md`
+  is conditional, not queue stability or async-MARL convergence.
+- The substantive next hypothesis is a training-only, remaining-horizon Monte
+  Carlo potential rather than reusing the learner's discounted critic. Fresh
+  seeds, full candidates, independent variance-reduced validation and direct
+  branch controls are registered at `8ba05cb`. Current scientific root:
+  `ICML-2027/results/mc_relative_return_scientific_20261015`. It is now complete:
+  task cost-variance ratios 0.151188/0.432552 both pass, but positive validated
+  action selection is only 2/8 (both Spread, same seed), below the frozen 4/8.
+  Overall NO-GO remains; no cross-environment/seed return superiority is claimed.
+- MC context replay and every analyzer metrics/summary replay are byte-identical;
+  43 relevant tests pass. Source hashes and every independent episode role are
+  verified in `relative_return_complete_validation_20261015.json`.
+- The next bounded task is causal receipt/probe-control feasibility, not another
+  estimator comparison: define the server-owned optimizer candidate and reference,
+  choose probe budget before opening data, price all already-paid work, and
+  account for policy motion while probing and delayed receipt. Test whether the
+  conditional variance-sensitive expected-risk interface can become a useful
+  finite-budget result; an empirical covariance is not a variance upper bound.
+  Freeze a successor learning experiment only after that interface genuinely
+  passes. No GPU, remote storage, TSP manuscript migration or threshold changes.

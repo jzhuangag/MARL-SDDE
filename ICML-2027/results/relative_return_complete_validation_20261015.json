@@ -1,0 +1,296 @@
+{
+  "analyzer_replays": [
+    {
+      "byte_identical": true,
+      "file": "metrics.csv",
+      "root": "relative_return_a1_analysis_20261015",
+      "sha256": "adcec4465a0226ec0c139671c9dcf5929dd4f3b075d41e994d6ef36d0b292f5c"
+    },
+    {
+      "byte_identical": true,
+      "file": "summary.json",
+      "root": "relative_return_a1_analysis_20261015",
+      "sha256": "6c7867bd7b867080f3fd996d946e311649354cef32b92e953e5602fb18c32585"
+    },
+    {
+      "byte_identical": true,
+      "file": "metrics.csv",
+      "root": "shared_reference_analysis_a1_20261015",
+      "sha256": "02a6158b1a14ebd3ee5f1622fd473e5ca335dcf19878198c133aa52b23c578f9"
+    },
+    {
+      "byte_identical": true,
+      "file": "summary.json",
+      "root": "shared_reference_analysis_a1_20261015",
+      "sha256": "2f373112466d96edf536169da0480933202044564dd87251d68b329823426c8b"
+    },
+    {
+      "byte_identical": true,
+      "file": "metrics.csv",
+      "root": "mc_relative_return_analysis_20261015",
+      "sha256": "888009b7d2954da680ba58b36c707bda3bc7873547aef9d6595673e1d08d5a12"
+    },
+    {
+      "byte_identical": true,
+      "file": "summary.json",
+      "root": "mc_relative_return_analysis_20261015",
+      "sha256": "dff680daa0ccbbb67ba65b0a48d54904b5f9b1365a03984e8e063ab82f9292aa"
+    }
+  ],
+  "decisions": [
+    {
+      "contexts": 8,
+      "contexts_improved": 7,
+      "experiment": "ICML27-RELATIVE-RETURN-VARIANCE-CPU-001-A1",
+      "gates": {
+        "complete_finite_mapping_accounting": true,
+        "context_cost_variance": true,
+        "finite_game_identity": true,
+        "forward_overhead": true,
+        "positive_validated_selected_scores": false,
+        "registered_payload_replay": true,
+        "task_cost_variance": true,
+        "transition_overhead": true,
+        "truth_compatibility": true
+      },
+      "interpretation": "Estimator qualification only. Normal-SE diagnostics are not distribution-free confidence bounds. No algorithm/GPU performance claim follows.",
+      "pass": false,
+      "positive_independently_validated_selected_scores": 0,
+      "rigorous_return_certificate_established": false,
+      "score_transitions": 268800,
+      "task_geomean_cost_variance_ratio": {
+        "reference": 0.25917824937980116,
+        "spread": 0.6321253806597089
+      },
+      "validation_transitions": 307200
+    },
+    {
+      "estimator_family_registered_before_original_outcomes": true,
+      "experiment": "ICML27-RELATIVE-RETURN-SHARED-BANK-CPU-001",
+      "first_disagreement_three_candidate_transitions": 115200,
+      "gates": {
+        "exact_unbiasedness": true,
+        "integrity_snapshots_disjoint_bank_accounting": true,
+        "positive_validated_scores": false,
+        "primary_task_cost_variance": false,
+        "primary_truth_compatibility": true,
+        "registered_full_payload_replay": true
+      },
+      "interpretation": "Fixed primary TD control variate. Other estimators are reported, never post-selected as a replacement primary. Empirical scores are not simultaneous certificates.",
+      "pass": false,
+      "positive_validated_selected_contexts": 0,
+      "primary_score_covariance": {
+        "0": [
+          [
+            1.4070447819323062,
+            0.7124537277003061,
+            -0.7311351732226633
+          ],
+          [
+            0.7124537277003061,
+            0.3613782943635573,
+            -0.37216586183996153
+          ],
+          [
+            -0.7311351732226633,
+            -0.37216586183996153,
+            0.3860503515435885
+          ]
+        ],
+        "1": [
+          [
+            1.411643825961904,
+            0.6882208354425764,
+            -0.6569631063080229
+          ],
+          [
+            0.6882208354425764,
+            0.33681171989965153,
+            -0.3238841401322949
+          ],
+          [
+            -0.6569631063080229,
+            -0.3238841401322949,
+            0.31585108975436543
+          ]
+        ],
+        "2": [
+          [
+            2.1752624349431327,
+            1.069575626377417,
+            -1.0377842729062052
+          ],
+          [
+            1.069575626377417,
+            0.5269789339615928,
+            -0.5133644744206045
+          ],
+          [
+            -1.0377842729062052,
+            -0.5133644744206045,
+            0.5040619520677895
+          ]
+        ],
+        "3": [
+          [
+            1.7746135141466295,
+            0.9011011260007262,
+            -0.9275059774895937
+          ],
+          [
+            0.9011011260007262,
+            0.45834057895985814,
+            -0.47337076190009847
+          ],
+          [
+            -0.9275059774895937,
+            -0.47337076190009847,
+            0.49220118327286916
+          ]
+        ],
+        "4": [
+          [
+            1.378616022876516,
+            0.688847809780182,
+            -0.6873260557000763
+          ],
+          [
+            0.688847809780182,
+            0.34450353719244575,
+            -0.3443398538149234
+          ],
+          [
+            -0.6873260557000763,
+            -0.3443398538149234,
+            0.3453391793338284
+          ]
+        ],
+        "5": [
+          [
+            0.97168365357015,
+            0.48176941547834556,
+            -0.47272632077180676
+          ],
+          [
+            0.48176941547834556,
+            0.23909907807443492,
+            -0.2350849288416609
+          ],
+          [
+            -0.47272632077180676,
+            -0.2350849288416609,
+            0.2321024468364461
+          ]
+        ],
+        "6": [
+          [
+            1.4170467550351522,
+            0.7037457984899974,
+            -0.6931309573215904
+          ],
+          [
+            0.7037457984899974,
+            0.34973060867815847,
+            -0.3449033951823043
+          ],
+          [
+            -0.6931309573215904,
+            -0.3449033951823043,
+            0.3410170803313661
+          ]
+        ],
+        "7": [
+          [
+            1.099277887480482,
+            0.5492665527691761,
+            -0.5481445578800738
+          ],
+          [
+            0.5492665527691761,
+            0.274719449377793,
+            -0.27472207172427193
+          ],
+          [
+            -0.5481445578800738,
+            -0.27472207172427193,
+            0.2758958906195448
+          ]
+        ]
+      },
+      "primary_task_geomean_cost_variance_ratio": {
+        "reference": 2.156551490641622,
+        "spread": 0.5434226506930709
+      },
+      "rigorous_nonzero_return_certificate": false,
+      "shared_bank_transitions": 12800,
+      "validation_reused_from_original_prospective_bank": true
+    },
+    {
+      "branch_comparator_native_transitions": 57600,
+      "experiment": "ICML27-RELATIVE-RETURN-MC-POTENTIAL-CPU-001",
+      "fixed_primary": "training-only finite-horizon Monte Carlo potential",
+      "formal_nonzero_simultaneous_certificate": false,
+      "gates": {
+        "different_estimator_truth_compatibility": true,
+        "integrity_mapping_roles_accounting": true,
+        "positive_validated_scores": false,
+        "registered_payload_replay": true,
+        "score_stage4_cost": true,
+        "score_truth_compatibility": true,
+        "task_cost_variance": true
+      },
+      "interpretation": "Fresh estimator qualification. Unbiasedness is structural, potential accuracy affects variance only. Normal-SE positive checks are not distribution-free confidence guarantees or MARL learning superiority.",
+      "pass": false,
+      "positive_selected_contexts": 2,
+      "score_native_transitions": 12800,
+      "task_cost_variance_ratio": {
+        "reference": 0.4325519233556239,
+        "spread": 0.15118762659861695
+      },
+      "validation_native_transitions": 51200
+    }
+  ],
+  "frozen_TSP_manuscript_changed": false,
+  "gpu_or_remote_used": false,
+  "mc_episode_roles_disjoint": true,
+  "mc_unique_episode_counts": {
+    "110": 1024,
+    "610": 512,
+    "710": 2048,
+    "810": 768
+  },
+  "next": "Causal observable-score transfer and finite-budget expected-risk/probe-cost design, not GPU performance or manuscript claims.",
+  "qualification_result": "Variance efficiency improved; every overall positive-selection qualification remains failed. No failed gate is relabelled passed.",
+  "registered_payload_replay": {
+    "first_disagreement": "context 0 exact",
+    "mc_potential": "context 0 exact",
+    "shared_bank": "all eight contexts exact"
+  },
+  "scientific_outcome_retries": false,
+  "source_files": {
+    "ICML-2027/experiments/analyze_mc_relative_return_qualification.py": "e3c061da1d95c50a1d2e5ff1803178520acd86524738b647e0a99cbab2edeeed",
+    "ICML-2027/experiments/analyze_relative_return_qualification.py": "688ed9b3a5734f8ada8c7842c7c5fe60968e0176a52de4f7c856a9b5e7a9c739",
+    "ICML-2027/experiments/analyze_shared_reference_qualification.py": "2dbb98ae45429a73f4feebb0c5d4b4f8feb985ae953ba8af645eebbd98b9bce2",
+    "ICML-2027/experiments/finite_horizon_return_control.py": "dcdb9fe8f101151b870e345fe13b00c0246dc719867942e87927ee003c7dd372",
+    "ICML-2027/experiments/happo_batch_cpu.py": "371493cb981f158f97cf055d7a30fdb9060e6d58e52ee99d1a64c2af614491b4",
+    "ICML-2027/experiments/happo_batch_cpu_preregistration.json": "4dc0746d2dfaabde2c3617b1cd85521c7614e1434b56d51fbd04b12813abdd11",
+    "ICML-2027/experiments/mc_relative_return_qualification.json": "293764ade0d1d2b7714c940a8fec5bdd74d1b741e745c32975c7e31a5ac2a5b6",
+    "ICML-2027/experiments/relative_return_a1/analyze.py": "4d2d96bd068d09d7424610554631215c0e62ff4dea4042695173fdd1c2682da3",
+    "ICML-2027/experiments/relative_return_a1/relative_return_qualification.json": "a233e4a615d6ce6e9676d1881102a5dee4d13770661fc338a6a6dde2cc33648a",
+    "ICML-2027/experiments/relative_return_a1/run.py": "87342238a051bd2c646638ec4eec307cbb704dee645211d6e4783a718e02b455",
+    "ICML-2027/experiments/relative_return_a1/stable_overlap.py": "16426fd5131aa6b65038d30fe04a6c297746771c8e5d75987848ae19e5edf87f",
+    "ICML-2027/experiments/relative_return_a1/test_stable_overlap.py": "6cdb4b5beb3261a03baa0f596bdeca8888303864ca1b1725589e01e9b431479c",
+    "ICML-2027/experiments/relative_return_estimator.py": "135d7263c55fa817be1a46b69c70ae8629280f56ceb527ff9ccd9b5f9c881e59",
+    "ICML-2027/experiments/relative_return_qualification.json": "61317d2dca48cba27934c99b029e8d858849cfc292072035cf4f05d70ac9fa3a",
+    "ICML-2027/experiments/run_mc_relative_return_qualification.py": "03288ae971349a01810697a60795fc499146f5d4824d67ec9ca65d646519156e",
+    "ICML-2027/experiments/run_relative_return_qualification.py": "a7757c1cf7f20ea09c2094ee09d6741fb8a617d469d5bd3943b42a42c48b0574",
+    "ICML-2027/experiments/run_shared_reference_qualification.py": "048de1a4eff1cb16a21b044b2a890d2b3f2cd43e4cc5720c9755687f71ec24d5",
+    "ICML-2027/experiments/shared_reference_qualification.json": "b029f0d170d755a3d7752034c42285dca56489d2620fbb21c6962245d3225b02",
+    "ICML-2027/experiments/shared_reference_return.py": "0873e4260f83238ddf39ee1e412686167d520a965cc7aedc610268ab96024e62"
+  },
+  "tests": {
+    "command": "conda run --no-capture-output -n ust2 python -m pytest ICML-2027/tests ICML-2027/experiments/test_relative_return_estimator.py ICML-2027/experiments/relative_return_a1/test_stable_overlap.py ICML-2027/experiments/test_mc_relative_return.py -q",
+    "passed": 43
+  },
+  "verification_status": "VERIFIED"
+}

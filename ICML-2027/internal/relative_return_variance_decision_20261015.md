@@ -97,6 +97,51 @@ reference bank. No previous decision is recomputed as a pass. No GPU follows
 unless observable precision, cost, causal launch/receipt transfer and a useful
 theory interface are actually established.
 
+## Fresh finite-horizon-potential qualification: completed
+
+The new study registered at `8ba05cb` is complete on eight entirely fresh
+task/seed/stage contexts, keeping all three candidates. The potential is a
+fixed ridge fit of remaining-horizon features to native undiscounted Monte
+Carlo returns-to-go from already paid training episodes. No score/validation
+labels enter its fit. Separate score and validation roles use reference banks;
+an independent first-disagreement sample checks the target by a different
+estimation construction.
+
+Both task cost-variance gates pass: geometric mean ratios to the new independent
+first-disagreement comparator are **0.151188** (Spread) and **0.432552**
+(Reference), reductions of **84.88%** and **56.74%**. These use fresh contexts;
+they must not be multiplied by the earlier reductions to claim a compounded
+improvement on the same data. The shared score bank still costs 1,600 native
+transitions per context, plus fitting and forwards; it is not zero-cost.
+
+Six of seven recorded gates pass. The frozen positive independently validated
+selection gate remains failed: **2/8**, below 4/8. **Both positives are Spread
+contexts from the same seed** (stages 4 and 16), not robust positive return
+evidence across both tasks or seeds. Every score and direct-branch mean is
+compatible with independent validation under the registered 4-SE diagnostic.
+No realized positive score is promoted to a rigorous simultaneous certificate.
+
+Context-0 replay and both analyzer CSV/JSON outputs are byte-identical.
+Additional role reconstruction verifies 1,024 training, 512 score, 2,048
+validation and 768 direct-branch episode seeds, all disjoint. All source locks
+remain intact, and **43 relevant tests pass**. The complete machine-readable
+validation, all three decisions, sources and replay digests are preserved in
+`relative_return_complete_validation_20261015.json`.
+
+The bounded empirical conclusion is therefore: **a substantively more efficient
+actual-return estimator exists and has some independently reproduced positive
+scores, but stable positive action selection and an affordable end-to-end
+asynchronous learning advantage remain unestablished**. All three overall
+qualification decisions remain failed. No GPU experiment, paper migration,
+sample-budget increase or threshold rescue follows automatically.
+
+Continue with the causal decision interface, not another estimator bake-off:
+define a receipt-time, server-owned update candidate and its eligible reference,
+price the probe budget before opening its data, and carry policy motion during
+probe/receipt plus already sunk work explicitly. Decide whether a finite-budget
+expected-risk guarantee is useful before preregistering any learning benchmark.
+The expected-risk interface below is only a starting lemma; it is not that theorem.
+
 ## Expected-risk interface worth deriving next
 
 A per-decision, always-nonnegative confidence lower bound is not the only
