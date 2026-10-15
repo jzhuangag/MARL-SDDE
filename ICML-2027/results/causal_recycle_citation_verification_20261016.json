@@ -1,0 +1,38 @@
+{
+  "scope": "Fresh existence and metadata checks for mathematical ingredients introduced in the causal-recycle internal design; not a manuscript bibliography audit",
+  "checked_date": "2026-10-16",
+  "references": [
+    {
+      "title": "Online Learning with Predictable Sequences",
+      "authors": ["Alexander Rakhlin", "Karthik Sridharan"],
+      "year": 2013,
+      "venue": "Proceedings of the 26th Annual Conference on Learning Theory",
+      "volume": "PMLR 30",
+      "pages": "993-1019",
+      "arxiv": "1208.3728",
+      "primary": "https://proceedings.mlr.press/v30/Rakhlin13.html",
+      "resolvers": {"arxiv": "PASS: title and authors; original preprint 2012, COLT publication 2013", "Crossref": "NOT_QUERIED: primary PMLR plus arXiv existence match", "OpenAlex": "NOT_QUERIED", "SemanticScholar": "NOT_QUERIED"},
+      "material_conflict": false,
+      "use": "Known predictable optimistic mirror descent ingredient, not a novelty claim"
+    },
+    {
+      "title": "Online Convex Optimization with Stochastic Constraints",
+      "authors": ["Hao Yu", "Michael J. Neely", "Xiaohan Wei"],
+      "year": 2017,
+      "venue": "Advances in Neural Information Processing Systems 30",
+      "arxiv": "1708.03741",
+      "primary": "https://papers.nips.cc/paper_files/paper/2017/hash/da0d1111d2dc5d489242e60ebcbaf988-Abstract.html",
+      "resolvers": {"arxiv": "PASS: title, authors and 2017 submission", "Crossref": "NOT_QUERIED: primary proceedings plus arXiv existence match", "OpenAlex": "NOT_QUERIED", "SemanticScholar": "NOT_QUERIED"},
+      "material_conflict": false,
+      "use": "Virtual-queue prior work; its iid stochastic-constraint assumptions are not imported into policy-dependent predictable costs"
+    }
+  ],
+  "prior_work_primary_records_rechecked": [
+    "https://jmlr.org/papers/v25/23-0488.html",
+    "https://arxiv.org/abs/2310.05053",
+    "https://proceedings.neurips.cc/paper/2021/hash/de73998802680548b916f1947ffbad76-Abstract.html",
+    "https://proceedings.neurips.cc/paper_files/paper/2022/hash/69413f87e5a34897cd010ca698097d0a-Abstract-Conference.html",
+    "https://doi.org/10.3233/FAIA240848"
+  ],
+  "novelty_status": "Search-bounded candidate only. No claim of first parallel MARL, first monotonic block update, first coupling estimator, first OMD or first Lyapunov scheduling."
+}

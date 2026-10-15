@@ -287,3 +287,33 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   evidence commit `ee795d7`, stays quiet on unchanged state, and deletes itself
   after the causal-controller feasibility decision. No scientific run is active
   at handoff, and no old qualification is authorized for retry.
+
+## Complete-algorithm temporal-recycling successor (2026-10-16)
+
+- Latest human authorization prioritizes a complete cross-task strong-baseline
+  learning result rather than another variance bake-off. Implemented a new
+  causal protocol, not a re-run of any failed study: choose receipt action and
+  scored episode count before the current training bank, then reuse the paid
+  bank only for FUTURE raw-gradient packets and centralized critic learning.
+- Candidate Adam moments are server-owned; every packet has a full joint source
+  version and independent per-actor launch-ordinal service time. Sunk source
+  work, eventual incoming gradients, trajectory uplinks, advantage downlinks,
+  policy broadcasts, proposals, hints and potential fits remain charged.
+- Joint predictable OMD and Lyapunov prices choose both the joint action and m.
+  Unbiased sample variance supplies full-information probe losses, not a fake
+  population upper bound. Derived an expected finite-menu gain/queue inequality
+  and, under explicit uniform moment bounds and idle/probe slack, sublinear
+  resource violation. This does NOT establish separate-trajectory HAPPO
+  dominance, per-step monotonicity or gradient stationarity.
+- Source and outcome-free all-method/two-task qualification were frozen and
+  pushed at `145ed98`. Four interface tests passed. Active one-worker command:
+  `causal_recycle/run.py --lock internal/causal_recycle_qualification_lock_a1_20261016.json
+  --qualification --output results/causal_recycle_qualification_20261016`
+  with paths inside ICML-2027. Run every method, preserve any failure, do not
+  inspect qualification returns to tune. Then replay the complete qualification
+  once and require two byte-identical analyzer decisions/integrity files.
+- Only complete qualification permits a separate scientific development
+  preregistration with fresh seeds: native Spread and Reference, seven strong
+  fixed/online controls (including HAPPO LR grid), full controller and two
+  ablations, forty-round return/resource curves. All gates remain prospective.
+  No GPU, old-controller changes, old-threshold rescue, or manuscript admission.
