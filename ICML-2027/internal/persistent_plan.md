@@ -151,3 +151,29 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   staleness terms are computable without evaluation leakage and are
   nonvacuous, (iii) a relative-to-HAPPO comparison protocol is frozen, and
   (iv) an outcome-free independent-data CPU headroom screen is preregistered.
+
+## End-to-end CPU decision experiment (2026-10-15)
+
+- The receipt-time subset model was rejected before scientific execution:
+  packets already computed and transmitted have sunk cost, and a subset of
+  agents in a joint game does not remove the other agents' environment steps.
+- `ICML27-HAPPO-ASYNC-BATCH-CPU-001` therefore makes the decision before actor
+  packet launch and charges every native joint trajectory, optimizer row,
+  gradient packet, proxy forward pass, and outcome-aware search trajectory.
+- Stage A compares fresh sequential HAPPO, full-cadence HAPPO, fresh parallel,
+  stale, age-first, causal history-surrogate, and an outcome-aware finite-menu
+  diagnostic on two cooperative MPE tasks. The latter is an empirical
+  opportunity diagnostic rather than a deployable method or formal upper
+  bound.
+- Development and holdout seeds, all actions, costs, replay checks, and gates
+  are fixed in `happo_batch_cpu_preregistration.json`. A task must also show
+  at least 2% fresh-HAPPO learning from initialization so that lack of signal
+  is not misread as lack of allocation value.
+- The final one-worker, 14-payload operational qualification passed every
+  mapping, finite-value, hash, controller-separation, trajectory-identity,
+  and exact-accounting check. A prior two-worker operational attempt stopped
+  on host memory pressure and is retained; no scientific seed was involved.
+- A complete Stage-A pass authorizes only a separately frozen, fresh-seed
+  observable-score and confidence qualification. A failure requires a causal
+  design change tied to the failed mechanism; gates, tasks, and failed seeds
+  remain unchanged.
