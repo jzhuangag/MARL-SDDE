@@ -128,6 +128,11 @@ true signed gain used above satisfies the EXACT identity
 
     sum_t mu_(t,a_t) = [J_H(theta_T)-J_H(theta_0)]/R.
 
+R must remain constant during that learning run. A predictably changing return
+normalizer introduces a weight-motion term; it cannot inherit this unweighted
+final-return identity without accounting for that term. A training-only initial
+scale may be frozen before the run and the theorem conditioned on it.
+
 Thus this is not merely virtual-debt analysis: with a finite uniform return
 upper bound J_max the nonnegative composite potential is
 

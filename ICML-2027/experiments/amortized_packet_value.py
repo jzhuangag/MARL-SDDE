@@ -94,6 +94,10 @@ def interpolate_server_proposal(server_actor, unit_actor, alpha):
 
 
 def amortized_proposals(server_actor, arrays, alphas, epochs, *, budget=lambda: None):
+    alphas = tuple(alphas)
+    if not alphas or len(set(alphas)) != len(alphas) or 1. not in alphas or any(
+            isinstance(a, bool) or not math.isfinite(a) or a < 0 for a in alphas):
+        raise ValueError("unique finite nonnegative coefficients including the unit reference required")
     # Import only on native execution; this module itself creates no environment.
     from current_packet_native.integration import proposal
     unit, trace = proposal(server_actor, arrays, 1., epochs, budget=budget)
@@ -110,4 +114,4 @@ def amortized_proposals(server_actor, arrays, alphas, epochs, *, budget=lambda: 
         modeled_state_tensor_copy_bytes=state_bytes(server_actor)+sum(
             state_bytes(server_actor if alpha == 0 else unit) for alpha in alphas),
         primitive="one_server_PPO_block_then_parameter_line_search",
-        worker_optimizer_imported=False, optimizer_state_follows_unit_block=True)
+        worker_optimizer_imported=False, positive_step_optimizer_follows_unit_block=True)

@@ -449,3 +449,10 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   bias, finite-probe/interaction floors, strongest anchors and all old failures.
   Next development must test precision, learning and cost jointly, not just
   estimator variance. No GPU/HPC4 or manuscript edits in this bounded stage.
+- Qualification evidence and the amortized prototype are pushed at `0338367`.
+  The completed native-qualification heartbeat has been deleted. Autonomous
+  continuation is now `complete-amortized-marl-value-control-development`,
+  hourly and quiet while unchanged, for this ONE selected complete-loop
+  correction and bounded fresh-seed qualification/development. No new native
+  worker is active at this handoff. All qualification returns remain
+  outcome-ineligible; no positive return result is pending manuscript admission.
