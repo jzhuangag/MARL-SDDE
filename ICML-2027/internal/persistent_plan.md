@@ -381,3 +381,11 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   data; one CPU worker, no old scientific retry, no GPU/HPC4 or manuscript edits.
   A learning-return-based admission pilot is development, not outcome-free
   qualification. A complete useful interface must precede new performance runs.
+- Evidence, corrected prototype and proof were committed and pushed at
+  `38a6689`. The completed-study heartbeat was deleted. The authorized bounded
+  native-integration follow-up is now
+  `qualify-current-packet-marl-value-control-integration`, hourly and quiet on
+  unchanged state. It requires a separate fresh-seed outcome-free source freeze
+  before native qualification (1800 active-CPU seconds including replay, one
+  worker); any learning-return admission is separately registered development.
+  No successor native experiment is currently running or preregistered.
