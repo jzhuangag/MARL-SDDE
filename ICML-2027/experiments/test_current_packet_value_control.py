@@ -70,6 +70,18 @@ class ProtocolTests(unittest.TestCase):
         # Choosing a current action does not change the full-vector sample trace.
         self.assertAlmostEqual(np.mean([s / (.1 * 2) for s in traces]), .25 / (.1 * 2))
 
+    def test_probe_communication_is_priced_and_reconciled(self):
+        c = self.controller()
+        c.queues[:] = (3., 2.)
+        opened = c.begin(candidate_hashes=("idle", "A"), candidate_costs=((0, 0), (.5, .2)),
+            probe_costs=((.3, .2), (.8, .4)), sunk_cost=(.7, .5), rng=np.random.default_rng(8))
+        selected = c.select(np.tile((0., .1), (opened["episodes"], 1)), candidate_hashes=("idle", "A"))
+        self.assertEqual(selected["candidate_index"], 0)
+        probe_cost = ((.3, .2), (.8, .4))[opened["probe_index"]]
+        np.testing.assert_allclose(selected["expected_total_charge"], np.array([.7, .5])+probe_cost)
+        record = c.close(committed_hash="idle", actual_total_charge=selected["expected_total_charge"])
+        np.testing.assert_allclose(record["queues_after"], np.maximum(0., np.array([3., 2.])+np.array([.7,.5])+probe_cost-1))
+
 
 if __name__ == "__main__":
     unittest.main()

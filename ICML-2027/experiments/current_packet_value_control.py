@@ -67,7 +67,8 @@ class CurrentPacketController:
     def begin(self, *, candidate_hashes, candidate_costs, probe_costs, sunk_cost, rng):
         """Freeze policies/costs and choose m BEFORE opening independent episodes.
 
-        probe_costs is the predictable extra computation charge for each option.
+        probe_costs is the predictable (communication, computation) charge for
+        each option. A legacy vector denotes computation-only probe charges.
         Caller must freeze the behavior policy, MC potential, candidates and all
         eligibility constraints too. This software contract cannot prove that a
         caller's return observations are unbiased or sampled independently.
@@ -80,10 +81,13 @@ class CurrentPacketController:
         costs = self._costs(candidate_costs, (len(hashes), 2)).copy()
         if np.any(costs[0] != 0):
             raise ValueError("candidate zero must be the unchanged, zero-increment reference")
-        probes = self._costs(probe_costs, (len(self.options),)).copy()
+        probes = np.asarray(probe_costs, dtype=float)
+        if probes.shape == (len(self.options),):
+            probes = np.column_stack((np.zeros(len(self.options)), probes))
+        probes = self._costs(probes, (len(self.options), 2)).copy()
         sunk = self._costs(sunk_cost, (2,)).copy()
         lambdas = np.array([p.young_scale for p in self.options])
-        known_loss = self.queues[1] * probes + self.V * lambdas
+        known_loss = probes @ self.queues + self.V * lambdas
         distribution = project_simplex(self.z - self.eta * known_loss)
         selected = int(rng.choice(len(self.options), p=distribution))
         self._open = dict(hashes=hashes, costs=costs, probe_costs=probes, sunk=sunk,
@@ -121,7 +125,7 @@ class CurrentPacketController:
         return {"round": self.round, "candidate_index": index,
                 "candidate_hash": d["hashes"][index],
                 "expected_total_charge": (d["sunk"] + d["costs"][index] +
-                                          np.array([0., d["probe_costs"][d["probe"]]])).tolist(),
+                                          d["probe_costs"][d["probe"]]).tolist(),
                 "selected_score_is_unbiased": False,
                 "sample_variance_is_upper_certificate": False}
 
@@ -137,7 +141,7 @@ class CurrentPacketController:
         chosen = d["selection"]
         if committed_hash != d["hashes"][chosen["index"]]:
             raise ValueError("committed policy differs from frozen selection")
-        expected = d["sunk"] + d["costs"][chosen["index"]] + np.array([0., d["probe_costs"][d["probe"]]])
+        expected = d["sunk"] + d["costs"][chosen["index"]] + d["probe_costs"][d["probe"]]
         charged = self._costs(actual_total_charge, (2,))
         if not np.allclose(charged, expected, rtol=0., atol=1e-10):
             raise ValueError("paid probe/source/proposal/receipt charges do not reconcile")

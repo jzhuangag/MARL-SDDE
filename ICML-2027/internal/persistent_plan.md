@@ -389,3 +389,27 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   before native qualification (1800 active-CPU seconds including replay, one
   worker); any learning-return admission is separately registered development.
   No successor native experiment is currently running or preregistered.
+
+## Native current-packet interface freeze (2026-10-16)
+
+- Implemented `experiments/current_packet_native`: genuine five-epoch HARL PPO
+  loss/gradient recomputation on server-owned proposals, delayed immutable local
+  data/update programs, current-bank action scoring, matched delayed reference,
+  strong fresh sequential HAPPO anchor and same-world frozen-policy evaluation
+  control. This is not repeated Adam on a stored gradient or an imported worker
+  optimizer. All old frozen sources/results remain unchanged.
+- Probe communication is now priced alongside probe computation. The code
+  records every modeled public/advantage/program/probe/policy data path,
+  proposal/backward/optimizer work and actual CPU; row proxies and logical array
+  bytes are not represented as FLOPs, physical wire bytes or wall-clock speedup.
+- Five controller algebra/interface tests and syntax compilation pass before
+  any new native rollout. Preregistration is
+  `current_packet_native_qualification_preregistration_20261016.md`, source lock
+  `current_packet_native_lock_20261016.json`. Fresh seed79416017, two tasks,
+  three methods,8 banks each,6 originals plus all6 semantic replays, one worker,
+ 1800 active CPU seconds total. No qualification return ranking/tuning.
+- Only after source/plan/lock commits are pushed may the single driver run at
+  `results/current_packet_native_qualification_20261016`. It owns its replay and
+  both analyzers. Any failed mandatory payload gate stops without retry. No
+  native performance, precision-usefulness, confirmation or manuscript claim is
+  authorized solely by operational qualification.

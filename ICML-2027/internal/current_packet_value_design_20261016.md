@@ -209,3 +209,20 @@ Four deterministic tests check transaction ordering, frozen-candidate identity,
 full charges, genuine selection bias and exact finite-distribution moment
 identities. They establish software/algebra consistency only. No successor
 native performance test has been run and no new performance gain is claimed.
+
+## Native cost-interface extension (2026-10-16, before qualification)
+
+Early private-data probes have communication cost as well as compute cost.
+The controller now accepts a two-column probe cost (c_probe_j,f_probe_j), with
+the old one-column compute-only interface retained for existing unit tests.
+Use QC*c_probe_j+QF*f_probe_j in ell_j and its predictable hint. Queue C gains
+c_probe_j too; (3)'s communication comparator includes c_probe(v). The known
+costs still cancel from selection error; the variance-noise residual in (2)
+is unchanged. No new stochastic-confidence claim follows from this extension.
+
+The native adapter, packet architecture and prospective 6+6-cell operational
+qualification are specified in
+`current_packet_native_qualification_preregistration_20261016.md`. This stage
+does not rank qualification returns or admit performance claims. Prototype
+native integration is now implemented, but its qualification and useful-score
+precision/cost judgment remain distinct from a positive learning result.
