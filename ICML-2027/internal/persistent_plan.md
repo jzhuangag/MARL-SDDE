@@ -182,3 +182,32 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   first two unopened payloads are ineligible; every scientific seed was
   replaced. The amended one-worker qualification passed 14/14 payloads,
   including exact equal-budget exhaustion by every fixed schedule.
+
+## Final A1 CPU decision and causal redesign (2026-10-15)
+
+- All 80 payloads completed; frozen integrity and supplementary per-block
+  resource recurrences passed. Six registered payloads reproduce all 18
+  scientific files byte for byte, and two complete analyzers produce identical
+  CSV/JSON files.
+- Stage A **fails**: 10/16 scientific gates pass. Against the selected strong
+  control, spread AUC gain is 0.7115% and reference is -0.0334%; both miss the
+  frozen 2% threshold. Stage B and GPU performance work do not follow from A1.
+- Search ranking transfers poorly to independent checkpoints and costs
+  46.17x/11.58x the training joint transitions. The noisy finite-menu selector
+  is not a true oracle ceiling, so this is not a proof that all allocation
+  opportunity is absent.
+- Reference's rolling age stream aliases with its cyclic selection order;
+  nominal stale-cyclic, fresh parallel, age-first, and cyclic HAPPO coincide.
+  Exact accounting passed but did not detect this missing mechanism separation.
+- A substantive successor interface is implemented in
+  `causal_packet_ledger.py`: unique launch jobs, service streams independent of
+  selection clocks, single-use received raw gradients, server optimizer
+  ownership, and permanently charged work/transmission after rejection.
+  The 32-test suite verifies software only.
+- `happo_batch_cpu_a1_decision.md` records the complete decision.
+  `causal_packet_redesign_after_a1.md` derives the conditional receipt-step
+  lower bound and exposes the remaining launch/receipt gap: one-step queue
+  drift does not price a launch's delayed value. A successor scientific
+  preregistration requires causal score, feasible paired precision, uniform
+  return confidence, and multi-step drift together. No task/seed/gate rescue,
+  narrative-only change, or unregistered successor run is authorized by A1.
