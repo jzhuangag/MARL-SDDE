@@ -211,3 +211,26 @@ No new manuscript claim is admitted until it is supported at the declared scope.
   preregistration requires causal score, feasible paired precision, uniform
   return confidence, and multi-step drift together. No task/seed/gate rescue,
   narrative-only change, or unregistered successor run is authorized by A1.
+
+## Bounded successor-feasibility decision (2026-10-15)
+
+- Closed the conditional launch/receipt timing interface with an in-flight
+  promised-return potential: launching debits future certified progress;
+  completion cancels that debit against the expected actual return increment.
+  The derivation requires independent hidden per-job episode gradients and
+  precommitted SGD steps. It is not a PPO/Adam return guarantee.
+- Derived bounded resource queues and a finite-horizon expected-return credit
+  inequality, including terminal outstanding jobs and confidence failures.
+  This does not prove stationarity or superiority over HAPPO.
+- The implemented distribution-free episode-gradient certificate is
+  **provably vacuous** at 16 episodes: radius/G=1.203441 for 72 simultaneous
+  certificates at delta=0.05. Both receipt and launch rules choose zero step,
+  even before staleness. No successor RL trajectory is justified or launched.
+- Compared fixed-launch steps and two-stage launch/step control and issued one
+  terminal no-go for this certificate. Fresh primary and arXiv checks establish
+  relevant delay-adaptive optimization prior work; a generic step rule is not
+  a sufficient novelty claim.
+- See `launch_receipt_feasibility_decision_20261015.md` and the analytic JSON.
+  A sharper, resource-feasible return estimator is a necessary new design
+  ingredient. The bounded follow-up ends here; do not automatically increase
+  batch size, rerun A1, or launch another performance experiment.
