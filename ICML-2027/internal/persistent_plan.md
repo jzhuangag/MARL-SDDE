@@ -51,6 +51,13 @@
   are not a practical certificate. Avoidable m costs, scale-adaptive regret and
   the source tax must be checked as part of the full algorithm, not silently
   removed or converted into estimator-only positive evidence.
+- Verified design/qualification evidence is pushed at5385aea. The completed
+  native driver has exited; no new scientific training process was started.
+  Follow-up advance-sealed-bridge-marl-learning is ACTIVE on this same thread
+  for the bounded complete-learning implementation/preregistration/development
+  decision, with one CPU worker and a separately frozen<=12000s science cap.
+  It must not restart qualification, tune its outcomes, modify old evidence,
+  expand into GPU/HPC4, or continue an indefinite auxiliary-study chain.
 
 ## Amortized native qualification registration (2026-10-16)
 
