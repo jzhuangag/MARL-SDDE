@@ -1,0 +1,119 @@
+{
+  "aggregate": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 0.8459394457855334,
+    "pass": true,
+    "point_ratio": 0.82830863018378,
+    "threshold": 0.95
+  },
+  "all_formal_gates_pass": false,
+  "artifact_hashes": {
+    "cells.csv": {
+      "exact": true,
+      "primary": "5763e7addbbd2da11c017d1e91b5772a72a800e434591df5ddc17ff0e67efd2e",
+      "reproduction": "5763e7addbbd2da11c017d1e91b5772a72a800e434591df5ddc17ff0e67efd2e"
+    },
+    "endpoints.csv": {
+      "exact": true,
+      "primary": "e9a279a542aef22c802b360e01e917526a43d8f4eb8821c95493dddca0e92505",
+      "reproduction": "e9a279a542aef22c802b360e01e917526a43d8f4eb8821c95493dddca0e92505"
+    },
+    "summary.json": {
+      "exact": true,
+      "primary": "785df50d772e8df1686e16cda3a00a3bd4e752fc7269747b15ac5b6711c1154d",
+      "reproduction": "785df50d772e8df1686e16cda3a00a3bd4e752fc7269747b15ac5b6711c1154d"
+    }
+  },
+  "blockwise_maximum_rho0_match_rate": 0.020833333333333332,
+  "bootstrap": {
+    "replicates": 50000,
+    "seed": 63001,
+    "unit": "complete master-seed column"
+  },
+  "classification": "formal evidence under the prospective fixed-policy delayed nonlinear-feature Markov-TD scope",
+  "collision_gate": {
+    "aggregate_rate": 0.0003323025173611111,
+    "alpha": 0.05,
+    "blockwise_maximum_rate": 0.020833333333333332,
+    "independent_path_probability_upper_bound": 0.0007716049382716049,
+    "kind": "aggregate_exact_binomial_upper_confidence",
+    "one_sided_upper_probability": 0.0004216056311428778,
+    "pass": true,
+    "seed_task_blocks": 1536,
+    "total_matches": 49,
+    "total_trials": 147456
+  },
+  "configuration_sha256": "d49c8a0a5eba25686649262e2822440c2b6e8b8e386c6e31e52ac4c2560c7bb1",
+  "delays": {
+    "0": {
+      "one_sided_upper_quantile": 0.975,
+      "one_sided_upper_ratio": 0.84940590049277,
+      "pass": true,
+      "point_ratio": 0.8282328650450352,
+      "threshold": 0.97
+    },
+    "8": {
+      "one_sided_upper_quantile": 0.975,
+      "one_sided_upper_ratio": 0.8497156427551694,
+      "pass": true,
+      "point_ratio": 0.8283844022533728,
+      "threshold": 0.97
+    }
+  },
+  "experiment_id": "T-063B-formal-reward-free-correlation-adaptive-MinAtar-TD",
+  "fingerprint_standardized_rmse": 0.9936591520179892,
+  "gates": {
+    "F10_aggregate_collision": true,
+    "F11_summary_replay": true,
+    "F12_byte_exact_reproduction": true,
+    "F13_full_tests": true,
+    "F1_coverage_and_seed_isolation": true,
+    "F2_finite_and_full_cost": true,
+    "F3_aggregate_simultaneous_gain": true,
+    "F4_taskwise_simultaneous_gain": true,
+    "F5_delay_simultaneous_gain": true,
+    "F6_strict_cell_breadth": false,
+    "F7_true_rho_oracle_proximity": true,
+    "F8_participation_direction": true,
+    "F9_fingerprint_calibration": true
+  },
+  "gpu_used": false,
+  "hpc4_used": false,
+  "oracle_proximity": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 1.0199753669401332,
+    "pass": true,
+    "point_ratio": 1.0133511444780383,
+    "threshold": 1.15
+  },
+  "strict_cell_breadth": {
+    "one_sided_lower_fraction": 0.5476190476190477,
+    "one_sided_lower_quantile": 0.05,
+    "pass": false,
+    "point_fraction": 0.6428571428571429,
+    "threshold": 0.6
+  },
+  "tasks": {
+    "asterix": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8821595392745255,
+      "pass": true,
+      "point_ratio": 0.837884178862016,
+      "threshold": 0.98
+    },
+    "breakout": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8398870025908756,
+      "pass": true,
+      "point_ratio": 0.8038349116970338,
+      "threshold": 0.98
+    },
+    "seaquest": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8868847361599871,
+      "pass": true,
+      "point_ratio": 0.8437731561814416,
+      "threshold": 0.98
+    }
+  }
+}

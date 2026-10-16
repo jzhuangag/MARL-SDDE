@@ -1,0 +1,53 @@
+{
+  "audit": "ideal_drift_sketch_equal_cost_upper_bound",
+  "date": "2026-09-05",
+  "decision": "STOP_COUPLED_TIMESCALE_SKETCH_MAINLINE",
+  "preregistration_commit": "09ed268",
+  "configuration_sha256": "1ad99e09685d62008de5dd075e0b9379ddd56ad802b6f4cfb70b6915e032c939",
+  "runner_sha256": "b32318ebfd5e917c2eb0526ebe5585cc8c0d96569be5e00962a98396cefa0a6f",
+  "artifact": {
+    "primary_sha256": "BDA4AF8351F901B7B0AEE0F94AEC19BCC29121632A867F33BA48F9F20545FD96",
+    "reproduction_sha256": "BDA4AF8351F901B7B0AEE0F94AEC19BCC29121632A867F33BA48F9F20545FD96",
+    "bytes_each": 6347376,
+    "byte_identical": true
+  },
+  "counts": {
+    "rows": 2560,
+    "primary_seed_cells": 2048,
+    "zero_target_seed_cells": 256,
+    "sensor_seeds": 16,
+    "events_per_path": 64
+  },
+  "metrics": {
+    "ideal_over_best_fixed_geometric_auc_ratio": 0.7856926286677319,
+    "ideal_over_exact_diagonal_geometric_auc_ratio": 1.0165200321546424,
+    "ideal_better_than_exact_diagonal_fraction": 0.3291015625,
+    "exact_coupled_over_diagonal_geometric_auc_ratio": 0.9481180355938437,
+    "exact_coupled_headroom_recovered_fraction": -0.31841570271541414,
+    "decision_regret_gate_fraction": 1.0,
+    "median_decision_regret_fraction": 0.03428055515016438,
+    "minimum_sampled_qp_eigenvalue": 0.017864169040538263,
+    "zero_target_max_full_vs_diagonal_sketch_difference": 0.0,
+    "high_target_low_noise_over_diagonal_geometric_auc_ratio_descriptive": 0.9398067109384878,
+    "high_target_low_noise_better_fraction_descriptive": 0.927734375
+  },
+  "gates": {
+    "I1": true,
+    "I2": true,
+    "I3": true,
+    "I4": false,
+    "I5": false,
+    "I6": false,
+    "I7": true,
+    "I8": true,
+    "I9": true,
+    "I10": true
+  },
+  "authorization": {
+    "observable_markov_estimator": false,
+    "sampled_cpu_efficacy": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

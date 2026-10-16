@@ -1,0 +1,4834 @@
+{
+  "censored_descriptive_count": 8,
+  "censored_source_count": 8,
+  "configuration_sha256": "6dfdf87521700c2ddae9b81947e0ecc01ee33ebcf5fcda34b09e9e3c3f7f7ee5",
+  "exposed_commands": [
+    "validate",
+    "estimate",
+    "dry-run",
+    "freeze"
+  ],
+  "finite_selected_count": 96,
+  "finite_source_count": 3448,
+  "forbidden_execution": [
+    "scientific trajectory",
+    "pilot",
+    "formal",
+    "HPC4",
+    "GPU"
+  ],
+  "information_only_contract": {
+    "allowed_inputs": [
+      "public theta pair",
+      "public mixing certificate",
+      "q",
+      "b",
+      "overhead",
+      "budget ray"
+    ],
+    "forbidden_inputs": [
+      "downstream_risk",
+      "wrong_commit_loss",
+      "epsilon_safe",
+      "oracle_action",
+      "hidden_theta",
+      "hidden_regime",
+      "outcome_data"
+    ]
+  },
+  "layer_A_finite_count": 96,
+  "layer_B_finite_count": 48,
+  "layer_specifications": {
+    "A_gaussian_mechanism": {
+      "analytic_risk_as_observed_outcome": false,
+      "learner": "actual downstream learner",
+      "mechanism": "actual Gaussian common-factor trajectories and individual observations"
+    },
+    "B_affine_markov_td_transfer": {
+      "actor_critic": false,
+      "actual_delay_queue": true,
+      "actual_td_updates": true,
+      "complete_dual_budget_charging": true,
+      "cpu_runnable": true,
+      "hidden_rho_theta_regime_inputs": false,
+      "mechanism": "existing finite-gap affine delayed Markov TD environment",
+      "preconditioner": false,
+      "stability_screened_action_catalogue": true
+    }
+  },
+  "manifest_sha256": "dc1e7b443825487e83292832f2868c997f7a37a6d64f1caf41b829fcdc4e58f4",
+  "metrics": [
+    "empirical_terminal_learning_risk",
+    "oracle_regret",
+    "paired_information_only_minus_learning_aware_risk",
+    "S_mean",
+    "S_path_descriptive_only",
+    "identification_error",
+    "probe_commit_fallback",
+    "selected_q_b",
+    "message_environment_use",
+    "usable_updates_after_delay",
+    "crossover_location",
+    "TD_parameter_error_layer_B",
+    "Bellman_teacher_error_layer_B"
+  ],
+  "policies": [
+    "oracle_evaluation_only",
+    "always_all",
+    "fixed_small_q",
+    "information_only",
+    "learning_aware",
+    "no_delay_learning_aware",
+    "message_only_planning_ablation",
+    "environment_only_planning_ablation"
+  ],
+  "regimes": [
+    "low",
+    "high"
+  ],
+  "scenarios": [
+    {
+      "B_id": 38,
+      "B_value": 707,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 37
+        },
+        {
+          "name": "at_B_id",
+          "scale": 38
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 372
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 706
+        },
+        {
+          "name": "at_B_value",
+          "scale": 707
+        },
+        {
+          "name": "above_B_value",
+          "scale": 774
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0065-Q8-th0.5-l0.2-D24-h16-environment_limited-e0.2",
+      "selection_sha256": "0022c48bf66f16dd0ebb012f98cc1dcf468e4cb466c3213ef92135051adceb95",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 11,
+      "B_value": 80,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 10
+        },
+        {
+          "name": "at_B_id",
+          "scale": 11
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 45
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 79
+        },
+        {
+          "name": "at_B_value",
+          "scale": 80
+        },
+        {
+          "name": "above_B_value",
+          "scale": 87
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-3056-Q32-th2-l0.9-D4-h32-message_limited-e0.1",
+      "selection_sha256": "020f742cbf087f0d913b98c2d7b6c35ab73c74bafde094987b89d5cc2e7ed957",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 13,
+      "B_value": 69,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 12
+        },
+        {
+          "name": "at_B_id",
+          "scale": 13
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 40
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 68
+        },
+        {
+          "name": "at_B_value",
+          "scale": 69
+        },
+        {
+          "name": "above_B_value",
+          "scale": 75
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1513-Q16-th1-l0.7-D0-h4-balanced-e0.2",
+      "selection_sha256": "5546c709b8bcaca99137696ba8a10f35eeb811afa36bbde9307b37827f258f37",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 14,
+      "B_value": 43,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 13
+        },
+        {
+          "name": "at_B_id",
+          "scale": 14
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 28
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 42
+        },
+        {
+          "name": "at_B_value",
+          "scale": 43
+        },
+        {
+          "name": "above_B_value",
+          "scale": 46
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-3430-Q32-th4-l0.94-D12-h16-environment_limited-e0.1",
+      "selection_sha256": "12684d6fe7f31325146c51de26d4a1a0d67b9a429ecf9ff8cde555bffeaeb570",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 24,
+      "B_value": 168,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 23
+        },
+        {
+          "name": "at_B_id",
+          "scale": 24
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 95
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 167
+        },
+        {
+          "name": "at_B_value",
+          "scale": 168
+        },
+        {
+          "name": "above_B_value",
+          "scale": 183
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0417-Q8-th1-l0.7-D24-h4-message_limited-e0.2",
+      "selection_sha256": "02e8956ffa3317785ca2a79247357986a5bd7fcb1ad7fc918f1b41c874cb022d",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 38,
+      "B_value": 232,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 37
+        },
+        {
+          "name": "at_B_id",
+          "scale": 38
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 134
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 231
+        },
+        {
+          "name": "at_B_value",
+          "scale": 232
+        },
+        {
+          "name": "above_B_value",
+          "scale": 252
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1308-Q16-th0.5-l0.9-D0-h32-balanced-e0.1",
+      "selection_sha256": "29f3ec482c75ed405c089afe78e12bd9a6dc8688ef741cd31efbf04a5598b10f",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 12,
+      "B_value": 38,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 24
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 37
+        },
+        {
+          "name": "at_B_value",
+          "scale": 38
+        },
+        {
+          "name": "above_B_value",
+          "scale": 41
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-2255-Q16-th4-l0.94-D4-h4-environment_limited-e0.2",
+      "selection_sha256": "02eed5bf7107f1057a0b747689573f2fb479c45885638a2e3955eb457e768645",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 11,
+      "B_value": 120,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 10
+        },
+        {
+          "name": "at_B_id",
+          "scale": 11
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 65
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 119
+        },
+        {
+          "name": "at_B_value",
+          "scale": 120
+        },
+        {
+          "name": "above_B_value",
+          "scale": 131
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0618-Q8-th2-l0.2-D12-h16-balanced-e0.1",
+      "selection_sha256": "3f35f2c967113f4f9d466be49e5f0974c97364ce5cca5e1d580671fed6fc21e5",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 8,
+      "B_value": 53,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 30
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 52
+        },
+        {
+          "name": "at_B_value",
+          "scale": 53
+        },
+        {
+          "name": "above_B_value",
+          "scale": 58
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-3346-Q32-th4-l0.9-D4-h32-environment_limited-e0.1",
+      "selection_sha256": "2dd7caa98308051ade89fa857bfce2587119e385e004b4d87b67e978311fe506",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 11,
+      "B_value": 77,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 10
+        },
+        {
+          "name": "at_B_id",
+          "scale": 11
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 43
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 76
+        },
+        {
+          "name": "at_B_value",
+          "scale": 77
+        },
+        {
+          "name": "above_B_value",
+          "scale": 84
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-3003-Q32-th2-l0.7-D12-h32-message_limited-e0.2",
+      "selection_sha256": "019510f06d10760e181113b22ad30f3f63dd7e5754472f03479dc986d55ae988",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 34,
+      "B_value": 174,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 33
+        },
+        {
+          "name": "at_B_id",
+          "scale": 34
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 103
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 173
+        },
+        {
+          "name": "at_B_value",
+          "scale": 174
+        },
+        {
+          "name": "above_B_value",
+          "scale": 188
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1666-Q16-th1-l0.94-D0-h16-environment_limited-e0.1",
+      "selection_sha256": "03c7b8b4cc8d51cc8c4e25528e41fc0921f4cd737dc25d7fca01ce440fb024ff",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 48,
+      "B_value": 323,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 47
+        },
+        {
+          "name": "at_B_id",
+          "scale": 48
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 185
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 322
+        },
+        {
+          "name": "at_B_value",
+          "scale": 323
+        },
+        {
+          "name": "above_B_value",
+          "scale": 351
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0057-Q8-th0.5-l0.2-D24-h4-message_limited-e0.2",
+      "selection_sha256": "152790777755fc3fc70c295eb91640f2881052fc089a3dd6be3239fb2cbfcedd",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 8,
+      "B_value": 17,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 12
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 16
+        },
+        {
+          "name": "at_B_value",
+          "scale": 17
+        },
+        {
+          "name": "above_B_value",
+          "scale": 18
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-3409-Q32-th4-l0.94-D4-h16-balanced-e0.2",
+      "selection_sha256": "be1e744c451a60da88dbafce7095a40b10c49e7edaecc9fd95e9129aad92b151",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 22,
+      "B_value": 120,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 21
+        },
+        {
+          "name": "at_B_id",
+          "scale": 22
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 70
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 119
+        },
+        {
+          "name": "at_B_value",
+          "scale": 120
+        },
+        {
+          "name": "above_B_value",
+          "scale": 130
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0768-Q8-th2-l0.9-D12-h32-balanced-e0.1",
+      "selection_sha256": "06611536fb4fe297753c9dad519a56e289f494f5f1f00ec7ed16e112e67d5677",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 30,
+      "B_value": 140,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 29
+        },
+        {
+          "name": "at_B_id",
+          "scale": 30
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 84
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 139
+        },
+        {
+          "name": "at_B_value",
+          "scale": 140
+        },
+        {
+          "name": "above_B_value",
+          "scale": 151
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1229-Q16-th0.5-l0.7-D0-h4-environment_limited-e0.2",
+      "selection_sha256": "06ea82e40fc085b718e42bbe2013375c0a10fd0b2ef71e67c41c804ace1a4d5a",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 16,
+      "B_value": 241,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 15
+        },
+        {
+          "name": "at_B_id",
+          "scale": 16
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 128
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 240
+        },
+        {
+          "name": "at_B_value",
+          "scale": 241
+        },
+        {
+          "name": "above_B_value",
+          "scale": 264
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2660-Q32-th1-l0.2-D24-h32-message_limited-e0.1",
+      "selection_sha256": "07b285c12c89b8e3c0b4ff9a862b0f05721f2e04099d5eecfb72eb6c0018219b",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 22,
+      "B_value": 131,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 21
+        },
+        {
+          "name": "at_B_id",
+          "scale": 22
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 76
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 130
+        },
+        {
+          "name": "at_B_value",
+          "scale": 131
+        },
+        {
+          "name": "above_B_value",
+          "scale": 142
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0724-Q8-th2-l0.9-D0-h4-environment_limited-e0.1",
+      "selection_sha256": "56b6c28210c9b1d9b39cc9b0180d43877501229c2339ac514e9d871d98a2d107",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 6,
+      "B_value": 47,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 5
+        },
+        {
+          "name": "at_B_id",
+          "scale": 6
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 26
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 46
+        },
+        {
+          "name": "at_B_value",
+          "scale": 47
+        },
+        {
+          "name": "above_B_value",
+          "scale": 52
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2041-Q16-th4-l0.2-D4-h16-balanced-e0.2",
+      "selection_sha256": "0758f2d9b53cb81e0eb9a7005ad6cefc413c2e4aee2bde022a12b149a4f1b845",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 11,
+      "B_value": 20,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 10
+        },
+        {
+          "name": "at_B_id",
+          "scale": 11
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 15
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 19
+        },
+        {
+          "name": "at_B_value",
+          "scale": 20
+        },
+        {
+          "name": "above_B_value",
+          "scale": 21
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-3387-Q32-th4-l0.94-D0-h4-message_limited-e0.2",
+      "selection_sha256": "cca411704a13333554b20195f73fda01f5102866825e03f4e1e04a097a26efa5",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 36,
+      "B_value": 265,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 35
+        },
+        {
+          "name": "at_B_id",
+          "scale": 36
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 150
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 264
+        },
+        {
+          "name": "at_B_value",
+          "scale": 265
+        },
+        {
+          "name": "above_B_value",
+          "scale": 288
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1294-Q16-th0.5-l0.7-D24-h32-environment_limited-e0.1",
+      "selection_sha256": "0d3d085f52183f870c58aea49fb3f2c568721975de28fa27231f07c271a8f34c",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 26,
+      "B_value": 126,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 25
+        },
+        {
+          "name": "at_B_id",
+          "scale": 26
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 75
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 125
+        },
+        {
+          "name": "at_B_value",
+          "scale": 126
+        },
+        {
+          "name": "above_B_value",
+          "scale": 136
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0549-Q8-th1-l0.94-D12-h16-message_limited-e0.2",
+      "selection_sha256": "16313a773698d5b85845a331f527c56b06ff196cef040494967edc8147181e5e",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 6,
+      "B_value": 84,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 5
+        },
+        {
+          "name": "at_B_id",
+          "scale": 6
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 44
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 83
+        },
+        {
+          "name": "at_B_value",
+          "scale": 84
+        },
+        {
+          "name": "above_B_value",
+          "scale": 92
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2910-Q32-th2-l0.2-D4-h32-balanced-e0.1",
+      "selection_sha256": "17680977d13a561eef8899c00e3e584a41db3a99391e259017775ca8d8f0a564",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 42,
+      "B_value": 182,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 41
+        },
+        {
+          "name": "at_B_id",
+          "scale": 42
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 111
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 181
+        },
+        {
+          "name": "at_B_value",
+          "scale": 182
+        },
+        {
+          "name": "above_B_value",
+          "scale": 196
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0491-Q8-th1-l0.9-D24-h4-environment_limited-e0.2",
+      "selection_sha256": "01e1e47bf6dde9136b412b28696191a93f8467ed4a854b2a1f2a8ca317189b12",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 34,
+      "B_value": 349,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 33
+        },
+        {
+          "name": "at_B_id",
+          "scale": 34
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 191
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 348
+        },
+        {
+          "name": "at_B_value",
+          "scale": 349
+        },
+        {
+          "name": "above_B_value",
+          "scale": 381
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1268-Q16-th0.5-l0.7-D12-h16-message_limited-e0.1",
+      "selection_sha256": "2208399059350ed81a2c8bdd43b52b4b4fcc23bcce3b6a2d52a1b40377d38dad",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 7,
+      "B_value": 16,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 6
+        },
+        {
+          "name": "at_B_id",
+          "scale": 7
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 11
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 15
+        },
+        {
+          "name": "at_B_value",
+          "scale": 16
+        },
+        {
+          "name": "above_B_value",
+          "scale": 17
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-3331-Q32-th4-l0.9-D4-h4-balanced-e0.2",
+      "selection_sha256": "3ce0ff033cf1162e5cec508e511c01374c04c7ce048144af170655b4c7f3d973",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 36,
+      "B_value": 205,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 35
+        },
+        {
+          "name": "at_B_id",
+          "scale": 36
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 120
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 204
+        },
+        {
+          "name": "at_B_value",
+          "scale": 205
+        },
+        {
+          "name": "above_B_value",
+          "scale": 222
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0516-Q8-th1-l0.94-D0-h32-balanced-e0.1",
+      "selection_sha256": "08f7997ca070b37a7fac3d8e3d4623e7a709cc8988f2089fa3a0e5d3d77788cb",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 15,
+      "B_value": 102,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 14
+        },
+        {
+          "name": "at_B_id",
+          "scale": 15
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 58
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 101
+        },
+        {
+          "name": "at_B_value",
+          "scale": 102
+        },
+        {
+          "name": "above_B_value",
+          "scale": 111
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1846-Q16-th2-l0.7-D12-h16-environment_limited-e0.1",
+      "selection_sha256": "162f0bd80067f18e2f62bd304f1aa23d482772d3a425e503b34876fd58b7d3eb",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 28,
+      "B_value": 212,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 27
+        },
+        {
+          "name": "at_B_id",
+          "scale": 28
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 119
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 211
+        },
+        {
+          "name": "at_B_value",
+          "scale": 212
+        },
+        {
+          "name": "above_B_value",
+          "scale": 231
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2373-Q32-th0.5-l0.2-D24-h32-message_limited-e0.2",
+      "selection_sha256": "1345646f0141f5981093e2405e24ecd5f9040755771244a583bd7512539b3d98",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 10,
+      "B_value": 65,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 9
+        },
+        {
+          "name": "at_B_id",
+          "scale": 10
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 37
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 64
+        },
+        {
+          "name": "at_B_value",
+          "scale": 65
+        },
+        {
+          "name": "above_B_value",
+          "scale": 71
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1014-Q8-th4-l0.9-D0-h16-balanced-e0.1",
+      "selection_sha256": "0108d735b5e6aa0d870298f52da744e93164a93d8485dbb3d27ce9ca4bc10fa9",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 30,
+      "B_value": 77,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 29
+        },
+        {
+          "name": "at_B_id",
+          "scale": 30
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 53
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 76
+        },
+        {
+          "name": "at_B_value",
+          "scale": 77
+        },
+        {
+          "name": "above_B_value",
+          "scale": 82
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-2003-Q16-th2-l0.94-D24-h4-environment_limited-e0.2",
+      "selection_sha256": "1019bb0feea3d8bcc75fa09dbfae871a8e7aa4a1896d6c3f3c9392685d44a789",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 46,
+      "B_value": 230,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 45
+        },
+        {
+          "name": "at_B_id",
+          "scale": 46
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 137
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 229
+        },
+        {
+          "name": "at_B_value",
+          "scale": 230
+        },
+        {
+          "name": "above_B_value",
+          "scale": 249
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0113-Q8-th0.5-l0.7-D12-h4-environment_limited-e0.2",
+      "selection_sha256": "0167a51a19a8bbaed0d787635c3479e058bc13f7c01bbc72d1535c88e772a98e",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 8,
+      "B_value": 90,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 48
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 89
+        },
+        {
+          "name": "at_B_value",
+          "scale": 90
+        },
+        {
+          "name": "above_B_value",
+          "scale": 99
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2616-Q32-th1-l0.2-D4-h16-balanced-e0.1",
+      "selection_sha256": "bfe79e3d5193798c13ec3aadfa58e0e0d4e092e0b3a39d4e1e4707252468cce9",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 12,
+      "B_value": 60,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 35
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 59
+        },
+        {
+          "name": "at_B_value",
+          "scale": 60
+        },
+        {
+          "name": "above_B_value",
+          "scale": 65
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2013-Q16-th2-l0.94-D24-h32-message_limited-e0.2",
+      "selection_sha256": "45d8de2ca4793616bc7046348845536a252806a5afc4fcfd876a37d32db893f5",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 6,
+      "B_value": 76,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 5
+        },
+        {
+          "name": "at_B_id",
+          "scale": 6
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 40
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 75
+        },
+        {
+          "name": "at_B_value",
+          "scale": 76
+        },
+        {
+          "name": "above_B_value",
+          "scale": 83
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2026-Q16-th4-l0.2-D0-h16-environment_limited-e0.1",
+      "selection_sha256": "012957be8263f3c8a4c1066770efc1ba7493910e711aae9771042ea64b923992",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 39,
+      "B_value": 344,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 38
+        },
+        {
+          "name": "at_B_id",
+          "scale": 39
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 191
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 343
+        },
+        {
+          "name": "at_B_value",
+          "scale": 344
+        },
+        {
+          "name": "above_B_value",
+          "scale": 375
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0102-Q8-th0.5-l0.7-D4-h32-balanced-e0.1",
+      "selection_sha256": "0231601843a53e8b467f638ee5cd70b5d46b730d2b8dcd6aee72b890dae091eb",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 27,
+      "B_value": 122,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 26
+        },
+        {
+          "name": "at_B_id",
+          "scale": 27
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 74
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 121
+        },
+        {
+          "name": "at_B_value",
+          "scale": 122
+        },
+        {
+          "name": "above_B_value",
+          "scale": 132
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-2775-Q32-th1-l0.9-D12-h4-message_limited-e0.2",
+      "selection_sha256": "2277d74086c2dfc0d50881235e898b92b8fadf9673e702b79e89cac3460000f6",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 8,
+      "B_value": 113,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 60
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 112
+        },
+        {
+          "name": "at_B_value",
+          "scale": 113
+        },
+        {
+          "name": "above_B_value",
+          "scale": 124
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1762-Q16-th2-l0.2-D4-h32-environment_limited-e0.1",
+      "selection_sha256": "35a2f2c77f38e08ef1505d560d745b8c54eba5d0364c2aa017c75907358efac2",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 7,
+      "B_value": 13,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 6
+        },
+        {
+          "name": "at_B_id",
+          "scale": 7
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 9
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 12
+        },
+        {
+          "name": "at_B_value",
+          "scale": 13
+        },
+        {
+          "name": "above_B_value",
+          "scale": 14
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-3385-Q32-th4-l0.94-D0-h4-balanced-e0.2",
+      "selection_sha256": "ee4c74f8e6ba19cac01279ccd7366ccd6ad24f5f98c65d1f14e746e3ee0a2635",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 19,
+      "B_value": 206,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 18
+        },
+        {
+          "name": "at_B_id",
+          "scale": 19
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 112
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 205
+        },
+        {
+          "name": "at_B_value",
+          "scale": 206
+        },
+        {
+          "name": "above_B_value",
+          "scale": 225
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0428-Q8-th1-l0.7-D24-h32-message_limited-e0.1",
+      "selection_sha256": "11abb894ef1565dcd5907e89b816d270b544bdf7ea42455179593b4f772e8267",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 23,
+      "B_value": 97,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 22
+        },
+        {
+          "name": "at_B_id",
+          "scale": 23
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 59
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 96
+        },
+        {
+          "name": "at_B_value",
+          "scale": 97
+        },
+        {
+          "name": "above_B_value",
+          "scale": 105
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0767-Q8-th2-l0.9-D12-h16-environment_limited-e0.2",
+      "selection_sha256": "017fe40fbd9a6a1a9b8a30f530fe69a904b3d7d12971a767cf626a820bff0ac6",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 33,
+      "B_value": 124,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 78
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 123
+        },
+        {
+          "name": "at_B_value",
+          "scale": 124
+        },
+        {
+          "name": "above_B_value",
+          "scale": 134
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-2521-Q32-th0.5-l0.94-D0-h4-balanced-e0.2",
+      "selection_sha256": "182f2f4f466c2de30cccd0446de2eb8a3119c9a9ad387c4b33786b4467ba08f9",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 34,
+      "B_value": 367,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 33
+        },
+        {
+          "name": "at_B_id",
+          "scale": 34
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 200
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 366
+        },
+        {
+          "name": "at_B_value",
+          "scale": 367
+        },
+        {
+          "name": "above_B_value",
+          "scale": 401
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1286-Q16-th0.5-l0.7-D24-h16-message_limited-e0.1",
+      "selection_sha256": "03ca55aa656cef05a18b1f5ee4adbdd4c0f3ec4eafa6945c6a9fba3e041edee9",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 5,
+      "B_value": 16,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 4
+        },
+        {
+          "name": "at_B_id",
+          "scale": 5
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 10
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 15
+        },
+        {
+          "name": "at_B_value",
+          "scale": 16
+        },
+        {
+          "name": "above_B_value",
+          "scale": 18
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-3187-Q32-th4-l0.2-D4-h4-balanced-e0.2",
+      "selection_sha256": "ae09251f6fd545e34724cfca09f4f8be6a99721f437de7bd238635850871a86b",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 27,
+      "B_value": 164,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 26
+        },
+        {
+          "name": "at_B_id",
+          "scale": 27
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 95
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 163
+        },
+        {
+          "name": "at_B_value",
+          "scale": 164
+        },
+        {
+          "name": "above_B_value",
+          "scale": 178
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1636-Q16-th1-l0.9-D12-h32-environment_limited-e0.1",
+      "selection_sha256": "59b74dbfd8430636fb9d780fe2b2002a1cb734bb43ace20b6ff1cae37a020f86",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 10,
+      "B_value": 37,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 9
+        },
+        {
+          "name": "at_B_id",
+          "scale": 10
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 23
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 36
+        },
+        {
+          "name": "at_B_value",
+          "scale": 37
+        },
+        {
+          "name": "above_B_value",
+          "scale": 40
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1011-Q8-th4-l0.9-D0-h4-message_limited-e0.2",
+      "selection_sha256": "19955e2afd7ebb86a0c5a9d236d8c6e8a12371323bb903178d6d7f36ed3e615d",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 14,
+      "B_value": 72,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 13
+        },
+        {
+          "name": "at_B_id",
+          "scale": 14
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 42
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 71
+        },
+        {
+          "name": "at_B_value",
+          "scale": 72
+        },
+        {
+          "name": "above_B_value",
+          "scale": 78
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2998-Q32-th2-l0.7-D12-h16-environment_limited-e0.1",
+      "selection_sha256": "002e8548d3d63c263c8d08b7911c8b755321c0a0e7476b600111ad4238ca4b40",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 12,
+      "B_value": 107,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 59
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 106
+        },
+        {
+          "name": "at_B_value",
+          "scale": 107
+        },
+        {
+          "name": "above_B_value",
+          "scale": 117
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2012-Q16-th2-l0.94-D24-h32-message_limited-e0.1",
+      "selection_sha256": "cd615f4af8bdae6ce132efff1064e14249ae1e3aaaa37e2600edb1347bc6fdb0",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 33,
+      "B_value": 767,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 399
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 766
+        },
+        {
+          "name": "at_B_value",
+          "scale": 767
+        },
+        {
+          "name": "above_B_value",
+          "scale": 841
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0029-Q8-th0.5-l0.2-D4-h16-environment_limited-e0.2",
+      "selection_sha256": "df2a93d29b7b49768abb095655751eda439c179aba8d9fd9e95ca29413e8e784",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 8,
+      "B_value": 52,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 29
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 51
+        },
+        {
+          "name": "at_B_value",
+          "scale": 52
+        },
+        {
+          "name": "above_B_value",
+          "scale": 57
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2617-Q32-th1-l0.2-D4-h16-balanced-e0.2",
+      "selection_sha256": "0365584b88992476dc5df4e4b0a2522dd15d4a68da58c534a9eb855a78afc88f",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 9,
+      "B_value": 88,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 8
+        },
+        {
+          "name": "at_B_id",
+          "scale": 9
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 48
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 87
+        },
+        {
+          "name": "at_B_value",
+          "scale": 88
+        },
+        {
+          "name": "above_B_value",
+          "scale": 96
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2228-Q16-th4-l0.9-D24-h32-message_limited-e0.1",
+      "selection_sha256": "0348d66d31dd4fa04669b7efb136939b180d7a436ca43dd58a8179e2ea1d367d",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 51,
+      "B_value": 283,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 50
+        },
+        {
+          "name": "at_B_id",
+          "scale": 51
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 166
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 282
+        },
+        {
+          "name": "at_B_value",
+          "scale": 283
+        },
+        {
+          "name": "above_B_value",
+          "scale": 307
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0544-Q8-th1-l0.94-D12-h4-environment_limited-e0.1",
+      "selection_sha256": "19171366c15c0f06a30dda5af0319036693bc4bdab72dad530c91ca01e1c4005",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 24,
+      "B_value": 127,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 23
+        },
+        {
+          "name": "at_B_id",
+          "scale": 24
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 75
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 126
+        },
+        {
+          "name": "at_B_value",
+          "scale": 127
+        },
+        {
+          "name": "above_B_value",
+          "scale": 138
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1225-Q16-th0.5-l0.7-D0-h4-balanced-e0.2",
+      "selection_sha256": "8ffbd5f0e19d8e3a779f475e60ddb8da8fe4f30433610c4e7e47d231a472f24a",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 9,
+      "B_value": 19,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 8
+        },
+        {
+          "name": "at_B_id",
+          "scale": 9
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 13
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 18
+        },
+        {
+          "name": "at_B_value",
+          "scale": 19
+        },
+        {
+          "name": "above_B_value",
+          "scale": 20
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-3415-Q32-th4-l0.94-D4-h32-balanced-e0.2",
+      "selection_sha256": "a3ccd3a5c0ff973616e743d27a8d214c861c03541d8ae1382df34ccaecebacbf",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 42,
+      "B_value": 255,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 41
+        },
+        {
+          "name": "at_B_id",
+          "scale": 42
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 148
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 254
+        },
+        {
+          "name": "at_B_value",
+          "scale": 255
+        },
+        {
+          "name": "above_B_value",
+          "scale": 277
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0496-Q8-th1-l0.9-D24-h16-environment_limited-e0.1",
+      "selection_sha256": "240779acc9e401f9d15847e4a85642e86383e77c050b6ef89c565157ed11bd30",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 14,
+      "B_value": 132,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 13
+        },
+        {
+          "name": "at_B_id",
+          "scale": 14
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 72
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 131
+        },
+        {
+          "name": "at_B_value",
+          "scale": 132
+        },
+        {
+          "name": "above_B_value",
+          "scale": 144
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1802-Q16-th2-l0.7-D0-h4-message_limited-e0.1",
+      "selection_sha256": "23214a0e3ea0c324f843e2478443791045debc7ceb6b9401d742116494e3adee",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 19,
+      "B_value": 94,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 18
+        },
+        {
+          "name": "at_B_id",
+          "scale": 19
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 56
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 93
+        },
+        {
+          "name": "at_B_value",
+          "scale": 94
+        },
+        {
+          "name": "above_B_value",
+          "scale": 102
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2351-Q32-th0.5-l0.2-D12-h16-environment_limited-e0.2",
+      "selection_sha256": "575f5113b52ae1037251b68aca4f88fd8b17c387a13bf5db55664f5451e58882",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 14,
+      "B_value": 105,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 13
+        },
+        {
+          "name": "at_B_id",
+          "scale": 14
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 59
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 104
+        },
+        {
+          "name": "at_B_value",
+          "scale": 105
+        },
+        {
+          "name": "above_B_value",
+          "scale": 115
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0824-Q8-th2-l0.94-D4-h32-message_limited-e0.1",
+      "selection_sha256": "04503b76749a90cecc5de3185d86ec5ae24a17c1f10d2da75fe20c8341bedaf7",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 4,
+      "B_value": 13,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 3
+        },
+        {
+          "name": "at_B_id",
+          "scale": 4
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 8
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 12
+        },
+        {
+          "name": "at_B_value",
+          "scale": 13
+        },
+        {
+          "name": "above_B_value",
+          "scale": 14
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-3169-Q32-th4-l0.2-D0-h4-balanced-e0.2",
+      "selection_sha256": "e32261070892ec94d9d0100d308d7dc6c372f653c3bf571e194121d2b1d38371",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 21,
+      "B_value": 127,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 20
+        },
+        {
+          "name": "at_B_id",
+          "scale": 21
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 73
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 126
+        },
+        {
+          "name": "at_B_value",
+          "scale": 127
+        },
+        {
+          "name": "above_B_value",
+          "scale": 138
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0501-Q8-th1-l0.9-D24-h32-message_limited-e0.2",
+      "selection_sha256": "2c32114d437c5e7de710028fcdeaa3efab3d6b5cbb709c5bcfcfcde37792348f",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 24,
+      "B_value": 222,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 23
+        },
+        {
+          "name": "at_B_id",
+          "scale": 24
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 122
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 221
+        },
+        {
+          "name": "at_B_value",
+          "scale": 222
+        },
+        {
+          "name": "above_B_value",
+          "scale": 242
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1230-Q16-th0.5-l0.7-D0-h16-balanced-e0.1",
+      "selection_sha256": "d729e02d2742bfa61f3087305c9fa01c949fbd8cc6675075324d449e877b9e51",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 18,
+      "B_value": 68,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 17
+        },
+        {
+          "name": "at_B_id",
+          "scale": 18
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 42
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 67
+        },
+        {
+          "name": "at_B_value",
+          "scale": 68
+        },
+        {
+          "name": "above_B_value",
+          "scale": 73
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1061-Q8-th4-l0.9-D12-h32-environment_limited-e0.2",
+      "selection_sha256": "016d89c2df4a29810fe86335bfc9cca3f8fd20ea135a4abdadccec50179de81d",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 24,
+      "B_value": 118,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 23
+        },
+        {
+          "name": "at_B_id",
+          "scale": 24
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 70
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 117
+        },
+        {
+          "name": "at_B_value",
+          "scale": 118
+        },
+        {
+          "name": "above_B_value",
+          "scale": 128
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2868-Q32-th1-l0.94-D24-h16-balanced-e0.1",
+      "selection_sha256": "36d0001d8be4e9d6c5d31b8edbc90d6f847047cc540f2daaf964138891a2ce4c",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 8,
+      "B_value": 40,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 23
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 39
+        },
+        {
+          "name": "at_B_value",
+          "scale": 40
+        },
+        {
+          "name": "above_B_value",
+          "scale": 44
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1751-Q16-th2-l0.2-D4-h4-environment_limited-e0.2",
+      "selection_sha256": "1b954fecb1d6319ffb98511fd01f74c6e0daf3f85ebd8b805c22a262bc883b4b",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 36,
+      "B_value": 356,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 35
+        },
+        {
+          "name": "at_B_id",
+          "scale": 36
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 195
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 355
+        },
+        {
+          "name": "at_B_value",
+          "scale": 356
+        },
+        {
+          "name": "above_B_value",
+          "scale": 388
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0122-Q8-th0.5-l0.7-D12-h32-message_limited-e0.1",
+      "selection_sha256": "0734e132fbca1afa19298534f3528a669fbc04e3bb8a29e7062a3c7e7643a061",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 24,
+      "B_value": 129,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 23
+        },
+        {
+          "name": "at_B_id",
+          "scale": 24
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 76
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 128
+        },
+        {
+          "name": "at_B_value",
+          "scale": 129
+        },
+        {
+          "name": "above_B_value",
+          "scale": 140
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2818-Q32-th1-l0.94-D0-h16-environment_limited-e0.1",
+      "selection_sha256": "81249fcb2b5336d137b0316d72c3cbb0ffc37c9ffb77f294cb85d5a2b1aeba1d",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 9,
+      "B_value": 72,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 8
+        },
+        {
+          "name": "at_B_id",
+          "scale": 9
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 40
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 71
+        },
+        {
+          "name": "at_B_value",
+          "scale": 72
+        },
+        {
+          "name": "above_B_value",
+          "scale": 79
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-2127-Q16-th4-l0.7-D12-h4-message_limited-e0.2",
+      "selection_sha256": "0b1a3589e467ce7e932f1555fdc3e5a8e1ff454c6ee9bbfeea0ba06e25b6175f",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 8,
+      "B_value": 17,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 12
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 16
+        },
+        {
+          "name": "at_B_value",
+          "scale": 17
+        },
+        {
+          "name": "above_B_value",
+          "scale": 18
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-3403-Q32-th4-l0.94-D4-h4-balanced-e0.2",
+      "selection_sha256": "f3e187c992dbe67e85b4c6e167ad9d8b890f013ac88380d9fe4e5075b559e729",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 78,
+      "B_value": 491,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 77
+        },
+        {
+          "name": "at_B_id",
+          "scale": 78
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 284
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 490
+        },
+        {
+          "name": "at_B_value",
+          "scale": 491
+        },
+        {
+          "name": "above_B_value",
+          "scale": 533
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0208-Q8-th0.5-l0.9-D24-h16-environment_limited-e0.1",
+      "selection_sha256": "0a7bb12d12545bbe9b590f990254adb2f71ef88bea125b04472702584ef66ba7",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 6,
+      "B_value": 43,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 5
+        },
+        {
+          "name": "at_B_id",
+          "scale": 6
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 24
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 42
+        },
+        {
+          "name": "at_B_value",
+          "scale": 43
+        },
+        {
+          "name": "above_B_value",
+          "scale": 47
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2911-Q32-th2-l0.2-D4-h32-balanced-e0.2",
+      "selection_sha256": "0b7455b83fb70eb5a0304ebc1cbe339930ac04b4d866e24580416ee12036dde7",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 16,
+      "B_value": 121,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 15
+        },
+        {
+          "name": "at_B_id",
+          "scale": 16
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 68
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 120
+        },
+        {
+          "name": "at_B_value",
+          "scale": 121
+        },
+        {
+          "name": "above_B_value",
+          "scale": 132
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1874-Q16-th2-l0.9-D0-h4-message_limited-e0.1",
+      "selection_sha256": "a88146f321bb07ecec4ee7dd3ea5767b1b5ddd05fbfb0f053bbce09fc279cec1",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 16,
+      "B_value": 91,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 15
+        },
+        {
+          "name": "at_B_id",
+          "scale": 16
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 53
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 90
+        },
+        {
+          "name": "at_B_value",
+          "scale": 91
+        },
+        {
+          "name": "above_B_value",
+          "scale": 99
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1493-Q16-th1-l0.2-D12-h32-environment_limited-e0.2",
+      "selection_sha256": "01ed67aa2d0ea347fd8e5e3bbe37a16641db5e4618cb546aa546294c8046633d",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 39,
+      "B_value": 413,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 38
+        },
+        {
+          "name": "at_B_id",
+          "scale": 39
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 225
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 412
+        },
+        {
+          "name": "at_B_value",
+          "scale": 413
+        },
+        {
+          "name": "above_B_value",
+          "scale": 451
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-0134-Q8-th0.5-l0.7-D24-h16-message_limited-e0.1",
+      "selection_sha256": "b37cf8f97e0f763c85e25c489900ec22bbd9a1483ced8f8d5a8d6245641031d2",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 14,
+      "B_value": 83,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 13
+        },
+        {
+          "name": "at_B_id",
+          "scale": 14
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 48
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 82
+        },
+        {
+          "name": "at_B_value",
+          "scale": 83
+        },
+        {
+          "name": "above_B_value",
+          "scale": 90
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2315-Q32-th0.5-l0.2-D0-h16-environment_limited-e0.2",
+      "selection_sha256": "971afe1d49aa16b11207b85de4d82a15acd921b8b674821076a067b1603a0687",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 15,
+      "B_value": 125,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 14
+        },
+        {
+          "name": "at_B_id",
+          "scale": 15
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 69
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 124
+        },
+        {
+          "name": "at_B_value",
+          "scale": 125
+        },
+        {
+          "name": "above_B_value",
+          "scale": 136
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1542-Q16-th1-l0.7-D4-h32-balanced-e0.1",
+      "selection_sha256": "057984c965b6f6fa9d901aacaed7be10a0eb65a9f0c4fdf65d66c969a1512425",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 12,
+      "B_value": 64,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 37
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 63
+        },
+        {
+          "name": "at_B_value",
+          "scale": 64
+        },
+        {
+          "name": "above_B_value",
+          "scale": 70
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1137-Q8-th4-l0.94-D24-h4-message_limited-e0.2",
+      "selection_sha256": "1ae8e6c1f0ba9ace731c7ece403392d0321e7710f3c40bb38e25cbce474e03be",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 16,
+      "B_value": 82,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 15
+        },
+        {
+          "name": "at_B_id",
+          "scale": 16
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 48
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 81
+        },
+        {
+          "name": "at_B_value",
+          "scale": 82
+        },
+        {
+          "name": "above_B_value",
+          "scale": 89
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-3070-Q32-th2-l0.9-D12-h16-environment_limited-e0.1",
+      "selection_sha256": "03d5f0c885878f892306d0da01f4d04d04f72e50c7d5282804b1e22b66ad5a22",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 21,
+      "B_value": 64,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 20
+        },
+        {
+          "name": "at_B_id",
+          "scale": 21
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 42
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 63
+        },
+        {
+          "name": "at_B_value",
+          "scale": 64
+        },
+        {
+          "name": "above_B_value",
+          "scale": 69
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0793-Q8-th2-l0.94-D0-h4-balanced-e0.2",
+      "selection_sha256": "05697b9aaceff8cbe686159e2d6f684d78919d46098f0ab592b65a35d91bd912",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 53,
+      "B_value": 303,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 52
+        },
+        {
+          "name": "at_B_id",
+          "scale": 53
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 177
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 302
+        },
+        {
+          "name": "at_B_value",
+          "scale": 303
+        },
+        {
+          "name": "above_B_value",
+          "scale": 328
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1348-Q16-th0.5-l0.9-D12-h32-environment_limited-e0.1",
+      "selection_sha256": "05df1ba544b79a2a43c4e686f12b9fb2076997960147142ef2798f7800530338",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 8,
+      "B_value": 71,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 39
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 70
+        },
+        {
+          "name": "at_B_value",
+          "scale": 71
+        },
+        {
+          "name": "above_B_value",
+          "scale": 78
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0954-Q8-th4-l0.7-D4-h4-balanced-e0.1",
+      "selection_sha256": "28bc81f067a18ca7c2ffd15bf762170004d8db79c9da8caec6df5683a54eb11c",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 32,
+      "B_value": 103,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 31
+        },
+        {
+          "name": "at_B_id",
+          "scale": 32
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 67
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 102
+        },
+        {
+          "name": "at_B_value",
+          "scale": 103
+        },
+        {
+          "name": "above_B_value",
+          "scale": 111
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2873-Q32-th1-l0.94-D24-h16-environment_limited-e0.2",
+      "selection_sha256": "0ce235c9345e04a22285f4fb36113d93f6a98fb8b1d1c09dc6bc9fde2708d9aa",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 11,
+      "B_value": 70,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 10
+        },
+        {
+          "name": "at_B_id",
+          "scale": 11
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 40
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 69
+        },
+        {
+          "name": "at_B_value",
+          "scale": 70
+        },
+        {
+          "name": "above_B_value",
+          "scale": 76
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1743-Q16-th2-l0.2-D0-h32-message_limited-e0.2",
+      "selection_sha256": "0e61d14ad0e644b4a1045e117b22b8c3e586ce53d4b894f52dbc41d64e7d58d9",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 7,
+      "B_value": 55,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 6
+        },
+        {
+          "name": "at_B_id",
+          "scale": 7
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 30
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 54
+        },
+        {
+          "name": "at_B_value",
+          "scale": 55
+        },
+        {
+          "name": "above_B_value",
+          "scale": 60
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-3274-Q32-th4-l0.7-D4-h32-environment_limited-e0.1",
+      "selection_sha256": "01efd3cdc5971fe6cd40db20b7629814c2e1bf1a15a1e1f3b876f1108791ecd0",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 12,
+      "B_value": 88,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 49
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 87
+        },
+        {
+          "name": "at_B_value",
+          "scale": 88
+        },
+        {
+          "name": "above_B_value",
+          "scale": 96
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1483-Q16-th1-l0.2-D12-h16-balanced-e0.2",
+      "selection_sha256": "2386acf9102d47e575acbcb917488c4c8756895768c875a514631a2f0ad2217d",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 54,
+      "B_value": 522,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 53
+        },
+        {
+          "name": "at_B_id",
+          "scale": 54
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 287
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 521
+        },
+        {
+          "name": "at_B_value",
+          "scale": 522
+        },
+        {
+          "name": "above_B_value",
+          "scale": 569
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0200-Q8-th0.5-l0.9-D24-h4-message_limited-e0.1",
+      "selection_sha256": "f7b67a23bc75061b221993418ac9a2099ff0643d6da1cd02f5a6835c451ad49f",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 8,
+      "B_value": 57,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 32
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 56
+        },
+        {
+          "name": "at_B_value",
+          "scale": 57
+        },
+        {
+          "name": "above_B_value",
+          "scale": 62
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-1763-Q16-th2-l0.2-D4-h32-environment_limited-e0.2",
+      "selection_sha256": "fefb568879ec0a152a52fa410844dd8c1277397ea0b312c19296b20fbda5b876",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 9,
+      "B_value": 80,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 8
+        },
+        {
+          "name": "at_B_id",
+          "scale": 9
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 44
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 79
+        },
+        {
+          "name": "at_B_value",
+          "scale": 80
+        },
+        {
+          "name": "above_B_value",
+          "scale": 88
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1052-Q8-th4-l0.9-D12-h16-message_limited-e0.1",
+      "selection_sha256": "1a0713834ca0fe7bf9f179884e7490f2df02fdde1d5a3e81843c8acd8ec88c86",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 48,
+      "B_value": 196,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 47
+        },
+        {
+          "name": "at_B_id",
+          "scale": 48
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 121
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 195
+        },
+        {
+          "name": "at_B_value",
+          "scale": 196
+        },
+        {
+          "name": "above_B_value",
+          "scale": 211
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-2579-Q32-th0.5-l0.94-D24-h4-environment_limited-e0.2",
+      "selection_sha256": "0151af1e897d51630d72f32564a515d73c727e6144dff8def44480860e899c57",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 19,
+      "B_value": 173,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 18
+        },
+        {
+          "name": "at_B_id",
+          "scale": 19
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 95
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 172
+        },
+        {
+          "name": "at_B_value",
+          "scale": 173
+        },
+        {
+          "name": "above_B_value",
+          "scale": 189
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0372-Q8-th1-l0.7-D0-h32-balanced-e0.1",
+      "selection_sha256": "09020976bf5fb4bed3f0a764b44900c91ef8e986702325ea2492b3f657569bd0",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 37,
+      "B_value": 366,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 36
+        },
+        {
+          "name": "at_B_id",
+          "scale": 37
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 201
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 365
+        },
+        {
+          "name": "at_B_value",
+          "scale": 366
+        },
+        {
+          "name": "above_B_value",
+          "scale": 399
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2510-Q32-th0.5-l0.9-D24-h16-message_limited-e0.1",
+      "selection_sha256": "01ec362bee2d5a5103c86c9219fb4ca4ce7cebcfca2bbd8404f74117b6e0200e",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 12,
+      "B_value": 66,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 16,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 38
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 65
+        },
+        {
+          "name": "at_B_value",
+          "scale": 66
+        },
+        {
+          "name": "above_B_value",
+          "scale": 72
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-1445-Q16-th1-l0.2-D0-h4-environment_limited-e0.2",
+      "selection_sha256": "26b3d491fb34795eff8566bcd862c0e32398ad5671fe2acf2415ce188554006c",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 12,
+      "B_value": 35,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 16,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 23
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 34
+        },
+        {
+          "name": "at_B_value",
+          "scale": 35
+        },
+        {
+          "name": "above_B_value",
+          "scale": 38
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2281-Q16-th4-l0.94-D12-h32-balanced-e0.2",
+      "selection_sha256": "06d18790c2e5b966877816ff74d1aff2276721dba6025391e8b2609014977bd7",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 13,
+      "B_value": 114,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 12
+        },
+        {
+          "name": "at_B_id",
+          "scale": 13
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 63
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 113
+        },
+        {
+          "name": "at_B_value",
+          "scale": 114
+        },
+        {
+          "name": "above_B_value",
+          "scale": 125
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0670-Q8-th2-l0.7-D4-h4-environment_limited-e0.1",
+      "selection_sha256": "9c5c943769424378cccac2678756158e2529cc217fbfa61341fa218271364dc8",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 12,
+      "B_value": 75,
+      "B_value_status": "finite",
+      "D": 0,
+      "Q": 32,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 11
+        },
+        {
+          "name": "at_B_id",
+          "scale": 12
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 43
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 74
+        },
+        {
+          "name": "at_B_value",
+          "scale": 75
+        },
+        {
+          "name": "above_B_value",
+          "scale": 82
+        }
+      ],
+      "budget_ray": "message_limited",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-2889-Q32-th2-l0.2-D0-h16-message_limited-e0.2",
+      "selection_sha256": "0202f329d00accc15ff801de980454eff9000682cdc62199a8e16e3400f8de58",
+      "theta_high": 2.0
+    },
+    {
+      "B_id": 21,
+      "B_value": 131,
+      "B_value_status": "finite",
+      "D": 12,
+      "Q": 32,
+      "binding_type": "environment",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 20
+        },
+        {
+          "name": "at_B_id",
+          "scale": 21
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 75
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 130
+        },
+        {
+          "name": "at_B_value",
+          "scale": 131
+        },
+        {
+          "name": "above_B_value",
+          "scale": 142
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.9,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-2788-Q32-th1-l0.9-D12-h32-environment_limited-e0.1",
+      "selection_sha256": "0501d3c5387155a04f708978eca81581edd1d9a8cc5a31a126bc7f5c9f74160a",
+      "theta_high": 1.0
+    },
+    {
+      "B_id": 8,
+      "B_value": 41,
+      "B_value_status": "finite",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 7
+        },
+        {
+          "name": "at_B_id",
+          "scale": 8
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 24
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 40
+        },
+        {
+          "name": "at_B_value",
+          "scale": 41
+        },
+        {
+          "name": "above_B_value",
+          "scale": 45
+        }
+      ],
+      "budget_ray": "balanced",
+      "effect_profile": "mixed_practical_and_neutral",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.7,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 4,
+      "scenario_id": "t018-0955-Q8-th4-l0.7-D4-h4-balanced-e0.2",
+      "selection_sha256": "82482ef6d0115503eda593871431d064f978186ac35d6afda35a73333b72750d",
+      "theta_high": 4.0
+    },
+    {
+      "B_id": 69,
+      "B_value": 381,
+      "B_value_status": "finite",
+      "D": 24,
+      "Q": 16,
+      "binding_type": "message",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 68
+        },
+        {
+          "name": "at_B_id",
+          "scale": 69
+        },
+        {
+          "name": "Z_midpoint",
+          "scale": 224
+        },
+        {
+          "name": "near_B_value_below",
+          "scale": 380
+        },
+        {
+          "name": "at_B_value",
+          "scale": 381
+        },
+        {
+          "name": "above_B_value",
+          "scale": 413
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "practical_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": true,
+      "lambda": 0.94,
+      "layers": [
+        "A_gaussian_mechanism"
+      ],
+      "overhead": 16,
+      "scenario_id": "t018-1432-Q16-th0.5-l0.94-D24-h16-environment_limited-e0.1",
+      "selection_sha256": "624f1fb85f9f46d362986f42a8a7144913a5dfb2b217cb791a41c2ce3bab3d8b",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 38,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 37
+        },
+        {
+          "name": "at_B_id",
+          "scale": 38
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0071-Q8-th0.5-l0.2-D24-h32-environment_limited-e0.2",
+      "selection_sha256": "0b5efe7d2055f476701c191838371c6b58d79ee488432bc4903310f345b8dadb",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 33,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0035-Q8-th0.5-l0.2-D4-h32-environment_limited-e0.2",
+      "selection_sha256": "15754becea435670ad95ed55803c3fed4689f938e693f4b6576cdc5cc73e802b",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 33,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0052-Q8-th0.5-l0.2-D12-h32-environment_limited-e0.1",
+      "selection_sha256": "1d12449e26db630eb483bade4d5f607f927e4b886275d5bdc607d74fc7f71e22",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 33,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0016-Q8-th0.5-l0.2-D0-h32-environment_limited-e0.1",
+      "selection_sha256": "492d88b03f19e00407fc5c12709effcbf1e3c624f389172c25a0a4a3fb12ec54",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 33,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 4,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0034-Q8-th0.5-l0.2-D4-h32-environment_limited-e0.1",
+      "selection_sha256": "583e644f5a52e6825e4747be7b4fa849886554b24eb4b0be71f5fd1dafce78c0",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 33,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 12,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0053-Q8-th0.5-l0.2-D12-h32-environment_limited-e0.2",
+      "selection_sha256": "6a2cadbaaecc6fa5a1d711fef90726956d293f974274b8b7d7101f944887a331",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 33,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 0,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 32
+        },
+        {
+          "name": "at_B_id",
+          "scale": 33
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.2,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0017-Q8-th0.5-l0.2-D0-h32-environment_limited-e0.2",
+      "selection_sha256": "864190bc14838b9ee05d3ab5a31d91202bae970dd9403d1f5de5d3a22689cf82",
+      "theta_high": 0.5
+    },
+    {
+      "B_id": 38,
+      "B_value": null,
+      "B_value_status": "search_censored",
+      "D": 24,
+      "Q": 8,
+      "binding_type": "none",
+      "budget_points": [
+        {
+          "name": "below_B_id",
+          "scale": 37
+        },
+        {
+          "name": "at_B_id",
+          "scale": 38
+        }
+      ],
+      "budget_ray": "environment_limited",
+      "effect_profile": "neutral_only",
+      "epsilon_safe": 0.1,
+      "finite_threshold_gate_eligible": false,
+      "lambda": 0.2,
+      "layers": [
+        "A_gaussian_mechanism",
+        "B_affine_markov_td_transfer"
+      ],
+      "overhead": 32,
+      "scenario_id": "t018-0070-Q8-th0.5-l0.2-D24-h32-environment_limited-e0.1",
+      "selection_sha256": "aee25ab685bbe413d80799293acf06bd12e15c71782d6e4e1f71ca2851baa9e8",
+      "theta_high": 0.5
+    }
+  ],
+  "schema_version": 1,
+  "scientific_outcomes_present": false,
+  "selection_algorithm": {
+    "depends_only_on": [
+      "scenario metadata",
+      "T-018 grid hash",
+      "SHA-256 ordering"
+    ],
+    "forbidden_dependencies": [
+      "random outcome",
+      "trajectory",
+      "largest observed effect"
+    ],
+    "name": "exp016b_marginal_stratified_sha256_v1",
+    "rule": "greedily minimize current marginal-stratum counts; break ties by SHA-256 ordering",
+    "strata": [
+      "Q",
+      "theta_high",
+      "lambda",
+      "D",
+      "overhead",
+      "budget_ray",
+      "epsilon_safe",
+      "binding_type",
+      "effect_profile"
+    ]
+  },
+  "source_erratum_commit": "b893bb54fef78168774a6c5607e4d7e43e8db2ad",
+  "source_grid_hash": "c5d2dd5ddac7540888d708ab59d4e3954994da018951797a79d05200ef0ee2db",
+  "task": "EXP-016B",
+  "title": "Premature Adaptation under Finite Learning Horizons"
+}

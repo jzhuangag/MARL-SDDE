@@ -1,0 +1,72 @@
+{
+  "all_gates_without_replay_pass": true,
+  "cells": 360,
+  "comparisons": [
+    {
+      "ci95_high": 0.8249884975697377,
+      "ci95_low": 0.8244947396806039,
+      "comparator": "fixed_q1",
+      "ratio": 0.8247415816746804,
+      "seed_pairs": 64
+    },
+    {
+      "ci95_high": 1.0031609151927472,
+      "ci95_low": 1.0025605206206942,
+      "comparator": "paid_oracle",
+      "ratio": 1.0028606729760483,
+      "seed_pairs": 64
+    },
+    {
+      "ci95_high": 0.8661233673356031,
+      "ci95_low": 0.865221305040469,
+      "comparator": "correlation_only",
+      "ratio": 0.8656722186902823,
+      "seed_pairs": 64
+    },
+    {
+      "ci95_high": 0.004707206527379577,
+      "ci95_low": 0.004703663567539595,
+      "comparator": "myopic",
+      "ratio": 0.004705434714000385,
+      "seed_pairs": 64
+    }
+  ],
+  "config_sha256": "246f38ad11ddb778743f28dc1769a841ebbdfe82c30a90c93282ebb9cfea889f",
+  "confirmation_authorized": false,
+  "experiment_id": "ICML27-LEARNING-VALUE-CPU-001",
+  "gates_without_replay": {
+    "all_payloads_finite_and_exact_dual_accounting": true,
+    "complete_q_catalogue_in_every_cell": true,
+    "geometric_risk_ratio_to_paid_oracle_max": true,
+    "interior_oracle_qualified_cells_min": true,
+    "interior_q_selection_fraction_min": true,
+    "joint_parameter_coverage_fraction_min": true,
+    "ratio_to_strongest_unpaid_single_fixed_q_max": true,
+    "risk_intervals_and_selection_bound_valid_on_coverage_event": true
+  },
+  "geometric_risks": {
+    "correlation_only": 0.0012486949726998658,
+    "finite_horizon": 0.001080960547484492,
+    "fixed_q1": 0.0013106657545864815,
+    "fixed_q2": 0.001483335500284873,
+    "fixed_q4": 0.0014575331090691157,
+    "fixed_q8": 0.002374576741138457,
+    "myopic": 0.22972596862692457,
+    "paid_oracle": 0.0010778770936112996
+  },
+  "implementation_sha256": "b3ea7ea319eb052d923f4ff1fe184ea996b41c19cb48cdeb050a749e9e79161b",
+  "interior_qualified_cells": 106,
+  "interior_selection_fraction": 0.9833431603773585,
+  "joint_coverage_fraction": 0.990625,
+  "median_actual_selection_regret": 0.0,
+  "median_selection_bound": 0.0005089650559694454,
+  "monte_carlo_all_checks_pass": true,
+  "monte_carlo_checkpoints": 189,
+  "phase": "confirmation",
+  "risk_interval_coverage_fraction": 0.9934027777777777,
+  "rows": 184320,
+  "runner_sha256": "1d638d5c9e36a9c6bc7c48e3675a149c19b724124bf0d1eaa942756991ac558f",
+  "scope": "structured Gaussian Markov TD development; not nonlinear MARL confirmation",
+  "seeds": 64,
+  "strongest_unpaid_single_fixed_q": "fixed_q1"
+}

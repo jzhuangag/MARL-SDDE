@@ -1,0 +1,35 @@
+{
+  "experiment": "RCR-H1",
+  "scope": "outcome-free analytic survival gate for reuse-correct-refresh control",
+  "horizon": 192,
+  "seeds": {
+    "start": 73001,
+    "count": 32
+  },
+  "agent_counts": [4, 12],
+  "effective_batch_sizes": [4, 16],
+  "markov_persistence": [0.8, 0.95],
+  "profiles": ["stationary", "bursty", "rotating", "mixed"],
+  "refresh_budgets": [0.125, 0.25],
+  "integrand_second_moment": 0.25,
+  "divergence_floor": 0.005,
+  "divergence_scale": 0.08,
+  "sensitivity_scale": 0.08,
+  "lyapunov_v_rule": "sqrt_horizon",
+  "periods_by_budget": {
+    "0.125": 8,
+    "0.25": 4
+  },
+  "mandatory_gates": {
+    "H1_finite_and_valid": true,
+    "H2_adaptive_correction_geometric_risk_ratio_max": 0.95,
+    "H3_causal_rcr_geometric_risk_ratio_max": 0.95,
+    "H4_nonstationary_cell_improvement_fraction_min": 0.7,
+    "H5_median_oracle_gain_capture_min": 0.5,
+    "H6_stationary_causal_risk_ratio_max": 1.01,
+    "H7_each_persistence_causal_risk_ratio_max": 0.98,
+    "H8_refresh_budget_overshoot_max": 0.0,
+    "H9_solver_complexity": "O(m log(1/epsilon))",
+    "H10_no_formal_or_gpu_on_any_failure": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "continuous_coupling_audit": null,
+  "environment_audits": [
+    {
+      "agents": 2,
+      "coupling": "independent",
+      "environment": "pettingzoo_mpe",
+      "finite": true,
+      "observation_shape": [
+        11
+      ],
+      "reset_relation_ok": true,
+      "state_shape": [
+        14
+      ],
+      "task_id": "mpe_speaker_listener",
+      "workers": 4
+    },
+    {
+      "agents": 2,
+      "coupling": "shared",
+      "environment": "pettingzoo_mpe",
+      "finite": true,
+      "observation_shape": [
+        11
+      ],
+      "reset_relation_ok": true,
+      "state_shape": [
+        14
+      ],
+      "task_id": "mpe_speaker_listener",
+      "workers": 4
+    }
+  ],
+  "experiment_id": "TSP-MARL-MULTITASK-PHASE-A-001",
+  "gates": {
+    "continuous_marginal_and_public_noise": true,
+    "no_return_or_policy_update": true,
+    "pinned_clean_upstream": true,
+    "reset_coupling_relation": true,
+    "task_interfaces_finite": true
+  },
+  "harl_clean": true,
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "pass": true,
+  "role": "outcome-free compatibility audit",
+  "scientific_outcome_generated": false,
+  "task_id": "mpe_speaker_listener"
+}

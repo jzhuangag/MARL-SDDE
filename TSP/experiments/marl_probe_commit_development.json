@@ -1,0 +1,95 @@
+{
+  "experiment_id": "TSP-MARL-DEV-002",
+  "role": "outcome-free development of an observable Lyapunov probe-then-commit controller",
+  "predecessor": {
+    "experiment_id": "TSP-MARL-DEV-001",
+    "use": "development information only",
+    "gate_decision": "stop",
+    "immutable_gate_sha256": "c3a8dc81a34c712cc26dc3a92ac4f94d10960d141f7d6ecb09dab6c411f8d209"
+  },
+  "upstream": {
+    "repository": "https://github.com/PKU-MARL/HARL",
+    "commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "pettingzoo_mpe",
+    "scenario": "simple_spread_v2",
+    "continuous_actions": false,
+    "rollout_length": 25,
+    "ctde": true,
+    "decentralized_evaluation": true
+  },
+  "coupling_regimes": [
+    "independent",
+    "shared"
+  ],
+  "methods": [
+    "lyapunov_probe_commit",
+    "fixed_q1",
+    "fixed_q8"
+  ],
+  "controller": {
+    "probe_q": 8,
+    "probe_blocks": 128,
+    "probe_updates_model": false,
+    "probe_is_fully_charged": true,
+    "candidate_q": [1, 8],
+    "critic_lr": 0.0005,
+    "actor_lr": 0.0005,
+    "correlation_delta": 0.05,
+    "correlation_input": "one mean unnormalized critic residual per trajectory and rollout worker",
+    "selection_score": "(server_overhead/rollout_length+q)*(rho_upper+(1-rho_upper)/q)",
+    "benchmark_return_used_by_controller": false,
+    "commit_rule": "one decision after the separated probe; no later switching"
+  },
+  "budgets": {
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "server_overhead_per_rollout_packet": 100,
+    "message_cost_per_block": "100+25q",
+    "environment_cost_per_block": 25
+  },
+  "model": {
+    "hidden_sizes": [64, 64],
+    "activation": "tanh",
+    "ppo_epochs": 2,
+    "critic_epochs": 2
+  },
+  "evaluation": {
+    "interval_training_updates": 1000,
+    "episodes": 32,
+    "threads": 4,
+    "deterministic": true,
+    "primary_axis": "maximum of cumulative message-budget and environment-budget fractions",
+    "primary_metric": "team-return AUC",
+    "smoothing_used_for_gates": false
+  },
+  "seed_registry": {
+    "development_training": [94001, 94002, 94003, 94004],
+    "development_probe": [95001, 95002, 95003, 95004]
+  },
+  "planned_runs": {
+    "controller": 8,
+    "fixed_baselines": 16,
+    "total": 24
+  },
+  "mandatory_development_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "independent_selected_q8_fraction_min": 0.75,
+    "shared_selected_q1_fraction_min": 0.75,
+    "independent_controller_relative_auc_vs_fixed_q8_min": -0.02,
+    "shared_controller_relative_auc_vs_fixed_q8_min": 0.05,
+    "mixture_controller_relative_auc_vs_fixed_q8_min": 0.025,
+    "probe_message_fraction_max": 0.01,
+    "controller_wall_clock_overhead_fraction_max": 0.05,
+    "marginal_preserving_coupling_audit": true
+  },
+  "analysis": {
+    "pairing": "training seed within each coupling regime",
+    "relative_auc_rule": "(controller_auc-fixed_q8_auc)/abs(fixed_q8_auc)",
+    "development_inference": "point estimates only; no confirmatory p-values or confidence claims",
+    "all_registered_cells_retained": true
+  },
+  "stopping_rule": "Any mandatory development gate failure stops this extension. Do not allocate confirmation seeds, add a second task, or place a return figure in the manuscript after a failed gate."
+}

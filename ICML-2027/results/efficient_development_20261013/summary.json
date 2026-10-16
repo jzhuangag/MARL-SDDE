@@ -1,0 +1,53 @@
+{
+  "all_gates_without_replay_pass": true,
+  "cells": 360,
+  "comparisons": {
+    "correlation_only": {
+      "ci95_high": 0.9282553074360674,
+      "ci95_low": 0.92758371798901,
+      "ratio": 0.9279194519539823
+    },
+    "fixed_q1": {
+      "ci95_high": 0.9336089231519427,
+      "ci95_low": 0.9334503269892577,
+      "ratio": 0.9335296217026376
+    },
+    "paid_oracle": {
+      "ci95_high": 1.000602834041915,
+      "ci95_low": 1.0004328573354853,
+      "ratio": 1.0005178420790592
+    }
+  },
+  "experiment_id": "ICML27-EFFICIENT-CRITIC-CPU-002",
+  "gates_without_replay": {
+    "complete_finite_exact_accounting": true,
+    "coverage_event_implies_all_risk_intervals": true,
+    "interior_qualified_cells_min": true,
+    "interior_selection_fraction_min": true,
+    "joint_coverage_fraction_min": true,
+    "ratio_to_paid_efficient_oracle_max": true,
+    "ratio_to_strongest_unpaid_efficient_fixed_q_max": true
+  },
+  "geometric_risks": {
+    "correlation_only": 0.00031418772321756055,
+    "efficient_value": 0.00029154089993870826,
+    "fixed_q1": 0.00031229957053422223,
+    "fixed_q2": 0.0003330887999838458,
+    "fixed_q4": 0.0004127160659787287,
+    "fixed_q8": 0.0005959526174351544,
+    "paid_oracle": 0.0002913900059322194
+  },
+  "gpu_performance_authorized": false,
+  "implementation_sha256": "8e44490c5af1842e78433122c84390cabcd5c8eed5d4596cb31731461711de94",
+  "interior_qualified_cells": 84,
+  "interior_selection_fraction": 1.0,
+  "joint_coverage_fraction": 0.9928819444444444,
+  "phase": "development",
+  "plan_sha256": "86c4739eb53ecec6b126aecb95c87cf068a22e1306f397c41f1664eea143558c",
+  "risk_interval_coverage_fraction": 0.9963541666666667,
+  "rows": 40320,
+  "runner_sha256": "41e6bd4c555397d0387108359d1594ccf1f48542ac2ae1198d8bd7d80943047a",
+  "scope": "Prospective efficient-learner extension of the same Gaussian Markov TD model; no deep-MARL claim.",
+  "seeds": 16,
+  "strongest_unpaid_efficient_fixed_q": "fixed_q1"
+}

@@ -1,0 +1,55 @@
+{
+  "experiment_id": "PDSG-EST-001",
+  "amendment": 1,
+  "verification_status": "VERIFIED",
+  "runner_commit": "d5726e0137b25dcd2262e864b799aa71c522d890",
+  "manifest_sha256": "DE6A3847BEA601868B8E17837A792F324EEF9DF1BCD886C289F79602F3506FD0",
+  "runner_sha256": "71522F24605F0B349844E6D848BB3EBD7A5DAF470C31757076BF89436641CAB0",
+  "scenario_count": 288,
+  "seed_row_count": 18432,
+  "action_row_count": 104448,
+  "favorable_seed_row_count": 2304,
+  "adverse_seed_row_count": 384,
+  "favorable_mean_error_to_bound": 0.12643912764502854,
+  "favorable_ranking_accuracy": 1.0,
+  "favorable_median_relative_uniform_error": 0.18328874961229408,
+  "adverse_median_relative_uniform_error": 1.065729678200337,
+  "adverse_to_favorable_relative_error_ratio": 5.814484961322761,
+  "favorable_ranking_accuracy_by_degree": {
+    "2": 1.0,
+    "4": 1.0,
+    "8": 1.0
+  },
+  "gates": {
+    "E1": true,
+    "E2": true,
+    "E3": true,
+    "E4": true,
+    "E5": true,
+    "E6": true,
+    "E7": true,
+    "E8": true,
+    "E9": true
+  },
+  "primary_pass": true,
+  "reproduction_verdict": "REPRODUCIBLE",
+  "regression": {
+    "ust2_python311": {
+      "passed": 1467,
+      "skipped": 7,
+      "failed": 8,
+      "failure_cause": "optional minatar package absent"
+    },
+    "base_python38_cvxpy_subset": {
+      "passed": 26,
+      "warnings": 1,
+      "failed": 0
+    }
+  },
+  "primary_and_reproduction_summary_sha256": "B09A977157742E97AD2C4B84CBE8B0EBA7B95FBA9B57E89C3530520A6BE01264",
+  "action_rows_sha256": "7F14E4896120212E720A39808C492763E88F25C4E5F784B6899DF5D8118105E0",
+  "seed_rows_sha256": "6D5FD1E17EE232481BCFAE5C0C22CF72A98C6864CBD3BBD7F21DA7B08551EB44",
+  "next_authorized_stage": "outcome-free standard-MARL dependency-tail audit",
+  "learning_pilot_authorized": false,
+  "gpu_authorized": false
+}

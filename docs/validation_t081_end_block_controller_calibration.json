@@ -1,0 +1,66 @@
+{
+  "experiment_id": "T-081-causal-end-block-primal-dual-calibration",
+  "status": "POSITIVE_OLD_SEED_CALIBRATION_STOPPED_BY_C13",
+  "classification": "outcome-informed old-seed architecture evidence; not independent evidence",
+  "preregistration_commit": "5435694a09d43f863aa6c6f0d83eaa79e471dac7",
+  "gates": {
+    "C1": true,
+    "C2": true,
+    "C3": true,
+    "C4": true,
+    "C5": true,
+    "C6": true,
+    "C7": true,
+    "C8": true,
+    "C9": true,
+    "C10": true,
+    "C11": true,
+    "C12": true,
+    "C13": false,
+    "C14": true
+  },
+  "metrics": {
+    "primary_cells": 96,
+    "primary_ratio": 0.7611317475567754,
+    "primary_improvement": 0.23886825244322463,
+    "primary_strict_cell_fraction": 0.9375,
+    "primary_to_local_ratio": 0.7192579090120427,
+    "single_switch_ratio": 0.8247931121201305,
+    "alternating_ratio": 0.7023840628950998,
+    "delay_0_ratio": 0.7236984599332645,
+    "delay_1_ratio": 0.7760082175712881,
+    "delay_3_ratio": 0.7851552569551331,
+    "stationary_to_local_ratio": 1.0525034886057625,
+    "low_signal_ratio": 1.0040606026465202,
+    "high_temporal_ratio": 0.9849506435747893,
+    "accepted_nonlocal_rate": 0.7340163242669753,
+    "mean_debt": 0.026185675999423567,
+    "max_debt": 1.7148829138044992,
+    "mean_iterations_per_recipient_decision": 30.75273980034722
+  },
+  "reproduction": {
+    "endpoints_byte_identical": true,
+    "cells_byte_identical": true,
+    "summary_byte_identical": false,
+    "summary_difference_only_runtime_seconds": true,
+    "endpoints_sha256": "FBF7C14DB16726242CF6004A41739D2D23A50C9E3FA42F56523E655D42466A91",
+    "cells_sha256": "1C842E93FF7B1779E8BF2F784CA130F4C42E27B3FF6605B592D406FBBDC14C89",
+    "original_summary_sha256": "34A798D440DB079CE02A2ECD5B323B215BF9E890D05E161709953AA4284B5D2E",
+    "reproduction_summary_sha256": "7C4E15B98D1D973472D6BBC10A6E08D201ADCD47BD26987AB21D3B0B59AD00E7",
+    "original_runtime_seconds": 266.79886650000003,
+    "reproduction_runtime_seconds": 271.02027899999985
+  },
+  "regression": {
+    "passed": 654,
+    "skipped": 7,
+    "failed": 0,
+    "runtime_seconds": 139.95
+  },
+  "authorization": {
+    "new_seed_pilot": false,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

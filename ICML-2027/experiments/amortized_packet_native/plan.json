@@ -1,0 +1,88 @@
+{
+  "experiment": "ICML27-AMORTIZED-PACKET-NATIVE-QUAL-001",
+  "role": "outcome-free-operational-qualification",
+  "tasks": [
+    {
+      "name": "spread",
+      "scenario": "simple_spread_v3",
+      "N": 3
+    },
+    {
+      "name": "reference",
+      "scenario": "simple_reference_v3"
+    }
+  ],
+  "methods": [
+    "fresh_happo",
+    "eligible_all",
+    "current_value"
+  ],
+  "seed": 79516031,
+  "frames": 8,
+  "bank_episodes": 16,
+  "horizon": 25,
+  "actor_epochs": 5,
+  "critic_epochs": 5,
+  "actor_minibatches": 1,
+  "alphas": [
+    0.5,
+    1,
+    2
+  ],
+  "probe_episodes": [
+    4,
+    8,
+    16
+  ],
+  "young_scales": [
+    0.01,
+    0.1,
+    1
+  ],
+  "gain_scale": 1,
+  "meta_step": 0.1,
+  "communication_target": 1.25,
+  "compute_target": 1.5,
+  "delay_min": 1,
+  "delay_max": 2,
+  "potential_history": 4,
+  "potential_ridge": 1,
+  "evaluation_every": 4,
+  "evaluation_episodes": 2,
+  "training_role": 912,
+  "evaluation_role": 913,
+  "controller_role": 911,
+  "cpu_seconds_limit": 1800,
+  "qualification_cells": 6,
+  "replay_cells": 6,
+  "required_torch": "2.6.0+cpu",
+  "required_numpy": "2.2.2",
+  "gates": [
+    "exact_mapping_and_hashes",
+    "finite_payloads",
+    "same_initial_policy",
+    "same_world_frozen_policy_control",
+    "no_evaluation_leakage",
+    "five_recomputed_actor_epochs",
+    "server_optimizer_ownership",
+    "immutable_programs",
+    "independent_service_streams",
+    "unique_single_use_receipts",
+    "exact_all_costs",
+    "probe_before_bank_and_receipt_after_score",
+    "genuine_version_staleness_in_current_value",
+    "six_semantic_replays",
+    "byte_identical_analyzers",
+    "cpu_bound",
+    "one_PPO_block_per_ready_actor",
+    "eligible_only_probe_payload",
+    "predictable_geometry_and_full_interaction_remainder",
+    "state_copy_interpolation_geometry_accounting"
+  ],
+  "geometries": [
+    "full_vector",
+    "response_basis"
+  ],
+  "copy_bytes_per_work_unit": 4096,
+  "scalar_entries_per_work_unit": 64
+}

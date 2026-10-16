@@ -1,0 +1,36 @@
+{
+  "decision": "stop",
+  "expected_run_count": 32,
+  "experiment_id": "TSP-MARL-MULTITASK-PHASE-A-001",
+  "gates": {
+    "analysis_replay_byte_identical": true,
+    "distinct_oracle_actions_min_per_task": true,
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "message_binding_regime_reversal_each_task": true,
+    "oracle_relative_headroom_over_task_static_min_each_task": false
+  },
+  "pass": false,
+  "run_count": 32,
+  "task_metrics": {
+    "mamujoco_halfcheetah_2x3": {
+      "distinct_oracle_actions": [
+        1,
+        8
+      ],
+      "oracle_mean_return_auc": 3170.74031787386,
+      "oracle_relative_headroom": 0.037934330504488606,
+      "strong_static_method": "fixed_q8",
+      "strong_static_return_auc": 3054.8563860805334
+    },
+    "mpe_speaker_listener": {
+      "distinct_oracle_actions": [
+        1,
+        8
+      ],
+      "oracle_mean_return_auc": -27.01327991571089,
+      "oracle_relative_headroom": 0.003119588631199468,
+      "strong_static_method": "fixed_q8",
+      "strong_static_return_auc": -27.097813948033533
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "decision": "QUALIFIED",
+  "performance_evidence": false,
+  "original_cells": 20,
+  "semantic_replay_cells": 20,
+  "excluded_replay_fields": ["cpu_seconds"],
+  "analyzer_byte_identical": true,
+  "analyzer_hashes": {
+    "decision.json": "81f46193b08f6578f6126246de8dde9d3147e237dbbe4b1a97cc4a6a15249f52",
+    "integrity.json": "81b98a2e1311fab471d0dd6d2c19261244d25685e82111c2af8d7b9ad44e33b6"
+  },
+  "cpu_seconds": {"original":383.703125,"replay":385.375},
+  "native_transitions_per_root": {"training":48000,"evaluation":3000},
+  "current_interface_tests_passed":4,
+  "both_tasks_actual_version_staleness":true,
+  "no_qualification_return_used_for_tuning":true,
+  "no_evaluation_leakage":true,
+  "all_exact_cost_and_source_lifecycle_checks":true,
+  "qualification_source_commit":"145ed98",
+  "source_lock":"ICML-2027/internal/causal_recycle_qualification_lock_a1_20261016.json",
+  "original_root":"ICML-2027/results/causal_recycle_qualification_20261016",
+  "replay_root":"ICML-2027/results/causal_recycle_qualification_replay_20261016",
+  "next_allowed":"Separate prospective fresh-seed complete-learning development; no publication admission"
+}

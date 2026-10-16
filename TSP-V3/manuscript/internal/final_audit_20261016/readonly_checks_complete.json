@@ -1,0 +1,347 @@
+{
+  "preserved_files": {
+    "main.tex": "165adac70b67f2067964380351e8f94d129548b2b9da55007434a5821fba7e78",
+    "appendices.tex": "dfcec46942e3640bbe320b68b7aed42fc3944817a879e0fd6fc34f4d9a19e0cc",
+    "references.bib": "9ce047e460c16da8ea3cbe1ed9bdf55b90b4c0b2eba19bbe71c571dd431a7690",
+    "main.pdf": "6fe44327eb90d286de354c0698f49611fce0082bea09cec4dd7d7d5d7ba46bfd"
+  },
+  "abstract_words_whitespace": 213,
+  "keywords": [
+    "Multi-agent learning",
+    " Markov data",
+    " temporal-difference learning",
+    " adaptive sensing",
+    " Lyapunov methods."
+  ],
+  "equation_reference_style_findings": [
+    {
+      "file": "main.tex",
+      "line": 183,
+      "text": "The physical chain advances by $b$ transitions before each retained update, which makes the mixing error in \\eqref{eq:mixing} a controlled quantity."
+    },
+    {
+      "file": "main.tex",
+      "line": 229,
+      "text": "Equation \\eqref{eq:mean-risk} makes the two opposing effects transparent: increasing $q$ reduces the private-noise term $N/q$ but can reduce $N$, while increasing $b$ reduces $r$ but consumes environment transitions."
+    },
+    {
+      "file": "main.tex",
+      "line": 271,
+      "text": "For the common-factor process in \\eqref{eq:common-factor}, retaining every $b$th observation changes persistence from $\\lambda$ to $r=\\lambda^b$."
+    },
+    {
+      "file": "main.tex",
+      "line": 272,
+      "text": "The integrated correlation term in \\eqref{eq:mean-risk} admits the closed form"
+    },
+    {
+      "file": "main.tex",
+      "line": 278,
+      "text": "Increasing $b$ decreases this term exponentially, but \\eqref{eq:usable-horizon} decreases approximately as $1/b$ when the environment clock binds."
+    },
+    {
+      "file": "main.tex",
+      "line": 432,
+      "text": "Eq.~\\eqref{eq:certificate-score} instead composes the drift over the action-dependent horizon in \\eqref{eq:usable-horizon}."
+    },
+    {
+      "file": "main.tex",
+      "line": 483,
+      "text": "Equations \\eqref{eq:fixed-probe-kl}--\\eqref{eq:bhattacharyya} retain participation, spacing, persistence, probe length, and both dependence hypotheses."
+    },
+    {
+      "file": "main.tex",
+      "line": 487,
+      "text": "If the action kernel is predictable and common to both hypotheses and $\\tau$ is bounded by \\eqref{eq:budgets}, then"
+    },
+    {
+      "file": "main.tex",
+      "line": 501,
+      "text": "Together with \\eqref{eq:budgets}, this gives an occupation-measure lower bound that prices participation, spacing, stopping, and delay without reducing the adaptive Markov experiment to independent action counts."
+    },
+    {
+      "file": "main.tex",
+      "line": 518,
+      "text": "where ${\\cal M}_j$ contains the controlled Kalman-flow constraints, both resource constraints in \\eqref{eq:budgets}, and the directional information constraint"
+    },
+    {
+      "file": "main.tex",
+      "line": 528,
+      "text": "Replacing \\eqref{eq:occupation-lower-bound} by independent action counts would discard this selection effect and can understate the required sensing cost."
+    },
+    {
+      "file": "main.tex",
+      "line": 564,
+      "text": "Any other publicly specified certified fallback can replace it by substituting its risk in \\eqref{eq:value-decomposition}; the proof is unchanged."
+    },
+    {
+      "file": "main.tex",
+      "line": 567,
+      "text": "Suppose Assumption~\\ref{ass:catalogue} holds for both instances, the probe is feasible under \\eqref{eq:budgets}, and its directional errors are bounded by $\\delta$."
+    },
+    {
+      "file": "main.tex",
+      "line": 568,
+      "text": "Every design admitted by \\eqref{eq:admission} satisfies"
+    },
+    {
+      "file": "main.tex",
+      "line": 577,
+      "text": "The theorem aligns the decision time with the risk being certified: the action is chosen before its learning block, and every cost in \\eqref{eq:main-risk} is charged before evaluating the remaining horizon."
+    },
+    {
+      "file": "main.tex",
+      "line": 619,
+      "text": "\\STATE apply upper bounds as a feasibility shield and solve \\eqref{eq:mixed-controller} with the predictable central score"
+    },
+    {
+      "file": "main.tex",
+      "line": 626,
+      "text": "\\IF{some probe satisfies \\eqref{eq:admission}}"
+    },
+    {
+      "file": "main.tex",
+      "line": 706,
+      "text": "Bounding the delayed cross term in \\eqref{eq:ito-drift} produces the same contraction--forcing decomposition as \\eqref{eq:affine-terms}, while Theorem~\\ref{thm:affine} retains finite steps, integer delays, and exact budget rounding."
+    },
+    {
+      "file": "main.tex",
+      "line": 722,
+      "text": "The first asks whether cross-agent correlation produces the saturation in \\eqref{eq:speedup} and moves the resource-optimal participation level."
+    },
+    {
+      "file": "main.tex",
+      "line": 724,
+      "text": "The third asks whether the learning-value gate in \\eqref{eq:admission} improves risk over a controller that probes as soon as identification becomes reliable."
+    },
+    {
+      "file": "main.tex",
+      "line": 781,
+      "text": "The result supports the mechanism in \\eqref{eq:value-decomposition}: a reliable probe is most costly when it consumes the resource that limits the remaining learner."
+    },
+    {
+      "file": "main.tex",
+      "line": 808,
+      "text": "The figure therefore visualizes the same mechanism predicted by \\eqref{eq:speedup} and selected by \\eqref{eq:mixed-controller}, rather than a post hoc schedule."
+    },
+    {
+      "file": "main.tex",
+      "line": 862,
+      "text": "The ablations isolate all three coordinates: fixing $q$ removes the correlation response in Fig.~\\ref{fig:convergence-curves}, fixing $b$ removes the $18.49$-fold persistence response, and fixing $\\eta$ ignores the delay-dependent domain in \\eqref{eq:certified-step-domain}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 11,
+      "text": "Then \\eqref{eq:affine-td} is $e_{k+1}=v_k-\\eta r_k$."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 25,
+      "text": "Combining \\eqref{eq:conditional-bias} with the strong monotonicity of $A$ and applying Young's inequality with parameter $\\mu_\\delta$ yields"
+    },
+    {
+      "file": "appendices.tex",
+      "line": 44,
+      "text": "Substituting \\eqref{eq:v-bound} and \\eqref{eq:r-bound} gives $\\E\\|e_{k+1}\\|^2\\le c_\\lambda R_k+d_\\lambda$."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 45,
+      "text": "The choice $\\lambda=\\sqrt{h_\\tau/a_\\delta}$ minimizes the contraction coefficient and produces \\eqref{eq:affine-cd}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 82,
+      "text": "The mean-value bound proves \\eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\\widehat a}\\le U_{a^\\star}+2\\max_a\\varepsilon_a$."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 86,
+      "text": "The envelope argument keeps every later incomplete-block iterate below $\\max\\{R_{n(2D+1)},R_\\star\\}$, which is the truncated-transient form in \\eqref{eq:certificate-score}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 98,
+      "text": "Iteration proves \\eqref{eq:tracking-bound} whenever $\\bar c=(1+\\chi)c<1$."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 99,
+      "text": "Finally, $\\widehat A_w-A^\\star=\\{\\gamma\\phi(s')-\\phi(s)\\}^\\top(w-w_n^\\star)$ and $\\|\\gamma\\phi(s')-\\phi(s)\\|\\le(1+\\gamma)\\Phi$; Cauchy--Schwarz proves \\eqref{eq:advantage-transfer}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 102,
+      "text": "For fixed $(q,b)$, every coefficient and \\eqref{eq:certificate-score} is continuous in $\\eta$ on each certified component, including the zero-delay limit; the extreme-value theorem gives existence on its closed feasible portion."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 109,
+      "text": "Dividing the single-agent risk by this value gives \\eqref{eq:speedup}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 116,
+      "text": "Conditional expectation and Tonelli's theorem give \\eqref{eq:conditional-kl} and \\eqref{eq:adaptive-kl}; exchanging hypotheses gives the reverse identity."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 122,
+      "text": "If both directional errors are at most $\\delta$, monotonicity of binary relative entropy yields \\eqref{eq:info-constraint}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 149,
+      "text": "Equations \\eqref{eq:adaptive-kl}, \\eqref{eq:budgets}, and \\eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 156,
+      "text": "Since the wrong-event probability is at most $\\delta$, total expectation proves \\eqref{eq:main-risk}."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 158,
+      "text": "Subtracting the full-budget all-agent risk and using \\eqref{eq:value-decomposition} gives"
+    },
+    {
+      "file": "appendices.tex",
+      "line": 168,
+      "text": "Compact separation and $\\lambda\\le1-\\gamma$ upper-bound every feasible observation's directional information by $i_+<\\infty$; positive action cost and \\eqref{eq:info-constraint} therefore imply $B_N\\ge c_Nd_\\delta$."
+    },
+    {
+      "file": "appendices.tex",
+      "line": 174,
+      "text": "Taking the maximum proves the upper bound in \\eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\\delta$-correct probe obeys both information constraints."
+    }
+  ],
+  "citation_resolver_status_counts": {
+    "authoritative": {
+      "AVAILABLE": 37
+    },
+    "SemanticScholar": {
+      "UNAVAILABLE": 1,
+      "UNAVAILABLE_BATCH_STOPPED": 36
+    },
+    "OpenAlex": {
+      "AVAILABLE": 2,
+      "UNAVAILABLE": 1,
+      "UNAVAILABLE_BATCH_STOPPED": 34
+    },
+    "arXiv": {
+      "NOT_APPLICABLE_TO_PUBLISHED_RECORD": 35,
+      "PUBLISHED_RECORD_PRIMARY; ARXIV_PROVENANCE_NOT_YET_RECHECKED": 2
+    }
+  },
+  "primary_citation_conflicts": {
+    "paulin2015concentration": [
+      "bib_number"
+    ]
+  },
+  "tex_draft_diagnostics": {
+    "undefined_reference_or_citation": false,
+    "overfull_count": 0,
+    "underfull_count": 4,
+    "no_pdf_written": true
+  },
+  "mpe_mixture_estimands": {
+    "source": "TSP/internal/marl_mpe_qgrid_audit_gate.json",
+    "source_sha256": "a66662c829dcdc3f5a4c023d299ffb1eacd56197aad97459cf5bd83e0afeec73",
+    "mean_paired_relative_gain": 0.027798079932576547,
+    "paper_mean_regime_seed_relative_gain": 0.023194994596377645,
+    "ratio_of_aggregate_means_gain": 0.028116884674971813,
+    "paired_seeds": 8,
+    "scope": "Unknown-regime equal mixture versus strongest single fixed q8, not each regime optimum"
+  },
+  "exp016b_denominator_audit": {
+    "source": "experiments\\dependence_delay_linear\\results\\exp016b_formal_20260801\\analysis\\cell_summary.csv",
+    "source_sha256": "08a72e82075a4896ab41635f9b01341850ed8c6715448ed652bb33cd53026076",
+    "analysis_source": "experiments/dependence_delay_linear/analyze_exp016b_pilot.py:103",
+    "analysis_sha256": "4a73e7269c956e2593dce5e475c1efd1cbfcd45f99fe7db8d8c95dcbeccaee21",
+    "results": {
+      "primary_layer_A": {
+        "aggregate_cells": 446,
+        "means": {
+          "always_all": 0.32468802828668347,
+          "information_only": 0.5014048615161847,
+          "learning_aware": 0.32468802828668347
+        },
+        "saved_normalized_paired_improvement": 0.5442665507625953,
+        "actual_relative_reduction_vs_information_only": 0.35244339812568215,
+        "denominator_mismatch_in_paper": true
+      },
+      "layer_B": {
+        "aggregate_cells": 222,
+        "means": {
+          "always_all": 0.6693001597419092,
+          "information_only": 0.7419348104431005,
+          "learning_aware": 0.6693001597419092
+        },
+        "saved_normalized_paired_improvement": 0.1085232830800462,
+        "actual_relative_reduction_vs_information_only": 0.09789896589137295,
+        "denominator_mismatch_in_paper": true
+      },
+      "delay_active": {
+        "aggregate_cells": 330,
+        "means": {
+          "always_all": 0.33500257516601634,
+          "information_only": 0.49955977012210584,
+          "learning_aware": 0.33500257516601634
+        },
+        "saved_normalized_paired_improvement": 0.4912117313562152,
+        "actual_relative_reduction_vs_information_only": 0.32940441724494207,
+        "denominator_mismatch_in_paper": true
+      },
+      "message_binding": {
+        "aggregate_cells": 145,
+        "means": {
+          "always_all": 0.2696906096570619,
+          "information_only": 0.47920575744064126,
+          "learning_aware": 0.2696906096570619
+        },
+        "saved_normalized_paired_improvement": 0.7768722390816591,
+        "actual_relative_reduction_vs_information_only": 0.4372133358801137,
+        "denominator_mismatch_in_paper": true
+      },
+      "environment_binding": {
+        "aggregate_cells": 164,
+        "means": {
+          "always_all": 0.3395113040325202,
+          "information_only": 0.4859433769002337,
+          "learning_aware": 0.3395113040325202
+        },
+        "saved_normalized_paired_improvement": 0.43130249605382043,
+        "actual_relative_reduction_vs_information_only": 0.3013356696036967,
+        "denominator_mismatch_in_paper": true
+      }
+    }
+  },
+  "visual_review": {
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "clipped_or_overlapping_content": false,
+    "figures_times_new_roman_embedded": true,
+    "fraction_ticks": [
+      "0.00",
+      "0.25",
+      "0.50",
+      "0.75",
+      "1.00"
+    ],
+    "subfigure_labels_below": true,
+    "fig2_high_persistence_ticks_crowded": true
+  }
+}

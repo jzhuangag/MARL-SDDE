@@ -1,0 +1,29 @@
+{
+  "analysis_family": "unchanged EXP-016B P1-P12",
+  "base_configuration_sha256": "6dfdf87521700c2ddae9b81947e0ecc01ee33ebcf5fcda34b09e9e3c3f7f7ee5",
+  "excluded_seed_ranges": [
+    "all EXP-014/015/016A seeds",
+    "EXP-016B smoke 90340101-90340102",
+    "EXP-016B pilot 20340101-20340196"
+  ],
+  "formal_protocol_sha256": "98ddaf121e718ea6d390efa8795b4f06e7916a43de0a98a57806205b44988c76",
+  "formal_seed_count": 192,
+  "formal_seed_list_sha256": "5ad675ea1e60b9d0dfad8967e9590d74fe31afb8012ec747b2f7ad1bab3023c5",
+  "formal_seed_rule": "all consecutive integers from formal_seed_start for formal_seed_count values",
+  "formal_seed_start": 20440101,
+  "frozen_input_sha256": {
+    "docs/exp016b_gate_table.json": "b5dbf7931ffeb2678d33db716a2dfc58853cc651a6afe60f098dff5e96f7388b",
+    "docs/exp016b_power_audit.json": "a0bdc51669f3c00ed5af70db6eac67f34226a8f9d4e87a3e2f25340aabf07b2c",
+    "docs/exp016b_scenario_manifest.json": "f96b11d49fcac5f7ea42559268f91deb288ddc03a2e0d3a23215322839b6ad56",
+    "docs/exp016b_seed_registry.json": "470f3033974c0b8917edfef0842979dc743a1ba2338f16929e86f7ab96540c97"
+  },
+  "implementation_sha256": {
+    "experiments/dependence_delay_linear/analyze_exp016b_pilot.py": "4a73e7269c956e2593dce5e475c1efd1cbfcd45f99fe7db8d8c95dcbeccaee21",
+    "experiments/dependence_delay_linear/run_exp016b_formal.py": "5b751b972b93a6dd41a8ac5d3fe5ebab38c979070ac54f744e6afced871c3690",
+    "experiments/dependence_delay_linear/run_exp016b_pilot.py": "302e9e045f5366ae0e08283129f7093bf15f81fb6c260ec1acde8eff91ec7d53"
+  },
+  "outcomes_present_at_freeze": false,
+  "preregistered_decision": "run local CPU formal; any mandatory P1-P12 failure is retained and stops promotion",
+  "schema_version": 1,
+  "task": "EXP-016B-formal"
+}

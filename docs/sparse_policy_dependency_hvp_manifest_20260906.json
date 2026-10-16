@@ -1,0 +1,40 @@
+{
+  "experiment_id": "PDSG-COMP-002",
+  "status": "frozen_before_execution",
+  "parent_estimator_design_commit": "d717b434c3aa152d7b020b0a0a443feae67cff05",
+  "material_change_from_PDSG_COMP_001": "Only the owner and prospectively declared local dependency factors are forwarded or differentiated by the scheduling statistic; non-neighbor actor blocks remain outside its autograd graph.",
+  "runtime": {
+    "device": "cpu",
+    "torch_threads": 4,
+    "warmup_repetitions": 5,
+    "measured_repetitions": 20,
+    "dtype": "float32"
+  },
+  "model_grid": {
+    "agents": [16, 64, 256],
+    "hidden_widths": [64, 128],
+    "batch_sizes": [256, 1024],
+    "local_degrees": [2, 4, 8],
+    "observation_dimension": 24,
+    "action_dimension": 8,
+    "owner": 0
+  },
+  "seeds": [77001, 77002, 77003],
+  "measurement": {
+    "baseline": "forward only owner-local factors and compute one owner actor gradient",
+    "alignment_hvp": "retain the same local graph and take one joint reverse derivative of the alignment scalar with respect to all local donor blocks",
+    "outside_support_check": "at least one non-neighbor parameter block must be unused by the alignment graph",
+    "timing_order": "alternate baseline-first and HVP-first repetitions",
+    "reported_units": "milliseconds per complete measured call"
+  },
+  "mandatory_gates": {
+    "L1": "all timing and derivative values are finite and strictly positive",
+    "L2": "every local donor derivative is nonzero and every probed non-neighbor parameter is unused by the alignment graph",
+    "L3": "median across-configuration HVP-to-baseline time ratio is at most 2.5",
+    "L4": "maximum configuration HVP-to-baseline time ratio is at most 4.0",
+    "L5": "at fixed local degree, width, and batch, the maximum across-agent-count HVP median divided by the minimum is at most 1.35",
+    "L6": "within each agent-count, width, and batch cell, each adjacent local-degree HVP median ratio is at most 2.2",
+    "L7": "only after L1-L6 pass, one clean same-machine rerun must preserve every gate decision and reproduce the aggregate median and maximum timing ratios within 15 percent"
+  },
+  "stopping_rule": "Any failure among L1-L6 stops reproduction and successor learning experiments. No threshold, grid, timing count, or seed may change after the primary execution."
+}

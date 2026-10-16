@@ -1,0 +1,101 @@
+{
+  "experiment_id": "T-049A",
+  "kind": "outcome_free_exact_vector_standard_task_schedule_value_scan",
+  "parent_commit": "d85b9fbb63c8d86d07e97a04a34b4f23b6c3c8f2",
+  "scientific_execution_authorized_after_prereg_commit": true,
+  "sampled_learning_trajectory_authorized": false,
+  "formal_or_gpu_authorized": false,
+  "software": {
+    "gymnasium": "1.0.0",
+    "tasks": {
+      "frozenlake8x8": {
+        "environment_id": "FrozenLake-v1",
+        "kwargs": {"map_name": "8x8", "is_slippery": true},
+        "feature_dimension": 8
+      },
+      "cliffwalking": {
+        "environment_id": "CliffWalking-v0",
+        "kwargs": {},
+        "feature_dimension": 12
+      },
+      "taxi": {
+        "environment_id": "Taxi-v3",
+        "kwargs": {},
+        "feature_dimension": 16
+      }
+    },
+    "policy": "exact_value_iteration_with_smallest_action_tie_break_then_epsilon_soft",
+    "policy_epsilon": 0.1,
+    "discount": 0.95,
+    "terminal_handling": "zero_bootstrap_then_exact_initial_distribution_reset"
+  },
+  "estimator": {
+    "name": "tail_Polyak_Ruppert_average",
+    "burn_in_fraction": 0.5,
+    "step_formula": "eta = 0.75 * (1 - exact_regenerative_SLEM) / projected_drift_operator_norm",
+    "step_multiplier": 0.75,
+    "risk": "T-048 exact vector scheduled PR risk with T-049 exact task lag covariances"
+  },
+  "coupling": {
+    "name": "marginal_preserving_trajectory_switch",
+    "switch_probability": "sqrt(rho)",
+    "switch_fixed_within_learning_trajectory": true,
+    "switch_redrawn_across_replicates": true,
+    "actor_marginal_law_unchanged": true
+  },
+  "grid": {
+    "rho": [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0],
+    "delay": [0, 4, 8],
+    "message_overhead": [8, 32],
+    "reference_updates": [96, 192],
+    "reference_q": 4,
+    "environment_budget": 1000000,
+    "schedule_library": {
+      "fixed_q": [1, 4, 16],
+      "two_stage_pairs": [[1, 16], [16, 1]],
+      "first_stage_fraction": [0.25, 0.5, 0.75]
+    }
+  },
+  "probe_ceiling": {
+    "independent_restart_blocks": 4,
+    "q_probe": 16,
+    "stationarity_total_variation_target": 0.0001,
+    "message_cost_charged": "blocks * (message_overhead + q_probe)",
+    "environment_cost_charged": "blocks * task_specific_public_mixing_burn_in plus one delay",
+    "probe_gradients_used_for_learning": false,
+    "interpretation": "optimistic full-cost oracle ceiling only; no learned probe estimator is evaluated"
+  },
+  "analysis": {
+    "strong_fixed_group": ["task", "message_overhead", "reference_updates", "delay"],
+    "strong_fixed_selection": "minimum geometric full-budget exact risk over the complete registered rho grid",
+    "cellwise_fixed_oracle": "minimum full-budget risk among fixed q schedules",
+    "dynamic_oracle": "minimum risk over the complete fixed and two-stage library",
+    "primary_population": "all registered cells",
+    "tie_break": ["risk", "schedule_name"],
+    "no_seeds_or_confidence_intervals": true,
+    "T043A_T045A_results_as_inputs": false
+  },
+  "mandatory_gates": {
+    "V1": "all public task kernels, policies, stationary laws, drifts, and lag covariances pass exact validity checks",
+    "V2": "all registered full-budget and post-probe rows are finite, stable, dual-budget feasible, and have nonempty averaging windows",
+    "V3": "the full-cost schedule oracle improves the strongest deployable fixed-q baseline by at least 5 percent in aggregate",
+    "V4": "the full-cost schedule oracle strictly improves the strongest deployable fixed-q baseline in at least 50 percent of cells",
+    "V5": "the best nonconstant post-probe schedule improves the cellwise full-budget fixed-q oracle by at least 1 percent in aggregate",
+    "V6": "a nonconstant post-probe schedule strictly improves the cellwise full-budget fixed-q oracle in at least 25 percent of cells",
+    "V7": "oracle mean participation is nonincreasing along at least 80 percent of adjacent rho comparisons",
+    "V8": "the selected oracle support contains at least two fixed schedules and at least one nonconstant schedule",
+    "V9": "no earlier result row, sampled trajectory, pilot seed, formal seed, confidence interval, GPU job, or HPC4 job is used",
+    "V10": "a clean rerun is byte-identical and configuration, runner, core, task, rows, and summary SHA-256 values are recorded"
+  },
+  "stop_rule": "Any failed mandatory gate forbids a learned EXP-021A pilot. Thresholds, tasks, schedules, costs, and populations may not be changed after execution.",
+  "expected_workload": {
+    "tasks": 3,
+    "base_scenarios": 36,
+    "rho_cells": 252,
+    "schedules_per_cell": 9,
+    "rows": 2268,
+    "maximum_full_updates": 256,
+    "recommended_hardware": "local CPU",
+    "gpu": false
+  }
+}

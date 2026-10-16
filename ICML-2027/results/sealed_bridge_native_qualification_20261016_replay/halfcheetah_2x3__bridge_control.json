@@ -1,0 +1,892 @@
+{
+  "all_source_cohorts_consumed": true,
+  "baseline_parameter_bytes": 7320,
+  "charge_scales": [
+    300,
+    91928
+  ],
+  "costs": {
+    "actor_adam_calls": 0,
+    "actor_sampling_rows": 2600,
+    "actor_sgd_commits": 12,
+    "baseline_broadcast_bytes": 43920,
+    "bridge_payload_bytes": 165200,
+    "bridge_transitions": 700,
+    "critic_adam_calls": 30,
+    "critic_backward_rows": 3500,
+    "critic_value_rows": 2700,
+    "gradient_array_bytes": 2209280,
+    "gradient_backward_rows": 4000,
+    "gradient_forward_rows": 4000,
+    "messages": 48,
+    "model_copy_bytes": 126768,
+    "moment_scalar_entries": 579936,
+    "policy_broadcast_bytes": 82848,
+    "source_payload_bytes": 141600,
+    "source_transitions": 600
+  },
+  "cpu_seconds": 2.921875,
+  "episode_ids": [
+    488581362,
+    1723724043,
+    1745177392,
+    92291589,
+    1141062083,
+    1125256115,
+    1717002838,
+    2048038728,
+    1384839058,
+    161454343,
+    542535153,
+    960566582,
+    1470071713,
+    1789139434,
+    227319446,
+    2023635053,
+    187838771,
+    847993485,
+    103532967,
+    1255858759,
+    1027636700,
+    885563699,
+    923582509,
+    302699586,
+    353994704,
+    396402142,
+    1384183892,
+    664810491,
+    806474542,
+    1289403564,
+    1718034791,
+    1265088463,
+    221736677,
+    320092673,
+    821551132,
+    1154540215,
+    1952994343,
+    110357765,
+    1905617833,
+    1755647466,
+    1715380731,
+    1879655188,
+    985821925,
+    1728820565,
+    70450022,
+    724460631,
+    558315534,
+    1482166098,
+    1121958092,
+    1757298424,
+    70791939,
+    1458216358
+  ],
+  "evaluations_collected": 0,
+  "final_hash": "ee862b3950ff616143c1414c9625915c2b42aff02b9478241a867bd36a5b9dff",
+  "initial_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+  "launches": [
+    {
+      "data_hash": "56794451c3c14faa84ad40623b22afa577f17bfd6a43b8ababb217b3ffb9a5e5",
+      "due": 2,
+      "id": 0,
+      "launch_tick": 0,
+      "native_transitions": 100,
+      "source_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "source_payload_bytes": 23600,
+      "source_version": 0
+    },
+    {
+      "data_hash": "0acf70294be2db1122210de03c2fba97c4fa3f66cd1cbac962e8c218a39bc77c",
+      "due": 3,
+      "id": 1,
+      "launch_tick": 1,
+      "native_transitions": 100,
+      "source_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "source_payload_bytes": 23600,
+      "source_version": 0
+    },
+    {
+      "data_hash": "69181d1ebe55cee9bd000642fd1ca3a3ce19ce78e8bdcd717b75465149de3f74",
+      "due": 3,
+      "id": 2,
+      "launch_tick": 2,
+      "native_transitions": 100,
+      "source_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "source_payload_bytes": 23600,
+      "source_version": 0
+    },
+    {
+      "data_hash": "8b6a662b3cf85c9b6d9714a99cc65c9e0fbc21cb8ebe245b2b8efa85fe532f29",
+      "due": 5,
+      "id": 3,
+      "launch_tick": 3,
+      "native_transitions": 100,
+      "source_hash": "bdefaadc34b78f55b4a0262a2caf1bc3991e317f22d7697ad9dc131fd1b534bc",
+      "source_payload_bytes": 23600,
+      "source_version": 1
+    },
+    {
+      "data_hash": "18694ff7147587510f6e23820db746df58c00fc4e837fdc8e1dd36ab7adc2614",
+      "due": 5,
+      "id": 4,
+      "launch_tick": 4,
+      "native_transitions": 100,
+      "source_hash": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+      "source_payload_bytes": 23600,
+      "source_version": 3
+    },
+    {
+      "data_hash": "e6529abe180c4e8684bbdb9b05ee1ff681b2e267528110111a13f9c7ff2a226b",
+      "due": 7,
+      "id": 5,
+      "launch_tick": 5,
+      "native_transitions": 100,
+      "source_hash": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+      "source_payload_bytes": 23600,
+      "source_version": 3
+    }
+  ],
+  "logical_transport_only": true,
+  "method": "bridge_control",
+  "per_episode_payload_bytes": 5900,
+  "performance_evidence": false,
+  "policy_parameter_bytes": 13808,
+  "qualification_returns_recorded": false,
+  "receipts": [
+    {
+      "actor_optimizer": "server_sgd",
+      "actual_version_age": 0,
+      "anchor_hash": "04ccc388fc5a035097f074cc9d5338c7734a8ed8ed094443ac32ddcacca6840c",
+      "bridge_ids": [
+        1470071713,
+        1789139434,
+        227319446,
+        2023635053
+      ],
+      "bridge_payload_bytes": 23600,
+      "complete_episode_modes": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "control": {
+        "actual_cost": [
+          0.6666666666666666,
+          0.7432773474893395
+        ],
+        "current_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+        "current_return_used": false,
+        "index": 1,
+        "losses": [
+          0.09632873293502983,
+          0.031870245603053605,
+          0.031152249477184597,
+          0.048164366467514916,
+          0.019829153986174877,
+          0.031152249477184597
+        ],
+        "probabilities_after": [
+          0.16666666613420766,
+          0.16666666677879255,
+          0.1666666667859725,
+          0.16666666661585133,
+          0.16666666689920345,
+          0.1666666667859725
+        ],
+        "probabilities_before": [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666
+        ],
+        "queues_after": [
+          0.0,
+          0.0
+        ],
+        "queues_before": [
+          0.0,
+          0.0
+        ],
+        "risk_feedback": [
+          96328.73293502984,
+          31870.24560305361,
+          31152.2494771846,
+          48164.36646751492,
+          19829.15398617488,
+          31152.2494771846
+        ],
+        "source_id": "0",
+        "variance_upper_certificate": false
+      },
+      "costs": {
+        "actor_adam_calls": 0,
+        "actor_sampling_rows": 800,
+        "actor_sgd_commits": 2,
+        "baseline_broadcast_bytes": 21960,
+        "bridge_payload_bytes": 23600,
+        "bridge_transitions": 100,
+        "critic_adam_calls": 5,
+        "critic_backward_rows": 500,
+        "critic_value_rows": 400,
+        "gradient_array_bytes": 331392,
+        "gradient_backward_rows": 600,
+        "gradient_forward_rows": 600,
+        "messages": 18,
+        "model_copy_bytes": 63384,
+        "moment_scalar_entries": 82848,
+        "policy_broadcast_bytes": 41424,
+        "source_payload_bytes": 70800,
+        "source_transitions": 300
+      },
+      "current_return_ranked": false,
+      "data_hash": "56794451c3c14faa84ad40623b22afa577f17bfd6a43b8ababb217b3ffb9a5e5",
+      "decision": {
+        "before_anchor_and_bridge": true,
+        "beta": 0.5,
+        "current_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+        "episodes": 4,
+        "index": 1,
+        "source_id": "0"
+      },
+      "direction_hash": "77c5c5ea933d2f65e735c64e102399c582dcfaa3e1b337599293c0e883beb6a2",
+      "evaluation_used": false,
+      "exact_native_transitions": 200,
+      "ordinary_adam_theorem_claimed": false,
+      "source_cohort_consumed_once": true,
+      "source_cohort_reused": false,
+      "source_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "source_id": 0,
+      "source_ids": [
+        488581362,
+        1723724043,
+        1745177392,
+        92291589
+      ],
+      "source_payload_bytes": 23600,
+      "source_version": 0,
+      "source_weight_max": 1.0,
+      "target_after": "bdefaadc34b78f55b4a0262a2caf1bc3991e317f22d7697ad9dc131fd1b534bc",
+      "target_before": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "target_version": 0,
+      "target_weight_max": 1.0,
+      "tick": 2
+    },
+    {
+      "actor_optimizer": "server_sgd",
+      "actual_version_age": 1,
+      "anchor_hash": "f6f67850d3eeea857414897174991ac3f8240e425ff60fc06c0600911c7b0f0a",
+      "bridge_ids": [
+        1027636700,
+        885563699,
+        923582509,
+        302699586
+      ],
+      "bridge_payload_bytes": 23600,
+      "complete_episode_modes": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "control": {
+        "actual_cost": [
+          0.6666666666666666,
+          0.7432773474893395
+        ],
+        "current_hash": "bdefaadc34b78f55b4a0262a2caf1bc3991e317f22d7697ad9dc131fd1b534bc",
+        "current_return_used": false,
+        "index": 0,
+        "losses": [
+          0.028353715894685882,
+          0.028143083192558826,
+          0.06530613850078024,
+          0.014176857947342941,
+          0.018634735492188657,
+          0.050905844834027096
+        ],
+        "probabilities_after": [
+          0.16666666619320444,
+          0.16666666683989567,
+          0.16666666647544506,
+          0.1666666668166167,
+          0.16666666705539004,
+          0.16666666661944798
+        ],
+        "probabilities_before": [
+          0.16666666613420766,
+          0.16666666677879255,
+          0.1666666667859725,
+          0.16666666661585133,
+          0.16666666689920345,
+          0.1666666667859725
+        ],
+        "queues_after": [
+          0.0,
+          0.0
+        ],
+        "queues_before": [
+          0.0,
+          0.0
+        ],
+        "risk_feedback": [
+          28353.715894685884,
+          28143.083192558828,
+          65306.138500780246,
+          14176.857947342942,
+          18634.735492188658,
+          50905.8448340271
+        ],
+        "source_id": "1",
+        "variance_upper_certificate": false
+      },
+      "costs": {
+        "actor_adam_calls": 0,
+        "actor_sampling_rows": 1200,
+        "actor_sgd_commits": 4,
+        "baseline_broadcast_bytes": 29280,
+        "bridge_payload_bytes": 47200,
+        "bridge_transitions": 200,
+        "critic_adam_calls": 10,
+        "critic_backward_rows": 1000,
+        "critic_value_rows": 800,
+        "gradient_array_bytes": 662784,
+        "gradient_backward_rows": 1200,
+        "gradient_forward_rows": 1200,
+        "messages": 26,
+        "model_copy_bytes": 84512,
+        "moment_scalar_entries": 165696,
+        "policy_broadcast_bytes": 55232,
+        "source_payload_bytes": 94400,
+        "source_transitions": 400
+      },
+      "current_return_ranked": false,
+      "data_hash": "0acf70294be2db1122210de03c2fba97c4fa3f66cd1cbac962e8c218a39bc77c",
+      "decision": {
+        "before_anchor_and_bridge": true,
+        "beta": 0.0,
+        "current_hash": "bdefaadc34b78f55b4a0262a2caf1bc3991e317f22d7697ad9dc131fd1b534bc",
+        "episodes": 4,
+        "index": 0,
+        "source_id": "1"
+      },
+      "direction_hash": "085fe309fa142f3fad26b8af1b96fd3915fe805d68641debe2512d8e1880db8a",
+      "evaluation_used": false,
+      "exact_native_transitions": 200,
+      "ordinary_adam_theorem_claimed": false,
+      "source_cohort_consumed_once": true,
+      "source_cohort_reused": false,
+      "source_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "source_id": 1,
+      "source_ids": [
+        1141062083,
+        1125256115,
+        1717002838,
+        2048038728
+      ],
+      "source_payload_bytes": 23600,
+      "source_version": 0,
+      "source_weight_max": 1.0187965225742217,
+      "target_after": "78577230dc99b2d6ae5c8770fa747a13cdd003b1908ab12b8e6d3bb0cdcd9809",
+      "target_before": "bdefaadc34b78f55b4a0262a2caf1bc3991e317f22d7697ad9dc131fd1b534bc",
+      "target_version": 1,
+      "target_weight_max": 1.0686504866833562,
+      "tick": 3
+    },
+    {
+      "actor_optimizer": "server_sgd",
+      "actual_version_age": 2,
+      "anchor_hash": "851617e1a7a4431a676b9f608a21d1003feacd4bf74a20b02e9d4d88f25b3227",
+      "bridge_ids": [
+        353994704,
+        396402142,
+        1384183892,
+        664810491
+      ],
+      "bridge_payload_bytes": 23600,
+      "complete_episode_modes": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "control": {
+        "actual_cost": [
+          0.6666666666666666,
+          0.7432773474893395
+        ],
+        "current_hash": "78577230dc99b2d6ae5c8770fa747a13cdd003b1908ab12b8e6d3bb0cdcd9809",
+        "current_return_used": false,
+        "index": 1,
+        "losses": [
+          0.06540093674863272,
+          0.0316557477959568,
+          0.059434832016075675,
+          0.03270046837431636,
+          0.02086342992031195,
+          0.049859640097372045
+        ],
+        "probabilities_after": [
+          0.16666666597238686,
+          0.16666666695652999,
+          0.16666666631428853,
+          0.16666666692280382,
+          0.16666666727994753,
+          0.16666666655404336
+        ],
+        "probabilities_before": [
+          0.16666666619320444,
+          0.16666666683989567,
+          0.16666666647544506,
+          0.1666666668166167,
+          0.16666666705539004,
+          0.16666666661944798
+        ],
+        "queues_after": [
+          0.0,
+          0.0
+        ],
+        "queues_before": [
+          0.0,
+          0.0
+        ],
+        "risk_feedback": [
+          65400.93674863272,
+          31655.7477959568,
+          59434.83201607568,
+          32700.46837431636,
+          20863.42992031195,
+          49859.640097372045
+        ],
+        "source_id": "2",
+        "variance_upper_certificate": false
+      },
+      "costs": {
+        "actor_adam_calls": 0,
+        "actor_sampling_rows": 1400,
+        "actor_sgd_commits": 6,
+        "baseline_broadcast_bytes": 29280,
+        "bridge_payload_bytes": 70800,
+        "bridge_transitions": 300,
+        "critic_adam_calls": 15,
+        "critic_backward_rows": 1500,
+        "critic_value_rows": 1200,
+        "gradient_array_bytes": 994176,
+        "gradient_backward_rows": 1800,
+        "gradient_forward_rows": 1800,
+        "messages": 29,
+        "model_copy_bytes": 84512,
+        "moment_scalar_entries": 248544,
+        "policy_broadcast_bytes": 55232,
+        "source_payload_bytes": 94400,
+        "source_transitions": 400
+      },
+      "current_return_ranked": false,
+      "data_hash": "69181d1ebe55cee9bd000642fd1ca3a3ce19ce78e8bdcd717b75465149de3f74",
+      "decision": {
+        "before_anchor_and_bridge": true,
+        "beta": 0.5,
+        "current_hash": "78577230dc99b2d6ae5c8770fa747a13cdd003b1908ab12b8e6d3bb0cdcd9809",
+        "episodes": 4,
+        "index": 1,
+        "source_id": "2"
+      },
+      "direction_hash": "309fe890155acc2243281a6621c9d3c3767b7dc0f0bf15da9868456fb30f38a7",
+      "evaluation_used": false,
+      "exact_native_transitions": 200,
+      "ordinary_adam_theorem_claimed": false,
+      "source_cohort_consumed_once": true,
+      "source_cohort_reused": false,
+      "source_hash": "2a832444c298ea1eb523e4fe1f9c0c67db3e734b04082cedfc353c86829f2a9e",
+      "source_id": 2,
+      "source_ids": [
+        1384839058,
+        161454343,
+        542535153,
+        960566582
+      ],
+      "source_payload_bytes": 23600,
+      "source_version": 0,
+      "source_weight_max": 1.0692865172372124,
+      "target_after": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+      "target_before": "78577230dc99b2d6ae5c8770fa747a13cdd003b1908ab12b8e6d3bb0cdcd9809",
+      "target_version": 2,
+      "target_weight_max": 1.0045601733459595,
+      "tick": 3
+    },
+    {
+      "actor_optimizer": "server_sgd",
+      "actual_version_age": 2,
+      "anchor_hash": "9767d2f7453fab97842e63a58962b2b8a99e700ffb8824e1181aa5cd4027f383",
+      "bridge_ids": [
+        1952994343,
+        110357765,
+        1905617833,
+        1755647466
+      ],
+      "bridge_payload_bytes": 23600,
+      "complete_episode_modes": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "control": {
+        "actual_cost": [
+          0.6666666666666666,
+          0.7432773474893395
+        ],
+        "current_hash": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+        "current_return_used": false,
+        "index": 2,
+        "losses": [
+          0.016520079577304864,
+          0.0184283236820747,
+          0.0583282580313276,
+          0.008260039788652432,
+          0.016466194034023125,
+          0.05817225778760691
+        ],
+        "probabilities_after": [
+          0.16666666610081132,
+          0.16666666706587202,
+          0.1666666660246312,
+          0.1666666671338287,
+          0.16666666740891084,
+          0.16666666626594603
+        ],
+        "probabilities_before": [
+          0.16666666597238686,
+          0.16666666695652999,
+          0.16666666631428853,
+          0.16666666692280382,
+          0.16666666727994753,
+          0.16666666655404336
+        ],
+        "queues_after": [
+          0.0,
+          0.0
+        ],
+        "queues_before": [
+          0.0,
+          0.0
+        ],
+        "risk_feedback": [
+          16520.079577304863,
+          18428.3236820747,
+          58328.258031327605,
+          8260.039788652432,
+          16466.194034023127,
+          58172.25778760691
+        ],
+        "source_id": "3",
+        "variance_upper_certificate": false
+      },
+      "costs": {
+        "actor_adam_calls": 0,
+        "actor_sampling_rows": 2000,
+        "actor_sgd_commits": 8,
+        "baseline_broadcast_bytes": 43920,
+        "bridge_payload_bytes": 94400,
+        "bridge_transitions": 400,
+        "critic_adam_calls": 20,
+        "critic_backward_rows": 2000,
+        "critic_value_rows": 1600,
+        "gradient_array_bytes": 1325568,
+        "gradient_backward_rows": 2400,
+        "gradient_forward_rows": 2400,
+        "messages": 42,
+        "model_copy_bytes": 126768,
+        "moment_scalar_entries": 331392,
+        "policy_broadcast_bytes": 82848,
+        "source_payload_bytes": 141600,
+        "source_transitions": 600
+      },
+      "current_return_ranked": false,
+      "data_hash": "8b6a662b3cf85c9b6d9714a99cc65c9e0fbc21cb8ebe245b2b8efa85fe532f29",
+      "decision": {
+        "before_anchor_and_bridge": true,
+        "beta": 1.0,
+        "current_hash": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+        "episodes": 4,
+        "index": 2,
+        "source_id": "3"
+      },
+      "direction_hash": "620e86bbc9f31bb3eeeeb6bee86118f8cd0ee41db2b329b011b835d2c34a41af",
+      "evaluation_used": false,
+      "exact_native_transitions": 200,
+      "ordinary_adam_theorem_claimed": false,
+      "source_cohort_consumed_once": true,
+      "source_cohort_reused": false,
+      "source_hash": "bdefaadc34b78f55b4a0262a2caf1bc3991e317f22d7697ad9dc131fd1b534bc",
+      "source_id": 3,
+      "source_ids": [
+        187838771,
+        847993485,
+        103532967,
+        1255858759
+      ],
+      "source_payload_bytes": 23600,
+      "source_version": 1,
+      "source_weight_max": 1.0668122696800308,
+      "target_after": "2ee7c393fe0ddb2aeea4cb8fcf3e08d775ec1540b7533148113b8ae6c9c709d4",
+      "target_before": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+      "target_version": 3,
+      "target_weight_max": 1.0069106449414444,
+      "tick": 5
+    },
+    {
+      "actor_optimizer": "server_sgd",
+      "actual_version_age": 1,
+      "anchor_hash": "db66005dca3f76be4fb5aaa5a02d7316b83594d392ec011e312a2f6efc0d9c83",
+      "bridge_ids": [
+        1715380731,
+        1879655188,
+        985821925,
+        1728820565
+      ],
+      "bridge_payload_bytes": 23600,
+      "complete_episode_modes": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "control": {
+        "actual_cost": [
+          0.6666666666666666,
+          0.7432773474893395
+        ],
+        "current_hash": "2ee7c393fe0ddb2aeea4cb8fcf3e08d775ec1540b7533148113b8ae6c9c709d4",
+        "current_return_used": false,
+        "index": 2,
+        "losses": [
+          0.057248070005781894,
+          0.023169443928419013,
+          0.03326756273065979,
+          0.028624035002890947,
+          0.015692403783096463,
+          0.033064508640877725
+        ],
+        "probabilities_after": [
+          0.16666666584677398,
+          0.16666666715262093,
+          0.16666666601039892,
+          0.1666666671660317,
+          0.16666666757043017,
+          0.1666666662537443
+        ],
+        "probabilities_before": [
+          0.16666666610081132,
+          0.16666666706587202,
+          0.1666666660246312,
+          0.1666666671338287,
+          0.16666666740891084,
+          0.16666666626594603
+        ],
+        "queues_after": [
+          0.0,
+          0.0
+        ],
+        "queues_before": [
+          0.0,
+          0.0
+        ],
+        "risk_feedback": [
+          57248.0700057819,
+          23169.443928419016,
+          33267.56273065979,
+          28624.03500289095,
+          15692.403783096464,
+          33064.50864087773
+        ],
+        "source_id": "4",
+        "variance_upper_certificate": false
+      },
+      "costs": {
+        "actor_adam_calls": 0,
+        "actor_sampling_rows": 2200,
+        "actor_sgd_commits": 10,
+        "baseline_broadcast_bytes": 43920,
+        "bridge_payload_bytes": 118000,
+        "bridge_transitions": 500,
+        "critic_adam_calls": 25,
+        "critic_backward_rows": 2500,
+        "critic_value_rows": 2000,
+        "gradient_array_bytes": 1656960,
+        "gradient_backward_rows": 3000,
+        "gradient_forward_rows": 3000,
+        "messages": 45,
+        "model_copy_bytes": 126768,
+        "moment_scalar_entries": 414240,
+        "policy_broadcast_bytes": 82848,
+        "source_payload_bytes": 141600,
+        "source_transitions": 600
+      },
+      "current_return_ranked": false,
+      "data_hash": "18694ff7147587510f6e23820db746df58c00fc4e837fdc8e1dd36ab7adc2614",
+      "decision": {
+        "before_anchor_and_bridge": true,
+        "beta": 1.0,
+        "current_hash": "2ee7c393fe0ddb2aeea4cb8fcf3e08d775ec1540b7533148113b8ae6c9c709d4",
+        "episodes": 4,
+        "index": 2,
+        "source_id": "4"
+      },
+      "direction_hash": "5441333105b0bed667cecc2c70000e50154669e2f4691b55fecd209a43964447",
+      "evaluation_used": false,
+      "exact_native_transitions": 200,
+      "ordinary_adam_theorem_claimed": false,
+      "source_cohort_consumed_once": true,
+      "source_cohort_reused": false,
+      "source_hash": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+      "source_id": 4,
+      "source_ids": [
+        806474542,
+        1289403564,
+        1718034791,
+        1265088463
+      ],
+      "source_payload_bytes": 23600,
+      "source_version": 3,
+      "source_weight_max": 1.0389285688798433,
+      "target_after": "3eac7ec56e7ae5c2f0b7d640b8735d49d4ae28ee604c1a733705227cdf28224c",
+      "target_before": "2ee7c393fe0ddb2aeea4cb8fcf3e08d775ec1540b7533148113b8ae6c9c709d4",
+      "target_version": 4,
+      "target_weight_max": 1.0348671631868522,
+      "tick": 5
+    },
+    {
+      "actor_optimizer": "server_sgd",
+      "actual_version_age": 2,
+      "anchor_hash": "3d6a279f46d1d86bde2bfcecd1aa10828bc8623220ac5b6ca6f0aa2f04a9bdd5",
+      "bridge_ids": [
+        70450022,
+        724460631,
+        558315534,
+        1482166098,
+        1121958092,
+        1757298424,
+        70791939,
+        1458216358
+      ],
+      "bridge_payload_bytes": 47200,
+      "complete_episode_modes": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "control": {
+        "actual_cost": [
+          1.0,
+          1.0
+        ],
+        "current_hash": "3eac7ec56e7ae5c2f0b7d640b8735d49d4ae28ee604c1a733705227cdf28224c",
+        "current_return_used": false,
+        "index": 4,
+        "losses": [
+          0.03091838585342306,
+          0.0192665443590198,
+          0.05071662859444971,
+          0.01545919292671153,
+          0.015879051603537253,
+          0.05034143199333427
+        ],
+        "probabilities_after": [
+          0.1666666658418922,
+          0.16666666726425755,
+          0.1666666658075347,
+          0.16666666731574184,
+          0.1666666677159417,
+          0.16666666605463204
+        ],
+        "probabilities_before": [
+          0.16666666584677398,
+          0.16666666715262093,
+          0.16666666601039892,
+          0.1666666671660317,
+          0.16666666757043017,
+          0.1666666662537443
+        ],
+        "queues_after": [
+          0.15000000000000002,
+          0.09999999999999998
+        ],
+        "queues_before": [
+          0.0,
+          0.0
+        ],
+        "risk_feedback": [
+          30918.385853423064,
+          19266.5443590198,
+          50716.628594449714,
+          15459.192926711532,
+          15879.051603537253,
+          50341.43199333427
+        ],
+        "source_id": "5",
+        "variance_upper_certificate": false
+      },
+      "costs": {
+        "actor_adam_calls": 0,
+        "actor_sampling_rows": 2600,
+        "actor_sgd_commits": 12,
+        "baseline_broadcast_bytes": 43920,
+        "bridge_payload_bytes": 165200,
+        "bridge_transitions": 700,
+        "critic_adam_calls": 30,
+        "critic_backward_rows": 3500,
+        "critic_value_rows": 2700,
+        "gradient_array_bytes": 2209280,
+        "gradient_backward_rows": 4000,
+        "gradient_forward_rows": 4000,
+        "messages": 48,
+        "model_copy_bytes": 126768,
+        "moment_scalar_entries": 579936,
+        "policy_broadcast_bytes": 82848,
+        "source_payload_bytes": 141600,
+        "source_transitions": 600
+      },
+      "current_return_ranked": false,
+      "data_hash": "e6529abe180c4e8684bbdb9b05ee1ff681b2e267528110111a13f9c7ff2a226b",
+      "decision": {
+        "before_anchor_and_bridge": true,
+        "beta": 0.5,
+        "current_hash": "3eac7ec56e7ae5c2f0b7d640b8735d49d4ae28ee604c1a733705227cdf28224c",
+        "episodes": 8,
+        "index": 4,
+        "source_id": "5"
+      },
+      "direction_hash": "b3ece9091b5b1c0d36647c4a032a7634834ccb9018e970daf76a34b63a79a6e2",
+      "evaluation_used": false,
+      "exact_native_transitions": 300,
+      "ordinary_adam_theorem_claimed": false,
+      "source_cohort_consumed_once": true,
+      "source_cohort_reused": false,
+      "source_hash": "39a318dcde00b2176fb84a5afc5b8d9723ec3698e05bcb68a5842b6563382a2d",
+      "source_id": 5,
+      "source_ids": [
+        221736677,
+        320092673,
+        821551132,
+        1154540215
+      ],
+      "source_payload_bytes": 23600,
+      "source_version": 3,
+      "source_weight_max": 1.0580355470571592,
+      "target_after": "ee862b3950ff616143c1414c9625915c2b42aff02b9478241a867bd36a5b9dff",
+      "target_before": "3eac7ec56e7ae5c2f0b7d640b8735d49d4ae28ee604c1a733705227cdf28224c",
+      "target_version": 5,
+      "target_weight_max": 1.0459491376721395,
+      "tick": 7
+    }
+  ],
+  "seed": 79526041,
+  "task": "halfcheetah_2x3"
+}

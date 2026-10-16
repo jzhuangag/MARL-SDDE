@@ -1,0 +1,114 @@
+{
+  "experiment_id": "T-053A-sampled-standard-task-pilot",
+  "classification": "sampled CPU pilot; not formal evidence",
+  "source_task_config": "docs/t049a_exact_schedule_static_preregistration.json",
+  "tasks": [
+    "frozenlake8x8",
+    "cliffwalking",
+    "taxi"
+  ],
+  "kernel_sha256": {
+    "frozenlake8x8": "93dcc787c7d551f2c620d4bed29dc9245cd61bcade3cecde96bc99e85ae04dc3",
+    "cliffwalking": "55a3c9a49f29e2a9142e41f66c3134073e56626dbe43c192a9b1bf1f25acb90a",
+    "taxi": "0aad06a53cf55b339137944bfd38db65214cea99f36cd900603a0e88d78ae14f"
+  },
+  "pilot_seeds": [
+    202608031001,
+    202608031002,
+    202608031003,
+    202608031004,
+    202608031005,
+    202608031006,
+    202608031007,
+    202608031008
+  ],
+  "grid": {
+    "participation_catalogue": [
+      1,
+      4,
+      16
+    ],
+    "message_overheads": [
+      8,
+      32
+    ],
+    "correlations": [
+      0.0,
+      0.1,
+      0.3,
+      0.5,
+      0.7,
+      0.9,
+      1.0
+    ],
+    "delays": [
+      0,
+      8
+    ]
+  },
+  "learning": {
+    "pr_burn_fraction": 0.5,
+    "contraction_target": 0.0001,
+    "post_probe_message_budget": "N_contraction * (overhead + 16)",
+    "initial_error": "-theta_star",
+    "step_size": "0.8 * (1-mixing_slem) / drift_norm",
+    "recursion": "e[t+1]=e[t]-eta*A*e[t-D]+eta*xi_bar[t]",
+    "risk": "squared Euclidean norm of half-tail PR average"
+  },
+  "probe": {
+    "blocks": 96,
+    "q_probe": 2,
+    "maximum_independent_path_collision": 0.01,
+    "fingerprint": "exact equality of sampled stationary state paths; SHA-256 is the implementation-equivalent message",
+    "decision": "exact T-052 plug-in action from observed match count",
+    "independent_of_learning_bank": true
+  },
+  "comparators": {
+    "strong_fixed_q": {
+      "overhead_8": 4,
+      "overhead_32": 16
+    },
+    "fixed_q": [
+      1,
+      4,
+      16
+    ],
+    "true_rho_oracle": "T-050 catalogue minimizer, using the full no-probe total budget",
+    "sample_path_oracle": "descriptive only; minimum fixed-q endpoint on the same seed"
+  },
+  "analysis": {
+    "cell_endpoint": "arithmetic mean PR squared error over the 8 frozen seeds",
+    "aggregate": "geometric mean of cell controller/strong-fixed mean-error ratios",
+    "active_cell": "true-rho oracle q differs from the overhead-specific strong fixed q",
+    "inactive_cell": "true-rho oracle q equals the overhead-specific strong fixed q",
+    "common_random_numbers": "one common plus 16 private exact Gymnasium trajectory banks shared by controller and all fixed-q comparators",
+    "uses_prior_outcome_rows": false
+  },
+  "mandatory_gates": {
+    "P1": "all sampling-table transition, innovation-mean, and second-moment residuals pass their frozen tolerances",
+    "P2": "all endpoints are finite and obey separate message/environment/delay budgets",
+    "P3": "aggregate controller/strong-fixed geometric mean-error ratio <= 0.95",
+    "P4": "controller/strong-fixed geometric ratio <= 0.97 on every task",
+    "P5": "controller/strong-fixed geometric ratio <= 0.97 at each registered delay",
+    "P6": "controller improves the cell mean error in at least 0.60 of oracle-active cells",
+    "P7": "inactive-cell aggregate controller/strong-fixed geometric ratio <= 1.05",
+    "P8": "aggregate controller/true-rho-oracle geometric ratio <= 1.20",
+    "P9": "median selected q is nonincreasing on the registered rho grid for each overhead",
+    "P10": "root-mean-square standardized fingerprint match residual <= 1.5",
+    "P11": "all 8 seeds are new, all 84 cells and 672 endpoints are present, and sampled/fixed marginal provenance is unchanged",
+    "P12": "clean rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 84,
+    "endpoints": 672,
+    "long_learning_trajectories": 11424,
+    "stored_full_trajectories": 0,
+    "recommended_hardware": "local CPU"
+  },
+  "authorization": {
+    "execute_after_independent_commit": true,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

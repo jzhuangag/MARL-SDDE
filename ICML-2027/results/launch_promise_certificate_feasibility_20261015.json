@@ -1,0 +1,295 @@
+{
+  "audit_kind": "analytic_distribution_free_certificate_feasibility",
+  "current_certificate_nonvacuous": false,
+  "current_episodes": 16,
+  "current_radius_over_bound": 1.2034410307256844,
+  "decision": "NO_GO_CURRENT_CERTIFICATE",
+  "delta": 0.05,
+  "episode_gradient_bound": 1.0,
+  "interpretation": "At 16 episodes the radius exceeds the largest possible empirical gradient norm, so this certificate idles for every action, even with zero staleness. This does not establish a lower bound against variance-dependent estimators or prove asynchronous MARL impossible.",
+  "minimum_counts_are_sufficient_for_performance": false,
+  "necessary_episode_counts_for_positive_norm_lower_bound": {
+    "0.1": 2318,
+    "0.25": 371,
+    "1.0": 24
+  },
+  "role": "Sufficient-bound preflight, not an RL performance experiment",
+  "rows": [
+    {
+      "episodes": 16,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 1.2034410307256844,
+        "step": 0.0,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 1.2034410307256844
+    },
+    {
+      "episodes": 16,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 1.2034410307256844,
+        "step": 0.0,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 1.2034410307256844
+    },
+    {
+      "episodes": 16,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 1.2034410307256844,
+        "step": 0.0,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 1.2034410307256844
+    },
+    {
+      "episodes": 24,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.017394513064340145,
+        "promised_gain": 4.5774025521864776e-08,
+        "source_radius": 0.9826054869356599,
+        "step": 0.0003025690847455,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.9826054869356599
+    },
+    {
+      "episodes": 24,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.9826054869356599,
+        "step": 0.0,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.9826054869356599
+    },
+    {
+      "episodes": 24,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.9826054869356599,
+        "step": 0.0,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.9826054869356599
+    },
+    {
+      "episodes": 32,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.14903868641574025,
+        "promised_gain": 0.0002466982455784098,
+        "source_radius": 0.8509613135842597,
+        "step": 0.02221253004852936,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.8509613135842597
+    },
+    {
+      "episodes": 32,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.8509613135842597,
+        "step": 0.0,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.8509613135842597
+    },
+    {
+      "episodes": 32,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.8509613135842597,
+        "step": 0.0,
+        "upper_gradient_norm": 0.9509613135842597
+      },
+      "radius_over_bound": 0.8509613135842597
+    },
+    {
+      "episodes": 64,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.3982794846371578,
+        "promised_gain": 0.012581190846613466,
+        "source_radius": 0.6017205153628422,
+        "step": 0.15862654788284,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.6017205153628422
+    },
+    {
+      "episodes": 64,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.6017205153628422,
+        "step": 0.0,
+        "upper_gradient_norm": 0.8517205153628422
+      },
+      "radius_over_bound": 0.6017205153628422
+    },
+    {
+      "episodes": 64,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.6017205153628422,
+        "step": 0.0,
+        "upper_gradient_norm": 0.7017205153628422
+      },
+      "radius_over_bound": 0.6017205153628422
+    },
+    {
+      "episodes": 256,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.6991397423185789,
+        "promised_gain": 0.11946095020315918,
+        "source_radius": 0.3008602576814211,
+        "step": 0.4887963792892889,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.3008602576814211
+    },
+    {
+      "episodes": 256,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.3008602576814211,
+        "step": 0.0,
+        "upper_gradient_norm": 0.5508602576814211
+      },
+      "radius_over_bound": 0.3008602576814211
+    },
+    {
+      "episodes": 256,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.3008602576814211,
+        "step": 0.0,
+        "upper_gradient_norm": 0.4008602576814211
+      },
+      "radius_over_bound": 0.3008602576814211
+    },
+    {
+      "episodes": 1024,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.8495698711592894,
+        "promised_gain": 0.26047522012708235,
+        "source_radius": 0.15043012884071055,
+        "step": 0.7217689659816116,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.15043012884071055
+    },
+    {
+      "episodes": 1024,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.09956987115928945,
+        "promised_gain": 4.914527674458385e-05,
+        "source_radius": 0.15043012884071055,
+        "step": 0.0099141592426775,
+        "upper_gradient_norm": 0.40043012884071055
+      },
+      "radius_over_bound": 0.15043012884071055
+    },
+    {
+      "episodes": 1024,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.0,
+        "promised_gain": 0.0,
+        "source_radius": 0.15043012884071055,
+        "step": 0.0,
+        "upper_gradient_norm": 0.2504301288407106
+      },
+      "radius_over_bound": 0.15043012884071055
+    },
+    {
+      "episodes": 4096,
+      "estimate_norm_over_bound": 1.0,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.9247849355796447,
+        "promised_gain": 0.3657067622038774,
+        "source_radius": 0.07521506442035528,
+        "step": 0.8552271770750476,
+        "upper_gradient_norm": 1.0
+      },
+      "radius_over_bound": 0.07521506442035528
+    },
+    {
+      "episodes": 4096,
+      "estimate_norm_over_bound": 0.25,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.17478493557964472,
+        "promised_gain": 0.00046664433673109055,
+        "source_radius": 0.07521506442035528,
+        "step": 0.030549773705580555,
+        "upper_gradient_norm": 0.3252150644203553
+      },
+      "radius_over_bound": 0.07521506442035528
+    },
+    {
+      "episodes": 4096,
+      "estimate_norm_over_bound": 0.1,
+      "promise": {
+        "agent": 0,
+        "lower_gradient_norm": 0.02478493557964473,
+        "promised_gain": 1.8867796438968827e-07,
+        "source_radius": 0.07521506442035528,
+        "step": 0.0006142930316871392,
+        "upper_gradient_norm": 0.17521506442035528
+      },
+      "radius_over_bound": 0.07521506442035528
+    }
+  ],
+  "scientific_trajectories": 0,
+  "simultaneous_certificates": 72,
+  "source_sha256": "bd65f69b05aee14f741ed408473bbca6e2726b79c5c181d6015da96df42c1e0a"
+}

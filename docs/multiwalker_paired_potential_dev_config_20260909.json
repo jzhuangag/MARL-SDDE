@@ -1,0 +1,35 @@
+{
+  "baseline_rows_sha256": "0F523DC6BA9474BE008533E1FAA90E6A8700CEF246970C6FAD9823080F313ECC",
+  "budget_rates": [0.25, 0.5],
+  "cache_radius_upper": 0.64,
+  "design_population_origin": "previously confirmed Multiwalker oracle population; reused only as post-outcome design data",
+  "design_seeds": [96100, 96101, 96102, 96103, 96104, 96105, 96106, 96107],
+  "discount": 0.99,
+  "drift_scales": [0.01, 0.04],
+  "events": 40,
+  "exact_rows_sha256": "4CD2556B605FBD63659100165FD2A95C39FAE87BE551999B697A2A93046F0FF5",
+  "horizon": 8,
+  "queue_steps": [0.0025, 0.01],
+  "reset_bonus_caps": [0.0, 0.025, 0.05, 0.1, 0.2],
+  "strong_envelope_includes": [
+    "oracle_h8",
+    "oracle_h1",
+    "action_gap",
+    "parameter_gap",
+    "age",
+    "round_robin",
+    "random",
+    "fixed_left",
+    "fixed_right",
+    "all_neighbors"
+  ],
+  "thresholds": {
+    "active_direction_rate_min": 0.75,
+    "active_median_normalized_candidate_headroom_min": 0.0005,
+    "active_recovery_fraction_min": 0.1,
+    "candidate_aggregate_gain_over_no_refresh_min": 0.0,
+    "maximum_prefix_excess": 0,
+    "minimum_active_queue_changed_choices": 1
+  },
+  "walkers": 5
+}

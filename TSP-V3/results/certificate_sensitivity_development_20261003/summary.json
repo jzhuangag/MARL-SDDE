@@ -1,0 +1,88 @@
+{
+  "aggregate": {
+    "conservative_moderate": {
+      "parameter_auc": 0.25952301516852333,
+      "return_auc": 0.18014268301520125,
+      "terminal_parameter": 0.028492984397902134,
+      "terminal_return": 0.034269384659772896
+    },
+    "conservative_strong": {
+      "parameter_auc": 0.3158278505609435,
+      "return_auc": 0.20923281689462747,
+      "terminal_parameter": 0.043244186651640315,
+      "terminal_return": 0.03665641949975929
+    },
+    "correlation_only": {
+      "parameter_auc": 0.34498487532830957,
+      "return_auc": 0.2606126507105222,
+      "terminal_parameter": 0.062434575660465244,
+      "terminal_return": 0.06496041402199233
+    },
+    "finite_horizon": {
+      "parameter_auc": 0.22256127967379755,
+      "return_auc": 0.16325490008364468,
+      "terminal_parameter": 0.0214431042978524,
+      "terminal_return": 0.03198058510309754
+    },
+    "one_step_myopic": {
+      "parameter_auc": 0.2202600344036832,
+      "return_auc": 0.15563662427937683,
+      "terminal_parameter": 0.025097510445245677,
+      "terminal_return": 0.029589997584843306
+    }
+  },
+  "config_sha256": "2933ab41354b24b4998a9f1305c823c4210988ecfd9196b34e7a7a265348b8dc",
+  "elapsed_seconds": 51.2628762,
+  "experiment_id": "TSP-V3-CERT-SENS-001",
+  "gates": {
+    "all_conservative_bounds_finite_and_stable": true,
+    "finite_horizon_vs_correlation_only_terminal_parameter_ratio": 0.3434491877459909,
+    "finite_horizon_vs_myopic_terminal_parameter_ratio": 0.8543916873601483,
+    "moderate_terminal_parameter_ratio": 1.328771431697779,
+    "overall_pass": false,
+    "payload_validity": true,
+    "strong_terminal_parameter_ratio": 2.0166943205126957
+  },
+  "git_head": "f5e2893a078dc84ef3295e04b2aea4ce05e0035e",
+  "implementation_sha256": "318d86b7a15c3230a410e45c4f7c53aa69ddc93601f6cf8f65d28256251ef7b1",
+  "num_seeds": 8,
+  "phase": "development",
+  "ratios_to_finite_horizon": {
+    "conservative_moderate": {
+      "parameter_auc": 1.1660744202625886,
+      "return_auc": 1.1034442636815434,
+      "terminal_parameter": 1.328771431697779,
+      "terminal_return": 1.0715684078104522
+    },
+    "conservative_strong": {
+      "parameter_auc": 1.4190601843404405,
+      "return_auc": 1.2816326908866178,
+      "terminal_parameter": 2.0166943205126957,
+      "terminal_return": 1.1462085318823283
+    },
+    "correlation_only": {
+      "parameter_auc": 1.5500669111623784,
+      "return_auc": 1.5963542324119868,
+      "terminal_parameter": 2.911638855700491,
+      "terminal_return": 2.031245326268295
+    },
+    "one_step_myopic": {
+      "parameter_auc": 0.9896601723647203,
+      "return_auc": 0.9533350864178375,
+      "terminal_parameter": 1.1704233723173785,
+      "terminal_return": 0.9252487873330781
+    }
+  },
+  "rows": 19680,
+  "seeds": [
+    33000001,
+    33000002,
+    33000003,
+    33000004,
+    33000005,
+    33000006,
+    33000007,
+    33000008
+  ],
+  "source_sha256": "63950a1355c524f5d42e08ba858a709f6fa9960ce85c513ac0f487feb480c9ab"
+}

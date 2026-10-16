@@ -1,0 +1,29 @@
+{
+  "experiment_id": "TSP-CURVE-001",
+  "resource_budget": 128000,
+  "server_overhead": 4,
+  "checkpoints": 41,
+  "persistences": [0.0, 0.9, 0.98],
+  "correlations": [0.0, 0.9],
+  "maximum_delays": [0, 8],
+  "candidate_agent_counts": [1, 4, 16, 32],
+  "development_seeds": {
+    "start": 31000001,
+    "count": 16
+  },
+  "confirmation_seeds": {
+    "start": 32000001,
+    "count": 64
+  },
+  "bootstrap_seed": 20260909,
+  "bootstrap_replicates": 2000,
+  "selection_rule": "Choose one fixed participation level on development seeds by minimum geometric mean normalized parameter-error AUC across all 12 cells. Each fixed-q comparator retains its own theorem-certified spacing and step in each cell. Evaluate the joint controller and selected fixed-q comparator on disjoint confirmation seeds.",
+  "metrics": [
+    "normalized squared parameter error",
+    "normalized squared initial-state discounted-return estimation error",
+    "normalized parameter-error area under the learning curve",
+    "terminal normalized parameter error",
+    "charged resource",
+    "controller evaluation time"
+  ]
+}

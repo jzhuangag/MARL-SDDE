@@ -1,0 +1,213 @@
+{
+  "recorded_date": "2026-09-01",
+  "timezone": "Asia/Shanghai",
+  "kind": "bounded_mathematical_construction_and_rejection_not_efficacy",
+  "parent_commit": "47ea28c45f1b11b1c4b484906d3125c4d1801bd8",
+  "branch": "codex/joint-ms-exp007c",
+  "workspace": "E:/HKUST-study/vin/SDDE",
+  "environment": {
+    "platform": "Windows",
+    "shell": "PowerShell",
+    "python": ".venv/Scripts/python.exe",
+    "python_version": "3.11.13",
+    "base_environment": "D:/anaconda/envs/ust2"
+  },
+  "decision": {
+    "status": "REJECT_AS_PAPER_CANDIDATE_NO_PILOT",
+    "observable_construction_specified": true,
+    "fully_charged_calibration_and_delay": true,
+    "exact_full_value_risk_recursion": true,
+    "positive_finite_horizon_gain": "Proved against fixed-step independent TD on a nonempty class; not strong-baseline dominance.",
+    "strong_local_comparison": "An equally informed O(1)-work local plug-in learner has O(log T) cumulative risk; the fixed-step/fixed-calibration construction retains linear cumulative risk.",
+    "general_markov_calibration_closed": false,
+    "independent_novelty_established": false,
+    "pilot_authorized": false,
+    "formal_authorized": false,
+    "qualified_successor_found": false,
+    "universal_impossibility_claim": false
+  },
+  "proof_scope": {
+    "agents": 2,
+    "environment": "Fully observed continuing symmetric two-state MRPs with independent Bernoulli flip innovations, different unknown flip probabilities and agent-specific public reward scales",
+    "full_state_risk": "exact value amplitude error under state weights (1/2,1/2)",
+    "delay": "fixed common lag, chronological paired updates; fresh local baseline not delayed",
+    "no_true_model_in_online_protocol": true,
+    "initial_state": "fixed or stationary; informative flips iid either way",
+    "calibration": "first m pairs reused for local TD and fixed-m count-difference calibration, no additional stream",
+    "complexity": "O(1) arithmetic/register work per agent per tick, O(D) buffered records; not constant bit width",
+    "generality_boundary": "The raw states can be temporally correlated while the informative learning sequence is iid. No generic Markov-TD, data-dependent delay, cross-agent common-noise or online-optimal-weight theorem."
+  },
+  "checks": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/calibrated_flip_construction_audit.py",
+      "exit_code": 0,
+      "runs": 3,
+      "initial_execution_and_two_replays": true,
+      "stdout_normalization": "Captured lines joined with LF, no trailing newline",
+      "normalized_stdout_identical_in_two_replays": true,
+      "normalized_stdout_sha256": "405D252CF7C73F278DB744F6BB6C5479B49889505245F2DB3FCC9AFD9C7952F5",
+      "exact_result": {
+        "enumerated_paths": 1024,
+        "risk_clock_identities": 6,
+        "all_equalities_exact_rational": true,
+        "charged_actor_transitions": 10,
+        "charged_message_bits": 90,
+        "processed_pairs": 3,
+        "pending_pairs_charged": 2,
+        "warmup_value_calibration_covariance": "-3/512",
+        "stationary_risk_derivative_at_zero": "-58/441",
+        "local_constant_step_stationary_risk": "4/63",
+        "corrected_constant_step_stationary_risk": "13257853312381303377488/212626369482115156514037",
+        "stationary_difference": "-242233638864103385308/212626369482115156514037"
+      },
+      "boundary": "Exhaustive arithmetic verification, not 1024 stochastic samples or a scientific efficacy run."
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m py_compile experiments/dependence_delay_linear/calibrated_flip_construction_audit.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -c @'\nimport sys,json\nfrom fractions import Fraction as F\nfrom itertools import product\nfrom math import comb\nsys.path.insert(0,'experiments/dependence_delay_linear')\nfrom calibrated_flip_construction_audit import stationary_risk\npi,pj,gamma,eta,w=F(1,4),F(3,8),F(1,2),F(1,4),F(1,100)\nm,n=1,2\nEX=EZ=EXZ=EX2=EZ2=F(0)\nfor own in product((0,1),repeat=m+n):\n    for donor in product((0,1),repeat=m+n):\n        prob=pi**sum(own)*(1-pi)**(m+n-sum(own))*pj**sum(donor)*(1-pj)**(m+n-sum(donor))\n        X=F(sum(own),m+n)\n        Z=F(sum(donor[m:])-sum(own[m:]),n)-F(sum(donor[:m])-sum(own[:m]),m)\n        EX+=prob*X; EZ+=prob*Z; EXZ+=prob*X*Z\n        EX2+=prob*X*X; EZ2+=prob*Z*Z\ncov=EXZ-EX*EZ\nvi,vj=pi*(1-pi),pj*(1-pj)\nassert cov==0 and EZ==0\nassert EX2-EX*EX+w*w*EZ2==vi/(m+n)+w*w*(vi+vj)*(F(1,m)+F(1,n))\nfor t in range(1,9):\n    true=1/(1-gamma+2*gamma*pi)\n    risk=sum(comb(t,k)*pi**k*(1-pi)**(t-k)*(1/(1-gamma+2*gamma*F(k,t))-true)**2 for k in range(t+1))\n    assert risk<=(2*gamma/(1-gamma)**2)**2*vi/t\na=1-gamma+2*gamma*pi\ns=4*gamma*gamma*vi\nexact=-2*s*eta*(2*a-eta*a*a)/(a*a*(2*a-eta*(a*a+s))**2)\nh=F(1,10**8)\nnum=(stationary_risk(pi,pj,gamma,eta,h,1)-stationary_risk(pi,pj,gamma,eta,-h,1))/(2*h)\nassert abs(num-exact)<F(1,10**12)\nprint(json.dumps({'kind':'independent_exact_proof_checks_not_efficacy','split_covariance':str(cov),'split_variance_identity':True,'local_plugin_bound_checks':8,'derivative_absolute_difference':float(abs(num-exact))},sort_keys=True))\n'@",
+      "exit_code": 0,
+      "result": {
+        "kind": "independent_exact_proof_checks_not_efficacy",
+        "split_covariance": "0",
+        "split_variance_identity": true,
+        "local_plugin_bound_checks": 8,
+        "derivative_absolute_difference": 9.568274021626799e-17
+      },
+      "boundary": "Negative infinitesimal weight is used only to verify an analytic derivative, not executed by the constrained online protocol."
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q --junitxml=.pytest_cache/calibrated_flip_full_regression.xml",
+      "exit_code": 0,
+      "passed": 854,
+      "skipped": 7,
+      "seconds": 729.07,
+      "junit": ".pytest_cache/calibrated_flip_full_regression.xml",
+      "junit_summary": {
+        "tests": 861,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 7,
+        "seconds": 728.924,
+        "timestamp": "2026-09-01T01:00:08.595978+08:00"
+      },
+      "skip_scope": "Seven existing T019/T020 tests require old HPC4 artifacts not present locally; no remote retrieval was attempted.",
+      "source_boundary": "No existing experimental source changed. The new standalone audit source was unchanged throughout this regression and was checked separately; it is not an extra pytest test."
+    }
+  ],
+  "sources": [
+    {
+      "key": "affpcl",
+      "title": "Personalized Collaborative Learning with Affinity-Based Variance Reduction",
+      "authors": [
+        "Chenyu Zhang",
+        "Navid Azizan"
+      ],
+      "venue": "ICLR 2026",
+      "arxiv": "2510.16232v3",
+      "first_preprint_year": 2025,
+      "version_date": "2026-03-09",
+      "doi": "10.48550/arXiv.2510.16232",
+      "primary": "https://arxiv.org/abs/2510.16232",
+      "primary_checked_this_turn": true,
+      "read_scope_this_turn": "Primary abstract and metadata only. Earlier bounded method/proof reading remains identified separately in collaboration_paper_level_sources.json, not claimed as a fresh complete proof audit.",
+      "doi_resolution": {
+        "http": 200,
+        "title_authors_date_id_match": true
+      },
+      "openalex": {
+        "id": "W4415950431",
+        "http": 200,
+        "title_authors_doi_match": true,
+        "year": 2025,
+        "volume": null,
+        "pages": null,
+        "is_retracted": false
+      },
+      "semantic_scholar": "HTTP 429; no retry/bypass.",
+      "crossref": "Not applicable to the DataCite arXiv DOI; no conference DOI or page range invented.",
+      "resolver_boundary": "Initial OpenAlex parsing failed on case-distinct keys; a mistaken Invoke-RestMethod parameter then failed locally. Corrected Invoke-WebRequest plus ConvertFrom-Json -AsHashtable obtained and verified the positive metadata above.",
+      "metadata_conflict": false,
+      "support": "Existing personalized bias/importance correction and affinity-dependent acceleration; no claim that the new reference replicates AffPCL or disproves its theorem."
+    }
+  ],
+  "review": {
+    "mode": "inline single-model scoped research/critical-review phases; no independent external review",
+    "scoping": "Concrete observable construction and full-state metric; generic conditional Markov claim not assumed.",
+    "analysis_critical": "Strong local comparison fails; unbiased operator correction alone adds no general target information.",
+    "final_decision": "Reject the specific candidate and stop automatic performance progression.",
+    "clinical_grading": "not applicable to ML theory",
+    "source_scope": "one close primary source freshly reverified, not exhaustive literature search",
+    "financial_coi_investigation": false,
+    "ai_assisted": true
+  },
+  "integrity": {
+    "old_formal_data_used_for_tuning": false,
+    "frozen_controller_gates_seeds_modified": false,
+    "F12_timeout_failure_preserved": true,
+    "F13_summary_mismatch_failure_preserved": true,
+    "new_sampled_scientific_trajectories": 0,
+    "exhaustive_proof_paths_are_pilot_seeds": false,
+    "new_efficacy_preregistration": false,
+    "new_formal_seeds": false,
+    "gpu_or_hpc4_access": false,
+    "remote_storage_operations": false,
+    "destructive_cleanup": false,
+    "manuscript_or_bibliography_delivered": false
+  },
+  "final_file_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/calibrated_flip_construction_audit.py",
+      "sha256": "9D34F642944FB2883C78BE2B7A3611C1B306D57257AC1DD2E7FD1D55BC6DD9D8"
+    },
+    {
+      "path": "docs/calibrated_flip_construction_decision.md",
+      "sha256": "8D5504D87F154C985DFB3AE3102110410DFC358867E911A1AA30141358D01FB6"
+    },
+    {
+      "path": "docs/cpu_autonomous_research_plan.md",
+      "sha256": "508AADF8DF0003CDF4BE07BE935DCB007CE2D61DDDB915D8E89B8B1031740DBD"
+    },
+    {
+      "path": ".pytest_cache/calibrated_flip_full_regression.xml",
+      "sha256": "9187839B32B771053F452D39266F93F56EAE4194CF7B829163E213FE890121D0"
+    }
+  ],
+  "frozen_t083a_artifact_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/endpoints.csv",
+      "sha256": "C10975BE82199FE82EF2853B18BD97A04AF0978A5E6CDAF6BC772CE4FC61114B"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/cells.csv",
+      "sha256": "61761F0B9472778B5073D2473A8FC9A1C994E269698E61F309AD6FDC63AF1EB6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation/summary.json",
+      "sha256": "DD932FA9DBB5E203B3DE027E74A813FED737FE7CE9386C09DB4593E52A7CC228"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/endpoints.csv",
+      "sha256": "C10975BE82199FE82EF2853B18BD97A04AF0978A5E6CDAF6BC772CE4FC61114B"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/cells.csv",
+      "sha256": "61761F0B9472778B5073D2473A8FC9A1C994E269698E61F309AD6FDC63AF1EB6"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/results/t083a_formal_end_block_confirmation_reproduction/summary.json",
+      "sha256": "6DD44415AF441F96A580F3A54BFAE4DEAA03FB8D9181A5A067C9D45922417BCD"
+    }
+  ],
+  "continuation": {
+    "bounded_construction_complete": true,
+    "automatic_performance_progression_authorized": false,
+    "heartbeat_pause": "PAUSED; product tool confirmed and local automation state verified at 2026-09-01T01:13:26+08:00",
+    "automation_id": "sdde-cpu",
+    "prompt_schedule_and_target_preserved": true,
+    "reason": "The explicit one-construction gate is closed negatively; no qualified successor or queued efficacy experiment. A substantive new research premise/decision is needed, not another sweep.",
+    "icml_acceptance_guarantee": false
+  }
+}

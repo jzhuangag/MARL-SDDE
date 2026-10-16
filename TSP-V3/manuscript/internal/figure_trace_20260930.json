@@ -1,0 +1,28 @@
+{
+  "figure": "figures/marl_multienvironment_returns.pdf",
+  "generator": "make_multienvironment_return_figure.py",
+  "sources": [
+    {
+      "environment": "PettingZoo MPE simple_spread_v2",
+      "path": "../../TSP/internal/marl_mpe_qgrid_audit_curves.csv",
+      "controller_runs": 80,
+      "seeds_per_coupling": 8
+    },
+    {
+      "environment": "MaMuJoCo HalfCheetah-v2/2x3",
+      "path": "../results/marl_mamujoco_calibrated_confirmation_20260930/summary.csv",
+      "controller_and_comparator_runs": 80,
+      "fresh_confirmation_seeds_per_coupling": 8
+    }
+  ],
+  "methods": [
+    "fixed_q1",
+    "fixed_q2",
+    "fixed_q4",
+    "fixed_q8",
+    "lyapunov_probe_commit"
+  ],
+  "x_axis": "charged budget fraction",
+  "uncertainty": "95% normal confidence band on the Lyapunov-controller mean",
+  "selection_uses_benchmark_return": false
+}

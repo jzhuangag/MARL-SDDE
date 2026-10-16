@@ -1,0 +1,79 @@
+{
+  "experiment_id": "T-082A-independent-causal-end-block-pilot",
+  "classification": "independently seeded sampled CPU pilot",
+  "design_provenance": {
+    "t081_validation": "docs/validation_t081_end_block_controller_calibration.json",
+    "t081_is_tainted_design_information": true,
+    "controller_or_primary_population_changed_after_t081": false,
+    "artifact_protocol": "docs/reproducible_scientific_artifact_protocol.md"
+  },
+  "source": {
+    "t080_cells_sha256": "434349484A23F0CBC8D2AE6FA20E90ED7AD90DC071E88EFDF7048E96D6C063B7",
+    "controller_sha256": "4EE4F31E18D55ED2162C34E8844B886A81AD45CC7607D8985433442CA57D1A2E"
+  },
+  "controller": {
+    "decision_timing": "after all ten local updates in a block; action affects the next block",
+    "all_steps_are_learning_updates": true,
+    "extra_probe_transitions": 0,
+    "fingerprint_message_units_per_decision": 1,
+    "mixing_message_units_per_decision": 1,
+    "drift_weight": 4.0,
+    "variance_weight": 1.0,
+    "safety_slack": 0.0,
+    "certificate_delta": 0.1,
+    "rho_cap": 0.95
+  },
+  "primary_identifiable_class": {
+    "schedule_family": ["single_switch", "alternating"],
+    "target_scale": [0.3, 0.6],
+    "temporal_correlation": [0.0],
+    "other_registered_factors": "all",
+    "cells": 96
+  },
+  "pilot_seeds": [
+    805559569, 1458576849, 1194871235, 277593603, 687221997, 579802043,
+    1415472683, 846584787, 64169900, 588874754, 1977251459, 946974019,
+    1620062977, 447141990, 558926406, 1387199495, 1719653029, 1445978623,
+    1759631757, 1164277619, 1540623208, 2040414936, 1508013747, 1509010089,
+    1172022823, 509658881, 1238742983, 1684573934, 1967364178, 968500857,
+    165835921, 587066150, 939005150, 1266537501, 1688720999, 152672563,
+    1771945646, 1665820578, 1231078977, 1930636378, 626156033, 891190937,
+    127654768, 589987358, 51216658, 1311517733, 1057190007, 1926950699,
+    1555504908, 1219132839, 430922069, 1710095743, 976592356, 760128109,
+    906543321, 2131391140, 361897988, 1997770960, 1419633729, 132087486,
+    88347803, 926816016, 600913083, 1024747831
+  ],
+  "seed_rule": "first 64 distinct non-overlapping 31-bit SHA-256 prefixes of T082A-independent-pilot-i",
+  "workload": {
+    "cells": 432,
+    "primary_cells": 96,
+    "pilot_seeds": 64,
+    "endpoints": 27648,
+    "workers": 8,
+    "chunksize": 16,
+    "hard_timeout_minutes": 20
+  },
+  "mandatory_gates": {
+    "P1": "all endpoints and cells are finite and complete",
+    "P2": "primary improvement at least 10 percent against continuous static",
+    "P3": "strict primary improvement in at least 80 percent of cells",
+    "P4": "each primary schedule family improves at least 8 percent",
+    "P5": "each delay group improves at least 5 percent",
+    "P6": "primary improvement at least 10 percent over local learning",
+    "P7": "stationary controller/local ratio at most 1.06",
+    "P8": "primary ratio below low-signal and high-temporal boundary ratios",
+    "P9": "240 learning transitions, zero extra probes, at most 18 messages",
+    "P10": "certificate directions match temporal correlation",
+    "P11": "positive collaboration, finite debt, mean QP iterations at most 35",
+    "P12": "wall clock at most 20 minutes",
+    "P13": "endpoints.csv, cells.csv, and summary.json are byte-identical on clean reproduction",
+    "P14": "complete repository experiment tests pass"
+  },
+  "authorization": {
+    "run_local_cpu_pilot_after_independent_commit": true,
+    "formal": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

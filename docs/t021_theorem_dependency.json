@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task": "T-021",
+  "mainline": "fixed-q correlation- and delay-limited learning under dual budgets",
+  "claims": [
+    {
+      "id": "FQ-1",
+      "source": "proof_program_joint_ms.md Theorem 3",
+      "status": "proved",
+      "scope": "decorrelated/thinned delayed homogeneous vector TD mean-square contraction",
+      "main_text": true
+    },
+    {
+      "id": "FQ-2",
+      "source": "proof_program_joint_ms.md Theorem 4",
+      "status": "proved",
+      "scope": "affine decorrelated/thinned delayed finite-time TD bound",
+      "main_text": true
+    },
+    {
+      "id": "FQ-3",
+      "source": "proof_program_joint_ms.md Theorem 5",
+      "status": "proved",
+      "scope": "Gaussian common-factor exact correlation-limited speedup and finite dual-budget participation lower bound",
+      "main_text": true
+    },
+    {
+      "id": "FQ-4",
+      "source": "proof_program_joint_ms.md Theorem 9",
+      "status": "proved_identity_only",
+      "scope": "fixed-parameter nonlinear averaged-gradient variance identity",
+      "main_text": true,
+      "does_not_imply": "nonlinear optimization convergence"
+    },
+    {
+      "id": "UM-1",
+      "source": "unknown_mixing_impossibility.md",
+      "status": "proved_negative",
+      "scope": "unrestricted unknown mixing approaching one has no uniform finite-budget guarantee",
+      "main_text": true
+    },
+    {
+      "id": "AS-1",
+      "source": "adaptation_threshold_sandwich.md",
+      "status": "proved_compact_separated_class",
+      "scope": "known/certified separated mixing and nonvanishing oracle gap",
+      "main_text": false,
+      "role": "optional threshold result; not an online-controller guarantee"
+    },
+    {
+      "id": "ADAPT-ONLINE",
+      "source": "EXP-014A through T-020",
+      "status": "excluded_by_negative_experiments",
+      "main_text": false
+    },
+    {
+      "id": "UNTHINNED",
+      "source": "proof_program_joint_ms.md Section 7",
+      "status": "open",
+      "main_text": false
+    },
+    {
+      "id": "SDDE-DISCRETE",
+      "source": "proof_program_joint_ms.md SDDE discussion",
+      "status": "open",
+      "main_text": false,
+      "allowed_role": "Lyapunov-Krasovskii interpretation only"
+    }
+  ],
+  "claim_boundary_pass": true,
+  "open_claims_required_for_mainline": [],
+  "gpu_execution_authorized": false
+}
+

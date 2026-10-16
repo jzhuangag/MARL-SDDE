@@ -1,0 +1,62 @@
+{
+  "artifact_bytes": 10027924,
+  "artifact_sha256": "0791d578c3c83ccce9c46d26120b6fd2e2ae1b68d522cee28ce2a9938e993ce0",
+  "authorization": {
+    "cpu_observable_sensor_development": true,
+    "formal_seeds": false,
+    "gpu": false,
+    "hpc4": false,
+    "standard_marl": false,
+    "theory_development": true
+  },
+  "config_sha256": "58caceeea755d8a1057073eeae0cca9284abc0f4f8e139c695c7d834eb54f6b8",
+  "decision": "pass_exact_phase_headroom_only",
+  "descriptive": {
+    "all_cell_fixed_improvement_fraction": 0.6074074074074074,
+    "paired_seed_gain_mean": 0.06561023988541148,
+    "paired_seed_gain_sd": 0.008923490369890066,
+    "paired_seed_gain_t95": [
+      0.062392978525033886,
+      0.06882750124578908
+    ],
+    "paired_seed_positive_count": 32,
+    "stationary_rotation_fixed_gain_mean": -0.0029657297420081895,
+    "stationary_rotation_fixed_gain_t95": [
+      -0.004088302139014004,
+      -0.0018431573450023752
+    ],
+    "step_0_2_gain_mean": 0.0026898394792642783
+  },
+  "experiment": "LCO-H1",
+  "formal_evidence": false,
+  "gates": {
+    "L10_stop_rule": true,
+    "L1_finite_and_exact_accounting": true,
+    "L2_dynamic_gain": true,
+    "L3_dynamic_cells": true,
+    "L4_dynamic_contraction": true,
+    "L5_oracle_capture": true,
+    "L6_potential_no_anchor": true,
+    "L7_potential_exact": true,
+    "L8_arrival_groups": true,
+    "L9_budget": true
+  },
+  "preregistration_commit": "5af97804a1444b88a7a30534aa4d3da7d4b94d07",
+  "primary_reproduction_byte_exact": true,
+  "summary": {
+    "arrival_group_log_rate_gains": {
+      "0.1": 0.035883430909367825,
+      "0.3": 0.07227039617288916,
+      "0.5": 0.08867689257397743
+    },
+    "cell_count": 270,
+    "maximum_budget_overshoot": 0,
+    "mean_separated_dynamic_log_rate_gain": 0.06561023988541147,
+    "median_phase_oracle_gain_capture": 0.7861822842738373,
+    "potential_anchor_fraction": 0.0,
+    "row_count": 8640,
+    "separated_dynamic_cell_count": 48,
+    "separated_dynamic_cell_improvement_fraction": 1.0,
+    "separated_dynamic_contraction_fraction": 1.0
+  }
+}

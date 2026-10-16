@@ -1,0 +1,32 @@
+{
+  "batch_size": 16,
+  "config_version": 1,
+  "couplings": [0.0, 0.08, 0.16, 0.24],
+  "development_namespaces_excluded": [
+    "stochastic-development-strong-baseline-v1",
+    "stochastic-strong-baseline-development-v1",
+    "stochastic-strong-baseline-development-v2",
+    "stochastic-strong-baseline-development-v3",
+    "stochastic-certified-constant-development-v1",
+    "slow-essential-dev-inline-v1",
+    "slow-essential-dev-inline-v2"
+  ],
+  "horizon": 16,
+  "maximum_time": 180.0,
+  "policies": [
+    "single_flight_constant",
+    "common_global",
+    "single_flight_local",
+    "generic_rate_balanced",
+    "fully_utilized_shadow_barrier"
+  ],
+  "primary_policy": "single_flight_constant",
+  "primary_service_ratios": [2.0, 4.0, 8.0],
+  "seed_count": 64,
+  "seed_namespace": "clocked-stochastic-confirmation-20260901-v1",
+  "service_ratios": [1.0, 2.0, 4.0, 8.0],
+  "step_fraction": 1.0,
+  "strong_async_policy": "common_global",
+  "synchronous_policy": "fully_utilized_shadow_barrier",
+  "target_normalized_gap": 0.3
+}

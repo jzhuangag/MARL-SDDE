@@ -1,0 +1,101 @@
+{
+  "experiment": "ICML27-AMORTIZED-PACKET-LEARNING-DEV-001",
+  "role": "prospective-complete-algorithm-development",
+  "tasks": [
+    {
+      "name": "spread",
+      "scenario": "simple_spread_v3",
+      "N": 3
+    },
+    {
+      "name": "reference",
+      "scenario": "simple_reference_v3"
+    }
+  ],
+  "methods": [
+    "fresh_happo_half",
+    "fresh_happo",
+    "fresh_happo_double",
+    "fresh_parallel",
+    "eligible_all",
+    "age_clip",
+    "online_kl",
+    "current_value",
+    "full_trace",
+    "no_price"
+  ],
+  "frames": 24,
+  "bank_episodes": 20,
+  "horizon": 25,
+  "actor_epochs": 5,
+  "critic_epochs": 5,
+  "actor_minibatches": 1,
+  "alphas": [
+    0.5,
+    1,
+    2
+  ],
+  "probe_episodes": [
+    4,
+    8,
+    16
+  ],
+  "young_scales": [
+    0.01,
+    0.1,
+    1
+  ],
+  "gain_scale": 1,
+  "meta_step": 0.1,
+  "communication_target": 1.25,
+  "compute_target": 1.25,
+  "delay_min": 1,
+  "delay_max": 2,
+  "potential_history": 4,
+  "potential_ridge": 1,
+  "evaluation_every": 6,
+  "evaluation_episodes": 12,
+  "training_role": 922,
+  "evaluation_role": 923,
+  "controller_role": 921,
+  "cpu_seconds_limit": 12000,
+  "replay_cells": 6,
+  "required_torch": "2.6.0+cpu",
+  "required_numpy": "2.2.2",
+  "gates": {
+    "auc_gain_percent": 1,
+    "final_change_percent": -2,
+    "baseline_learning_percent": 2,
+    "minimum_nonidle_receipts": 4,
+    "maximum_cost_ratio": 1.5
+  },
+  "geometries": [
+    "full_vector",
+    "response_basis"
+  ],
+  "copy_bytes_per_work_unit": 4096,
+  "scalar_entries_per_work_unit": 64,
+  "seeds": [
+    79521001,
+    79521002,
+    79521003
+  ],
+  "diagnostic_episodes": 4,
+  "baseline_kl_target": 0.01,
+  "runtime_margin": 1.15,
+  "development_cells": 60,
+  "controls": [
+    "fresh_happo_half",
+    "fresh_happo",
+    "fresh_happo_double",
+    "fresh_parallel",
+    "eligible_all",
+    "age_clip",
+    "online_kl"
+  ],
+  "replay_methods": [
+    "fresh_happo_double",
+    "online_kl",
+    "current_value"
+  ]
+}

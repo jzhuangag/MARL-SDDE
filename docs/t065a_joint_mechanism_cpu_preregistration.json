@@ -1,0 +1,76 @@
+{
+  "experiment_id": "T-065A-discrete-joint-mechanism-pilot",
+  "classification": "prospective CPU mechanism pilot; not formal or paper-facing evidence",
+  "parent_commit": "a88963e",
+  "pilot_seeds": [650101, 650102, 650103, 650104, 650105, 650106, 650107, 650108, 650109, 650110, 650111, 650112, 650113, 650114, 650115, 650116, 650117, 650118, 650119, 650120, 650121, 650122, 650123, 650124, 650125, 650126, 650127, 650128, 650129, 650130, 650131, 650132, 650133, 650134, 650135, 650136, 650137, 650138, 650139, 650140, 650141, 650142, 650143, 650144, 650145, 650146, 650147, 650148, 650149, 650150, 650151, 650152, 650153, 650154, 650155, 650156, 650157, 650158, 650159, 650160, 650161, 650162, 650163, 650164],
+  "grid": {
+    "rho": [0.0, 0.3, 0.6, 0.9],
+    "state_signal": [0.1, 1.0, 10.0],
+    "noise_scale": [0.1, 1.0, 10.0],
+    "delay_curvature": [0.0, 0.5, 2.0],
+    "resource_price": [0.0001, 0.001, 0.01]
+  },
+  "action": {
+    "q_min": 1,
+    "q_max": 64,
+    "eta_min": 0.005,
+    "eta_max": 0.2,
+    "fixed_q": 8,
+    "fixed_eta": 0.05,
+    "contraction": 1.0,
+    "noise_coefficient": 1.0,
+    "message_overhead": 4.0
+  },
+  "sensor": {
+    "dimension": 3,
+    "markov_correlation": 0.6,
+    "residual_block_length": 16,
+    "paired_replicates": 64,
+    "fingerprint_blocks": 128,
+    "fingerprint_length": 8,
+    "independent_collision": 0.01,
+    "q_fingerprint": 2,
+    "disjoint_from_evaluation": true,
+    "fully_charged": true
+  },
+  "accounting": {
+    "learning_updates": 100,
+    "message_budget_rule": "all sensor messages plus 100*(overhead+q_max)",
+    "environment_budget_rule": "all sensor actor transitions plus 100*q_max",
+    "probe_samples_are_not_learning_updates": true
+  },
+  "analysis": {
+    "primary_unit": "mean over the 64 registered seeds within each of 324 cells",
+    "normalized_regret": "(observable true score - oracle true score)/(abs(oracle true score)+contraction*state_signal*eta_max+resource_price*q_max)",
+    "score_direction": "lower is better",
+    "uses_prior_outcome_rows": false
+  },
+  "mandatory_gates": {
+    "G1": "324 cells, 64 unique seeds, and 20736 endpoints are present",
+    "G2": "all statistics and scores are finite and noise estimates are nonnegative",
+    "G3": "median cell normalized observable-to-oracle regret <= 0.10",
+    "G4": "90th percentile cell normalized observable-to-oracle regret <= 0.35",
+    "G5": "observable joint action improves over the fixed (q,eta) action in at least 60% of cells",
+    "G6": "clairvoyant joint action strictly improves over both q-only and eta-only actions in at least 30% of cells",
+    "G7": "observable joint action beats the better one-dimensional ablation in at least 50% of cells",
+    "G8": "median selected q is nonincreasing in rho on at least 90% of matched grid paths",
+    "G9": "median selected eta is nondecreasing in state signal on at least 90% of matched grid paths",
+    "G10": "every endpoint obeys both fully charged budgets",
+    "G11": "runner has no access to evaluated noise when selecting an action",
+    "G12": "a clean rerun is byte-identical"
+  },
+  "expected_workload": {
+    "cells": 324,
+    "endpoints": 20736,
+    "recommended_hardware": "local CPU",
+    "gpu": false,
+    "hpc4": false
+  },
+  "authorization": {
+    "execute_only_after_independent_preregistration_commit": true,
+    "formal": false,
+    "standard_rl_benchmark": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

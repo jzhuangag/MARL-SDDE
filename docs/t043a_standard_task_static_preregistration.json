@@ -1,0 +1,85 @@
+{
+  "experiment_id": "T-043A",
+  "kind": "outcome_free_standard_task_phase_feasibility_scan",
+  "parent_commit": "e6d4d5a",
+  "scientific_execution_authorized_after_prereg_commit": true,
+  "sampled_learning_trajectory_authorized": false,
+  "formal_or_gpu_authorized": false,
+  "software": {
+    "gymnasium": "1.0.0",
+    "tasks": {
+      "frozenlake4x4": {
+        "environment_id": "FrozenLake-v1",
+        "kwargs": {"map_name": "4x4", "is_slippery": true},
+        "feature_dimension": 4
+      },
+      "cliffwalking": {
+        "environment_id": "CliffWalking-v0",
+        "kwargs": {},
+        "feature_dimension": 8
+      }
+    },
+    "policy": "uniform_random_actions",
+    "terminal_handling": "zero_bootstrap_then_exact_initial_distribution_reset",
+    "discount": 0.9
+  },
+  "coupling_contract": {
+    "construction": "fresh common/private inverse-CDF uniforms on each valid per-agent Markov trajectory",
+    "rho_definition": "probability that a pair of agents both use the common uniform, equal to alpha squared",
+    "single_agent_marginal": "exact registered policy-induced task kernel for every rho and q",
+    "trajectory_splicing_forbidden": true
+  },
+  "grid": {
+    "rho": [0.0, 0.1, 0.9, 1.0],
+    "delay": [0, 1, 3],
+    "q": [1, 4, 16],
+    "normalized_step": [0.04, 0.08, 0.12],
+    "message_overhead": 2,
+    "budget_rays": {
+      "message": {
+        "message_budget": [192, 384, 768],
+        "environment_budget": 1000000
+      },
+      "environment": {
+        "message_budget": 1000000,
+        "environment_budget": [64, 128, 256]
+      }
+    }
+  },
+  "surrogate": {
+    "drift": "minimum eigenvalue of the symmetric projected TD drift",
+    "step_size": "normalized_step divided by projected drift operator norm",
+    "noise": "exact stationary trace second moment of the projected TD innovation at theta_star",
+    "mixing": "SLEM of the exact regenerative current-state kernel",
+    "risk": "T-035 exact scalar finite-horizon delayed Markov risk",
+    "claim": "outcome-free necessary design screen, not a sampled-task result or an exact multiplicative-TD oracle"
+  },
+  "analysis": {
+    "tie_break": ["risk", "q", "normalized_step"],
+    "strong_fixed_q_group": ["task", "ray", "budget", "delay"],
+    "strong_fixed_q_uses_cellwise_best_step": true,
+    "adaptation_ceiling_population": "message-binding cells only",
+    "no_seeds_or_confidence_intervals": true
+  },
+  "mandatory_gates": {
+    "S1": "both upstream task kernels, regenerative kernels, projected drifts, and exact fixed points are valid",
+    "S2": "all registered rows are finite, stable, and have at least one fully charged update",
+    "S3": "under rho=0 environment binding, q=16 improves risk over q=1 by at least 5 percent in at least 80 percent of cells",
+    "S4": "under rho=1 environment binding, oracle participation value over q=1 is at most 1 percent in every cell",
+    "S5": "under rho=1 message binding, q=1 is optimal in at least 90 percent of cells",
+    "S6": "best-q support contains q=1 and q=16 for each task",
+    "S7": "message-cell oracle versus strongest fixed-q aggregate geometric improvement is at least 5 percent",
+    "S8": "the message-cell oracle strictly improves at least 40 percent of cells",
+    "S9": "no sampled trajectory, seed, confidence interval, pilot, formal run, or GPU job is used",
+    "S10": "a clean rerun is byte-identical and all configuration, runner, task-kernel, rows, and summary hashes are recorded"
+  },
+  "stop_rule": "Any failed mandatory gate forbids EXP-020A preregistration. Thresholds, tasks, policies, rays, and cells cannot be changed after this commit to rescue T-043A.",
+  "expected_workload": {
+    "scenarios": 144,
+    "actions_per_scenario": 9,
+    "rows": 1296,
+    "maximum_scalar_horizon": 256,
+    "recommended_hardware": "local CPU",
+    "gpu": false
+  }
+}

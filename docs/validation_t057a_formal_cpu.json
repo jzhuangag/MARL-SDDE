@@ -1,0 +1,105 @@
+{
+  "active_breadth": {
+    "one_sided_lower_fraction": 0.7962962962962963,
+    "one_sided_lower_quantile": 0.05,
+    "pass": true,
+    "point_fraction": 0.8148148148148148,
+    "threshold": 0.6
+  },
+  "aggregate": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 0.8825861502063427,
+    "pass": true,
+    "point_ratio": 0.8723783113872021,
+    "threshold": 0.95
+  },
+  "all_formal_gates_pass": true,
+  "artifact_sha256": {
+    "cells.csv": "d15841a0602c72e8d3d3650967326cac7efe19b87d5a23d6007b2b7767f09fe4",
+    "endpoints.csv": "19ebc6aaa5c99652bd51a70e9257d1641b4f6db1ba4d32c22247d1886a89f964",
+    "summary.json": "17a36b8bbd39734d7c9e52bed1f7aa212d7a096474ac207c3aa275c6ac496a1a"
+  },
+  "bootstrap": {
+    "active_one_sided_lower_quantile": 0.05,
+    "aggregate_one_sided_upper_quantile": 0.95,
+    "delay_Bonferroni_one_sided_upper_quantile": 0.975,
+    "replicates": 50000,
+    "seed": 57001,
+    "task_Bonferroni_one_sided_upper_quantile": 0.9833333333333333,
+    "unit": "complete master-seed column across every registered cell and comparator"
+  },
+  "classification": "formal evidence under the preregistered fixed-policy Markov-TD scope",
+  "delays": {
+    "0": {
+      "one_sided_upper_quantile": 0.975,
+      "one_sided_upper_ratio": 0.8893329344282963,
+      "pass": true,
+      "point_ratio": 0.872480377295373,
+      "threshold": 0.97
+    },
+    "8": {
+      "one_sided_upper_quantile": 0.975,
+      "one_sided_upper_ratio": 0.8892092668910314,
+      "pass": true,
+      "point_ratio": 0.8722762574190701,
+      "threshold": 0.97
+    }
+  },
+  "experiment_id": "T-057A-formal-fixed-policy-Markov-TD",
+  "fingerprint_standardized_rmse": 0.9183156930500668,
+  "gates": {
+    "F10_fingerprint_calibration": true,
+    "F11_summary_replay": true,
+    "F12_byte_reproduction": true,
+    "F13_seed_isolation": true,
+    "F14_full_tests": true,
+    "F1_provenance_and_coverage": true,
+    "F2_finite_and_budget_valid": true,
+    "F3_aggregate_inference": true,
+    "F4_taskwise_simultaneous_inference": true,
+    "F5_delay_simultaneous_inference": true,
+    "F6_active_breadth_inference": true,
+    "F7_inactive_no_harm_inference": true,
+    "F8_oracle_proximity_inference": true,
+    "F9_participation_direction": true
+  },
+  "gpu_authorized": false,
+  "hpc4_authorized": false,
+  "inactive_no_harm": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 1.0204149855275932,
+    "pass": true,
+    "point_ratio": 1.0144050971277006,
+    "threshold": 1.05
+  },
+  "oracle_proximity": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 1.0175918282629384,
+    "pass": true,
+    "point_ratio": 1.013378273096441,
+    "threshold": 1.2
+  },
+  "tasks": {
+    "cliffwalking": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8855293250524999,
+      "pass": true,
+      "point_ratio": 0.8650511587782305,
+      "threshold": 0.97
+    },
+    "frozenlake8x8": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.9076337003468053,
+      "pass": true,
+      "point_ratio": 0.8810307944828649,
+      "threshold": 0.97
+    },
+    "taxi": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8876301584943432,
+      "pass": true,
+      "point_ratio": 0.8711274497002348,
+      "threshold": 0.97
+    }
+  }
+}

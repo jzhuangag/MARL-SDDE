@@ -1,0 +1,255 @@
+{
+  "checked_at_date": "2026-08-31",
+  "scope": "Bounded RL-interface and nearest-neighbor check; not an exhaustive novelty review or final manuscript bibliography.",
+  "disclosure": "AI-assisted internal research. Only public bibliographic queries were sent to resolvers.",
+  "manuscript_ready": false,
+  "bibliography_edited": false,
+  "sources": [
+    {
+      "key": "ollivier2018reversible",
+      "title": "Approximate Temporal Difference Learning is a Gradient Descent for Reversible Policies",
+      "authors": [
+        "Yann Ollivier"
+      ],
+      "cited_version": {
+        "type": "arXiv preprint",
+        "year": 2018,
+        "identifier": "1805.00869",
+        "doi": "10.48550/arXiv.1805.00869"
+      },
+      "authoritative_evidence": [
+        {
+          "url": "https://arxiv.org/abs/1805.00869",
+          "status": "positive_match",
+          "fields": [
+            "title",
+            "author",
+            "year",
+            "identifier"
+          ]
+        },
+        {
+          "url": "https://doi.org/10.48550/arXiv.1805.00869",
+          "status": "HTTP_200_title_match"
+        }
+      ],
+      "resolvers": {
+        "arxiv": "passed",
+        "openalex": {
+          "status": "passed",
+          "work_id": "W2799045927",
+          "fields": [
+            "title",
+            "author",
+            "year",
+            "doi"
+          ],
+          "is_retracted": false
+        },
+        "semantic_scholar": {
+          "status": "unavailable",
+          "http_status": 429
+        },
+        "crossref": {
+          "status": "not_applicable_to_cited_arxiv_DOI",
+          "reason": "arXiv DOI uses DataCite; no publisher DOI asserted"
+        }
+      },
+      "use": "Reversible-policy TD/Dirichlet geometry is inherited and restricted; not a general nonreversible gradient identity.",
+      "material_metadata_conflict": false
+    },
+    {
+      "key": "lu_giannakis2021ensemble",
+      "title": "Robust and Adaptive Temporal-Difference Learning Using An Ensemble of Gaussian Processes",
+      "authors": [
+        "Qin Lu",
+        "Georgios B. Giannakis"
+      ],
+      "cited_version": {
+        "type": "arXiv preprint",
+        "year": 2021,
+        "identifier": "2112.00882",
+        "doi": "10.48550/arXiv.2112.00882"
+      },
+      "authoritative_evidence": [
+        {
+          "url": "https://arxiv.org/abs/2112.00882",
+          "status": "positive_match",
+          "fields": [
+            "title",
+            "authors",
+            "year",
+            "identifier"
+          ]
+        },
+        {
+          "url": "https://doi.org/10.48550/arXiv.2112.00882",
+          "status": "HTTP_200_title_match"
+        }
+      ],
+      "resolvers": {
+        "arxiv": "passed",
+        "openalex": {
+          "status": "passed",
+          "work_id": "W3215189647",
+          "fields": [
+            "title",
+            "authors",
+            "year",
+            "doi"
+          ],
+          "is_retracted": false
+        },
+        "semantic_scholar": {
+          "status": "unavailable",
+          "http_status": 429
+        },
+        "crossref": {
+          "status": "not_applicable_to_cited_arxiv_DOI",
+          "reason": "arXiv DOI uses DataCite; no publisher DOI asserted"
+        }
+      },
+      "use": "Prior online GP-ensemble TD and cumulative error comparisons; not asserted to implement the proposed transfer or counterfactual-risk controller.",
+      "material_metadata_conflict": false
+    },
+    {
+      "key": "liu_olshevsky2021splitting",
+      "title": "Temporal Difference Learning as Gradient Splitting",
+      "authors": [
+        "Rui Liu",
+        "Alex Olshevsky"
+      ],
+      "cited_version": {
+        "type": "conference proceedings",
+        "year": 2021,
+        "venue": "Proceedings of the 38th International Conference on Machine Learning",
+        "series": "Proceedings of Machine Learning Research",
+        "volume": "139",
+        "pages": "6905-6913"
+      },
+      "related_preprint": {
+        "year": 2020,
+        "identifier": "2010.14657",
+        "doi": "10.48550/arXiv.2010.14657"
+      },
+      "authoritative_evidence": [
+        {
+          "url": "https://proceedings.mlr.press/v139/liu21q.html",
+          "status": "positive_match",
+          "fields": [
+            "title",
+            "authors",
+            "year",
+            "venue",
+            "volume",
+            "pages"
+          ]
+        },
+        {
+          "url": "https://arxiv.org/abs/2010.14657",
+          "status": "positive_match_for_preprint"
+        },
+        {
+          "url": "https://doi.org/10.48550/arXiv.2010.14657",
+          "status": "HTTP_200_title_match_for_preprint"
+        }
+      ],
+      "resolvers": {
+        "arxiv": "passed_for_preprint",
+        "openalex": {
+          "status": "passed_for_preprint_identity",
+          "work_id": "W3097392427",
+          "duplicate_work_id": "W3166096743",
+          "fields": [
+            "title",
+            "authors",
+            "preprint_year",
+            "arxiv_doi"
+          ],
+          "indexed_year": 2020,
+          "is_retracted": false
+        },
+        "semantic_scholar": {
+          "status": "unavailable",
+          "http_status": 429
+        },
+        "crossref": {
+          "status": "not_used",
+          "reason": "Publisher record provides conference metadata; no conference DOI inferred from arXiv DOI"
+        }
+      },
+      "version_resolution": "2020 is the preprint year and 2021 is the publisher-confirmed conference year. The arXiv DOI is not labelled as a proceedings DOI.",
+      "use": "Inherited gradient-splitting and finite-time TD analysis; not ordinary symmetric-gradient equivalence.",
+      "material_metadata_conflict": false
+    },
+    {
+      "key": "arora_dekel_tewari2012policy_regret",
+      "title": "Online Bandit Learning against an Adaptive Adversary: from Regret to Policy Regret",
+      "authors": [
+        "Raman Arora",
+        "Ofer Dekel",
+        "Ambuj Tewari"
+      ],
+      "cited_version": {
+        "type": "arXiv preprint",
+        "year": 2012,
+        "identifier": "1206.6400",
+        "doi": "10.48550/arXiv.1206.6400"
+      },
+      "authoritative_evidence": [
+        {
+          "url": "https://arxiv.org/abs/1206.6400",
+          "status": "positive_match",
+          "fields": [
+            "title",
+            "authors",
+            "year",
+            "identifier"
+          ]
+        },
+        {
+          "url": "https://oferdekel.github.io/pdf/2012AroraDeTe.pdf",
+          "status": "author_manuscript_match"
+        },
+        {
+          "url": "https://doi.org/10.48550/arXiv.1206.6400",
+          "status": "HTTP_200_title_match"
+        }
+      ],
+      "resolvers": {
+        "arxiv": "passed",
+        "openalex": {
+          "status": "passed_for_cited_preprint",
+          "work_id": "W2101379030",
+          "duplicate_work_id": "W2951945213",
+          "fields": [
+            "title",
+            "authors",
+            "year",
+            "doi"
+          ],
+          "is_retracted": false
+        },
+        "semantic_scholar": {
+          "status": "unavailable",
+          "http_status": 429
+        },
+        "crossref": {
+          "status": "not_applicable_to_cited_arxiv_DOI",
+          "reason": "arXiv DOI uses DataCite; no publisher DOI asserted"
+        }
+      },
+      "version_resolution": "The citation is specifically to the arXiv/author manuscript. A program/index pointer showed a differing author order; no final-proceedings bibliographic entry or page range is introduced on that basis.",
+      "use": "Ordinary regret versus counterfactual policy-regret distinction only. Generic adversarial lower bounds are not claimed for structured TD.",
+      "material_metadata_conflict": false,
+      "excluded_unresolved_metadata": "Final proceedings/index author-order reconciliation remains outside the verified preprint citation."
+    }
+  ],
+  "limitations": [
+    "Semantic Scholar title-search requests returned HTTP 429 for all four records; no success is inferred.",
+    "Retraction checks are limited to the returned OpenAlex is_retracted fields; conflicts of interest were not independently assessed.",
+    "Preprint existence is not evidence of peer review.",
+    "No exhaustive claim of novelty, publication readiness, or ICML acceptance follows from this check.",
+    "Fresh final-manuscript citation verification is still required before publication delivery."
+  ]
+}

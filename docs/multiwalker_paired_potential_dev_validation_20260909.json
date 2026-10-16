@@ -1,0 +1,75 @@
+{
+  "material_passport": {
+    "origin_skill": "academic-research-suite",
+    "origin_mode": "validate",
+    "origin_date": "2026-09-09",
+    "verification_status": "ANALYZED_INDEPENDENT_REPRODUCTION_INCOMPLETE",
+    "version_label": "validation_multiwalker_paired_potential_dev_v1"
+  },
+  "experiment_id": "MW-PF-DEV-001",
+  "decision": "PERMANENTLY_STOP_POTENTIAL_ONLY_BRIDGE",
+  "formal_or_confirmation_evidence": false,
+  "gpu_or_hpc_authorized": false,
+  "preregistration_commit": "ba7fb7ed949a5e81eaa353285a28ec49926c598e",
+  "execution_head_before_validation": "aa4cb3a5a6e78cf91ff4dad5d76507949a9a6a16",
+  "sha256": {
+    "config": "8EC001E4F394918673CA09BC3F6749869592EAEFEF5B474039D149E8B86BAC8C",
+    "runner_analyzer": "9E50453A798F1B364A4E7BCAAE29FE5BC7D9A0536F9FDB87F555F8810A2D7227",
+    "baseline_rows": "0F523DC6BA9474BE008533E1FAA90E6A8700CEF246970C6FAD9823080F313ECC",
+    "exact_rows": "4CD2556B605FBD63659100165FD2A95C39FAE87BE551999B697A2A93046F0FF5",
+    "primary_rows": "7CFACB7D00613738A93CF328BB813E1CF978968851C2ABA278FA525367A74FE1",
+    "primary_summary": "25ABDD2503D1F7C506A1037B3F13CACCE2C15E5790CC4D29A02465EE545FCE8A",
+    "audit_remerge_rows": "7CFACB7D00613738A93CF328BB813E1CF978968851C2ABA278FA525367A74FE1",
+    "audit_remerge_summary": "25ABDD2503D1F7C506A1037B3F13CACCE2C15E5790CC4D29A02465EE545FCE8A"
+  },
+  "primary": {
+    "rows": 320,
+    "seeds": [96100, 96101, 96102, 96103, 96104, 96105, 96106, 96107],
+    "chunks": 4,
+    "chunk_rows": [80, 80, 80, 80],
+    "all_finite_and_valid": true,
+    "active_candidate_headroom_over_strengthened_strong": -0.038890043043416256,
+    "active_exact_oracle_headroom_over_strengthened_strong": 2.452700704169404,
+    "active_recovery_fraction": -0.01585600843074989,
+    "active_direction_rate": 0.4375,
+    "active_median_normalized_candidate_headroom": -0.000004466524004850588,
+    "active_exact_oracle_median_normalized_headroom": 0.007136928694804629,
+    "active_exact_oracle_mean_normalized_headroom": 0.008135744495631994,
+    "active_exact_oracle_positive_cells": 16,
+    "active_exact_oracle_cells": 16,
+    "active_queue_changed_choices": 37,
+    "all_candidate_gain_over_no_refresh": 6.671269015924754,
+    "selected_pair_all_folds": {
+      "reset_bonus_cap": 0.0,
+      "queue_step": 0.0025
+    }
+  },
+  "gates": {
+    "P1_complete_grid": true,
+    "P2_finite_exact_replay_prefix": true,
+    "P3_crossfit_catalogue_only": true,
+    "P4_strengthened_oracle_headroom_positive": true,
+    "P5_active_recovery_at_least_10pct": false,
+    "P6_active_direction_at_least_75pct": false,
+    "P7_active_median_normalized_headroom_at_least_0p05pct": false,
+    "P8_nontrivial_reset_selected": false,
+    "P9_queue_changes_at_least_one_active_choice": true,
+    "P10_candidate_aggregate_gain_over_no_refresh": true,
+    "all_gates_pass": false
+  },
+  "reproducibility": {
+    "deterministic_merge": "REPRODUCIBLE_BYTE_EXACT",
+    "independent_end_to_end": "CANNOT_VERIFY",
+    "independent_attempt_detail": "four clean processes no longer exist and no reproduction output directory or terminal record is available",
+    "automatic_retry_performed": false
+  },
+  "fallacy_scan_coverage": "11/11",
+  "tests": {
+    "targeted_passed": 29,
+    "targeted_seconds": 29.69,
+    "policy_dependency_sync_passed": 694,
+    "policy_dependency_sync_warnings": 3,
+    "policy_dependency_sync_seconds": 350.10
+  },
+  "successor_status": "DRIFT_STRUCTURED_RESIDUAL_VALUE_IS_THEORY_ONLY_AND_NOT_EXPERIMENT_AUTHORIZED"
+}
