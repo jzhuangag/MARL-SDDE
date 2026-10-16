@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (latest decision).
-- Status: old causal-recycle science remains NO_GO. The separate amortized native loop now passes all6 originals/all6 replays and byte-identical analysis (438.234375 CPU seconds), pushed at1553cca. Qualification returns remain outcome-ineligible. A complete60-cell fresh-seed learning/independent-score/full-cost development and6 fixed replays are prepared for a separate source/gate freeze; no scientific result or ICML manuscript claim yet.
+- Status: old causal-recycle science remains NO_GO. The separate amortized native loop passes all6 originals/all6 replays and byte-identical analysis (438.234375 CPU seconds), pushed at1553cca. Qualification returns remain outcome-ineligible. The separate60-cell learning/independent-score/full-cost development and6 fixed replays are frozen/pushed atdd27979 and now RUNNING (one worker); no new scientific result or ICML manuscript claim yet.
 
 ## Amortized native qualification registration (2026-10-16)
 
@@ -53,6 +53,20 @@
 - A pass permits only fresh confirmation/wider-family planning. Any scientific
   failure requires full-mechanism diagnosis and a final bounded design judgment,
   not another automatic sequence of numbered attempts. No GPU or TSP edits.
+- Separate science source/preregistration is pushed at
+  dd279792735ecf0c91b4bb3e86420c3c7a732736 before launch. The ONE workflow is
+  active at results/amortized_packet_development_20261016, source snapshot matches
+  dd27979, Python PID28264, local execution session92326 if available. Execution
+  confirms estimated CPU11879.281808 and cap12000. Read execution/progress only
+  while incomplete; never start another worker/replay/analyzer. The process owns
+  all60+6 cells, double analysis and plots; require final workflow marker AND exit.
+- Existing heartbeat complete-amortized-marl-value-control-development is updated
+  in place, hourly and quiet on routine unchanged state. It monitors this frozen
+  study, not the completed qualification, and deletes itself at the terminal
+  bounded decision. Preserve active raw outputs without staging partial evidence.
+- Before the scientific freeze, the --freeze import preflight exposed a legacy
+  module-name collision; explicit package-qualified audit/analyzer imports fixed
+  it before any scientific root/data existed. No native payload was retried.
 
 ## Decisions
 
