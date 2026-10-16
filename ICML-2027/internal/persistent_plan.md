@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (renewed human authorization).
-- Status: bounded sealed-prefix complete-learning cost workflow is TERMINAL RESOURCE_NO_GO, not scientific failure. All39 native cost cells and independent cost/hash/runtime reconciliations pass, but frozen forecast30.7026 CPU hours exceeds the3.3333-hour cap. No117-cell science study/replay/admission exists. Await explicit resource direction; do not restart profiles, alter gates or infer learning superiority. Prior scientific NO_GO studies, passed qualification6+6 and TSP manuscripts remain preserved.
+- Status: human-approved40-CPU-hour complete native science is ACTIVE under separate resource lock/admission pushed at d3bada6, root results/sealed_bridge_learning_dev40h_20261016, PID17948. Original RESOURCE_NO_GO remains preserved and superseded only as a resource ceiling, not as an altered scientific result. V3 read-only final audit is complete with a BLOCKED submission-release decision; see TSP-V3/manuscript/internal/final_audit_20261016/final_audit.md. Do not duplicate the worker, peek incomplete returns, restart profiles or overwrite V3.
 
 ## Current human-approved40-hour execution (2026-10-16)
 
@@ -24,6 +24,35 @@
   No GPU/HPC4/remote scope is authorized. The V3 audit is a read-only separate
   report with fresh citation/bibliography/theory/evidence/PDF checks, not edits
   or actual submission. Monitoring follows complete science and V3 audit status.
+
+## V3 independent final audit completed — submission not released (2026-10-16)
+
+- All manuscript/PDF/Bib/figure hashes remain unchanged. Fresh primary metadata
+  positively identify all37 references; Paulin article79/issue-none is a resolved
+  representation judgment, not a fabricated reference. Index outages are explicit.
+- All13 PDF pages visually inspected; four figures embed Times New Roman and
+  fraction ticks/subfigure labels are consistent. Isolated draftmode/BibTeX build
+  exits0, no PDF replaced; zero undefined/overfull and four underfull warnings.
+- Definite reporting correction: EXP-016B54.43%/10.85% divide the paired gain by
+  fallback risk, NOT information-only risk. Actual relative reductions versus
+  information-only are35.24%/9.79%, both positive. Fig3 subset values have the same
+  denominator distinction. Do not change saved results, gates or analyzer outputs.
+- Required proof repairs: expected not pointwise Gaussian-KL information bound;
+  nonempty compact certified scalar domain/global solve interface; positive-part
+  sliding envelope plus explicit random-delay/mixed-target history conditions;
+  certificate-relative/coverage-conditional safety. Theory memo has counterexamples
+  to the invalid steps and concrete repair paths; no repaired theorem is claimed.
+- MPE2.319% is mean regime/seed-normalized gain; MaMuJoCo8.341% is paired
+  mixture-first gain. Both reconstruct, but the definitions need explicit prose.
+  Robust-shield and terminal-parameter ablation gains remain supported, not an
+  all-metric/myopic win. Anonymous Authors still requires real submission metadata.
+- V3 repair does NOT require the new experiment. Current authorization preserves
+  V3; only separate audit/report files were created, not an edited manuscript.
+  No clean submission clearance or full plagiarism/context release is claimed.
+- The40h science driver remains independent and live. Next heartbeat monitors
+  its existing owner only; it must not repeat the completed V3 audit or launch
+  duplicate science/replay/analyzers. At science completion apply original gates,
+  report all controls/costs/negative results and commit only verified relevant data.
 
 ## Preserved earlier terminal resource decision (2026-10-16)
 
