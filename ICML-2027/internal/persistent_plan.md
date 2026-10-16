@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (latest decision).
-- Status: old causal-recycle science remains NO_GO. Genuine five-epoch native current-packet integration now passes all6 originals/all6 semantic replays and byte-identical analysis (425.6875 CPU seconds); qualification returns remain outcome-ineligible. One amortized packet-response correction is implemented as a separate cost/expected-risk prototype; complete new integration and useful precision/learning-response development remain pending. No positive ICML MARL performance claim or manuscript admission.
+- Status: old causal-recycle science remains NO_GO. The separate amortized native loop now passes all6 originals/all6 replays and byte-identical analysis (438.234375 CPU seconds), pushed at1553cca. Qualification returns remain outcome-ineligible. A complete60-cell fresh-seed learning/independent-score/full-cost development and6 fixed replays are prepared for a separate source/gate freeze; no scientific result or ICML manuscript claim yet.
 
 ## Amortized native qualification registration (2026-10-16)
 
@@ -24,6 +24,35 @@
   precision. Operational pass is required but not positive return evidence.
   Separate development needs a new source/gate/seed freeze and a cost-only
   runtime estimate, and must jointly test precision, learning and full costs.
+
+## Complete amortized learning-response development freeze (2026-10-16)
+
+- Qualification driver exited0;6+6 cells and both byte analyses pass at1553cca.
+  Do not restart it or its analyzers. PPO Adam calls now equal the matched
+  eligible-all count on the NEW qualification workload. No return ranked.
+- Implemented the complete development with seven strong fresh/matched online
+  controls, full method, full-vector and no-price ablations; both native MPE
+  tasks, fresh seeds79521001--3,24 banks*20 episodes*25 steps, one CPU worker.
+  This is two tasks within one family, NOT cross-family validation.
+- Each current selection uses a prefix m<=16. A disjoint last4 episode tail
+  checks its selected actual-return contrast AFTER selection and never enters
+  current controller feedback. Tail reads/forwards/messages are fully priced;
+  all future programs remain paid. Same-world benchmark evaluation is separate.
+- Eight algebra/transaction/independent-validation tests pass. Source/plan and
+  all task-level learning/precision/cost gates must be committed/pushed before
+  execution. Cost-only native-volume runtime estimate11879.281808 CPU seconds;
+  hard whole development+6replay+analysis cap12000, never retry a failure.
+- The only authorized driver will be amortized_packet_development/workflow.py
+  at results/amortized_packet_development_20261016, with lock
+  internal/amortized_packet_development_lock_20261016.json. It owns60 cells,
+  six fixed replays, two analyses and plots; no duplicate worker/analyzer.
+- EACH task must show>=1% AUC gain vs strongest of all seven controls,>=2/3
+  positive seeds, final>=-2%, strongest-control learning>=2%, positive independent
+  selection response on mean and>=2/3 seeds,>=4 nonidle receipts/seed, cost ratios
+  <=1.5 and all causal/resource/replay gates. No pooled rescue or outcome tuning.
+- A pass permits only fresh confirmation/wider-family planning. Any scientific
+  failure requires full-mechanism diagnosis and a final bounded design judgment,
+  not another automatic sequence of numbered attempts. No GPU or TSP edits.
 
 ## Decisions
 
