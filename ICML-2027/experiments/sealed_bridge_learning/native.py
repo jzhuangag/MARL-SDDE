@@ -75,6 +75,12 @@ def flat_data(data):
                 states=data['states'].reshape(count, -1), rewards=data['rewards'])
 
 
+def episode_seed(seed, task, ordinal, role, episode):
+    """64-bit disjoint role identifiers; avoid birthday collisions in long runs."""
+    value = hashlib.sha256(f'{seed}:{task}:{ordinal}:{role}:{episode}'.encode()).digest()
+    return int.from_bytes(value[:8], 'big') & ((1 << 63)-1)
+
+
 def snapshot(actors, critic, normalizer, charges, event):
     clones = []
     for actor in actors:
@@ -130,7 +136,7 @@ There is no fictitious transmitted gradient for a server-computed backward.
             if amount not in self.pools:
                 self.pools[amount] = [qualified.make_env(self.task, self.horizon) for _ in range(amount)]
             envs = self.pools[amount]
-            keys = [qualified.base.seed_for(self.seed, self.task_index, ordinal, role, e)
+            keys = [episode_seed(self.seed, self.task_index, ordinal, role, e)
                     for e in range(start, start+amount)]
             if len(set(keys)) != amount or self.identities.intersection(keys):
                 raise AssertionError('Episode role collision or data reuse')
@@ -139,12 +145,12 @@ There is no fictitious transmitted gradient for a server-computed backward.
             names = list(envs[0].possible_agents)
             if len(names) != agents:
                 raise AssertionError('Agent catalogue differs from policy catalogue')
-            rngs = [np.random.default_rng(qualified.base.seed_for(self.seed, self.task_index,
+            rngs = [np.random.default_rng(episode_seed(self.seed, self.task_index,
                                                                 ordinal, role+100000, e))
                     for e in range(start, start+amount)]
             # A separate substream for mixture coins, not selection/action draws.
             modes = [int(source is not None and np.random.default_rng(
-                qualified.base.seed_for(self.seed, self.task_index, ordinal, role+200000, e)
+                episode_seed(self.seed, self.task_index, ordinal, role+200000, e)
             ).random() < source_fraction) for e in range(start, start+amount)]
             local = [dict(obs=[[] for _ in actors], actions=[[] for _ in actors],
                           logs=[[] for _ in actors], states=[], rewards=[], identity=keys[e], mode=modes[e])

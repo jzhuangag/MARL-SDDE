@@ -15,6 +15,7 @@ from sealed_bridge_learning.native import (Charges, Sampler, actor_bytes, actor_
                                            bridge_gradients, fit_critic, qualified, snapshot,
                                            source_gradients)
 from sealed_bridge_learning.updates import PredictableActorScale, joint_vtrace_update, ppo_update
+from sealed_bridge_learning.guard import require_cell
 
 
 CONTROLS = ('fresh_happo_half', 'fresh_happo', 'fresh_happo_double', 'fresh_mappo',
@@ -57,6 +58,7 @@ def _adam_direction(actors, gradient, charges):
 
 
 def run_cell(task_index, seed, method, plan, check_budget):
+    require_cell(check_budget, task_index, seed, method, plan)
     if method not in METHODS:
         raise ValueError('Unregistered method')
     task = plan['tasks'][task_index]
@@ -157,7 +159,7 @@ def run_cell(task_index, seed, method, plan, check_budget):
             episode_bytes = qualified.payload_bytes(data)//calibration
             fit_critic(actors, critic, normalizer, data, p, charges)
             trace.append(dict(kind='charged_calibration', training_transitions=ledger.paid,
-                              actor_updated=False, costs=charges.snapshot()))
+                              actor_updated=False, data_ids=data['identities'], costs=charges.snapshot()))
             evaluate()
 
         if method in ('full',)+ABLATIONS:
@@ -262,6 +264,9 @@ def run_cell(task_index, seed, method, plan, check_budget):
                                       decision=dict(index=decision['index'], episodes=selected.episodes,
                                                     beta=selected.beta, before_source_and_bridge=True),
                                       actor_step=actor_step, feedback=feedback,
+                                      risk_feedback=risks.tolist(), actual_resources=actual_resources.tolist(),
+                                      risk_weight=controller.risk_weight, resources=resources.tolist(),
+                                      costs_before_receipt=charge_before,
                                       source_hash=job['policy_hash'], data_hash=job['data_hash'],
                                       anchor_hash=anchor.sha256, source_consumed_once=anchor.consumed,
                                       bridge_ids=data['identities'], complete_policy_modes=data['modes'],
@@ -285,6 +290,7 @@ def run_cell(task_index, seed, method, plan, check_budget):
                 details = fresh_sgd(data, 'terminal:server_fresh_sgd', actor_step)
                 fit_critic(actors, critic, normalizer, data, p, charges)
                 trace.append(dict(kind='terminal_fresh', episodes=amount, **details,
+                                  data_ids=data['identities'],
                                   costs=charges.snapshot(), training_transitions=ledger.paid))
                 terminal += 1
                 evaluate()
@@ -371,6 +377,7 @@ def run_cell(task_index, seed, method, plan, check_budget):
                 policy_version += 1
                 fit_critic(actors, critic, normalizer, data, p, charges)
                 trace.append(dict(kind='defensive_page_reference', refresh=bool(refresh), episodes=amount,
+                                  data_ids=data['identities'],
                                   before=before, after=qualified.policy_hash(actors),
                                   official_reproduction=False, evaluation_used=False,
                                   costs=charges.snapshot(), training_transitions=ledger.paid))
@@ -394,6 +401,7 @@ def run_cell(task_index, seed, method, plan, check_budget):
                     policy_version += 1
                 fit_critic(actors, critic, normalizer, data, p, charges)
                 trace.append(dict(kind='fresh_reference', before=before,
+                                  data_ids=data['identities'],
                                   after=qualified.policy_hash(actors), episodes=amount, details=details,
                                   costs=charges.snapshot(), training_transitions=ledger.paid))
                 ordinal += 1
@@ -405,6 +413,7 @@ def run_cell(task_index, seed, method, plan, check_budget):
         if charges.values['native_benchmark']+charges.values['native_frozen_policy'] != ledger.evaluation_paid:
             raise AssertionError('Evaluation charge recurrence disagrees')
         return dict(task=task['name'], task_index=task_index, seed=seed, method=method,
+                    policy_parameter_bytes=actor_bytes(actors), actor_parameter_count=actor_parameter_count(actors),
                     initial_hash=initial_hash, final_hash=qualified.policy_hash(actors),
                     training_transitions=training_limit, costs=charges.snapshot(),
                     charge_event_totals=charges.events, native_budget_events=ledger.events,
@@ -413,6 +422,13 @@ def run_cell(task_index, seed, method, plan, check_budget):
                     evaluation_used_by_controller=False, current_return_ranked=False,
                     physical_parallel_speedup_claimed=False,
                     algorithm_theorem_scope='conditional_own_objective_SGD; references/Adam_not_covered')
+    except BaseException:
+        if hasattr(check_budget, 'record_failure_metadata'):
+            check_budget.record_failure_metadata(dict(costs=charges.snapshot(),
+                charge_event_totals=charges.events, native_budget_events=ledger.events,
+                launches_completed=len(launches), transactions_completed=len(trace),
+                policy_version=policy_version, cpu_seconds=time.process_time()-start_cpu))
+        raise
     finally:
         sampler.close()
         frozen_sampler.close()

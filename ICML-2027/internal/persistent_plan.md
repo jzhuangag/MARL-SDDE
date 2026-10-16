@@ -8,6 +8,26 @@
 
 ## New human-authorized sealed-bridge mechanism (2026-10-16)
 
+- The NEW fail-closed single-owner driver, exact-cost/controller analyzer,
+  semantic replay and all-method plotting path now exist. Prospective profile/
+  development config retains13 methods,3 tasks/two families, fresh science seeds,
+  200k/200k/1m transitions and1000-step official HalfCheetah. Profile39 whole cells
+  only for costs; never rank its outcome-ineligible returns. Separate science
+  admission is required after its frozen conservative CPU forecast passes.
+  Preregistration:sealed_bridge_learning_preregistration_20261016.md;
+  lock:sealed_bridge_learning_lock_20261016.json. No native data yet at freeze.
+- Three new synthetic guard/audit regressions pass, including rejected counter/
+  queue tampering and unauthorized native invocation; this is source validation,
+  NOT another native qualification or learning result. Previous39 route tests
+  were not repeated as the next research deliverable. All old source hashes
+  and manuscripts remain preserved. The NEW sampler uses63-bit role-derived
+  identifiers to avoid long-budget31-bit birthday collisions.
+- Next execute ONLY the registered cost phase from the pushed lock, one owner,
+  max3000 active CPU seconds inside the same12000 total envelope. Forecast
+  multiplier1.5 and600s reserve are frozen. A resource failure is a bounded
+  resource decision, NOT scientific failure or evidence of improvement; do not
+  shrink horizons/remove methods/retry. On pass, commit separate science admission.
+
 - NEW callable complete learning backend now integrates13 actual server learning
   methods, batched complete-policy collection, benchmark/frozen-policy evaluation,
   source service/drain and exact training exhaustion. It remains unregistered

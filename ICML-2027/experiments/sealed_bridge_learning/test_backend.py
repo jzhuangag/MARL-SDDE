@@ -100,6 +100,7 @@ class CompleteBackend(unittest.TestCase):
                                bridge=75, fresh=76, terminal=77))
         initial = {}
         with patch.object(b, 'Sampler', TensorSampler), patch.object(b.qualified, 'initialize', initialize_tensors), \
+                patch.object(b, 'require_cell', return_value=None), \
                 patch.object(b.qualified, 'make_env', side_effect=AssertionError('NATIVE DATA FORBIDDEN IN TENSOR TEST')):
             for task_index in range(3):
                 for method in b.METHODS:
