@@ -54,6 +54,13 @@
   or manuscript migration. Preserve all old studies and TSP sources. Terminate
   complete-amortized-marl-value-control-development after pushing the audited
   final package; no scientific process remains active.
+- Complete evidence/diagnosis/derived figures are pushed atc5d7de6. Eight relevant
+  amortized algebra/controller/protocol regression tests pass; all frozen source
+  hashes and derived artifact manifests remain verified. Original figures and
+  all scientific results are preserved, including the failed primary comparison.
+- Terminal follow-up action completed: automation
+  complete-amortized-marl-value-control-development was DELETED through the app
+  after the audited package push. No replacement heartbeat or native run created.
 
 ## Complete amortized learning-response development freeze (2026-10-16)
 
