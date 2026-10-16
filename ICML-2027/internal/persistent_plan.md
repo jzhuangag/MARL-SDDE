@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (latest decision).
-- Status: old causal-recycle science remains NO_GO. The separate amortized native loop passes all6 originals/all6 replays and byte-identical analysis (438.234375 CPU seconds), pushed at1553cca. Qualification returns remain outcome-ineligible. The separate60-cell learning/independent-score/full-cost development and6 fixed replays are frozen/pushed atdd27979 and now RUNNING (one worker); no new scientific result or ICML manuscript claim yet.
+- Status: amortized complete learning development is COMPLETE, scientifically NO_GO. All60 payloads and6 fixed semantic replays pass integrity; both analyses are byte-identical, total CPU8014.6875s. Native AUC -0.867157% Spread/-0.178870% Reference versus strongest controls; final -7.045926%/-2.796061%. No confirmation, GPU expansion, manuscript admission, automatic numbered successor or new native worker is authorized by this stopped bounded workflow.
 
 ## Amortized native qualification registration (2026-10-16)
 
@@ -24,6 +24,36 @@
   precision. Operational pass is required but not positive return evidence.
   Separate development needs a new source/gate/seed freeze and a cost-only
   runtime estimate, and must jointly test precision, learning and full costs.
+
+## Final amortized complete-development decision (2026-10-16)
+
+- Registered dd27979 driver exited0 after60 complete learning cells,6 fixed
+  replays, two byte-identical analyses and plots. Do NOT restart any of them.
+  Source/runtime/registered-commit hashes and every66 payload/ledger pass the
+  independent audit at results/amortized_packet_development_audit_20261016.
+- Full method fails native AUC/positive-seed/final-return gates in BOTH tasks.
+  Both strongest-baseline learning gates pass (5.21%/8.43%), so lack of learning
+  signal is not the explanation. Spread also fails independent selected-response
+  gates; Reference passes those but still loses full learning to online_kl.
+- Selection training optimism is6.469/2.218 cumulative gain units on task means.
+  All six full policy/action paths are identical to no_price; resource pricing
+  changes zero selected candidates at visited scores. Valid amortization lowers
+  proposal duplication but does not repair update directions or score transfer.
+- All costs retained: logical bytes +17.95%/+22.06% vs strongest control, proxy
+  work -6.06%/+7.63%; actual mean CPU157.55/103.12s vs141.41/96.61s. Proxy saving
+  is not hardware acceleration. Shared message/byte AUC does not reverse loss.
+- Full mechanism report: amortized_packet_development_validation_20261016.md.
+  New derived figures preserve every method and fix the original legend/band
+  presentation without replacing any frozen figure or scientific artifact.
+- Final bounded judgment is NO_GO for this receipt-only exhaustive PPO-ray
+  selector. A future substantive design must alter the joint-version/off-policy
+  update program and have avoidable prospective resource cost. Simply adding a
+  KL cap is not new: online_kl is already a strong registered comparator. This
+  requirement is not a proved novel algorithm or a positive-result promise.
+- No automatic new tests, new seeds, looser gates, environment removal, GPU run,
+  or manuscript migration. Preserve all old studies and TSP sources. Terminate
+  complete-amortized-marl-value-control-development after pushing the audited
+  final package; no scientific process remains active.
 
 ## Complete amortized learning-response development freeze (2026-10-16)
 
