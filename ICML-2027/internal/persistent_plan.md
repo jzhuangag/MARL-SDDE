@@ -3,8 +3,42 @@
 ## Material Passport
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
-- Date: 2026-10-16 (latest decision).
-- Status: amortized complete learning development is COMPLETE, scientifically NO_GO. All60 payloads and6 fixed semantic replays pass integrity; both analyses are byte-identical, total CPU8014.6875s. Native AUC -0.867157% Spread/-0.178870% Reference versus strongest controls; final -7.045926%/-2.796061%. No confirmation, GPU expansion, manuscript admission, automatic numbered successor or new native worker is authorized by this stopped bounded workflow.
+- Date: 2026-10-16 (renewed human authorization).
+- Status: the amortized complete learning study remains scientifically NO_GO and preserved. The human has NOW separately authorized a substantive stale-direction/correction redesign and eventual multi-environment strong-baseline validation. Sealed-anchor bridge gradient transport is implemented as a NEW candidate; no positive performance or ICML-readiness claim. Its outcome-free full native integration registration is being frozen separately, not a retry of old science.
+
+## New human-authorized sealed-bridge mechanism (2026-10-16)
+
+- Read sealed_bridge_complete_design_20261016.md and the source-verification
+  report. Current-gradient transport replaces the old PPO-ray menu. A complete
+  trajectory-level defensive mixture gives bounded joint likelihood weights;
+  one-use independent delayed source cohorts avoid adaptive anchor reuse bias.
+- The complete native implementation includes actual actor/critic networks,
+  server SGD, independent service clocks, source/bridge role separation,
+  pre-data (m,beta), all-option variance feedback, virtual queues and cost ledgers.
+  Ordinary Adam/PPO epochs and same-bank return maximization are not imported.
+- Five algebra/protocol regressions pass. These are not learning evidence.
+  The proof is conditional expected-gradient/stationarity and resource-drift
+  analysis, not separate-trajectory HAPPO superiority or a practical certificate
+  for unknown neural smoothness constants. Source sampling/dual-gradient cost
+  remains a real feasibility question; the equal-policy limit is ordinary pooling.
+- Eight nearest-work records have fresh authoritative arXiv matches; publisher
+  cross-checks exist where listed. Semantic Scholar returned unavailable and is
+  recorded, not faked. Defensive IS/SVRPG/LVR-PG are existing bases/competitors;
+  the new research combination's ICML novelty is not yet established.
+- Official Gymnasium1.2.0/Gymnasium-Robotics1.4.0 were installed in a NEW isolated
+  project runtime, with existing MuJoCo3.3.0. Old pinned runtimes are unchanged.
+  The complete native qualification covers two MPE tasks plus official MaMuJoCo
+  HalfCheetah2x3, not a handmade Gym partition. Its25-step horizon is operational
+  only and cannot become locomotion learning evidence.
+- Qualification source/config/runtime lock must be pushed BEFORE native data;
+  one driver owns6 original+6 replay cells and two byte-identical analyses,
+  one CPU worker,1800 active CPU seconds. No evaluation returns or performance
+  ranking. Any payload failure stops that registration without retry.
+- Only a complete operational pass allows separately frozen development with
+  fresh seeds, sufficiently long task-specific horizons, strongest fresh/online
+  and nearest-method controls, substantive ablations and all-cost return axes.
+  Native AUC>=1%, positive seeds>=2/3, final>=-2%, baseline learning>=2%, replay
+  and full-cost requirements are NOT loosened. No new GPU/HPC4 or manuscript work.
 
 ## Amortized native qualification registration (2026-10-16)
 
