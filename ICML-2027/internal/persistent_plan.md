@@ -6,7 +6,26 @@
 - Date: 2026-10-16 (renewed human authorization).
 - Status: bounded sealed-prefix complete-learning cost workflow is TERMINAL RESOURCE_NO_GO, not scientific failure. All39 native cost cells and independent cost/hash/runtime reconciliations pass, but frozen forecast30.7026 CPU hours exceeds the3.3333-hour cap. No117-cell science study/replay/admission exists. Await explicit resource direction; do not restart profiles, alter gates or infer learning superiority. Prior scientific NO_GO studies, passed qualification6+6 and TSP manuscripts remain preserved.
 
-## Current terminal decision (2026-10-16)
+## Current human-approved40-hour execution (2026-10-16)
+
+- The human explicitly approved40 CPU hours for the complete NEW asynchronous
+  MARL strong-baseline comparison, truthful reporting and no more small tests.
+  V3 stays untouched; its TSP final audit proceeds independently NOW.
+- NEW wrapper experiments/sealed_bridge_learning_40h.py reuses original frozen
+  science117 cells+6 replays/double analyses/plots. The only plan difference is
+  cpu_seconds_limit=144000, including prior1033.421875s profile expenditure.
+  New40h resource lock/admission/preregistration are separate from the unchanged
+  original27cd287 lock and c126a38 RESOURCE_NO_GO evidence. No profile rerun.
+- Freeze/push the amendment and admission before science, then one kernel-mutex
+  owner starts results/sealed_bridge_learning_dev40h_20261016. All9 controls,
+  full/3 ablations,3 tasks,3 seeds,budgets,controller and original gates remain.
+  Do not peek incomplete returns, silently retry or migrate development into V3.
+- Preserve unrelated calibration --watch process and all other untracked files.
+  No GPU/HPC4/remote scope is authorized. The V3 audit is a read-only separate
+  report with fresh citation/bibliography/theory/evidence/PDF checks, not edits
+  or actual submission. Monitoring follows complete science and V3 audit status.
+
+## Preserved earlier terminal resource decision (2026-10-16)
 
 - See sealed_bridge_learning_resource_decision_20261016.md. Profile ownerPID27472
   exited0 after39/39 cells,1033.421875 CPU seconds. The start execution.json is
