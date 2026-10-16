@@ -6,8 +6,9 @@ ARS experiment/research design; 2026-10-16. This is a separate science backend,
 not an amendment of qualification0558f08, not a new registered study and not
 positive MARL learning evidence. No new native data have been collected.
 Existing six+six integration cells and all TSP manuscripts remain unchanged.
-The complete multi-method learning benchmark is NOT implemented or registered
-yet. The correction below closes specific interfaces needed by that backend;
+The callable multi-method learning cell backend is now implemented; its locked
+driver/analyzer/replay and native science registration do not exist yet.
+The correction below closes specific interfaces needed by that backend;
 software regression is not a substitute for its development decision.
 
 ## Full-trajectory overlap is the wrong long-horizon default
@@ -107,6 +108,12 @@ declare a fair prospective actor learning-rate/normalization rule and its
 fresh-PG controls; only steps satisfying the actual smoothness assumptions
 support the earlier positive stationarity weights. A tuned rate is not a
 certificate of an unknown neural smoothness bound.
+
+The subsequent complete-backend design in
+sealed_bridge_renewal_learning_design_20261016.md replaces per-receipt pricing
+with a paid-exposure renewal controller and declares a past-only actor scale.
+The earlier AdaptiveRiskQueue remains an algebra helper, not the new benchmark's
+primary controller. Neither helper's regression is native performance evidence.
 
 ## Exact-budget reservation / terminal behavior
 

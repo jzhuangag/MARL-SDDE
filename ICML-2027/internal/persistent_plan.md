@@ -8,6 +8,25 @@
 
 ## New human-authorized sealed-bridge mechanism (2026-10-16)
 
+- NEW callable complete learning backend now integrates13 actual server learning
+  methods, batched complete-policy collection, benchmark/frozen-policy evaluation,
+  source service/drain and exact training exhaustion. It remains unregistered
+  and UNTESTED on new native data; no learning driver is live. All13 routes on
+  each of3 tensor fixtures pass real HARL update/ledger verification with native
+  calls forbidden and constant-zero evaluation fixtures. Not MARL evidence.
+- The complete-method audit caught a substantive budget-clock issue before
+  science. Primary control now prices risk/work/bytes per PAID source+bridge
+  exposure, scales SGD steps by that exposure, samples receipts via w_j/n_j,
+  and feeds expected-duration-weighted losses to predictable OGD. Whole-menu
+  maximum bridge reservations and final evaluation AFTER source drain close
+  the finite-budget interface. See sealed_bridge_renewal_learning_design_20261016.md.
+  Gaussian PPO log vectors and source optimizer ownership were audited explicitly.
+- Next: complete ONE source-locked driver/analyzer/replay/cost-only forecast,
+  with meaningful native learning horizons and all9 controls+3 ablations retained,
+  then separately push the scientific preregistration if feasible. No further
+  estimator-only/native outcome-free qualification, old-run restart, manuscript
+  migration or scientific native data is authorized from these software checks.
+
 - Current learning-backend implementation is NEW
   `experiments/sealed_bridge_learning`, not a change to the qualified source.
   Exact prefix reward-score transport avoids reweighting early rewards by
