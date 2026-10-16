@@ -4,9 +4,29 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (renewed human authorization).
-- Status: the amortized complete learning study remains scientifically NO_GO and preserved. The human has NOW separately authorized a substantive stale-direction/correction redesign and eventual multi-environment strong-baseline validation. NEW sealed-anchor bridge full native integration PASSED6 original+6 semantic replay cells across two MPE tasks and official HalfCheetah2x3, with byte-identical analyses in56.875 CPU seconds. No positive performance or ICML-readiness claim; next is separately frozen complete learning development, not a retry of old science.
+- Status: bounded sealed-prefix complete-learning cost workflow is TERMINAL RESOURCE_NO_GO, not scientific failure. All39 native cost cells and independent cost/hash/runtime reconciliations pass, but frozen forecast30.7026 CPU hours exceeds the3.3333-hour cap. No117-cell science study/replay/admission exists. Await explicit resource direction; do not restart profiles, alter gates or infer learning superiority. Prior scientific NO_GO studies, passed qualification6+6 and TSP manuscripts remain preserved.
 
-## New human-authorized sealed-bridge mechanism (2026-10-16)
+## Current terminal decision (2026-10-16)
+
+- See sealed_bridge_learning_resource_decision_20261016.md. Profile ownerPID27472
+  exited0 after39/39 cells,1033.421875 CPU seconds. The start execution.json is
+  immutable; workflow_complete.json is terminal RESOURCE_NO_GO. No active worker.
+- Full forecast110529.41796875s (30.7026h),9.2108x the12000s cap. Every old source,
+  all13 methods/3 tasks/science seeds/gates remain unchanged. Numerical profile
+  returns/gradients were not retained or ranked. No positive learning evidence.
+- Independent nonnative verifier ran twice into new_validation_a/_validation_b
+  roots; integrity.json and decision.json are byte-identical. All39 hashes,
+  mappings, native reservations, charge totals and runtime/source fingerprints
+  pass. All7 old frozen qualification source files and TSP sources are unchanged.
+- This bounded resource registration is stopped. Recommend explicit authorization
+  for a separately registered40-CPU-hour local envelope, keeping one worker and
+  ALL scientific conditions unchanged; or a separately authorized parallel CPU
+  server package. No expansion is assumed. The existing profile must not rerun.
+- The follow-up advance-sealed-bridge-marl-learning is deleted at this terminal
+  decision. No science admission, new qualification, GPU/HPC4 or manuscript edit
+  is authorized from this stop. TSP V3 remains the independent confirmed track.
+
+## Earlier sealed-bridge handoffs (historical; current decision above supersedes status)
 
 - The NEW fail-closed single-owner driver, exact-cost/controller analyzer,
   semantic replay and all-method plotting path now exist. Prospective profile/
@@ -22,13 +42,13 @@
   were not repeated as the next research deliverable. All old source hashes
   and manuscripts remain preserved. The NEW sampler uses63-bit role-derived
   identifiers to avoid long-budget31-bit birthday collisions.
-- Next execute ONLY the registered cost phase from the pushed lock, one owner,
+- At the earlier freeze, the next step was ONLY the registered cost phase, one owner,
   max3000 active CPU seconds inside the same12000 total envelope. Forecast
   multiplier1.5 and600s reserve are frozen. A resource failure is a bounded
   resource decision, NOT scientific failure or evidence of improvement; do not
   shrink horizons/remove methods/retry. On pass, commit separate science admission.
-- Cost-phase registration was pushed at27cd287 BEFORE native execution. The one
-  live owner is PID27472 (originating exec session44508), root
+- Cost-phase registration was pushed at27cd287 BEFORE native execution. Its one
+  now-completed owner wasPID27472 (originating exec session44508), root
   results/sealed_bridge_learning_cost_20261016. The driver itself owns all39 cost
   cells and its forecast; never restart/duplicate it. No scientific117-cell
   learning or six-cell replay has started. Inspect only protocol/cost/progress

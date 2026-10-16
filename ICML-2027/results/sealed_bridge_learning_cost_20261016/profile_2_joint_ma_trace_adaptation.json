@@ -1,0 +1,163 @@
+{
+  "charge_event_totals": {
+    "benchmark:actor_sampling": {
+      "calls": 6000,
+      "sampling_actor_rows": 12000
+    },
+    "benchmark:native_step": {
+      "calls": 6000,
+      "native_benchmark": 6000
+    },
+    "benchmark:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 131280
+    },
+    "benchmark:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "critic:fit": {
+      "calls": 2,
+      "critic_adam_calls": 10,
+      "critic_backward_rows": 320000,
+      "critic_forward_rows": 320000
+    },
+    "critic:prepare_targets": {
+      "calls": 2,
+      "critic_forward_rows": 64000
+    },
+    "delayed_reference:source_policy": {
+      "calls": 2,
+      "copy_tensor_bytes": 132880
+    },
+    "frozen_policy:actor_sampling": {
+      "calls": 6000,
+      "sampling_actor_rows": 12000
+    },
+    "frozen_policy:initial_copy": {
+      "calls": 1,
+      "copy_tensor_bytes": 66440
+    },
+    "frozen_policy:native_step": {
+      "calls": 6000,
+      "native_frozen_policy": 6000
+    },
+    "frozen_policy:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 131280
+    },
+    "frozen_policy:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "training:actor_sampling": {
+      "calls": 8000,
+      "sampling_actor_rows": 128000
+    },
+    "training:native_step": {
+      "calls": 64000,
+      "native_training": 64000
+    },
+    "training:policy_broadcast": {
+      "calls": 2,
+      "messages": 4,
+      "policy_broadcast_bytes": 87520
+    },
+    "training:program_upload": {
+      "calls": 2,
+      "messages": 6,
+      "program_upload_bytes": 17152000
+    },
+    "vtrace:current_values": {
+      "calls": 2,
+      "critic_forward_rows": 64000
+    },
+    "vtrace:joint_ratios": {
+      "actor_forward_rows": 128000,
+      "calls": 2
+    },
+    "vtrace:server_actor_pg": {
+      "actor_adam_calls": 4,
+      "actor_backward_rows": 128000,
+      "actor_forward_rows": 128000,
+      "calls": 4
+    }
+  },
+  "costs": {
+    "actor_adam_calls": 4,
+    "actor_backward_rows": 128000,
+    "actor_forward_rows": 256000,
+    "actor_sgd_calls": 0,
+    "copy_tensor_bytes": 199320,
+    "critic_adam_calls": 10,
+    "critic_backward_rows": 320000,
+    "critic_forward_rows": 448000,
+    "gradient_storage_bytes": 0,
+    "logical_bytes": 17502176,
+    "messages": 28,
+    "native_benchmark": 6000,
+    "native_frozen_policy": 6000,
+    "native_training": 64000,
+    "policy_broadcast_bytes": 350080,
+    "prefix_scalar_entries": 0,
+    "program_upload_bytes": 17152096,
+    "sampling_actor_rows": 152000,
+    "variance_scalar_entries": 0,
+    "work_rows": 1304000
+  },
+  "cpu_seconds": 71.046875,
+  "evaluations_checked_for_finiteness_only": true,
+  "finite_payload": true,
+  "full_payload_digest": "7874afe923b35cf956d75f1e13cc84241b81392697c9fa3e5796ec4da0df4fe7",
+  "method": "joint_ma_trace_adaptation",
+  "native_budget_events": [
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    },
+    {
+      "kind": "delayed_reference_source_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "delayed_reference_source_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    }
+  ],
+  "performance_evidence": false,
+  "return_ranking_performed": false,
+  "seed": 971016011,
+  "task": "halfcheetah_2x3",
+  "task_index": 2,
+  "training_transitions": 64000
+}
