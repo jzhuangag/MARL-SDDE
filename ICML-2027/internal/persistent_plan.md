@@ -8,6 +8,19 @@
 
 ## New human-authorized sealed-bridge mechanism (2026-10-16)
 
+- Current learning-backend implementation is NEW
+  `experiments/sealed_bridge_learning`, not a change to the qualified source.
+  Exact prefix reward-score transport avoids reweighting early rewards by
+  later likelihood divergence; no total-variance/return dominance is claimed.
+  Scale-adaptive post-feedback OGD has an explicit1.5*D*sqrt(S_T) comparator
+  bound. Native launch/receipt reservations retain source costs, drain in-flight
+  work and declare whole-episode terminal fresh work. See
+  `sealed_bridge_learning_interface_20261016.md` for derivation and remaining
+  complete-backend interfaces. No native data/scientific freeze was started.
+  Next action is all-method complete learning/evaluation/cost integration,
+  NOT another estimator-only qualification. Actor-step calibration, strong
+  baseline adapters and meaningful full-horizon runtime feasibility remain open.
+
 - Read sealed_bridge_complete_design_20261016.md and the source-verification
   report. Current-gradient transport replaces the old PPO-ray menu. A complete
   trajectory-level defensive mixture gives bounded joint likelihood weights;
