@@ -5,7 +5,8 @@
 ARS research/experiment-design, 2026-10-16. Human authorization: change the
 stale-data update direction/correction mechanism, preserve all previous results,
 and evaluate complete learning against strong controls across MARL environments.
-Status: substantive algorithm design and implementation candidate; NOT positive
+Status: complete native integration PASS (six original+six replay cells;
+56.875 CPU seconds) with a substantive algorithm design; NOT positive
 MARL evidence, a qualified ICML contribution, or a promise of success.
 All old sources, outcomes, gates and TSP manuscripts remain unchanged.
 
@@ -171,6 +172,14 @@ create an intrinsic strict gain over fresh sampling. A positive learning claim
 therefore needs measured gradient-quality/resource gains outside that trivial
 limit, and complete return curves against strong fresh AND adaptive controls.
 This identity is a design sanity check, not a reason to weaken a gate.
+
+The quantitative necessary screening comparison is the actual per-budget MSE,
+not raw variance reduction relative to one tiny current batch. With the same
+per-episode baseline convention, fresh PG using N+m current episodes has
+variance sigma_theta^2/(N+m). A useful bridge needs its fully priced optimized
+r(m,beta) below that benchmark, and must separately satisfy neural/payload cost
+constraints. Positive covariance alone is not sufficient. This condition is
+not a theorem of return dominance over optimized HAPPO/PPO.
 
 Two alternatives were rejected analytically before any scientific run:
 (1) random completion of clipped IS residuals increases variance relative to

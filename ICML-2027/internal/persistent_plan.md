@@ -4,7 +4,7 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (renewed human authorization).
-- Status: the amortized complete learning study remains scientifically NO_GO and preserved. The human has NOW separately authorized a substantive stale-direction/correction redesign and eventual multi-environment strong-baseline validation. Sealed-anchor bridge gradient transport is implemented as a NEW candidate; no positive performance or ICML-readiness claim. Its outcome-free full native integration registration is being frozen separately, not a retry of old science.
+- Status: the amortized complete learning study remains scientifically NO_GO and preserved. The human has NOW separately authorized a substantive stale-direction/correction redesign and eventual multi-environment strong-baseline validation. NEW sealed-anchor bridge full native integration PASSED6 original+6 semantic replay cells across two MPE tasks and official HalfCheetah2x3, with byte-identical analyses in56.875 CPU seconds. No positive performance or ICML-readiness claim; next is separately frozen complete learning development, not a retry of old science.
 
 ## New human-authorized sealed-bridge mechanism (2026-10-16)
 
@@ -39,6 +39,18 @@
   and nearest-method controls, substantive ablations and all-cost return axes.
   Native AUC>=1%, positive seeds>=2/3, final>=-2%, baseline learning>=2%, replay
   and full-cost requirements are NOT loosened. No new GPU/HPC4 or manuscript work.
+- Complete operational pass is now recorded in
+  sealed_bridge_native_validation_20261016.md. Driver exited0; all12 payloads,
+  both analysis bytes, whole runtime/source lock and declared ledgers pass.
+  Do not restart its driver/replay/analyzers or rank its outcome-ineligible
+  gradients/returns. All18,600 original+replay native transitions remain paid.
+- Next work must implement the complete equal-budget multi-task learning backend,
+  strong fresh/online/nearest-method references, all ablations, exact reservations
+  and benchmark/frozen-policy evaluation, then a separate prospective freeze.
+  Unknown neural smoothness constants and operational tiny meta/SGD settings
+  are not a practical certificate. Avoidable m costs, scale-adaptive regret and
+  the source tax must be checked as part of the full algorithm, not silently
+  removed or converted into estimator-only positive evidence.
 
 ## Amortized native qualification registration (2026-10-16)
 
