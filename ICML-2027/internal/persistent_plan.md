@@ -27,6 +27,13 @@
   multiplier1.5 and600s reserve are frozen. A resource failure is a bounded
   resource decision, NOT scientific failure or evidence of improvement; do not
   shrink horizons/remove methods/retry. On pass, commit separate science admission.
+- Cost-phase registration was pushed at27cd287 BEFORE native execution. The one
+  live owner is PID27472 (originating exec session44508), root
+  results/sealed_bridge_learning_cost_20261016. The driver itself owns all39 cost
+  cells and its forecast; never restart/duplicate it. No scientific117-cell
+  learning or six-cell replay has started. Inspect only protocol/cost/progress
+  while it runs; evaluation/gradient outcomes remain ineligible. Initial native
+  cost cells passed their exact-ledger audit; these are not positive results.
 
 - NEW callable complete learning backend now integrates13 actual server learning
   methods, batched complete-policy collection, benchmark/frozen-policy evaluation,
