@@ -1,6 +1,41 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
-## Current decision — authentic authors inserted, submission declarations pending
+## Current decision — full-text TSP positioning and prose review complete
+
+Human-requested TSP suitability/defensive-writing/Kimi polish pass is complete.
+Latest report is internal/tsp_positioning_and_prose_review_20261018.md; latest
+artifact/fidelity gate is internal/tsp_narrative_revision_check_20261018.json.
+Read these instead of rerunning the historical author-only invariant gate on a
+subsequently edited body. This is a viable TSP resource-control candidate, not
+independent novelty certification, a new strong-baseline MARL result or journal
+acceptance clearance. The review identifies substantive novelty and theory-to-
+implementation scope as the main editorial risks, not lack of a wireless label.
+
+Localized native LaTeX patches improve the abstract, contribution hierarchy,
+prior-work transitions, method interpretation, simulation narrative and conclusion.
+No full-text regeneration or formal theorem repair is performed. All inline
+math/display math, entire formal statements, ordered cite/label/ref/eqref commands,
+author block, Bib and figure assets matcha667d32. Critical statistics, including
+negative/non-improvement results, are preserved. Original V3 remains unchanged.
+Repeated workflow IDs/engineering row-count claims and duplicated introduction
+numbers are curtailed; all underlying evidence and protocols remain intact.
+
+Final PDF:13 pages,201-word abbreviation-free abstract/five keywords, zero
+undefined/overfull items,24 underfull warnings, all13 pages inspected/fonts embedded.
+SHA256:289c065ee2d5fc440668724b4751d7d9ae723833caa2c3b1da56ab21eb9de431.
+Fresh citation/style evidence is in internal/tsp_narrative_citation_20261018 and
+tsp_narrative_citation_resolution_20261018.json:35 raw PASS, one resolved
+article-number representation and one publisher match with current Crossref429
+retained. No rate-limit bypass, no silently rewritten raw status or Bib edit.
+This review uses Kimi for readability/fidelity, not detector evasion promises.
+
+Decision: TSP_CANDIDATE_EDITORIAL_REVIEW_NOT_ACCEPTANCE_CLEARANCE. Authentic
+ORCIDs for both authors, prior/concurrent/related-manuscript disclosures, all-author
+consent and final release remain pending; IEEE's current author instructions
+require ORCIDs for all authors. No actual submission. The140h science remains
+independent/live and no incomplete return was read or used.
+
+## Prior author-metadata check — preserved evidence
 
 Human-supplied Jialin Zhuang / Vincent K. N. Lau author order, IEEE memberships,
 HKUST ECE affiliation, both email addresses, corresponding author and RGC grants

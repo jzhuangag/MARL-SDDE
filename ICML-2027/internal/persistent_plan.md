@@ -8,7 +8,41 @@
 
 ## Human-approved100h addition and independent V3 repair (2026-10-18)
 
-### Latest author-metadata handoff,2026-10-18 13:57 CST
+### Latest full-text positioning/prose handoff,2026-10-18 14:16 CST
+
+- The human requested a full V3 assessment of novelty/thesis/narrative/theory/
+  experimental depth/scope and a non-defensive Kimi prose pass. This is complete
+  ONLY in TSP-V3-revised-20261018/manuscript. Latest authoritative review:
+  internal/tsp_positioning_and_prose_review_20261018.md; gate:
+  internal/tsp_narrative_revision_check_20261018.json. Original V3 preserved.
+- Editorial judgment: viable TSP resource-constrained statistical learning/
+  policy-evaluation candidate; novelty/significance and conditional-theory versus
+  implemented-MARL scope remain real review risks. No need for a fictitious
+  communications application, no guaranteed novelty/acceptance or full-algorithm
+  superiority. The140h study is independent and not needed for these prose edits.
+- Native localized patches, not full manuscript regeneration: all inline/display
+  mathematics, entire formal statements, ordered cite/label/ref/eqref commands,
+  author block/Bib/figures matcha667d32; all critical positive/negative statistics
+  remain. Full13-page visual review passes,201-word abstract/five keywords,
+  zero undefined/overfull and fonts embedded. Current PDF SHA
+  289c065ee2d5fc440668724b4751d7d9ae723833caa2c3b1da56ab21eb9de431.
+  Old author-only scope gate is historical and must not be rerun as the current
+  body-unchanged gate. No old proof/evidence/source/gate/native rerun or mutation.
+- Fresh citation/style evidence: tsp_narrative_citation_20261018;35 raw PASS plus
+  Paulin article-number resolution and Perazzone publisher match retaining current
+  Crossref429. No rate-limit bypass or raw-state rewrite. Final citation groups
+  and Bib unchanged; post-lookup local compression/context recorded. No definite
+  IEEE Bib error; no detector-evasion/plagiarism/priority clearance claim.
+- Decision TSP_CANDIDATE_EDITORIAL_REVIEW_NOT_ACCEPTANCE_CLEARANCE. Authentic
+  ORCIDs required by current IEEE instructions, prior/concurrent/related-manuscript
+  disclosures, all-author consent/final release remain human inputs. No submission.
+  Do not repeat this complete review/polish/citation/render pass while unchanged.
+- Science at14:15 CST remains SINGLE PID19816,86/117 science complete;6 replays
+  and analyses pending. Native CPU about8948.23s gives cumulative152950.90s=
+  42.4864h, remaining351049.10s=97.5136h. Snapshot only, no new forecast or outcome
+  inference. No failure/complete marker and no incomplete returns inspected.
+
+### Prior author-metadata handoff,2026-10-18 13:57 CST
 
 - The human supplied the authentic Jialin Zhuang / Vincent K. N. Lau author
   block, HKUST ECE affiliation, emails, corresponding author and RGC grants.

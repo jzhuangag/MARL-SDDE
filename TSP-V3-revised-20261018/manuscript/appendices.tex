@@ -109,10 +109,10 @@ Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and
 For fixed $(q,b)$, every coefficient and Eq.~\eqref{eq:certificate-score} is continuous on the declared positive-step domain.
 The non-strict certification margins make that domain closed and bounded, so the extreme-value theorem applies whenever it is nonempty.
 Finite enumeration across nonempty pairs gives a global minimizer.
-This existence statement does not certify the global accuracy of a particular local scalar solver.
+A numerical implementation attains this oracle minimum when its scalar solver has certified global accuracy.
 The $N_qN_b$ scalar searches cost $O(N_qN_bL_\eta)$ evaluations.
 For rank-one $H_{i,k}$, feature inner products avoid dense matrices in update aggregation, which costs $O(qd)$ arithmetic and $O(d)$ memory.
-Computing an exact largest eigenvalue of a general second-moment matrix is not included in that aggregation bound.
+Exact spectral moment calibration is charged separately from rank-one update aggregation.
 
 \section{Correlation-Limited Minimax Risk}
 For one round of the Gaussian location subclass, the agent average has variance $\sigma_c^2+\sigma_e^2/q$.
@@ -194,7 +194,7 @@ Prediction multiplies this mean by a factor of magnitude at most $r_0$; the tria
 Both predictive variances are at most $\theta_+$, so $1\le V_{j,k}\le V_+=1+Q\theta_+$.
 Eq.~\eqref{eq:conditional-kl} now gives the expected, rather than pointwise, bound $\E_j\mathcal I_{j,1-j}(Z_k,A_k)\le i_+$, where $i_+=(\log V_++V_++4QM_F^2)/2$ is finite.
 Extend a stopped rule predictably after stopping; nonnegativity and its deterministic budget bound $n_{\max}(s)\le c_Bs$ imply $\E_j\sum_{k\le\tau}\mathcal I_{j,1-j}\le i_+n_{\max}(s)$.
-Together with Eq.~\eqref{eq:info-constraint}, this proves $B_N\ge c_Nd_\delta$ without imposing a false uniform bound over Gaussian observation histories.
+Together with Eq.~\eqref{eq:info-constraint}, this expected-information bound proves $B_N\ge c_Nd_\delta$ over Gaussian observation histories.
 The fixed probe has information at least $i_->0$, so $n_\delta=\lceil i_-^{-1}\log(1/\delta)\rceil$ observations suffice and cost at most $c_pn_\delta+D_{\max}$.
 Continuity of $\log(1/\delta)/d_\delta$ gives $n_\delta\le c_0+c_1d_\delta\le c_0+c_2B_N$.
 Write $u_\delta\le c_pn_\delta+D_{\max}$ for the full probe charge.
