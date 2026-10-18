@@ -1,0 +1,11 @@
+{
+  "decision": "PROVISIONAL_NOMINAL_DELTA_ANALYSIS_NOT_ADMITTED",
+  "failed_check": "same_stream_proof_audit.py: assertion minimum exact Bhattacharyya exponent >= log(1/DELTA)",
+  "exit_code": 1,
+  "cause": "Frozen identification_threshold uses log(0.5/DELTA), sufficient for equal-prior average error <= DELTA, not each directional error <= DELTA. Each direction is bounded by exp(-I_B), at most 2*DELTA for this fixed catalogue.",
+  "preserved_provisional_root": "internal/same_stream_evidence_20261018",
+  "scientific_payload_retried": false,
+  "native_data_generated": false,
+  "old_experiment_or_gate_changed": false,
+  "bounded_correction": "Keep all old actions, budgets, seeds, thresholds, observations and outcomes. Recompute only new analytical population intervals with each frozen probe's exact affinity upper bound exp(-I_B); use a separate corrected analysis root. The general theorem retains its explicit directional-error assumption. Do not present nominal-delta intervals as verified evidence."
+}
