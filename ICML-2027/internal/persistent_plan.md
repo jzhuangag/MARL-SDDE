@@ -8,6 +8,43 @@
 
 ## Human-approved100h addition and independent V3 repair (2026-10-18)
 
+### Latest verified handoff,2026-10-18 13:24 CST
+
+- V3 technical repair/final pre-submission audit is completed in the SEPARATE
+  TSP-V3-revised-20261018/manuscript copy. Authoritative report is
+  internal/technical_repair_review_20261018.md; machine gate is
+  internal/submission_release_check_20261018.json. Original V3 bytes remain
+  unchanged. Do NOT repeat old citation runs or reopen repaired issues solely
+  from historical first/second-pass notes below.
+- The source clock audit distinguishes stale lag D, terminal excluded updates u
+  and physical charge ell; matches1,600 integer cases/all36 saved affine actions,
+  with max coefficient discrepancy1.6941e-21 and no native reruns. Main admission
+  uses ACTUAL pre-probe frozen selected-action certificates; expected Gaussian
+  KL, positive-part histories, mixed-target scope and phase proof are repaired.
+  Old EXP016B remains labeled empirical mechanism evidence rather than direct
+  validation of conditional-theorem hypotheses. Saved gates/results unchanged.
+- Verified PDF:13 pages, official-policy one-inch margins,10pt journal class,
+  abstract218 words/five keywords, zero undefined/overfull items, all13 pages
+  inspected/all fonts embedded. SHA60da714cbd7fc6fb43f3d00b5cfa6c18e9c8d390030b3dcf6b3099a78df84350.
+  All37 identities freshly verified today; raw36 PASS + separate article-number
+  resolution and primary context/access-limit matrix preserved. Not independent
+  external review or full-text plagiarism/priority clearance.
+- Decision TECHNICAL_REPAIRS_VERIFIED_AUTHOR_RELEASE_PENDING. Human author order,
+  affiliations/contact/ORCIDs, funding/prior-submission disclosures and consent
+  are requested, not fabricated. Metadata insertion requires a final page check;
+  no actual journal submission authorized/performed. Do not wait for new science.
+- Science remains a SINGLE live native ownerPID19816. At13:23:59 CST progress is
+  85/117 science (80 imported+5 new),6 fixed replays/double analyses still pending.
+  Live cumulative charged CPU150057.4375s=41.6826h; remaining353942.5625s=98.3174h.
+  No complete/failure marker. All27 locked source/resource file hashes and the
+  lock/admission hashes match; all80 old/imported payload SHA pairs match. No
+  incomplete return was inspected/ranked. No launch/restart/retry is authorized.
+- Continue existing owner through117+6 and complete independent audit within
+  cumulative504000s. Report every control/ablation/cost and unchanged gates.
+  The earlier134h cost forecast is rough, not a completion guarantee. V3's
+  missing human metadata must not stop science monitoring. Keep the heartbeat
+  until both authorized workflows terminate or genuine science direction is needed.
+
 - NEW experiments/sealed_bridge_learning_140h.py, lock/admission/amendment with
   suffix140h_20261018, root results/sealed_bridge_learning_dev140h_20261018.
   Only CPU ceiling and explicit resource-continuation semantics change. ALL

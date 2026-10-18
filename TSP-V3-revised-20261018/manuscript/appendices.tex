@@ -1,4 +1,5 @@
 \section{Proof of the Affine Delayed Markov Bound}
+\label{app:affine}
 Fix a stationary action $a=(q,b,\eta)$ and condition on the history immediately before the retained joint observation.
 All expectations below include the Markov observations; the delay profile is deterministic as specified in Assumption~\ref{ass:catalogue}.
 Write $\bar H_k=q^{-1}\sum_iH_{i,k}$, $\bar\xi_k=q^{-1}\sum_i\xi_{i,k}$, and
@@ -83,11 +84,13 @@ For $U(c,d)=d/(1-c)+c^n(R_0-d/(1-c))_+$, $|\partial_dU|\le(1-\bar c)^{-1}$ and $
 The mean-value bound proves Eq.~\eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\widehat a}\le U_{a^\star}+2\max_a\varepsilon_a$.
 
 \subsection{Return transfer and arbitrary terminal indices}
+\label{app:return}
 Let $n=\lfloor N_a/(2D+1)\rfloor$.
 The envelope argument keeps every later incomplete-block iterate below $\max\{R_{n(2D+1)},R_\star\}$, which is the truncated-transient form in Eq.~\eqref{eq:certificate-score}.
 Since $J_\nu(w)-J_\nu(w^\star)=\psi_\nu^\top e$ for $\psi_\nu=\E_{s\sim\nu}\phi(s)$, Cauchy--Schwarz and the terminal envelope prove Corollary~\ref{cor:return}.
 
 \subsection{Proof of Theorem~\ref{thm:tracking}}
+\label{app:tracking}
 Set $R_\star=d/(1-c)$ and $\Gamma_r=(Z_r-R_\star)_+$.
 The explicitly assumed uniform-history drift and the positive-part replacement argument give
 \begin{align}
@@ -102,6 +105,7 @@ Iteration and $\Gamma_0\le Z_0$ prove Eq.~\eqref{eq:tracking-bound} whenever $\b
 Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves Eq.~\eqref{eq:advantage-transfer}.
 
 \subsection{Existence and complexity of the mixed controller}
+\label{app:existence}
 For fixed $(q,b)$, every coefficient and Eq.~\eqref{eq:certificate-score} is continuous on the declared positive-step domain.
 The non-strict certification margins make that domain closed and bounded, so the extreme-value theorem applies whenever it is nonempty.
 Finite enumeration across nonempty pairs gives a global minimizer.
@@ -117,18 +121,21 @@ Dividing the single-agent risk by this value gives Eq.~\eqref{eq:speedup}.
 Since $1+(q-1)\rho\ge q\rho$ for $\rho>0$, the speedup is at most $\rho^{-1}$.
 
 \section{Proof of the Stopped Adaptive Information Identity}
+\label{app:information}
 Condition on the pre-action history and realized action $A_k$.
 An orthogonal rotation maps $X_k$ to $Y_k=q_k^{-1/2}\bm{1}^\top X_k$ and hypothesis-invariant standard-normal contrasts.
 Because the predictable action kernels cancel, the stopped log likelihood is the sum of scalar Kalman innovation ratios, where $Y_k\sim\mathcal N(\sqrt{q_k}m^-_{j,k},V_{j,k})$.
 The conditional Gaussian divergence and the bounded-stopping chain rule give Eq.~\eqref{eq:conditional-kl} and Eq.~\eqref{eq:adaptive-kl}; exchanging hypotheses gives the reverse identity.
 
-For a decision $\widehat J$, data processing gives
+For a decision $\widehat J$, set $p_v=\Pp_v\{\widehat J=j\}$.
+Data processing gives
 \begin{equation}
-\KL(P_j^\pi|\F_\tau\,\|\,P_{1-j}^\pi|\F_\tau)\ge\operatorname{kl}(\Pp_j\{\widehat J=j\},\Pp_{1-j}\{\widehat J=j\}).
+\KL(P_j^\pi|\F_\tau\,\|\,P_{1-j}^\pi|\F_\tau)\ge\operatorname{kl}(p_j,p_{1-j}).
 \end{equation}
 If both directional errors are at most $\delta$, monotonicity of binary relative entropy yields Eq.~\eqref{eq:info-constraint}.
 
 \section{Occupation-Measure Opportunity Lower Bound}
+\label{app:occupation}
 Let $\Delta_j(z,a)\ge0$ be the one-step opportunity loss relative to the instance-$j$ certified oracle.
 For a stopped predictable policy, define
 \begin{equation}
@@ -138,7 +145,7 @@ Every $\delta$-correct policy induces an occupation measure satisfying the contr
 \begin{align}
 \int\mathcal{I}_{j,1-j}(z,a)\nu_j(dz,da)&\ge\operatorname{kl}(1-\delta,\delta),\nonumber\\
 \int(h+q(a))\nu_j(dz,da)&\le B_{\rm msg},\nonumber\\
-\int b(a)\nu_j(dz,da)+D\Pp_j(\tau>0)&\le B_{\rm env}.
+\int b(a)\nu_j(dz,da)+\ell\Pp_j(\tau>0)&\le B_{\rm env}.
 \end{align}
 Let $T_a$ be the belief transition and $\zeta_j$ the terminal belief law.
 For every bounded measurable $f$, predictability and stopped telescoping give
@@ -157,9 +164,10 @@ Eq.~\eqref{eq:adaptive-kl}, Eq.~\eqref{eq:budgets}, and Eq.~\eqref{eq:belief-flo
 Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
 
 \section{Proof of the Main Learning-Value Guarantee}
+\label{app:main}
 Let $\mathcal H_d$ be the complete probe history.
-The declared conditional certificate gives $\E_j[\|e_{\rm LA}\|^2\mid\mathcal H_d]\le\overline R_j(a_{\widehat J}^\star;B_d^D,D)$ for either selected action.
-The right side is at most $\overline R_j^\star(B_d^D,D)+\mathbf1\{\widehat J\ne j\}W_j(d)$.
+The declared conditional certificate gives $\E_j[\|e_{\rm LA}\|^2\mid\mathcal H_d]\le\overline R_j(\widetilde a_{\widehat J};B_d^D,D)$ for either selected action.
+The right side is at most $\overline R_j^{\rm sel}+\mathbf1\{\widehat J\ne j\}W_j(d)$.
 Taking expectation and using the directional error bound proves Eq.~\eqref{eq:main-risk}.
 
 Subtracting the full-budget all-agent certificate and using Eq.~\eqref{eq:value-decomposition} gives
@@ -171,6 +179,12 @@ The same decomposition on instance zero is bounded above by $\epsilon_{\rm safe}
 The fallback statement follows directly from the strict admission rule.
 
 \section{Proof of the Threshold Sandwich}
+\label{app:threshold}
+For the independently initialized Gaussian running mean, let $c_a=\max\{(h+q)/\beta_m,b/\beta_e\}$ and $r=\lambda^b$.
+The exact horizon is $N_a=s/c_a+O(1)$, with bounded terminal charges and rounding.
+Eq.~\eqref{eq:mean-risk} and Eq.~\eqref{eq:geometric-correlation-sum} give $K_j(a)=c_a\{q^{-1}+\theta_j(1+r)/(1-r)\}$ and a uniform $O(s^{-2})$ remainder.
+Removing probe charge $v$ changes $N_a$ by $O(v+1)$ and hence risk by $O((v+1)/s^2)$ for $s\ge s_0(v+1)$; compact persistence and the finite catalogue make these constants uniform.
+Thus the phase-theorem risk conditions have a concrete Gaussian realization, separately from the constant-step affine certificate.
 Write $d_\delta=\operatorname{kl}(1-\delta,\delta)$.
 Write $r_0=1-\gamma<1$ and $Q=\max{\cal Q}$.
 Under either true instance, the predictable spacing gives $\|C_{S_k}\|_{L^2}\le r_0\|C_{S_{k-1}}\|_{L^2}+\sqrt{\theta_+}$, hence a uniform bound $M_C=\sqrt{\theta_+}/(1-r_0)$.
@@ -186,8 +200,8 @@ Continuity of $\log(1/\delta)/d_\delta$ gives $n_\delta\le c_0+c_1d_\delta\le c_
 Write $u_\delta\le c_pn_\delta+D_{\max}$ for the full probe charge.
 The assumed expansion and budget-shift inequality give a high-instance improvement over the full-budget fallback certificate of at least $g_{\min}/s-\{2M+L(u_\delta+1)\}/s^2-\delta w_+/s$.
 It is strictly positive for $s>\{4M+2L(u_\delta+1)\}/g_{\min}$, also requiring $s\ge s_0(u_\delta+1)$.
-On instance zero, oracle optimality gives the safety bound $\epsilon_{\rm safe}\le L(u_\delta+1)/s^2+\delta_0w_+/s$.
-Thus $s\ge\sqrt{2L(u_\delta+1)/\bar\epsilon}+2\delta_0w_+/\bar\epsilon$ suffices.
+On instance zero, the assumed coefficient ordering gives $\epsilon_{\rm safe}\le\{2M+L(u_\delta+1)\}/s^2+\delta_0w_+/s$.
+Thus $s\ge\sqrt{2\{2M+L(u_\delta+1)\}/\bar\epsilon}+2\delta_0w_+/\bar\epsilon$ suffices.
 Using $2\sqrt{xy}\le x+y$, all three requirements are bounded by a class-constant multiple of $n_\delta+B_{\rm oracle}+B_\epsilon+1$.
 Taking the maximum proves the upper bound in Eq.~\eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\delta$-correct probe obeys both information constraints.
 

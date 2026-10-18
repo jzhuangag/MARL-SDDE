@@ -1,5 +1,48 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## Current decision — technical repairs verified, author release pending
+
+Latest authoritative artifacts: internal/technical_repair_review_20261018.md,
+internal/submission_release_check_20261018.json and main.pdf. The earlier
+first/second-pass pending lists below are historical and superseded by these.
+
+- D (stale-state lag), u (terminal withheld updates) and ell (physical charge)
+  are distinct. The horizon, same-fallback cost decomposition, retained TD-pair
+  mixing clock and each saved experiment's cost convention are reconciled.
+  The source-only audit matches1,600 integer cases and36 saved selected actions;
+  maximum saved-coefficient discrepancy is1.6941e-21. No native rerun or old-file
+  mutation. EXP016B remains empirical mechanism evidence, not a claimed direct
+  validation of post-probe conditional-certificate hypotheses.
+- Main admission now uses certificates of actual pre-probe frozen selections,
+  not an unverified global scalar optimum. Expected Gaussian information,
+  positive-part delayed windows, mixed-history tracking, certificate-relative
+  safety and the separately assumed1/s risk-class phase proof are repaired and
+  traced in the review. No stronger neural-MARL theorem is inferred.
+- Current official SPS policy check uncovered the default-template margin gap.
+  The revised journal source uses10pt/two columns/one-inch margins. Repeated
+  exposition and a forced reference-column break are removed; no font/spacing
+  compression or deletion of proof-critical conditions. All proofs/references
+  fit13 pages. Abstract218 words/no abbreviations; exactly five keywords.
+- Final full build exits0, zero undefined references/citations, zero overfull
+  boxes. All13 final pages in internal/verified_render_20261018 were inspected;
+  figures are legible and all fonts embedded. There are27 underfull warnings
+  (narrow-column math/prose), not clipped content. PDF SHA256:
+  60da714cbd7fc6fb43f3d00b5cfa6c18e9c8d390030b3dcf6b3099a78df84350.
+- All37 retained identities have fresh authoritative matches today; raw36 PASS
+  and the separately resolved Paulin article-number representation remain
+  intact. Primary claim-context records for all37 are saved, with abstract-level
+  access limits explicit. BibTeX keys/bytes remain unchanged; no full-text
+  plagiarism or priority clearance is claimed.
+- Original main/appendix/Bib/PDF hashes still match. Old scientific sources,
+  figures and evidence are preserved. New140h study outcomes are not imported.
+
+Decision: TECHNICAL_REPAIRS_VERIFIED_AUTHOR_RELEASE_PENDING, not submitted and
+not a journal acceptance claim. Remaining human inputs: author order/affiliations,
+contact author/email/ORCIDs, funding and prior-submission/related-work disclosures,
+and all-author consent. Rebuild/recheck pagination after authentic metadata is
+inserted. Same primary model performed revision and verification; no independent
+external review is represented. This status does not pause the140h study.
+
 ## Material Passport
 
 Human-authorized repair on2026-10-18; academic-research-suite, IEEE TSP writing,

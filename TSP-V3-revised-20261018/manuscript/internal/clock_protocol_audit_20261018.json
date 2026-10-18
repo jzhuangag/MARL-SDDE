@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-10-18",
+  "native_execution": false,
+  "outcomes_ranked": false,
+  "source_and_evidence_sha256": {
+    "experiments\\dependence_delay_linear\\run_adaptation_cost_pilot.py": "8dc968e95e13a4791736c2910cf4f5925422da3f506b804d789d7ce4145ad719",
+    "experiments\\dependence_delay_linear\\run_exp016b_pilot.py": "302e9e045f5366ae0e08283129f7093bf15f81fb6c260ec1acde8eff91ec7d53",
+    "experiments\\dependence_delay_linear\\t018_static_scan.py": "511a8cf0fcdfd3c8a64becf2c93920292edc3d06d91187836de5ad6266c2c4af",
+    "experiments\\dependence_delay_linear\\affine_markov_certificate.py": "a9abe4514e11bbb8030b58ede18d18a83583df600385d4403d1fa5448c726f71",
+    "experiments\\dependence_delay_linear\\multistate_certificate.py": "4dfdd9091154b5ce0dad30e2a049f6282a0a75504fff05aba95b614c78e1814b",
+    "TSP\\experiments\\run_convergence_curves.py": "b3b35a620497854c76b4261a905c3d21e68f67f15a0241ad9f5f3d7537ae2772",
+    "experiments\\dependence_delay_linear\\results\\affine_finite_time_certificate\\selected_actions.csv": "bb4c921d573cf6aca2eff39c1375c92079cd4769522de459428e8d4c58fc3949"
+  },
+  "integer_clock_cases": 1600,
+  "all_integer_clock_cases_match": true,
+  "saved_affine_actions_checked": 36,
+  "scalar_cost_and_endpoint_checks": true,
+  "saved_coefficient_and_certificate_max_absolute_error": 1.6940658945086007e-21,
+  "clock_conventions": {
+    "affine_certificate_and_curves": "D=deterministic parameter lag; u=ell=0; K=floor(B/(h+q+b)); first transition start0; last endpoint (K-1)*b+1<=K*b.",
+    "exp016b": "u=D retained terminal updates, ell=0; K=min(floor(Bmsg/(h+q)),floor(Benv/b)); all K charged, K-D usable; Gaussian observation indices start_environment+b*(1..K).",
+    "td_mixing": "P is the transition-pair kernel. Exact TV uses P_pair**b, combined across q+1 common/private sources by union bound; fresh source-choice masks do not increase TV."
+  },
+  "saved_admission_scope": "Prespecified B_value thresholds from t018, not retrospectively replaced by the repaired theorem gate. Exact-risk selector uses a stationary mean proxy; empirical Gaussian uses a pseudo-observation and FIFO layer reports an averaged parameter.",
+  "empirical_conditional_certificate_admission": false,
+  "conditional_theorem_scope": "Applies when all selected actions have valid post-probe conditional upper certificates; the new theorem uses actual selected-action certificates and needs no global scalar-solver claim.",
+  "old_files_modified": false
+}
