@@ -1,0 +1,7 @@
+{
+  "cpu_seconds": 144002.671875,
+  "exception": "TimeoutError('Whole registered profile+science+replay+analysis CPU cap')",
+  "retry_authorized": false,
+  "state": "stopped",
+  "traceback": "Traceback (most recent call last):\n  File \"E:\\HKUST-study\\vin\\SDDE\\ICML-2027\\experiments\\sealed_bridge_learning_40h.py\", line 115, in main\n    result = science(budget.plan, budget)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\HKUST-study\\vin\\SDDE\\ICML-2027\\experiments\\sealed_bridge_learning\\workflow.py\", line 88, in science\n    row = run_cell(*cell, plan, budget)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\HKUST-study\\vin\\SDDE\\ICML-2027\\experiments\\sealed_bridge_learning\\benchmark.py\", line 390, in run_cell\n    check_budget()\n  File \"E:\\HKUST-study\\vin\\SDDE\\ICML-2027\\experiments\\sealed_bridge_learning\\guard.py\", line 95, in __call__\n    raise TimeoutError('Whole registered profile+science+replay+analysis CPU cap')\nTimeoutError: Whole registered profile+science+replay+analysis CPU cap\n"
+}

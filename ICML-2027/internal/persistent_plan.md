@@ -21,11 +21,22 @@
 - The original profile underforecast the first long HalfCheetah cell by7.304x.
   Revised cost-only whole-workflow forecast is approximately134h, not a guarantee.
   The140h cap includes original profile, old stop/lost work and all new phases.
+- Continuation admission pushed at03e352dc9a01e99cf2b9e48a4e187581f825dd8a BEFORE
+  launch. New native ownerPID19816 (conda parent13408), started11:38 CST.
+  All80 imported hashes passed a separate SHA check;37 science cells+6 replay
+  remain. Lock SHA819459581a595a407b3e96aae7eae475ec2e30ae77e5c3fb5c0b72f3c8965934.
 - V3 no longer waits for new science. Separate source/figure copy is created;
   risk denominator, expected-information, compact-domain, positive-part history,
   certificate-relative safety and calibration-scope repairs are being implemented.
   This is a WORKING revision, not submission-ready; full proof/claim, fresh
   citation/BibTeX and compiled PDF gates remain required. Preserve original V3.
+- First working revision compiles successfully with no undefined/overfull items,
+  but is14 pages (target13); pages1/9/14 and corrected risk figure were inspected.
+  Page compression, full-page/proof/estimand audit remain open. Fresh all37 public
+  reference lookups completed:36 raw PASS, one Paulin issue/article-number
+  representation conflict resolved by a fresh institutional record lookup.
+  Preserve raw lookup report and separate resolution. IEEE style has no definite
+  errors under the local standard. Original source/Bib/PDF hashes still match.
 
 ## Current human-approved40-hour execution (2026-10-16)
 
