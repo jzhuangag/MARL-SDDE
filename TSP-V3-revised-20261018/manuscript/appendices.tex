@@ -54,34 +54,7 @@ After $2D+1$ updates the entire old window is replaced, giving $(R_{k+2D+1}-R_\s
 Iteration gives $R_{nm}\le R_\star+c_{\rm aff}^n(R_0-R_\star)_+\le c_{\rm aff}^nR_0+R_\star$, proving Theorem~\ref{thm:affine}.
 
 \subsection{Proof of Corollary~\ref{cor:robust-certificate}}
-Write $\delta^+=C_q(r_q^+)^b$.
-On the coverage event, $\delta^+\ge\delta$ and monotonicity on $\mu-2L\delta^+>0$ gives $a^+\ge a$ and $\beta^+\ge\beta$.
-Evaluating the delayed Young inequality at the shared $\lambda^+=\sqrt{h/a^+}$ proves the upper recursion; separately optimized forcing terms need not be monotone.
-For $\Delta\delta=\delta^+-\delta$, $\Delta K=K_q^+-K_q$, and $\Delta\Omega=\Omega_q^+-\Omega_q$,
-\begin{align}
-\Delta a
-&=2\eta^2\Delta K+(2\eta L+4\eta^2L^2)\Delta\delta,\nonumber\\
-\Delta\beta
-&=2\eta^2\Delta\Omega+4\eta^2G^2\Delta\delta\nonumber\\
-&\quad+4\eta G^2\left[
-\frac{(\delta^+)^2}{\mu-2L\delta^+}
--\frac{\delta^2}{\mu-2L\delta}
-\right],\nonumber\\
-\Delta c
-&=(\sqrt{a^+}+\sqrt h)^2-(\sqrt a+\sqrt h)^2.
-\label{eq:certificate-perturbations}
-\end{align}
-For $h>0$,
-\begin{align}
-\Delta d
-&\le(1+\sqrt{h/a^+})\Delta\beta
-+\sqrt h\left(\frac1{\sqrt a}-\frac1{\sqrt{a^+}}\right)\beta\nonumber\\
-&\quad+\frac{\sqrt{a^+}-\sqrt a}{\sqrt h}g,
-\label{eq:certificate-delta-d}
-\end{align}
-and $\Delta d=\Delta\beta$ when $h=0$.
-For $U(c,d)=d/(1-c)+c^n(R_0-d/(1-c))_+$, $|\partial_dU|\le(1-\bar c)^{-1}$ and $|\partial_cU|\le nR_0+\bar d(1-\bar c)^{-2}$.
-The mean-value bound proves Eq.~\eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\widehat a}\le U_{a^\star}+2\max_a\varepsilon_a$.
+The shared-Young-parameter comparison and explicit moment-slack bounds are given in the supplementary material.
 
 \subsection{Return transfer and arbitrary terminal indices}
 \label{app:return}
@@ -180,28 +153,11 @@ The fallback statement follows directly from the strict admission rule.
 
 \section{Proof of the Threshold Sandwich}
 \label{app:threshold}
-For the independently initialized Gaussian running mean, let $c_a=\max\{(h+q)/\beta_m,b/\beta_e\}$ and $r=\lambda^b$.
-The exact horizon is $N_a=s/c_a+O(1)$, with bounded terminal charges and rounding.
-Eq.~\eqref{eq:mean-risk} and Eq.~\eqref{eq:geometric-correlation-sum} give $K_j(a)=c_a\{q^{-1}+\theta_j(1+r)/(1-r)\}$ and a uniform $O(s^{-2})$ remainder.
-Removing probe charge $v$ changes $N_a$ by $O(v+1)$ and hence risk by $O((v+1)/s^2)$ for $s\ge s_0(v+1)$; compact persistence and the finite catalogue make these constants uniform.
-Thus the phase-theorem risk conditions have a concrete Gaussian realization, separately from the constant-step affine certificate.
-Write $d_\delta=\operatorname{kl}(1-\delta,\delta)$.
-Write $r_0=1-\gamma<1$ and $Q=\max{\cal Q}$.
-Under either true instance, the predictable spacing gives $\|C_{S_k}\|_{L^2}\le r_0\|C_{S_{k-1}}\|_{L^2}+\sqrt{\theta_+}$, hence a uniform bound $M_C=\sqrt{\theta_+}/(1-r_0)$.
-The normalized observation $Y_k/\sqrt{q_k}$ has $L^2$ norm at most $M_C+1$.
-For either candidate filter, write its posterior mean as $(1-t_{j,k})m^-_{j,k}+t_{j,k}Y_k/\sqrt{q_k}$, with predictable $0\le t_{j,k}\le1$.
-Prediction multiplies this mean by a factor of magnitude at most $r_0$; the triangle inequality therefore bounds both predictive means uniformly in $L^2$ by $M_F=r_0(M_C+1)/(1-r_0)$, starting from zero.
-Both predictive variances are at most $\theta_+$, so $1\le V_{j,k}\le V_+=1+Q\theta_+$.
-Eq.~\eqref{eq:conditional-kl} now gives the expected, rather than pointwise, bound $\E_j\mathcal I_{j,1-j}(Z_k,A_k)\le i_+$, where $i_+=(\log V_++V_++4QM_F^2)/2$ is finite.
-Extend a stopped rule predictably after stopping; nonnegativity and its deterministic budget bound $n_{\max}(s)\le c_Bs$ imply $\E_j\sum_{k\le\tau}\mathcal I_{j,1-j}\le i_+n_{\max}(s)$.
-Together with Eq.~\eqref{eq:info-constraint}, this expected-information bound proves $B_N\ge c_Nd_\delta$ over Gaussian observation histories.
-The fixed probe has information at least $i_->0$, so $n_\delta=\lceil i_-^{-1}\log(1/\delta)\rceil$ observations suffice and cost at most $c_pn_\delta+D_{\max}$.
-Continuity of $\log(1/\delta)/d_\delta$ gives $n_\delta\le c_0+c_1d_\delta\le c_0+c_2B_N$.
-Write $u_\delta\le c_pn_\delta+D_{\max}$ for the full probe charge.
-The assumed expansion and budget-shift inequality give a high-instance improvement over the full-budget fallback certificate of at least $g_{\min}/s-\{2M+L(u_\delta+1)\}/s^2-\delta w_+/s$.
-It is strictly positive for $s>\{4M+2L(u_\delta+1)\}/g_{\min}$, also requiring $s\ge s_0(u_\delta+1)$.
-On instance zero, the assumed coefficient ordering gives $\epsilon_{\rm safe}\le\{2M+L(u_\delta+1)\}/s^2+\delta_0w_+/s$.
-Thus $s\ge\sqrt{2\{2M+L(u_\delta+1)\}/\bar\epsilon}+2\delta_0w_+/\bar\epsilon$ suffices.
-Using $2\sqrt{xy}\le x+y$, all three requirements are bounded by a class-constant multiple of $n_\delta+B_{\rm oracle}+B_\epsilon+1$.
-Taking the maximum proves the upper bound in Eq.~\eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\delta$-correct probe obeys both information constraints.
+The supplementary material gives the complete expected-information and scale calculation.
+Its lower bound uses uniform second moments of both Gaussian filters, not a pointwise bound on their conditional means.
+Combining that bound with Eq.~\eqref{eq:info-constraint} gives $B_N\ge c_N\operatorname{kl}(1-\delta,\delta)$.
+A fixed probe needs $n_\delta=O(\log(1/\delta))=O(B_N+1)$ observations.
+The risk expansion makes its high-instance benefit order $s^{-1}$ and its lost-learning cost order $(n_\delta+1)s^{-2}$.
+The assumed leading gap dominates the wrong-decision term; low-instance safety follows above the stated allowance scale.
+Taking the maximum of these sufficient scales proves Eq.~\eqref{eq:threshold-sandwich}.
 

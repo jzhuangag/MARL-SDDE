@@ -12,10 +12,10 @@ from t018_static_scan import THETA_LOW
 
 
 def main():
-    out = analysis.HERE / "internal/same_stream_proof_audit_20261018.json"
+    out = analysis.HERE / "internal/same_stream_directional_proof_audit_20261018.json"
     if out.exists():
         raise FileExistsError(out)
-    evidence = analysis.HERE / "internal/same_stream_evidence_20261018"
+    evidence = analysis.HERE / "internal/same_stream_directional_evidence_20261018"
     bounds = pd.read_csv(evidence / "risk_bounds.csv")
     old_integrity = json.loads((evidence / "integrity.json").read_text())
     assert old_integrity["analysis_script_sha256"] == analysis.sha(Path(analysis.__file__))
@@ -29,7 +29,12 @@ def main():
         scenario = lookup[row.scenario_id]
         exponent = bhattacharyya_distance(THETA_LOW, scenario.theta_high, int(row.probe_q), int(row.probe_n), scenario.lam ** int(row.probe_b))
         slacks.append(exponent - math.log(1 / analysis.DELTA))
-    assert min(slacks) >= -1e-12
+    # Preserve and disclose the nominal-directional mismatch; do not relax an
+    # old experimental gate. New intervals use the actual affinity for each row.
+    assert min(slacks) >= -math.log(2) - 1e-12
+    probe_bounds = bounds[bounds.probe_used]
+    assert (probe_bounds.directional_error_upper <= 2 * analysis.DELTA + 1e-12).all()
+    assert (probe_bounds.directional_error_upper > analysis.DELTA).all()
     # Dense Gaussian conditioning verifies the scalar carryover identity for
     # deterministic, nonzero probe observations. These are fixtures, not data.
     conditional_checks = 0
@@ -74,6 +79,8 @@ def main():
     assert np.allclose(scenario_means.sort_index(), expected.sort_index(), atol=2e-15, rtol=2e-13)
     analysis.dump(out, dict(pass_all=True, new_trajectories=0,
                             exact_probe_designs_checked=len(probes), minimum_bhattacharyya_slack=min(slacks),
+                            nominal_directional_certificate_supported=False,
+                            per_probe_affinity_used=True,
                             dense_conditional_identity_checks=conditional_checks,
                             original_primary_scenario_means_recovered=len(scenario_means),
                             no_replacement_of_registered_gate=True,

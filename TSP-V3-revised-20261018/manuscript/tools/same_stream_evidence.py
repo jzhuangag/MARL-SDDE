@@ -24,9 +24,9 @@ ROOT = HERE.parents[1]
 OLD = ROOT / "experiments/dependence_delay_linear"
 sys.path.insert(0, str(OLD))
 import run_exp016b_pilot as protocol
-from run_adaptation_cost_pilot import Action, oracle_action, scheduled_updates
+from run_adaptation_cost_pilot import Action, oracle_action, scheduled_updates, bhattacharyya_distance
 from analyze_exp016b_pilot import analytic_cell_tags
-from t018_static_scan import DELTA
+from t018_static_scan import DELTA, THETA_LOW
 
 
 def forbidden(*args, **kwargs):
@@ -92,6 +92,11 @@ def posterior_variance(theta, lam, q, b, n):
     return variance
 
 
+@lru_cache(None)
+def directional_error_upper(theta_high, lam, q, b, n):
+    return min(1.0, math.exp(-bhattacharyya_distance(THETA_LOW, theta_high, q, n, lam ** b)))
+
+
 def operator_checks():
     count = 0
     for delay in (0, 4, 12, 24):
@@ -113,7 +118,7 @@ def operator_checks():
 
 def run():
     started = time.process_time()
-    out = HERE / "internal/same_stream_evidence_20261018"
+    out = HERE / "internal/same_stream_directional_evidence_20261018"
     if out.exists():
         raise FileExistsError(out)
     registry = json.loads((ROOT / "docs/exp016b_formal_registry.json").read_text())
@@ -169,18 +174,21 @@ def run():
             wrong = programs["high" if record["regime"] == "low" else "low"]
             s2 = max(0.0, theta - posterior_variance(theta, lam, pq, pb, pn))
             delta_j = wrong[0] - correct[0]
+            error_upper = directional_error_upper(scenario.theta_high, lam, pq, pb, pn)
             gamma = math.sqrt(4 * (wrong[1] * wrong[2] - correct[1] * correct[2]) ** 2 * s2
                               + 2 * (wrong[2] ** 2 - correct[2] ** 2) ** 2 * s2 ** 2)
-            correction = math.sqrt(DELTA) * gamma
-            lower = max(0.0, correct[0] - DELTA * max(0.0, -delta_j) - correction)
-            upper = correct[0] + DELTA * max(0.0, delta_j) + correction
+            correction = math.sqrt(error_upper) * gamma
+            lower = max(0.0, correct[0] - error_upper * max(0.0, -delta_j) - correction)
+            upper = correct[0] + error_upper * max(0.0, delta_j) + correction
             base.update(correct_risk=correct[0], wrong_risk=wrong[0], carryover_correction=correction,
+                        directional_error_upper=error_upper,
                         posterior_variance=theta - s2, risk_lower=lower, risk_upper=upper,
                         program_signature=f"probe:{pq}:{pb}:{pn}:{low.q}:{low.b}:{high.q}:{high.b}")
         else:
             selected = Action(int(record["selected_q"]), int(record["selected_b"]))
             value, _, _ = risk(layer, int(record["scheduled_updates"]), delay, selected.q, selected.b, lam, theta)
             base.update(correct_risk=value, wrong_risk=value, carryover_correction=0.0,
+                        directional_error_upper=0.0,
                         posterior_variance=theta, risk_lower=value, risk_upper=value,
                         program_signature=f"fixed:{selected.q}:{selected.b}")
         assert selected.q == record["selected_q"] and selected.b == record["selected_b"]
@@ -229,7 +237,10 @@ def run():
     bounds.to_csv(out / "risk_bounds.csv", index=False, float_format="%.17g")
     contrasts.to_csv(out / "contrasts.csv", index=False, float_format="%.17g")
     dump(out / "summary.json", {"outcome_known_reanalysis": True, "new_trajectories": 0,
-                                "directional_error_bound": DELTA, "strata": summaries,
+                                "nominal_average_error_target": DELTA,
+                                "directional_error_bound": "Per-probe exact affinity exp(-I_B), not nominal DELTA",
+                                "maximum_directional_error_upper": float(bounds.directional_error_upper.max()),
+                                "strata": summaries,
                                 "max_carryover_correction": float(bounds.carryover_correction.max()),
                                 "all_scenario_count": bounds.scenario_id.nunique(),
                                 "rows": len(bounds), "empirical_seeds_per_cell": registry["formal_seed_count"]})

@@ -1,6 +1,47 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
-## Current decision — full-text TSP positioning and prose review complete
+## Current decision — substantive same-stream theory/evidence addition
+
+The latest human request is implemented in this isolated revision, not the original
+V3. Read internal/same_stream_strengthening_review_20261018.md and the current
+internal/same_stream_release_check_20261018.json. The previous prose-only gate
+below is historical, not the current formal-statement invariance contract.
+
+New Theorem5 encloses the actual squared risk after an identification decision
+on the SAME continuing Gaussian stream. Exact program weights cover the saved
+running mean and averaged delayed FIFO learner; a stable delayed1/s expansion
+puts the selection-carryover correction at second order. The complete new proofs,
+unchanged robust-sensitivity details, full threshold calculation and SDDE
+interpretation are in supplement.tex/pdf. Main13pages; supplement3pages; no font
+or margin compression. Original formal statements and original V3 are preserved.
+
+All14,336 old policy cells/all8 policies/all104(A)/56(B) families/all registered
+budget points and both regimes remain in the analytical reanalysis; no new
+trajectory or old experimental gate/action/source/result changed. The provisional
+nominal-delta pass FAILED and is preserved at2aec1a5 and
+internal/same_stream_nominal_failure_20261018.json. The old probe helper certifies
+equal-prior average error, not nominal directional error. Only the separate
+internal/same_stream_directional_evidence_20261018 root, with per-probe exact
+affinity bounds, is admitted by the current analytical audit.
+
+Corrected original-practical-subset mean improvement enclosures are
+[0.1607,0.1952] for A and[0.0562,0.0773] for averaged delayed B; original saved
+means0.1767/0.0726 remain. Negative cells101/446 and33/222 are reported, and the
+whole intermediate B interval[-0.0049,0.0252] does not prove a positive gain.
+These are model-based population enclosures, not new empirical confidence
+intervals or independent confirmation. The new risk-corrected admission variant
+was derived, not retroactively executed in the old experiment.
+
+Fresh citation integrity and IEEE style evidence are in
+internal/same_stream_fresh_citations_20261018 with the separate article-number
+resolution. Bib remains unchanged; all37 identities have positive authoritative
+matches, with raw outages preserved. This is not external priority/plagiarism
+clearance. User-provided author/funding block remains authentic and unchanged.
+Both ORCIDs, related/prior/concurrent submission disclosures and all-author final
+approval are still human release requirements. No submission is authorized or made.
+The independent140h native comparison continues without waiting for this copy.
+
+## Historical decision — full-text TSP positioning and prose review
 
 Human-requested TSP suitability/defensive-writing/Kimi polish pass is complete.
 Latest report is internal/tsp_positioning_and_prose_review_20261018.md; latest

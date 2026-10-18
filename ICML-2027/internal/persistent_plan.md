@@ -8,6 +8,51 @@
 
 ## Human-approved100h addition and independent V3 repair (2026-10-18)
 
+### Latest substantive V3 theory--evidence strengthening,2026-10-18
+
+- Human explicitly requested substantive novelty/theory--experiment closure,
+  not further narration alone. The isolated revised copy now adds a same-stream
+  actual-risk enclosure, exact running-mean/averaged-FIFO weights, and the stable
+  averaged delayed learner's1/s risk / second-order selection-carryover interface.
+  Full proof and existing-data table are in supplement.tex/pdf; main stays13pages.
+- New analytical evidence is outcome-known, not new native data or independent
+  confirmation. ALL14,336 old policy cells,8 policies,104/56 scenario families,
+  all budgets/regimes and8 search-censored families are retained. Original V3,
+  original source/results/gates and the live140h benchmark are untouched.
+- IMPORTANT failure retained at2aec1a5: the first new nominal-delta analysis
+  assumed directional0.025, but the frozen old probe helper only certified an
+  equal-prior average0.025. Do not admit internal/same_stream_evidence_20261018.
+  The corrected, separate root is internal/same_stream_directional_evidence_20261018,
+  using each probe's exact affinity as its directional bound(0.03523--0.04975).
+  The old probe/actions/seeds/gates were NOT changed; no scientific payload retry.
+- After both corrections, the ORIGINAL practical intermediate-subset actual
+  mean-risk improvement is enclosed by[0.1607,0.1952] for A and[0.0562,0.0773]
+  for averaged delayed B. Adverse cells101/446 and33/222 remain. The ENTIRE B
+  intermediate mean interval[-0.0049,0.0252] is inconclusive; no universal benefit.
+  Existing empirical means0.1767/0.0726 and all96 original scenario primary means
+  are recovered, not regenerated. Corrected analytical CPU89.03125s, provisional
+  CPU87.671875s; neither is a native learning study.
+- Read revised internal/same_stream_strengthening_review_20261018.md,
+  same_stream_directional_proof_audit_20261018.json and
+  same_stream_release_check_20261018.json for current scope/decision. Historical
+  prose-only invariance gates are NOT applicable to this new theorem addition.
+  All pre-existing formal statements remain intact; complete moved proofs are
+  retained in the supplement. Fresh37-reference/style audit has36 raw passes
+  plus the freshly resolved Paulin article-number representation; preserve raw
+  service outages, no Bib edits. No external priority/plagiarism clearance.
+- This improves the TSP contribution materially through a computable statistical
+  risk-transfer interface, not a new general Lyapunov theorem or a superior MARL
+  optimizer. Current author-release inputs still needed: both authentic ORCIDs,
+  related/prior/concurrent-submission declarations and all-author approval.
+  Do not submit or invent metadata. Do not wait for science to handle supplied
+  metadata, and do not stop science because metadata are pending.
+- At15:10 CST the sole native PID19816 remains in science with87/117 completed
+  (80imported+7new). Live cumulative CPU156066.31s=43.35175h; remaining347933.69s
+  =96.64825h out of140h;6 full-budget replays/double analysis/plots still pending.
+  No workflow_complete/failure marker. This is only a cost/progress snapshot;
+  inspect current process/metadata next time and never inspect incomplete returns
+  or duplicate the owner/replay/analyzers. Source/config/gates/cap stay frozen.
+
 ### Latest full-text positioning/prose handoff,2026-10-18 14:16 CST
 
 - The human requested a full V3 assessment of novelty/thesis/narrative/theory/
