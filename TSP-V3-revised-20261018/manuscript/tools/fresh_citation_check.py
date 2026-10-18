@@ -1,5 +1,6 @@
 """Fresh public-metadata lookup for the isolated revision, with no cached passes."""
 from datetime import datetime, timezone
+import argparse
 import importlib.util
 from pathlib import Path
 
@@ -21,6 +22,11 @@ def dated_dump(path, value):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output', type=Path, default=HERE/'internal/fresh_citation_20261018')
+    args = parser.parse_args()
+    if args.output.exists():
+        raise FileExistsError(f'Preserve prior citation evidence: {args.output}')
     started = datetime.now(timezone.utc).isoformat()
     adapter.dump = dated_dump
-    adapter.run(HERE/'internal/fresh_citation_20261018', preserved_records=None)
+    adapter.run(args.output, preserved_records=None)

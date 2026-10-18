@@ -8,7 +8,35 @@
 
 ## Human-approved100h addition and independent V3 repair (2026-10-18)
 
-### Latest verified handoff,2026-10-18 13:24 CST
+### Latest author-metadata handoff,2026-10-18 13:57 CST
+
+- The human supplied the authentic Jialin Zhuang / Vincent K. N. Lau author
+  block, HKUST ECE affiliation, emails, corresponding author and RGC grants.
+  These are inserted ONLY in TSP-V3-revised-20261018/manuscript. The author-only
+  gate compares with3407feb: scientific body/appendix/Bib/all figures unchanged,
+  original V3 hashes unchanged. No native run or new scientific outcome used.
+- Author PDF remains13 pages,218-word abstract/five keywords, zero undefined or
+  overfull items, all13 pages inspected/fonts embedded. Two email nonbreaking
+  boxes prevent display hyphenation; no email content changed. Current PDF SHA
+  7a452b042f6ce8270b33e02648f0c5ded36aa4f457eb98ddc09dbfe19d937ed3.
+  Latest metadata report: internal/author_metadata_release_check_20261018.json;
+  read revised REVISION_STATUS.md current section, not historical pending lists.
+- Fresh37-reference requests are preserved separately in
+  internal/author_metadata_citation_20261018;36 raw PASS + separately resolved
+  article-number representation. No definite IEEE Bib error, keys/bytes unchanged.
+  Metadata check records the exact source-only email wrappers after citation
+  requests. No external review/plagiarism/acceptance clearance is inferred.
+- Decision AUTHOR_METADATA_VERIFIED_SUBMISSION_DECLARATIONS_PENDING. Human
+  prior/concurrent/related-manuscript disclosures, all-author consent/final release
+  and authentic ORCIDs if applicable remain unprovided. Do NOT fabricate or submit.
+  Do not repeat completed metadata/citation/render/proof audits while unchanged.
+- At13:57 CST ownerPID19816 remains live,86/117 science complete (80 imported+6
+  new);6 replays/analyses not yet complete. Native process CPU about7918.45s gives
+  cumulative151921.12s=42.2003h, remaining352078.88s=97.7997h of140h. These are
+  snapshots, not a new forecast. No failure/complete marker; no incomplete returns
+  inspected. Keep the single owner; V3 declarations must not stop its monitoring.
+
+### Prior verified handoff,2026-10-18 13:24 CST
 
 - V3 technical repair/final pre-submission audit is completed in the SEPARATE
   TSP-V3-revised-20261018/manuscript copy. Authoritative report is

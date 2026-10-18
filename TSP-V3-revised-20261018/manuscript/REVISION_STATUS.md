@@ -1,6 +1,38 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
-## Current decision — technical repairs verified, author release pending
+## Current decision — authentic authors inserted, submission declarations pending
+
+Human-supplied Jialin Zhuang / Vincent K. N. Lau author order, IEEE memberships,
+HKUST ECE affiliation, both email addresses, corresponding author and RGC grants
+AoE/E-101/23-N / AoE/E-601/22-R are inserted in the revised copy only. The two
+email addresses use nonbreaking boxes to prevent misleading hyphenation; their
+text is unchanged. No ORCID, consent or prior/concurrent-submission assertion is
+invented. Authentic ORCIDs, if required by the submission system, and the human
+submission disclosures/all-author consent/final release remain outstanding.
+
+Latest authoritative metadata check: internal/author_metadata_release_check_20261018.json
+and internal/author_metadata_review_20261018.md. Decision
+AUTHOR_METADATA_VERIFIED_SUBMISSION_DECLARATIONS_PENDING. It verifies that ONLY
+the author block differs from technical-audit commit3407feb; scientific body,
+appendix, all figures and bibliography are unchanged. Original V3 hashes match.
+No NEW science results or native calls are used in this update.
+
+The author PDF remains13 pages,218-word abstract/five keywords, zero undefined
+references/citations and zero overfull boxes (26 underfull). All13 pages were
+visually checked; after email nonbreaking wrappers, pages2-13 render identically
+to that inspected draft and page1 was re-inspected. All fonts embed. Current PDF
+SHA256:7a452b042f6ce8270b33e02648f0c5ded36aa4f457eb98ddc09dbfe19d937ed3.
+Fresh37-reference requests, raw36 PASS plus the separately resolved Paulin
+article-number representation, and IEEE style evidence are preserved under
+internal/author_metadata_citation_20261018. No definite style error; article79's
+rendered no.79 remains a documented representation judgment, not a new Bib edit.
+The fresh citation-source hash precedes ONLY the two email nonbreaking wrappers;
+the gate reconstructs that exact source and verifies all other bytes unchanged.
+
+This is not actual submission, independent external review, full-text plagiarism
+or journal acceptance clearance. The140h experiment remains independent/live.
+
+## Prior technical-audit decision — preserved pre-author evidence
 
 Latest authoritative artifacts: internal/technical_repair_review_20261018.md,
 internal/submission_release_check_20261018.json and main.pdf. The earlier
