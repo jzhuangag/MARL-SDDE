@@ -4,7 +4,28 @@
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
 - Date: 2026-10-16 (renewed human authorization).
-- Status: human-approved40-CPU-hour complete native science is ACTIVE under separate resource lock/admission pushed at d3bada6, root results/sealed_bridge_learning_dev40h_20261016, PID17948. Original RESOURCE_NO_GO remains preserved and superseded only as a resource ceiling, not as an altered scientific result. V3 read-only final audit is complete with a BLOCKED submission-release decision; see TSP-V3/manuscript/internal/final_audit_20261016/final_audit.md. Do not duplicate the worker, peek incomplete returns, restart profiles or overwrite V3.
+- Status: human authorized100 additional CPU hours on2026-10-18, total140h. The40h owner exited on its exact resource cap (144002.671875s), with80 complete cells preserved; no scientific failure. A separate resource-only continuation lock imports the80 cells byte-for-byte and runs the remaining37 plus6 replays/double analysis/plots after commit/push. V3 repair is now separately authorized in TSP-V3-revised-20261018/manuscript; original TSP-V3 stays unchanged. Do not duplicate workers, rank incomplete returns, or alter frozen science.
+
+## Human-approved100h addition and independent V3 repair (2026-10-18)
+
+- NEW experiments/sealed_bridge_learning_140h.py, lock/admission/amendment with
+  suffix140h_20261018, root results/sealed_bridge_learning_dev140h_20261018.
+  Only CPU ceiling and explicit resource-continuation semantics change. ALL
+  original tasks/methods/seeds/horizons/native budgets/gates remain unchanged.
+- Old40h root, source locks,80 payloads and exact cap failure stay immutable.
+  Stopped active cell is HalfCheetah/seed971016103/fresh_happo_double; its344.171875
+  CPU seconds and every partial charge stay paid. No recoverable mid-cell state
+  exists. Human-authorized resource-only regeneration affects this unfinished
+  cell, never a completed cell or a scientific failure. Kernel mutex ownership
+  and committed/pushed source/runtime/prefix hashes gate the new owner.
+- The original profile underforecast the first long HalfCheetah cell by7.304x.
+  Revised cost-only whole-workflow forecast is approximately134h, not a guarantee.
+  The140h cap includes original profile, old stop/lost work and all new phases.
+- V3 no longer waits for new science. Separate source/figure copy is created;
+  risk denominator, expected-information, compact-domain, positive-part history,
+  certificate-relative safety and calibration-scope repairs are being implemented.
+  This is a WORKING revision, not submission-ready; full proof/claim, fresh
+  citation/BibTeX and compiled PDF gates remain required. Preserve original V3.
 
 ## Current human-approved40-hour execution (2026-10-16)
 
