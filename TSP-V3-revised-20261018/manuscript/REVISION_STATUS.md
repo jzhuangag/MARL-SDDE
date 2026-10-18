@@ -39,6 +39,23 @@ V3 repair must progress independently while the separate140h experiment runs.
 Do not wait for it or import its incomplete outcomes. At unresolved proof gaps,
 give an explicit repair/release decision, never a claim of readiness by fiat.
 
+## Current second-pass handoff
+
+See internal/second_pass_repair_review_20261018.md. The current PDF is13 pages,
+abstract220 words/five keywords; all13 pages were rendered and inspected.
+Build exits0 with zero undefined/overfull items. Equation-reference style is
+normalized, risk/spacing figure labels are corrected, and36 saved actions have
+strictly positive stable-domain containment margins. Original four hashes match.
+
+Additional substantive repairs align the budget decomposition with its fallback,
+make post-probe conditional certificates explicit, and close the missing phase
+budget-perturbation assumption. These remain working proof/evidence repairs,
+not submission clearance. A newly identified retained-update versus physical-
+clock delay convention must be reconciled with each saved study, without
+changing any old code/gate/result or launching native reruns. Full citation-
+context and final protocol/sentence/metadata gates remain. Next work is that
+model/accounting alignment, NOT another citation-only pass or experimental test.
+
 ## First-pass checks performed
 
 - Full latexmk/PDF/BibTeX build exits0; final log has no undefined references or

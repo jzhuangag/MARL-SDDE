@@ -8,7 +8,7 @@ v_k=e_k-\eta(\bar H_ke_k-\bar\xi_k),
 r_k=\frac1q\sum_iH_{i,k}(e_{k-\tau_i}-e_k).
 \label{eq:appendix-vr}
 \end{equation}
-Then \eqref{eq:affine-td} is $e_{k+1}=v_k-\eta r_k$.
+Then Eq.~\eqref{eq:affine-td} is $e_{k+1}=v_k-\eta r_k$.
 
 Total-variation duality and stationary centering give
 \begin{equation}
@@ -22,7 +22,7 @@ Moreover, stationarity and the bounded integrand imply
 &\quad+2\Omega_q+4G^2\delta.
 \label{eq:second-moment-transfer}
 \end{align}
-Combining \eqref{eq:conditional-bias} with the strong monotonicity of $A$ and applying Young's inequality with parameter $\mu_\delta$ yields
+Combining Eq.~\eqref{eq:conditional-bias} with the strong monotonicity of $A$ and applying Young's inequality with parameter $\mu_\delta$ yields
 \begin{equation}
 \E\|v_k\|^2\le a_\delta(\eta)R_k+\beta_\delta(\eta).
 \label{eq:v-bound}
@@ -41,8 +41,8 @@ For any $\lambda>0$,
 \begin{equation}
 \|v_k-\eta r_k\|^2\le(1+\lambda)\|v_k\|^2+(1+\lambda^{-1})\eta^2\|r_k\|^2.
 \end{equation}
-Substituting \eqref{eq:v-bound} and \eqref{eq:r-bound} gives $\E\|e_{k+1}\|^2\le c_\lambda R_k+d_\lambda$.
-The choice $\lambda=\sqrt{h_\tau/a_\delta}$ minimizes the contraction coefficient and produces \eqref{eq:affine-cd}.
+Substituting Eq.~\eqref{eq:v-bound} and Eq.~\eqref{eq:r-bound} gives $\E\|e_{k+1}\|^2\le c_\lambda R_k+d_\lambda$.
+The choice $\lambda=\sqrt{h_\tau/a_\delta}$ minimizes the contraction coefficient and produces Eq.~\eqref{eq:affine-cd}.
 For zero delay, $r_k=0$ and the continuous limiting definitions follow directly.
 
 Let $R_\star=d_{\rm aff}/(1-c_{\rm aff})$.
@@ -80,11 +80,11 @@ For $h>0$,
 \end{align}
 and $\Delta d=\Delta\beta$ when $h=0$.
 For $U(c,d)=d/(1-c)+c^n(R_0-d/(1-c))_+$, $|\partial_dU|\le(1-\bar c)^{-1}$ and $|\partial_cU|\le nR_0+\bar d(1-\bar c)^{-2}$.
-The mean-value bound proves \eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\widehat a}\le U_{a^\star}+2\max_a\varepsilon_a$.
+The mean-value bound proves Eq.~\eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\widehat a}\le U_{a^\star}+2\max_a\varepsilon_a$.
 
 \subsection{Return transfer and arbitrary terminal indices}
 Let $n=\lfloor N_a/(2D+1)\rfloor$.
-The envelope argument keeps every later incomplete-block iterate below $\max\{R_{n(2D+1)},R_\star\}$, which is the truncated-transient form in \eqref{eq:certificate-score}.
+The envelope argument keeps every later incomplete-block iterate below $\max\{R_{n(2D+1)},R_\star\}$, which is the truncated-transient form in Eq.~\eqref{eq:certificate-score}.
 Since $J_\nu(w)-J_\nu(w^\star)=\psi_\nu^\top e$ for $\psi_\nu=\E_{s\sim\nu}\phi(s)$, Cauchy--Schwarz and the terminal envelope prove Corollary~\ref{cor:return}.
 
 \subsection{Proof of Theorem~\ref{thm:tracking}}
@@ -99,7 +99,7 @@ The explicitly assumed uniform-history drift and the positive-part replacement a
 \end{align}
 The second line follows by applying Young's inequality to the target shift and subtracting $R_\star$.
 Iteration and $\Gamma_0\le Z_0$ prove Eq.~\eqref{eq:tracking-bound} whenever $\bar c=(1+\chi)c<1$.
-Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves \eqref{eq:advantage-transfer}.
+Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves Eq.~\eqref{eq:advantage-transfer}.
 
 \subsection{Existence and complexity of the mixed controller}
 For fixed $(q,b)$, every coefficient and Eq.~\eqref{eq:certificate-score} is continuous on the declared positive-step domain.
@@ -113,20 +113,20 @@ Computing an exact largest eigenvalue of a general second-moment matrix is not i
 \section{Correlation-Limited Minimax Risk}
 For one round of the Gaussian location subclass, the agent average has variance $\sigma_c^2+\sigma_e^2/q$.
 The $T$ round averages are independent and Gaussian with known variance, so their sample mean is minimax for squared loss over the unrestricted location family and has risk $T^{-1}(\sigma_c^2+\sigma_e^2/q)$.
-Dividing the single-agent risk by this value gives \eqref{eq:speedup}.
+Dividing the single-agent risk by this value gives Eq.~\eqref{eq:speedup}.
 Since $1+(q-1)\rho\ge q\rho$ for $\rho>0$, the speedup is at most $\rho^{-1}$.
 
 \section{Proof of the Stopped Adaptive Information Identity}
 Condition on the pre-action history and realized action $A_k$.
 An orthogonal rotation maps $X_k$ to $Y_k=q_k^{-1/2}\bm{1}^\top X_k$ and hypothesis-invariant standard-normal contrasts.
 Because the predictable action kernels cancel, the stopped log likelihood is the sum of scalar Kalman innovation ratios, where $Y_k\sim\mathcal N(\sqrt{q_k}m^-_{j,k},V_{j,k})$.
-Conditional expectation and Tonelli's theorem give \eqref{eq:conditional-kl} and \eqref{eq:adaptive-kl}; exchanging hypotheses gives the reverse identity.
+The conditional Gaussian divergence and the bounded-stopping chain rule give Eq.~\eqref{eq:conditional-kl} and Eq.~\eqref{eq:adaptive-kl}; exchanging hypotheses gives the reverse identity.
 
 For a decision $\widehat J$, data processing gives
 \begin{equation}
 \KL(P_j^\pi|\F_\tau\,\|\,P_{1-j}^\pi|\F_\tau)\ge\operatorname{kl}(\Pp_j\{\widehat J=j\},\Pp_{1-j}\{\widehat J=j\}).
 \end{equation}
-If both directional errors are at most $\delta$, monotonicity of binary relative entropy yields \eqref{eq:info-constraint}.
+If both directional errors are at most $\delta$, monotonicity of binary relative entropy yields Eq.~\eqref{eq:info-constraint}.
 
 \section{Occupation-Measure Opportunity Lower Bound}
 Let $\Delta_j(z,a)\ge0$ be the one-step opportunity loss relative to the instance-$j$ certified oracle.
@@ -153,14 +153,14 @@ Moreover,
 \E_j^\pi\sum_{k\le\tau}\Delta_j(Z_k,A_k)
 =\int\Delta_j(z,a)\nu_j(dz,da).
 \end{equation}
-Equations \eqref{eq:adaptive-kl}, \eqref{eq:budgets}, and \eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
+Eq.~\eqref{eq:adaptive-kl}, Eq.~\eqref{eq:budgets}, and Eq.~\eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
 Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
 
 \section{Proof of the Main Learning-Value Guarantee}
-Condition on whether the likelihood test identifies instance $j$ correctly.
-On the correct event, the post-probe risk is at most $\overline R_j^\star(B_d^D,D)$.
-On the wrong event, its excess over the correct catalogue optimum is at most $W_j(d)$.
-Since the wrong-event probability is at most $\delta$, total expectation proves \eqref{eq:main-risk}.
+Let $\mathcal H_d$ be the complete probe history.
+The declared conditional certificate gives $\E_j[\|e_{\rm LA}\|^2\mid\mathcal H_d]\le\overline R_j(a_{\widehat J}^\star;B_d^D,D)$ for either selected action.
+The right side is at most $\overline R_j^\star(B_d^D,D)+\mathbf1\{\widehat J\ne j\}W_j(d)$.
+Taking expectation and using the directional error bound proves Eq.~\eqref{eq:main-risk}.
 
 Subtracting the full-budget all-agent certificate and using Eq.~\eqref{eq:value-decomposition} gives
 \begin{equation}
@@ -183,14 +183,11 @@ Extend a stopped rule predictably after stopping; nonnegativity and its determin
 Together with Eq.~\eqref{eq:info-constraint}, this proves $B_N\ge c_Nd_\delta$ without imposing a false uniform bound over Gaussian observation histories.
 The fixed probe has information at least $i_->0$, so $n_\delta=\lceil i_-^{-1}\log(1/\delta)\rceil$ observations suffice and cost at most $c_pn_\delta+D_{\max}$.
 Continuity of $\log(1/\delta)/d_\delta$ gives $n_\delta\le c_0+c_1d_\delta\le c_0+c_2B_N$.
-Uniformly along the budget ray, every stationary catalogue risk is $K_j(a)/s+O_{\mathcal K}(s^{-2})$, so probing perturbs it by at most $L_{\mathcal K}(n_\delta+D_{\max}+1)/s^2$.
-The high-instance gain is $g_{\min}/s-O_{\mathcal K}(s^{-2})$ and the wrong-commit term consumes at most half, hence admission holds for $s\ge c_3B_N+c_4(B_{\rm oracle}+1)$.
-Low-instance differences are $O_{\mathcal K}(s^{-1})$ and satisfy safety once $s\ge B_\epsilon$.
-Taking the maximum proves the upper bound in \eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\delta$-correct probe obeys both information constraints.
+Write $u_\delta\le c_pn_\delta+D_{\max}$ for the full probe charge.
+The assumed expansion and budget-shift inequality give a high-instance improvement over the full-budget fallback certificate of at least $g_{\min}/s-\{2M+L(u_\delta+1)\}/s^2-\delta w_+/s$.
+It is strictly positive for $s>\{4M+2L(u_\delta+1)\}/g_{\min}$, also requiring $s\ge s_0(u_\delta+1)$.
+On instance zero, oracle optimality gives the safety bound $\epsilon_{\rm safe}\le L(u_\delta+1)/s^2+\delta_0w_+/s$.
+Thus $s\ge\sqrt{2L(u_\delta+1)/\bar\epsilon}+2\delta_0w_+/\bar\epsilon$ suffices.
+Using $2\sqrt{xy}\le x+y$, all three requirements are bounded by a class-constant multiple of $n_\delta+B_{\rm oracle}+B_\epsilon+1$.
+Taking the maximum proves the upper bound in Eq.~\eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\delta$-correct probe obeys both information constraints.
 
-\section{Secondary SDDE Interpretation}
-The controlled discrete recursion has the local stochastic delay differential equation representation
-\begin{equation}
-dE(t)=-\frac1q\sum_{i=1}^{q}A_iE(t-\tau_i(t))dt+\sqrt{\eta}\,\Sigma_q^{1/2}(E_t)dW(t).
-\end{equation}
-The diffusion retains the Jacobian-induced state-dependent variation, bounded near the fixed point by $K_q\|E_t\|^2$; this explains the correlation-dependent noise floor and stability margin, while the discrete recursion supplies the finite-time guarantee.

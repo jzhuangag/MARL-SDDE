@@ -37,6 +37,17 @@
   representation conflict resolved by a fresh institutional record lookup.
   Preserve raw lookup report and separate resolution. IEEE style has no definite
   errors under the local standard. Original source/Bib/PDF hashes still match.
+- V3 second-pass repair now reaches13 pages,220-word abstract/five keywords,
+  zero undefined/overfull items and all13 pages visually inspected. It fixes
+  the same-baseline budget decomposition, conditional post-probe proof, explicit
+  phase budget-shift assumptions and MPE/MaMuJoCo estimand definitions. All36
+  saved finite-certificate actions have positive containment margins; this is
+  not a global-solver certificate. See revised manuscript REVISION_STATUS.md
+  and internal/second_pass_repair_review_20261018.md. Release remains OPEN:
+  retained-update versus physical-clock terminal delay, sampling endpoint/mixing
+  clock and scalarized-versus-dual cost mapping need source/evidence alignment;
+  no old code/gates/results may change. Full citation-context/metadata checks
+  also remain. This independent repair does not await the new science.
 
 ## Current human-approved40-hour execution (2026-10-16)
 
