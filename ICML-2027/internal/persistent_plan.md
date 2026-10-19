@@ -1,5 +1,32 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT LAST-REPORTED FORECAST,2026-10-20 07:20CST update
+
+Read `internal/sealed_bridge_cost_forecast_20261020_0720.json`. Snapshot07:18:47CST:
+main117/117 (Spread39/39, Reference39/39, HalfCheetah39/39); replay5/6,
+last HalfCheetah/full replay active; analyses0/2; independent final audit not started.
+Sole native PID19816 remains live, no completion/failure marker or duplicate.
+All27 source/resource hashes match. No scientific returns inspected or ranked.
+
+- Live cumulative296250.734375CPU seconds=82.29187h used;207749.265625s=
+  57.70813h remaining of140h. Audit actual CPU must still be charged to this cap.
+- Fifth replay payload CPU9057.109375s versus matched original5618.921875s,
+  ratio1.6118945. Progress delta9057.5s includes0.390625s driver overhead.
+  This higher observed replay cost triggers a material delay report versus07:00.
+- NEW native finish planning range08:10--08:40CST TODAY; midpoint08:25 is the
+  next material-ETA COMPARISON BASELINE, superseding03:13/older saved forecasts.
+  Independent final audit finish09:10--11:40CST, using UNMEASURED1--3wall hours.
+  V3 launch remains strictly after native exit AND authentic completed audit.
+- Cost-only endpoints use the final replay's exact original3190.234375s, or that
+  cost scaled by the latest same-task replay/original ratio; subtract1019.4375s
+  owner CPU since replay5 progress, add600s analysis reserve, CPU/wall0.9684283.
+  Unrounded native estimates08:06:28/08:40:04; projected83.06154--83.60378CPUh.
+  Rounded planning range is NOT a confidence interval or guarantee. One observed
+  scaling ratio is uncertain; no scientific suite, source, gate or cap change.
+- V3 unchanged READY AND QUEUED: science0/196608, replay0/196608, analyses0/2;
+  charged86.46875s, remaining28713.53125s=7.9759809h. Active V2 lock/admission
+  hashes unchanged; formal root absent. Do not rerun tests/freeze or launch early.
+
 ## CURRENT STAGE AND LAST-REPORTED FORECAST,2026-10-20 03:13CST snapshot
 
 MAIN PHASE COMPLETE at02:12:13CST:117/117, Spread39/39, Reference39/39,

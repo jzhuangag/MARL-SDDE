@@ -1,0 +1,98 @@
+{
+  "material_passport": {
+    "mode": "run-monitor",
+    "scope": "cost/progress only; no incomplete scientific returns inspected",
+    "authority": "human-approved 140 cumulative CPU hours; separate approved V3 8h validation"
+  },
+  "snapshot": "2026-10-20T07:18:47.2617016+08:00",
+  "main": {
+    "completed": 117,
+    "total": 117,
+    "by_task": {
+      "spread": 39,
+      "reference": 39,
+      "halfcheetah": 39
+    },
+    "imported": 80,
+    "new": 37
+  },
+  "replay": {
+    "completed": 5,
+    "total": 6,
+    "active": "task2/seed971016103/full"
+  },
+  "analyses": {
+    "completed": 0,
+    "total": 2
+  },
+  "independent_final_audit": "not started; requires workflow_complete AND driver exit",
+  "native_owner": {
+    "pid": 19816,
+    "alive": true,
+    "owner_cpu_seconds": 152248.046875,
+    "wall_seconds": 157211.4885588,
+    "duplicate_native_owner": false,
+    "workflow_complete": false,
+    "failure": false
+  },
+  "budget": {
+    "cap_seconds": 504000,
+    "cumulative_seconds": 296250.734375,
+    "remaining_seconds": 207749.265625,
+    "used_hours": 82.29187065972222,
+    "remaining_hours": 57.70812934027778,
+    "includes_original_prefix_seconds": 144002.671875
+  },
+  "cost_evidence": {
+    "last_completed_replay_payload_seconds": 9057.109375,
+    "last_completed_replay_progress_delta_seconds": 9057.5,
+    "matched_original_seconds": 5618.921875,
+    "same_task_replay_to_original_ratio": 1.611894519355637,
+    "active_replay_owner_cpu_since_progress_seconds": 1019.4375,
+    "last_replay_original_cpu_seconds": 3190.234375,
+    "analysis_reserve_cpu_seconds": 600,
+    "owner_cpu_to_wall_ratio": 0.9684282508275878
+  },
+  "forecast": {
+    "method": "Cost-only range: exact matched original last-replay cost; alternatively scaled by latest same-task replay/original ratio. Subtract owner CPU since latest completed replay and add 600s analysis reserve. No returns used.",
+    "native_finish_cst_range": [
+      "2026-10-20T08:10:00+08:00",
+      "2026-10-20T08:40:00+08:00"
+    ],
+    "native_finish_cst_comparison_baseline": "2026-10-20T08:25:00+08:00",
+    "unrounded_native_estimates_utc": [
+      "2026-10-20T00:06:28.388Z",
+      "2026-10-20T00:40:04.115Z"
+    ],
+    "projected_native_cpu_hours": [
+      83.06153645833334,
+      83.60378282764512
+    ],
+    "independent_audit_finish_cst_range": [
+      "2026-10-20T09:10:00+08:00",
+      "2026-10-20T11:40:00+08:00"
+    ],
+    "audit_allowance": "UNMEASURED 1--3 wall hours; actual audit CPU must be charged inside 140h",
+    "prior_comparison_baseline_cst": "2026-10-20T07:00:00+08:00",
+    "material_trigger": "Delay exceeds 20% of prior estimated remaining time (~3.789h at03:13 snapshot); range is planning estimate, not CI/guarantee.",
+    "scientific_plan_change": false
+  },
+  "integrity_metadata": {
+    "locked_sources": 27,
+    "source_mismatches": 0
+  },
+  "v3": {
+    "science_completed": 0,
+    "science_total": 196608,
+    "replay_completed": 0,
+    "replay_total": 196608,
+    "analyses_completed": 0,
+    "analyses_total": 2,
+    "charged_cpu_seconds": 86.46875,
+    "remaining_cpu_seconds": 28713.53125,
+    "formal_root_exists": false,
+    "lock_sha256": "2542f0749f13095041e0882f82d51210e7f9ae71c7d2e1363fbc43cac75636b3",
+    "admission_sha256": "f3ca683f26c19b3b4200f84498856af1db0851d9a5ad8ebd544e66e81aa2763b",
+    "handoff": "queued until native owner exit AND genuine completed independent terminal audit receipt; no new confirmation"
+  }
+}
