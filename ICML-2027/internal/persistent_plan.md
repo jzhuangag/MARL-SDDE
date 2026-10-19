@@ -1,5 +1,38 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT STAGE AND LAST-REPORTED FORECAST,2026-10-20 03:13CST snapshot
+
+MAIN PHASE COMPLETE at02:12:13CST:117/117, Spread39/39, Reference39/39,
+HalfCheetah39/39 (80 imported+37 new). This is a phase-completion report, NOT a
+scientific outcome or final audit. Read
+`internal/sealed_bridge_stage_main_complete_20261020_0313.json`.
+
+- Main registered mapping117/117 matches exactly, all117 payload SHA values match
+  the completed science manifest (SHA68a6b5ec16591ed124241c9c3cc1a622dd51a3d39bd2a892b05c1fbf8275a123).
+  All27 source/resource hashes unchanged. These are metadata/digest checks only;
+  no scientific returns ranked or interpreted. Full independent audit still waits
+  for workflow_complete AND driver exit.
+- At03:12:39CST replay1/6: task0/seed971016103/fresh_happo complete;
+  task0/full active; task1/fresh_happo, task1/full, task2/fresh_happo, task2/full
+  queued. Two analyses0/2; plots/final independent audit not started. Same sole
+  native owner PID19816 remains live; no failure/completion marker or duplicate.
+- Live cumulative281837.1875CPU seconds=78.28811h used,222162.8125s=61.71189h
+  remaining of140h. Science-phase completion cumulative278388.109375s.
+- NEW last-reported cost forecast: native workflow approximately07:00CST today;
+  independent final audit08:00--10:00CST, using an UNMEASURED1--3wall-hour audit
+  allowance. This03:13 stage report supersedes the23:05 forecast as the next
+  material-ETA comparison baseline, including saved older heartbeat wording.
+- Remaining five replays use their exact original task/seed/method CPU costs;
+  total14225.265625s less1549.484375 live active-replay CPU gives12675.78125s
+  remaining replay estimate. Analysis reserve600s; CPU/wall0.9676414. Projected
+  native cumulative81.97582CPUh; independent audit actual CPU must still be charged
+  inside140h. Estimates are rough, not confidence bounds or a completion guarantee;
+  cost dispersion remains large. No suite, gate, source or budget change.
+- Independent V3 remains READY AND QUEUED,0/196608 science,0/196608 full replay,
+  0/2 analyses;86.46875CPU seconds charged,28713.53125s=7.9759809h left. Main117
+  alone does NOT authorize its start: require140h owner exit AND authentic completed
+  independent terminal audit/decision/receipt. No new V3 native worker or data root.
+
 ## CURRENT LAST-REPORTED NUMERIC FORECAST,2026-10-19 23:05CST snapshot
 
 This is the NEW comparison baseline for future material-ETA reporting, replacing

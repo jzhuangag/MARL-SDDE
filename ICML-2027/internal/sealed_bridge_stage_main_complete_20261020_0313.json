@@ -1,0 +1,97 @@
+{
+  "material_passport": {
+    "origin": "academic-research-suite/experiment-agent; stage metadata and cost only",
+    "snapshot_cst": "2026-10-20T03:12:39.5105522+08:00",
+    "status": "MAIN_COMPLETE_FULL_REPLAY_IN_PROGRESS_NO_SCIENTIFIC_DECISION"
+  },
+  "snapshot": {
+    "Now": "2026-10-20T03:12:39.5105522+08:00",
+    "OwnerCpu": 137834.453125,
+    "WallSeconds": 142443.7374094,
+    "CumulativeCpu": 281837.1875,
+    "ScienceProgress": [
+      {
+        "File": "progress_0037.json",
+        "Time": "2026-10-20T02:12:13.8125665+08:00",
+        "CpuSeconds": 278388.109375
+      }
+    ],
+    "ScienceManifestCount": 117,
+    "ScienceManifestSha": "68A6B5EC16591ED124241C9C3CC1A622DD51A3D39BD2A892B05C1FBF8275A123",
+    "SciencePayloadHashMismatches": 0,
+    "LockedSourceFiles": 27,
+    "LockedSourceMismatches": 0,
+    "ReplayCompletedNames": [
+      "cell_0_971016103_fresh_happo.json"
+    ],
+    "Progress": {
+      "completed": 1,
+      "cpu_seconds": 280287.703125,
+      "phase": "replay",
+      "pid": 19816
+    }
+  },
+  "stage_boundary": {
+    "main_completed": 117,
+    "main_expected": 117,
+    "tasks_completed": [
+      39,
+      39,
+      39
+    ],
+    "main_completion_cst": "2026-10-20T02:12:13.8125665+08:00",
+    "main_completion_cumulative_cpu_seconds": 278388.109375,
+    "replay_completed": 1,
+    "replay_expected": 6,
+    "analysis_completed": 0,
+    "analysis_expected": 2,
+    "independent_final_audit": "not started"
+  },
+  "budget": {
+    "cap_cpu_seconds": 504000,
+    "used_cpu_seconds": 281837.1875,
+    "used_cpu_hours": 78.28810763888889,
+    "remaining_cpu_seconds": 222162.8125,
+    "remaining_cpu_hours": 61.71189236111111
+  },
+  "forecast": {
+    "method": "remaining five replays matched individually to original task/seed/method CPU; subtract live owner CPU since completed replay; no returns read",
+    "all_six_original_replay_cpu_seconds": 16224.359375,
+    "completed_replay_original_cpu_seconds": 1999.09375,
+    "active_replay_elapsed_cpu_seconds": 1549.484375,
+    "remaining_replay_cpu_seconds": 12675.78125,
+    "analysis_cpu_reserve_seconds": 600,
+    "cpu_wall_ratio": 0.9676413693699122,
+    "native_eta_utc": "2026-10-19T23:01:19.243Z",
+    "native_eta_rounded_cst": "2026-10-20 07:00 CST",
+    "independent_audit_eta_rounded_cst": "2026-10-20 08:00--10:00 CST",
+    "audit_allowance_unmeasured_wall_hours": [
+      1,
+      3
+    ],
+    "projected_native_total_cpu_hours": 81.97582465277777,
+    "uncertainty": "Cost-only rough forecast; replay timing may vary; independent audit allowance not measured; not a completion guarantee"
+  },
+  "checks": {
+    "expected_main_mapping": 117,
+    "main_mapping_difference": 0,
+    "main_file_sha256_count": 117,
+    "main_payload_hash_mismatches": 0,
+    "source_resource_sha256_count": 27,
+    "source_resource_mismatches": 0,
+    "scientific_outcomes_inspected": false,
+    "final_audit_complete": false,
+    "new_native_worker_started": false
+  },
+  "v3": {
+    "science_completed": 0,
+    "science_expected": 196608,
+    "replay_completed": 0,
+    "replay_expected": 196608,
+    "analysis_completed": 0,
+    "charged_cpu_seconds": 86.46875,
+    "remaining_cpu_seconds": 28713.53125,
+    "automatic_start_requires": "140h driver exit AND authentic completed independent terminal audit; not merely main completion"
+  },
+  "report_reason": "Main117/117 phase completion; new forecast becomes comparison baseline; neither scientific outcome nor manuscript admission"
+}
