@@ -1,5 +1,37 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT LAST-REPORTED NUMERIC FORECAST,2026-10-19 23:05CST snapshot
+
+This is the NEW comparison baseline for future material-ETA reporting, replacing
+the historical20:25 forecast in this file and the saved heartbeat prompt. Read
+`internal/sealed_bridge_cost_forecast_20261019_2305.json` for exact cost metadata.
+
+- Main115/117 (80 imported+35 new), Spread39/39, Reference39/39,
+  HalfCheetah37/39; replay0/6, analyses0/2, independent final audit not started.
+  Sole native PID19816 live; no completion/failure marker or duplicate worker.
+- Snapshot live cumulative267531.515625CPU seconds=74.31431h, remaining
+  236468.484375s=65.68569h of140h. All27 source/resource SHA values match.
+  No incomplete scientific returns inspected or ranked; scientific gates unchanged.
+- Material change: native workflow now approximately2026-10-20 06:30CST,
+  versus previous10:15, advancing about3.8wall hours. Main approximately01:40;
+  final independent audit07:30--09:30, broad planning envelope03:00--16:00.
+  These are COST-ONLY estimates, not guarantees or scientific decisions.
+- Same-task/method other-seed means: fixed_allocation6962.359375CPU seconds
+  (individuals4308.640625,9616.078125), no_price5513.921875
+  (1278.59375,9749.25). Subtract3626.28125s owner CPU since last completed cell
+  for the currently active fixed_allocation cell. Remaining main forecast8850s;
+  all6 replay costs matched to exact original task/seed/method total16224.359375s;
+  analysis reserve600s; CPU/wall ratio0.9682830. Projected native cumulative
+  81.44608CPUh. Independent audit1--3wall hours remains an unmeasured allowance;
+  record its actual CPU inside the unchanged140h cap at terminal audit.
+- Latest full and no_transport cells cost substantially less than their respective
+  earlier other-seed forecasts; only their cost/progress metadata entered this
+  update. Cross-seed cost dispersion is large, so further ETA shifts are possible.
+- V3 separate8h remains READY AND QUEUED:0/196608 science,0/196608 replay,
+  0/2 analyses,86.46875CPU seconds already charged,28713.53125s=7.9759809h left.
+  Do not launch before140h driver EXIT AND authentic completed independent audit.
+  Active V2 locks and automatic handoff below remain unchanged; no new V3 data.
+
 ## CURRENT V3 independent8h: implementation/tests/registration READY,2026-10-19 20:57CST
 
 Latest human authority: autonomously finish the isolated implementation, tests and
