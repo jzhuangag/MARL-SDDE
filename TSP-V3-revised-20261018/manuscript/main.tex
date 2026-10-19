@@ -68,11 +68,15 @@ We ask how covariance and spacing change error per update and the number of affo
 
 Asynchronous optimization analyzes stale computation~\cite{agarwal2011distributed,lian2015asynchronous,arjevani2020delayed}; delay-adaptive stochastic approximation~\cite{adibi2024delayed,dalfabbro2024dasa} and stochastic delay differential equations (SDDEs) support convergence and worker-activation design~\cite{yu2025sdde}.
 Here delay, cross-agent covariance, and paid spacing jointly determine terminal risk.
-Unlike delay-adaptive convergence bounds~\cite{dalfabbro2024dasa}, worker-activation design~\cite{yu2025sdde}, or convergence-bound-driven resource control~\cite{perazzone2025lyapunov}, our identification decision also pays for the learning opportunities consumed before committing to a dependence-matched action.
-For consecutive Gaussian probe and learning blocks, we quantify how the decision event changes the downstream risk, rather than treating disjoint blocks as independent.
+DASA~\cite{dalfabbro2024dasa} permits unbounded delays and obtains an average-delay rate, but its cross-agent independence assumption removes the common-source covariance considered here.
+Lyapunov client/power scheduling~\cite{perazzone2025lyapunov} minimizes a convergence/time surrogate under average power constraints; SDDE worker activation~\cite{yu2025sdde} optimizes a delay-dependent convergence approximation.
+Our distinction is a paid identification decision evaluated through the remaining learner's terminal risk, including its dependence on the same continuing stream.
 
 Sequential design and identification supply change-of-measure/allocation tools~\cite{chernoff1959sequential,nitinawarat2015controlled,kaufmann2016complexity,garivier2016optimal,moulos2019markovian,saad2023covariance,vannella2023multiagent}, with conservative bandits constraining baseline-relative reward~\cite{wu2016conservative}.
 We value identification through its effect on the remaining learner's risk.
+Covariance-adaptive identification~\cite{saad2023covariance} minimizes joint-query complexity for independent rounds, rather than the downstream learner's risk after paying those queries.
+Parameter-free TD~\cite{li2026parameterfree} addresses unknown step-size constants, and adaptive Markov SA~\cite{li2026shrinkingtube} controls all-future trajectory excursions under kernel regularity.
+Neither objective replaces the finite-budget risk comparison studied here; our certificate construction for a known finite model is given in the supplementary material.
 An action-dependent Lyapunov certificate combines the error per update with the number of affordable updates.
 The resulting terminal-risk score supports scalar step searches within each discrete $(q,b)$ pair.
 For unknown dependence, a likelihood probe is admitted when its certified downstream improvement exceeds message, transition, delay, and decision-error costs while respecting a low-instance risk allowance.
@@ -536,10 +540,18 @@ For a fixed feasible probe with directional decision error at most $\delta$, fol
 \end{align}
 \label{thm:same-stream}
 \end{theorem}
-The proof in the supplementary material computes the exact conditional risk and bounds its covariance with the decision event.
-An actual-risk admission rule for these linear programs adds $\sqrt\delta\Gamma_j$ to the usual $\delta W_j$ penalty and uses $J_{j,a}$ for its commitments and fallback.
-This correction concerns expected actual risk, whereas Theorem~\ref{thm:main} compares valid upper certificates.
-The supplementary material gives the exact weights of both implemented learners, including the first-in, first-out delay and terminal averaging.
+Allow distinct valid directional bounds $\delta_j$ in Eq.~\eqref{eq:same-stream-risk} and define
+\begin{align}
+U_j(d)&=J_{j,a_c(d)}+\delta_j[\Delta J_j(d)]_+
++\sqrt{\delta_j}\Gamma_j(d),\nonumber\\
+F_j&=J_{j,{\rm all}}(B),\qquad
+U_1(d)<F_1,\quad U_0(d)\le F_0+\bar\epsilon.
+\label{eq:actual-admission}
+\end{align}
+All post-probe horizons in $J$ use the remaining budgets; $F_j$ spends no probe cost.
+Select a feasible passing design deterministically before observing data, or return the full-budget fallback.
+Theorem~\ref{thm:same-stream} then gives actual high-instance improvement and the low-instance allowance in Eq.~\eqref{eq:actual-admission}, without a uniform conditional Gaussian certificate.
+The supplementary material supplies the proof, exact learner weights, an executable gate, and its saved-result reconstruction.
 
 \subsection{Finite-budget phase theorem}
 Let budgets grow on a public ray $(B_{\rm msg}(s),B_{\rm env}(s))=(\lfloor s\beta_m\rfloor,\lfloor s\beta_e\rfloor)$.
@@ -598,6 +610,8 @@ Cached system specifications or disjoint calibration provide moment/mixing certi
 
 \subsection{Predictable confidence interfaces}
 Predictable upper bounds on moments and mixing turn calibration estimates into risk certificates.
+For a known finite augmented Markov model, the supplementary construction computes these quantities from its kernel and stationary law, including a worst-state total-variation bound at the actual TD-pair gap.
+For an unknown model, the following confidence interface still requires simultaneous coverage; point estimates alone do not provide it.
 For a calibration block ending before action selection, let $\widehat K_q$, $\widehat\Omega_q$, and $\widehat r_q$ be estimators and let $u_K,u_\Omega,u_r$ be simultaneous error radii.
 The controller uses
 \begin{align}
@@ -778,5 +792,5 @@ The analysis and resource-matched studies link dependence-aware sampling to lowe
 \appendices
 \input{appendices}
 \bibliographystyle{IEEEtran}
-\bibliography{references}
+\bibliography{references,recent_work_20261019}
 \end{document}

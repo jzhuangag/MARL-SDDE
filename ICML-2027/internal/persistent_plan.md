@@ -1,5 +1,73 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## LAST COMMUNICATED NUMERIC FORECAST,2026-10-19 20:25 CST
+
+Main111/117 (80 imported+31 new), Spread39/39, Reference39/39,
+HalfCheetah33/39; replay0/6, analyses0/2, final independent audit not started.
+Sole native PID19816 remains live. Snapshot cumulative71.74455CPU hours used,
+68.25545h left of140h. No completion/failure marker and no incomplete returns read.
+
+Cost-only forecast is now METHOD-MATCHED rather than averaging unlike methods:
+each of the six remaining cells uses the mean CPU of its TWO completed same-task,
+same-method other seeds. Forecast seconds: defensive_page_pg_adaptation1258.1796875,
+fresh_pg2000.6328125, full6447.7265625, no_transport9318.7578125,
+fixed_allocation6962.359375, no_price5513.921875. Subtract actual owner CPU since
+the latest complete cell for the active cell. CPU/wall ratio0.9684764.
+Remaining main estimate8.73528CPUh; all6 replays matched to their actual original
+task/seed/method payload costs4.50677CPUh; analysis reserve600s. Projected native
+cumulative total85.15326CPUh, NOT a cap change or guarantee.
+
+Communicated main finish2026-10-20 05:26CST, native workflow10:15, independent
+audit11:15--13:15, planning envelope06:00--20:00 that day. This advances the prior
+native20:15 forecast by10h and triggers the material-reporting rule. The independent
+audit1--3wall-hour allowance remains unmeasured; same-method costs still vary.
+Compare future ETA triggers to THIS last communicated forecast, not19:46 below.
+
+## CURRENT V3 substantive implementation request,2026-10-19
+
+LATEST HUMAN REPLY: “批准独立8 CPU小时”. The separate V3 validation budget is
+now APPROVED, not merely proposed. Read manuscript/internal/content_strengthening_20261019/
+APPROVAL.md and experiments/v3_risk_gate8h/protocol.json. Prepare/verify/freeze
+the implementation and source/runtime admission, commit/push BEFORE new data;
+then launch one native worker only after the140h owner reaches its terminal
+decision and exits. No new experiment driver is running now. Historical
+“unapproved” statements in the pre-reply audit/proposal are preserved as history.
+
+Human requested actual implementation of full-text nearest-work comparison,
+constructive certificate conditions and direct risk-gate validation, preserving
+the original and asking for a separate budget before new experiments. This
+supersedes the historical V3 author-release-only state, NOT the frozen140h study.
+Read TSP-V3-revised-20261018/manuscript/REVISION_STATUS.md CURRENT section and
+internal/content_strengthening_20261019/{REVIEW.md,release_check.json}.
+
+- Implemented known-finite-model certificate construction/proof and72 deterministic
+  shield witnesses; explicit actual-risk gate/proof and25 pure algebra/boundary tests.
+- Six primary full texts compared at assumption/theorem/proof/algorithm level,
+  including2026 parameter-free TD and adaptive-kernel SA. This is not exhaustive
+  priority clearance or a full proof audit of every appendix.
+- Outcome-known saved-branch reconstruction preserves ALL14,336 old cells/all8
+  policies/all192seeds. Original registered safety allowances give480/896 corrected
+  admissions vs505 without carryover. Zero-slack stress0/896 retained separately.
+  High-instance gains coexist with low-instance mean risk increases and adverse
+  cells; all are reported. No new trajectory/native experiment was launched.
+- Main13pages/supplement6pages; all19pages inspected/fonts embedded, zero
+  undefined/overfull;13 prior main formal blocks and authentic author block intact.
+  Original V3 and prior revised copy preserved. Fresh39-reference verification
+  has38 raw PASS plus freshly resolved Paulin article-number representation.
+- Decision CONSTRUCTIVE_THEORY_AND_RETROSPECTIVE_REPLAY_VERIFIED_NEW_SEED_VALIDATION_PENDING,
+  NOT TSP-ready or merely awaiting ORCIDs. Unknown-model simultaneous calibration,
+  fresh direct validation and broader nonlinear/queue scope remain open.
+- Separate NEW_VALIDATION_PROPOSAL.md requests AT MOST8CPU hours for196,608
+  new trajectories, full replay and double analysis. The human has now explicitly
+  approved that separate budget; it has NOT started. Default launch only after
+  the140h owner terminal, with no competing native worker. Keep140h monitoring
+  alive and complete V3 source/runtime admission before launching new data.
+- Measured algebra/CSV construction11.78125CPU seconds is separate manuscript
+  analysis, not charged to the sealed native owner. No old results/gates changed.
+- At20:19CST read-only metadata shows110/117 main, replay0/6, analyses0/2;
+  sole native PID19816 remains live. This ordinary-cell snapshot is not a newly
+  communicated ETA; compare future material ETA triggers to19:46 below.
+
 ## Material Passport
 
 - Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.

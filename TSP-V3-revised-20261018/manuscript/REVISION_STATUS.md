@@ -1,6 +1,34 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
-## Current decision — substantive same-stream theory/evidence addition
+## Current decision — constructive certificate and risk-gate implementation,2026-10-19
+
+LATEST AUTHORITY: the human explicitly replied “批准独立8 CPU小时”. Read
+internal/content_strengthening_20261019/APPROVAL.md and the approved protocol
+at experiments/v3_risk_gate8h/protocol.json. Implement/verify/freeze admission
+before new data; launch only after the140h owner terminates. No new driver is live.
+The earlier proposal/release-check “unapproved” state below is historical.
+
+Read `internal/content_strengthening_20261019/REVIEW.md`, `FULL_TEXT_COMPARISON.md`
+and `release_check.json`. The new human request is implemented beyond the previous
+assessment: known-finite-model certificate construction/proof, explicit actual-risk
+admission/proof and tested pure implementation, six full-text-grounded nearest-work
+comparisons, and deterministic reconstruction from old saved policy branches.
+At the ORIGINAL registered safety allowances, corrected admission is480/896 versus
+505/896 without carryover; the first zero-slack stress result0/896 is preserved.
+All old policies/cells/costs/adverse results remain; this is outcome-known evidence,
+not a fresh-seed execution. Main13pages/supplement6pages, all19pages reviewed;
+13 prior main formal blocks intact; original V3 and prior revision preserved.
+Fresh39-reference identity/style evidence and article-number resolution are saved.
+
+Decision: CONSTRUCTIVE_THEORY_AND_RETROSPECTIVE_REPLAY_VERIFIED_NEW_SEED_VALIDATION_PENDING.
+Do NOT interpret this as only missing author metadata or as TSP qualification.
+Unknown-model calibration and broader nonlinear/mixed-history scope remain limited.
+`NEW_VALIDATION_PROPOSAL.md` requests a SEPARATE maximum8CPU hours for196,608
+new trajectories plus full replay/analysis. The budget is now explicitly approved,
+but source/runtime admission and execution are pending; do not charge the140h
+workflow or compete with its native worker. Continue that independent workflow.
+
+## Previous decision — substantive same-stream theory/evidence addition
 
 The latest human request is implemented in this isolated revision, not the original
 V3. Read internal/same_stream_strengthening_review_20261018.md and the current

@@ -10,6 +10,8 @@
 \newcommand{\E}{\mathbb E}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Pp}{\mathbb P}
+\newcommand{\KL}{\operatorname{KL}}
+\newtheorem{proposition}{Proposition}
 \title{Supplementary Material: Learning-Aware Lyapunov Resource Control for Correlated Multi-Agent Markov Learning}
 \author{Jialin Zhuang and Vincent K. N. Lau}
 \begin{document}
@@ -233,4 +235,154 @@ For $V(E)=\|E\|^2$, It\^o's formula gives
 +\eta\tr\Sigma_q(E_t).
 \end{equation}
 Participation controls spatial covariance, spacing controls mixing, and $\eta$ controls their scale; the discrete theorem retains finite steps, integer delays and rounding.
+\section{Constructing a Certificate from a Known Finite Model}
+Let $Z$ be the finite augmented state containing all sources needed for the retained joint TD tuple.
+For each participation $q$, suppose its kernel $M_q$ and stationary law $\pi_q$ are known, and the marginal target policy and reward law are preserved.
+Tabulate $H_i(z)$ and $c_i(z)$, put $A=\E_{\pi_q}H_i$, $c=\E_{\pi_q}c_i$, and solve $Aw^\star=c$.
+Check that these means are common to all actors and all $q$, and that $\mu=\lambda_{\min}((A+A^\top)/2)>0$.
+With $\xi_i(z)=c_i(z)-H_i(z)w^\star$, compute
+\begin{align}
+L&=\max_{i,z}\|H_i(z)\|_2,\qquad G=\max_{i,z}\|\xi_i(z)\|,\nonumber\\
+K_q&=\lambda_{\max}\!\left(\sum_z\pi_q(z)\bar H_q(z)^\top\bar H_q(z)\right),\nonumber\\
+\Omega_q&=\sum_z\pi_q(z)\|\bar\xi_q(z)\|^2,\nonumber\\
+\beta_q(g)&=\max_z\frac12\sum_{z'}|M_q^g(z,z')-\pi_q(z')|.
+\label{eq:finite-model-table}
+\end{align}
+Here bars denote actor averages, not averages of squared norms.
+The integer $g$ is the number of transitions of the augmented tuple chain between the conditioning state and the retained tuple; it must be derived from the declared physical schedule, not identified with a state lag or drain charge.
+
+\begin{proposition}[Constructive finite-model interface]
+If $M_q$ is irreducible and aperiodic and the above common-mean and positivity checks pass, Assumption~\ref{ass:catalogue}'s boundedness, centering and conditional mixing inputs hold with Eq.~\eqref{eq:finite-model-table} and $\delta=\beta_q(g)$.
+For every action whose resulting $\mu_\delta$, $a_\delta$ and $c_{\rm aff}<1$ pass the main paper's shield, the affine certificate is valid from any declared initial augmented state.
+\end{proposition}
+\begin{proof}
+The finite maxima bound every sample and stationarity gives $\E_{\pi_q}\xi_i=0$.
+Conditional on any earlier history, the Markov property expresses the next tuple law as a mixture of rows of $M_q^g$.
+Convexity of total variation bounds its distance from $\pi_q$ by $\beta_q(g)$, uniformly over that history.
+The drift proof uses only this total-variation distance, so the geometric envelope can be replaced by this exact finite-gap value.
+The stated positivity and contraction checks are precisely the remaining hypotheses of the affine bound.
+\end{proof}
+
+This is a construction, not a statistical estimator of an unknown kernel.
+A dense joint-state table may grow exponentially with participation; its offline construction cost is separate from the online scalar score.
+In the seven-state shared/private-source model, a product coupling gives the cheaper bound
+$\beta_q(g)\le\min\{1,(q+1)\beta_{\rm pair}(g)\}$, where
+$\beta_{\rm pair}(g)=\max_x\|M_{\rm pair}^g(x,\cdot)-\pi_{\rm pair}\|_{\rm TV}$.
+This uses the actual consecutive-pair chain and independent latent source chains; fresh selector coins are integrated by data processing.
+The existing implementation computes these pair kernels and the same-time aggregate moments directly.
+For a moving target policy, a frozen-kernel table does not certify mixed histories: either supply uniform bounds for the nonhomogeneous kernel products or reset the learner and exclude all pre-reset target updates.
+
+\section{Executable Actual-Risk Gate and Saved-Result Reconstruction}
+For each fixed candidate probe, Gaussian filtering gives $P_j$, the formulas above give $(J_{j,a},d_a,k_a)$, and the probe likelihood laws give a directional error bound $\delta_j$ under each hypothesis.
+The exact Gaussian affinity is one valid choice: a zero-threshold likelihood-ratio decision obeys $\Pr_j(\mathrm{error})\le\int\sqrt{p_0p_1}$ in each direction.
+An equal-prior average-error bound is not interchangeable with this directional bound.
+Compute both hypothetical-instance quantities before probing; the actual unknown instance is not a gate input.
+
+\begin{proposition}[Actual-risk admission]
+Fix the two hypotheses, noise law, learner initialization and deterministic linear program weights as in Theorem~\ref{thm:same-stream}.
+Given a finite public probe catalogue, choose a feasible design satisfying Eq.~\eqref{eq:actual-admission} before any probe observations, with deterministic tie breaking.
+After its likelihood decision, execute its frozen selected program on the continuing stream.
+Then $\E_1Z^2<F_1$ and $\E_0Z^2\le F_0+\bar\epsilon$.
+If none passes, no probe is executed and the actual risk is exactly $F_j$.
+\end{proposition}
+\begin{proof}
+For each fixed design Theorem~\ref{thm:same-stream} gives $\E_jZ^2\le U_j(d)$.
+Pre-observation deterministic choice leaves its fixed-design hypothesis intact.
+The two gate inequalities imply the conclusions. In the rejection branch the stationary full-budget commitment defines $F_j$.
+\end{proof}
+Thus the procedure is: price the probe, compute the remaining horizons and exact weights for both branch programs, compute $U_0,U_1,F_0,F_1$, apply the two inequalities, and only then acquire data.
+An observation-adaptive choice of probe duration or of program weights is not covered by this fixed-design argument.
+
+We reconstruct this gate on the existing EXP-016B outcomes, using its single registered information-only probe candidate and the original scenario-specific allowances $0.1$ or $0.2$.
+All $896$ public layer/scenario/budget designs and both regimes are retained, including search-censored families.
+The corrected gate admits $480$ designs, versus $505$ without the carryover term; it removes $25$ admissions.
+The outcome-known zero-allowance stress case admits none under either rule.
+It is retained separately: a paid probe can reduce the low-instance learning horizon even with perfect identification.
+
+\begin{table}[t]
+\centering
+\caption{Saved-result gate reconstruction: mean squared risk over all budget/regime cells, without new trajectories. Each original cell mean contains all 192 saved seeds.}
+\label{tab:gate-reconstruction}
+\begin{tabular}{lrrrr}
+\toprule
+& A high & A low & B high & B low\\
+\midrule
+Full-budget fallback & .63455 & .09201 & .82703 & .54369\\
+Information-only & .54814 & .24062 & .76422 & .62515\\
+Original learning-aware & .57637 & .09304 & .79121 & .55825\\
+No-carryover gate & .52548 & .09488 & .74204 & .56252\\
+Corrected gate & .52989 & .09393 & .74242 & .56068\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gate is a deterministic function of public design quantities, so an admitted design takes the saved information-only outcome and a rejected design takes the saved no-probe fallback outcome.
+The simulator's potential observations are policy independent and shared across these branches; this reconstructs their empirical means without generating or resampling a trajectory.
+Table~\ref{tab:gate-reconstruction} is therefore a retrospective policy comparison, not fresh execution or independent confirmation.
+Against fallback, the corrected gate retains $13/592$ and $4/304$ empirically adverse high-instance cells in A and B; finite-sample cell means need not satisfy the population ordering.
+Its low-instance mean risks exceed fallback by $.00192$ and $.01699$, respectively, within the declared nonzero safety allowances, not a claim of zero-harm safety.
+The no-carryover ablation has slightly lower high-instance means but higher low-instance means; the correction trades admissions for a valid population-risk guarantee, not uniformly better observed risk.
+All eight original policies, per-cell costs, both replay variants and their complete cell tables are preserved.
+The new comparison was specified after earlier outcomes were known and supplies no new confidence interval.
+
+\section{Nearest-Work Assumptions and Objectives}
+The comparison uses the accessible full preprints, with theorem and proof locators recorded in the accompanying source-reading matrix; it is not an exhaustive priority claim.
+DASA~\cite{dalfabbro2024dasa}, Assumption~3 and Theorem~1, combines independent agent chains with median-based update filtering to obtain average-delay dependence and parallel speedup.
+Its Lemma~2 uses cross-agent independence in the noise cross terms.
+Our bounded deterministic delay condition is narrower; our added object is covariance-dependent paid learning risk, not a stronger delay rate.
+
+Perazzone et al.~\cite{perazzone2025lyapunov}, Theorem~1 and Eqs.~(12)--(23), link inverse participation probabilities to a nonconvex convergence bound, then optimize a time-average convergence/communication surrogate with power queues.
+Their solver and instantaneous-channel formulation address a different operational problem; our finite-budget probe debit and same-stream decision-event correction do not follow from that time-average objective.
+Yu et al.~\cite{yu2025sdde}, Sections~III--IV and Propositions~12--14, use an SDDE/arrival-process approximation to optimize worker activation, including a finite-service queue.
+That queue model and its delay law are not established by our fixed-delay experiment.
+
+Saad et al.~\cite{saad2023covariance}, Assumption~1, Protocol~1 and Theorems~4.1/5.1, adapt joint arm queries to unknown covariance with independent rounds and a fixed-confidence identification objective.
+Our dependence hypotheses are supplied, rather than learned nonparametrically; our comparison instead prices identification through the subsequent learner.
+Li et al.~\cite{li2026parameterfree}, Theorem~4.12, remove unknown mixing/eigenvalue inputs from a regularized TD step schedule.
+That reduces tuning requirements that our general confidence interface still has, but does not construct a calibrated multi-action terminal-risk shield.
+Li et al.~\cite{li2026shrinkingtube}, Assumptions~1--7 and Theorem~1, give shrinking-tube reliability for projected adaptive-kernel SA using uniform drift/minorization and kernel continuity.
+Their mixed-history result is broader than a frozen-kernel table; our Gaussian decision correction and paid finite horizon are different outputs, not a replacement for their regularity assumptions.
+Reference numbers in this supplement refer to the main paper's bibliography.
+
+\section{Complete Tracking Proof}
+Set $R_\star=d/(1-c)$ and $\Gamma_r=(Z_r-R_\star)_+$.
+The explicitly assumed uniform-history drift and the positive-part replacement argument give
+\begin{align}
+\widetilde Z_{r+1}
+&\le R_\star+c\Gamma_r,\nonumber\\
+\Gamma_{r+1}
+&\le(1+\chi)c\Gamma_r+\chi R_\star+(1+\chi^{-1})v^2.
+\label{eq:tracking-old-target}
+\end{align}
+The second line follows by applying Young's inequality to the target shift and subtracting $R_\star$.
+Iteration and $\Gamma_0\le Z_0$ prove Eq.~\eqref{eq:tracking-bound} whenever $\bar c=(1+\chi)c<1$.
+Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves Eq.~\eqref{eq:advantage-transfer}.
+
+\section{Complete Occupation-Measure Proof}
+Let $\Delta_j(z,a)\ge0$ be the one-step opportunity loss relative to the instance-$j$ certified oracle.
+For a stopped predictable policy, define
+\begin{equation}
+\nu_j(G,a)=\E_j^\pi\sum_{k\le\tau}\mathbf{1}\{Z_k\in G,A_k=a\}.
+\end{equation}
+Every $\delta$-correct policy induces an occupation measure satisfying the controlled Kalman flow constraints,
+\begin{align}
+\int\mathcal{I}_{j,1-j}(z,a)\nu_j(dz,da)&\ge\operatorname{kl}(1-\delta,\delta),\nonumber\\
+\int(h+q(a))\nu_j(dz,da)&\le B_{\rm msg},\nonumber\\
+\int b(a)\nu_j(dz,da)+\ell\Pp_j(\tau>0)&\le B_{\rm env}.
+\end{align}
+Let $T_a$ be the belief transition and $\zeta_j$ the terminal belief law.
+For every bounded measurable $f$, predictability and stopped telescoping give
+\begin{align}
+\int f(z)\zeta_j(dz)-f(z_1)
+&=\int\left[\int f(z')T_a(z,dz')\right.\nonumber\\
+&\left.\hspace{18mm}-f(z)\right]\nu_j(dz,da).
+\label{eq:belief-flow}
+\end{align}
+Moreover,
+\begin{equation}
+\E_j^\pi\sum_{k\le\tau}\Delta_j(Z_k,A_k)
+=\int\Delta_j(z,a)\nu_j(dz,da).
+\end{equation}
+Eq.~\eqref{eq:adaptive-kl}, Eq.~\eqref{eq:budgets}, and Eq.~\eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
+Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
 \end{document}

@@ -64,18 +64,7 @@ Since $J_\nu(w)-J_\nu(w^\star)=\psi_\nu^\top e$ for $\psi_\nu=\E_{s\sim\nu}\phi(
 
 \subsection{Proof of Theorem~\ref{thm:tracking}}
 \label{app:tracking}
-Set $R_\star=d/(1-c)$ and $\Gamma_r=(Z_r-R_\star)_+$.
-The explicitly assumed uniform-history drift and the positive-part replacement argument give
-\begin{align}
-\widetilde Z_{r+1}
-&\le R_\star+c\Gamma_r,\nonumber\\
-\Gamma_{r+1}
-&\le(1+\chi)c\Gamma_r+\chi R_\star+(1+\chi^{-1})v^2.
-\label{eq:tracking-old-target}
-\end{align}
-The second line follows by applying Young's inequality to the target shift and subtracting $R_\star$.
-Iteration and $\Gamma_0\le Z_0$ prove Eq.~\eqref{eq:tracking-bound} whenever $\bar c=(1+\chi)c<1$.
-Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves Eq.~\eqref{eq:advantage-transfer}.
+The complete positive-part tracking and advantage-transfer proof is retained in the supplementary material.
 
 \subsection{Existence and complexity of the mixed controller}
 \label{app:existence}
@@ -109,32 +98,7 @@ If both directional errors are at most $\delta$, monotonicity of binary relative
 
 \section{Occupation-Measure Opportunity Lower Bound}
 \label{app:occupation}
-Let $\Delta_j(z,a)\ge0$ be the one-step opportunity loss relative to the instance-$j$ certified oracle.
-For a stopped predictable policy, define
-\begin{equation}
-\nu_j(G,a)=\E_j^\pi\sum_{k\le\tau}\mathbf{1}\{Z_k\in G,A_k=a\}.
-\end{equation}
-Every $\delta$-correct policy induces an occupation measure satisfying the controlled Kalman flow constraints,
-\begin{align}
-\int\mathcal{I}_{j,1-j}(z,a)\nu_j(dz,da)&\ge\operatorname{kl}(1-\delta,\delta),\nonumber\\
-\int(h+q(a))\nu_j(dz,da)&\le B_{\rm msg},\nonumber\\
-\int b(a)\nu_j(dz,da)+\ell\Pp_j(\tau>0)&\le B_{\rm env}.
-\end{align}
-Let $T_a$ be the belief transition and $\zeta_j$ the terminal belief law.
-For every bounded measurable $f$, predictability and stopped telescoping give
-\begin{align}
-\int f(z)\zeta_j(dz)-f(z_1)
-&=\int\left[\int f(z')T_a(z,dz')\right.\nonumber\\
-&\left.\hspace{18mm}-f(z)\right]\nu_j(dz,da).
-\label{eq:belief-flow}
-\end{align}
-Moreover,
-\begin{equation}
-\E_j^\pi\sum_{k\le\tau}\Delta_j(Z_k,A_k)
-=\int\Delta_j(z,a)\nu_j(dz,da).
-\end{equation}
-Eq.~\eqref{eq:adaptive-kl}, Eq.~\eqref{eq:budgets}, and Eq.~\eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
-Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
+The supplementary material retains the complete stopped-flow proof of Proposition~\ref{prop:occupation}, including the occupation measure, information constraints and exact opportunity-loss identity.
 
 \section{Proof of the Main Learning-Value Guarantee}
 \label{app:main}
