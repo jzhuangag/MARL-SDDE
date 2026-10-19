@@ -8,6 +8,34 @@
 
 ## Human-approved100h addition and independent V3 repair (2026-10-18)
 
+### Renewed completion authority and numeric reporting,2026-10-19 19:23 CST
+
+- Human renewed autonomous completion of all117 main cells,6 fixed full-budget
+  replays, double analysis/plots and final independent audit under the SAME140h
+  cumulative ceiling. Preserve every completed/partial/failed result and full
+  costs; no restart, extra cap, scientific change or new retry is authorized.
+- Verified snapshot: sole native PID19816,108/117 complete(80 imported+28 new),
+  Spread39/39, Reference39/39, HalfCheetah30/39; replay0/6, analyses0/2, final
+  independent audit not started. Cumulative254762.359375s=70.7673h;
+  remaining249237.640625s=69.2327h. This is historical metadata, not live CPU.
+- At19:16 the cost-only forecast communicated to the human was103.3CPU hours
+  total: main finish around2026-10-20 21:00 CST, native workflow around2026-10-21
+  04:52 CST, final independent audit around06:00--08:00, planning window03:00--12:00.
+  Basis: latest7 complete HalfCheetah cells averaged9583.35CPU seconds,
+  CPU/wall ratio0.972815, four matched MPE replay costs plus two recent-cost
+  HalfCheetah replays and600s analysis reserve. The1--3wall-hour independent
+  audit allowance is not measured. All estimates are rough, not guarantees;
+  no incomplete scientific returns were inspected or ranked.
+- Existing hourly heartbeat updated, not duplicated. Report concrete main/replay/
+  analysis/audit counts, live used/remaining CPU hours and revised CST estimates
+  at stage completion, failures/final decisions/required action, or material ETA
+  change(at least3wall hours or20% of previously estimated remaining time,
+  relative to the last communicated forecast, or projected cap overrun).
+  These are REPORTING triggers only, never scientific gates. Record the last
+  reported stage/forecast here; do not issue routine no-anomaly messages.
+- V3 technical release remains independently complete/pending authentic author
+  release inputs; no manuscript/proof/citation/render/reanalysis repetition.
+
 ### Latest substantive V3 theory--evidence strengthening,2026-10-18
 
 - Human explicitly requested substantive novelty/theory--experiment closure,
