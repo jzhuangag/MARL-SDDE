@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "protocol_file_is_unchanged_approved_science": true,
+  "predecessor_requires_driver_exit_AND_independent_terminal_audit": true,
+  "predecessor_receipt": "ICML-2027/internal/sealed_bridge_learning_140h_audited_terminal.json",
+  "output_root": "experiments/v3_risk_gate8h/results/formal_20261019",
+  "native_worker_count": 1,
+  "supervisor": "launch.py, mostly idle; holds common native-owner mutex and accounts child CPU",
+  "threads": 1,
+  "attempt_policy": "new root only; no overwrite, resume, shrinkage, seed extension or automatic scientific retry",
+  "data_layout": "128 seed JSONL parts per phase, 64 groups and 1536 policy rows per seed",
+  "formal_science_trajectories": 196608,
+  "full_semantic_replay_trajectories": 196608,
+  "profile": {
+    "kind": "first complete formal seed is preserved as the science prefix; no duplicate profile trajectories",
+    "formal_seed_prefix_count": 1,
+    "cost_only": true,
+    "cpu_cap_including_setup_seconds": 900,
+    "projection_multiplier": 1.25,
+    "analysis_audit_reserve_seconds": 2700,
+    "overrun_projection": "stop, preserve prefix, ask for new direction; never shrink"
+  },
+  "accounting": {
+    "whole_cpu_cap_seconds": 28800,
+    "preparation_tests": "all attempt process CPU, including failed non-scientific test attempts",
+    "registration_auxiliary_allowance_cpu_seconds": 60,
+    "allowance_is_charged_not_claimed_measured": true,
+    "measured_native": "supervisor process CPU plus exact worker process CPU from Windows GetProcessTimes",
+    "import_and_analysis_CPU_included": true,
+    "partial_failed_CPU_included": true
+  },
+  "analysis": {
+    "same_inputs_two_separate_output_directories": true,
+    "byte_identical_files": ["metrics.csv", "summary.json", "integrity.json"],
+    "exclude_only_runtime_records_from_semantic_comparison": true,
+    "paired_bootstrap": "128 independent seeds, 2000 resamples with analysis seed20579901; families macro-averaged within seed before aggregate intervals",
+    "all_1536_cells_and_96_macro_comparisons": true,
+    "directional_error_check": "unique seed/family/regime/learner probe decisions, not duplicated by budget or policy",
+    "negative_results_are_not_integrity_failures": true
+  },
+  "handoff": "hourly existing heartbeat checks readiness and launches automatically once all locked prerequisites pass; no separate watcher or competing worker",
+  "final_audit": "supervisor read-back after worker exit verifies complete counts, hashes, semantic replay and double-analysis equality; plot visual review is separately recorded by the agent"
+}
