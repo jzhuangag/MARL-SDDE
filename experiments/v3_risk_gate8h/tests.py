@@ -19,7 +19,7 @@ from core import (Action, Family, LEARNERS, POLICIES, weights, direct_learner,
                   likelihood, deployment_decision, group_rows, scheduled, families,
                   InstanceRisk, risk_upper, admit)
 from analysis import audit_row, bootstrap, write_csv, load_rows, _write_tables
-from guard import HERE, RESULT, Budget, SingleOwner, dump, predecessor_ready, sha, verify_sources
+from guard import HERE, RESULT, Budget, SingleOwner, dump, predecessor_ready, sha, verify_sources,historical_blob_matches
 from prepare import numeric_overlap, structured_overlap, seed_registry_audit
 
 
@@ -322,6 +322,13 @@ def explicit_encoding(self):
             if isinstance(node,ast.Call) and isinstance(node.func,ast.Attribute) and node.func.attr=="read_text":
                 self.assertTrue(any(k.arg=="encoding" for k in node.keywords),str(path))
 case("explicit_utf8_under_windows_locale",explicit_encoding)
+
+
+def historical_newlines(self):
+    self.assertTrue(historical_blob_matches(b"old\r\nseed=17\n",b"old\nseed=17\n"))
+    self.assertFalse(historical_blob_matches(b"old\r\nseed=18\n",b"old\nseed=17\n"))
+    self.assertFalse(historical_blob_matches(b"old \nseed=17\n",b"old\nseed=17\n"))
+case("historical_git_newlines_only_not_content_relaxation",historical_newlines)
 
 
 if __name__=="__main__":

@@ -29,8 +29,14 @@ attempt and its exact Windows child-process CPU. These fixtures do not generate
 formal observations or use formal experiment seeds. `prepare.py --freeze` requires
 a current successful test snapshot and pushed source, screens historical seed
 metadata without reading outcomes, then creates immutable `lock.json` and
-`admission.json`. Those registration files must also be committed and pushed before
+`admission.json` inside `registration_v2`. Those registration files must also be committed and pushed before
 data; the launch guard verifies their bytes against Git and the runtime fingerprint.
+The first pre-data registration is preserved at the package root as a failed
+historical registration, not the active lock. Its read-back rejected a nonexecuted
+old seed-provenance source with mixed Windows/Git newlines. Version2 separately
+locks the exact old working bytes and the exact committed blob, accepting only
+newline normalization between them; actual execution-source verification remains
+raw-byte exact. No old file or scientific record was edited to make that pass.
 
 Total cap is28,800CPU seconds. All toy-test attempts, worker imports/science/replay/
 analysis, supervisor CPU, exact child CPU, partial/failed work and audit are inside

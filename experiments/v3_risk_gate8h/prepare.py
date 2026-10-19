@@ -12,8 +12,8 @@ import subprocess
 import sys
 import time
 
-from guard import (ROOT,HERE,PROTOCOL,SPEC,LOCK,ADMISSION,RESULT,RECEIPT,PREDECESSOR,
-                   child_cpu,dump,sha,runtime,source_paths,run_command)
+from guard import (ROOT,HERE,PROTOCOL,SPEC,LOCK,ADMISSION,REGISTRATION,RESULT,RECEIPT,PREDECESSOR,
+                   child_cpu,dump,sha,runtime,source_paths,run_command,historical_blob_matches)
 
 PREP = HERE/"preparation"
 
@@ -131,12 +131,18 @@ def freeze():
             raise AssertionError("Source not committed: "+rel)
     plan = json.loads(PROTOCOL.read_text(encoding="utf-8"))
     seeds = seed_registry_audit(plan)
-    seedpath = PREP/"seed_registry_audit.json"
+    REGISTRATION.mkdir(exist_ok=False)
+    seedpath = REGISTRATION/"seed_registry_audit.json"
     dump(seedpath,seeds)
+    historical_blobs = {}
     for rel,digest in seeds["old_metadata_sha256"].items():
         hashes[rel] = digest
+        data,_ = run_command(["git","show",f"HEAD:{rel}"])
+        if not historical_blob_matches((ROOT/rel).read_bytes(),data):
+            raise AssertionError("Historical seed input differs beyond Git newlines: "+rel)
+        historical_blobs[rel] = hashlib.sha256(data).hexdigest()
     hashes[seedpath.relative_to(ROOT).as_posix()] = sha(seedpath)
-    for p in sorted(PREP.glob("test_attempt_*.json")):
+    for p in sorted(PREP.glob("*.json")):
         hashes[p.relative_to(ROOT).as_posix()] = sha(p)
     locked_runtime = runtime()
     if time.process_time()>=60:
@@ -144,6 +150,9 @@ def freeze():
     measured = sum(r["exact_child_cpu_seconds"] for r in reports)
     lock = dict(schema=1,status="FROZEN_BEFORE_ANY_NEW_FORMAL_DATA",source_commit=head.decode().strip(),
                 source_sha256=hashes,protocol=plan,execution_spec=json.loads(SPEC.read_text(encoding="utf-8")),runtime=locked_runtime,
+                historical_input_committed_blob_sha256=historical_blobs,
+                historical_raw_working_bytes_are_also_locked=True,
+                supersedes_pre_data_registration_v1="Original lock.json/admission.json preserved; verification failed only on a nonexecuted historical input's Git newline normalization",
                 preparation_measured_cpu_seconds=measured,all_test_attempts=len(reports),
                 latest_test_count=reports[-1]["test_result"]["tests_run"],
                 registration_auxiliary_charge_seconds=60.,

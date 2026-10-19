@@ -15,8 +15,9 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 PROTOCOL = HERE/"protocol.json"
 SPEC = HERE/"execution_spec.json"
-LOCK = HERE/"lock.json"
-ADMISSION = HERE/"admission.json"
+REGISTRATION = HERE/"registration_v2"
+LOCK = REGISTRATION/"lock.json"
+ADMISSION = REGISTRATION/"admission.json"
 RESULT = ROOT/"experiments/v3_risk_gate8h/results/formal_20261019"
 PREDECESSOR = ROOT/"ICML-2027/results/sealed_bridge_learning_dev140h_20261018"
 RECEIPT = ROOT/"ICML-2027/internal/sealed_bridge_learning_140h_audited_terminal.json"
@@ -129,6 +130,11 @@ def verify_sources(lock):
             raise AssertionError("Source changed: "+rel)
 
 
+def historical_blob_matches(working,committed):
+    """Only Git text newline normalization; raw historical bytes stay separately locked."""
+    return working.replace(b"\r\n",b"\n")==committed.replace(b"\r\n",b"\n")
+
+
 def verify_registration():
     lock,admission = json.loads(LOCK.read_text(encoding="utf-8")),json.loads(ADMISSION.read_text(encoding="utf-8"))
     verify_sources(lock)
@@ -141,7 +147,8 @@ def verify_registration():
     for rel in paths:
         data,cost = run_command(["git","show",f"HEAD:{rel}"])
         cpu += cost
-        if hashlib.sha256(data).hexdigest()!=sha(ROOT/rel):
+        expected = lock.get("historical_input_committed_blob_sha256",{}).get(rel,sha(ROOT/rel))
+        if hashlib.sha256(data).hexdigest()!=expected:
             raise AssertionError("Uncommitted registration: "+rel)
     ahead,cost = run_command(["git","rev-list","--count","@{upstream}..HEAD"])
     cpu += cost
