@@ -8,6 +8,33 @@
 
 ## Human-approved100h addition and independent V3 repair (2026-10-18)
 
+### Latest numeric ETA revision,2026-10-19 19:46 CST
+
+- Main109/117(80 imported+29 new): Spread39/39, Reference39/39,
+  HalfCheetah31/39. Sole native PID19816 is running the next cell; replay0/6,
+  analyses0/2, plots/final independent audit not started. No completion/failure
+  marker; tracked tree clean before this status update. All27 source/resource
+  SHA values and start lock/admission hashes match. No incomplete returns read.
+- Live CPU at19:46:05:71.1252h used,68.8748h left of140h, including all old
+  profile/stop/lost work. These figures are a snapshot, not a live budget.
+- Material cost-only ETA revision: same rolling7-complete-cell calculation now
+  averages7780.875CPU seconds per HalfCheetah cell, CPU/wall ratio0.970923.
+  The latest two complete cells cost5696.265625s and1106.015625s versus the
+  previous long-cell group near9400--9751s. No performance inference is made.
+  Eight main cells remain, one active: estimated17.22CPU hours main remaining,
+  6.39CPU hours for six replays(four matched MPE costs plus two recent-cost
+  HalfCheetah cells),600s analysis reserve; projected native total94.90CPU hours.
+- Estimated main finish2026-10-20 13:30 CST; native workflow20:15 that day;
+  final independent audit21:00--23:00, retaining a conservative planning envelope
+  through2026-10-21 08:00. These are estimates, NOT bounds or guarantees.
+  Audit1--3wall hours is still unmeasured; cell/method costs vary substantially.
+  The native point estimate advances8h37m versus the last communicated04:52
+  on2026-10-21, triggering the reporting rule. Use this revision as the next
+  comparison baseline; preserve the prior estimate and its evidence below.
+- No native source/config/gate/budget/replay/method/seed change or new run.
+  All science claims remain sealed until workflow_complete AND driver exit
+  and the independent final audit; V3 remains untouched and independent.
+
 ### Renewed completion authority and numeric reporting,2026-10-19 19:23 CST
 
 - Human renewed autonomous completion of all117 main cells,6 fixed full-budget
