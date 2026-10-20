@@ -1,5 +1,58 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT BOTH SCIENTIFIC WORKFLOWS AUDITED TERMINAL —2026-10-20 11:34CST
+
+NO NATIVE OWNER IS LIVE. Do NOT relaunch/resume140h or V3, rerun any replay,
+analyzer, tests/freeze or duplicate completed audits. Both formal result roots,
+all old failures and every raw/partial/cost file remain preserved. Original V3
+unchanged. Next authorized work is honest integration of the NEW direct evidence
+into the revised TSP manuscript, not another experiment or an author-only release.
+Use academic-research-suite + ieee-tsp-paper-writing + publishable-academic-writing
+and ieee-bib-style-audit before manuscript changes. A newly requested prose-only
+pass would also require kimi-academic-polish; no new prose-only pass is requested.
+
+-140h study: main117/117 (39/39 each task), replay6/6, analyses2/2 and independent
+ final audit COMPLETE DEVELOPMENT_NO_GO, as fully reported in2385f58. AUC versus
+ strongest ALL9 controls-7.4774%/-26.4076%/-26.4140%; positives0/3,0/3,1/3.
+ Charged84.829414CPUh, remaining55.170586h. No new MARL runs or manuscript admission.
+-V3 independent8h:196608/196608 science and196608/196608 full semantic replay,
+ analyses2/2 ALL7 files byte equal, all4 all-policy plots visually inspected.
+ Science11:18:19, replay11:23:03, analyses11:23:46/11:24:29, workflow11:24:34,
+ supervisor post-exit read-back11:24:54; worker13756 exit0 and supervisor23016
+ confirmed exited. Agent independent auditor ran ONCE,14.25 observedCPU seconds,
+ generated no new trajectories or third bootstrap analysis.256 payloadSHA,
+ source162 hashes, all rows/roles/paid ledgers/FIFO and all1536/96 means verified.
+-Read `internal/v3_risk_gate8h_terminal_20261020/REPORT.md`, checks.json,
+ final_decision.json, stage_boundaries.json. Native charged2707.53125s plus new
+ independent audit14.25s =>2721.78125s=0.75605035CPUh used,26078.21875s=
+ 7.24394965h remaining. Original60s conservative auxiliary charge retained;
+ not claimed exact whole-machine/tail CPU. Later manuscript/render CPU, if charged
+ here, needs ADDITIVE ledger, never overwriting this terminal validation snapshot.
+-SCIENTIFIC MIXED, NOT TSP QUALIFICATION:113/128 corrected admissions, also113/128
+ no-carryover; zero-allowance100/128 NEW designs. All32768 corrected/no-carryover
+ rows have IDENTICAL probe choices/actions/risks: incremental empirical benefit
+ of sqrt(delta)*Gamma is UNRESOLVED, not demonstrated. All8 high-regime macro
+ intervals positive; low running-mean/scale32 NEGATIVE mean-0.00228985,
+ descriptive interval[-0.00322554,-0.00135749].23/256 adverse cell means,
+ 174 positive/9 negative/73 zero-or-inconclusive cell intervals; all retained.
+ Fixedq2 has lower pooled risk than gate; do not claim strongest-control dominance.
+-8192 unique deduplicated probes,13 errors; affinity bounds0.02113902--0.02437995.
+ This new fixed-probe validity does NOT rehabilitate old invalid nominal0.025.
+123 cell sample means exceed MODEL population bounds: NOT sample-wise confidence
+ limits and not unknown-model calibration. Known binary Gaussian/fixed linear
+ learner scope only; all128 paired seeds, no multiplicity significance assertion.
+-Terminal decision DIRECT_FIXED_MODEL_VALIDATION_VERIFIED_MIXED_RESULTS;
+ INCREMENTAL_CARRYOVER_BENEFIT_UNRESOLVED. No further native runs, grid expansion,
+ tuning or unused-budget reallocation without a new explicit protocol/approval.
+ All initial14:00/intermediate12:15 forecasts are superseded by actual completion.
+-Revised manuscript STILL needs these new results integrated with positives,
+ adverse cases, identical no-carryover result and proper certificate scope. Do not
+ merely label it author-metadata pending or automatically TSP-ready. Preserve
+ original/prior revisions. Authentic ORCIDs, disclosures and all-author release
+ remain human inputs; never fabricate/submit. Existing heartbeat may continue
+ for already-authorized manuscript integration, then retire when only genuine
+ human direction/release remains; science monitoring itself is finished.
+
 ## CURRENT V3 SCIENCE LIVE —2026-10-20 10:42CST;140h TERMINAL AUDITED
 
 DO NOT LAUNCH AGAIN. Read `internal/v3_risk_gate8h_handoff_20261020_1042.json`.
