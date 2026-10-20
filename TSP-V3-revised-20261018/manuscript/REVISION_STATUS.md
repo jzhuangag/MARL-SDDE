@@ -1,5 +1,32 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — human-authorized substantive mechanism analysis,2026-10-20
+
+The human requests theory/mechanism analysis from existing evidence before any
+new experimental approval. Read internal/mechanism_analysis_20261020/THEORY.md,
+ARGUMENT_AND_NEXT_STEP.md and proposed_additions.tex. These are NEW research
+artifacts, not inserted into main/supplement/PDFs or advertised as TSP qualification.
+No new trajectories, seeds, bootstrap analysis, scientific source changes or study
+restart. No further experiment is authorized or requested at this stage.
+
+Analytical progress: even Gaussian likelihood symmetry removes the odd carryover
+term; an ordered-covariance argument gives its exact sign; scalar Gaussian
+tail moments yield finer one-sided bounds. Original120 feasible designs split
+44 harmful/32 beneficial/44 zero;8 infeasible retained. Old and refined diagnostic
+admission remain113/128, explaining the unchanged original ablation decisions.
+An analytic general-linear-program counterexample establishes that independent-
+mixture risk transport can fail; it does not establish a failure of the executed
+AND-admission gate. Correct dependence accounting, not the old penalty in every
+situation, is the defensible necessity claim.
+
+A full fixed-catalogue certificate comparison gives29/128 balanced-prior(pi=1/2)
+population advantages, not new empirical discoveries;0/128 minimax certificates.
+All countercases remain. The point is conditional decision value at sufficiently
+large budgets, not universal superiority over fixed sampling. Complete proof and
+comparison/read-scope checks remain required before admitting stronger publication
+claims. Prior scientific terminal decisions and the verified13+10-page PDFs below
+are unchanged.
+
 ## CURRENT — direct validation integrated and audited,2026-10-20
 
 The separately approved8CPUh study is COMPLETE, not pending implementation or data.

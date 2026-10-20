@@ -1,5 +1,53 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT HUMAN-AUTHORIZED V3 THEORY/MECHANISM ANALYSIS —2026-10-20
+
+Human now explicitly requests substantive strengthening from EXISTING evidence:
+why selection-risk theory is needed, when useful, and irreplacability versus simple
+fixed strategies. No new experiment is authorized; any necessary new study needs
+a specified prospective protocol and budget followed by human approval. Do not
+restart either completed workflow, reuse leftover scientific budget or recreate
+the retired heartbeat. Original V3, revised paper body/PDFs and all formal results
+remain unchanged in this first analytical phase.
+
+Read revised manuscript internal/mechanism_analysis_20261020/THEORY.md,
+ARGUMENT_AND_NEXT_STEP.md,proposed_additions.tex and complete/analysis_summary.json.
+New deterministic analysis generated ZERO trajectories, seeds or bootstrap samples.
+It uses the existing128 public designs and1536-row cell table; frozen core bytes
+unchanged. All results are outcome-known analytical diagnostics, not a new formal
+validation, new registered primary endpoint or publication priority clearance.
+
+-Derived exact even-likelihood symmetry cancellation and signed carryover law.
+120 feasible designs:44 harmful signs,32 beneficial signs,44 zero/same-action;
+8 infeasible retained. Sharper one-sided Gaussian tail-moment bounds have
+delta*log(1/delta)/delta rather than the generic sqrt(delta) order under stated
+centered ordered-covariance/fixed-program conditions. General old bound retained.
+-Analytic Gaussian counterexample proves an independent-mixture risk upper can
+fail despite zero unconditional program-risk gap. NOT a counterexample to both
+sides of the executed gate's AND-admission test; no such stronger claim is made.
+-Original and sign-refined diagnostic admissions both113/128. All44 harmful-sign
+designs were already safely admitted under the old penalty. More seeds on this
+unchanged public grid cannot change deterministic action equality.
+-Best full-budget fixed catalogue comparison: original gate POPULATION certificate
+beats every listed fixed(q,b), including regime-independent randomized mixtures,
+on29/128 designs for EXPLICIT balanced prior pi=1/2; all99 other cases retained.
+Passes by learner/scales32,128,512,2048:runningmean0,0,6,12;affine0,0,2,9.
+Relative certified margins0.1314--7.2032percent, not an averaged empirical effect.
+ZERO minimax certificates; no unknown-prior/general fixed-strategy dominance.
+-Existing gate/fixedq2 stratified sample means favor gate11/16 strata; budgetwise
+average fixed-minus-gate risk is negative at32/128,positive at512/2048. The original
+pooled fixedq2 advantage is preserved, not negated by post-hoc decomposition.
+-Three proof drafts plus9 deterministic quadrature checks and separate original-
+catalogue enumeration. Shared previously audited risk evaluator, NOT an independent
+implementation/expert proof audit. Generic selection bias/VOI are not claimed new.
+New bibliographic leads have explicit fresh resolver/read-scope records; noBib edit
+or new paper citation admitted. Claim-level novelty comparison remains needed.
+-Requested NEW experimental budget at this stage:0. Successful observed analytical
+CPU5.15625s; two setup/output failures retained with unmeasuredCPU and labeled5s
+auxiliary charges each. This does not rewrite either immutable terminal ledger.
+Next safe work is claim-level literature/proof comparison and targeted manuscript
+integration if substantiated, NOT prose-only polish or automatically another run.
+
 ## CURRENT ALL AUTHORIZED SCIENCE AND DIRECT-EVIDENCE INTEGRATION COMPLETE —2026-10-20 12:15CST
 
 No native owner, replay, analysis, test, freeze or completed audit may be relaunched.

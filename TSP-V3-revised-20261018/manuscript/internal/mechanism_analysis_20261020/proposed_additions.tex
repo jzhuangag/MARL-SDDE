@@ -1,0 +1,72 @@
+% Research fragment only; NOT included in the manuscript or admitted as novel.
+% Exact proofs and original-grid diagnostics are in THEORY.md.
+\subsection{Signed risk transfer under Gaussian likelihood decisions}
+Let $a_0,a_1$ be two programs frozen before a fixed probe, with the exact conditional-risk identity in Eq.~\eqref{eq:supp-conditional-risk}.
+Under hypothesis $j$, let $E_j$ be the event of selecting $a_{1-j}$, $p_j=\mathbb P_j(E_j)$, and $\mathcal C_j=\mathbb E_j[(m_j^2-s_j^2)\mathbf1_{E_j}]$.
+Define $\Delta_k=k_{a_1}^2-k_{a_0}^2$ and $\Delta J_j=J_{j,a_{1-j}}-J_{j,a_j}$.
+The probe vector has law $\mathcal N(0,\Sigma_j)$ with $0\prec\Sigma_0\preceq\Sigma_1$ and is classified by its likelihood ratio at a fixed threshold.
+
+\begin{proposition}[Signed same-stream selection risk]
+For the frozen programs and ordered centered Gaussian probe laws,
+\begin{align}
+R_0&=J_{0,a_0}+p_0\Delta J_0+\Delta_k\mathcal C_0,\\
+R_1&=J_{1,a_1}+p_1\Delta J_1-\Delta_k\mathcal C_1,
+\end{align}
+where $\mathcal C_0\ge0$ and $\mathcal C_1\le0$.
+Thus selection carryover has the sign of $\Delta_k$ under both hypotheses.
+\label{prop:research-signed-carryover}
+\end{proposition}
+\begin{proof}
+The likelihood decision is even in the probe vector, whereas $m_j$ is linear and odd.
+Consequently $\mathbb E_j[m_j\mathbf1_{E_j}]=0$, and subtraction of the two conditional-risk identities gives the displayed equalities.
+Whiten the probe under hypothesis $j$ and diagonalize the positive semidefinite likelihood quadratic.
+The wrong event under hypothesis zero is increasing in the independent squared Gaussian coordinates; under hypothesis one it is the complementary central event.
+Coordinate sign symmetry eliminates cross products in $m_j^2$.
+Each remaining covariance of a squared coordinate with the outside event is nonnegative by monotonicity, proving the two signs.
+\end{proof}
+The proposition separates harmful dependence from beneficial dependence instead of always charging an absolute-value penalty.
+
+Let $\varphi_{\mathrm N}$ and $\Phi_{\mathrm N}$ denote the standard normal density and cumulative distribution function.
+Define $h_+(p)=2t_p\varphi_{\mathrm N}(t_p)$ with $t_p=\Phi_{\mathrm N}^{-1}(1-p/2)$, and $h_-(p)=2u_p\varphi_{\mathrm N}(u_p)$ with $u_p=\Phi_{\mathrm N}^{-1}((1+p)/2)$.
+Their values at zero are defined by continuity.
+\begin{proposition}[One-sided probability-sensitive risk bound]
+Under the conditions of Proposition~\ref{prop:research-signed-carryover}, suppose $p_j\le\delta_j\le1/4$.
+Then
+\begin{align}
+R_0&\le J_{0,a_0}+\delta_0[\Delta J_0]_+
++[\Delta_k]_+s_0^2h_+(\delta_0),\\
+R_1&\le J_{1,a_1}+\delta_1[\Delta J_1]_+
++[\Delta_k]_+s_1^2h_-(\delta_1).
+\end{align}
+\label{prop:research-tail-risk}
+\end{proposition}
+\begin{proof}
+For any event of probability $p$, the largest integral of $m^2-s^2$ is attained on the two Gaussian tails, and the smallest on the central interval of that probability.
+Conditioning the event indicator on $m$ reduces this assertion to selecting the largest or smallest values of a scalar function with a fixed total acceptance mass.
+Integration by parts gives $-s^2h_-(p)\le\mathbb E[(m^2-s^2)\mathbf1_E]\le s^2h_+(p)$.
+On $[0,1/4]$, $h_+'(p)=t_p^2-1\ge0$ and $h_-'(p)=1-u_p^2\ge0$.
+Use these bounds with the signed identity and $p_j\Delta J_j\le\delta_j[\Delta J_j]_+$.
+\end{proof}
+For small error probabilities the two penalties scale as $\delta\log(1/\delta)$ and $\delta$, respectively.
+The general theorem remains applicable when the fixed centered-likelihood conditions are unavailable.
+
+\subsection{When no fixed catalogue action can replace the gate}
+Fix the public family, learner and budget, and let $\mathcal A_{\rm fix}$ be the finite full-budget fixed-program catalogue.
+For a stated prior $\pi\in(0,1)$, write
+\begin{align}
+I_\pi&=\min_{a\in\mathcal A_{\rm fix}}\{(1-\pi)J_0(a)+\pi J_1(a)\},\\
+O_\pi&=(1-\pi)\min_aJ_0(a)+\pi\min_aJ_1(a).
+\end{align}
+Let $B_j$ be a valid population risk upper bound for the executed policy, including its probe cost and carryover, or the exact fallback risk if no probe is admitted.
+\begin{proposition}[Finite-catalogue separation certificate]
+The oracle opportunity $I_\pi-O_\pi$ is strictly positive if and only if the two risk functions have no common catalogue minimizer.
+If $(1-\pi)B_0+\pi B_1<I_\pi$, the policy has lower prior-weighted risk than every fixed catalogue action and every regime-independent randomized mixture of those actions.
+\label{prop:research-fixed-separation}
+\end{proposition}
+\begin{proof}
+For each fixed action the difference from $O_\pi$ is a sum of two nonnegative excess risks with positive weights.
+It vanishes exactly at a common minimizer, and the finite minimum is attained.
+For the second assertion the policy risk is bounded by its stated weighted upper bound, whereas any randomized fixed risk is a convex combination of fixed risks and is at least $I_\pi$.
+\end{proof}
+This certificate is objective-specific: replacing the prior-weighted loss by worst-instance loss requires a separate minimax comparison.
+The reference $O_\pi$ concerns hypothesis-aware fixed programs, not arbitrary state-adaptive policies, so a zero gap does not rule out beneficial same-stream state selection.
