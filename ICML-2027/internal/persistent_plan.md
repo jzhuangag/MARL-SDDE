@@ -1,5 +1,42 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT V3 SCIENCE LIVE —2026-10-20 10:42CST;140h TERMINAL AUDITED
+
+DO NOT LAUNCH AGAIN. Read `internal/v3_risk_gate8h_handoff_20261020_1042.json`.
+140h main117/117, replay6/6, analyses2/2, independent audit COMPLETE NEGATIVE
+DEVELOPMENT_NO_GO, committed/pushed2385f58 with genuine receipt. Full scientific
+diagnosis/all-method costs and positives/negatives are in terminal REPORT below.
+Charged140h total84.829414CPUh, remaining55.170586h; no more MARL runs authorized.
+
+-AUTOMATIC V3 handoff executed ONCE after receipt push/exit/process/root checks.
+ Hidden launcher supervisor23016 started10:37:53CST; admitted sole worker13756
+ started10:40:19CST. Formal root created by supervisor, NOT agent. Outer logs
+ `experiments/v3_risk_gate8h/outer_launch_20261020_1039.{stdout,stderr}.log`
+ (filename label1039 is not actual start time). Actual execution/worker-launch
+ SHA and commands recorded in handoff JSON. Active V2 source/runtime/Git admission
+ verified by launcher, no unchanged tests/freeze/one-shot verification rerun.
+-First FORMAL seed cost-only admission PASSED:1536 rows retained as science prefix,
+ CPU29.21875s; projection12197.8671875s=3.388296CPUh using unchanged1.25 multiplier
+ for remaining255 seed parts and2700s analysis/audit reserve. NO outcome screening.
+-Snapshot10:41:46:science3072/196608 (2/128 complete seed parts), replay0/196608,
+ analyses0/2; final independent audit not started. One native worker plus idle
+ CPU-accounting supervisor, no140h competitor. Do not inspect/rank live returns.
+-Worker earlier-CPU argument134.0s includes preparation/preflight/Git setup;
+ observed workerCPU85.28125s => live worker-ledger estimate219.28125s=0.060911h
+ charged,28580.71875s=7.939089h remaining of separate8h. Subsequent supervisor
+ idle delta is finalized by exact post-exit read-back; last progress201.6875s
+ is NOT live cost. Keep both separate budgets, all partial/failed costs.
+-NEW V3 last-reported finish baseline14:00CST today, planning13:30--15:00,
+ INCLUDING2700s analysis/audit reserve (do not add that twice). One-seed forecast,
+ not a confidence interval/guarantee; phase completion or >=3wall-hour/20percent
+ remaining ETA shift triggers numeric report. No future run beyond28800s authorized.
+-Continue live V3 owner; require workflow_complete, worker EXIT, supervisor
+ post-exit audited_terminal AND supervisor exit before terminal scientific review.
+ Verify every SHA,196608 full replay/all7 analysis files, inspect4 all-policy
+ plots and record independent positive/negative/inconclusive decision. No retry,
+ shrinkage, tuning, cap raise or manuscript admission. Keep existing heartbeat.
+ Old readiness/launch-next entries below are HISTORY; never duplicate live owner.
+
 ## CURRENT140h AUDITED TERMINAL —2026-10-20 10:36CST; V3 HANDOFF NEXT
 
 140h study is TERMINAL DEVELOPMENT_NO_GO, not still running. Native owner19816
