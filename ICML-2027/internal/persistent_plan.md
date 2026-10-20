@@ -1,5 +1,43 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT140h AUDITED TERMINAL —2026-10-20 10:36CST; V3 HANDOFF NEXT
+
+140h study is TERMINAL DEVELOPMENT_NO_GO, not still running. Native owner19816
+exited; workflow_complete written09:50:33CST. Main117/117, tasks39/39 each,
+replays6/6, analyses2/2; all3 all-method figures visually inspected. Independent
+audit source `internal/audit140h_20261020.py` ran ONCE, exit0, no native rollouts
+or frozen-analyzer rerun. Read `internal/sealed_bridge_terminal_audit_20261020/REPORT.md`
+and final_decision.json. Genuine receipt `internal/sealed_bridge_learning_140h_audited_terminal.json`
+now records completed scientific/resource/integrity audit, exact marker/report SHA,
+and confirmed driver exit. Do NOT restart140h, replays or analysis.
+
+-123 payloads/everySHA,80 byte-identical imports/old failure/lost costs, roles/IDs,
+ reservations/events/ledgers, service/version/actual staleness, queue/controller
+ decisions, same-world frozen policies and27 source/runtime locks verified.
+ All6 replay semantic payloads equal except CPU; double-analysis bytes equal;
+ independent scalar AUC and all gates match.556 preserved files inventoried.
+-SCIENTIFIC NEGATIVE: Spread strongest fresh_mappo, AUC-7.4774%, positive0/3,
+ final+2.6473%, work0.42974, bytes1.60277. Reference strongest fresh_happo_double,
+ AUC-26.4076%, positive0/3, final-32.7728%, work0.43318, bytes1.75124.
+ HalfCheetah strongest fresh_happo_double, AUC-26.4140%, positive1/3,
+ final paired+556.2462% (denominator-sensitive; absolute means230.585 vs212.107),
+ work0.50966, bytes1.00912. All controls learn vs frozen. ALL3 task gates fail.
+ Full-mechanism evidence/positive ablation signals/cost disadvantages and bounded
+ design judgment in REPORT; no claim of optimizer superiority, ICML/TSP readiness.
+-Native recorded cumulative305073.015625s=84.742504h; audit observed252.875s;
+ plus60s conservative auxiliary/unobserved-tail CHARGE (NOT measured machine CPU).
+ Total charged305385.890625s=84.829414h, remaining198614.109375s=55.170586h.
+ Exact post-marker native termination CPU is unavailable and explicitly qualified.
+ Remaining140h budget is NOT authorization for another MARL test sequence.
+-V3 separate8h READY0/196608 science,0/196608 replay,0/2 analyses; charged86.46875s,
+ remaining28713.53125s. After this receipt/report is committed/pushed, inspect
+ processes/root then AUTONOMOUSLY launch admitted `launch.py --run` ONCE hidden,
+ separate outer logs, package cwd. No further confirmation. Subsequent CURRENT
+ entry must record real supervisor/worker PIDs and avoid duplicate launch.
+-No manuscript/PDF changes, no140h result imported into V3. Keep hourly heartbeat
+ active for approved V3 validation and its independent terminal audit; ORCIDs do
+ not block science. Prior cost forecasts below are HISTORY, not live forecasts.
+
 ## CURRENT LAST-REPORTED FORECAST,2026-10-20 09:20CST update
 
 Read `internal/sealed_bridge_cost_forecast_20261020_0920.json`. Main117/117,
