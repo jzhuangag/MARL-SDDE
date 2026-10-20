@@ -3,10 +3,13 @@
 \pdfinfoomitdate=1
 \pdftrailerid{}
 \pdfsuppressptexinfo=-1
-\usepackage{amsmath,amssymb,amsthm,bm,booktabs}
+\usepackage{amsmath,amssymb,amsthm,bm,booktabs,graphicx}
 \usepackage{xr-hyper}
 \usepackage[hidelinks]{hyperref}
 \externaldocument{main}[main.pdf]
+\makeatletter
+\newcommand{\maincite}[1]{\href{main.pdf\#cite.#1}{\NoHyper[\csname b@#1\endcsname]\endNoHyper}}
+\makeatother
 \newcommand{\E}{\mathbb E}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Pp}{\mathbb P}
@@ -327,20 +330,20 @@ The new comparison was specified after earlier outcomes were known and supplies 
 
 \section{Nearest-Work Assumptions and Objectives}
 The comparison uses the accessible full preprints, with theorem and proof locators recorded in the accompanying source-reading matrix; it is not an exhaustive priority claim.
-DASA~\cite{dalfabbro2024dasa}, Assumption~3 and Theorem~1, combines independent agent chains with median-based update filtering to obtain average-delay dependence and parallel speedup.
+DASA~\maincite{dalfabbro2024dasa}, Assumption~3 and Theorem~1, combines independent agent chains with median-based update filtering to obtain average-delay dependence and parallel speedup.
 Its Lemma~2 uses cross-agent independence in the noise cross terms.
 Our bounded deterministic delay condition is narrower; our added object is covariance-dependent paid learning risk, not a stronger delay rate.
 
-Perazzone et al.~\cite{perazzone2025lyapunov}, Theorem~1 and Eqs.~(12)--(23), link inverse participation probabilities to a nonconvex convergence bound, then optimize a time-average convergence/communication surrogate with power queues.
+Perazzone et al.~\maincite{perazzone2025lyapunov}, Theorem~1 and Eqs.~(12)--(23), link inverse participation probabilities to a nonconvex convergence bound, then optimize a time-average convergence/communication surrogate with power queues.
 Their solver and instantaneous-channel formulation address a different operational problem; our finite-budget probe debit and same-stream decision-event correction do not follow from that time-average objective.
-Yu et al.~\cite{yu2025sdde}, Sections~III--IV and Propositions~12--14, use an SDDE/arrival-process approximation to optimize worker activation, including a finite-service queue.
+Yu et al.~\maincite{yu2025sdde}, Sections~III--IV and Propositions~12--14, use an SDDE/arrival-process approximation to optimize worker activation, including a finite-service queue.
 That queue model and its delay law are not established by our fixed-delay experiment.
 
-Saad et al.~\cite{saad2023covariance}, Assumption~1, Protocol~1 and Theorems~4.1/5.1, adapt joint arm queries to unknown covariance with independent rounds and a fixed-confidence identification objective.
+Saad et al.~\maincite{saad2023covariance}, Assumption~1, Protocol~1 and Theorems~4.1/5.1, adapt joint arm queries to unknown covariance with independent rounds and a fixed-confidence identification objective.
 Our dependence hypotheses are supplied, rather than learned nonparametrically; our comparison instead prices identification through the subsequent learner.
-Li et al.~\cite{li2026parameterfree}, Theorem~4.12, remove unknown mixing/eigenvalue inputs from a regularized TD step schedule.
+Li et al.~\maincite{li2026parameterfree}, Theorem~4.12, remove unknown mixing/eigenvalue inputs from a regularized TD step schedule.
 That reduces tuning requirements that our general confidence interface still has, but does not construct a calibrated multi-action terminal-risk shield.
-Li et al.~\cite{li2026shrinkingtube}, Assumptions~1--7 and Theorem~1, give shrinking-tube reliability for projected adaptive-kernel SA using uniform drift/minorization and kernel continuity.
+Li et al.~\maincite{li2026shrinkingtube}, Assumptions~1--7 and Theorem~1, give shrinking-tube reliability for projected adaptive-kernel SA using uniform drift/minorization and kernel continuity.
 Their mixed-history result is broader than a frozen-kernel table; our Gaussian decision correction and paid finite horizon are different outputs, not a replacement for their regularity assumptions.
 Reference numbers in this supplement refer to the main paper's bibliography.
 
@@ -385,4 +388,133 @@ Moreover,
 \end{equation}
 Eq.~\eqref{eq:adaptive-kl}, Eq.~\eqref{eq:budgets}, and Eq.~\eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
 Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
+\input{transfer_details}
+
+\section{Direct Fixed-Model Validation of the Actual-Risk Gate}
+\subsection{Models, learners, and paid protocol}
+This study executes the actual-risk gate prospectively on new seeds, rather than reconstructing decisions from the earlier saved study.
+The 16 public families cross $Q\in\{8,32\}$, high-instance variance $\theta_1\in\{0.5,2\}$, common-factor persistence $\lambda\in\{0.2,0.8\}$, and withheld-update delay $D\in\{0,8\}$.
+The low-instance variance is $\theta_0=0.05$, private variance is one, and message overhead is $h=8$.
+Each family is evaluated under both true instances, each learner, and scales $s\in\{32,128,512,2048\}$, with $B_{\rm msg}=(h+Q)s$ and $B_{\rm env}=4s$.
+The 128 new seeds are $20571001,\ldots,20571128$, screened against the historical seed registries before execution.
+All six policies share policy-independent potential observations within each seed, family, true instance, and learner, including across budget scales.
+They do not share potential observations across learners.
+
+The common observation component is stationary Gaussian autoregressive noise, with coefficient $\lambda$ and marginal variance $\theta_j$; each actor has independent unit-variance Gaussian private noise.
+An average over the first $q$ actors therefore has private variance $1/q$.
+Both learners start from one with a constant-one initial history.
+The running mean uses its exact averaging weights; the averaged delayed affine learner uses $\mu=0.5$ and $\eta=0.2/(D+1)$ with the first-in, first-out recurrence analyzed above.
+Every scheduled block is paid, including the last $D$ withheld updates: $M$ scheduled updates give $N=\max\{0,M-D\}$ learner updates.
+There is no free startup or independent learning reset after a probe.
+The measured endpoint is squared parameter error at the exact zero target, not an unobserved within-run convergence curve.
+
+Before data, the fixed probe uses $q_d=Q$, $b_d=1$, and the smallest integer $n_d\in\{1,\ldots,4096\}$ whose exact Gaussian affinity is at most $0.025$.
+The log-likelihood threshold is zero, with ties assigned to the low instance.
+An infeasible or unavailable probe falls back to the full-budget all-agent program.
+After charging the probe, the two commitment programs minimize exact stationary risk under their respective supplied hypotheses over powers-of-two $q\le Q$ and $b\in\{1,2,4,8\}$, breaking ties lexicographically in $(q,b)$.
+Both programs are fixed before observing the probe; the true instance is not an input to any deployment decision.
+Writing $F_j$ for the full-budget all-agent population risk and $U_j$ for the same-stream population upper bound, the gate requires $U_1<F_1$ and $U_0\le F_0+0.1$.
+The no-carryover ablation deletes only the $\sqrt{\delta_j}\Gamma_j$ contribution from that admission calculation.
+The other controls are information-only probing, all-agent fallback, fixed $(q,b)=(2,1)$, and a known-instance oracle used only for evaluation.
+
+The complete grid contains $16\times2\times2\times4\times6\times128=196608$ trajectories.
+Every trajectory is regenerated in a full semantic replay, including its paid ledgers and decisions.
+Two analyses reproduce all seven output tables byte for byte.
+No failed, infeasible, adverse, or partial-cost record is removed.
+
+\subsection{All macro comparisons and counterevidence}
+For each learner, instance, and scale, we average the paired fallback-minus-policy squared-risk difference across all 16 families within each seed.
+Table~\ref{tab:direct-macro} reports all 16 corrected-gate macro means and descriptive percentile intervals from 2,000 paired-seed bootstrap resamples.
+These are cellwise descriptive intervals, not a familywise significance or equivalence claim.
+\begin{table*}[t]
+\centering
+\caption{All corrected-gate macro risk improvements over all-agent fallback.
+Positive values favor the gate; brackets give descriptive 95 percent paired-bootstrap intervals.}
+\label{tab:direct-macro}
+\begin{tabular}{llrr}
+\toprule
+Learner & Scale & High instance: mean [interval] & Low instance: mean [interval] \\
+\midrule
+Running mean & 32 & $0.07820\ [0.06227,0.09303]$ & $-0.002290\ [-0.003226,-0.001357]$ \\
+& 128 & $0.03452\ [0.03051,0.03840]$ & $0.000763\ [0.000530,0.000986]$ \\
+& 512 & $0.009436\ [0.008400,0.010491]$ & $0.000373\ [0.000324,0.000422]$ \\
+& 2048 & $0.002268\ [0.001998,0.002550]$ & $0.0000860\ [0.0000736,0.0000985]$ \\
+Delayed affine & 32 & $0.10001\ [0.08038,0.11922]$ & $0.06114\ [0.05777,0.06469]$ \\
+& 128 & $0.14696\ [0.13225,0.16261]$ & $0.07750\ [0.07538,0.07955]$ \\
+& 512 & $0.04006\ [0.03541,0.04538]$ & $0.010206\ [0.009663,0.010712]$ \\
+& 2048 & $0.008698\ [0.007723,0.009715]$ & $0.000914\ [0.000838,0.000993]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+All eight high-instance macro intervals are positive, as are seven of eight low-instance intervals.
+The exception is the low-instance running mean at scale 32, where probing can spend resources without compensating risk reduction.
+At the finer family level, 23 of 256 corrected-gate mean improvements are negative (four high and nineteen low); 174 intervals are strictly positive, nine strictly negative, and 73 include zero or are exactly zero.
+The permitted low-instance population-risk increase is $0.1$, so this adverse result does not contradict a zero-harm condition: no such condition was imposed.
+
+The corrected gate admits probing on 113 of 128 public designs, exactly as does the no-carryover gate.
+Their probe-use indicators, actions, and risks coincide on all 32,768 paired policy rows.
+The selection-dependence term remains necessary to the stated bound, but its incremental empirical decision benefit is unresolved on this grid.
+Small differences between separately resampled bootstrap endpoints for the two identical policies do not constitute performance differences.
+The prespecified zero-allowance admission diagnostic admits 100 of 128 designs; it uses saved branch calculations, not additional trajectories.
+
+Table~\ref{tab:direct-costs} retains all six policies' pooled risks and paid costs.
+Pooling gives equal weight to heterogeneous families, instances, learners, and scales, so it is descriptive rather than a universal ranking or a comparison at identical realized costs.
+Fixed $(q,b)=(2,1)$ has lower pooled risk and environment cost than the corrected gate, whereas the gate sends fewer messages.
+The oracle is an instance-aware reference and is not deployable without the unknown label.
+\begin{table*}[t]
+\centering
+\caption{Descriptive pooled means over all 256 cells for each policy; every cell has 128 seeds.}
+\label{tab:direct-costs}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Squared risk & Paid messages & Paid environment & Probe fraction \\
+\midrule
+All agents & $0.114864$ & $19040.000$ & $680.000$ & $0$ \\
+Fixed $(2,1)$ & $0.062931$ & $19037.500$ & $1903.750$ & $0$ \\
+Information only & $0.099064$ & $18509.108$ & $2467.163$ & $0.937500$ \\
+Oracle (evaluation only) & $0.051335$ & $18508.477$ & $2509.625$ & $0$ \\
+Without carryover & $0.079311$ & $18509.341$ & $2463.203$ & $0.882813$ \\
+Corrected gate & $0.079311$ & $18509.341$ & $2463.203$ & $0.882813$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Probe validity and the scope of the enclosures}
+There are 8,192 distinct deduplicated potential probe decisions and thirteen observed classification errors, an empirical fraction of $0.001587$.
+The exact affinity bounds range from $0.021139$ to $0.024380$, each below $0.025$ under both supplied hypotheses.
+This new fixed-probe construction does not retroactively validate the earlier probe's nominal $0.025$ directional interpretation, which bounded equal-prior average error instead.
+The historical reanalysis continues to use its larger exact affinities.
+
+The risk enclosures concern population expectations under known binary Gaussian hypotheses and deterministic linear programs.
+In 123 of 256 corrected-gate cells, the finite sample mean exceeds the corresponding population upper bound; such an exceedance is not by itself a population-bound violation.
+In particular, fallback risk is an exact model expectation, not a simultaneous upper confidence limit for noisy sample means.
+The study therefore does not establish samplewise coverage, calibration for unknown kernels, or a general neural policy-learning guarantee.
+
+Figs.~\ref{fig:direct-rm-low}--\ref{fig:direct-affine-high} show every policy against budget scale, actual paid messages, and actual paid environment units, separately for each learner and instance.
+Each point averages all 16 families and all 128 seeds; connecting points does not imply a within-trajectory learning curve or equal realized cost.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_running_mean_low_20261020.pdf}
+\caption{Direct validation, running mean and low instance: all-policy risk versus allocated scale and actual paid resources. Corrected and no-carryover curves coincide.}
+\label{fig:direct-rm-low}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_running_mean_high_20261020.pdf}
+\caption{Direct validation, running mean and high instance, with the same complete-family averaging and all six policies.}
+\label{fig:direct-rm-high}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_averaged_delayed_affine_low_20261020.pdf}
+\caption{Direct validation, averaged delayed affine learner and low instance; every scheduled update is charged, including withheld terminal updates.}
+\label{fig:direct-affine-low}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_averaged_delayed_affine_high_20261020.pdf}
+\caption{Direct validation, averaged delayed affine learner and high instance; exact overlap of the two gates is retained without graphical offsets.}
+\label{fig:direct-affine-high}
+\end{figure*}
 \end{document}

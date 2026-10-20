@@ -1,5 +1,41 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — direct validation integrated and audited,2026-10-20
+
+The separately approved8CPUh study is COMPLETE, not pending implementation or data.
+196608/196608 trajectories,196608/196608 semantic replays and both analyses are
+complete; all7 analysis outputs match byte for byte. The sole native worker and
+supervisor exited. Independent terminal audit is committed in907b396; no study
+was restarted, shrunk, tuned or retried. The separate140h study also reached an
+audited terminal DEVELOPMENT_NO_GO; its data are not imported into this paper.
+
+NEW manuscript integration: main13pages, supplement10pages; all23pages visually
+checked at final output. The thirteen previous main formal blocks and appendices
+remain unchanged; both BibTeX files and the original TSP-V3 tree are unchanged.
+Full old MAPPO transfer text/figure moved intact to transfer_details.tex, with a
+bounded summary in the main paper. New Times-styled plots use audited cell tables
+only; no new trajectories or bootstrap analysis were generated during integration.
+
+The new prospective grid admits113/128 designs. All8high-instance macro intervals
+are positive, but running-mean low-instance scale32 is negative;23/256 cell means
+are adverse. Corrected/no-carryover policies coincide on all32768paired rows:
+incremental empirical benefit of the carryover term is UNRESOLVED. Fixedq2 has
+lower pooled risk/environment cost, so no strongest-control superiority is claimed.
+Population enclosures are not sample-mean confidence limits or unknown-kernel
+calibration. These limits and all16macro comparisons are included, not hidden.
+
+Read internal/direct_validation_integration_20261020/REPORT.md,
+source_gate_release.json, citation_resolution.json and resource_ledger.json.
+Fresh39-reference audit:38rawPASS plus fresh authoritative Paulin article-number
+resolution; raw resolver failures and the definite-vs-judgment style audit retained.
+No bibliography edits. FinalPDF SHA and per-page rendering evidence are recorded.
+
+Decision: DIRECT_VALIDATION_INTEGRATED_SCOPE_LIMITED_AUTHOR_REVIEW_REQUIRED.
+This is NOT automatic TSP qualification. No further run is authorized by unused
+budget. Authentic ORCIDs, related/concurrent-manuscript disclosures, all-author
+consent and final release remain human inputs; never fabricate or submit.
+The older pending-implementation/validation descriptions below are history.
+
 ## Current decision — constructive certificate and risk-gate implementation,2026-10-19
 
 LATEST AUTHORITY: the human explicitly replied “批准独立8 CPU小时”. Read

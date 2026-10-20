@@ -1,5 +1,40 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT ALL AUTHORIZED SCIENCE AND DIRECT-EVIDENCE INTEGRATION COMPLETE —2026-10-20 12:15CST
+
+No native owner, replay, analysis, test, freeze or completed audit may be relaunched.
+Both studies reached independently audited terminal decisions; the separately
+approved direct validation is now honestly integrated into the revised TSP paper.
+Original TSP-V3, native/failure/partial evidence and both immutable terminal CPU
+snapshots remain unchanged. No new scientific retry, expansion or budget reuse.
+
+-140h:main117/117(39each),replay6/6,analyses2/2,independent audit COMPLETE;
+ DEVELOPMENT_NO_GO all3tasks. Charged84.829414h,remaining55.170586h. No manuscript
+ admission or causal/superiority claim from the negative MARL study.
+-V3:science196608/196608,replay196608/196608,analyses2/2(all7files equal),
+ independent audit COMPLETE MIXED. Native terminal+audit0.75605035CPUh; additive
+ paper integration observed630.484375s plus60s conservative paper auxiliary charge
+ =>combined3412.265625s=0.94785156h,remaining7.05214844h. Read additive ledger;
+ these auxiliary charges are not claimed measured whole-machine CPU. No extra run.
+-Main13pages/supplement10pages, all23pages visually checked, all fonts embedded,
+ zero undefined references/overfull.13previous formal blocks,appendices,bothBib
+ files and originalV3 tree unchanged. All old transfer text/figure moved intact
+ to supplement; all16new macro comparisons and all-policy costs/curves included.
+-New known-model validation:113/128 admissions,23/256 adverse cell means,
+ negative low runningmean scale32; all32768corrected/no-carryover rows identical.
+ Incremental carryover benefit UNRESOLVED; fixedq2 lower pooledrisk/environment
+ cost retained. Population risk bounds are not empirical coverage/calibration.
+-Fresh39reference check:38rawPASS plus newly opened authoritative Paulin
+ article-number resolution, resolver outages/conflict retained; noBib edit.
+-Read revised manuscript REVISION_STATUS.md CURRENT and
+ internal/direct_validation_integration_20261020/REPORT.md,source_gate_release.json,
+ citation_resolution.json,resource_ledger.json. Decision is scope-limited author
+ review required, NOT TSP qualification. Authentic ORCIDs, disclosures and all-author
+ release are human inputs; no submission. No additional science is inferred.
+-Both audited-terminal conditions are met. Retire the existing heartbeat through
+ the application tool after verified push; no new automation or watcher. If an
+ old queued heartbeat arrives, read this TOP and do not restart any work.
+
 ## CURRENT BOTH SCIENTIFIC WORKFLOWS AUDITED TERMINAL —2026-10-20 11:34CST
 
 NO NATIVE OWNER IS LIVE. Do NOT relaunch/resume140h or V3, rerun any replay,

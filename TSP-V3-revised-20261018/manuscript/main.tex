@@ -42,8 +42,8 @@ The analysis gives delayed convergence and critic-tracking bounds, a stopped ada
 On a separated Gaussian Markov class, a budget-threshold sandwich links identification feasibility to learning value.
 Controlled simulations reduce two finite-budget risks by 35.2 and 9.8 percent relative to information-only probing.
 On 64 held-out seeds, joint control reduces parameter-error and discounted-return-estimation curve integrals by 9.9 and 11.3 percent against a development-selected fixed baseline.
-Held-out cooperative policy-learning studies select dependence-matched participation in all 32 controller runs.
-Under identical charged budgets, mean normalized team-return curve integrals improve by 2.32 percent on particles and paired equal-mixture integrals by 8.34 percent on locomotion over the strongest single fixed-participation comparators.
+A separate 196,608-trajectory validation executes the actual-risk gate on known Gaussian models; all high-regime aggregate intervals favor probing over the all-agent fallback, but one low-regime aggregate is adverse.
+The corrected and uncorrected gates select identical actions on this grid, leaving the correction's incremental empirical benefit unresolved.
 \end{abstract}
 \begin{IEEEkeywords}
 Multi-agent learning, Markov data, temporal-difference learning, adaptive sensing, Lyapunov methods.
@@ -94,6 +94,7 @@ Predictable moment/mixing upper bounds control calibration-induced risk and sele
 An explicit same-stream correction transfers identification error into actual risk for both a running mean and an averaged delayed affine learner, closing the probe--learning dependence in the controlled experiments.
 \item \textbf{Resource-Matched Learning Evidence:} Controlled studies quantify the estimation gains from learning-aware probing and finite-horizon control using risk and area under the curve (AUC).
 Held-out multi-agent proximal policy optimization (MAPPO) studies improve team-return AUC against the strongest single fixed-participation comparators on particles and locomotion, with all 32 controller runs selecting dependence-matched participation.
+A separate direct validation tests the executed actual-risk gate with new seeds and retains its adverse comparisons and identical no-carryover ablation.
 \end{itemize}
 
 \section{Model and Finite-Budget Objective}
@@ -652,6 +653,7 @@ The algorithm uses the discrete theorem with finite steps, integer delays, and e
 \section{Simulations}
 \subsection{Protocol and evaluation questions}
 The simulations test three questions: how dependence changes the resource action, whether finite-horizon control improves estimation, and whether participation selection transfers to cooperative policy learning.
+An additional direct validation tests the actual-risk gate separately from the saved-result reanalysis.
 The affine action/convergence studies use scalarized cost $h+q+b$ per update with $(\ell,u)=(0,0)$; their $D$ controls stale parameter indices.
 EXP-016B uses separate budgets, $(\ell,u)=(0,D)$, and pays every scheduled block, including the final $D$ withheld updates.
 Theorem~\ref{thm:same-stream} covers its consecutive Gaussian probe/learning blocks and averaged first-in, first-out learner through their exact linear weights.
@@ -721,6 +723,28 @@ All percentages use information-only risk as the denominator.}
 \label{fig:risk-reduction}
 \end{figure}
 
+\subsection{Direct validation of the actual-risk gate}
+A separate validation executes the gate based on Theorem~\ref{thm:same-stream}: 16 Gaussian families, two learners, two regimes, four budget scales, and 128 new paired seeds.
+The corrected gate, no-carryover ablation, information-only probe, all-agent fallback, fixed $(q,b)=(2,1)$, and evaluation oracle give 196,608 trajectories, all semantically replayed.
+The supplement reports the full protocol, all 16 macro comparisons, and all-policy costs.
+
+The exact-affinity probe meets directional bound $0.025$; 113/128 designs admit probing.
+Fig.~\ref{fig:direct-gate} averages all families.
+All eight high-regime improvement intervals over fallback are positive, but low-regime running-mean scale 32 gives $-0.00229$ with descriptive paired-bootstrap 95 percent interval $[-0.00323,-0.00136]$.
+There are 23/256 adverse cell means; the low-instance allowance is $0.1$, not zero harm.
+
+Corrected and no-carryover decisions and risks coincide on all 32,768 paired rows, leaving the correction's incremental empirical benefit unresolved.
+Fixed $(2,1)$ has lower pooled risk and environment cost but uses more messages: the gate does not dominate every control.
+Known-model population enclosures are neither confidence limits for sample means nor unknown-kernel calibration guarantees.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_budget_risk_20261020.pdf}
+\caption{Direct validation on new seeds: terminal squared risk averaged over all 16 families and 128 seeds per family, at each learner, regime, and budget scale.
+All six policies are shown; the corrected and no-carryover curves coincide exactly.
+Lines connect distinct budget experiments, not within-run learning checkpoints.}
+\label{fig:direct-gate}
+\end{figure*}
+
 \subsection{Convergence and return-estimation curves}
 The convergence study tests the complete joint controller on the seven-state policy-evaluation problem over a budget of 128,000 resource units.
 The prespecified grid crosses persistence $\{0,0.9,0.98\}$, correlation $\{0,0.9\}$, and delay $\{0,8\}$, producing twelve cells and 41 charged-resource checkpoints per trajectory.
@@ -744,29 +768,9 @@ The first two panels show parameter risk and the last two return-estimation risk
 \end{figure*}
 
 \subsection{Transfer across cooperative policy-learning environments}
-Held-out MAPPO transfer studies match message/environment budgets and charge a disjoint critic-residual probe that selects participation without evaluation return.
-Both studies use eight fresh seeds per dependence regime and compare against fixed $q\in\{1,2,4,8\}$.
-We compare regime-wise fixed envelopes and the strongest single fixed action for an unknown regime.
-
-In PettingZoo \texttt{simple\_spread\_v2}, the controller commits to $q=8$ in all eight independent-stream runs and $q=1$ in all eight shared-stream runs.
-It lies within $0.357$ and $0.889$ percent of the corresponding regime-wise fixed envelopes.
-Against the strongest single fixed action, $q=8$, the mean of the regime--seed normalized AUC gains is $2.319$ percent; normalization precedes averaging.
-
-In MaMuJoCo \texttt{HalfCheetah-v2/2x3}, the task-specific prespecified catalogue is $\{2,8\}$, while evaluation still includes all four fixed actions.
-The controller selects $q=8$ in all eight independent-stream runs and $q=2$ in all eight shared-stream runs.
-Relative to the corresponding regime-wise fixed envelopes, its AUC changes are $-0.542$ and $-0.997$ percent, both within the prespecified two-percent noninferiority margin.
-When the regime is unknown, the strongest single fixed action is $q=8$.
-Forming each seed's equal-regime mixture before normalization gives a mean paired AUC gain of $8.341$ percent, a one-sided 95 percent lower bound of $1.107$ percent, seven of eight positive pairs ($p=0.0352$), and a final-return gain of $4.637$ percent.
-
-Fig.~\ref{fig:marl-return} shows the unsmoothed deterministic team-return curves against the maximum charged dual-budget fraction.
-Probes consume at most $0.768$ percent of messages; selection overhead is below $10^{-6}$ of training time.
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.96\textwidth]{figures/marl_multienvironment_returns.pdf}
-\caption{Fully charged MAPPO team-return learning curves on two cooperative environments with fixed $q\in\{1,2,4,8\}$ and the Lyapunov probe-then-commit controller (eight held-out seeds per regime; shaded bands are controller 95 percent confidence intervals).
-The controller selects $q=8$ for independent streams in both environments, $q=1$ for shared MPE streams, and $q=2$ for shared MaMuJoCo streams.}
-\label{fig:marl-return}
-\end{figure*}
+Held-out, fully charged MAPPO studies select dependence-matched participation in all 32 controller runs.
+Against the strongest single fixed action, $q=8$, normalized AUC improves by $2.319$ percent in particles and the paired equal-regime mixture by $8.341$ percent in locomotion.
+The supplement retains both complete protocols, fixed-participation comparisons, paired statistics, and unsmoothed return curves; these are not comparisons with general multi-agent optimizers.
 
 \subsection{Ablations, complexity, and reproducibility}
 The confidence-interface study uses 64 disjoint confirmation seeds and 157,440 checkpoint rows.
@@ -788,6 +792,7 @@ These ablations quantify the terminal parameter-risk gain from the finite-horizo
 Finite-budget Lyapunov control balances contraction, correlated noise, and the affordable learning horizon when selecting participation, spacing, and step size.
 The learning-value gate charges identification against its certified downstream benefit.
 The analysis and resource-matched studies link dependence-aware sampling to lower estimation risk and improved cooperative returns.
+Direct fixed-model validation also exposes adverse low-regime comparisons and an unchanged no-carryover ablation, delimiting the empirical evidence for the actual-risk correction.
 
 \appendices
 \input{appendices}
