@@ -1,5 +1,33 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT LAST-REPORTED FORECAST,2026-10-20 09:20CST update
+
+Read `internal/sealed_bridge_cost_forecast_20261020_0920.json`. Main117/117,
+tasks39/39 each; replay5/6, final HalfCheetah/full still active; analyses0/2;
+independent final audit not started. Sole native PID19816 alive and accumulating
+CPU. All27 locked files match. No workflow_complete, workflow_failed or failure
+marker; no duplicate native worker. No outcomes inspected/ranked or source changes.
+
+- Snapshot09:20:23:303313.640625CPU seconds=84.253789h cumulative used,
+  200686.359375s=55.746211h remaining. Active replay owner CPU since fifth progress
+  8082.34375s (includes driver overhead; not claimed exact payload CPU).
+- Previous08:10--08:40 forecast is INVALIDATED. Matched original3190.234375s
+  and latest same-task ratio estimate both underestimated this final replay.
+  NEW provisional native finish planning scenarios10:00--10:40CST today;
+  independent audit11:00--13:40CST, with UNMEASURED1--3wall-hour audit allowance.
+  Next material-ETA comparison midpoint10:20 supersedes08:25/older saved forecasts.
+- Cost-only scenarios use the maximum of three completed HalfCheetah/full cells
+  (3190.234375,9705.21875,1486.5s), and1.25 times that maximum, less active owner
+  CPU plus600s analysis reserve; CPU/wall0.9684294. Unrounded09:58:38/10:40:24;
+  projected native84.87125--85.54523CPUh. This is NOT a statistical interval,
+  timeout, guarantee or scientific-plan change. No intermediate step metadata
+  exists for this replay, so finish-time uncertainty is larger than prior forecasts.
+  Continue sole owner unchanged; do not restart, shrink or raise either CPU cap.
+- V3 remains READY/QUEUED:0/196608 science,0/196608 replay,0/2 analyses;
+  charged86.46875s;28713.53125s=7.9759809h remaining; formal root absent.
+  Automatically launch only AFTER140h exit AND genuine completed independent
+  scientific/resource/integrity terminal audit receipt. No metadata confirmation needed.
+
 ## CURRENT LAST-REPORTED FORECAST,2026-10-20 07:20CST update
 
 Read `internal/sealed_bridge_cost_forecast_20261020_0720.json`. Snapshot07:18:47CST:
