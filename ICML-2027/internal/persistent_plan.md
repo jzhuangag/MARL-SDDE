@@ -31,8 +31,11 @@ snapshots remain unchanged. No new scientific retry, expansion or budget reuse.
  citation_resolution.json,resource_ledger.json. Decision is scope-limited author
  review required, NOT TSP qualification. Authentic ORCIDs, disclosures and all-author
  release are human inputs; no submission. No additional science is inferred.
--Both audited-terminal conditions are met. Retire the existing heartbeat through
- the application tool after verified push; no new automation or watcher. If an
+-Both audited-terminal conditions are met. Integration pushed and upstream verified
+ at6ddc45f24a75a3d3cad54e878ef74c17a7faff4a. Existing heartbeat DELETED through
+ the application MCP tool after that push; exact prior config is preserved in
+ direct_validation_integration_20261020/retired_heartbeat_before.toml, and deletion
+ receipt in heartbeat_retirement.json. No new automation or watcher. If an
  old queued heartbeat arrives, read this TOP and do not restart any work.
 
 ## CURRENT BOTH SCIENTIFIC WORKFLOWS AUDITED TERMINAL —2026-10-20 11:34CST
