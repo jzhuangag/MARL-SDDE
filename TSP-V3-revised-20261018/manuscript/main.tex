@@ -70,16 +70,15 @@ Asynchronous optimization analyzes stale computation~\cite{agarwal2011distribute
 Here delay, cross-agent covariance, and paid spacing jointly determine terminal risk.
 DASA~\cite{dalfabbro2024dasa} permits unbounded delays and obtains an average-delay rate, but its cross-agent independence assumption removes the common-source covariance considered here.
 Lyapunov client/power scheduling~\cite{perazzone2025lyapunov} minimizes a convergence/time surrogate under average power constraints; SDDE worker activation~\cite{yu2025sdde} optimizes a delay-dependent convergence approximation.
-Our distinction is a paid identification decision evaluated through the remaining learner's terminal risk, including its dependence on the same continuing stream.
+Our distinction is a paid identification decision evaluated through the remaining learner's terminal risk on the continuing stream.
 
 Sequential design and identification supply change-of-measure/allocation tools~\cite{chernoff1959sequential,nitinawarat2015controlled,kaufmann2016complexity,garivier2016optimal,moulos2019markovian,saad2023covariance,vannella2023multiagent}, with conservative bandits constraining baseline-relative reward~\cite{wu2016conservative}.
 We value identification through its effect on the remaining learner's risk.
 Covariance-adaptive identification~\cite{saad2023covariance} minimizes joint-query complexity for independent rounds, rather than the downstream learner's risk after paying those queries.
 Parameter-free TD~\cite{li2026parameterfree} addresses unknown step-size constants, and adaptive Markov SA~\cite{li2026shrinkingtube} controls all-future trajectory excursions under kernel regularity.
-Neither objective replaces the finite-budget risk comparison studied here; our certificate construction for a known finite model is given in the supplementary material.
-An action-dependent Lyapunov certificate combines the error per update with the number of affordable updates.
-The resulting terminal-risk score supports scalar step searches within each discrete $(q,b)$ pair.
-For unknown dependence, a likelihood probe is admitted when its certified downstream improvement exceeds message, transition, delay, and decision-error costs while respecting a low-instance risk allowance.
+Bayesian design already values observations by their subsequent decision utility~\cite{chaloner1995bayesian}, and adaptive-data analysis already quantifies selection bias and the value of perfect information~\cite{russo2016bias}.
+Our Gaussian refinement uses classical association~\cite{esary1967association} and truncated-normal moments~\cite{manjunath2021moments}; its specific object is the signed risk of a paid probe followed by the same continuing learner, rather than a new general selection or information-value principle.
+The terminal-risk score searches step sizes within each discrete $(q,b)$ pair; a probe must justify its remaining-horizon cost and low-instance allowance.
 
 The main contributions are as follows.
 \begin{itemize}
@@ -92,6 +91,7 @@ The Gaussian resource geometry has an exact correlation-limited speedup ceiling.
 Predictable moment/mixing upper bounds control calibration-induced risk and selection error.
 \item \textbf{Information-to-Learning Risk Transfer:} A stopped adaptive information identity and controlled-belief occupation program lower-bound identification cost; a learning-value gate yields finite-budget guarantees and a threshold sandwich on a separated Gaussian class.
 An explicit same-stream correction transfers identification error into actual risk for both a running mean and an averaged delayed affine learner, closing the probe--learning dependence in the controlled experiments.
+An ordered-Gaussian specialization identifies when this dependence helps or hurts; a full-budget catalogue certificate specifies when a fixed program cannot attain the same prior-weighted risk.
 \item \textbf{Resource-Matched Learning Evidence:} Controlled studies quantify the estimation gains from learning-aware probing and finite-horizon control using risk and area under the curve (AUC).
 Held-out multi-agent proximal policy optimization (MAPPO) studies improve team-return AUC against the strongest single fixed-participation comparators on particles and locomotion, with all 32 controller runs selecting dependence-matched participation.
 A separate direct validation tests the executed actual-risk gate with new seeds and retains its adverse comparisons and identical no-carryover ablation.
@@ -553,6 +553,19 @@ All post-probe horizons in $J$ use the remaining budgets; $F_j$ spends no probe 
 Select a feasible passing design deterministically before observing data, or return the full-budget fallback.
 Theorem~\ref{thm:same-stream} then gives actual high-instance improvement and the low-instance allowance in Eq.~\eqref{eq:actual-admission}, without a uniform conditional Gaussian certificate.
 The supplementary material supplies the proof, exact learner weights, an executable gate, and its saved-result reconstruction.
+For a fixed likelihood-ratio decision between centered Gaussian probes with ordered covariances, the odd conditional-risk term cancels.
+Writing $\Delta_k=k_{a_1}^2-k_{a_0}^2$, the remaining selection term is nonnegative under both instances if $\Delta_k\ge0$ and nonpositive if $\Delta_k\le0$.
+The supplementary corollary gives one-sided penalties of order $\delta\log(1/\delta)$ and $\delta$, respectively, and a concrete failure of independent-mixture risk transport.
+This specialization retains the general enclosure above for other decision geometries.
+
+To compare with every fixed catalogue program at the full budget, fix an explicit prior $\pi\in(0,1)$ and let $B_j$ bound the executed gate's actual risk, including probe cost.
+The sufficient separation condition is
+\begin{equation}
+(1-\pi)B_0+\pi B_1<\min_{a\in\mathcal A_{\rm fix}}\{(1-\pi)J_0(a)+\pi J_1(a)\}.
+\label{eq:fixed-catalogue-separation}
+\end{equation}
+Linearity extends the comparison to regime-independent randomized fixed programs.
+The supplement decomposes this classical decision comparison into adaptation opportunity, remaining-horizon cost, and decision-event risk for the implemented learners.
 
 \subsection{Finite-budget phase theorem}
 Let budgets grow on a public ray $(B_{\rm msg}(s),B_{\rm env}(s))=(\lfloor s\beta_m\rfloor,\lfloor s\beta_e\rfloor)$.
@@ -659,15 +672,12 @@ EXP-016B uses separate budgets, $(\ell,u)=(0,D)$, and pays every scheduled block
 Theorem~\ref{thm:same-stream} covers its consecutive Gaussian probe/learning blocks and averaged first-in, first-out learner through their exact linear weights.
 
 Studies pair common random numbers, charge all messages and clock units, retain prespecified cells, and use same-seed reproductions or disjoint confirmation seeds.
-The Markov temporal-difference task has seven states on a ring, a bounded sinusoidal reward, four stationary-distribution-orthonormal features, and an exact projected fixed point.
-Cross-agent dependence is induced by shared and private Markov sources while preserving every agent's marginal transition law.
-The policy-learning studies use MAPPO with parameter-shared actors and a centralized critic~\cite{yu2022mappo}.
-They cover PettingZoo's multi-agent particle environment \texttt{simple\_spread\_v2}~\cite{terry2021pettingzoo} and the multi-agent MuJoCo (MaMuJoCo) \texttt{HalfCheetah-v2/2x3} benchmark~\cite{peng2021facmac}.
+The tasks comprise seven-state Markov policy evaluation and MAPPO~\cite{yu2022mappo} on PettingZoo particles~\cite{terry2021pettingzoo} and multi-agent MuJoCo (MaMuJoCo) locomotion~\cite{peng2021facmac}; full specifications are supplementary.
 
 Parameter risk is $\|w-w^\star\|^2$ normalized by its value before learning.
 Return-estimation risk is $|V_w(s_0)-V_{w^\star}(s_0)|^2$ under the specified initial state and is normalized in the same way.
 Convergence AUC uses charged resource fraction, including probe costs.
-Bootstrap comparisons resample paired seeds and report percentile intervals for the ratio of geometric-mean risks.
+The supplement specifies paired-bootstrap estimands.
 
 \subsection{Correlation-limited participation}
 The participation study varies $q\in\{1,2,4,8,16,32\}$, six cross-agent correlation levels, three delays, three message-equivalent budgets, and thirteen step sizes over 32 paired seeds.
@@ -684,17 +694,11 @@ All selected actions satisfy $0<c_{\rm aff}<1$ and the declared budget.
 The finite-time bound beats the no-update risk in all twelve scenarios (12/12).
 Every one-sided 99 percent bootstrap upper mean lies below its corresponding bound, with a maximum empirical-upper-bound to theorem-bound ratio of $0.305$.
 The median theorem-bound to empirical-mean ratio is $20.77$ and the maximum is $228.98$.
-The resulting actions below show how the certificate responds to correlation, delay, and persistence despite this slack.
+The selected actions show how the certificate responds to correlation, delay, and persistence despite this slack.
 
-Fig.~\ref{fig:joint-actions} shows mean participation $12.67$ for independent sources and $q=1$ in every high-sharing scenario.
+Mean participation is $12.67$ for independent sources and $q=1$ in every high-sharing scenario.
 Delay reduces the selected independent-source participation to $q=4$, while raising temporal persistence from zero to $0.98$ increases the median paid spacing by a factor of $18.49$.
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/exp010b_joint_actions.pdf}
-\caption{Joint actions selected by the finite-time Lyapunov certificate.
-The left panel reports participation and the right panel reports Markov spacing; persistence values occupy categorical positions.}
-\label{fig:joint-actions}
-\end{figure}
+The supplementary material retains the complete action plot.
 
 \subsection{Learning-value adaptation}
 The dependence-adaptation study uses 96 finite-threshold scenario families, two model layers, eight policies, and 192 independent evaluation seeds.
@@ -714,14 +718,8 @@ They also resolve individual adverse comparisons: 101/446 Layer-A and 33/222 Lay
 Across the entire Layer-B separation region, the mean enclosure is $[-0.0049,0.0252]$, so the positive aggregate guarantee is specific to the original practical subset, not every intermediate budget or regime.
 Both policies are identical above the finite value thresholds and below identification.
 
-Fig.~\ref{fig:risk-reduction} gives reductions of $32.94$ percent with delay, $43.72$ percent when messages bind, and $30.13$ percent when transitions bind: probing is costly when it consumes the remaining learner's limiting resource.
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/exp016b_risk_reduction.pdf}
-\caption{Relative risk reductions of the learning-aware rule over information-only probing.
-All percentages use information-only risk as the denominator.}
-\label{fig:risk-reduction}
-\end{figure}
+Risk reductions are $32.94$ percent with delay, $43.72$ percent when messages bind, and $30.13$ percent when transitions bind: probing is costly when it consumes the remaining learner's limiting resource.
+The supplementary material retains the full reduction plot.
 
 \subsection{Direct validation of the actual-risk gate}
 A separate validation executes the gate based on Theorem~\ref{thm:same-stream}: 16 Gaussian families, two learners, two regimes, four budget scales, and 128 new paired seeds.
@@ -735,6 +733,8 @@ There are 23/256 adverse cell means; the low-instance allowance is $0.1$, not ze
 
 Corrected and no-carryover decisions and risks coincide on all 32,768 paired rows, leaving the correction's incremental empirical benefit unresolved.
 Fixed $(2,1)$ has lower pooled risk and environment cost but uses more messages: the gate does not dominate every control.
+An outcome-known model analysis of all 128 designs certifies Eq.~\eqref{eq:fixed-catalogue-separation} for 29 designs at the stated balanced prior $\pi=1/2$, all at scales 512 or 2048; no design receives a minimax certificate.
+The signed refinement changes none of the 113 admissions, so it is an analytical explanation rather than a new executed ablation.
 Known-model population enclosures are neither confidence limits for sample means nor unknown-kernel calibration guarantees.
 \begin{figure*}[t]
 \centering
@@ -773,9 +773,8 @@ Against the strongest single fixed action, $q=8$, normalized AUC improves by $2.
 The supplement retains both complete protocols, fixed-participation comparisons, paired statistics, and unsmoothed return curves; these are not comparisons with general multi-agent optimizers.
 
 \subsection{Ablations, complexity, and reproducibility}
-The confidence-interface study uses 64 disjoint confirmation seeds and 157,440 checkpoint rows.
-The moderate stress inflates $K_q$ and $\Omega_q$ by 10 percent and weakens the certified mixing log-rate by 0.05; the strong stress uses 25 percent and 0.10.
-Both shields retain the nominal action in all twelve cells, all 24 stress-by-cell one-sided 99 percent upper means remain below the robust certificate, and neither shield changes empirical terminal risk.
+On 64 disjoint seeds, both confidence shields retain the nominal action in all twelve cells; all 24 stress-by-cell one-sided 99 percent upper means remain below the robust certificate.
+The supplement gives both stress levels and complete checkpoint counts.
 
 The same study also isolates the finite-horizon objective.
 Against one-step myopic drift, terminal parameter risk falls by 12.20 percent; against a correlation-only participation rule, it falls by 64.22 percent.
@@ -783,10 +782,7 @@ The respective ratios and paired-bootstrap 95 percent intervals are $0.878$ $[0.
 
 Likelihood updates are scalar, and cached certificate search has the cost in Proposition~\ref{prop:computation}, with spectral calibration charged separately.
 
-Controlled statistics/curves reproduce byte for byte; robustness uses eight development and 64 disjoint confirmation seeds.
-Each policy-learning study has 80 finite, exactly budgeted runs spanning both regimes and all policies; all 160 runs reproduce aggregate curves byte for byte.
-
-These ablations quantify the terminal parameter-risk gain from the finite-horizon objective; the joint-action study isolates the response to correlation, spacing, and delay.
+The supplement retains the complete robustness and policy-learning reproducibility protocols.
 
 \section{Conclusion}
 Finite-budget Lyapunov control balances contraction, correlated noise, and the affordable learning horizon when selecting participation, spacing, and step size.
@@ -797,5 +793,5 @@ Direct fixed-model validation also exposes adverse low-regime comparisons and an
 \appendices
 \input{appendices}
 \bibliographystyle{IEEEtran}
-\bibliography{references,recent_work_20261019}
+\bibliography{references,recent_work_20261019,mechanism_references_20261020}
 \end{document}

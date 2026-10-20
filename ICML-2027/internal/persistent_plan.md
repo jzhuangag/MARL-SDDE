@@ -1,5 +1,43 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT V3 PROPOSITION COMPARISON AND INTEGRATION COMPLETE —2026-10-20
+
+Latest human request: distinguish classical versus substantively distinct parts
+of the three candidate propositions using full-text comparison, integrate reliable
+parts, preserve negatives/scope; no new experiment without plan/budget approval.
+Completed in revised manuscript internal/proposition_literature_20261020.
+Read REPORT.md,FULL_TEXT_COMPARISON.md,source_checks.json,final_qa.json first.
+
+P1/P2 combine in ONE model-specific signed ordered-Gaussian continuing-risk
+corollary; symmetry/association/truncated moments are explicitly classical tools.
+P3 is classical finite-action decision theory, instantiated through the paid
+learner/carryover certificate and all128 original full-budget fixed catalogues.
+No new foundational selection/decision theorem or exhaustive priority clearance.
+Four additional primary full texts read at exact technical passages; access-
+blocked Blackwell/Tallis leads remain unread, not passed. All13 prior main formal
+blocks/proofs, old supplement, originalBibs and originalTSP-V3 preserved.
+
+29/128 balanced-prior(pi=.5) separation certificates, all at512/2048;99 cases
+uncertified,0/128 minimax. Signed refinement and original gate both113admissions.
+All low-budget/adverse/identical-ablation/fixedq2-pooled counterevidence remains.
+ZERO new trajectories,seeds,bootstrap samples or scientific source/protocol edits.
+Neither completed workflow restarts; retired heartbeat remains deleted. Any new
+study still requires prospective protocol/budget and renewed human approval.
+
+Main13pages/supplement12pages; all25pages rendered/visually inspected, allfonts
+embedded, no undefined/overfull/invalid destinations.43fresh metadata records:
+41rawPASS plus2explicit primary-source resolutions, four additive Bib entries.
+PDFmainSHA5832e788a34db82076d7d4fafada31f80fad990091d4fb3c8519011b39464e4b;
+suppSHAf2f90f408f94ec6f60db3ad933f80405d36ed2cf81644ceb64d5d608f214c5d0.
+Ordinary paper/literature work454.90625measured child+meterCPU seconds plus120s
+conservative unmetered auxiliary charge=574.90625s; NOT native CPU measurement or
+scientific budget reallocation.140h terminal charge remains84.8294140625CPUh;
+V3 native+audit2721.78125s and earlier combined paper-integration3412.265625s
+snapshots remain immutable. No incremental empirical correction gain/unknown-
+model calibration or IEEE TSP readiness is asserted. Author release inputs remain.
+
+The analytical-only stage below is historical and superseded by this integration.
+
 ## CURRENT HUMAN-AUTHORIZED V3 THEORY/MECHANISM ANALYSIS —2026-10-20
 
 Human now explicitly requests substantive strengthening from EXISTING evidence:

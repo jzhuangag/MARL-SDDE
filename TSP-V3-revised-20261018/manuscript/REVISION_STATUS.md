@@ -1,5 +1,32 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — proposition-level full-text comparison integrated,2026-10-20
+
+Read internal/proposition_literature_20261020/REPORT.md and FULL_TEXT_COMPARISON.md.
+CandidateP1/P2 are integrated in one explicit ordered-Gaussian continuing-risk
+corollary with classical association/truncated-moment attribution and full proof;
+candidateP3 is attributed classical decision reasoning with a paid-learner
+instantiation, not a new value-of-information theorem. No three-foundational-
+theorem or exhaustive priority claim. Blocked Blackwell/Tallis full-text leads
+remain identified as unread, not fabricated full-text clearance.
+
+All128 original designs retained:29/128 balanced-prior population separation
+certificates,99 uncertified,0/128 minimax;113 admissions unchanged by the signed
+refinement. All original negative/identical-ablation evidence remains. ZERO new
+trajectory/seed/bootstrap, no scientific source/protocol change or new approval
+consumption. Any new experiment still needs a specified plan/budget and human
+approval. The retired heartbeat stays retired.
+
+Main13pages/supplement12pages,25pages rendered/visually checked; fonts embedded,
+no undefined/overfull/invalid destinations. Original13main formal blocks,
+appendices and both original Bib files unchanged.43fresh reference records:
+41rawPASS plus2explicit authoritative resolutions; four additive verified entries.
+FinalPDF hashes and the ordinary-paper resource record are in final_qa.json.
+Decision MODEL_SPECIFIC_MECHANISM_INTEGRATED_CLASSICAL_TOOLS_ATTRIBUTED, not
+TSP-ready, independent empirical correction confirmation or author release.
+
+The following analytical-only current entry is historical and superseded above.
+
 ## CURRENT — human-authorized substantive mechanism analysis,2026-10-20
 
 The human requests theory/mechanism analysis from existing evidence before any
