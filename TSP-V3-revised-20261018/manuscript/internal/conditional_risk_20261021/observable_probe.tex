@@ -1,0 +1,114 @@
+% Research derivation, before inspecting the conditional2h scientific outcomes.
+\section{Observable Calibration with an Unknown Target}
+The centered-noise pilot assumption can be replaced by an observable invariant statistic in a Gaussian location model.
+The projection and generalized least-squares identities below are classical linear-model tools; the issue is whether their statistic supplies the continuing learner's posterior state without revealing the unknown target.
+
+\subsection{Eliminating the target without an oracle}
+Let the paid probe be $Z=X\vartheta+W_j$, where the unknown target $\vartheta$ is fixed, the public matrix $X\in\mathbb R^{n\times p}$ has full column rank and $n>p$, and $W_j\sim\mathcal N(0,\Sigma_j)$ under a public finite collection of covariance models.
+Choose a deterministic full-row-rank $D\in\mathbb R^{(n-p)\times n}$ satisfying $DX=0$.
+Then $Y=DZ=DW_j$ is observable and its law is independent of $\vartheta$.
+Its covariance $K_j=D\Sigma_jD^\top$ is positive definite.
+If the continuing common state $C$ has cross-covariance $B_j=\operatorname{Cov}_j(C,W_j)$ and variance $T_j$, Gaussian conditioning gives
+\[
+\mathbb E_j[C\mid DZ]=B_jD^\top K_j^{-1}DZ,\quad
+\operatorname{Var}_j(C\mid DZ)=T_j-B_jD^\top K_j^{-1}DB_j^\top.
+\]
+The mean-invariant risk selector therefore has the previous conditional-loss and initialization-minimax guarantees when its input is $DZ$ and its model posterior uses $K_j$.
+No subtraction of the true target and no improper target prior are needed.
+The guarantee is scoped to selectors using this invariant statistic and the specified frozen continuing-program catalogue; it is not optimality over estimators using every part of the raw probe.
+
+\subsection{Projection and determinant identities}
+Define
+\[
+\Pi_j=\Sigma_j^{-1}-\Sigma_j^{-1}X
+(X^\top\Sigma_j^{-1}X)^{-1}X^\top\Sigma_j^{-1}.
+\]
+Then $\Pi_j=D^\top(D\Sigma_jD^\top)^{-1}D$ and
+\[
+\det(D\Sigma_jD^\top)=
+\det\Sigma_j\det(X^\top\Sigma_j^{-1}X)
+\frac{\det(DD^\top)}{\det(X^\top X)}.
+\]
+For the first identity, whiten $\Sigma_j$; both sides become the orthogonal projection onto the complement of the column space of $\Sigma_j^{-1/2}X$, conjugated by $\Sigma_j^{-1/2}$.
+For the determinant identity, take orthonormal bases for the columns of $X$ and the rows of $D$.
+In that orthogonal basis let $C$ be the covariance block on the contrast coordinates.
+The block inverse and determinant formulas give $\det C=\det\Sigma_j\det(U_X^\top\Sigma_j^{-1}U_X)$, where $U_X=X(X^\top X)^{-1/2}$.
+Restoring the contrast basis multiplies by $\det(DD^\top)$ and gives the stated formula.
+Thus $Z^\top\Pi_jZ$, $B_j\Pi_jZ$ and $B_j\Pi_jB_j^\top$ are exactly target invariant.
+
+For a scalar unknown level, $X=\boldsymbol1$ and $D$ can be the first-difference matrix.
+Its two Gram determinants both equal $n$, so the ratio cancels.
+Writing $S_j=\boldsymbol1^\top\Sigma_j^{-1}\boldsymbol1$, one obtains
+\[
+\log\det K_j=\log\det\Sigma_j+\log S_j.
+\]
+This reduces an $(n-1)$-dimensional determinant to the ordinary innovations determinant and a scalar generalized least-squares information.
+
+\subsection{Linear-time scalar Markov implementation}
+For the scalar common-state Markov model with known $\lambda$, noise variance $\theta_j$ and private observation variance $1/Q$, run the usual innovations filter twice with the same deterministic variance sequence: once on the raw probe and once on the all-one vector.
+Let their whitened innovations be $u_t$ and $v_t$, with innovation variance $F_t$, and let the two final filtered common-state means be $m_Z$ and $m_1$.
+Accumulate
+\[
+S=\sum_tv_t^2/F_t,\quad T=\sum_tu_tv_t/F_t,\quad U=\sum_tu_t^2/F_t.
+\]
+Then the invariant quadratic form is $U-T^2/S$, the invariant common-state mean is $m_Z-m_1T/S$, and its explained variance is $\theta_j-P_j-m_1^2/S$.
+The formulas follow by substituting the innovations factorization into $\Pi_j$ and using the filtered-state identity $\operatorname{Cov}(C,Z)\Sigma_j^{-1}Z=m_Z$.
+Centering the raw probe by its first entry before the calculations leaves $DZ$ unchanged and can reduce cancellation for large unknown target levels.
+For the first-difference coordinates, the exact log density is
+\[
+-\tfrac12\{(n-1)\log(2\pi)+\log\det\Sigma_j+\log S+U-T^2/S\}.
+\]
+The posterior-state and likelihood calculations require linear time and constant filter-state storage per covariance hypothesis.
+All probe observations still incur their message and environment costs, even though the level component is discarded by the selector.
+
+The exact Gaussian affinity for two invariant probe laws is
+\[
+\rho_D=\frac{\det K_0^{1/4}\det K_1^{1/4}}
+{\det[(K_0+K_1)/2]^{1/2}}.
+\]
+For $\Sigma_j=\theta_jR_\lambda+I/Q$, the covariance midpoint has the same form, so three variance/ones-filter recursions evaluate this affinity.
+A zero-threshold likelihood rule has each directional error probability at most $\rho_D$, by applying Markov's inequality to the square root likelihood ratio under each law.
+The old full-noise probe's affinity cannot be reused as if projecting out the target were free information.
+
+\subsection{A finite bound on the information cost of removing the target}
+Suppose $a_jI\preceq\Sigma_j\preceq b_jI$ uniformly in the probe length, with $a_j>0$, and let $b_{\rm mid}$ bound the covariance midpoint from above.
+Write $\rho$ for the full centered-noise affinity and $\rho_D$ for the contrast affinity.
+Then
+\begin{equation}
+1\le\frac{\rho_D}{\rho}
+\le C_p:=\frac{b_{\rm mid}^{p/2}}{(a_0a_1)^{p/4}}.
+\label{eq:invariant-affinity-cost}
+\end{equation}
+For the lower bound, complete the contrast coordinates to an invertible linear transformation and apply Cauchy--Schwarz along each discarded coordinate fiber; marginalizing those coordinates increases Gaussian affinity.
+For the upper bound, set $U=X(X^\top X)^{-1/2}$.
+The determinant identity gives
+\[
+\frac{\rho_D}{\rho}=
+\frac{\det(U^\top\Sigma_0^{-1}U)^{1/4}
+\det(U^\top\Sigma_1^{-1}U)^{1/4}}
+{\det(U^\top\Sigma_{\rm mid}^{-1}U)^{1/2}}.
+\]
+The eigenvalues of $U^\top\Sigma_j^{-1}U$ lie between $1/b_j$ and $1/a_j$; substitution proves Eq.~\eqref{eq:invariant-affinity-cost}.
+For a fixed nuisance dimension $p$, the bound is independent of the probe length.
+Therefore removing an unknown target preserves any existing exponential affinity rate: if $\rho(n)\le Ke^{-In}$, then $\rho_D(n)\le C_pKe^{-In}$.
+The sufficient length calculated from this exponential bound incurs an additive term of order $\log C_p/I$, subject also to $n>p$ and full column rank.
+This statement does not bound the difference between the two exact minimal confidence-probe lengths without further finite-length control.
+This is a determinant/spectral consequence of classical Gaussian error contrasts, not a new general invariance or data-processing principle.
+
+For the registered scalar Markov covariance $\Sigma_j=\theta_jR_\lambda+I/Q$, valid uniform choices are
+\[
+a_j=Q^{-1}+\theta_j\frac{1-\lambda}{1+\lambda},\quad
+b_j=Q^{-1}+\theta_j\frac{1+\lambda}{1-\lambda}.
+\]
+They follow by bounding the quadratic form of the stationary AR(1) covariance using its spectral density.
+The constant can grow with nuisance dimension or near-unit persistence; it does not justify cost-free calibration in those regimes.
+The information-rate bound also does not preserve the explained common-state variance, which must be recomputed from $B_j\Pi_jB_j^\top$.
+
+\subsection{Why more data are not automatically justified}
+At the same probe schedule, costs and continuation catalogue, observing the full centered noise $W$ is more informative than observing $DW$.
+Any invariant selector can be implemented from $W$ by computing $DW$.
+Consequently the best full-noise initialization-minimax risk is no larger than the best invariant risk.
+This follows from inclusion of policy classes and does not require a new empirical experiment or an unrestricted estimation claim.
+The ongoing registered conditional2h study executes the full-noise pilot setting; it does not execute this unknown-target invariant selector.
+Its results cannot be relabeled as an independent validation of the invariant method.
+If a new probe schedule is chosen, its different remaining horizons must be recomputed; no unproved monotonicity of the affine learner in its horizon is used.

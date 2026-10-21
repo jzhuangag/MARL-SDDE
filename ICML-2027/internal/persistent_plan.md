@@ -1,5 +1,77 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT OBSERVABLE1H DETERMINISTIC PREPARATION PASS —2026-10-21 13:49CST
+
+First and sole new preparation attempt11014/11014PASS,29.671875measured
+test process-treeCPU seconds. With60allocated auxiliary charge,89.671875s
+upfront,3510.328125s=.97509115CPUh remaining of the separate3600s.
+ZERO observable formal trajectories/replays/analyses.128 public designs retain
+29 certificate admissions,99 strongest-fixed-prefix fallbacks;116 feasible
+projected probes; no-carryover also29. Structural identity no-go does not apply,
+so complete unchanged pre-data freeze/push/cost-profile workflow next.
+All original(q,b) affordable fixed training prefixes independently checked
+against direct weights; dense contrast likelihood/state/affinity, hidden-target
+and sign roles, paid ledgers, duplicate owner, hard cap and seven analysis bytes
+checked. Earlier conditional2h is independently audited negative and never retries.
+
+New theory extension43 deterministic algebra/quadrature/rational checks PASS,
+10.03125CPU seconds, no scientific samples. Exact leading margin155047/1996800,
+relative.0771454871, is an asymptotic model witness, not finite-grid validation.
+All classical overlaps and the rejected first nominal decomposition preserved.
+Main/supplement/Bibs/PDFs still unchanged, no submission readiness claimed.
+
+## CURRENT CONDITIONAL2H AUDITED TERMINAL NEGATIVE —2026-10-21 13:45CST
+
+Science294912/294912,replayALL294912/294912,analyses2/2. Worker25564 and
+supervisor25268 exited; independent scientific+runtime audit23500 exit0.
+All256 payload hashes/mappings, all128 independently reenumerated normalizers,
+finite outputs/initialization/paid ledgers/hidden-sign roles, all7 analysis
+bytes and all4 visually inspected original all-policy plots verified.
+Genuine receipt: experiments/v3_conditional2h/results/formal_20261021/
+independent_audited_terminal.json. Report internal/v3_conditional2h_terminal_
+20261021/REPORT.txt (underICML-2027). No automatic integrity==TSP admission.
+
+Decision MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD. Registered normalized
+fixed-minus-robust mean-.9938550309,99.5% lower-1.0211023328; posterior-marginal
+minus robust mean-.00001115968,99.5% lower-.00014160371. Both co-primary
+conditions fail;87/128 adverse fixed-comparison design means. Complete negative
+and favorable2048-scale descriptive evidence retained; no selective new endpoint.
+Diagnosis: optimizing after a feasible paid pilot does not decide whether the
+pilot is worth buying; low-budget lost horizon dominates, and current-state
+selection provides no confirmed incremental value. Stop this avenue; no tuning,
+additional seeds, scientific retry or cap extension.
+
+Final charged5228.984375s=1.45249566CPUh,remaining1971.015625s=.54750434h of
+separate7200s. Includes64.5625measured tests+60allocated prepaux,4775.34375
+exact worker,84.125supervisor CPU snapshot,214.953125exact audit process CPU,
+30allocated audit/exit-tail auxiliary. Allocations are NOT claimed measured.
+
+The separately pre-outcome committed025afee observable-gate1h protocol remains
+untested/unfrozen/unlaunched, with3600s separate cap. It is a different
+observable-target/risk-backstop question with ALL fixed training prefixes,
+not a state-selector retry. Next complete deterministic source checks/tests,
+perform structural identity check, freeze/push before any new data, then
+sequentially launch only if genuinely nontrivial and cost-admitted. Do not ask
+routine approval; no new watcher/automation or unchanged old-workflow reruns.
+
+## CURRENT CONDITIONAL2H REPLAY COMPLETE / ANALYSIS1 —2026-10-21 13:32CST
+
+Science294912/294912,replay294912/294912,analyses1/2; independent final audit
+not started. Worker25564 and supervisor25268 still live. Exact live snapshot
+124.5625prep+4481.671875worker+42.140625supervisor=4648.375CPU seconds,
+1.2912153h used,2551.625s=.7087847h remaining of7200. No outcomes inspected.
+Native+independent audit still expected within last communicated13:30--14:00CST
+window; analysis I/O affects wall time, not an authorization to change the plan.
+
+Prospective observable1h protocol, all-prefix stronger comparison and structural
+no-go rule committed/pushed025afee BEFORE reading conditional2h outcomes.
+No observable tests/registration/data yet. Full source remains separate and
+untested; do not equate prospective protocol commit with formal readiness.
+New pre-outcome theory candidate leading_fixed_separation.tex distinguishes
+first-order covariance-regime resource value from second-order state value,
+including an exact rational sixteen-action witness and all fixed prefixes.
+Proofs/deterministic crosschecks and manuscript integration still pending.
+
 ## CURRENT CONDITIONAL2H SCIENCE COMPLETE —2026-10-21 12:56CST
 
 Science294912/294912,128/128 learner-seed parts; replay16128/294912,7/128

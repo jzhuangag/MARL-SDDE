@@ -1,0 +1,60 @@
+{
+  "adverse_design_mean_counts": {
+    "fixed_minus_robust": 0,
+    "marginal_minus_robust": 1
+  },
+  "all_designs": 2,
+  "decision": "MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD",
+  "inference": "Paired master-seed percentile bootstrap, approximate coverage; two co-primary one-sided99.5% bounds; secondary contrasts descriptive",
+  "manuscript_admission": false,
+  "oracle_only_gains_are_not_deployable_evidence": true,
+  "per_budget": {
+    "32": {
+      "fixed_minus_robust": 0.0,
+      "marginal_minus_robust": 0.0,
+      "robust_minus_known_error_oracle": 0.0
+    },
+    "128": {
+      "fixed_minus_robust": 0.0,
+      "marginal_minus_robust": -0.831572366405577,
+      "robust_minus_known_error_oracle": 0.831572366405577
+    }
+  },
+  "per_learner": {
+    "running_mean": {
+      "fixed_minus_robust": 0.0,
+      "marginal_minus_robust": -0.4157861832027885,
+      "robust_minus_known_error_oracle": 0.4157861832027885
+    }
+  },
+  "primary": {
+    "fixed_minus_robust": {
+      "mean": 0.0,
+      "one_sided_995_lower": 0.0,
+      "paired_seeds": 2,
+      "percentile_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "marginal_minus_robust": {
+      "mean": -0.4157861832027885,
+      "one_sided_995_lower": -0.4157861832027885,
+      "paired_seeds": 2,
+      "percentile_95": [
+        -0.4157861832027885,
+        -0.4157861832027885
+      ]
+    },
+    "robust_minus_known_error_oracle": {
+      "mean": 0.4157861832027885,
+      "one_sided_995_lower": 0.4157861832027885,
+      "paired_seeds": 2,
+      "percentile_95": [
+        0.4157861832027885,
+        0.4157861832027885
+      ]
+    }
+  },
+  "scope": "Known binary Gaussian location/noise model, observable mean-invariant calibration, radius-bounded unknown initialization and fixed linear learners. Prior-weighted guarantee, not unknown-prior/model or unrestricted-estimator dominance. The strongest fixed comparator and backstop include EVERY affordable training prefix for every original(q,b), plus stop, at the SAME frozen learner/step. Post-probe candidate programs remain maximal-affordable-horizon programs plus stop. Not all possible estimators or step schedules."
+}

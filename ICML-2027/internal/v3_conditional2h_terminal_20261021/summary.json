@@ -1,0 +1,75 @@
+{
+  "adverse_design_mean_counts": {
+    "fixed_minus_robust": 87,
+    "marginal_minus_robust": 1
+  },
+  "all_designs": 128,
+  "decision": "MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD",
+  "inference": "Paired master-seed percentile bootstrap, approximate coverage; two co-primary one-sided99.5% bounds; secondary contrasts descriptive",
+  "manuscript_admission": false,
+  "oracle_only_gains_are_not_deployable_evidence": true,
+  "per_budget": {
+    "32": {
+      "fixed_minus_robust": -3.728960776243949,
+      "marginal_minus_robust": -4.463870371359929e-05,
+      "robust_minus_known_error_oracle": 0.0010760459780970876
+    },
+    "128": {
+      "fixed_minus_robust": -0.2376787233888015,
+      "marginal_minus_robust": 0.0,
+      "robust_minus_known_error_oracle": -0.00020594165755893697
+    },
+    "512": {
+      "fixed_minus_robust": -0.0523513648185147,
+      "marginal_minus_robust": 0.0,
+      "robust_minus_known_error_oracle": 0.0
+    },
+    "2048": {
+      "fixed_minus_robust": 0.04357074096589428,
+      "marginal_minus_robust": 0.0,
+      "robust_minus_known_error_oracle": -1.5588911532371686e-05
+    }
+  },
+  "per_learner": {
+    "averaged_delayed_affine": {
+      "fixed_minus_robust": -0.3930503563688299,
+      "marginal_minus_robust": 1.837535565064168e-05,
+      "robust_minus_known_error_oracle": 0.00035224724426294606
+    },
+    "running_mean": {
+      "fixed_minus_robust": -1.5946597053738554,
+      "marginal_minus_robust": -4.0694707507441326e-05,
+      "robust_minus_known_error_oracle": 7.501046023994333e-05
+    }
+  },
+  "primary": {
+    "fixed_minus_robust": {
+      "mean": -0.9938550308713427,
+      "one_sided_995_lower": -1.021102332835844,
+      "paired_seeds": 64,
+      "percentile_95": [
+        -1.0153404057586093,
+        -0.9730587111136147
+      ]
+    },
+    "marginal_minus_robust": {
+      "mean": -1.1159675928399822e-05,
+      "one_sided_995_lower": -0.00014160371115994343,
+      "paired_seeds": 64,
+      "percentile_95": [
+        -0.00010553742116220218,
+        5.6723624959033626e-05
+      ]
+    },
+    "robust_minus_known_error_oracle": {
+      "mean": 0.0002136288522514447,
+      "one_sided_995_lower": -0.0010968063827917285,
+      "paired_seeds": 64,
+      "percentile_95": [
+        -0.0007865377208822268,
+        0.0011572558332553677
+      ]
+    }
+  },
+  "scope": "Known binary Gaussian noise and observable calibration pilot, fixed linear learners, fixed public regime prior; no general MARL, unknown-model calibration or automatic TSP admission."
+}
