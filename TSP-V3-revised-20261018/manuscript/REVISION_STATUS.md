@@ -1,5 +1,17 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — autonomous conditional-risk validation authorized,2026-10-21
+
+Human waived routine research/experiment approval and instructed autonomous work
+toward TSP submission maturity, with escalation for genuinely major decisions.
+The concrete separate2CPUh proposal is now being executed through new isolated
+experiments/v3_conditional2h; the older proposal's pending-approval text is
+historical provenance. Latest deterministic suite2880/2880PASS; both attempts
+preserved, with64.5625measured process-treeCPU seconds+60s conservative auxiliary
+charge. No science yet; source/runtime/seeds registration must be pushed first.
+No manuscript/PDF/source evidence has been recast as a positive new result.
+Current theoretical and information-scope boundaries remain in force.
+
 ## CURRENT — TSP maturity research in progress,2026-10-21
 
 Read internal/conditional_risk_20261021/REPORT.txt and theory.tex.

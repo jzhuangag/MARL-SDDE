@@ -1,5 +1,29 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT AUTONOMOUS V3 VALIDATION AUTHORITY —2026-10-21
+
+Human explicitly waived routine prior experiment approvals and instructed
+autonomous research through TSP submission maturity, escalating only genuinely
+major decisions. The preceding concrete independent2CPUh conditional-risk plan
+is now authorized and being implemented in experiments/v3_conditional2h.
+Routine approval requests are superseded; old proposed_validation.json remains
+immutable pre-reply provenance, not a live blocker. No automatic cap increase,
+outcome tuning or scientific retry is introduced by this execution.
+
+Latest new non-scientific suite2880/2880PASS, two preserved PASS attempts;
+the second adds explicit feasible-probe AND fallback coverage to the fixture.
+Total64.5625measured process-treeCPU seconds; all tiny fixture outputs preserved.
+60s auxiliary charge is allocated and explicitly NOT measured CPU.
+Pre-data charge124.5625s,remaining7075.4375s of separate7200s.
+Science0/294912,replay0/294912,
+analysis0/2; registration source/runtime/seed lock and commit/push precede data.
+New public deployment APIs exclude true regime, target/error sign and future
+observations. Exact weights match direct FIFO and hidden-target translation;
+best balanced fixed comparison includes the complete catalogue and stop option.
+Both older native workflows remain audited terminal; no old heartbeat restarted.
+
+The analytical-only entry below is retained as the preceding stage.
+
 ## CURRENT V3 TSP MATURITY RESEARCH —2026-10-21
 
 Human requires autonomous research toward TSP submission maturity, with the

@@ -1,0 +1,55 @@
+{
+  "adverse_design_mean_counts": {
+    "fixed_minus_robust": 1,
+    "marginal_minus_robust": 0
+  },
+  "all_designs": 1,
+  "decision": "MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD",
+  "inference": "Paired master-seed percentile bootstrap, approximate coverage; two co-primary one-sided99.5% bounds; secondary contrasts descriptive",
+  "manuscript_admission": false,
+  "oracle_only_gains_are_not_deployable_evidence": true,
+  "per_budget": {
+    "32": {
+      "fixed_minus_robust": -3.5784704348043395,
+      "marginal_minus_robust": 0.0,
+      "robust_minus_known_error_oracle": 0.0
+    }
+  },
+  "per_learner": {
+    "running_mean": {
+      "fixed_minus_robust": -3.5784704348043395,
+      "marginal_minus_robust": 0.0,
+      "robust_minus_known_error_oracle": 0.0
+    }
+  },
+  "primary": {
+    "fixed_minus_robust": {
+      "mean": -3.5784704348043395,
+      "one_sided_995_lower": -3.5784704348043395,
+      "paired_seeds": 2,
+      "percentile_95": [
+        -3.5784704348043395,
+        -3.5784704348043395
+      ]
+    },
+    "marginal_minus_robust": {
+      "mean": 0.0,
+      "one_sided_995_lower": 0.0,
+      "paired_seeds": 2,
+      "percentile_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "robust_minus_known_error_oracle": {
+      "mean": 0.0,
+      "one_sided_995_lower": 0.0,
+      "paired_seeds": 2,
+      "percentile_95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "scope": "Known binary Gaussian noise and observable calibration pilot, fixed linear learners, fixed public regime prior; no general MARL, unknown-model calibration or automatic TSP admission."
+}
