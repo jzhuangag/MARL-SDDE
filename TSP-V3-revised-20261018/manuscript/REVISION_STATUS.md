@@ -1,5 +1,23 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — TSP maturity research in progress,2026-10-21
+
+Read internal/conditional_risk_20261021/REPORT.txt and theory.tex.
+New exact reflection-loss and initialization-error minimax derivations expose
+when conditional state selection helps and when its required information is
+unavailable. In the paid two-slot witness the known-error7.12%gain becomes0.438%
+under hidden error sign; useful thresholds change from v<4 to v<3.
+Classical conditional Bayes decisions/general robust JDE are attributed, including
+the bounded2026 preprint comparison. No generic priority or TSP admission claim.
+46deterministic checks,7boundary cases and3exhaustive729-selector cases PASS;
+no new trajectories/seeds/random draws. Article TeX/Bibs/PDFs unchanged.
+The isolated research prototype has NOT been validated by the old science data.
+A complete separate2CPUh prospective protocol is proposed, not approved/launched;
+human approval remains required for new experiments. Existing negative evidence
+and both audited native terminal decisions remain immutable.
+
+The completed integration entry below is retained as the preceding stage.
+
 ## CURRENT — proposition-level full-text comparison integrated,2026-10-20
 
 Read internal/proposition_literature_20261020/REPORT.md and FULL_TEXT_COMPARISON.md.

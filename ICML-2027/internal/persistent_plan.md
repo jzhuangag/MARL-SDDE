@@ -1,5 +1,28 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT V3 TSP MATURITY RESEARCH —2026-10-21
+
+Human requires autonomous research toward TSP submission maturity, with the
+existing constraint that new experiments need a concrete plan/budget approval.
+New proof/prototype/prospective protocol: revised manuscript
+internal/conditional_risk_20261021/REPORT.txt,theory.tex,proposed_validation.json.
+Exact conditional-loss and initialization-error minimax envelopes, a two-program
+reflection-loss identity, and a paid two-slot useful/useless boundary derived.
+Known-error example risk0.9287857118 becomes0.9956221561 when error sign is hidden;
+observable centered calibration noise is required, not silently available from
+unknown-target observations. Conditional argmin/general robust JDE are classical,
+including the checked2026 Reinhard/Fauss/Zoubir preprint; no generic novelty claim.
+46deterministic checks+7boundary cases+3exhaustive729-selector fixtures PASS;
+ZERO new science samples/random draws. Main/supplement/Bibs/PDFs and locked
+scientific sources unchanged. This analytical package is NOT submission readiness.
+Separate2CPUh proposal is concrete but NOT APPROVED/NOT LAUNCHED:294912full
+trajectories+ALLreplay,9policies,2learners,16families,4budgets,2regimes,2hidden
+error signs,64candidate fresh seeds; full preparation/profile/partial/failed/
+analysis/audit accounting, no shrinking/tuning/retry. Read proposal before action.
+Both native workflows remain audited terminal; retired heartbeat remains retired.
+
+The completed comparison below is retained as the preceding stage.
+
 ## CURRENT V3 PROPOSITION COMPARISON AND INTEGRATION COMPLETE —2026-10-20
 
 Latest human request: distinguish classical versus substantively distinct parts
