@@ -1,5 +1,99 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — substantive submission-review draft complete,2026-10-21 16:08CST
+
+Main13pages/supplement28pages,all41visually reviewed,fonts embedded,199links
+valid,zero overfull/undefined/reference-destination warnings.50freshly checked
+references with explicit authoritative metadata resolutions and separate IEEE
+style gate.13old direct formal blocks,original appendix and3oldBibs byte-exact.
+Final mainSHA c880f68f54ab772adfb8b579a592886fb666265fe024a91f2f68a4784c3ed3be;
+supplementSHA 3edd4566d7ff1bee288afab4f1943e02f88129cdc77c01f536a4849ab32f3c43.
+
+The paper now develops a model-specific useful/useless boundary for paid
+identification: invariant initialization risk, a second-order state-value ceiling,
+signed continuing-risk accounting, first-order separation against ALL affordable
+fixed prefixes and explicit conservative sufficient budget constants. Classical
+conditional decisions/error contrasts/minimax/mixture tools are attributed.
+Both new prospective validations remain negative at their registered practical
+thresholds,with all294912science/replay and2analyses EACH audited. Observable
+mean.00444303/lower-.00317725does not establish practical fixed superiority.
+Outcome-known population analysis.00875334is also below.01;zero new samples,
+57.6875measuredchildCPU. More seeds/tuning/retry are not used to change judgment.
+
+Decision SUBMISSION_REVIEW_DRAFT_COMPLETE_SCOPED_AUTHOR_RELEASE_PENDING.
+This is a technically complete TSP submission-oriented author-review package
+within its stated model-specific scope, not a referee acceptance/priority
+certificate or general MARL superiority claim. Authentic ORCIDs,disclosures and
+all-author release remain human facts;no submission. Full scientific/readiness
+judgment,resources and limitations:internal/submission_strengthening_20261021/
+RELEASE_REVIEW.txt. Final source and PDF gates are in that same directory.
+
+## CURRENT — observable validation audited; substantive paper in final checks,2026-10-21 14:52CST
+
+The observable1h study is COMPLETE and independently audited:294912science,
+ALL294912replay,analyses2/2,all7bytes/everyhash/runtime/paidroles verified;
+all4originalall9-policyplots visually reviewed. Extra execution audit confirms
+all25344fallback rows exactly match strongest fixed errors/costs and all32768
+corrected/no-carryover pairs are identical. Decision remains negative at the
+registered practical-positive threshold:fixed-minus-gate mean.00444303,
+one-sided99.5%lower-.00317725,below required.01 mean. UncertifiedLR-minus-gate
+mean.170210,lower.148124 is positive only for the paid-admission/backstop contrast.
+All9policycosts,9adversefixeddesigns/20adverseLRdesigns,29admissions/99fallbacks
+and raw pooled risks(not favoring gate over strongest fixed) enter the revision.
+Total separate1hcharge2506.828125CPU seconds;remaining1093.171875;no transfer,
+tuning, extra seeds or retry. Genuine report/receipt in
+ICML-2027/internal/v3_observable_gate1h_terminal_20261021.
+
+Main/supplement substantively integrate the reliable analytical distinctions
+and complete negative evidence. Explicit conservative finite-prefix constants
+now make the asymptotic sufficient threshold computable, without claiming a
+small practical threshold.72deterministic population models/181499prefix checks
+and256rounding/remainder checks PASS;these are not empirical evidence.
+Initial source gate confirms13oldformalblocks(including assumption),original
+appendix/all3oldBibs preserved,49currentreferences/5keywords/validabstractlength.
+Final compile/page/source/link/font and all-page visual checks are underway.
+No completed-PDF or TSP-maturity declaration is made before those gates.
+
+## CURRENT — substantive theory integrated; observable validation running,2026-10-21 14:33CST
+
+Human has authorized autonomous routine research; older pending-approval wording
+below is historical, not a current obstacle. No new watcher/automation is used.
+Conditional2h is COMPLETE and independently audited NEGATIVE:294912 trajectories,
+ALL294912 replays,analyses2/2,all seven analysis bytes and all four plots checked.
+Fixed-minus-conditional normalized primary mean-.993855; incremental state-value
+primary also not confirmed. Full all-policy evidence, costs and mechanism
+diagnosis are preserved; this avenue is not tuned, extended or retried.
+
+The distinct observable1h protocol and stronger ALL-fixed-prefix baseline were
+committed025afee before those2h outcomes were inspected; tested implementation
+238356f and exact registrationf19718e were pushed before new formal data.
+The sole sequential worker25752 and supervisor21644 are live. All294912 science
+trajectories are complete, full replay underway, analyses0/2. No new outcomes
+are read before full completion, both exits and supervisor post-exit read-back.
+Separate3600CPU-second ceiling includes preparation and independent audit.
+
+Canonical main/supplement now substantively add an initialization-minimax risk
+envelope, finite state-value ceiling, exact signed paid-value decomposition,
+unknown-target observable-state interface, all-fixed-prefix first-order
+separation condition and scoped no-first-order-gain boundary. Matrix covariance
+reduction and tie-randomization counterexample are supplementary analytical
+extensions. Classical conditional decisions, GLS/error contrasts and minimax
+interchange are explicitly attributed; no generic priority claim is made.
+The rational asymptotic witness is NOT finite-grid empirical validation.
+All13 original direct formal blocks(including assumption) and old appendix/Bibs
+are retained; original long proofs move to supplement. Eight pre-edit sources/
+PDFs are byte-preserved in internal/submission_strengthening_20261021/before.
+
+Fresh49-reference check has47 rawPASS plus two separately resolved authoritative
+metadata issues, with unavailable resolvers and raw reports preserved. The six
+new references pass existence/metadata; IEEE style separately reports no definite
+errors. See internal/conditional_risk_20261021/FULL_TEXT_EXTENSION_COMPARISON.txt
+and citation_resolution_49.json for versions, passages and access limits.
+No final PDF has yet been compiled/rendered for this substantive integration.
+Scientific terminal audit, source/citation closure, page/layout/reference and
+all-page visual gates remain pending. No submission-maturity certification or
+author release is claimed. Missing authentic release inputs will not be invented.
+
 ## CURRENT — autonomous conditional-risk validation authorized,2026-10-21
 
 Human waived routine research/experiment approval and instructed autonomous work

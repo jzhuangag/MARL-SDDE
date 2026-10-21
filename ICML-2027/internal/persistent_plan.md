@@ -1,5 +1,150 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT SUBSTANTIVE TSP V3 DRAFT COMPLETE —2026-10-21 16:08CST
+
+Human routine-autonomy authorization is in force; older routine-approval prompts
+are historical. No new watcher/automation was created. All native science and
+independent audits are terminal. Main13pages/supplement28pages, all41 final
+pages visually reviewed; embedded fonts,199 valid links, no overfull/undefined
+references.50freshly checked references with separately documented resolutions
+and IEEE-style audit.13oldformalblocks/oldappendix/3oldBibs byte-preserved.
+FinalPDFSHA main c880f68f54ab772adfb8b579a592886fb666265fe024a91f2f68a4784c3ed3be;
+supplement 3edd4566d7ff1bee288afab4f1943e02f88129cdc77c01f536a4849ab32f3c43.
+
+Defended scope: model-specific paid identification/continuing-risk theory,
+second-order current-state value versus first-order regime separation from
+all affordable fixed prefixes, with explicit conservative budget constants.
+Classical conditional decisions/GLS/minimax/chi-square mixtures are attributed.
+Not general estimator/sequential/MARL optimality or unknown-model calibration.
+Both new studies retain negative registered decisions,294912science/replay
+each and2/2analyses each. Observable fixed-minus-gate mean.00444303,lower-.00317725;
+outcome-known deterministic population diagnostic.00875334 also below.01target.
+All adverse cells/costs/identical ablations remain; no retry/tuning/moreseeds.
+
+Separate2h charge5228.984375s,remaining1971.015625s;1h2506.828125s,remaining
+1093.171875s.140h84.8294140625used/55.1705859375remaining. No budget transfers.
+Outcome-known population computation57.6875measuredchildCPU/300s ordinary bound;
+final metered manuscript phase686.78125s charged including120allocated auxiliary,
+not native CPU. Release-report/Git/UI administration is unmetered ordinary work.
+See manuscript/internal/submission_strengthening_20261021/RELEASE_REVIEW.txt,
+final_source_gate_after_visual.json and final_qa.json for complete judgment.
+Decision SUBMISSION_REVIEW_DRAFT_COMPLETE_SCOPED_AUTHOR_RELEASE_PENDING:
+technical package complete for model-specific TSP submission-oriented author
+review, not acceptance assurance or demonstrated practical fixed superiority.
+Authentic ORCIDs/disclosures/all-author release remain human facts; no submission.
+
+## CURRENT OBSERVABLE1H INDEPENDENT AUDITED TERMINAL —2026-10-21 14:52CST
+
+Science294912/294912,ALLreplay294912/294912,analyses2/2;all7 analysis bytes,
+every256payload hash/mapping,all128 independently scalar-reenumerated strongest
+fixed-prefix normalizers, dense projected affinities, roles/ledgers/runtime and
+all4 visually inspected original all9-policy plots PASS. Native worker25752
+and supervisor21644 exit0; independent scientific/runtime audit17284 exit0;
+extra actual-prefix/error/cost equality audit1696 exit0. All25344 fallback rows
+exactly equal paired strongest-fixed errors/costs, all32768 corrected/no-carryover
+rows identical. Genuine receipt and compact REPORT.txt at
+ICML-2027/internal/v3_observable_gate1h_terminal_20261021, reportSHA
+7402087897431ad2f7461dfe3b0d3509fcd15e09bae43e5455edf9cd5bdc91ae.
+
+Decision MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD. Normalized fixed-minus-
+gate mean.004443031615,one-sided99.5%lower-.003177254902;misses both confidence
+and practical.01 conditions. Uncertified observable LR minus gate mean.1702095030,
+lower.1481243561 is positive for the economic backstop, NOT fixed superiority.
+9/128 adverse fixed designmeans,20/128 adverse LR designmeans.29 admissions,
+99fixed fallbacks,116feasible probes. Raw pooled risks.0506443gate versus.0506405
+fixed do NOT favor gate;different design-normalized weighting retained. No tuning,
+new seeds, retry, subset substitution or cap transfer follows this decision.
+
+Total separate1h charge2506.828125s=.6963411458CPUh;remaining1093.171875s
+=.3036588542h. Includes29.671875measuredprep+60allocatedprepaux, exact worker
+1991.953125,exactfinalsupervisor73.78125,exactindependentaudit235.71875,
+exactextraexecutionaudit70.703125,+45allocatedterminalaux. Allocations are NOT
+claimed measured CPU. All original/partial/cost evidence preserved.
+
+Continue substantive manuscript integration and full PDF/source/citation/visual
+gates. Added explicit conservative all-prefix remainder constants and sufficient
+budget threshold, derived before observable outcomes were read but after2h
+negative was known: do not call it pre-data.72deterministic population models,
+181499checkedprefixes,256paid-rounding/remainder checks PASS,2.828125childCPU;
+zero random draws/seeds/trajectories. These support, not replace, proof.
+Ordinary manuscript operations separately metered, never a native budget retry.
+No TSP-maturity/author-release claim pending final gates and adversarial review.
+
+## CURRENT OBSERVABLE1H NATIVE EXIT / INDEPENDENT AUDIT —2026-10-21 14:44CST
+
+Science294912/294912,ALLreplay294912/294912,analyses2/2. All7 analysis
+outputs byte-identical; supervisor post-exit hash/runtime/source read-back
+complete. Worker25752 and supervisor21644 confirmed absent; both exit0.
+Exact workerCPU1991.953125s; retained Windows supervisor handle confirms exact
+finalCPU73.78125s (not terminal snapshot72.84375). With89.671875prepcharge,
+native+prep exact charged2155.40625s=.59872396h,remaining1444.59375s=.40127604h
+of separate3600 before independent audit. No outcomes interpreted yet.
+Independent frozen scientific audit+terminal runtime read-back now launched
+once, separately preserving stdout/stderr and exact audit-process CPU. Then
+execute extra fixed-prefix/error/cost equality check and visually inspect all4
+all9-policy plots. Last communicated14:40--15:00CST forecast remains applicable.
+No scientific retry, threshold change or source edit is authorized by integrity.
+
+## CURRENT OBSERVABLE1H ALL REPLAY COMPLETE —2026-10-21 14:34CST
+
+Science294912/294912 and ALL replay294912/294912,128/128parts each.
+Replay boundary14:34:21CST charged1594.15625s=.44282118CPUh;remaining
+2005.84375s=.55717882h of3600s. Analyses0/2;native owners still live;
+independent audit not started and outcomes remain unread. Last communicated
+native+audit forecast14:40--15:00CST unchanged, not guarantee. Next require two
+analysis executions, all7bytes equality, supervisor post-exit read-back and
+both native exits before independent scientific/resource/visual audit. No retry.
+
+## CURRENT OBSERVABLE1H SCIENCE COMPLETE —2026-10-21 14:25CST
+
+Science294912/294912,128/128parts completed14:22:19CST. At14:25:01
+replay80640/294912,35/128parts;analyses0/2;independent audit not started.
+Boundary charge1045.1875s=.29032986CPUh;remaining2554.8125s=.70967014h
+of separate3600s. This is a progress-boundary charge, not exact final CPU.
+No outcomes inspected. Both native owners remain live. Last communicated
+14:40--15:00CST native+independent-audit forecast unchanged, not guaranteed.
+Full replay then two analyses and supervisor post-exit read-back must finish;
+both owners must exit before independent audit and scientific interpretation.
+No source/protocol/budget change, retry or new watcher. Main argument now
+distinguishes first-order regime value, second-order state value and the paid
+fixed-prefix backstop; negative predecessor evidence retained in main/supplement.
+
+## CURRENT OBSERVABLE1H NATIVE COST-ADMITTED —2026-10-21 14:12CST
+
+Implementation/tests pushed238356f; registration committed/pushedf19718e BEFORE
+data. LockSHA1317e973fdc4598c40182898f372eb5b2a83e1c604decc0180a7616045d13fd1,
+admissionSHA5c1ebc1290629d943ee5d326e6061a5427238c1fc13f348aa3334595fa74ac59.
+428 historical source/seed metadata files screened,444 physical hashes plus
+428 historical Git hashes, no overlap. Source/runtime/Git read-back passed.
+Supervisor21644 launchedhidden14:04:17CST; sole worker25752 starts only after
+registration read-back and genuine predecessor audit. New formal root created
+by admitted supervisor exactly once. No duplicate, retry, tuning or source edit.
+
+First retained science/replay part5.71875+4.15625CPU seconds,2304rows each.
+Profile charge162.421875s; fixed1.5x127remainingpairs+900analysis/auditreserve
+projects2943.609375s=.81766927CPUh, admitted under3600s. At14:11:33boundary
+science39168/294912(17/128parts),replay2304/294912(1/128),analyses0/2.
+No outcomes inspected.14:12:24liveCPU89.671875prep+32.25sup+178.046875worker
+=299.96875s=.08332465h,remaining3300.03125s=.91667535h.
+Last communicated cost-only forecast14:12CST: native+independent audit around
+14:40--15:00CST, measured part throughput plus analysis/audit planning allowance,
+not guarantee. Compare future material ETA changes against THIS forecast.
+Hold all new frozen source bytes unchanged. Await workflow_complete AND both
+native exits AND supervisor post-exit read-back before outcome audit; inspect
+all4all-policy plots, all hashes and all7 analysis bytes, then independent
+scientific/resource decision. Outer launch session26726 retains final supervisor
+process handle for exact final CPU. No watcher/automation created.
+
+Paper integration now underway, separate from immutable science. All13 prior
+formal blocks(including assumption) and original appendices/Bibs preserved;
+long original proofs moved into supplement. New scalar value/ceiling and
+fixed-prefix separation results plus full proofs added; old negative conditional
+study retained. Fresh49reference check:47rawPASS+2fresh explicit authoritative
+resolutions, original reports unchanged; separate IEEE style has no definite
+errors. Final compile/render/source/visual gates still pending; no readiness
+declaration. PDF edit marker executed exactly once(expected2PDF) before edits;
+eight byte-verified pre-edit source/PDF backups in submission_strengthening_20261021/before.
+
 ## CURRENT OBSERVABLE1H DETERMINISTIC PREPARATION PASS —2026-10-21 13:49CST
 
 First and sole new preparation attempt11014/11014PASS,29.671875measured

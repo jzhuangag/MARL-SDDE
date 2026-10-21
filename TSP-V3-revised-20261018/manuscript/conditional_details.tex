@@ -1,0 +1,160 @@
+\section{Proof of the Conditional Initialization Value}
+Fix the target-invariant probe $Y$ and the deterministic continuing-program catalogue in main Theorem~\ref{thm:conditional-value}.
+Under regime $j$, Gaussian conditioning gives
+\begin{align*}
+\E_{j,e}[Z_a^2\mid Y=y]&=J_{j,a}^{r}+d_a^2(e^2-r^2)\\
+&\quad+2ed_ak_am_j(y)\\
+&\quad+k_a^2[m_j(y)^2-s_j^2].
+\end{align*}
+The observation law and regime posterior do not depend on the unknown fixed $e$.
+For any randomized selector, average its risks at $e=r$ and $e=-r$.
+The odd cross terms cancel, so the maximum risk is at least $\E_g\min_aL_a(Y)$.
+The finitely many scores $L_a$ are even and measurable, and a fixed first minimizer $u$ is even.
+Its cross term integrates to zero under each centered Gaussian regime.
+Its risk is a nondecreasing affine function of $e^2$ with nonnegative coefficient, and hence its maximum is attained at the endpoints.
+It attains the lower bound, proving main Eq.~\eqref{eq:conditional-minimax-value}.
+This argument uses classical conditional-loss optimization and symmetry, with the continuing learner and initialization-information class stated explicitly.
+The corresponding joint inference principles appear in \maincite{moustakides2012joint}, \maincite{vasconcelos2020observation}, \maincite{reinhard2026minimax} and \maincite{reinhard2024asymptotic}.
+
+The remaining proofs separate state-selection value, invariant observability, the cost of paid inference and the fixed-program comparison.
+The error-contrast identity is classical \maincite{harville1974contrasts}; the vector reduction uses the minimax theorem of \maincite{sion1958minimax}.
+\input{conditional_state_proof}
+\input{conditional_value_accounting}
+\input{observable_calibration}
+\input{conditional_leading_proof}
+\input{conditional_population_risk}
+\input{conditional_matrix_proof}
+
+\section{Conditional-State Validation and the Paid-Probe Boundary}
+The conditional-state study fixes nine policies, two learners, sixteen families, four budget scales, two covariance regimes, both initial-error signs and 64 independent paired master seeds.
+Its 294,912 trajectories use a separate known-zero calibration pilot, rather than unknown-target contrasts.
+Public control rules see neither the realized regime, true target, initial-error sign nor future observations.
+The two evaluation-only oracles are labeled separately.
+The post-probe catalogue contains stop and every original participation--spacing program at its maximal affordable horizon; the full-budget fixed benchmark uses the corresponding full-budget catalogue and stop.
+The fixed-minus-conditional and posterior-marginal-minus-conditional contrasts are averaged equally over all 128 designs, both regimes and both signs within each master seed, normalized by each design's pre-data population best balanced fixed risk.
+The registered positive decision requires two positive one-sided 99.5 percent paired-bootstrap lower bounds and at least one percent mean fixed-policy improvement.
+The bootstrap uses 10,000 resamples and approximate percentile coverage.
+
+The registered decision is negative.
+The fixed-minus-conditional mean is $-0.993855$, with descriptive 95 percent interval $[-1.015340,-0.973059]$.
+The posterior-marginal-minus-conditional mean is $-1.12\times10^{-5}$, with interval $[-1.06\times10^{-4},5.67\times10^{-5}]$.
+There are 87 adverse fixed-comparison design means out of 128.
+Fixed-minus-conditional means at scales 32, 128, 512 and 2048 are respectively $-3.728961$, $-0.237679$, $-0.052351$ and $0.043571$.
+Thus selecting a continuing program after paying a feasible pilot does not replace the economic decision of whether to buy that pilot.
+The state-information correction gives no confirmed incremental gain over the posterior-marginal rule on this grid.
+
+\begin{table*}[t]
+\centering
+\caption{Complete conditional-state study: descriptive equal-cell means over all families, budgets, regimes and initialization signs.}
+\label{tab:conditional-all-policies}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Squared risk & Normalized risk & Messages & Clock units\\
+\midrule
+Robust conditional &0.098475&2.009532&18509.68&2468.19\\
+Known-error oracle (evaluation only)&0.098169&2.009318&18509.47&2466.34\\
+Posterior marginal&0.098476&2.009521&18509.70&2468.19\\
+Legacy risk gate&0.077053&1.270375&18510.16&2463.49\\
+Information only&0.098477&2.009903&18509.93&2467.45\\
+All actors&0.113417&2.962129&19040.00&680.00\\
+Fixed $(q,b)=(2,1)$&0.061440&1.326310&19037.50&1903.75\\
+Best balanced full-budget fixed&0.051784&1.015677&18187.84&2560.36\\
+Known-regime fixed (evaluation only)&0.051252&0.987827&18508.48&2509.63\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/conditional_budget_20261021.png}
+\caption{Conditional-state study, all nine policies: normalized risk against budget scale, separately for the two learners. Coincident curves are not graphically offset.}
+\label{fig:conditional-budget}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/conditional_messages_20261021.png}
+\caption{All conditional-state policies against actual paid messages; points correspond to distinct budget experiments.}
+\label{fig:conditional-messages}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/conditional_clock_20261021.png}
+\caption{All conditional-state policies against paid clock units; neither the message nor clock plot asserts equal-cost pointwise dominance.}
+\label{fig:conditional-clock}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/conditional_learner_budget_20261021.png}
+\caption{Conditional-state study using the larger empirical mean over the two fixed initial-error signs in each learner and budget.}
+\label{fig:conditional-sign}
+\end{figure*}
+\section{Observable Paid-Risk Gate Against All Fixed Prefixes}
+\subsection{Prospective model, information and baseline}
+The observable-probe study was specified before the conditional-state study's outcomes were inspected.
+It retains nine policies, two learners, all sixteen families and four budget scales, both true covariance regimes and both hidden initial-error signs.
+There are 64 fresh paired master seeds, $20591001,\ldots,20591064$, giving $294912$ policy trajectories and the same number of full semantic replays.
+The known binary models, balanced public prior, radius $r=1$, original participation--spacing sets, learner steps and paid FIFO convention are unchanged.
+The raw probe is target contaminated: it observes target plus noise for the running mean, and half the target plus noise for the affine learner at initial parameter zero.
+The deployment uses only first differences and the equivalent two-filter invariant likelihood, not the unknown target, initial-error sign, true regime or future observations.
+Both target signs use the same potential noise stream across policies; the parameter and target are translated together.
+
+The probe uses all $Q$ actors at unit spacing and the smallest length $n\in\{2,\ldots,4096\}$ whose projected Gaussian affinity is at most $0.025$.
+The two post-probe commitments minimize the appropriate model's exact risk over stop and every original participation--spacing pair at its maximal affordable remaining horizon.
+The signed prior-risk upper bound is compared with the best balanced full-budget fixed risk before collecting any probe observations.
+Unlike the preceding study, that fixed benchmark includes every affordable scheduled training prefix for every original pair, plus stop, at the same learner and step.
+An independent scalar recurrence checks its population normalizer; evaluation-only known-regime fixed programs receive the same complete prefix catalogue.
+No choice of learning-rate sequence or estimator outside the declared class is included.
+
+The certified gate probes only on a strict certificate improvement and otherwise executes that strongest fixed prefix without a probe.
+Other policies are an uncertified invariant likelihood commitment whenever probing is feasible, a no-carryover admission ablation, posterior-marginal selection over the full post-probe catalogue, all actors, fixed $(2,1)$, and two privileged evaluation references.
+The known-target centered-pilot reference and known-regime fixed reference are not deployable policies or universal risk lower bounds.
+All probe and scheduled training observations are paid, including withheld terminal updates.
+An infeasible probe uses the strongest fixed backstop.
+
+\subsection{Registered primary decision and every policy}
+The paired master-seed estimands normalize each design by its pre-data balanced population best-fixed risk and weight all 128 designs, both regimes and both signs equally.
+The two co-primary contrasts are fixed minus certified gate, and uncertified invariant likelihood probe minus certified gate.
+The registered positive decision requires both one-sided 99.5 percent bootstrap lower bounds above zero and fixed-minus-gate mean at least $0.01$.
+There are 10,000 fixed-seed bootstrap resamples; coverage is approximate percentile coverage, not a finite-sample confidence theorem.
+
+The registered practical-positive decision is not confirmed.
+Fixed-minus-gate mean is $0.00444303$, with one-sided lower bound $-0.00317725$ and descriptive 95 percent interval $[-0.00119855,0.00999250]$.
+Uncertified-probe-minus-gate mean is $0.170210$, with lower bound $0.148124$ and descriptive interval $[0.153487,0.187211]$.
+The former misses both its confidence and practical-size conditions; the latter supports the value of not buying an uneconomic probe.
+There are 9/128 adverse fixed-comparison design means and 20/128 adverse uncertified-probe comparison means.
+At scales 32, 128, 512 and 2048 the fixed-minus-gate means are respectively $0$, $0$, $0.00989743$ and $0.00787469$.
+The running-mean aggregate is $0.00876160$ and the affine aggregate $0.000124462$.
+These secondary descriptions do not replace the all-design primary decision.
+
+There are 116 feasible probes, 29 certificate admissions and 99 exact fixed-prefix fallbacks.
+All 25,344 nonadmitted policy rows have exactly the paired fixed policy's terminal error and paid costs.
+Corrected and no-carryover gates coincide on all 32,768 paired rows; there is again no evidence of incremental empirical decision value for the correction on this grid.
+The two endpoint signs check information roles; uniform initialization risk control comes from the analytical envelope, not empirical coverage of every initialization.
+
+\begin{table*}[t]
+\centering
+\caption{Observable paid-gate study: all nine policies, descriptive equal-cell means over 512 learner--family--budget--regime--sign cells per policy, with 64 seeds per cell.}
+\label{tab:observable-all-policies}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Squared risk & Normalized risk & Messages & Clock units\\
+\midrule
+Observable certified gate&0.050644&0.972057&18461.16&2516.16\\
+Known-target pilot (evaluation only)&0.067765&1.141980&18504.42&2470.74\\
+Observable uncertified likelihood&0.067856&1.142267&18506.78&2472.50\\
+No-carryover admission&0.050644&0.972057&18461.16&2516.16\\
+Observable posterior marginal&0.067856&1.142201&18505.12&2472.96\\
+All actors&0.113505&2.941037&19040.00&680.00\\
+Fixed $(q,b)=(2,1)$&0.060679&1.346523&19037.50&1903.75\\
+Best balanced full-budget fixed prefix&0.050640&0.976501&18187.84&2560.36\\
+Known-regime fixed (evaluation only)&0.050115&0.949517&18508.48&2509.63\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The nearly equal raw pooled risks do not favor the gate over strongest fixed: $0.0506443$ versus $0.0506405$.
+Raw pooled and design-normalized contrasts give different weights to heterogeneous designs, so neither is silently substituted for the registered estimand.
+The gate sends more messages but uses slightly fewer clock units than strongest fixed; no equal-realized-cost dominance follows.
+The full mechanism diagnosis is therefore bounded: observable risk admission avoids the losses of paying a feasible pilot indiscriminately, but the study does not demonstrate a practically necessary advantage over a well-chosen fixed prefix.
+No extra seeds, favorable-subset replacement or outcome-dependent threshold change is used to alter that decision.
+
