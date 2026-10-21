@@ -1,5 +1,64 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT CONDITIONAL2H SCIENCE COMPLETE —2026-10-21 12:56CST
+
+Science294912/294912,128/128 learner-seed parts; replay16128/294912,7/128
+at latest boundary; analyses0/2, independent audit not begun. Sole supervisor
+25268 and worker25564 remain live. Live prep+process CPU approximately2539.16s
+=.70532h,remaining4660.84s=1.29468h of the separate7200s. No outcomes inspected.
+Current cost/progress still supports last communicated13:30--14:00CST native+
+independent audit forecast, not guarantee. Preserve frozen current sources.
+
+Before inspecting any current outcomes, a separate unknown-target observable
+gate follow-up was prospectively specified in experiments/v3_observable_gate1h
+with3600s whole-workflow cap, different question/fresh seeds and full preservation.
+Implementation is being prepared, NOT tested/frozen/launched. It can start only
+after this study exits and receives a genuine independent scientific/resource/
+integrity/visual terminal receipt. Routine autonomy supersedes approval questions.
+If pre-data public design algebra proves its certified gate identically equals
+the strongest fixed baseline on the entire grid, record structural no-go and
+do not collect redundant seeds; do not alter the grid to force admissions.
+
+New proof candidates: observable target-invariant calibration, matrix covariance
+dual/tie caution, finite state-value ceiling, and a signed four-term value
+decomposition. The first decomposition draft omitted actual same-stream carry
+from a nominal posterior score; rejected before proof/manuscript/scientific use,
+preserved in value_decomposition_failure_01.json. Current manuscript/PDF unchanged.
+
+## CURRENT CONDITIONAL2H NATIVE LIVE —2026-10-21 12:16CST
+
+Implementation/tests pushed ba1514b; registration pushed f5f333d BEFORE data.
+Active lock SHA f15783d2866678d529093a8667c7871e9df31d08794919f276f3092c3d95608a;
+admission SHA b16e8cad7010e37c8d233ca29ccdf7315c05144ec386b6c7c3bf52a58f7fd78d.
+Historical419source/seed metadata files screened, no overlap. Latest2880PASS,
+both preparation attempts preserved;64.5625measured process-treeCPU+60charged
+auxiliary=124.5625s upfront. Source/runtime and Git read-back passed at launch.
+SOLE supervisor25268,worker25564,hidden launch,package experiments/v3_conditional2h;
+root results/formal_20261021 created by supervisor at12:14:25CST exactly once.
+No source/protocol edits, retry, resume or duplicate permitted while this study runs.
+
+First formal learner/seed part AND replay cost11.9375+6.0625CPU seconds,
+retained prefixes2304rows each. Cost-only profile admitted at218.625chargedCPU
+seconds;1.5xremaining127pairs+900s analysis/audit reserve projects4547.625s
+=1.263229CPUh total, within7200s. No scientific returns inspected for admission.
+Snapshot science6912/294912(3/128parts),replay2304/294912(1/128parts),analysis0/2,
+independent final audit not started. Live CPU snapshot124.5625prep+39.1875sup+
+95.578125worker=259.328125s=.07203559h,remaining1.92796441h. Progress JSON
+is a boundary snapshot, not a substitute for live process CPU.
+Last communicated cost-only forecast12:16CST: native+independent audit around
+13:30--14:00CST today; early part throughput and approx.0.95CPU/wall ratio,
+plus analysis/audit allowance, NOT guarantee. Re-estimate only from cost/progress
+metadata until workflow_complete AND worker/supervisor exit, then audit all data,
+all hashes, all7analysis bytes and all4plots. Existing hourly heartbeat stays
+retired; continue this active task with bounded waits, no new watcher.
+
+Parallel analytical work (no native computation or new data): matrix_extension.tex
+derives a covariance-dual reduction and shows why strongest fixed random mixtures
+and saddle-consistent tie handling matter for vector initial uncertainty.
+This is a proof candidate, not a matrix-performance claim or a protocol change.
+
+The authorization/preparation entries below are retained as preceding snapshots.
+
 ## CURRENT AUTONOMOUS V3 VALIDATION AUTHORITY —2026-10-21
 
 Human explicitly waived routine prior experiment approvals and instructed
