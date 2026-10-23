@@ -1,0 +1,39 @@
+CURRENT MANUSCRIPT — 2026-10-23
+
+Lyapunov Resource Control for Correlated Multi-Agent Markov Learning
+
+Canonical editable source: main.tex in this directory.
+Reading copy: main.pdf (13 pages).
+Complete proofs and retained evidence: supplement.tex / supplement.pdf (30 pages).
+This directory supersedes the older TSP/ and TSP-V3/ drafts; those remain preserved.
+
+Research direction
+Multi-agent correlation changes the useful amount and timing of data. The
+Lyapunov score prices participation, Markov spacing, delay and affordable horizon.
+Paid identification is valuable when learning the covariance regime changes that
+resource choice enough to repay its cost on the continuing learning stream.
+
+New integrated results
+1. Initialization-minimax/state-value characterization now permits regime-specific
+   persistence, rather than requiring a common persistence across regimes.
+2. An explicit two-program Gaussian construction attains strictly positive
+   second-order state value, proving the O(B^-2) order sharp in that class.
+3. A frozen paid rule has finite-budget positive guarantees against all 4368
+   ordered resource cycles of periods 1–3, every affordable prefix, and their
+   observation-independent mixtures. Reference guarantees are at least 2.65%,
+   5.21%, and 5.81% at B=512,2048,8192. Under the declared variance/persistence/
+   prior uncertainty box, guarantees are at least 0.51% and 1.15% at B=2048,8192.
+   These percentages are proved population-risk reductions, not sampled gains.
+
+Editorial judgment
+Use this as the sole working main draft for a theory-led IEEE TSP submission.
+Its substantive case is paid continuing-risk resource control and constructive
+separation, not a claim that Lyapunov analysis, Bayesian decisions, Gaussian
+contrasts, or information value are themselves new. The finite-model and declared
+comparator classes are part of the theorem, not hidden assumptions.
+Existing resource-matched learning gains remain in the main paper. Earlier
+unfavorable prospective outcomes retain their original interpretation and full
+supplementary evidence; the new construction does not relabel those experiments.
+No new trajectories, seeds, native studies or manuscript submission were used.
+
+Supporting derivations and reference checks: internal/strict_tsp_20261023/.

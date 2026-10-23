@@ -16,7 +16,7 @@ Define
 C&=I_{\rm post}-I_{\rm full},\\
 V_{\rm reg}&=I_{\rm post}-R_{\rm nom},\\
 V_{\rm state}&=R_c-R_{\rm rob},\\
-T&=\mathbb E_g[k_{c(Y)}^2S(Y)].
+T&=\mathbb E_g\sum_jp_j(Y)k_{j,c(Y)}^2S_j(Y).
 \end{align*}
 Then
 \begin{equation}
@@ -38,10 +38,11 @@ post-probe perfect-regime fixed risk
 $I_{\rm oracle}=\sum_j\pi_j\min_aJ_{j,a}^{r}$.
 Because a posterior-weighted average is at least the posterior average of the
 individual regime minima, $R_{\rm nom}\ge I_{\rm oracle}$.
-Also $\mathbb E_gS=0$. Centering $k_c^2$ at the midpoint of its catalogue range
-gives $|T|\le K/2$.
-Pointwise $\min_aL_a\ge\min_aF_a+\min_a(k_a^2S)$; the latter term has expectation
-$-\tfrac12(\max_a k_a^2-\min_a k_a^2)\mathbb E_g|S|\ge-K/2$.
+For each $j$, $\mathbb E_g[p_jS_j]=0$.
+Centering $k_{j,c}^2$ at the midpoint of its model-specific catalogue range and summing gives $|T|\le K/2$.
+Pointwise $\min_aL_a\ge\min_aF_a+\sum_jp_j\min_a(k_{j,a}^2S_j)$.
+The expectation of the latter sum is
+$-\tfrac12\sum_j(\max_a k_{j,a}^2-\min_a k_{j,a}^2)\mathbb E_g[p_j|S_j|]\ge-K/2$.
 Consequently
 \begin{align*}
 0&\le V_{\rm state}\le K,\\

@@ -5,50 +5,48 @@ In the scalar Gaussian continuation model one can bound the entire value of usin
 
 Fix the same paid probe, remaining budgets, public regime prior and finite catalogue for both rules.
 Let $J_{j,a}^{r}$ be the unconditional commitment risk at initialization radius $r$ and let $s_j^2=\operatorname{Var}_j(m_j(Y))$.
-Assume the common-state transfer coefficient $k_a$ is the same under the two variance hypotheses, as it is for the frozen learners with common persistence.
+Allow a separate common-state transfer coefficient $k_{j,a}$ under each covariance model, including different persistence parameters.
 The even conditional risk score is
 \begin{align*}
-L_a(y)&=F_a(y)+k_a^2S(y),\\
+L_a(y)&=F_a(y)+\sum_jp_j(y)k_{j,a}^2S_j(y),\\
 F_a(y)&=\sum_jp_j(y)J_{j,a}^{r},\\
-S(y)&=\sum_jp_j(y)[m_j(y)^2-s_j^2].
+S_j(y)&=m_j(y)^2-s_j^2.
 \end{align*}
 Let $c(y)$ minimize $F_a(y)$ and let $u(y)$ minimize $L_a(y)$, using fixed measurable tie rules.
 Both are even selectors and therefore have the initialization-minimax interpretation already proved.
 In this section $R(v)$ means the maximum prior-weighted risk over the public scalar initialization interval; evenness attains that maximum at $e=\pm r$.
-Then
+Put $\mathcal R_j=\max_a k_{j,a}^2-\min_a k_{j,a}^2$.
 \begin{equation}
-0\le R(c)-R(u)
-\le4\varphi(1)\bigl(\max_a k_a^2-\min_a k_a^2\bigr)
-\sum_j\pi_js_j^2.
+0\le R(c)-R(u)\le4\varphi(1)\sum_j\pi_j\mathcal R_js_j^2.
 \label{eq:state-value-ceiling}
 \end{equation}
 The result is a finite-model upper bound on state information beyond the model posterior; it does not bound the value of identifying the covariance regime itself.
 It remains valid for an observable mean-invariant Gaussian probe, using that probe's own explained variances.
 
 For the proof, pointwise optimality gives
-\[
-0\le L_c-L_u\le (k_c^2-k_u^2)S
-\le(\max_a k_a^2-\min_a k_a^2)|S|.
-\]
+\begin{align*}
+0\le L_c-L_u&\le\sum_jp_j(k_{j,c}^2-k_{j,u}^2)S_j\\
+&\le\sum_jp_j\mathcal R_j|S_j|.
+\end{align*}
 The first inequality uses $L_u\le L_c$, and the second uses $F_c\le F_u$.
 Since $p_j(y)g(y)=\pi_jf_j(y)$,
 \[
-\mathbb E_g|S(Y)|\le\sum_j\pi_j\mathbb E_j|m_j(Y)^2-s_j^2|
-=4\varphi(1)\sum_j\pi_js_j^2.
+\mathbb E_g[p_j(Y)|S_j(Y)|]=\pi_j\mathbb E_j|m_j(Y)^2-s_j^2|
+=4\varphi(1)\pi_js_j^2.
 \]
 The last equality follows from the centered Gaussian identity $\mathbb E|G^2-1|=4\varphi(1)$; it also holds at $s_j=0$ by continuity.
 Integrating proves Eq.~\eqref{eq:state-value-ceiling}.
 The stop action has $k=0$ and fits the same bound.
 
-For a running mean with $N$ applied observations and sample persistence $\rho=\lambda^b<1$,
+For a running mean with $N$ applied observations and model-specific sample persistence $\rho=\lambda_j^b$, $|\rho|<1$,
 \[
-|k_a|=\frac{\rho(1-\rho^N)}{(N+1)(1-\rho)}
-\le\frac{\rho}{(N+1)(1-\rho)}.
+|k_{j,a}|=\frac{|\rho(1-\rho^N)|}{(N+1)|1-\rho|}
+\le\frac{|\rho|}{(N+1)(1-|\rho|)}.
 \]
 For an averaged stable affine-delay learner, assume its impulse response is absolutely summable with sum of absolute values at most $G_*$.
 The exact averaging weights obey $|w_t|\le\eta G_*/N$, giving
 \[
-|k_a|\le\frac{\eta G_*\rho}{N(1-\rho)}.
+|k_{j,a}|\le\frac{\eta G_*|\rho|}{N(1-|\rho|)}.
 \]
 Absolute summability is required here; it is not inferred merely from a numerical finite-horizon check.
 For the registered affine steps it follows from the constant-delay characteristic polynomial $z^{D+1}-z^D+\alpha$, with $\alpha=\eta\mu=0.1/(D+1)$.
@@ -63,3 +61,4 @@ Relative to a best fixed risk of order $B^{-1}$ this contribution is at most $O(
 For these stable averaged learners, with finite participation, nonzero private variance, persistence bounded below one and affordable horizons proportional to $B$, that fixed-risk order follows directly: $\sum_tw_t$ tends to a nonzero constant, Cauchy--Schwarz gives a private-variance lower bound proportional to $N^{-1}$, and the weight bound and summable temporal covariance give the matching upper bound.
 Covariance-regime adaptation can change the leading $B^{-1}$ variance coefficient, so these two information roles must not be conflated.
 The ceiling predicts small state-driven policy differences at long horizons while leaving covariance-regime adaptation as a potential leading-order effect.
+\input{conditional_state_sharpness}

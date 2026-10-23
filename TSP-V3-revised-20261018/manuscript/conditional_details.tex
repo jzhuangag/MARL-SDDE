@@ -2,9 +2,9 @@
 Fix the target-invariant probe $Y$ and the deterministic continuing-program catalogue in main Theorem~\ref{thm:conditional-value}.
 Under regime $j$, Gaussian conditioning gives
 \begin{align*}
-\E_{j,e}[Z_a^2\mid Y=y]&=J_{j,a}^{r}+d_a^2(e^2-r^2)\\
-&\quad+2ed_ak_am_j(y)\\
-&\quad+k_a^2[m_j(y)^2-s_j^2].
+\E_{j,e}[Z_a^2\mid Y=y]&=J_{j,a}^{r}+\zeta_a^2(e^2-r^2)\\
+&\quad+2e\zeta_ak_{j,a}m_j(y)\\
+&\quad+k_{j,a}^2[m_j(y)^2-s_j^2].
 \end{align*}
 The observation law and regime posterior do not depend on the unknown fixed $e$.
 For any randomized selector, average its risks at $e=r$ and $e=-r$.
@@ -22,6 +22,7 @@ The error-contrast identity is classical \maincite{harville1974contrasts}; the v
 \input{conditional_value_accounting}
 \input{observable_calibration}
 \input{conditional_leading_proof}
+\input{finite_robust_proof}
 \input{conditional_population_risk}
 \input{conditional_matrix_proof}
 

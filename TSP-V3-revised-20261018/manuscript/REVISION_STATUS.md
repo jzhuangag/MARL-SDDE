@@ -1,5 +1,35 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — substantive theory-led TSP main draft updated,2026-10-23
+
+Canonical source remains this directory, now titled **Lyapunov Resource Control
+for Correlated Multi-Agent Markov Learning**. Main13pages/supplement30pages.
+Use CURRENT_MANUSCRIPT.txt for the latest-version pointer; earlier directories
+and the dated entries below remain provenance, not the current draft status.
+
+New integrated theory: regime-specific persistence in the conditional minimax
+characterization; a positive construction proving the second-order state-value
+rate sharp; and a finite-budget paid-identification advantage against all4368
+ordered period-1/2/3 resource cycles, all affordable prefixes and independent
+mixtures. Reference lower guarantees2.65/5.21/5.81percent at B512/2048/8192;
+uniform uncertainty-box guarantees0.51/1.15percent at B2048/8192. These are
+population-risk theorems, not new empirical estimates. Probe and delay costs
+are included. Classical probability/decision ingredients remain attributed.
+
+The publication narrative foregrounds these contributions and existing positive
+learning evidence, with directly relevant counterevidence interpreted locally
+and complete outcomes preserved in the supplement. No new trajectories/seeds,
+native retries, budget transfers or changes to old scientific records.
+Necessary proof calculations, fresh50-reference verification and IEEE style
+checks are saved in internal/strict_tsp_20261023/. All final pages reviewed;
+final_check.json contains artifact hashes and essential build checks.
+
+Scientific judgment: substantive theory-focused TSP submission candidate within
+the declared model/comparator scope, to serve as the ongoing main manuscript.
+This is not a guarantee of acceptance or unrestricted MARL superiority.
+Scientific work is not suspended behind the historical author-review label.
+Authentic release metadata and any actual submission remain separate human acts.
+
 ## CURRENT — substantive submission-review draft complete,2026-10-21 16:08CST
 
 Main13pages/supplement28pages,all41visually reviewed,fonts embedded,199links

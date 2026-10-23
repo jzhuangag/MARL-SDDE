@@ -1,0 +1,21 @@
+\subsection{Finite-budget separation under parameter uncertainty}
+A finite-budget certificate can avoid knowing the exact covariance pair.
+Consider the running mean with $Q=8$, overhead $h=8$, delay $D=8$, radius $r=1$, budgets $(16B,4B)$, and $q,b\in\{1,2,4,8\}$.
+The common-factor variances lie in $\theta_0\in[0.0495,0.0505]$ and $\theta_1\in[1.98,2.02]$, with independently varying persistences $\lambda_j\in[0.195,0.205]$ and high-regime prior $\pi\in[0.45,0.55]$.
+Use eighteen paid all-actor, unit-spacing observations, their target-invariant contrasts, and the likelihood rule frozen at reference models $(\theta_0,\theta_1,\lambda)=(0.05,2,0.2)$.
+Commit to $(8,4)$ or $(2,2)$ on the low or high decision.
+Let $I_{\rm fix}$ be the best worst-initialization prior risk over all cyclic resource programs of period at most three, their affordable prefixes and observation-independent mixtures, with the actual parameters available to that comparator.
+
+\begin{theorem}[Robust finite-budget separation]
+Throughout the stated parameter box, the frozen paid rule has worst-initialization prior risk $R_{\rm paid}$ satisfying
+\[
+R_{\rm paid}\le(1-0.0051)I_{\rm fix}\quad(B=2048),
+\]
+and $R_{\rm paid}\le(1-0.0115)I_{\rm fix}$ at $B=8192$.
+Both probe and withheld-update costs are included.
+\label{thm:finite-robust-separation}
+\end{theorem}
+
+Supplementary Section~\ref{sup-sec:finite-robust} proves the bounds using covariance-order transport and exact rational inequalities over all $4368$ ordered resource cycles and their prefixes.
+At the reference parameters and balanced prior, the construction guarantees reductions of at least $2.65$, $5.21$ and $5.81$ percent at $B=512$, $2048$ and $8192$.
+These are constructive population guarantees for a declared uncertainty box, rather than sampled performance estimates or a claim that the box can be learned without cost.

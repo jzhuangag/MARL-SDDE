@@ -1,0 +1,533 @@
+\documentclass[journal]{IEEEtran}
+\usepackage[margin=1in]{geometry}
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\pdfsuppressptexinfo=-1
+\usepackage{amsmath,amssymb,amsthm,bm,booktabs,graphicx}
+\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\externaldocument{main}[main.pdf]
+\makeatletter
+\newcommand{\maincite}[1]{\href{main.pdf\#cite.#1}{\NoHyper[\csname b@#1\endcsname]\endNoHyper}}
+\makeatother
+\newcommand{\E}{\mathbb E}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\A}{\mathcal A}
+\newcommand{\F}{\mathcal F}
+\newcommand{\TV}{\operatorname{TV}}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\renewcommand{\thetheorem}{S\arabic{theorem}}
+\title{Supplementary Material: Paid Identification and Resource Control for Correlated Markov Learning}
+\author{Jialin Zhuang and Vincent K. N. Lau}
+\begin{document}
+\maketitle
+\renewcommand{\theequation}{S\arabic{equation}}
+
+\section{Proof of the Same-Stream Actual-Risk Enclosure}
+Consider the stationary common factor in the main paper, with independent private observation noise and a deterministic probe $d=(q_d,b_d,n_d)$ ending at $T=n_db_d$.
+The probe sigma-field $\mathcal H_d$ contains its observations; spatial contrasts contain no additional information about the common factor.
+Under true instance $j$, Gaussian filtering gives
+\begin{align}
+C_T\mid\mathcal H_d&\sim\mathcal N(m_j,P_j),\nonumber\\
+m_j&\sim\mathcal N(0,s_j^2),\quad s_j^2=\theta_j-P_j.
+\end{align}
+The posterior variance $P_j$ is deterministic because the probe schedule is fixed before data.
+Starting from variance $\theta_j$, the observation update is $P\leftarrow P/(1+q_dP)$; between observations it is $P\leftarrow\lambda^{2b_d}P+(1-\lambda^{2b_d})\theta_j$.
+The last update has no subsequent prediction.
+
+Fix either downstream program $a$, including its budget, initialization, sample spacing and deterministic weights.
+All learning observations occur strictly after $T$.
+With $r_a=\lambda^{b_a}$ and the notation of main Eq.~\eqref{eq:linear-program}, its unconditional stationary risk is
+\begin{align}
+J_{j,a}
+&=d_a^2+\theta_j\sum_{t,u=1}^{N_a}\omega_{a,t}\omega_{a,u}r_a^{|t-u|}\nonumber\\
+&\quad+q_a^{-1}\sum_{t=1}^{N_a}\omega_{a,t}^2.
+\label{eq:supp-exact-risk}
+\end{align}
+Conditional means of future common states are $\lambda^{b_at}m_j$.
+Their conditional covariance is their stationary covariance minus $s_j^2\lambda^{b_a(t+u)}$.
+Private learning noise is independent of the probe.
+Therefore
+\begin{equation}
+\E_j[Z_a^2\mid\mathcal H_d]
+=J_{j,a}+2d_ak_am_j+k_a^2(m_j^2-s_j^2).
+\label{eq:supp-conditional-risk}
+\end{equation}
+This identity includes the posterior mean, which is unbounded across probe histories; no uniform conditional Gaussian bound is invoked.
+
+Let $E_j$ be the event that the decision selects the wrong frozen program, and let $p_j=\Pr_j(E_j)\le\delta$.
+Subtracting Eq.~\eqref{eq:supp-conditional-risk} for the correct and wrong programs gives
+\begin{equation}
+\E_jZ_{\widehat a}^2=J_{j,a_c}+p_j\Delta J_j+\E_j[\mathbf1_{E_j}U_j],
+\end{equation}
+where
+\begin{align}
+U_j&=2(d_{a_w}k_{a_w}-d_{a_c}k_{a_c})m_j\nonumber\\
+&\quad+(k_{a_w}^2-k_{a_c}^2)(m_j^2-s_j^2).
+\end{align}
+The centered Gaussian first and second moments are orthogonal, with variances $s_j^2$ and $2s_j^4$.
+Consequently $\E_jU_j=0$ and $\E_jU_j^2=\Gamma_j^2$ as defined in the main paper.
+Cauchy--Schwarz gives $|\E_j[\mathbf1_{E_j}U_j]|\le\sqrt{p_j}\Gamma_j\le\sqrt\delta\Gamma_j$.
+Bounding the signed term $p_j\Delta J_j$ and using nonnegative squared risk proves main Theorem~\ref{thm:same-stream}.
+
+\section{Exact Weights of the Implemented Learners}
+Let $M_a=\min\{\lfloor B_m'/(h+q_a)\rfloor,\lfloor B_e'/b_a\rfloor\}$ be the number of scheduled observations after subtracting probe costs.
+All $M_a$ observations are paid.
+The FIFO withholding convention leaves $N_a=(M_a-D)_+$ usable observations, not a free replacement budget.
+For $N_a=0$ the reported parameter is one, so $d_a=1$ and the weight vector is empty.
+
+\subsection{Running mean}
+The Layer-A output is $(1+\sum_{t=1}^{N_a}\bar X_t)/(N_a+1)$.
+Thus $d_a=1/(N_a+1)$ and every $\omega_{a,t}=1/(N_a+1)$.
+Main Eq.~\eqref{eq:linear-program} then gives
+\begin{equation}
+k_a=\frac{r_a(1-r_a^{N_a})}{(N_a+1)(1-r_a)}.
+\end{equation}
+
+\subsection{Averaged FIFO affine learner}
+In Layer B, an increment $\eta(\bar X_t-\mu w_{t-1})$ is computed before enqueueing and is applied after $D$ opportunities.
+The original implementation fixes $\mu=1/2$ and $\eta=0.1/[\mu(D+1)]$, starts from parameter one with an empty queue, and averages the applied parameters.
+Indexing these applied parameters as $z_n$ gives
+\begin{equation}
+z_n=z_{n-1}-\eta\mu z_{n-D-1}+\eta\bar X_n,
+\quad z_{-D}=\cdots=z_0=1.
+\end{equation}
+Define $h_0=1$, $h_t=0$ for $t<0$, and $h_t=h_{t-1}-\eta\mu h_{t-D-1}$ for $t\ge1$.
+For $N=N_a>0$, the output $N^{-1}\sum_{n=1}^Nz_n$ has exact coefficients
+\begin{equation}
+\omega_{a,t}=\frac\eta N\sum_{v=0}^{N-t}h_v,
+\quad d_a=1-\mu\sum_{t=1}^N\omega_{a,t}.
+\label{eq:supp-fifo-weights}
+\end{equation}
+To verify the deterministic term, constant input $\bar X_n=\mu$ keeps the initial history at one; linearity then yields the identity for $d_a$.
+Eq.~\eqref{eq:supp-fifo-weights} represents the average of applied iterates; all scheduled observations remain charged.
+
+\section{Shrinking-Risk and Budget-Shift Interface}
+Suppose the finite action catalogue has $|\lambda|\le1-\gamma<1$, bounded $D$, and strictly stable affine recursions.
+For the registered step rule this stability follows directly from the characteristic polynomial $z^{D+1}-z^D+t$, $t=\eta\mu$.
+At small $t>0$, the root at one moves inside the unit disk and the other roots remain inside.
+Writing a first unit-circle crossing as $z=e^{i\omega}$ yields $t=2\sin(\omega/2)$ and the smallest positive crossing $\omega=\pi/(2D+1)$.
+Thus $0<t<2\sin[\pi/(4D+2)]$ is stable; the registered $t=0.1/(D+1)$ lies strictly inside this interval.
+The impulse response consequently decays geometrically, and $\sum_{v\ge0}h_v=1/(\eta\mu)$.
+
+The interior weights in Eq.~\eqref{eq:supp-fifo-weights} are $1/(\mu N)$ up to a summable end correction: their difference from these constant weights has $\ell_1$ norm $O(N^{-1})$ and maximum absolute value $O(N^{-1})$.
+The homogeneous transient is summable, so its average $d_a$ is $O(N^{-1})$.
+The AR(1) covariance kernel has uniformly bounded absolute row sums.
+Substitution into Eq.~\eqref{eq:supp-exact-risk} therefore gives
+\begin{equation}
+J_{j,a}=\frac1{\mu^2N_a}\left[\frac1{q_a}+\theta_j\frac{1+r_a}{1-r_a}\right]+O(N_a^{-2}).
+\label{eq:supp-averaged-rate}
+\end{equation}
+The running mean has the same expansion with $\mu=1$.
+These constants are uniform over the finite catalogue and bounded instance class.
+On a budget ray, $N_a=s/c_a+O(v+D+1)$ with $c_a=\max\{(h+q_a)/\beta_m,b_a/\beta_e\}$ and fixed probe charge $v$.
+Hence $J_{j,a}=K_{j,a}/s+O((v+D+1)/s^2)$, with
+\begin{equation}
+K_{j,a}=\frac{c_a}{\mu^2}\left[\frac1{q_a}+\theta_j\frac{1+r_a}{1-r_a}\right].
+\end{equation}
+Subtracting a fixed probe charge changes $N_a$ by at most $O(v+D+1)$, giving the claimed budget-shift remainder.
+Moreover $k_a=O(N_a^{-1})$ because the weights are uniformly $O(N_a^{-1})$ and $\sum_{t\ge1}|r_a|^t$ is bounded.
+Since $s_j^2\le\theta_j$, main Eq.~\eqref{eq:selection-carryover} yields
+\begin{equation}
+\sqrt\delta\Gamma_j=O(\sqrt\delta/s^2).
+\end{equation}
+For a pair of frozen actions satisfying the main phase theorem's leading-gap and wrong-decision assumptions, adding this remainder to admission changes only its second-order class constants.
+The same necessary-information and sufficient-scale argument then applies to the corrected actual-risk rule.
+This is an averaged, additive Gaussian affine result; it does not remove the nonzero noise floor of a fixed-step unaveraged learner or the conditional-history requirements of the general Markov theorem.
+
+\section{Complete Existing-Evidence Reanalysis}
+The calculation uses all registered EXP-016B budget points, both regimes and all eight policies: 14,336 policy cells, each with its original 192-seed empirical mean.
+Layer A contains 104 scenario families and Layer B its original 56, including eight search-censored families in each layer.
+For fixed policies Eq.~\eqref{eq:supp-exact-risk} is exact.
+For probe policies main Eq.~\eqref{eq:same-stream-risk} supplies population-risk bounds.
+When information-only and learning-aware policies execute the same frozen program, their paired difference is identically zero, not the difference of two independent interval bounds.
+Otherwise subtract their one-sided bounds.
+
+\begin{table}[t]
+\centering
+\caption{Population enclosures for mean information-only minus learning-aware risk, rounded outward.
+All means use the listed complete stratum.}
+\begin{tabular}{llrrr}
+\toprule
+Layer & Stratum & Cells & Lower & Upper\\
+\midrule
+A & All & 1184 & .0506 & .0706\\
+A & Intermediate & 576 & .0770 & .1180\\
+A & Original practical & 446 & .1607 & .1952\\
+A & Search-censored & 32 & .4879 & .4880\\
+B & All & 608 & .0079 & .0223\\
+B & Intermediate & 288 & -.0049 & .0252\\
+B & Original practical & 222 & .0562 & .0773\\
+B & Search-censored & 32 & .1957 & .1958\\
+\bottomrule
+\end{tabular}
+\end{table}
+Below identification, all 208 Layer-A and 112 Layer-B comparisons are identical programs; above finite value thresholds the corresponding counts are 384 and 192.
+In the original practical subset, 323/446 Layer-A and 176/222 Layer-B cells have strictly positive improvement lower bounds, while 101 and 33 have strictly negative upper bounds; the remaining 22 and 13 are inconclusive.
+These include regime-specific losses even when the stratum-average improvement is positive.
+No new admission rule was executed and no old gate was replaced.
+The old probe-length routine used the sufficient exponent $\log(0.5/0.025)$, giving an equal-prior average-error target of $0.025$ rather than a directional guarantee of $0.025$.
+The reanalysis uses each probe's exact affinity $\exp(-I_B)$ as a valid bound on either directional error; over all 104 frozen probe designs these bounds range from $0.0352271$ to $0.0497465$.
+Failure of this sufficient directional certificate does not establish that the actual directional errors exceed $0.025$.
+No outcomes or probe lengths are changed to obtain a smaller error bound.
+This outcome-known reanalysis gives population enclosures, not new confidence intervals for empirical means.
+
+\section{Complete Threshold-Sandwich Scale Calculation}
+For the independently initialized Gaussian running mean, let $c_a=\max\{(h+q)/\beta_m,b/\beta_e\}$ and $r=\lambda^b$.
+The exact horizon is $N_a=s/c_a+O(1)$, with bounded terminal charges and rounding.
+Main Eq.~\eqref{eq:mean-risk} and Eq.~\eqref{eq:geometric-correlation-sum} give $K_j(a)=c_a\{q^{-1}+\theta_j(1+r)/(1-r)\}$ and a uniform $O(s^{-2})$ remainder.
+Removing probe charge $v$ changes $N_a$ by $O(v+1)$ and hence risk by $O((v+1)/s^2)$ for $s\ge s_0(v+1)$; compact persistence and the finite catalogue make these constants uniform.
+Thus the phase-theorem risk conditions have a concrete Gaussian realization, separately from the constant-step affine certificate.
+Write $d_\delta=\operatorname{kl}(1-\delta,\delta)$, $r_0=1-\gamma<1$, and $Q=\max{\cal Q}$.
+Under either true instance, predictable spacing gives $\|C_{S_k}\|_{L^2}\le r_0\|C_{S_{k-1}}\|_{L^2}+\sqrt{\theta_+}$, hence a uniform bound $M_C=\sqrt{\theta_+}/(1-r_0)$.
+The normalized observation $Y_k/\sqrt{q_k}$ has $L^2$ norm at most $M_C+1$.
+For either candidate filter, write its posterior mean as $(1-t_{j,k})m^-_{j,k}+t_{j,k}Y_k/\sqrt{q_k}$, with predictable $0\le t_{j,k}\le1$.
+Prediction multiplies this mean by a factor of magnitude at most $r_0$; the triangle inequality bounds both predictive means uniformly in $L^2$ by $M_F=r_0(M_C+1)/(1-r_0)$, starting from zero.
+Both predictive variances are at most $\theta_+$, so $1\le V_{j,k}\le V_+=1+Q\theta_+$.
+Main Eq.~\eqref{eq:conditional-kl} gives the expected, rather than pointwise, bound $\E_j\mathcal I_{j,1-j}(Z_k,A_k)\le i_+$, where $i_+=(\log V_++V_++4QM_F^2)/2$ is finite.
+Extend a stopped rule predictably after stopping; nonnegativity and its deterministic budget bound $n_{\max}(s)\le c_Bs$ imply $\E_j\sum_{k\le\tau}\mathcal I_{j,1-j}\le i_+n_{\max}(s)$.
+Together with main Eq.~\eqref{eq:info-constraint}, this proves $B_N\ge c_Nd_\delta$.
+The fixed probe has information at least $i_->0$, so $n_\delta=\lceil i_-^{-1}\log(1/\delta)\rceil$ observations suffice and cost at most $c_pn_\delta+D_{\max}$.
+Continuity of $\log(1/\delta)/d_\delta$ gives $n_\delta\le c_0+c_1d_\delta\le c_0+c_2B_N$.
+Write $u_\delta\le c_pn_\delta+D_{\max}$ for the full probe charge.
+The assumed expansion and budget-shift inequality give a high-instance improvement over the full-budget fallback certificate of at least $g_{\min}/s-\{2M+L(u_\delta+1)\}/s^2-\delta w_+/s$.
+It is strictly positive for $s>\{4M+2L(u_\delta+1)\}/g_{\min}$, also requiring $s\ge s_0(u_\delta+1)$.
+On instance zero, the assumed coefficient ordering gives $\epsilon_{\rm safe}\le\{2M+L(u_\delta+1)\}/s^2+\delta_0w_+/s$.
+Thus $s\ge\sqrt{2\{2M+L(u_\delta+1)\}/\bar\epsilon}+2\delta_0w_+/\bar\epsilon$ suffices.
+Using $2\sqrt{xy}\le x+y$, all three requirements are bounded by a class-constant multiple of $n_\delta+B_{\rm oracle}+B_\epsilon+1$.
+Taking the maximum proves the upper bound in main Eq.~\eqref{eq:threshold-sandwich}; its lower bound follows because every admitted $\delta$-correct probe obeys both information constraints.
+
+\section{Robust-Certificate Sensitivity Details}
+This section supplies the proof of main Corollary~\ref{cor:robust-certificate}.
+Write $\delta^+=C_q(r_q^+)^b$.
+On the coverage event, $\delta^+\ge\delta$ and monotonicity on $\mu-2L\delta^+>0$ gives $a^+\ge a$ and $\beta^+\ge\beta$.
+Evaluating the delayed Young inequality at the shared $\lambda^+=\sqrt{h/a^+}$ proves the upper recursion; separately optimized forcing terms need not be monotone.
+For $\Delta\delta=\delta^+-\delta$, $\Delta K=K_q^+-K_q$, and $\Delta\Omega=\Omega_q^+-\Omega_q$,
+\begin{align}
+\Delta a
+&=2\eta^2\Delta K+(2\eta L+4\eta^2L^2)\Delta\delta,\nonumber\\
+\Delta\beta
+&=2\eta^2\Delta\Omega+4\eta^2G^2\Delta\delta\nonumber\\
+&\quad+4\eta G^2\left[
+\frac{(\delta^+)^2}{\mu-2L\delta^+}
+-\frac{\delta^2}{\mu-2L\delta}
+\right],\nonumber\\
+\Delta c
+&=(\sqrt{a^+}+\sqrt h)^2-(\sqrt a+\sqrt h)^2.
+\end{align}
+For $h>0$,
+\begin{align}
+\Delta d
+&\le(1+\sqrt{h/a^+})\Delta\beta
++\sqrt h\left(\frac1{\sqrt a}-\frac1{\sqrt{a^+}}\right)\beta\nonumber\\
+&\quad+\frac{\sqrt{a^+}-\sqrt a}{\sqrt h}g,
+\end{align}
+and $\Delta d=\Delta\beta$ when $h=0$.
+For $U(c,d)=d/(1-c)+c^n(R_0-d/(1-c))_+$, $|\partial_dU|\le(1-\bar c)^{-1}$ and $|\partial_cU|\le nR_0+\bar d(1-\bar c)^{-2}$.
+The mean-value bound proves main Eq.~\eqref{eq:robust-score-gap}; applying it to the upper- and exact-score minimizers gives $U_{\widehat a}\le U_{a^\star}+2\max_a\varepsilon_a$.
+
+\section{Stochastic-Delay Interpretation}
+The controlled stochastic delay differential equation associated with one fixed resource action is
+\begin{equation}
+dE(t)=-A_qE(t-\tau(t))dt
++\sqrt{\eta}\,\Sigma_q^{1/2}(E_t)dW(t).
+\end{equation}
+Here $\Sigma_q(E_t)$ retains both additive innovation covariance and the state-dependent quadratic variation of random temporal-difference Jacobians.
+For $V(E)=\|E\|^2$, It\^o's formula gives
+\begin{equation}
+{\cal L}_aV(E_t)
+=-2E(t)^\top A_qE(t-\tau(t))
++\eta\tr\Sigma_q(E_t).
+\end{equation}
+Participation controls spatial covariance, spacing controls mixing, and $\eta$ controls their scale; the discrete theorem retains finite steps, integer delays and rounding.
+\section{Constructing a Certificate from a Known Finite Model}
+Let $Z$ be the finite augmented state containing all sources needed for the retained joint TD tuple.
+For each participation $q$, suppose its kernel $M_q$ and stationary law $\pi_q$ are known, and the marginal target policy and reward law are preserved.
+Tabulate $H_i(z)$ and $c_i(z)$, put $A=\E_{\pi_q}H_i$, $c=\E_{\pi_q}c_i$, and solve $Aw^\star=c$.
+Check that these means are common to all actors and all $q$, and that $\mu=\lambda_{\min}((A+A^\top)/2)>0$.
+With $\xi_i(z)=c_i(z)-H_i(z)w^\star$, compute
+\begin{align}
+L&=\max_{i,z}\|H_i(z)\|_2,\qquad G=\max_{i,z}\|\xi_i(z)\|,\nonumber\\
+K_q&=\lambda_{\max}\!\left(\sum_z\pi_q(z)\bar H_q(z)^\top\bar H_q(z)\right),\nonumber\\
+\Omega_q&=\sum_z\pi_q(z)\|\bar\xi_q(z)\|^2,\nonumber\\
+\beta_q(g)&=\max_z\frac12\sum_{z'}|M_q^g(z,z')-\pi_q(z')|.
+\label{eq:finite-model-table}
+\end{align}
+Here bars denote actor averages, not averages of squared norms.
+The integer $g$ is the number of transitions of the augmented tuple chain between the conditioning state and the retained tuple; it must be derived from the declared physical schedule, not identified with a state lag or drain charge.
+
+\begin{proposition}[Constructive finite-model interface]
+If $M_q$ is irreducible and aperiodic and the above common-mean and positivity checks pass, Assumption~\ref{ass:catalogue}'s boundedness, centering and conditional mixing inputs hold with Eq.~\eqref{eq:finite-model-table} and $\delta=\beta_q(g)$.
+For every action whose resulting $\mu_\delta$, $a_\delta$ and $c_{\rm aff}<1$ pass the main paper's shield, the affine certificate is valid from any declared initial augmented state.
+\end{proposition}
+\begin{proof}
+The finite maxima bound every sample and stationarity gives $\E_{\pi_q}\xi_i=0$.
+Conditional on any earlier history, the Markov property expresses the next tuple law as a mixture of rows of $M_q^g$.
+Convexity of total variation bounds its distance from $\pi_q$ by $\beta_q(g)$, uniformly over that history.
+The drift proof uses only this total-variation distance, so the geometric envelope can be replaced by this exact finite-gap value.
+The stated positivity and contraction checks are precisely the remaining hypotheses of the affine bound.
+\end{proof}
+
+This is a construction, not a statistical estimator of an unknown kernel.
+A dense joint-state table may grow exponentially with participation; its offline construction cost is separate from the online scalar score.
+In the seven-state shared/private-source model, a product coupling gives the cheaper bound
+$\beta_q(g)\le\min\{1,(q+1)\beta_{\rm pair}(g)\}$, where
+$\beta_{\rm pair}(g)=\max_x\|M_{\rm pair}^g(x,\cdot)-\pi_{\rm pair}\|_{\rm TV}$.
+This uses the actual consecutive-pair chain and independent latent source chains; fresh selector coins are integrated by data processing.
+The existing implementation computes these pair kernels and the same-time aggregate moments directly.
+For a moving target policy, a frozen-kernel table does not certify mixed histories: either supply uniform bounds for the nonhomogeneous kernel products or reset the learner and exclude all pre-reset target updates.
+
+\section{Executable Actual-Risk Gate and Saved-Result Reconstruction}
+For each fixed candidate probe, Gaussian filtering gives $P_j$, the formulas above give $(J_{j,a},d_a,k_a)$, and the probe likelihood laws give a directional error bound $\delta_j$ under each hypothesis.
+The exact Gaussian affinity is one valid choice: a zero-threshold likelihood-ratio decision obeys $\Pr_j(\mathrm{error})\le\int\sqrt{p_0p_1}$ in each direction.
+An equal-prior average-error bound is not interchangeable with this directional bound.
+Compute both hypothetical-instance quantities before probing; the actual unknown instance is not a gate input.
+
+\begin{proposition}[Actual-risk admission]
+Fix the two hypotheses, noise law, learner initialization and deterministic linear program weights as in Theorem~\ref{thm:same-stream}.
+Given a finite public probe catalogue, choose a feasible design satisfying Eq.~\eqref{eq:actual-admission} before any probe observations, with deterministic tie breaking.
+After its likelihood decision, execute its frozen selected program on the continuing stream.
+Then $\E_1Z^2<F_1$ and $\E_0Z^2\le F_0+\bar\epsilon$.
+If none passes, no probe is executed and the actual risk is exactly $F_j$.
+\end{proposition}
+\begin{proof}
+For each fixed design Theorem~\ref{thm:same-stream} gives $\E_jZ^2\le U_j(d)$.
+Pre-observation deterministic choice leaves its fixed-design hypothesis intact.
+The two gate inequalities imply the conclusions. In the rejection branch the stationary full-budget commitment defines $F_j$.
+\end{proof}
+Thus the procedure is: price the probe, compute the remaining horizons and exact weights for both branch programs, compute $U_0,U_1,F_0,F_1$, apply the two inequalities, and only then acquire data.
+An observation-adaptive choice of probe duration or of program weights is not covered by this fixed-design argument.
+
+We reconstruct this gate on the existing EXP-016B outcomes, using its single registered information-only probe candidate and the original scenario-specific allowances $0.1$ or $0.2$.
+All $896$ public layer/scenario/budget designs and both regimes are retained, including search-censored families.
+The corrected gate admits $480$ designs, versus $505$ without the carryover term; it removes $25$ admissions.
+The outcome-known zero-allowance stress case admits none under either rule.
+It is retained separately: a paid probe can reduce the low-instance learning horizon even with perfect identification.
+
+\begin{table}[t]
+\centering
+\caption{Saved-result gate reconstruction: mean squared risk over all budget/regime cells, without new trajectories. Each original cell mean contains all 192 saved seeds.}
+\label{tab:gate-reconstruction}
+\begin{tabular}{lrrrr}
+\toprule
+& A high & A low & B high & B low\\
+\midrule
+Full-budget fallback & .63455 & .09201 & .82703 & .54369\\
+Information-only & .54814 & .24062 & .76422 & .62515\\
+Original learning-aware & .57637 & .09304 & .79121 & .55825\\
+No-carryover gate & .52548 & .09488 & .74204 & .56252\\
+Corrected gate & .52989 & .09393 & .74242 & .56068\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gate is a deterministic function of public design quantities, so an admitted design takes the saved information-only outcome and a rejected design takes the saved no-probe fallback outcome.
+The simulator's potential observations are policy independent and shared across these branches; this reconstructs their empirical means without generating or resampling a trajectory.
+Table~\ref{tab:gate-reconstruction} is therefore a retrospective policy comparison, not fresh execution or independent confirmation.
+Against fallback, the corrected gate retains $13/592$ and $4/304$ empirically adverse high-instance cells in A and B; finite-sample cell means need not satisfy the population ordering.
+Its low-instance mean risks exceed fallback by $.00192$ and $.01699$, respectively, within the declared nonzero safety allowances, not a claim of zero-harm safety.
+The no-carryover ablation has slightly lower high-instance means but higher low-instance means; the correction trades admissions for a valid population-risk guarantee, not uniformly better observed risk.
+All eight original policies, per-cell costs, both replay variants and their complete cell tables are preserved.
+The new comparison was specified after earlier outcomes were known and supplies no new confidence interval.
+
+\section{Nearest-Work Assumptions and Objectives}
+The comparison uses the accessible full preprints, with theorem and proof locators recorded in the accompanying source-reading matrix; it is not an exhaustive priority claim.
+DASA~\maincite{dalfabbro2024dasa}, Assumption~3 and Theorem~1, combines independent agent chains with median-based update filtering to obtain average-delay dependence and parallel speedup.
+Its Lemma~2 uses cross-agent independence in the noise cross terms.
+Our bounded deterministic delay condition is narrower; our added object is covariance-dependent paid learning risk, not a stronger delay rate.
+
+Perazzone et al.~\maincite{perazzone2025lyapunov}, Theorem~1 and Eqs.~(12)--(23), link inverse participation probabilities to a nonconvex convergence bound, then optimize a time-average convergence/communication surrogate with power queues.
+Their solver and instantaneous-channel formulation address a different operational problem; our finite-budget probe debit and same-stream decision-event correction do not follow from that time-average objective.
+Yu et al.~\maincite{yu2025sdde}, Sections~III--IV and Propositions~12--14, use an SDDE/arrival-process approximation to optimize worker activation, including a finite-service queue.
+That queue model and its delay law are not established by our fixed-delay experiment.
+
+Saad et al.~\maincite{saad2023covariance}, Assumption~1, Protocol~1 and Theorems~4.1/5.1, adapt joint arm queries to unknown covariance with independent rounds and a fixed-confidence identification objective.
+Our dependence hypotheses are supplied, rather than learned nonparametrically; our comparison instead prices identification through the subsequent learner.
+Li et al.~\maincite{li2026parameterfree}, Theorem~4.12, remove unknown mixing/eigenvalue inputs from a regularized TD step schedule.
+That reduces tuning requirements that our general confidence interface still has, but does not construct a calibrated multi-action terminal-risk shield.
+Li et al.~\maincite{li2026shrinkingtube}, Assumptions~1--7 and Theorem~1, give shrinking-tube reliability for projected adaptive-kernel SA using uniform drift/minorization and kernel continuity.
+Their mixed-history result is broader than a frozen-kernel table; our Gaussian decision correction and paid finite horizon are different outputs, not a replacement for their regularity assumptions.
+Reference numbers in this supplement refer to the main paper's bibliography.
+
+\section{Complete Tracking Proof}
+Set $R_\star=d/(1-c)$ and $\Gamma_r=(Z_r-R_\star)_+$.
+The explicitly assumed uniform-history drift and the positive-part replacement argument give
+\begin{align}
+\widetilde Z_{r+1}
+&\le R_\star+c\Gamma_r,\nonumber\\
+\Gamma_{r+1}
+&\le(1+\chi)c\Gamma_r+\chi R_\star+(1+\chi^{-1})v^2.
+\label{eq:tracking-old-target}
+\end{align}
+The second line follows by applying Young's inequality to the target shift and subtracting $R_\star$.
+Iteration and $\Gamma_0\le Z_0$ prove Eq.~\eqref{eq:tracking-bound} whenever $\bar c=(1+\chi)c<1$.
+Finally, $\widehat A_w-A^\star=\{\gamma\phi(s')-\phi(s)\}^\top(w-w_n^\star)$ and $\|\gamma\phi(s')-\phi(s)\|\le(1+\gamma)\Phi$; Cauchy--Schwarz proves Eq.~\eqref{eq:advantage-transfer}.
+
+\section{Complete Occupation-Measure Proof}
+Let $\Delta_j(z,a)\ge0$ be the one-step opportunity loss relative to the instance-$j$ certified oracle.
+For a stopped predictable policy, define
+\begin{equation}
+\nu_j(G,a)=\E_j^\pi\sum_{k\le\tau}\mathbf{1}\{Z_k\in G,A_k=a\}.
+\end{equation}
+Every $\delta$-correct policy induces an occupation measure satisfying the controlled Kalman flow constraints,
+\begin{align}
+\int\mathcal{I}_{j,1-j}(z,a)\nu_j(dz,da)&\ge\operatorname{kl}(1-\delta,\delta),\nonumber\\
+\int(h+q(a))\nu_j(dz,da)&\le B_{\rm msg},\nonumber\\
+\int b(a)\nu_j(dz,da)+\ell\Pp_j(\tau>0)&\le B_{\rm env}.
+\end{align}
+Let $T_a$ be the belief transition and $\zeta_j$ the terminal belief law.
+For every bounded measurable $f$, predictability and stopped telescoping give
+\begin{align}
+\int f(z)\zeta_j(dz)-f(z_1)
+&=\int\left[\int f(z')T_a(z,dz')\right.\nonumber\\
+&\left.\hspace{18mm}-f(z)\right]\nu_j(dz,da).
+\label{eq:belief-flow}
+\end{align}
+Moreover,
+\begin{equation}
+\E_j^\pi\sum_{k\le\tau}\Delta_j(Z_k,A_k)
+=\int\Delta_j(z,a)\nu_j(dz,da).
+\end{equation}
+Eq.~\eqref{eq:adaptive-kl}, Eq.~\eqref{eq:budgets}, and Eq.~\eqref{eq:belief-flow} place every admissible occupation measure in the controlled feasible set.
+Taking the infimum of its exact loss over that larger set proves Proposition~\ref{prop:occupation}.
+\input{transfer_details}
+
+\section{Direct Fixed-Model Validation of the Actual-Risk Gate}
+\subsection{Models, learners, and paid protocol}
+This study executes the actual-risk gate prospectively on new seeds, rather than reconstructing decisions from the earlier saved study.
+The 16 public families cross $Q\in\{8,32\}$, high-instance variance $\theta_1\in\{0.5,2\}$, common-factor persistence $\lambda\in\{0.2,0.8\}$, and withheld-update delay $D\in\{0,8\}$.
+The low-instance variance is $\theta_0=0.05$, private variance is one, and message overhead is $h=8$.
+Each family is evaluated under both true instances, each learner, and scales $s\in\{32,128,512,2048\}$, with $B_{\rm msg}=(h+Q)s$ and $B_{\rm env}=4s$.
+The 128 new seeds are $20571001,\ldots,20571128$, screened against the historical seed registries before execution.
+All six policies share policy-independent potential observations within each seed, family, true instance, and learner, including across budget scales.
+They do not share potential observations across learners.
+
+The common observation component is stationary Gaussian autoregressive noise, with coefficient $\lambda$ and marginal variance $\theta_j$; each actor has independent unit-variance Gaussian private noise.
+An average over the first $q$ actors therefore has private variance $1/q$.
+Both learners start from one with a constant-one initial history.
+The running mean uses its exact averaging weights; the averaged delayed affine learner uses $\mu=0.5$ and $\eta=0.2/(D+1)$ with the first-in, first-out recurrence analyzed above.
+Every scheduled block is paid, including the last $D$ withheld updates: $M$ scheduled updates give $N=\max\{0,M-D\}$ learner updates.
+There is no free startup or independent learning reset after a probe.
+The measured endpoint is squared parameter error at the exact zero target, not an unobserved within-run convergence curve.
+
+Before data, the fixed probe uses $q_d=Q$, $b_d=1$, and the smallest integer $n_d\in\{1,\ldots,4096\}$ whose exact Gaussian affinity is at most $0.025$.
+The log-likelihood threshold is zero, with ties assigned to the low instance.
+An infeasible or unavailable probe falls back to the full-budget all-agent program.
+After charging the probe, the two commitment programs minimize exact stationary risk under their respective supplied hypotheses over powers-of-two $q\le Q$ and $b\in\{1,2,4,8\}$, breaking ties lexicographically in $(q,b)$.
+Both programs are fixed before observing the probe; the true instance is not an input to any deployment decision.
+Writing $F_j$ for the full-budget all-agent population risk and $U_j$ for the same-stream population upper bound, the gate requires $U_1<F_1$ and $U_0\le F_0+0.1$.
+The no-carryover ablation deletes only the $\sqrt{\delta_j}\Gamma_j$ contribution from that admission calculation.
+The other controls are information-only probing, all-agent fallback, fixed $(q,b)=(2,1)$, and a known-instance oracle used only for evaluation.
+
+The complete grid contains $16\times2\times2\times4\times6\times128=196608$ trajectories.
+Every trajectory is regenerated in a full semantic replay, including its paid ledgers and decisions.
+Two analyses reproduce all seven output tables byte for byte.
+No failed, infeasible, adverse, or partial-cost record is removed.
+
+\subsection{All macro comparisons and counterevidence}
+For each learner, instance, and scale, we average the paired fallback-minus-policy squared-risk difference across all 16 families within each seed.
+Table~\ref{tab:direct-macro} reports all 16 corrected-gate macro means and descriptive percentile intervals from 2,000 paired-seed bootstrap resamples.
+These are cellwise descriptive intervals, not a familywise significance or equivalence claim.
+\begin{table*}[t]
+\centering
+\caption{All corrected-gate macro risk improvements over all-agent fallback.
+Positive values favor the gate; brackets give descriptive 95 percent paired-bootstrap intervals.}
+\label{tab:direct-macro}
+\begin{tabular}{llrr}
+\toprule
+Learner & Scale & High instance: mean [interval] & Low instance: mean [interval] \\
+\midrule
+Running mean & 32 & $0.07820\ [0.06227,0.09303]$ & $-0.002290\ [-0.003226,-0.001357]$ \\
+& 128 & $0.03452\ [0.03051,0.03840]$ & $0.000763\ [0.000530,0.000986]$ \\
+& 512 & $0.009436\ [0.008400,0.010491]$ & $0.000373\ [0.000324,0.000422]$ \\
+& 2048 & $0.002268\ [0.001998,0.002550]$ & $0.0000860\ [0.0000736,0.0000985]$ \\
+Delayed affine & 32 & $0.10001\ [0.08038,0.11922]$ & $0.06114\ [0.05777,0.06469]$ \\
+& 128 & $0.14696\ [0.13225,0.16261]$ & $0.07750\ [0.07538,0.07955]$ \\
+& 512 & $0.04006\ [0.03541,0.04538]$ & $0.010206\ [0.009663,0.010712]$ \\
+& 2048 & $0.008698\ [0.007723,0.009715]$ & $0.000914\ [0.000838,0.000993]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+All eight high-instance macro intervals are positive, as are seven of eight low-instance intervals.
+The exception is the low-instance running mean at scale 32, where probing can spend resources without compensating risk reduction.
+At the finer family level, 23 of 256 corrected-gate mean improvements are negative (four high and nineteen low); 174 intervals are strictly positive, nine strictly negative, and 73 include zero or are exactly zero.
+The permitted low-instance population-risk increase is $0.1$, so this adverse result does not contradict a zero-harm condition: no such condition was imposed.
+
+The corrected gate admits probing on 113 of 128 public designs, exactly as does the no-carryover gate.
+Their probe-use indicators, actions, and risks coincide on all 32,768 paired policy rows.
+The selection-dependence term remains necessary to the stated bound, but its incremental empirical decision benefit is unresolved on this grid.
+Small differences between separately resampled bootstrap endpoints for the two identical policies do not constitute performance differences.
+The prespecified zero-allowance admission diagnostic admits 100 of 128 designs; it uses saved branch calculations, not additional trajectories.
+
+Table~\ref{tab:direct-costs} retains all six policies' pooled risks and paid costs.
+Pooling gives equal weight to heterogeneous families, instances, learners, and scales, so it is descriptive rather than a universal ranking or a comparison at identical realized costs.
+Fixed $(q,b)=(2,1)$ has lower pooled risk and environment cost than the corrected gate, whereas the gate sends fewer messages.
+The oracle is an instance-aware reference and is not deployable without the unknown label.
+\begin{table*}[t]
+\centering
+\caption{Descriptive pooled means over all 256 cells for each policy; every cell has 128 seeds.}
+\label{tab:direct-costs}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Squared risk & Paid messages & Paid environment & Probe fraction \\
+\midrule
+All agents & $0.114864$ & $19040.000$ & $680.000$ & $0$ \\
+Fixed $(2,1)$ & $0.062931$ & $19037.500$ & $1903.750$ & $0$ \\
+Information only & $0.099064$ & $18509.108$ & $2467.163$ & $0.937500$ \\
+Oracle (evaluation only) & $0.051335$ & $18508.477$ & $2509.625$ & $0$ \\
+Without carryover & $0.079311$ & $18509.341$ & $2463.203$ & $0.882813$ \\
+Corrected gate & $0.079311$ & $18509.341$ & $2463.203$ & $0.882813$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Probe validity and the scope of the enclosures}
+There are 8,192 distinct deduplicated potential probe decisions and thirteen observed classification errors, an empirical fraction of $0.001587$.
+The exact affinity bounds range from $0.021139$ to $0.024380$, each below $0.025$ under both supplied hypotheses.
+This new fixed-probe construction does not retroactively validate the earlier probe's nominal $0.025$ directional interpretation, which bounded equal-prior average error instead.
+The historical reanalysis continues to use its larger exact affinities.
+
+The risk enclosures concern population expectations under known binary Gaussian hypotheses and deterministic linear programs.
+In 123 of 256 corrected-gate cells, the finite sample mean exceeds the corresponding population upper bound; such an exceedance is not by itself a population-bound violation.
+In particular, fallback risk is an exact model expectation, not a simultaneous upper confidence limit for noisy sample means.
+The study therefore does not establish samplewise coverage, calibration for unknown kernels, or a general neural policy-learning guarantee.
+
+Figs.~\ref{fig:direct-rm-low}--\ref{fig:direct-affine-high} show every policy against budget scale, actual paid messages, and actual paid environment units, separately for each learner and instance.
+Each point averages all 16 families and all 128 seeds; connecting points does not imply a within-trajectory learning curve or equal realized cost.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_running_mean_low_20261020.pdf}
+\caption{Direct validation, running mean and low instance: all-policy risk versus allocated scale and actual paid resources. Corrected and no-carryover curves coincide.}
+\label{fig:direct-rm-low}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_running_mean_high_20261020.pdf}
+\caption{Direct validation, running mean and high instance, with the same complete-family averaging and all six policies.}
+\label{fig:direct-rm-high}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_averaged_delayed_affine_low_20261020.pdf}
+\caption{Direct validation, averaged delayed affine learner and low instance; every scheduled update is charged, including withheld terminal updates.}
+\label{fig:direct-affine-low}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/direct_gate_averaged_delayed_affine_high_20261020.pdf}
+\caption{Direct validation, averaged delayed affine learner and high instance; exact overlap of the two gates is retained without graphical offsets.}
+\label{fig:direct-affine-high}
+\end{figure*}
+\input{mechanism_details}
+\input{resource_evidence_details}
+\input{conditional_details}
+\appendices
+\input{appendices}
+\clearpage
+\input{observable_plots}
+\end{document}

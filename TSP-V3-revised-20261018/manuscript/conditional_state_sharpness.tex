@@ -1,0 +1,27 @@
+\subsection{The second-order state ceiling is attained}
+The order $B^{-2}$ can be attained by resource programs of the same running-mean learner.
+Take a single Gaussian regime with $\theta=1/3$, $\lambda=1/5$, $Q=8$, $h=8$, $D=0$ and $r^2=49/50$.
+A two-observation all-actor probe uses $32$ messages and two clock units.
+With total budgets $(80B+32,32B+2)$, its two continuing programs $(q,b)=(2,1)$ and $(8,1)$ have applied horizons $8B$ and $5B$.
+Both have leading risk $1/(8B)$.
+The invariant contrast is one dimensional, with explained terminal-state variance
+\[
+s^2=\frac{[\theta(1-\lambda)]^2}{2[\theta(1-\lambda)+1/8]}=\frac{64}{705}.
+\]
+Let $c$ select the smaller unconditional commitment risk and $u$ the even conditional-risk minimum over these two programs.
+For all sufficiently large integer $B$, $c$ selects $(2,1)$.
+The exact geometric risk formula yields
+\[
+B^2(J_{8,1}^{r}-J_{2,1}^{r})\longrightarrow a=\frac{19}{320000},
+\]
+whereas $B^2(k_{8,1}^2-k_{2,1}^2)s^2\longrightarrow b=13/94000$.
+Here $J_{q,b}^{r}$ and $k_{q,b}$ name commitment risk and state transfer, not a new model index.
+Since $0<a<b$, the conditional scores cross on a set of positive Gaussian probability.
+Writing $G\sim\mathcal N(0,1)$, pointwise minimization and dominated convergence give
+\[
+\lim_{B\to\infty}B^2[R(c)-R(u)]
+=b\,\mathbb E\left[\left(\frac{1187}{2080}-G^2\right)_+\right]>0.
+\]
+For domination, the scaled risk gaps and state coefficients are bounded by the geometric expansions, so the positive part is bounded by a constant times $1+G^2$.
+Thus the state-value ceiling has the sharp budget order in this program class, even with no unknown regime to identify.
+The construction establishes strict second-order value, not a first-order gain or confirmation of the separate empirical state-selection test.

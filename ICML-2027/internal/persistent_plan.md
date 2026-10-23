@@ -1,5 +1,32 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT TSP V3 SUBSTANTIVE MAIN DRAFT UPDATED —2026-10-23
+
+Human requested the latest multi-agent+Lyapunov manuscript, subsequent useful
+research integrated in place, positive contribution-led presentation, and no
+excessive new verification. Canonical editable root remains
+TSP-V3-revised-20261018/manuscript; CURRENT_MANUSCRIPT.txt points to main.tex.
+New title: Lyapunov Resource Control for Correlated Multi-Agent Markov Learning.
+Main13pages/supplement30pages; no new native trajectories, seeds or experiments.
+
+Integrated: arbitrary regime-specific persistence in the conditional theorem;
+strictly positive sharp B^-2 state value; finite-budget paid identification
+against all4368 short-cycle resource programs, every affordable prefix and
+independent mixtures, including a stronger two-period baseline uncovered during
+the analysis. Reference guarantees2.65/5.21/5.81percent at B512/2048/8192;
+uncertainty-box guarantees0.51/1.15percent at B2048/8192. These are constructive
+population bounds, not sampled gains. The box and period<=3 comparator scope
+are explicit. All5budget scales and earlier adverse evidence are preserved.
+
+Only ordinary proof/literature/manuscript computation was used. All old native
+studies and budgets stay immutable terminal; no new watcher or automation.
+Classical ingredients attributed;50references freshly verified with explicit
+metadata resolutions and separate IEEE-style check; noBib edit. New derivations,
+all attempts, before-copies and final artifact hashes are in manuscript/internal/
+strict_tsp_20261023/. Essential checks do not stand in for contribution judgment.
+This version is the theory-focused TSP submission candidate and next research
+baseline, not a stopped author-review task or an acceptance guarantee.
+
 ## CURRENT SUBSTANTIVE TSP V3 DRAFT COMPLETE —2026-10-21 16:08CST
 
 Human routine-autonomy authorization is in force; older routine-approval prompts

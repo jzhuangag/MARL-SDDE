@@ -1,0 +1,82 @@
+\subsection{Observable calibration and unknown initialization}
+A covariance probe must be computable from the learner's observations.
+Let its raw output be $Z=\boldsymbol1\nu+W_j$, where $\nu$ is the unknown target-induced level, $(C_T,W_j)$ is centered jointly Gaussian under regime $j$, and $\operatorname{Cov}_j(W_j)=\Sigma_j\succ0$.
+Subtracting the unknown level $\nu$ would require unavailable target information.
+Instead choose the first-difference matrix $D$ and use the observable contrast $Y=DZ=DW_j$.
+The classical error-contrast construction~\cite{harville1974contrasts} gives covariance $K_j=D\Sigma_jD^\top$ and Gaussian affinity
+\[
+\rho_D=\det(K_0)^{1/4}\det(K_1)^{1/4}/\det[(K_0+K_1)/2]^{1/2}.
+\]
+Each directional error of its zero-threshold likelihood rule is at most $\rho_D$.
+The common state at probe exit has conditional mean $m_j(Y)$ and explained variance $s_j^2=\operatorname{Var}_j(m_j(Y))$, computed from this projected law.
+The supplement derives a linear-time two-filter implementation and a finite-dimensional information-cost bound for removing the target.
+Every probe observation still consumes both budgets.
+
+Let the initial error be an unknown fixed $e\in[-r,r]$, with public $r>0$.
+Fix a regime prior $\pi_j>0$, mixture law $g$, and model posterior $p_j(y)$.
+Assume that (a) the probe and every continuing program are frozen before observing $Y$; (b) $e$ does not affect the contrast law; and (c) the continuing learners have deterministic linear weights and the common-state representation in Eq.~\eqref{eq:linear-program}.
+For each frozen post-probe program let $J_{j,a}^{r}=d_a^2r^2+\operatorname{Var}_j(\sum_t\omega_{a,t}\bar X_t)$, including its remaining horizon.
+Its even conditional score is
+\begin{equation}
+L_a(y)=\sum_jp_j(y)\{J_{j,a}^{r}+k_a^2[m_j(y)^2-s_j^2]\}.
+\label{eq:conditional-even-score}
+\end{equation}
+This score uses neither the target nor the sign of the initial error.
+Write $F_a(y)=\sum_jp_j(y)J_{j,a}^{r}$, let $u$ minimize $L_a$ and $c$ minimize $F_a$, and set $S(y)=\sum_jp_j(y)[m_j(y)^2-s_j^2]$.
+Both selectors use a fixed even tie rule.
+For an even selector write $R_\pi(v)=\sup_{|e|\le r}R_{\pi,e}(v)$, and let $\varphi$ be the standard normal density.
+
+\begin{theorem}[Conditional value and its state-information ceiling]
+For a fixed paid probe and finite scalar continuing-program catalogue with common persistence and the same deterministic learner weights under each regime,
+\begin{equation}
+\inf_v\sup_{|e|\le r}R_{\pi,e}(v)=\E_g\min_aL_a(Y),
+\label{eq:conditional-minimax-value}
+\end{equation}
+where $v$ ranges over randomized $Y$-measurable selectors in the invariant-statistic information class.
+The selector $u$ attains the value, and
+\begin{align}
+0\le R_\pi(c)-R_\pi(u)&\le K,\nonumber\\
+K&=4\varphi(1)\operatorname{range}_a(k_a^2)\sum_j\pi_js_j^2.
+\label{eq:state-selection-ceiling-main}
+\end{align}
+For the running mean and a stable averaged affine-delay learner with affordable horizons proportional to budget scale $B$, $K=O(B^{-2})$.
+\label{thm:conditional-value}
+\end{theorem}
+
+Posterior-loss minimization is classical~\cite{moustakides2012joint,vasconcelos2020observation,reinhard2026minimax}.
+Here symmetrization cancels the unknown-initialization cross term, and averaging risks at $e=\pm r$ proves the attainable value in Eq.~\eqref{eq:conditional-minimax-value}.
+The ceiling follows from $L_c-L_u\le(\max k_a^2-\min k_a^2)|S|$ and $\E_g|S|\le4\varphi(1)\sum_j\pi_js_j^2$.
+The supplementary proofs give the coefficient bounds and vector extension, whose covariance dual uses classical minimax interchange~\cite{sion1958minimax} and can require tie randomization.
+
+Optimal selection after a probe is not the same as optimal purchase of that probe.
+For the best fixed risks $I_{\rm full},I_{\rm post}$ before and after payment and $R_{\rm rob}=\E_g\min_aL_a$, the exact gain decomposes as
+\[
+I_{\rm full}-R_{\rm rob}=V_{\rm reg}+V_{\rm state}-C-T,
+\]
+Here $V_{\rm reg}\ge0$ is nominal regime value, $V_{\rm state}\in[0,K]$ is extra state value, $C$ is the possibly signed remaining-horizon cost, and $|T|\le K/2$ corrects nominal posterior scores to actual risk.
+The supplement defines these terms and proves the exact identity and paid-value bounds.
+
+\subsection{When identification outperforms all fixed prefixes}
+Theorem~\ref{thm:conditional-value} separates knowledge of the covariance regime from knowledge of the current noise state.
+The latter has a second-order value for averaged learners; the former can change the leading risk coefficient.
+For a running mean with $0\le\lambda\le1-\gamma<1$ and budgets $(\lfloor\beta_m B\rfloor,\lfloor\beta_e B\rfloor)$ for fixed $\beta_m,\beta_e>0$, define
+\begin{align*}
+a_a&=\min\{\beta_m/(h+q_a),\beta_e/b_a\},\\
+K_j(a)&=\frac{q_a^{-1}+\theta_j(1+\lambda^{b_a})/(1-\lambda^{b_a})}{a_a}.
+\end{align*}
+Let $a_j^*$ minimize $K_j$, $K_\pi=\min_a\sum_j\pi_jK_j(a)$,
+$\Delta=K_\pi-\sum_j\pi_jK_j(a_j^*)$, and
+$A=\sum_j\pi_j[K_j(a_{1-j}^*)-K_j(a_j^*)]$.
+The fixed comparison permits every affordable training prefix and stop, at the same learner and step.
+
+\begin{corollary}[First-order separation and a no-gain boundary]
+For a finite catalogue and bounded delay, a paid target-invariant probe with fixed directional error bound $0<\delta<1/2$, followed by commitment to $a_{\widehat j}^*$, certifies superiority to every fixed prefix and fixed random mixture for sufficiently large $B$ if $\Delta>\delta A$.
+The certified gain is at least $(\Delta-\delta A)/B-C(n+1)/B^2$, where $n$ is probe length and $C$ is finite.
+If the regimes share a leading minimizing action, no selector from the maximal-horizon post-probe catalogue plus stop following a length-$O(\log B)$ probe gains more than $O(\log B/B^2)$ over the best fixed prefix.
+\label{cor:leading-prefix-separation}
+\end{corollary}
+
+The supplement proves the prefix expansion, gives explicit conservative remainder constants and a sufficient budget threshold, and supplies a rational witness on the public grid with a positive leading margin of approximately $0.07765$ at directional bound $0.025$.
+Finite-budget admission uses the actual projected probe, exact horizons and signed risk bounds, rather than the asymptotic margin.
+The Gaussian branch admits a probe only when its prior-weighted upper risk is below the best full-budget fixed-prefix risk; otherwise it executes that fixed prefix without probing.
+The comparison concerns a declared learner and resource-program class, rather than unrestricted estimators.
