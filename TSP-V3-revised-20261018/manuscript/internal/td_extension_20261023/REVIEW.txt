@@ -1,0 +1,39 @@
+Strict TSP substantive revision,2026-10-23
+Inline same-family review,not an external acceptance decision.
+Used academic-research-suite re-review/revision,TSP,contribution-led writing,
+separate IEEE bibliography style and essential PDF checks.
+
+Finding1:0.43percent is a conservative separation certificate,not a measured
+effect size. Old TV transport raised the directional error allowance to0.1.
+Repair:direct exponential quadratic-form bounds certify0.03 over a wider box.
+No detector/probe length/commitment was changed; this tightens its analysis.
+
+Finding2:old +/-1percent variance and persistence+.005 bands were narrow.
+New box fixed before calculations:low variance.04..06(+/-20percent),high1.8..2.2
+(+/-10percent),each persistence.15..25(+/-.05),prior.45..55 unchanged.
+Interval proof subdivides persistence16x16,uses concavity/convexity at variance
+and prior corners,and exact rational inequalities. It covers the continuum.
+Result atB8192:runningmeanD8>=2.54percent against all predetermined schedules.
+
+Finding3:runningmean is not a general TD critic. Developed an explicit filter
+transfer:averaged scalar affine TD weights have an exponentially decaying
+deficit from1/(mu*N);covariance row-sum bound prices that boundary exactly.
+The resulting all-schedule lower bound includes initialization,all prefixes,
+and independent random mixtures. Withmu=.5,eta=.1,D0,uniform box guarantee
+>=1.86percent atB8192 and>=2.58percent atB32768. This is a constant-feature
+TD(0) critic,not random-Jacobian multi-dimensional TD or nonlinear MARL.
+General transfer inequality permits any positive scalar contraction; the
+displayed finite numerical certificate fixes the stated mu/eta.
+
+Initial whole-box interval bound was loose and negative;retained results.json.
+First truncated-tail TD transfer was also loose/negative atB8192;refined.json
+retains it. The final row-sum transfer is in transfer.json. These are analytical
+bound improvements,not scientific retries. A syntax error in the helper's
+prefix import was corrected;no results overwritten. All old native outputs
+and registered negative primary decisions remain immutable. Zero new seeds,
+trajectories or native workers. Existing positive learning curves are not
+claimed as empirical verification of this new uncertainty box.
+
+Publication judgment:these are substantive theory repairs answering the three
+current concerns. The strongest claim is explicit uniform paid-resource value
+for two declared learners,not general TD optimality or assured TSP acceptance.

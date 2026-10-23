@@ -1,5 +1,21 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT TSP V3 WIDER-BOX AND TD THEORY COMPLETE —2026-10-23 18:16CST
+
+Canonical main13pages/supplement32pages. User requested stronger0.43percent
+certificate,wider parameter scope,and TD transfer without seed expansion.
+Integrated direct frozen-detector error bound<.03 overtheta0[.04,.06],theta1
+[1.8,2.2],eachlambda[.15,.25],prior[.45,.55]. AtB8192,the unchanged paid rule
+has>=2.54percent runningmeanD8 and>=1.86percent averaged scalar TD(0)D0
+all-predetermined-schedule risk guarantees. AtB32768,>=2.75/2.58percent.
+Explicit TD exponential-weight row-sum correction is proved;constant-feature,
+deterministic positive contraction scope,not general random-Jacobian TD.
+All older native studies immutable terminal,zero new trajectories/seeds.
+Ordinary analytic work under120CPU-second ceiling;initial loose negative bounds
+and helper syntax correction preserved. New records internal/td_extension_
+20261023/. No retry,cap transfer,watcher or automation. Fresh50references and
+separate IEEE style check,noBib edit. Same-family inline review,not acceptance.
+
 ## CURRENT TSP V3 PERIOD-FREE THEORY REPAIR COMPLETE —2026-10-23 16:47CST
 
 Canonical manuscript unchanged location,main13pages/supplement31pages.

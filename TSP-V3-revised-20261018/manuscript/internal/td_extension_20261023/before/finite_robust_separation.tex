@@ -1,0 +1,21 @@
+\subsection{Finite-budget separation under parameter uncertainty}
+A finite-budget certificate can avoid knowing the exact covariance pair.
+Consider the running mean with $Q=8$, overhead $h=8$, delay $D=8$, radius $r=1$, budgets $(16B,4B)$, and $q,b\in\{1,2,4,8\}$.
+The common-factor variances lie in $\theta_0\in[0.0495,0.0505]$ and $\theta_1\in[1.98,2.02]$, with independently varying persistences $\lambda_j\in[0.195,0.205]$ and high-regime prior $\pi\in[0.45,0.55]$.
+Use eighteen paid all-actor, unit-spacing observations, their target-invariant contrasts, and the likelihood rule frozen at reference models $(\theta_0,\theta_1,\lambda)=(0.05,2,0.2)$.
+Commit to $(8,4)$ or $(2,2)$ on the low or high decision.
+Let $I_{\rm open}$ be the best worst-initialization prior risk over all predetermined resource schedules, every affordable stopping prefix and observation-independent mixtures, with the actual parameters available to that comparator.
+The schedule may have arbitrary length and order and need not be periodic.
+
+\begin{theorem}[Robust finite-budget separation]
+Throughout the stated parameter box, the frozen paid rule has worst-initialization prior risk $R_{\rm paid}$ satisfying
+\[
+R_{\rm paid}\le(1-0.0043)I_{\rm open}\quad(B=8192).
+\]
+Both probe and withheld-update costs are included.
+\label{thm:finite-robust-separation}
+\end{theorem}
+
+The proof combines covariance-order transport with a period-free resource envelope, relaxing integer action counts and retaining adjacent covariances.
+At the reference parameters and balanced prior, the guaranteed reductions are at least $1.36$, $4.89$ and $5.72$ percent at $B=512$, $2048$ and $8192$.
+Supplementary Section~\ref{sup-sec:arbitrary-schedule} derives the envelope; Section~\ref{sup-sec:finite-robust} certifies the probe.

@@ -4,7 +4,7 @@ Lyapunov Resource Control for Correlated Multi-Agent Markov Learning
 
 Canonical editable source: main.tex in this directory.
 Reading copy: main.pdf (13 pages).
-Complete proofs and retained evidence: supplement.tex / supplement.pdf (31 pages).
+Complete proofs and retained evidence: supplement.tex / supplement.pdf (32 pages).
 This directory supersedes the older TSP/ and TSP-V3/ drafts; those remain preserved.
 
 Research direction
@@ -21,10 +21,13 @@ New integrated results
 3. A period-free resource-envelope theorem now covers EVERY predetermined
    schedule over the resource catalogue, including arbitrary nonperiodic words,
    all stopping prefixes and observation-independent randomized schedules.
-   The unchanged paid rule guarantees at least 1.36%,4.89%,5.72% lower risk at
-   reference B=512,2048,8192, and at least0.43% throughout the declared variance/
-   persistence/prior box at B=8192. These are population-risk certificates, not
-   sampled gains. The previous sharper period<=3 numbers remain supplementary.
+   Direct detector-error analysis now expands the covariance box to theta0
+   [.04,.06],theta1[1.8,2.2],each persistence[.15,.25],prior[.45,.55].
+   At B8192 the unchanged paid rule guarantees >=2.54% risk reduction for the
+   running mean(D8),and >=1.86% for averaged scalar affine TD(0)(D0,mu=.5,
+   eta=.1). The TD extension explicitly bounds the exponential-filter boundary;
+   it is not a general random-Jacobian TD theorem. These are population-risk
+   certificates,not sampled gains. Older narrower-box certificates remain.
 
 Editorial judgment
 Use this as the sole working main draft for a theory-led IEEE TSP submission.
@@ -37,5 +40,6 @@ unfavorable prospective outcomes retain their original interpretation and full
 supplementary evidence; the new construction does not relabel those experiments.
 No new trajectories, seeds, native studies or manuscript submission were used.
 
-Latest derivation and re-review: internal/arbitrary_schedule_20261023/.
+Latest derivation and re-review: internal/td_extension_20261023/.
+Period-free envelope derivation: internal/arbitrary_schedule_20261023/.
 Previous derivations remain in internal/strict_tsp_20261023/.

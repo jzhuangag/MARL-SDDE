@@ -85,8 +85,9 @@ Budget scale $B$ & Reference model & Full parameter box\\
 \end{table}
 
 At $B=8192$, the smaller parameter-box endpoint reduction exceeds $0.0043192$.
-Exact cross multiplication with the retained rational $L$ and $U$ gives the rounded guarantee $0.0043$ in the main theorem.
+Exact cross multiplication with the retained rational $L$ and $U$ gives the rounded guarantee $0.0043$ for this parameter box.
 This bound resolves the comparison with all open-loop resource words in the catalogue, including arbitrarily long cycles, nonperiodic schedules, every prefix and independent random mixtures.
 The argument uses a continuous resource relaxation, not finite-word enumeration.
 The short-cycle calculation in Table~\ref{tab:finite-robust-certificate} remains a sharper certificate for that smaller comparison class.
 The general envelope and the paid upper bound separate the gain from knowing a covariance regime from the gain obtainable by scheduling without observing that regime.
+\input{td_extension_proof}

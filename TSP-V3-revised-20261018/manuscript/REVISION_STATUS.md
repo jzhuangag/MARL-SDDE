@@ -1,5 +1,20 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — wider-box separation and explicit TD transfer,2026-10-23 18:16CST
+
+Main13pages/supplement32pages. Main Theorem7 now covers the larger covariance
+box:theta0.04..06,theta1.8..2.2,eachlambda.15..25,prior.45..55. AtB8192,
+uniform all-predetermined-schedule risk guarantees are>=2.54percent for the
+running mean(D8) and>=1.86percent for averaged scalar TD(0)(D0,mu.5,eta.1).
+The unchanged18-observation detector has directional errors<.03 by a direct
+Gaussian exponential argument. A row-sum bound explicitly controls the TD
+filter deficit,transferring the schedule envelope with an O(N^-2) boundary.
+Zero new trajectories/seeds;old negative empirical decisions unchanged.
+TD scope is a constant-feature affine critic,not arbitrary random Jacobians.
+Proofs:td_extension_proof.tex;calculations/review:internal/td_extension_20261023/.
+The earlier narrow-box0.43percent proof remains retained as a valid weaker
+certificate. Necessary references refreshed separately from IEEE style;noBib edit.
+
 ## CURRENT — period restriction removed by substantive theory,2026-10-23 16:47CST
 
 Main13pages/supplement31pages. The main finite-budget theorem now compares with

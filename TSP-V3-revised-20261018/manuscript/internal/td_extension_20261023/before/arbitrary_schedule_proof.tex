@@ -1,0 +1,92 @@
+\section{Separation from Every Predetermined Resource Schedule}
+\label{sec:arbitrary-schedule}
+The comparison can cover arbitrary time variation without restricting a schedule's period.
+We first give a general lower bound for a running mean, then apply it to the paid rule in main Theorem~\ref{thm:finite-robust-separation}.
+
+\subsection{A resource-envelope bound}
+Let $\mathcal Q,\mathcal B\subset\{1,2,\ldots\}$ be finite participation and spacing sets, with overhead $h\ge0$, message allowance $M$ and environment allowance $E$.
+The common noise is stationary Gaussian AR(1), with variance $\theta>0$ and persistence $0\le\lambda<1$.
+Private observation noises are independent over time and have variance $1/q$ after averaging $q$ actors.
+Let $g_q$ be the decreasing piecewise-linear convex envelope through $(q,1/q)$ for $q\in\mathcal Q$ and $g_b$ the corresponding envelope through $(b,\lambda^b)$ for $b\in\mathcal B$.
+Extend each envelope constantly to the right of its largest knot.
+Put $n_{\max}=\min\{M/(h+\min\mathcal Q),E/\min\mathcal B\}$.
+Assume $n_{\max}\ge1$; otherwise stop is the sole feasible output.
+For $1\le n\le n_{\max}$ define
+\begin{align*}
+v(n)&=g_q(M/n-h)+\theta[1+2g_b(E/n)],\\
+H(n)&=\frac{r^2+nv(n)-2\theta\lambda}{(n+1)^2}.
+\end{align*}
+Let $\mathcal T$ contain $1,n_{\max}$ and all points $M/(h+q)$ and $E/b$ lying in $[1,n_{\max}]$.
+
+\begin{proposition}[Period-free resource envelope]
+Every predetermined schedule and affordable stopping prefix, using the running mean with initialization error $|e|\le r$, has worst-initialization risk at least
+\[
+L(M,E;\theta,\lambda,r)=\min\{r^2,\min_{n\in\mathcal T}H(n)\}.
+\]
+The same bound holds for observation-independent randomized schedules and stopping lengths.
+It also holds when terminal updates are withheld but charged.
+\end{proposition}
+
+To prove the bound, fix a deterministic applied prefix of length $N\ge1$, with resource pairs $(q_t,b_t)$ and observation times $\tau_t$ satisfying $\tau_t-\tau_{t-1}=b_t$ for $t\ge2$.
+Its risk numerator at $|e|=r$ is exactly
+\[
+r^2+\sum_{t=1}^Nq_t^{-1}+\theta N+2\theta\sum_{s<t}\lambda^{\tau_t-\tau_s}.
+\]
+All common covariances are nonnegative.
+Retaining adjacent pairs and adding back the first declared spacing gives
+\[
+\sum_{s<t}\lambda^{\tau_t-\tau_s}\ge\sum_{t=2}^N\lambda^{b_t}
+\ge\sum_{t=1}^N\lambda^{b_t}-\lambda.
+\]
+For $\lambda=0$ both sides are zero.
+The envelopes interpolate convex decreasing functions at their allowed actions, so Jensen's inequality and $\sum_t(h+q_t)\le M$, $\sum_tb_t\le E$ imply
+\[
+\sum_tq_t^{-1}\ge Ng_q(M/N-h),\quad
+\sum_t\lambda^{b_t}\ge Ng_b(E/N).
+\]
+These inequalities relax integer action counts and charge no extra cost to the fixed comparator.
+Their combination bounds its risk below by $H(N)$.
+Between consecutive points in $\mathcal T$, its numerator is $an+c$, where $a>0$.
+The derivative of $(an+c)/(n+1)^2$ has numerator $a-an-2c$, which decreases with $n$.
+It has no interior minimum; hence the minimum over all real $n\in[1,n_{\max}]$ occurs at a listed endpoint.
+Allowing real $n$ can only strengthen the comparator relative to an integer schedule.
+Stop gives risk $r^2$.
+Every deterministic schedule's risk is increasing in $e^2$, so the common endpoints $e=\pm r$ also prove the randomized claim.
+Ignoring the cost of withheld updates enlarges the comparator's feasible set and preserves the lower bound.
+
+The same argument applies to prior risk under model-specific persistence parameters by first lowering each nonnegative covariance entry to $\lambda_-$ and replacing $\theta$ by $\bar\theta_-=\sum_j\pi_j\theta_{j,-}$.
+It does not presume that a predetermined schedule is constant, stationary or periodic.
+
+\subsection{Finite separation with the unchanged paid rule}
+Use $M=16B$, $E=4B$, $h=8$, $r=1$ and $\mathcal Q=\mathcal B=\{1,2,4,8\}$.
+For the reference parameters, put $\theta=41/40$, $\lambda=1/5$.
+For the full box, put $\theta=(1-\pi)99/2000+\pi99/50$, $\lambda=39/200$.
+The paid upper bounds $U(\pi)$ from Section~\ref{sec:finite-robust} are unchanged: eighteen observations, both continuation horizons, eight withheld updates, the frozen detector and its uniform directional error bound remain fully charged.
+At each prior endpoint, evaluate $L$ over $\mathcal T$ using rational arithmetic.
+It is concave in $\pi$, being a minimum of affine expressions, whereas $U$ is affine.
+Thus endpoint inequalities $U\le(1-\epsilon)L$ imply the same relation for every prior between them.
+
+\begin{table}[t]
+\centering
+\caption{Guaranteed risk reductions against every predetermined schedule.
+All quantities are analytical population bounds; a dash denotes no positive certificate from this envelope.}
+\label{tab:arbitrary-schedule}
+\begin{tabular}{rrr}
+\toprule
+Budget scale $B$ & Reference model & Full parameter box\\
+\midrule
+32 & --- & ---\\
+128 & --- & ---\\
+512 & $\ge1.36\%$ & ---\\
+2048 & $\ge4.89\%$ & ---\\
+8192 & $\ge5.72\%$ & $\ge0.43\%$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $B=8192$, the smaller parameter-box endpoint reduction exceeds $0.0043192$.
+Exact cross multiplication with the retained rational $L$ and $U$ gives the rounded guarantee $0.0043$ in the main theorem.
+This bound resolves the comparison with all open-loop resource words in the catalogue, including arbitrarily long cycles, nonperiodic schedules, every prefix and independent random mixtures.
+The argument uses a continuous resource relaxation, not finite-word enumeration.
+The short-cycle calculation in Table~\ref{tab:finite-robust-certificate} remains a sharper certificate for that smaller comparison class.
+The general envelope and the paid upper bound separate the gain from knowing a covariance regime from the gain obtainable by scheduling without observing that regime.
