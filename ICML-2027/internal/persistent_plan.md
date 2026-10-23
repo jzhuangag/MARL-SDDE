@@ -1,5 +1,20 @@
 # ICML 2027 learning-value upgrade: persistent plan
 
+## CURRENT TSP V3 PERIOD-FREE THEORY REPAIR COMPLETE —2026-10-23 16:47CST
+
+Canonical manuscript unchanged location,main13pages/supplement31pages.
+User's strict re-review found period<=3 too narrow for a general predetermined-
+schedule claim. Repaired with a general convex resource envelope over all
+lengths/orders,all prefixes and independent randomization,not more enumeration.
+The unchanged paid rule has reference guarantees1.36/4.89/5.72percent at B512/
+2048/8192;full original parameter-box guarantee0.43percent at B8192. Earlier
+short-cycle1.15percent stays as a sharper supplementary restricted-class bound.
+General lemma/proof integrated; all native studies immutable terminal,zero new
+trajectories/seeds. Deterministic proof checks80028;ordinary proof CPU<120s.
+New records in manuscript/internal/arbitrary_schedule_20261023/. Fresh references
+and separate style check;no new citations/Bib edits. Same-family inline re-review,
+not independent external acceptance. No watcher or new automation.
+
 ## CURRENT TSP V3 SUBSTANTIVE MAIN DRAFT UPDATED —2026-10-23
 
 Human requested the latest multi-agent+Lyapunov manuscript, subsequent useful

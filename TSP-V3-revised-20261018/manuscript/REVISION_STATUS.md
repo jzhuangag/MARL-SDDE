@@ -1,5 +1,24 @@
 # Independent TSP V3 repair — working copy,2026-10-18
 
+## CURRENT — period restriction removed by substantive theory,2026-10-23 16:47CST
+
+Main13pages/supplement31pages. The main finite-budget theorem now compares with
+EVERY predetermined schedule in the resource catalogue: arbitrary order/length,
+nonperiodic schedules, all stopping prefixes and independent random mixtures.
+A general convex resource-envelope lower bound replaces period enumeration.
+The unchanged paid detector/commitments/costs retain reference guarantees
+1.36/4.89/5.72percent at B512/2048/8192 and a full-box guarantee0.43percent at
+B8192. Earlier short-cycle guarantees remain supplementary, not universal claims.
+
+Completed a substantive research repair, not merely a status relabeling. The
+general lemma and rational box proof are in arbitrary_schedule_proof.tex;
+review/findings/calculations/fresh references are in internal/arbitrary_schedule_
+20261023/. New experimental trajectories0. Existing negative primary outcomes
+remain unchanged. Existing positive learning evidence supports resource matching;
+the new schedule separation is a theoretical population result for a fixed
+running-mean learner, not an optimized-estimator or neural-policy comparison.
+Classical tools remain attributed; no new references or Bib mutations.
+
 ## CURRENT — substantive theory-led TSP main draft updated,2026-10-23
 
 Canonical source remains this directory, now titled **Lyapunov Resource Control

@@ -4,7 +4,7 @@ Lyapunov Resource Control for Correlated Multi-Agent Markov Learning
 
 Canonical editable source: main.tex in this directory.
 Reading copy: main.pdf (13 pages).
-Complete proofs and retained evidence: supplement.tex / supplement.pdf (30 pages).
+Complete proofs and retained evidence: supplement.tex / supplement.pdf (31 pages).
 This directory supersedes the older TSP/ and TSP-V3/ drafts; those remain preserved.
 
 Research direction
@@ -18,12 +18,13 @@ New integrated results
    persistence, rather than requiring a common persistence across regimes.
 2. An explicit two-program Gaussian construction attains strictly positive
    second-order state value, proving the O(B^-2) order sharp in that class.
-3. A frozen paid rule has finite-budget positive guarantees against all 4368
-   ordered resource cycles of periods 1–3, every affordable prefix, and their
-   observation-independent mixtures. Reference guarantees are at least 2.65%,
-   5.21%, and 5.81% at B=512,2048,8192. Under the declared variance/persistence/
-   prior uncertainty box, guarantees are at least 0.51% and 1.15% at B=2048,8192.
-   These percentages are proved population-risk reductions, not sampled gains.
+3. A period-free resource-envelope theorem now covers EVERY predetermined
+   schedule over the resource catalogue, including arbitrary nonperiodic words,
+   all stopping prefixes and observation-independent randomized schedules.
+   The unchanged paid rule guarantees at least 1.36%,4.89%,5.72% lower risk at
+   reference B=512,2048,8192, and at least0.43% throughout the declared variance/
+   persistence/prior box at B=8192. These are population-risk certificates, not
+   sampled gains. The previous sharper period<=3 numbers remain supplementary.
 
 Editorial judgment
 Use this as the sole working main draft for a theory-led IEEE TSP submission.
@@ -36,4 +37,5 @@ unfavorable prospective outcomes retain their original interpretation and full
 supplementary evidence; the new construction does not relabel those experiments.
 No new trajectories, seeds, native studies or manuscript submission were used.
 
-Supporting derivations and reference checks: internal/strict_tsp_20261023/.
+Latest derivation and re-review: internal/arbitrary_schedule_20261023/.
+Previous derivations remain in internal/strict_tsp_20261023/.

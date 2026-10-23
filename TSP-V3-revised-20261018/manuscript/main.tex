@@ -44,7 +44,7 @@ Target-invariant contrasts make the probe observable without knowing the signal 
 Within a finite linear-program class, an initialization-minimax characterization separates covariance-regime information from current-state information.
 For stable averaged learners, extra state value is second order in budget, and a two-program construction proves this order sharp.
 Covariance identification can instead improve the leading risk coefficient against every affordable prefix of each constant resource program.
-A running-mean construction remains uniformly advantageous under variance, persistence and prior uncertainty: at a specified budget it guarantees at least $1.15$ percent lower risk than all predetermined resource cycles of period at most three, their prefixes and random mixtures, with probe and delay costs paid.
+A running-mean construction remains uniformly advantageous under variance, persistence and prior uncertainty: at a specified budget it guarantees at least $0.43$ percent lower risk than every predetermined resource schedule, including nonperiodic schedules and random mixtures, with probe and delay costs paid.
 Simulations quantify the protection obtained by declining uneconomic probes and the gains from resource-matched learning.
 These results provide constructive conditions for paid identification to improve risk and delimit the comparisons for which that advantage is established.
 \end{abstract}
@@ -95,7 +95,7 @@ Predictable moment and mixing bounds control calibration-induced selection error
 \Needspace{3\baselineskip}
 \item \textbf{When Paid Identification Is Useful:} Same-stream risk transfer prices identification through the continuing learner.
 The current-state value has a sharp second-order ceiling, whereas regime information can improve the leading coefficient.
-A finite-budget separation from constant and short-period cyclic programs persists over covariance and prior uncertainty.
+A resource-envelope bound establishes finite-budget separation from every predetermined schedule over covariance and prior uncertainty.
 \Needspace{3\baselineskip}
 \item \textbf{Resource-Matched Learning Evidence:} Controlled studies quantify risk and area under the curve (AUC) gains from finite-horizon control.
 Held-out multi-agent proximal policy optimization (MAPPO) studies test participation control, and observable-probe simulations evaluate economic admission against indiscriminate probing and constant-program prefixes.
@@ -790,7 +790,7 @@ The supplement retains the complete robustness and policy-learning reproducibili
 Paid identification is useful only when its effect on the continuing learner compensates for the training horizon it consumes.
 For the specified Gaussian linear-program class, regime information can change the leading risk coefficient, whereas current-state information has a sharp second-order value for averaged learners.
 The fixed-prefix separation condition and finite-budget risk gate turn that distinction into a checkable comparison with constant nonadaptive programs.
-A constructive separation from constant and short-period cyclic programs remains valid throughout an explicit covariance and prior uncertainty box, with observations and delayed updates fully charged.
+A constructive separation from every predetermined resource schedule remains valid throughout an explicit covariance and prior uncertainty box, with observations and delayed updates fully charged.
 The Lyapunov resource score extends the design interface to affine delayed policy evaluation under certified moment and mixing bounds.
 The resulting theory and resource-matched simulations distinguish the value of identifying a dependence regime from the value of avoiding an uneconomic probe.
 

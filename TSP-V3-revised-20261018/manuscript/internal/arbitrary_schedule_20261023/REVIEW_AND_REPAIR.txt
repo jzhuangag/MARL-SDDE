@@ -1,0 +1,54 @@
+Strict TSP re-review and substantive repair,2026-10-23
+Judge: inline Codex, same model family as manuscript development; no independent
+external referee or cross-model pass. User's three concerns are the review criteria.
+
+1. Is the new theory substantive?
+Posterior-loss minimization, symmetry, Jensen, Gaussian KL and information value
+are classical ingredients, not independent novelty claims. Different-persistence
+extension is useful but incremental; the sharp state-value construction alone is
+not enough to carry the paper. The substantive argument is their connection to
+paid continuing risk, dual resource budgets, and first-order versus second-order
+information roles. The new period-free lower envelope supplies a general finite
+calculation over arbitrary resource words and a strict separation from that class.
+
+2. Is period<=3 too narrow?
+Yes, for a claim about all predetermined resource control. Prior proof correctly
+covered its named class, but did not exclude arbitrary open-loop time variation.
+Repair: discard nonnegative nonadjacent covariance terms, use convex envelopes
+of inverse participation and exponential spacing, relax integer counts, and
+minimize the resulting linear-over-square bound at a finite list of resource
+knots. This includes every word/period/prefix and independent randomized choice.
+The unchanged paid rule beats this stronger lower bound at reference B512/2048/
+8192 by >=1.36/4.89/5.72percent and throughout the same parameter box at B8192
+by >=0.43percent. The former short-cycle >=1.15percent guarantee stays in the
+supplement as a sharper result for a smaller class, not the main universal claim.
+The general lemma explicitly uses integer Markov spacings, independent private
+observation noise and a fixed running-mean estimator. No optimized-weight/GLS or
+observation-adaptive competitor is claimed covered.
+
+3. Do positive results support the claims?
+The analytical separation proves existence and uniform finite-box advantage;
+the 0.43percent number is a lower certificate, not a Monte Carlo effect size.
+Old finite-grid validations do not establish a broad practical paid-gate gain.
+Their registered negative primary comparisons remain unchanged. Existing
+resource-matched policy-evaluation and MAPPO gains support the resource-design
+component, not a universal neural-policy theorem or empirical verification of
+the new box. Manuscript statements distinguish these roles locally.
+
+Re-review disposition: the period-truncation issue is substantively resolved;
+the new general lower envelope and unchanged-cost paid separation are integrated,
+not postponed as future research. This is a completed theory revision, not an
+acceptance prediction or a technical-audit-based certification. Novelty is
+search-bounded relative to the retained nearest full-text comparison, not a
+universal priority claim. No new experimental data, tuning or seed extension.
+
+Literature: fresh 50-reference resolver report in fresh_citations/; IEEE-style
+report separately records no definite errors and no Bib edits. Moustakides2012
+primary author PDF rechecked: posterior cost/combined detection-estimation is
+already classical (https://www.ssp.ece.upatras.gr/moustakides/downloads/journals/det2012.pdf).
+Paulin article79 and Manjunath17–33 metadata freshly confirmed by university/
+publisher records. Solomon exact OpenAlex W1499011820 fresh title/author/year
+match; prior primary Berkeley/SIAM provenance retained, not relabeled new reading.
+
+This verification round ran on the same model family that drove the revisions;
+over-optimization to this judge's latent biases is possible.
