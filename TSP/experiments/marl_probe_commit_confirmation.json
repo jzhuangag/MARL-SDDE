@@ -1,0 +1,94 @@
+{
+  "experiment_id": "TSP-MARL-CONF-001",
+  "role": "confirmatory evaluation of the frozen observable Lyapunov probe-then-commit controller",
+  "development_predecessor": {
+    "experiment_id": "TSP-MARL-DEV-002",
+    "gate_sha256": "0f12063dc9725308a2d1c24174360ece9ef6cd295a31a1bcbfdf0a710d585c04",
+    "decision": "authorize-confirmation-preregistration"
+  },
+  "upstream": {
+    "repository": "https://github.com/PKU-MARL/HARL",
+    "commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "algorithm": "mappo"
+  },
+  "task": {
+    "environment": "pettingzoo_mpe",
+    "scenario": "simple_spread_v2",
+    "continuous_actions": false,
+    "rollout_length": 25,
+    "ctde": true,
+    "decentralized_evaluation": true
+  },
+  "coupling_regimes": ["independent", "shared"],
+  "methods": ["lyapunov_probe_commit", "fixed_q1", "fixed_q8"],
+  "controller": {
+    "probe_q": 8,
+    "probe_blocks": 128,
+    "probe_updates_model": false,
+    "probe_is_fully_charged": true,
+    "candidate_q": [1, 8],
+    "critic_lr": 0.0005,
+    "actor_lr": 0.0005,
+    "correlation_delta": 0.05,
+    "selection_score": "(server_overhead/rollout_length+q)*(rho_upper+(1-rho_upper)/q)",
+    "benchmark_return_used_by_controller": false,
+    "commit_rule": "one decision after the separated probe; no later switching"
+  },
+  "budgets": {
+    "message_budget": 5000000,
+    "environment_budget": 1000000,
+    "server_overhead_per_rollout_packet": 100,
+    "message_cost_per_block": "100+25q",
+    "environment_cost_per_block": 25
+  },
+  "model": {
+    "hidden_sizes": [64, 64],
+    "activation": "tanh",
+    "ppo_epochs": 2,
+    "critic_epochs": 2
+  },
+  "evaluation": {
+    "interval_training_updates": 1000,
+    "episodes": 32,
+    "threads": 4,
+    "deterministic": true,
+    "auc_grid_points": 21,
+    "primary_axis": "maximum of cumulative message-budget and environment-budget fractions",
+    "smoothing_used_for_tests": false
+  },
+  "seed_registry": {
+    "confirmation_training": [96001, 96002, 96003, 96004, 96005, 96006, 96007, 96008],
+    "confirmation_probe": [97001, 97002, 97003, 97004, 97005, 97006, 97007, 97008]
+  },
+  "planned_runs": {
+    "controller": 16,
+    "fixed_q1": 16,
+    "fixed_q8": 16,
+    "total": 48
+  },
+  "inference": {
+    "pairing": "training seed within coupling regime",
+    "relative_auc_rule": "(controller_auc-comparator_auc)/abs(comparator_auc)",
+    "one_sided_alpha": 0.05,
+    "sample_size_per_regime": 8,
+    "student_t_df": 7,
+    "student_t_one_sided_critical": 1.894578605061305,
+    "composite_rule": "all co-primary superiority and noninferiority conditions must pass",
+    "normal_upper_proxy_scope": "empirical plug-in sensor; no nonlinear time-uniform Markov coverage claim"
+  },
+  "mandatory_confirmation_gates": {
+    "finite_complete_exact_accounting_and_clean_upstream": true,
+    "independent_selected_q8_fraction_min": 0.875,
+    "shared_selected_q1_fraction_min": 0.875,
+    "independent_controller_vs_q8_lower_confidence_bound_min": -0.02,
+    "shared_controller_vs_q8_lower_confidence_bound_min": 0.0,
+    "shared_controller_vs_q8_mean_min": 0.04,
+    "shared_controller_vs_q1_lower_confidence_bound_min": -0.02,
+    "mixture_controller_vs_q8_lower_confidence_bound_min": 0.0,
+    "mixture_controller_vs_q8_mean_min": 0.02,
+    "probe_message_fraction_max": 0.01,
+    "controller_wall_clock_overhead_fraction_max": 0.05,
+    "marginal_preserving_coupling_audit": true
+  },
+  "stopping_rule": "Any mandatory confirmation gate failure preserves the complete result and prohibits a manuscript return claim or replacement confirmation seeds. No gate, method, seed, or threshold may be changed after outcome access."
+}

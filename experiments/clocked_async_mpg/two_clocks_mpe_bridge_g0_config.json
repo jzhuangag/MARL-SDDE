@@ -1,0 +1,17 @@
+{
+  "schema_version": "two-clocks-mpe-bridge-g0-v1",
+  "scope": "outcome-free implementation gate only",
+  "harl_root": "tmp/HARL",
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "seed": 91031,
+  "episode_length": 8,
+  "service_horizon": 4.0,
+  "baseline_episodes": 2,
+  "gamma": 0.99,
+  "hidden_sizes": [32, 32],
+  "learning_rate": 0.0005,
+  "maximum_step_norm": 0.02,
+  "declared_cross_lipschitz_diagonal": 5.0,
+  "declared_cross_lipschitz_off_diagonal": 0.5,
+  "declared_maximum_event_delay": 8
+}

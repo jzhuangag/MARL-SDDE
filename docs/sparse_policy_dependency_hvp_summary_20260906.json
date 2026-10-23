@@ -1,0 +1,33 @@
+{
+  "experiment_id": "PDSG-COMP-002",
+  "decision": "fail_L5_L6_stop_before_reproduction",
+  "provenance": {
+    "estimator_scope_commit": "d717b434c3aa152d7b020b0a0a443feae67cff05",
+    "preregistration_commit": "900709a9a2556e2b513da8f818191617eba7b848",
+    "runner_freeze_commit": "a931d477599cfe24c76a280f51fc620e58b01061",
+    "manifest_sha256": "E7CD1D83650E5F9EE41CAEE9E4C54369B95D20C218C39368F2074DB52A940309",
+    "runner_sha256": "CD05124EA6B330A1B327DD1E8335F17A67D30B78E97307437F31279329C8BE63",
+    "primary_result_sha256": "CACB73C33E1D3F2F3F6F83AD209AF25572EBBD0462E76120A3466130258A08A3"
+  },
+  "workload": {
+    "configuration_rows": 108,
+    "global_agent_counts": [16, 64, 256],
+    "local_degrees": [2, 4, 8],
+    "gpu_or_hpc4": false
+  },
+  "metrics": {
+    "median_hvp_to_baseline_ratio": 1.7441274815199241,
+    "maximum_hvp_to_baseline_ratio": 2.0276890731300945,
+    "maximum_global_scaling": 1.7121658739197425,
+    "maximum_adjacent_degree_scaling": 2.2468131868131866
+  },
+  "gates": {
+    "L1_finite_positive": true,
+    "L2_local_nonzero_outside_unused": true,
+    "L3_median_ratio_le_2_5": true,
+    "L4_maximum_ratio_le_4": true,
+    "L5_global_scaling_le_1_35": false,
+    "L6_adjacent_degree_scaling_le_2_2": false,
+    "L7_clean_reproduction": "not_run"
+  }
+}

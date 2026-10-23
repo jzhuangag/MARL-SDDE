@@ -1,0 +1,56 @@
+{
+  "task": "T-027",
+  "date": "2026-08-02",
+  "preregistration_commit": "5d459332d01e3872d63a2ff21164543d8a33e9fc",
+  "config_sha256": "f9251599e0382309e5d08d115bf04def6feffb00bff2109de548543643269442",
+  "decision": "FAIL_STOP_FROZENLAKE_LEARNING_PILOT",
+  "gates": {
+    "S1_exact_markov_validity": true,
+    "S2_finite_mixing_certificate": true,
+    "S3_aggregate_oracle_value": true,
+    "S4_directional_cells": false,
+    "S5_distinct_oracle_participation": true,
+    "S6_internal_message_optimum": true,
+    "S7_budget_direction": true,
+    "S8_no_trajectory_taint": true
+  },
+  "passed_gates": 7,
+  "total_gates": 8,
+  "mixing": {
+    "tv_target": 0.05,
+    "stride": 52,
+    "observed_tv": 0.04749177897112679
+  },
+  "value": {
+    "aggregate_oracle_improvement": 0.09440411780398672,
+    "strict_cells": 14,
+    "total_cells": 48,
+    "strict_fraction": 0.2916666666666667,
+    "message_strict_cells": 14,
+    "message_cells": 24,
+    "message_strict_fraction": 0.5833333333333334,
+    "environment_strict_cells": 0,
+    "environment_cells": 24,
+    "distinct_oracle_q": [1, 4, 16, 32]
+  },
+  "fallbacks": {
+    "H512_message": 4,
+    "H512_environment": 32,
+    "H2048_message": 4,
+    "H2048_environment": 32
+  },
+  "structural_gate_issue": {
+    "gate": "S4_directional_cells",
+    "reason": "environment horizon is q-independent, so q=32 is both oracle and strong fallback in every environment cell",
+    "maximum_all_cell_fraction_with_balanced_rays": 0.5,
+    "retroactive_rescue_allowed": false
+  },
+  "reproduction": {
+    "summary_sha256": "f69d18831142c789e3133278c35212e0512e1297614f5d55cc615f50c6f61864",
+    "bytes": 73659,
+    "byte_identical": true
+  },
+  "scientific_trajectories": 0,
+  "cpu_learning_pilot_authorized": false,
+  "gpu_authorized": false
+}

@@ -1,0 +1,163 @@
+{
+  "charge_event_totals": {
+    "benchmark:actor_sampling": {
+      "calls": 150,
+      "sampling_actor_rows": 300
+    },
+    "benchmark:native_step": {
+      "calls": 150,
+      "native_benchmark": 150
+    },
+    "benchmark:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 218784
+    },
+    "benchmark:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "critic:fit": {
+      "calls": 2,
+      "critic_adam_calls": 10,
+      "critic_backward_rows": 8000,
+      "critic_forward_rows": 8000
+    },
+    "critic:prepare_targets": {
+      "calls": 2,
+      "critic_forward_rows": 1600
+    },
+    "frozen_policy:actor_sampling": {
+      "calls": 150,
+      "sampling_actor_rows": 300
+    },
+    "frozen_policy:initial_copy": {
+      "calls": 1,
+      "copy_tensor_bytes": 102208
+    },
+    "frozen_policy:native_step": {
+      "calls": 150,
+      "native_frozen_policy": 150
+    },
+    "frozen_policy:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 218784
+    },
+    "frozen_policy:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "happo:sequential_factor": {
+      "actor_forward_rows": 3200,
+      "calls": 4
+    },
+    "ppo:actual_epochs": {
+      "actor_adam_calls": 20,
+      "actor_backward_rows": 16000,
+      "actor_forward_rows": 16000,
+      "calls": 4
+    },
+    "ppo:precommit_logs": {
+      "actor_forward_rows": 3200,
+      "calls": 2
+    },
+    "ppo:prepare_advantages": {
+      "calls": 2,
+      "critic_forward_rows": 1600
+    },
+    "training:actor_sampling": {
+      "calls": 200,
+      "sampling_actor_rows": 3200
+    },
+    "training:native_step": {
+      "calls": 1600,
+      "native_training": 1600
+    },
+    "training:policy_broadcast": {
+      "calls": 2,
+      "messages": 4,
+      "policy_broadcast_bytes": 145856
+    },
+    "training:program_upload": {
+      "calls": 2,
+      "messages": 6,
+      "program_upload_bytes": 601600
+    }
+  },
+  "costs": {
+    "actor_adam_calls": 20,
+    "actor_backward_rows": 16000,
+    "actor_forward_rows": 22400,
+    "actor_sgd_calls": 0,
+    "copy_tensor_bytes": 102208,
+    "critic_adam_calls": 10,
+    "critic_backward_rows": 8000,
+    "critic_forward_rows": 11200,
+    "gradient_storage_bytes": 0,
+    "logical_bytes": 1185120,
+    "messages": 28,
+    "native_benchmark": 150,
+    "native_frozen_policy": 150,
+    "native_training": 1600,
+    "policy_broadcast_bytes": 583424,
+    "prefix_scalar_entries": 0,
+    "program_upload_bytes": 601696,
+    "sampling_actor_rows": 3800,
+    "variance_scalar_entries": 0,
+    "work_rows": 61400
+  },
+  "cpu_seconds": 1.796875,
+  "evaluations_checked_for_finiteness_only": true,
+  "finite_payload": true,
+  "full_payload_digest": "04135354ab03dd8d83423e5294d41f24464fe76468301a2f19fed4f1d0112a48",
+  "method": "fresh_happo_double",
+  "native_budget_events": [
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 50
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 50
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 800
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 50
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 50
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 800
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 50
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 50
+    }
+  ],
+  "performance_evidence": false,
+  "return_ranking_performed": false,
+  "seed": 971016011,
+  "task": "reference",
+  "task_index": 1,
+  "training_transitions": 1600
+}

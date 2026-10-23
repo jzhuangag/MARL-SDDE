@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-21",
+  "stage": "Analytical research and executable prototype; revised submission PDF not yet released",
+  "source_scope": [
+    {
+      "key": "moustakides2012joint",
+      "title": "Joint Detection and Estimation: Optimum Tests and Applications",
+      "authors": ["George V. Moustakides", "Guido H. Jajamovich", "Ali Tajer", "Xiaodong Wang"],
+      "year": 2012,
+      "venue": "IEEE Transactions on Information Theory",
+      "volume": "58", "issue": "7", "pages": "4215-4229",
+      "doi": "10.1109/TIT.2012.2184260",
+      "primary_full_text_read": "https://arxiv.org/html/1101.5084",
+      "read_version": "2011 preprint v1, not silently equated to the final journal text",
+      "read_locators": ["Section II, Eq.(3)-(9), Lemma 1 and its proof", "Section II-A, Theorem 1"],
+      "verified": "Crossref and OpenAlex positive title/author/publication metadata matches; arXiv full-text author/title match; Semantic Scholar DOI lookup returned 404",
+      "overlap": "Posterior-cost minimization and coupling decision quality to estimation cost are classical. Those principles cannot be promoted to a new V3 theorem.",
+      "difference": "The present loss is a future paid linear learner's terminal error with a shared latent state, rather than estimating the paper's alternative-only unknown parameter.",
+      "priority_verdict": "Classical mechanism overlap established; the change of application alone is insufficient novelty."
+    },
+    {
+      "key": "vasconcelos2020observation",
+      "title": "Observation-Driven Scheduling for Remote Estimation of Two Gaussian Random Variables",
+      "authors": ["Marcos M. Vasconcelos", "Urbashi Mitra"],
+      "year": 2020,
+      "venue": "IEEE Transactions on Control of Network Systems",
+      "volume": "7", "issue": "1", "pages": "232-244",
+      "doi": "10.1109/TCNS.2019.2900864",
+      "primary_full_text_read": "https://arxiv.org/html/1804.01709",
+      "read_version": "2018 preprint v1 titled Observation-driven scheduling for remote estimation of two Gaussian sources; title variation explicitly retained",
+      "read_locators": ["Section II, Problem 1", "Section IV, Lemma 3 and proof, Eq.(19)-(23)", "Section IV-A, Eq.(35)-(37)"],
+      "verified": "Crossref, OpenAlex and Semantic Scholar positive journal matches; arXiv full-text identity checked separately",
+      "overlap": "Observation-dependent scheduling via pointwise loss comparison and gains over open-loop policies are already established.",
+      "difference": "The new derivation identifies the exact cost of imposing an even classifier and shows how uncertainty about initial error removes its odd-information gain; the two-slot paid boundary is explicit.",
+      "priority_verdict": "Specialized reflection-gap and initialization-information claims remain bounded by this search; no general novelty clearance."
+    }
+  ],
+  "recent_primary_comparison": {
+    "title": "Minimax Optimal Procedures for Joint Detection and Estimation",
+    "authors": ["Dominik Reinhard", "Michael Fauß", "Abdelhak M. Zoubir"],
+    "year": 2026,
+    "identifier": "arXiv:2604.22740v1",
+    "primary": "https://arxiv.org/abs/2604.22740",
+    "full_text": "https://arxiv.org/html/2604.22740",
+    "read_scope": "Sections III-A through IV-A, model M1, costs Eq.(2)-(4), problems P1/P2 and their minimax versions, Theorem 2; Section IV-B discretized Corollary 1; Section V-A Theorem 4. Not all numerical sections or appendix proofs were read.",
+    "overlap": "Theorem 2 already gives posterior-loss comparison and an integral of minimum conditional costs. A general conditional-risk envelope or generic minimax JDE claim is not a new V3 contribution.",
+    "difference": "Its uncertainty sets concern conditional data distributions and hypothesis-specific estimators. The present fixed-law continuing-program result concerns an unobserved initialization error whose sign does not affect the calibration-probe law, and has an explicit symmetry reduction and paid two-slot boundary.",
+    "priority_verdict": "These distinctions delimit the derivation but do not by themselves certify publication-level novelty. Do not advertise a new general robust JDE framework.",
+    "metadata": "Official arXiv author/title/date/identifier verified; recent_source_records.json preserves additional scholarly-index queries. Preprint status remains explicit."
+  },
+  "unadmitted_recent_lead": {
+    "title": "Asymptotically optimal procedures for sequential joint detection and estimation",
+    "doi": "10.1016/j.sigpro.2024.109410",
+    "status": "Search lead plus Crossref metadata lookup; final publisher/full text not read in this phase. It is not used for a theorem-level absence claim or added to the paper."
+  },
+  "fresh_verification": "nearest_source_records.json and recent_source_records.json preserve raw resolver responses and source hashes. No new reference has been inserted into the manuscript bibliography.",
+  "bib_style_gate": {"scope": "No manuscript BibTeX changed or delivered in this research phase", "definite_new_bib_errors": 0, "future_integration": "Use existing IEEEtran journal abbreviation and initialized-author style; preserve separate preprint reading-version provenance. Fresh-check all retained paper references before a new submission-PDF release."},
+  "adversarial_review": [
+    {"severity": "MAJOR", "issue": "Argmin posterior loss is classical", "resolution": "Explicitly attribute it; make no new foundational optimal-decision claim."},
+    {"severity": "MAJOR", "issue": "Known initial-error sign can create an artificial advantage", "resolution": "Prove the exact unknown-sign minimax envelope and the stricter v<3r^2 boundary; report the attenuation from 7.12% to 0.438% in the same example."},
+    {"severity": "MAJOR", "issue": "Unknown target prevents observing centered noise", "resolution": "Require a separately observable known calibration signal for the prospective test. Do not claim a target-unknown MARL controller or general noise calibration."},
+    {"severity": "MAJOR", "issue": "A known target allows unrestricted estimators to output it", "resolution": "All irreplacability statements specify the frozen continuing learner and full feasible fixed-program catalogue; unrestricted estimation is outside the comparison."},
+    {"severity": "MAJOR", "issue": "New control laws have no independent empirical validation", "resolution": "No readiness admission. Specify the full prospective mechanism study and seek human CPU approval before any scientific samples."},
+    {"severity": "MINOR", "issue": "Numerical envelope integration might be mistaken for a certificate", "resolution": "Distinguish the exact theoretical integral from an uncertified numerical approximation; retain original certificates unchanged."}
+  ],
+  "checkpoint_verdicts": {"scoping": "PASS for a bounded analytical investigation", "synthesis": "PASS at exact stated model/information scope", "research_release": "PASS as proof/prototype/proposal, not TSP submission maturity"},
+  "review_independence": "All proof and adversarial passes are from the same Codex session. No independent human, external model or journal review is claimed.",
+  "ai_assistance": "Research derivations, source comparison and executable fixtures were prepared with Codex; full proofs and raw checks are retained."
+}

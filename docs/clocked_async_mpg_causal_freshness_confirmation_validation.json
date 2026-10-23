@@ -1,0 +1,39 @@
+{
+  "experiment_id": "causal_freshness_confirmation_cpu_v1",
+  "preregistration_commit": "9432c2a",
+  "config_sha256": "b8e7e3d82d93c48e1e190b3f2da841858e4ac8e730d8b5f587bd29fd20227f3c",
+  "execution": {
+    "device": "local CPU",
+    "primary_seconds": 11.14,
+    "reproduction_seconds": 11.14,
+    "rows": 20736,
+    "rows_sha256": "9c86a10c841c49a8fd4603cbcc5748c912ab1c8b5d557ee702e500725320581a",
+    "summary_sha256": "169f34576678f40ac853db4a4638c9042fa92965390602e14f34d6c127ba4acf",
+    "byte_exact_reproduction": true
+  },
+  "results": {
+    "dynamic_geometric_causal_over_periodic_ratio": 0.8497671875066456,
+    "dynamic_better_fraction": 0.9542181069958847,
+    "dynamic_median_oracle_headroom_captured": 0.8387096774193568,
+    "mean_budget_utilization": 1.0,
+    "stationary_max_absolute_ratio_error": 3.1086244689504383e-15,
+    "by_persistence": {
+      "0.0": 0.7966352342962633,
+      "0.8": 0.8245528082088535,
+      "0.98": 0.9341613317820918
+    }
+  },
+  "gates": {
+    "C1_finite_and_ordered": true,
+    "C2_stationary_alignment": true,
+    "C3_dynamic_aggregate": true,
+    "C4_dynamic_direction": true,
+    "C5_oracle_capture": true,
+    "C6_persistence_robustness": true,
+    "C7_budget_utilization": true,
+    "C8_byte_exact_reproduction": true
+  },
+  "decision": "conditional-risk mechanism confirmed; authorize arrival-fresh MPE CPU design only",
+  "formal_evidence": false,
+  "gpu_authorized": false
+}

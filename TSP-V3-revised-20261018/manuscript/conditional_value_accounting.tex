@@ -1,0 +1,63 @@
+% Prospective mechanism analysis, not a new generic value-of-information theorem.
+\section{Separating Identification Value, State Value, and the Paid Horizon}
+The exact initialization-minimax envelope can be compared with the complete
+full-budget fixed catalogue without confusing nominal regime value and actual risk.
+For one fixed probe, let $I_{\rm full}$ be the best full-budget fixed risk,
+$I_{\rm post}=\min_a\sum_j\pi_jJ_{j,a}^{r}$ the best observation-independent
+program after paying the probe, $R_{\rm nom}=\mathbb E_g\min_aF_a(Y)$,
+and $R_{\rm rob}=\mathbb E_g\min_aL_a(Y)$.
+Let $c(Y)$ minimize $F_a(Y)$ and $u(Y)$ minimize $L_a(Y)$, with fixed even tie
+rules. The actual risk of $c$ is $R_c=\mathbb E_gL_{c(Y)}(Y)$, which need not
+equal $R_{\rm nom}$.
+All post-probe quantities use exactly the same remaining budgets and catalogue,
+including stop.
+Define
+\begin{align*}
+C&=I_{\rm post}-I_{\rm full},\\
+V_{\rm reg}&=I_{\rm post}-R_{\rm nom},\\
+V_{\rm state}&=R_c-R_{\rm rob},\\
+T&=\mathbb E_g\sum_jp_j(Y)k_{j,c(Y)}^2S_j(Y).
+\end{align*}
+Then
+\begin{equation}
+I_{\rm full}-R_{\rm rob}=V_{\rm reg}+V_{\rm state}-C-T.
+\label{eq:research-value-decomposition}
+\end{equation}
+Here $V_{\rm reg},V_{\rm state}\ge0$ by pointwise minimization.
+The signed term $T$ is essential: regime-posterior decisions and continuing
+state risk use the same probe. Treating the nominal posterior score as actual
+risk would omit precisely the dependence at issue.
+The quantity $C$ is the exact, possibly signed, change in the best
+fixed risk caused by the paid remaining horizon; no monotonicity of the affine
+learner in its horizon is assumed.
+This decomposition is an accounting identity using classical decision value,
+not a new general information-value theorem.
+
+Let $K$ be the finite state-value ceiling proved above, and define the
+post-probe perfect-regime fixed risk
+$I_{\rm oracle}=\sum_j\pi_j\min_aJ_{j,a}^{r}$.
+Because a posterior-weighted average is at least the posterior average of the
+individual regime minima, $R_{\rm nom}\ge I_{\rm oracle}$.
+For each $j$, $\mathbb E_g[p_jS_j]=0$.
+Centering $k_{j,c}^2$ at the midpoint of its model-specific catalogue range and summing gives $|T|\le K/2$.
+Pointwise $\min_aL_a\ge\min_aF_a+\sum_jp_j\min_a(k_{j,a}^2S_j)$.
+The expectation of the latter sum is
+$-\tfrac12\sum_j(\max_a k_{j,a}^2-\min_a k_{j,a}^2)\mathbb E_g[p_j|S_j|]\ge-K/2$.
+Consequently
+\begin{align*}
+0&\le V_{\rm state}\le K,\\
+0&\le V_{\rm reg}\le I_{\rm post}-I_{\rm oracle},\\
+|T|&\le K/2,\\
+I_{\rm full}-R_{\rm rob}&\le I_{\rm full}-I_{\rm oracle}+K/2.
+\end{align*}
+Thus $I_{\rm oracle}-K/2\ge I_{\rm full}$ rules out any strict improvement by
+any randomized measurable selector following this fixed probe, even if its
+regime inference is optimal.
+For a desired relative gain $\epsilon>0$, the stronger necessary condition is
+$I_{\rm full}-I_{\rm oracle}+K/2\ge\epsilon I_{\rm full}$.
+Conversely $V_{\rm reg}>C+K/2$ suffices for a strict paid improvement, since the
+state-value contribution is nonnegative and $T\le K/2$.
+Neither condition ranges over different probes, estimators, step schedules or
+unknown covariance models.
+These pre-data criteria explain both when identification can matter and when
+more validation seeds cannot rescue a structurally uneconomic probe.

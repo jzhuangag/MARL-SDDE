@@ -1,0 +1,47 @@
+{
+  "experiment_id": "T-049A",
+  "amendment": 1,
+  "kind": "outcome_free_computational_feasibility_amendment",
+  "original_preregistration_commit": "025a4fd21b15984a879af5587b21812e6e560102",
+  "original_configuration_sha256": "f29c1f6ae56922dab9a5211aec656410fb067d5ceacbb8b7f02acb2fcc83e06f",
+  "failed_execution": {
+    "wall_time_seconds": 3604.1,
+    "exit_code": 124,
+    "reason": "hard timeout",
+    "scientific_rows_generated": 0,
+    "summary_generated": false,
+    "task_constants_generated": false,
+    "result_directory_after_timeout": "empty and removed after exact-path verification"
+  },
+  "scientific_configuration_changes": 0,
+  "unchanged": [
+    "tasks and task versions",
+    "policies and features",
+    "rho, delay, overhead, and budget grid",
+    "schedule library",
+    "probe ceiling and all resource charges",
+    "risk definition and step size",
+    "analysis populations, comparators, thresholds, gates, and stop rule"
+  ],
+  "implementation_change": {
+    "file": "experiments/dependence_delay_linear/t048_pr_probe_oracle.py",
+    "function": "scheduled_pr_risk_affine_coefficients",
+    "description": "compute the affine intercept and slope in one pass; form PR impulses from response prefix sums; batch equal-lag pair contractions",
+    "current_core_sha256": "014ca2f657684c9544f7d570482a63ed895c6bc0d56c8ce03b00b34245d6bf47"
+  },
+  "equivalence_gate": {
+    "direct_reference": "exact_scheduled_pr_averaged_vector_risk at rho=0 and rho=1",
+    "coverage": "dimensions 1,2,3; delays 0,1,3; nonconstant prefix schedule; nonidentity positive-definite risk matrices",
+    "absolute_tolerance": 2e-12,
+    "status": "pass"
+  },
+  "benchmark": {
+    "task": "Taxi-v3",
+    "dimension": 16,
+    "updates": 128,
+    "before_seconds": 1.088553,
+    "after_seconds": 0.1818771,
+    "interpretation": "descriptive implementation benchmark, not a scientific outcome"
+  },
+  "authorization": "rerun the unchanged T-049A deterministic CPU scan after this amendment commit; sampled trajectories, formal seeds, GPU, and HPC4 remain forbidden"
+}

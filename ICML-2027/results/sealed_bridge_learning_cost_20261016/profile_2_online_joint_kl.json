@@ -1,0 +1,167 @@
+{
+  "charge_event_totals": {
+    "benchmark:actor_sampling": {
+      "calls": 6000,
+      "sampling_actor_rows": 12000
+    },
+    "benchmark:native_step": {
+      "calls": 6000,
+      "native_benchmark": 6000
+    },
+    "benchmark:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 131280
+    },
+    "benchmark:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "critic:fit": {
+      "calls": 2,
+      "critic_adam_calls": 10,
+      "critic_backward_rows": 320000,
+      "critic_forward_rows": 320000
+    },
+    "critic:prepare_targets": {
+      "calls": 2,
+      "critic_forward_rows": 64000
+    },
+    "delayed_reference:source_policy": {
+      "calls": 2,
+      "copy_tensor_bytes": 132880
+    },
+    "frozen_policy:actor_sampling": {
+      "calls": 6000,
+      "sampling_actor_rows": 12000
+    },
+    "frozen_policy:initial_copy": {
+      "calls": 1,
+      "copy_tensor_bytes": 66440
+    },
+    "frozen_policy:native_step": {
+      "calls": 6000,
+      "native_frozen_policy": 6000
+    },
+    "frozen_policy:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 131280
+    },
+    "frozen_policy:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "happo:sequential_factor": {
+      "actor_forward_rows": 128000,
+      "calls": 4
+    },
+    "ppo:actual_epochs": {
+      "actor_adam_calls": 20,
+      "actor_backward_rows": 640000,
+      "actor_forward_rows": 640000,
+      "calls": 4
+    },
+    "ppo:precommit_logs": {
+      "actor_forward_rows": 128000,
+      "calls": 2
+    },
+    "ppo:prepare_advantages": {
+      "calls": 2,
+      "critic_forward_rows": 64000
+    },
+    "training:actor_sampling": {
+      "calls": 8000,
+      "sampling_actor_rows": 128000
+    },
+    "training:native_step": {
+      "calls": 64000,
+      "native_training": 64000
+    },
+    "training:policy_broadcast": {
+      "calls": 2,
+      "messages": 4,
+      "policy_broadcast_bytes": 87520
+    },
+    "training:program_upload": {
+      "calls": 2,
+      "messages": 6,
+      "program_upload_bytes": 17152000
+    }
+  },
+  "costs": {
+    "actor_adam_calls": 20,
+    "actor_backward_rows": 640000,
+    "actor_forward_rows": 896000,
+    "actor_sgd_calls": 0,
+    "copy_tensor_bytes": 199320,
+    "critic_adam_calls": 10,
+    "critic_backward_rows": 320000,
+    "critic_forward_rows": 448000,
+    "gradient_storage_bytes": 0,
+    "logical_bytes": 17502176,
+    "messages": 28,
+    "native_benchmark": 6000,
+    "native_frozen_policy": 6000,
+    "native_training": 64000,
+    "policy_broadcast_bytes": 350080,
+    "prefix_scalar_entries": 0,
+    "program_upload_bytes": 17152096,
+    "sampling_actor_rows": 152000,
+    "variance_scalar_entries": 0,
+    "work_rows": 2456000
+  },
+  "cpu_seconds": 74.6875,
+  "evaluations_checked_for_finiteness_only": true,
+  "finite_payload": true,
+  "full_payload_digest": "cbf257f38fca6c8397719e85ef46033cd2ca52d32d7eb1d6cc2e2735d92bd4ba",
+  "method": "online_joint_kl",
+  "native_budget_events": [
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    },
+    {
+      "kind": "delayed_reference_source_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "delayed_reference_source_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    }
+  ],
+  "performance_evidence": false,
+  "return_ranking_performed": false,
+  "seed": 971016011,
+  "task": "halfcheetah_2x3",
+  "task_index": 2,
+  "training_transitions": 64000
+}

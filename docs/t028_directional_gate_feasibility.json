@@ -1,0 +1,39 @@
+{
+  "task": "T-028",
+  "date": "2026-08-02",
+  "scope": "prospective_future_experiment_authorization_only",
+  "retroactive_changes": {
+    "T-020": false,
+    "T-027": false
+  },
+  "structural_result": {
+    "assumptions": [
+      "risk factor rho+(1-rho)/q",
+      "environment-binding usable horizon independent of q",
+      "strong fallback selected from the same fixed-q catalogue"
+    ],
+    "conclusion": "largest q is both oracle and fallback in every environment-binding cell",
+    "maximum_all_cell_strict_fraction_when_half_environment": 0.5,
+    "old_gate": 0.6,
+    "old_gate_feasible": false
+  },
+  "future_gates": {
+    "aggregate_all_cell_oracle_improvement_minimum": 0.05,
+    "active_cell_strict_fraction_minimum": 0.6,
+    "inactive_cells_retained": true,
+    "inactive_behavior_separately_gated": true,
+    "budget_direction_all_pairs": true,
+    "minimum_distinct_oracle_q": 3,
+    "active_set_outcome_free_and_preregistered": true
+  },
+  "T-027_under_future_diagnostic": {
+    "active_population": "message-binding cells",
+    "strict_cells": 14,
+    "total_cells": 24,
+    "fraction": 0.5833333333333334,
+    "passes": false,
+    "formal_decision_changed": false
+  },
+  "gpu_authorized": false
+}
+

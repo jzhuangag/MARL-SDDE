@@ -1,0 +1,135 @@
+% Derived before reading the conditional2h outcomes; no new trajectory evidence.
+\section{First-Order Regime Value Versus Second-Order State Value}
+The state-value ceiling does not rule out a substantial benefit from identifying
+the covariance regime: that information can change the leading variance
+coefficient of a resource program.
+The distinction can be made exact against every affordable fixed training
+prefix, rather than only against programs that spend the whole budget.
+
+Consider the running mean with a fixed public initial-error radius $r>0$,
+finite positive participation and spacing sets, bounded delay $D$, and
+$0\le\lambda\le1-\gamma<1$.
+Write the message and clock budgets as $\lfloor\beta_m B\rfloor$ and
+$\lfloor\beta_e B\rfloor$, where $\beta_m,\beta_e>0$.
+For program $a=(q,b)$ define
+\[
+a_a=\min\{\beta_m/(h+q),\beta_e/b\},\quad
+v_j(a)=q^{-1}+\theta_j\frac{1+\lambda^b}{1-\lambda^b},\quad
+K_j(a)=v_j(a)/a_a.
+\]
+All programs retain the same running-mean rule; a fixed alternative may choose
+any deterministic scheduled prefix, including zero updates, within its budgets.
+Let
+\[
+K_\pi=\min_a\sum_j\pi_jK_j(a),\quad
+a_j^*\in\arg\min_aK_j(a),\quad
+\Delta=K_\pi-\sum_j\pi_jK_j(a_j^*).
+\]
+For two regimes and a fixed tie rule put
+$A=\sum_j\pi_j[K_j(a_{1-j}^*)-K_j(a_j^*)]$.
+This nonnegative quantity bounds the leading cost of a wrong commitment.
+The model laws, prior, initialization radius and probe schedule are public;
+the realized regime and initial error are not.
+
+\begin{theorem}[Paid separation from every fixed training prefix]
+Suppose a deterministic, target-invariant Gaussian probe has length $n$,
+each directional likelihood error is at most $0<\delta<1/2$, and the continuing
+programs commit to $a_j^*$ on its decision.
+If $\Delta>\delta A$, its signed same-stream upper certificate is below the
+minimum worst-initialization prior risk of every full-budget fixed program
+and every observation-independent randomized mixture for all sufficiently
+large $B$.
+More precisely the certified advantage is at least
+\[
+\frac{\Delta-\delta A}{B}
+-\frac{C(n+1)}{B^2},
+\]
+for a finite model/catalogue-dependent $C$, once all post-probe horizons are
+positive fractions of $B$.
+If instead the regimes share a leading-coefficient minimizing action, then
+$\Delta=0$, and no selector from the maximal-affordable-horizon post-probe
+catalogue plus stop, following any such probe with $n=O(\log B)$, can
+improve on the best fixed prefix by more than $O((n+1)/B^2)$.
+\label{thm:research-leading-separation}
+\end{theorem}
+
+The positive claim is relative to a fixed learner and a complete resource-and-
+prefix class, not to arbitrary estimators or learning-rate sequences.
+The negative claim is an order statement for a specified sublinear paid probe;
+it is not an impossibility theorem over all sequential sensing policies.
+
+\subsection{Proof and the role of every hypothesis}
+For a fixed action and $N$ applied observations, the exact running-mean risk is
+\[
+R_{j,a}(N)=\frac{r^2+N/q+
+\theta_j[N+2\sum_{s=1}^{N-1}(N-s)\lambda^{bs}]}{(N+1)^2}.
+\]
+The geometric-sum formula gives
+$R_{j,a}(N)=v_j(a)/N+O(N^{-2})$, uniformly on the finite catalogue.
+It also gives
+$R_{j,a}(N+1)-R_{j,a}(N)=-v_j(a)/N^2+O(N^{-3})$
+with an exponentially small remainder.
+Since $v_j(a)>0$, each action's risk, and each prior average of it, decreases
+strictly beyond a fixed horizon.
+Every finite early prefix has positive risk, whereas its maximal affordable
+prefix has risk tending to zero.
+Thus the optimum over all prefixes eventually uses each candidate action's
+maximal horizon, and its global optimum is
+$I_{\rm full}=K_\pi/B+O(B^{-2})$.
+The same endpoint initialization maximizes all scalar fixed risks; randomizing
+fixed programs cannot lower their minimum prior risk.
+
+Subtracting a length-$n$ paid probe changes each maximal horizon from
+$a_aB+O(1)$ to $a_aB+O(n+1)$, including rounding and bounded withheld updates.
+The correct-program prior risk is therefore
+$\sum_j\pi_jK_j(a_j^*)/B+O((n+1)/B^2)$.
+The directional-error term is at most $\delta A/B+O((n+1)/B^2)$.
+The even invariant likelihood decision cancels the unknown initialization's
+odd term; the signed continuing-state correction is $O(B^{-2})$, because
+$k_a=O(B^{-1})$ and the probe's explained variance is at most $\theta_j$.
+The constants in its truncated-normal factors are finite at fixed $\delta$.
+Combining these facts with the fixed-prefix expansion proves the lower bound
+on the certified advantage.
+
+For the negative claim, a common leading minimizer gives
+$K_\pi=\sum_j\pi_j\min_aK_j(a)$.
+The post-probe perfect-regime fixed risk consequently has that same leading
+coefficient and a remainder $O((n+1)/B^2)$.
+The preceding oracle-plus-half-state-ceiling bound applies to every measurable
+randomized selector, whose state-value ceiling is $O(B^{-2})$.
+Subtracting the fixed-prefix risk proves the stated upper order.
+No monotonicity of an averaged affine learner is invoked in this running-mean
+theorem.
+
+\subsection{Existence of an observable finite-confidence probe}
+For $\Sigma_j(n)=\theta_jR_\lambda(n)+I/Q$, with distinct positive variances,
+the eigenvalues of $R_\lambda(n)$ lie in a fixed positive compact interval.
+Both covariance matrices are functions of the same $R_\lambda(n)$.
+Each eigen-coordinate contributes a Gaussian affinity factor strictly below
+one, uniformly on that interval.
+Thus the full centered-noise affinity is at most $\kappa^n$ for some
+$\kappa<1$.
+The contrast determinant bound gives $\rho_D(n)\le C_1\kappa^n$ for the
+unknown scalar target.
+Any fixed confidence $\delta>0$ therefore has a finite, observable paid probe.
+Its actual directional bound is recomputed after projection, not inherited
+from the centered-noise experiment.
+
+\subsection{A rational resource witness on the existing public grid}
+Take $Q=8$, $h=8$, $\theta_0=1/20$, $\theta_1=2$, $\lambda=1/5$,
+balanced prior, $\beta_m=16$, $\beta_e=4$, and the original
+$q\in\{1,2,4,8\}$, $b\in\{1,2,4,8\}$ catalogue.
+Exact enumeration of its sixteen leading coefficients yields
+\[
+a_0^*=(8,4),\quad K_0(a_0^*)=1093/6240,\quad
+a_1^*=(2,2),\quad K_1(a_1^*)=5/3,
+\]
+while the best balanced fixed coefficient is $K_\pi=773/768$ at $(2,2)$.
+The wrong-commitment coefficient is $A=407/1280$.
+At directional bound $\delta=1/40$, the sufficient leading margin
+$\Delta-\delta A$ is strictly positive (approximately $0.07765$).
+Its ratio to $K_\pi$ is approximately $7.71$ percent.
+This is a model-population, sufficiently-large-budget witness, not a finite-
+grid empirical gain or a claimed threshold value.
+All finite budget thresholds and admitted finite-grid designs must still be
+computed from the actual paid projected probe and exact learner risk.

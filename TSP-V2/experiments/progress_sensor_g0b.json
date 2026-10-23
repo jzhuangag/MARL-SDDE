@@ -1,0 +1,30 @@
+{
+  "experiment_id": "TSP-V2-MARL-PROGRESS-G0B",
+  "tasks": [
+    {
+      "environment": "pettingzoo_mpe",
+      "task": "simple_spread_v2",
+      "couplings": ["independent", "shared"],
+      "seeds": [140201, 140202]
+    },
+    {
+      "environment": "mamujoco",
+      "task": "HalfCheetah-v2/2x3",
+      "couplings": ["independent", "shared"],
+      "seeds": [140201, 140202]
+    }
+  ],
+  "candidate_q": [1, 2, 4, 8],
+  "micro_updates": 24,
+  "mandatory_gates": {
+    "complete_unique_cells": true,
+    "identical_initialization_within_cell": true,
+    "finite_trace_length": 24,
+    "evaluation_return_computed": false,
+    "mamujoco_independent_broad_signal": true,
+    "mamujoco_shared_interior_signal": true,
+    "pettingzoo_nonconstant_signal": true,
+    "analysis_replay_byte_identical": true
+  }
+}
+

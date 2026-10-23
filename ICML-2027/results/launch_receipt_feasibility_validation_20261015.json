@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-15",
+  "input_commit": "5112e24dfddbeccfc6afa6a97745161bd9f82fa2",
+  "workflow": "bounded_successor_feasibility",
+  "decision": "NO_GO_CURRENT_CERTIFICATE",
+  "fixed_launch_receipt_design_qualified": false,
+  "two_stage_launch_receipt_design_qualified": false,
+  "new_scientific_preregistration": false,
+  "new_scientific_trajectories": 0,
+  "new_gpu_or_hpc4_actions": 0,
+  "implemented": ["bounded episode-gradient radius", "closed-form launch step", "exact small-team launch objective", "21-row analytic certificate audit"],
+  "proved_under_explicit_assumptions": ["receipt-step lower bound", "in-flight promise drift cancellation", "bounded launch-resource queues", "finite-horizon expected-return credit with confidence and terminal-job allowances"],
+  "not_proved": ["stationarity despite an idle certificate", "relative superiority over HAPPO", "useful neural MARL certificate constants", "novelty of a full algorithm"],
+  "preflight": {"episodes": 16, "certificates": 72, "delta": 0.05, "radius_over_gradient_bound": 1.2034410307256844, "all_certified_steps_zero_even_without_staleness": true},
+  "necessary_episode_counts_for_norm_lower_bound_only": {"normalized_norm_1.00": 24, "normalized_norm_0.25": 371, "normalized_norm_0.10": 2318},
+  "analytic_replay": {"byte_identical": true, "sha256": "740459301c4a4fa046f2511a190a69d84bd1420b0c021369e55f996091283f4b"},
+  "validation": {"closed_form_and_launch_decision_assertions": "PASS", "icml_cpu_suite": "32 passed in 44.05s"},
+  "citation_integrity": "Two official proceedings records positively cross-matched with arXiv; resolver failures and unqueried services recorded separately",
+  "next_design_requirement": "A resource-feasible variance-sensitive team-return or matched-reference estimator with a usable simultaneous certificate, before another RL experiment"
+}

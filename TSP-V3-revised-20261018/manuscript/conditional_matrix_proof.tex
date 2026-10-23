@@ -1,0 +1,85 @@
+% Matrix extension; no vector empirical superiority is inferred.
+\section{A Matrix Form of Paid Calibration Value}
+The scalar initialization argument relies on the fact that every program contracts all error directions by the same scalar.
+For vector learners this property can fail, so replacing every program's initial error by its separate worst direction can produce an unattainable score.
+The following reduction keeps one common unknown initialization across the whole observation space.
+Its minimax interchange is a classical convex-game argument; the specific object is the finite-dimensional covariance problem for paid continuing programs.
+
+\subsection{Information, affine continuation and integrability}
+Let $e\in\mathbb R^d$ satisfy $e^\top P e\le r^2$, with public $P\succ0$ and $r>0$.
+The unobserved $e$ is fixed across the experiment and does not affect the centered calibration-probe law.
+Fix a public prior over a finite set of Gaussian noise models $j$.
+For each model, the probe law $Y\sim\mathcal N(0,\Sigma_j)$ is nonsingular, the conditional common state $C\in\mathbb R^k$ has linear mean $m_j(y)$ and constant covariance, and the continuing Gaussian noise is jointly specified.
+Both the paid probe schedule and every subsequent candidate program are frozen before observing $Y$.
+Under model $j$ and program $a$, suppose the terminal error has conditional mean $A_{j,a}e+B_{j,a}m_j(y)$ and conditional covariance $V_{j,a}\succeq0$.
+All matrices are known and deterministic, and their horizons include the probe charges, affine delay and withheld updates.
+An implementable selector sees $Y$ and these public objects but not $e$ or $j$.
+In particular the centered calibration observation must be obtainable without subtracting an unknown target.
+
+Let $g$ be the mixture density and $p_j(y)$ its model posterior, and define
+\begin{align*}
+H_a(y)&=\sum_jp_j(y)A_{j,a}^\top A_{j,a},\\
+Q_a(y)&=\sum_jp_j(y)\{\operatorname{tr}V_{j,a}+\|B_{j,a}m_j(y)\|^2\}.
+\end{align*}
+Both functions are even in $y$, $H_a$ is bounded, and $Q_a$ is integrable under $g$ because the catalogue is finite and Gaussian second moments are finite.
+The posterior squared loss equals $e^\top H_a(y)e+Q_a(y)$ plus a term linear in $e$ and odd in $y$.
+Consequently symmetrizing a selector cannot increase its maximum risk over the centrally symmetric error set.
+
+\subsection{Exact covariance reduction}
+Let $\Delta_{\rm even}$ be the measurable randomized even selectors over the finite catalogue, and put
+\[
+\mathcal S=\{S\succeq0:\operatorname{tr}(PS)\le r^2\}.
+\]
+Then the exact robust risk following the paid probe is
+\begin{align}
+&\inf_{\delta}\sup_{e^\top Pe\le r^2}R_e(\delta)\nonumber\\
+&=\max_{S\in\mathcal S}\int\min_a\{\operatorname{tr}[H_a(y)S]+Q_a(y)\}g(y)\,dy.
+\label{eq:matrix-covariance-envelope}
+\end{align}
+The minimax error-direction problem has therefore reduced to a concave maximization over a finite-dimensional initialization covariance.
+The probe integration is still present; its numerical approximation requires its own accuracy justification.
+
+To prove Eq.~\eqref{eq:matrix-covariance-envelope}, first symmetrize any selector, using $R_e(\delta^{\rm sym})=[R_e(\delta)+R_{-e}(\delta)]/2$.
+For an even selector define $M_\delta=\mathbb E_g\sum_a\delta_a(Y)H_a(Y)$ and $c_\delta=\mathbb E_g\sum_a\delta_a(Y)Q_a(Y)$.
+Its risk is $e^\top M_\delta e+c_\delta$.
+The convex hull of $ee^\top$ over $e^\top Pe\le r^2$ is exactly $\mathcal S$: diagonalize $P^{1/2}SP^{1/2}$ and express it as a convex combination of rank-one radius-$r$ errors, with any unused mass at zero.
+Hence the worst-case risk equals $\max_{S\in\mathcal S}\operatorname{tr}(M_\delta S)+c_\delta$.
+
+The set $\mathcal S$ is compact and convex.
+Regard each component of $\delta$ as an element of $L^\infty(g)$.
+The probability-simplex constraints and evenness are weak-star closed, so $\Delta_{\rm even}$ is weak-star compact and convex.
+The integrable functions $H_a,Q_a$ make the objective continuous and affine in each argument for the weak-star and finite-dimensional topologies.
+The classical minimax interchange applies.
+At fixed $S$, an even first minimizer of the finitely many even scores minimizes the integral, proving Eq.~\eqref{eq:matrix-covariance-envelope}.
+Continuity and compactness give attainment in the primal and covariance-dual problems.
+
+\subsection{A dual maximizer does not license arbitrary tie breaking}
+There exists a saddle pair $(\delta^*,S^*)$; an arbitrary pointwise minimizer at a dual maximizer $S^*$ need not be a minimax selector.
+Its tie randomization must also make $S^*$ a worst-case covariance for that selector.
+For example take an irrelevant nonsingular centered Gaussian probe, zero continuation noise, $P=I_2$, $r=1$ and two programs with $A_0=\operatorname{diag}(1,0)$ and $A_1=\operatorname{diag}(0,1)$.
+The dual objective is $\min(S_{11},S_{22})$, maximized at $S^*=I_2/2$ with value $1/2$.
+Both actions tie everywhere at $S^*$.
+Selecting the first action deterministically has worst-case risk one; mixing the two actions equally attains $1/2$.
+Thus the scalar fixed tie rule cannot be transported to arbitrary matrix contractions without checking the saddle condition.
+If the minimizing action is unique $g$-almost everywhere at a dual maximizer, the unique pointwise minimizer is the saddle selector because a primal optimizer exists and must minimize there.
+
+\subsection{The strongest fixed comparison is itself a semidefinite program}
+For the full-budget no-probe catalogue let $\overline H_a^{\rm full}$ be the prior average of $A_{j,a}^\top A_{j,a}$ and $\overline Q_a^{\rm full}$ its full-budget zero-initialization risk.
+A fixed randomized program uses a probability vector $w\in\mathcal W=\{w\ge0:\sum_aw_a=1\}$ independent of the calibration observations and unknown initialization.
+Its optimum worst-case risk $I_{\rm fix}$ is the value of
+\begin{equation}
+\begin{aligned}
+\underset{w\in\mathcal W,\,t\in\mathbb R}{\operatorname{minimize}}\quad
+&r^2t+\sum_aw_a\overline Q_a^{\rm full}\\
+\text{subject to}\quad&\sum_aw_a\overline H_a^{\rm full}\preceq tP.
+\end{aligned}
+\label{eq:matrix-fixed-SDP}
+\end{equation}
+The constraint bounds the largest generalized initialization eigenvalue exactly, so this is a semidefinite program over a finite catalogue.
+The example above proves why a comparison restricted to deterministic fixed programs can overstate a matrix selector's benefit.
+Strict superiority to every fixed randomized programme in this catalogue is attainable after the specified paid probe if and only if the value in Eq.~\eqref{eq:matrix-covariance-envelope} is strictly less than $I_{\rm fix}$.
+The reverse inequality is an impossibility certificate for this probe and catalogue, rather than a statement about every possible adaptive experiment.
+
+With $P=I$ and scalar contractions $A_{j,a}=d_aI$, every unknown direction gives the same coefficient and the maximizing covariance can be taken on the radius boundary.
+The formula reduces to the previously proved scalar even conditional-risk selector, and a fixed random mixture cannot improve its linear scalar endpoint objective.
+The scalar simulations evaluate this reduction; the matrix characterization is analytical.

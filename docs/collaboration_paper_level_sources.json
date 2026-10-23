@@ -1,0 +1,141 @@
+{
+  "checked_at": "2026-09-01T00:06:13+08:00",
+  "purpose": "Bounded paper-level novelty and model-interface decision; not a final bibliography",
+  "ai_assisted": true,
+  "exhaustive": false,
+  "sources": [
+    {
+      "key": "affpcl",
+      "title": "Personalized Collaborative Learning with Affinity-Based Variance Reduction",
+      "authors": [
+        "Chenyu Zhang",
+        "Navid Azizan"
+      ],
+      "conference": "ICLR 2026",
+      "arxiv": "2510.16232v3",
+      "first_preprint_year": 2025,
+      "version_date": "2026-03-09",
+      "doi": "10.48550/arXiv.2510.16232",
+      "primary": "https://arxiv.org/abs/2510.16232",
+      "pdf": "https://arxiv.org/pdf/2510.16232v3",
+      "primary_metadata": "Positive title/authors/identifier; conference stated in primary PDF header and arXiv comment",
+      "doi_resolution": {
+        "http": 200,
+        "citation_title_authors_date_id": "positive match"
+      },
+      "openalex": {
+        "id": "W4415950431",
+        "http": 200,
+        "title_authors_doi_match": true,
+        "year": 2025,
+        "is_retracted": false,
+        "volume": null,
+        "pages": null
+      },
+      "version_boundary": "OpenAlex indexes the 2025 preprint; it does not conflict with the 2026 conference version.",
+      "read_scope": "PDF extracted text: Section 1.2; equation (8), Sections 5.2 and 6.1, Theorems 1-2; C.6 including footnote 5; Lemma D.4 and displayed proof. Not a full-paper proof audit.",
+      "access_boundary": "arXiv HTML v1/v2 returned 404; OpenReview forum returned browser verification. PDF text was available. Screenshot calls returned timeout or no model-visible image; no visual-layout verification claimed. No local PDF/page-anchor used.",
+      "semantic_scholar": "HTTP 429 for ARXIV lookup; no rate-limit bypass.",
+      "crossref": "Not applicable to DataCite arXiv DOI; no conference DOI/page range invented.",
+      "supports": "Close baseline for personalized correction and Lyapunov analysis; exact offline-iid TD and density-estimation assumptions must be distinguished from a continuing delayed stream.",
+      "metadata_conflict": false
+    },
+    {
+      "key": "scafflsa",
+      "title": "SCAFFLSA: Taming Heterogeneity in Federated Linear Stochastic Approximation and TD Learning",
+      "authors": [
+        "Paul Mangold",
+        "Sergey Samsonov",
+        "Safwan Labbi",
+        "Ilya Levin",
+        "Reda Alami",
+        "Alexey Naumov",
+        "Eric Moulines"
+      ],
+      "arxiv": "2402.04114v3",
+      "first_preprint_year": 2024,
+      "version_date": "2025-12-19",
+      "doi": "10.48550/arXiv.2402.04114",
+      "primary": "https://arxiv.org/abs/2402.04114",
+      "html": "https://arxiv.org/html/2402.04114v3",
+      "doi_resolution": {
+        "http": 200,
+        "citation_title_authors_date_id": "positive match"
+      },
+      "openalex": {
+        "id": "W4391632145",
+        "http": 200,
+        "title_authors_doi_match": true,
+        "year": 2024,
+        "is_retracted": false,
+        "volume": null,
+        "pages": null
+      },
+      "version_boundary": "Cited updated arXiv v3, not a fabricated 2025 conference edition.",
+      "read_scope": "Abstract, introduction, Section 3.1/3.2, observation assumptions and global averaged-system target. No complete SCAFFLSA proof or implementation audit.",
+      "semantic_scholar": "Not queried after rate limit on AffPCL.",
+      "crossref": "Not applicable to DataCite arXiv DOI.",
+      "supports": "Control-variate correction already exists for federated LSA/TD; distinguish its global target from personalized targets.",
+      "metadata_conflict": false
+    },
+    {
+      "key": "iw_transfer",
+      "title": "Importance Weighted Transfer of Samples in Reinforcement Learning",
+      "authors": [
+        "Andrea Tirinzoni",
+        "Andrea Sessa",
+        "Matteo Pirotta",
+        "Marcello Restelli"
+      ],
+      "year": 2018,
+      "venue": "Proceedings of the 35th International Conference on Machine Learning",
+      "series": "PMLR",
+      "volume": "80",
+      "pages": "4936-4945",
+      "arxiv": "1805.10886v1",
+      "doi": "10.48550/arXiv.1805.10886",
+      "primary": "https://proceedings.mlr.press/v80/tirinzoni18a.html",
+      "arxiv_primary": "https://arxiv.org/abs/1805.10886",
+      "doi_resolution": {
+        "http": 200,
+        "citation_title_authors_date_id": "positive match"
+      },
+      "openalex": {
+        "id": "W2803180393",
+        "http": 200,
+        "title_authors_doi_match": true,
+        "year": 2018,
+        "is_retracted": false,
+        "volume": null,
+        "pages": null
+      },
+      "version_boundary": "Conference volume/pages independently verified at official proceedings; OpenAlex record is the arXiv version.",
+      "read_scope": "Official abstract and bibliographic record only; not a full theorem audit.",
+      "semantic_scholar": "Not queried after rate limit on AffPCL.",
+      "crossref": "No conference DOI asserted; arXiv DOI uses DataCite.",
+      "supports": "Model-based sample importance weighting and finite-sample batch-RL analysis predate the proposed candidate.",
+      "metadata_conflict": false
+    }
+  ],
+  "quality": {
+    "sources_are_primary": true,
+    "clinical_evidence_grading": "not applicable to ML theory",
+    "conflict_of_interest": "No independent author financial/COI investigation; none inferred from affiliations.",
+    "retraction_scope": "OpenAlex returned is_retracted=false; no exhaustive retraction audit.",
+    "full_manuscript_delivered": false,
+    "bib_edited": false,
+    "source_derived_novelty_established": false
+  },
+  "search": {
+    "queries": [
+      "temporal difference learning multi agent correlated noise control variates heterogeneous federated",
+      "federated personalized temporal difference",
+      "Personalized Collaborative Learning with Affinity-Based Variance Reduction",
+      "federated temporal difference ScaffLSA SCAFFOLD control variates Markov",
+      "reinforcement learning transfer experience source target transition importance weighting different dynamics",
+      "multi agent experience sharing importance sampling heterogeneous environments"
+    ],
+    "selection": "Three directly overlapping primary methods; other search hits are discovery only, not retained evidence.",
+    "unpublished_content_uploaded_to_external_models": false
+  }
+}

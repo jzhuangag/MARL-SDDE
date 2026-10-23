@@ -1,0 +1,69 @@
+{
+  "analysis": {
+    "byte_identical_replay": true,
+    "curve_pdf_sha256": "f16ba3d339decbb157dd5fb3993a5867a426d19510d83ec0d3cf26850e4a8117",
+    "gate_json_sha256": "c3a8dc81a34c712cc26dc3a92ac4f94d10960d141f7d6ecb09dab6c411f8d209",
+    "replay_path": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-001/analysis_replay",
+    "summary_csv_sha256": "b29c90fb2b5bac46488b1d3a9d356e5988f2d2853d0ca5c0fb984adf98d78002"
+  },
+  "artifacts": {
+    "fatal_log_matches": 0,
+    "metadata_files": 16,
+    "per_run_checksum_failures": 0,
+    "per_run_checksum_files": 16,
+    "progress_files": 16,
+    "run_artifact_size": "67M"
+  },
+  "decision": {
+    "all_mandatory_gates_pass": false,
+    "failed_gate": "oracle_improves_each_coupling_regime",
+    "frozen_decision": "stop",
+    "gates_passed": 5,
+    "gates_total": 6,
+    "oracle_relative_headroom": 0.05032546485165136
+  },
+  "environment": {
+    "freeze_sha256": "bd5cf97a2ffd77bca0674e5508293a35ef66ec724c90eb430b1da2c869a092c7",
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "harl_worktree_clean_after_run": true,
+    "repository_commit": "106e9b187e954b229d1cf1298f2c379b154fce46",
+    "repository_worktree_clean_after_run": true
+  },
+  "experiment_id": "TSP-MARL-DEV-001",
+  "frozen_hashes": {
+    "analyzer_sha256": "c38cca687103f9d8d29b662018f997c7e989e15645b3fcf12efed17f521e4390",
+    "config_sha256": "3833280e6a49d395be2b2c73791b7cb0b94700c5b76dfa23309ff27e689475b2",
+    "runner_sha256": "77ba365b3cba64c6befaf4176b3d0b8d8034df2cd56e84d680cc744e10f0f9cc",
+    "slurm_sha256": "ff632f8bc3f1f4fcf13dac21e3d984b7b3ce01141fdda467dee34706252859be"
+  },
+  "hpc4": {
+    "account": "vincentlau",
+    "all_exit_codes": "0:0",
+    "all_states": "COMPLETED",
+    "elapsed_max": "00:56:53",
+    "elapsed_min": "00:19:06",
+    "gpu": "NVIDIA A30",
+    "job_groups": [
+      "1843182_[0]",
+      "1843190_[1-7]",
+      "1843198_[8-9]",
+      "1843327_[10-11]",
+      "1843353_[12-13]",
+      "1843408_[14]",
+      "1843411_[15]"
+    ],
+    "project_output_written": false,
+    "queue_count_after_completion": 0,
+    "work_root": "/scratch/jzhuangag/MARL-SDDE-TSP-MARL-DEV-001"
+  },
+  "integrity": {
+    "all_records_accounting_ok": true,
+    "all_records_finite": true,
+    "all_records_upstream_unmodified": true,
+    "coupling_audit_pass": true,
+    "coupling_audit_remote_sha256": "9d5b96550943ee21c3547930fd51831d92e5a8cda3987020edf79f4a8131d78c",
+    "expected_run_count": 16,
+    "observed_run_count": 16
+  },
+  "recorded_on": "2026-09-10"
+}

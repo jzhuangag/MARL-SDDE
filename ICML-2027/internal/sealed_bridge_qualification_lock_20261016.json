@@ -1,0 +1,92 @@
+{
+  "experiment": "ICML27-SEALED-BRIDGE-INTEGRATION-QUAL-001",
+  "fingerprint": {
+    "farama_tree": "9f82a1258f0f87d53657cb6a62ee3f912308d96b49e91cb5001001159f0e91cc",
+    "files": {
+      "ICML-2027/experiments/happo_batch_cpu.py": "371493cb981f158f97cf055d7a30fdb9060e6d58e52ee99d1a64c2af614491b4",
+      "ICML-2027/experiments/happo_batch_cpu_preregistration.json": "4dc0746d2dfaabde2c3617b1cd85521c7614e1434b56d51fbd04b12813abdd11",
+      "ICML-2027/experiments/sealed_bridge/core.py": "7a8bea56d18307189443cc197b4837338d5403106e05c56e25a0c42748056d57",
+      "ICML-2027/experiments/sealed_bridge/native.py": "28b982e2d54b704cfacdb41964c8267ff66ff1731dd17b8532d2397c0b7f6586",
+      "ICML-2027/experiments/sealed_bridge/qualification.json": "b569c38b0ae6afe8e2835e5532637021505aa428310ff0ab01c553f2299625b4",
+      "ICML-2027/experiments/sealed_bridge/qualify.py": "41363388705a3ddb834ccdb54becbdd8e3f6af7d342d895c4765dcac26bd85ff",
+      "ICML-2027/experiments/sealed_bridge/test_core.py": "ca67e143ac28651602f3e7c0b3f9d3869a550b48399f3c6e711eb44f139d91ab"
+    },
+    "gymnasium": "1.2.0",
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "mujoco": "3.3.0",
+    "numpy": "2.2.2",
+    "pettingzoo_tree": "c8df4d549186ed1c7cc9374936c4697696fb4537dda717bd8739a7428034afd8",
+    "python": "3.11.13",
+    "robotics": "1.4.0",
+    "torch": "2.6.0+cpu"
+  },
+  "plan": {
+    "actor_step": 1e-05,
+    "betas": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "bridge_episodes": [
+      4,
+      8
+    ],
+    "bridge_role": 972,
+    "controller_role": 973,
+    "cpu_seconds_limit": 1800,
+    "critic_epochs": 5,
+    "decision_scope": "operational integration only; NOT positive learning, measured useful precision, cross-family performance, scientific development or manuscript admission",
+    "delay_max": 2,
+    "delay_min": 1,
+    "evaluations_collected": 0,
+    "experiment": "ICML27-SEALED-BRIDGE-INTEGRATION-QUAL-001",
+    "fixed_beta": 0.5,
+    "fixed_bridge_episodes": 8,
+    "gamma": 0.99,
+    "gate": "all six original and six replay payloads, exact roles/costs/one-use/source/service mapping, finite actual gradients/parameters, both defensive weights<=2, identical source/runtime hashes, semantic replay and byte-identical analyses; no outcome-performance gate",
+    "horizon": 25,
+    "meta_step": 1e-08,
+    "methods": [
+      "bridge_fixed",
+      "bridge_control"
+    ],
+    "required_gymnasium": "1.2.0",
+    "required_harl": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "required_mujoco": "3.3.0",
+    "required_numpy": "2.2.2",
+    "required_robotics": "1.4.0",
+    "required_torch": "2.6.0+cpu",
+    "resource_targets": [
+      0.85,
+      0.9
+    ],
+    "returns_ranked": false,
+    "role": "outcome-free-complete-native-integration",
+    "seed": 79526041,
+    "source_cohorts": 6,
+    "source_episodes": 4,
+    "source_fraction": 0.5,
+    "source_role": 971,
+    "tasks": [
+      {
+        "N": 3,
+        "family": "mpe",
+        "name": "spread",
+        "scenario": "simple_spread_v3"
+      },
+      {
+        "family": "mpe",
+        "name": "reference",
+        "scenario": "simple_reference_v3"
+      },
+      {
+        "family": "mamujoco",
+        "name": "halfcheetah_2x3",
+        "partition": "2x3",
+        "scenario": "HalfCheetah"
+      }
+    ],
+    "variance_weight": 1e-06,
+    "workers": 1
+  }
+}

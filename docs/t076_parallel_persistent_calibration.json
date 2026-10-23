@@ -1,0 +1,33 @@
+{
+  "experiment_id": "T-076-parallel-execution-of-frozen-T074-calibration",
+  "classification": "compute-only execution amendment; scientific controller and gates identical to frozen T-074",
+  "scientific_config": {
+    "path": "docs/t074_persistent_certificate_architecture_calibration.json",
+    "sha256": "BF7EB584B0AFA92D261849B2BBDE2929C4C464C56B91EC120D20AAB5A0819E8C",
+    "frozen_commit": "f94991416bd5497f2d0cd378a60585673b92fb57"
+  },
+  "execution": {
+    "workers": 4,
+    "ordered_map": true,
+    "chunksize": 8,
+    "hard_timeout_minutes": 12,
+    "minimum_logical_processors": 4,
+    "minimum_memory_gb": 4,
+    "output_is_created_only_after_all_endpoints_complete": true
+  },
+  "mandatory_compute_gates": {
+    "E1": "all frozen T-074 P1--P11 are evaluated without alteration",
+    "E2": "13,824 ordered endpoints and 432 cells complete with no worker exception",
+    "E3": "wall-clock runtime does not exceed 12 minutes",
+    "E4": "clean four-worker rerun is byte-identical",
+    "E5": "full repository tests pass"
+  },
+  "authorization": {
+    "run_local_CPU": true,
+    "formal": false,
+    "new_seed_pilot": false,
+    "nonlinear": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

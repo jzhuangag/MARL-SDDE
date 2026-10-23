@@ -1,0 +1,20 @@
+\subsection{Finite separation for averaging and TD critics}
+Consider $Q=h=8$, initialization radius one, budgets $(16B,4B)$ and $q,b\in\{1,2,4,8\}$.
+The covariance box is $\theta_0\in[0.04,0.06]$, $\theta_1\in[1.8,2.2]$, independently varying $\lambda_j\in[0.15,0.25]$, and prior $\pi\in[0.45,0.55]$.
+Use eighteen paid unit-spacing observations from all actors, the target-invariant likelihood rule frozen at $(0.05,2,0.2)$, and commitments $(8,4)$ or $(2,2)$.
+For each learner, let $I_{\rm open}$ be its best worst-initialization prior risk over every predetermined schedule, stopping prefix and independent random mixture, with actual covariance parameters available to that comparator.
+For the averaged scalar TD(0) critic, use $e_t=\beta e_{t-1}+\eta\bar X_t$ with $\eta=0.1$, $\mu=1-\gamma=0.5$ and $\beta=1-\eta\mu$.
+
+\begin{theorem}[Robust finite-budget separation]
+Throughout the stated box, at $B=8192$ the paid rule satisfies
+\[
+R_{\rm paid}\le(1-\epsilon)I_{\rm open},
+\]
+with $\epsilon=0.0254$ for the running mean with eight withheld updates and $\epsilon=0.0186$ for the averaged TD critic with zero update delay.
+All probe and scheduled-update costs are included.
+\label{thm:finite-robust-separation}
+\end{theorem}
+
+The comparison allows arbitrary schedule length and order, including nonperiodic schedules.
+Supplementary Section~\ref{sup-sec:td-extension} proves the result by direct Gaussian error bounds and a period-free resource envelope.
+An explicit TD filter-boundary correction transfers the envelope beyond running means.

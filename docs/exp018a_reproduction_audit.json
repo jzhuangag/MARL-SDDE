@@ -1,0 +1,15 @@
+{
+  "experiment": "EXP-018A",
+  "classification": "deterministic_local_cpu",
+  "pilot_runtime_seconds": 160.8,
+  "reproduction_runtime_seconds": 139.6,
+  "files": {
+    "projections.csv": {"pilot_sha256": "73ed8fde7d5bf394aa0dc5d93a5902cc4c6a4194c16d15e6efc77158f91a2a35", "reproduction_sha256": "73ed8fde7d5bf394aa0dc5d93a5902cc4c6a4194c16d15e6efc77158f91a2a35", "byte_identical": true},
+    "static_manifest.json": {"pilot_sha256": "02d997eb6e860068b17313fd81967c96c5dee1ac140012914c2482735740d123", "reproduction_sha256": "02d997eb6e860068b17313fd81967c96c5dee1ac140012914c2482735740d123", "byte_identical": true},
+    "validation.md": {"pilot_sha256": "1cfdc6362748557455b557343fdfd14a2d063e497c35891900d373e9956877bd", "reproduction_sha256": "1cfdc6362748557455b557343fdfd14a2d063e497c35891900d373e9956877bd", "byte_identical": true},
+    "summary.json": {"pilot_sha256": "85b8ba31c04e53c072baced7b88a07fc93436d24afc2ea431dd350c24202ff6a", "reproduction_sha256": "4c92d1218a8f20796e185aa90c8cf81086e46af3964c1a37641707efac428a7a", "byte_identical": false, "only_difference": "absolute input path"}
+  },
+  "scientific_values_identical": true,
+  "preregistered_byte_identity_gate_fully_passed": false,
+  "verdict": "PARTIALLY_REPRODUCIBLE_under_literal_file_gate; scientific_CSV_exactly_reproducible"
+}

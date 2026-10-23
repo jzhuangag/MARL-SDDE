@@ -1,0 +1,107 @@
+{
+  "aggregate": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 0.850256808004158,
+    "pass": true,
+    "point_ratio": 0.8298578130749303,
+    "threshold": 0.95
+  },
+  "all_formal_gates_pass": false,
+  "artifact_hashes": {
+    "cells.csv": {
+      "exact": true,
+      "primary": "879e59d94e1189ab0e2a83b7fabbf04bb43ea87b7e98fb83a84a11c5f0a2cc80",
+      "reproduction": "879e59d94e1189ab0e2a83b7fabbf04bb43ea87b7e98fb83a84a11c5f0a2cc80"
+    },
+    "endpoints.csv": {
+      "exact": true,
+      "primary": "271969a7ad0e7f80ccef484c187109b3733000307f1408a3d171b8d4aa6ffab9",
+      "reproduction": "271969a7ad0e7f80ccef484c187109b3733000307f1408a3d171b8d4aa6ffab9"
+    },
+    "summary.json": {
+      "exact": true,
+      "primary": "32fcba18d68b292d72a9c43e1f93e4be2916f0059720edd442a4aa2d514c0c8a",
+      "reproduction": "32fcba18d68b292d72a9c43e1f93e4be2916f0059720edd442a4aa2d514c0c8a"
+    }
+  },
+  "bootstrap": {
+    "replicates": 50000,
+    "seed": 63001,
+    "unit": "complete master-seed column"
+  },
+  "classification": "formal evidence under the preregistered fixed-policy delayed nonlinear-feature Markov-TD scope",
+  "configuration_sha256": "8e90b08f18a14b777356ab3c575c738d9c8b62c5a9a0d7b2ff06ae78605d457d",
+  "delays": {
+    "0": {
+      "one_sided_upper_quantile": 0.975,
+      "one_sided_upper_ratio": 0.8549066489401053,
+      "pass": true,
+      "point_ratio": 0.8302647285305238,
+      "threshold": 0.97
+    },
+    "8": {
+      "one_sided_upper_quantile": 0.975,
+      "one_sided_upper_ratio": 0.8539001226650363,
+      "pass": true,
+      "point_ratio": 0.8294510970499309,
+      "threshold": 0.97
+    }
+  },
+  "experiment_id": "T-063A-formal-reward-free-correlation-adaptive-MinAtar-TD",
+  "fingerprint_standardized_rmse": 1.0097857337807095,
+  "gates": {
+    "F10_independent_collision": false,
+    "F11_summary_replay": false,
+    "F12_byte_exact_reproduction": true,
+    "F13_full_tests": true,
+    "F1_coverage_and_seed_isolation": true,
+    "F2_finite_and_full_cost": true,
+    "F3_aggregate_simultaneous_gain": true,
+    "F4_taskwise_simultaneous_gain": true,
+    "F5_delay_simultaneous_gain": true,
+    "F6_strict_cell_breadth": false,
+    "F7_true_rho_oracle_proximity": true,
+    "F8_participation_direction": true,
+    "F9_fingerprint_calibration": true
+  },
+  "gpu_used": false,
+  "hpc4_used": false,
+  "maximum_seed_level_rho0_match_rate": 0.020833333333333332,
+  "oracle_proximity": {
+    "one_sided_upper_quantile": 0.95,
+    "one_sided_upper_ratio": 1.0160148022705047,
+    "pass": true,
+    "point_ratio": 1.0103192280210036,
+    "threshold": 1.15
+  },
+  "strict_cell_breadth": {
+    "one_sided_lower_fraction": 0.5833333333333334,
+    "one_sided_lower_quantile": 0.05,
+    "pass": false,
+    "point_fraction": 0.6785714285714286,
+    "threshold": 0.6
+  },
+  "tasks": {
+    "asterix": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8518981694368886,
+      "pass": true,
+      "point_ratio": 0.8115100371177894,
+      "threshold": 0.98
+    },
+    "breakout": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8734431188928562,
+      "pass": true,
+      "point_ratio": 0.826209322473795,
+      "threshold": 0.98
+    },
+    "seaquest": {
+      "one_sided_upper_quantile": 0.9833333333333333,
+      "one_sided_upper_ratio": 0.8969569956872806,
+      "pass": true,
+      "point_ratio": 0.8523678783763035,
+      "threshold": 0.98
+    }
+  }
+}

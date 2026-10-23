@@ -1,0 +1,23 @@
+{
+  "id":"ICML27-RELATIVE-RETURN-MC-POTENTIAL-CPU-001",
+  "role":"Fresh-context estimator qualification after diagnosed learner-critic/finite-horizon mismatch; not a retry or replacement of either stopped qualification",
+  "tasks":[{"name":"spread","scenario":"simple_spread_v3","N":3},{"name":"reference","scenario":"simple_reference_v3"}],
+  "seeds":[78101001,78101002],
+  "stages":[4,16],
+  "candidate_scales":[0.0,0.5,1.5],
+  "bank_samples":64,
+  "validation_samples":256,
+  "branch_samples":32,
+  "ridge":1.0,
+  "features":"Remaining horizon times tanh-standardized centralized state and its coordinate squares, plus remaining horizon and its square. Fit only earlier paid training states and native undiscounted Monte Carlo returns-to-go. No score/validation label enters fitting.",
+  "primary":"Unclipped relative per-decision IS with the frozen training-only finite-horizon Monte Carlo potential",
+  "reference":"Complete fresh HAPPO update; exact reference action score zero; full candidate set retained",
+  "score_role":610,
+  "validation_role":710,
+  "branch_role":810,
+  "cpu_limit_seconds":480,
+  "gates":{"eight_context_mapping_finite_hashes_roles_accounting_and_replay":true,"task_geomean_amortized_cost_variance_ratio_vs_first_disagreement_max":0.8,"all_score_means_compatible_with_independent_validation_4se":true,"positive_score_and_independent_validation_contexts_min":4,"score_transition_fraction_of_stage4_prefix_max":1.0},
+  "replay_context":0,
+  "decision":"Keep every task, seed, candidate and gate. Nonzero means and normal-SE diagnostics are not rigorous simultaneous confidence certificates. Failure stops this qualification, preserves evidence, and does not authorize GPU or manuscript claims. Any subsequent research must address the diagnosed failure rather than increase sample budgets or relax this gate.",
+  "cost":"One 1600-transition shared score bank per context, separate 6400-transition validation bank; all 32-sample direct-branch comparisons additionally charged. Every training reconstruction and potential fit/forward is reported. Reusing score data for later optimizer training is not assumed to make any cost free."
+}

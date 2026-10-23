@@ -1,0 +1,88 @@
+{
+  "aggregate": {
+    "correlation_only": {
+      "parameter_auc": 0.3462090882003654,
+      "return_auc": 0.2606094377510459,
+      "terminal_parameter": 0.06401143711281838,
+      "terminal_return": 0.048938284310555295
+    },
+    "finite_horizon": {
+      "parameter_auc": 0.22356512665228795,
+      "return_auc": 0.1652195816587621,
+      "terminal_parameter": 0.0216446386794911,
+      "terminal_return": 0.021093559426016723
+    },
+    "one_step_myopic": {
+      "parameter_auc": 0.22051009774403565,
+      "return_auc": 0.16432179596858015,
+      "terminal_parameter": 0.025798021346805672,
+      "terminal_return": 0.03123182117964145
+    },
+    "shield_moderate": {
+      "parameter_auc": 0.22356512665228795,
+      "return_auc": 0.1652195816587621,
+      "terminal_parameter": 0.0216446386794911,
+      "terminal_return": 0.021093559426016723
+    },
+    "shield_strong": {
+      "parameter_auc": 0.22356512665228795,
+      "return_auc": 0.1652195816587621,
+      "terminal_parameter": 0.0216446386794911,
+      "terminal_return": 0.021093559426016723
+    }
+  },
+  "config_sha256": "28e9990db1d37038b17c22189b3050863226ccb9007f4287f2596b19f7905597",
+  "elapsed_seconds": 49.5670093,
+  "experiment_id": "TSP-V3-CERT-SHIELD-002",
+  "gates": {
+    "finite_horizon_vs_correlation_only_terminal_parameter_ratio": 0.33813705262300275,
+    "finite_horizon_vs_myopic_terminal_parameter_ratio": 0.8390038285696337,
+    "moderate_terminal_parameter_ratio": 1.0,
+    "overall_pass": true,
+    "payload_validity": true,
+    "strong_terminal_parameter_ratio": 1.0,
+    "upper_certificate_stability": true
+  },
+  "git_head": "ef1701feed18e46405709a4a805e4365af6a0cee",
+  "implementation_sha256": "8e74cabcdf31c0826d664dc4fd026a334da515bda23d2ea97e9456c90259aa57",
+  "num_seeds": 8,
+  "phase": "development",
+  "ratios_to_finite_horizon": {
+    "correlation_only": {
+      "parameter_auc": 1.5485827033248627,
+      "return_auc": 1.5773520011041922,
+      "terminal_parameter": 2.957380719571494,
+      "terminal_return": 2.3200581429701703
+    },
+    "one_step_myopic": {
+      "parameter_auc": 0.9863349487730982,
+      "return_auc": 0.9945661060198288,
+      "terminal_parameter": 1.1918896743353826,
+      "terminal_return": 1.4806330476932323
+    },
+    "shield_moderate": {
+      "parameter_auc": 1.0,
+      "return_auc": 1.0,
+      "terminal_parameter": 1.0,
+      "terminal_return": 1.0
+    },
+    "shield_strong": {
+      "parameter_auc": 1.0,
+      "return_auc": 1.0,
+      "terminal_parameter": 1.0,
+      "terminal_return": 1.0
+    }
+  },
+  "rows": 19680,
+  "seeds": [
+    35000001,
+    35000002,
+    35000003,
+    35000004,
+    35000005,
+    35000006,
+    35000007,
+    35000008
+  ],
+  "source_sha256": "ef22b041df9c279998ed17172a78661cdb6a02f04ba251d1b112f6c53a78ae35"
+}

@@ -1,0 +1,171 @@
+{
+  "amended_resource_forecast_pass": true,
+  "amendment_files": {
+    "ICML-2027/experiments/sealed_bridge_learning_40h.py": "9b5b1167b7d04dfe0f6a9efaf5bd3bd4558d8a0b083d98d6e2e346c2c874ed96",
+    "ICML-2027/internal/sealed_bridge_learning_40h_preregistration_20261016.md": "b3f324e8bf97e5e8f66f95063731ef420dddeabf1aeba73b4bc051d50909cd2a"
+  },
+  "fingerprint": {
+    "farama_tree": "9f82a1258f0f87d53657cb6a62ee3f912308d96b49e91cb5001001159f0e91cc",
+    "files": {
+      "ICML-2027/experiments/happo_batch_cpu.py": "371493cb981f158f97cf055d7a30fdb9060e6d58e52ee99d1a64c2af614491b4",
+      "ICML-2027/experiments/happo_batch_cpu_preregistration.json": "4dc0746d2dfaabde2c3617b1cd85521c7614e1434b56d51fbd04b12813abdd11",
+      "ICML-2027/experiments/sealed_bridge/__init__.py": "ba1a391b0587868678c879df564783c1fcf43418e2807d5252c0e2df88695ab7",
+      "ICML-2027/experiments/sealed_bridge/core.py": "7a8bea56d18307189443cc197b4837338d5403106e05c56e25a0c42748056d57",
+      "ICML-2027/experiments/sealed_bridge/native.py": "28b982e2d54b704cfacdb41964c8267ff66ff1731dd17b8532d2397c0b7f6586",
+      "ICML-2027/experiments/sealed_bridge/qualification.json": "b569c38b0ae6afe8e2835e5532637021505aa428310ff0ab01c553f2299625b4",
+      "ICML-2027/experiments/sealed_bridge/qualify.py": "41363388705a3ddb834ccdb54becbdd8e3f6af7d342d895c4765dcac26bd85ff",
+      "ICML-2027/experiments/sealed_bridge/test_core.py": "ca67e143ac28651602f3e7c0b3f9d3869a550b48399f3c6e711eb44f139d91ab",
+      "ICML-2027/experiments/sealed_bridge/verify_sources.py": "226607bc99c460fae2246f5433e24e93d1351cc45214f5cc2169f2b12019ec7c",
+      "ICML-2027/experiments/sealed_bridge_learning/__init__.py": "5e980523a39a47ccdb5fc13844efd76b86726aab24426da1aca12190737a7a2e",
+      "ICML-2027/experiments/sealed_bridge_learning/analyze.py": "104b80ea4960ee2a540c402c65f1516f483378546fa73a74b6292196e17096c4",
+      "ICML-2027/experiments/sealed_bridge_learning/benchmark.py": "33363e6b1ac95e4e805d1520d6b53b7450d6a2b937822489599295cf9b0f88ae",
+      "ICML-2027/experiments/sealed_bridge_learning/control.py": "ed580d1755541300bb8170ea34949f9dbbfa10020c13c9e7ec3cad60a0b08f97",
+      "ICML-2027/experiments/sealed_bridge_learning/development.json": "5fde4f1b13d265ffc149809fde195f8dbeade18321a2e00722507f5a4003b940",
+      "ICML-2027/experiments/sealed_bridge_learning/guard.py": "ca3a16863a27f06beb6905ec5dc9b0cc0c3c475a88116a42852116972aa37a40",
+      "ICML-2027/experiments/sealed_bridge_learning/native.py": "91df0b748fc0b22d75a216a570feb9ba865e0a1c60b68da7e5b2fa71665a211d",
+      "ICML-2027/experiments/sealed_bridge_learning/prefix.py": "423aa22e860059156043d346e3c276366dcb12cc72415ab226af45a0ca2fe038",
+      "ICML-2027/experiments/sealed_bridge_learning/test_backend.py": "5ada55a14febda82ca24e7741ff7a628b37b5a928c6e262c42925a80dd9ba0ba",
+      "ICML-2027/experiments/sealed_bridge_learning/test_driver.py": "059100e78205453791757d0fd635f00390a20ae27cf22aff9cd7ce31ac0bc7f7",
+      "ICML-2027/experiments/sealed_bridge_learning/test_interface.py": "50b1bfefe6bc0a06efc62e2289d70298370a842041b6025c831f8647b8a7598c",
+      "ICML-2027/experiments/sealed_bridge_learning/updates.py": "04ad6423a9a89b909323f45c73afe23995e7789ab23fe243c55d2af1604e70a4",
+      "ICML-2027/experiments/sealed_bridge_learning/workflow.py": "0799908682ca28dd848f15c9698518d39f1ef077ef59c172edd4f154396f25cb",
+      "ICML-2027/internal/sealed_bridge_learning_preregistration_20261016.md": "bb75a8f471c8c52ffb28ed50ddae0dc98847ad6e32d490a9541b1745ac6d7ca3"
+    },
+    "gymnasium": "1.2.0",
+    "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+    "harl_tree": "3b2fbc468ec5a61aec508367681f5c0d29e21f947057561c409d0165144c9e84",
+    "mujoco": "3.3.0",
+    "numpy": "2.2.2",
+    "pettingzoo_tree": "c8df4d549186ed1c7cc9374936c4697696fb4537dda717bd8739a7428034afd8",
+    "python": "3.11.13",
+    "robotics": "1.4.0",
+    "torch": "2.6.0+cpu"
+  },
+  "human_authorization": "2026-10-16: approve40 CPU hours; complete strong-baseline comparison; retain V3",
+  "original_lock_sha256": "8e5aca6054c1bc78096da61eb3b4a8000d099c1ae91e57321e6014bc3ccf8183",
+  "original_resource_decision": "RESOURCE_NO_GO",
+  "plan": {
+    "activation": "tanh",
+    "betas": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "bridge_episodes": [
+      8,
+      16,
+      32
+    ],
+    "calibration_episodes": 8,
+    "cpu_seconds_limit": 144000,
+    "critic_epochs": 5,
+    "delay_max": 4,
+    "delay_min": 1,
+    "deterministic_evaluation": false,
+    "evaluation_episodes": 8,
+    "evaluation_intervals": 10,
+    "experiment": "SEALED-PREFIX-RENEWAL-MARL-DEV-20261016",
+    "fixed_beta": 0.5,
+    "fixed_bridge_episodes": 16,
+    "fresh_batch_episodes": 32,
+    "gamma": 0.99,
+    "gates": {
+      "final_change_percent_min": -2.0,
+      "logical_byte_ratio_max": 1.5,
+      "native_auc_gain_percent_min": 1.0,
+      "normalization_floor": 1.0,
+      "positive_seed_count_min": 2,
+      "strong_control_learning_percent_min": 2.0,
+      "work_ratio_max": 1.5
+    },
+    "hidden_sizes": [
+      64,
+      64
+    ],
+    "joint_kl_cap": 0.1,
+    "methods": [
+      "fresh_happo_half",
+      "fresh_happo",
+      "fresh_happo_double",
+      "fresh_mappo",
+      "delayed_happo",
+      "online_joint_kl",
+      "joint_ma_trace_adaptation",
+      "defensive_page_pg_adaptation",
+      "fresh_pg",
+      "full",
+      "no_transport",
+      "fixed_allocation",
+      "no_price"
+    ],
+    "page_bridge_episodes": 8,
+    "page_refresh_episodes": 32,
+    "page_refresh_probability": 0.5,
+    "pg_base_rate": 0.0003,
+    "pg_rate_cap": 0.003,
+    "ppo_epochs": 5,
+    "ppo_learning_rate": 0.0005,
+    "profile": {
+      "analysis_reserve_seconds": 600,
+      "cpu_seconds_limit": 3000,
+      "episodes": 64,
+      "evaluation_episodes": 2,
+      "evaluation_intervals": 2,
+      "forecast_multiplier": 1.5,
+      "seed": 971016011
+    },
+    "replay": {
+      "methods": [
+        "fresh_happo",
+        "full"
+      ],
+      "seed_index": 0
+    },
+    "roles": {
+      "bridge": 1005,
+      "calibration": 1003,
+      "controller": 1001,
+      "evaluation": 1002,
+      "fresh": 1006,
+      "source": 1004,
+      "terminal": 1007
+    },
+    "seeds": [
+      971016103,
+      971016149,
+      971016197
+    ],
+    "source_episodes": 8,
+    "source_fraction": 0.5,
+    "tasks": [
+      {
+        "N": 3,
+        "family": "mpe",
+        "horizon": 25,
+        "name": "spread",
+        "scenario": "simple_spread_v3",
+        "training_transitions": 200000
+      },
+      {
+        "family": "mpe",
+        "horizon": 25,
+        "name": "reference",
+        "scenario": "simple_reference_v3",
+        "training_transitions": 200000
+      },
+      {
+        "family": "mamujoco",
+        "horizon": 1000,
+        "name": "halfcheetah_2x3",
+        "partition": "2x3",
+        "scenario": "HalfCheetah",
+        "training_transitions": 1000000
+      }
+    ],
+    "variance_tradeoff": 1.0,
+    "vector_width": 16,
+    "vtrace_c_cap": 1.0,
+    "vtrace_rho_cap": 1.0
+  },
+  "profile_decision_sha256": "7b7ed26bdbbe55d21d64d16f99972618ddab856d06066b91f60eb586ba2bfccd"
+}

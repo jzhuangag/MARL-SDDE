@@ -1,0 +1,116 @@
+{
+  "date": "2026-08-31",
+  "parent_commit": "cefa5d5ff99c0ed212d3a43a71988d2a5dd2fe43",
+  "kind": "CPU deterministic qualification, theoretical feasibility and regression",
+  "environment": {
+    "python": "3.11.13 Anaconda",
+    "executable": "E:/HKUST-study/vin/SDDE/.venv/Scripts/python.exe",
+    "base_prefix": "D:/anaconda/envs/ust2",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "completed": [
+    "Derived all-state/all-remaining-horizon fixed-batch coverage without per-query data recounting.",
+    "Derived affine parameter/donor reuse and explicit out-of-anchor residual convex upper QP.",
+    "Derived expected cumulative comparison with actual local trajectory conditional on fixed law, post-collection training budget and once-built cache.",
+    "Implemented short-unroll omitted-tail reference and full probe/reset/memory/arithmetic accounting.",
+    "Derived a conditional one-vector block-contraction route for the NEXT implementation; not yet executed as an empirical certificate."
+  ],
+  "commands": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_reusable_transfer_cache.py -q",
+      "result": "21 passed in 3.85s",
+      "stage": "before reporting-denominator correction"
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q",
+      "result": "810 passed, 7 skipped in 847.76s (0:14:07)",
+      "exit_code": 0,
+      "stage": "source loaded before reporting-only per-query denominator correction",
+      "source_hashes": [
+        {
+          "Path": "E:\\HKUST-study\\vin\\SDDE\\experiments\\dependence_delay_linear\\reusable_transfer_cache.py",
+          "Hash": "9659CE38DFA6E42B0C53E317DB509306A32EE92964EA9CB3034AC3A016D844F5"
+        },
+        {
+          "Path": "E:\\HKUST-study\\vin\\SDDE\\experiments\\dependence_delay_linear\\test_reusable_transfer_cache.py",
+          "Hash": "39B0D02121B00B20BE80BD2E096D0524A7D2ECD7278FF837542CCDA8352067D7"
+        }
+      ]
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_reusable_transfer_cache.py -q",
+      "result": "21 passed in 4.15s",
+      "exit_code": 0,
+      "stage": "final source including corrected short-cache per-query cost and regression assertion"
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/reusable_transfer_cache.py",
+      "runs": 2,
+      "exit_codes": [
+        0,
+        0
+      ],
+      "stdout_byte_identical": true,
+      "saved_json_semantically_equal": true,
+      "stage": "final source"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "reporting_correction": {
+    "description": "Cached cost per query is total cache transitions divided by number of queries, not cache lookahead H; for 64 short-H8 queries it is 142, not 1136.",
+    "scope": "new unfrozen diagnostic only; no controller/risk formula/frozen result change",
+    "full_suite_restarted": false,
+    "final_targeted_tests_pass": true
+  },
+  "provenance": {
+    "final_sha256": [
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\experiments\\dependence_delay_linear\\reusable_transfer_cache.py",
+        "Hash": "798AF9343798954C1C136CC0A8426523FE12ECC0A959A64E48210452B37CF953"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\experiments\\dependence_delay_linear\\test_reusable_transfer_cache.py",
+        "Hash": "1BE039F6BE5D0B1FDCF07BBEB714389ECDE66426CB9B523E71C0658DE4BD5F48"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\reusable_transfer_cache_feasibility.md",
+        "Hash": "DC9BDD5637560F4B48753172FE1689DF514BCEF4B4F3C888778439375DECDA9E"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\reusable_transfer_cache_qualification.json",
+        "Hash": "86FBF388C9DC1821B5D80D8E50EA9081AE0C0B3169BFA8F6B0E3A75DF2984742"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\reusable_transfer_cache_source_verification.json",
+        "Hash": "8E2E23E99A693D0D17BC95124E8427A200A9E3435AE5A87596DD48B3C86441C2"
+      },
+      {
+        "Path": "E:\\HKUST-study\\vin\\SDDE\\docs\\cpu_autonomous_research_plan.md",
+        "Hash": "B299CAFB7D4584AB80529A0EC1F9202D25AD3B936F6A19CB683F203A1E8B8415"
+      }
+    ],
+    "raw_full_pytest_stdout": "retained in tool session 62303; no on-disk raw stdout file was created",
+    "source_verification": "docs/reusable_transfer_cache_source_verification.json",
+    "qualification": "docs/reusable_transfer_cache_qualification.json"
+  },
+  "decision": {
+    "reuse_interface": "qualified_with_explicit_fixed_law_reset_access_and_residual_scope",
+    "cached_reference_as_final_mechanism": "rejected_as_sufficient_contribution",
+    "cost_success_claim": false,
+    "empirical_efficacy_success_claim": false,
+    "new_pilot_authorized": false,
+    "formal_authorized": false,
+    "gpu_or_hpc4_used": false,
+    "remote_storage_operations": false,
+    "destructive_cleanup": false
+  },
+  "frozen_evidence": {
+    "T083A_F12": "FAIL preserved",
+    "T083A_F13": "FAIL preserved",
+    "frozen_controllers_gates_seeds_results_changed": false
+  },
+  "next": "Implement and challenge the one-vector conditional Markov block-contraction/tail certificate, with all sample/return/reset costs and a matched cached short-unroll comparator; no new efficacy run until feasibility passes."
+}

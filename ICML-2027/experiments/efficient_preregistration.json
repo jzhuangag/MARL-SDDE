@@ -1,0 +1,51 @@
+{
+  "experiment_id": "ICML27-EFFICIENT-CRITIC-CPU-002",
+  "scope": "Prospective efficient-learner extension of the same Gaussian Markov TD model; no deep-MARL claim.",
+  "base_config_sha256": "246f38ad11ddb778743f28dc1769a841ebbdfe82c30a90c93282ebb9cfea889f",
+  "development_seeds": [
+    49000001,
+    49000002,
+    49000003,
+    49000004,
+    49000005,
+    49000006,
+    49000007,
+    49000008,
+    49000009,
+    49000010,
+    49000011,
+    49000012,
+    49000013,
+    49000014,
+    49000015,
+    49000016
+  ],
+  "confirmation_reservation": {
+    "first": 50000001,
+    "count": 64,
+    "authorized": false
+  },
+  "methods": [
+    "efficient_value",
+    "correlation_only",
+    "fixed_q1",
+    "fixed_q2",
+    "fixed_q4",
+    "fixed_q8",
+    "paid_oracle"
+  ],
+  "fixed_baseline": "Full-budget, no-calibration GLS with true-context optimal spacing at each fixed q.",
+  "gains": "Causal innovation gains minimize exact quadratic Lyapunov risk; they attain the Gaussian linear-unbiased information bound. This inherited identity is not claimed as novel.",
+  "mandatory_gates": {
+    "complete_finite_exact_accounting": true,
+    "coverage_event_implies_all_risk_intervals": true,
+    "joint_coverage_fraction_min": 0.985,
+    "ratio_to_strongest_unpaid_efficient_fixed_q_max": 0.95,
+    "ratio_to_paid_efficient_oracle_max": 1.1,
+    "interior_qualified_cells_min": 12,
+    "interior_selection_fraction_min": 0.75,
+    "replay_byte_identical": true
+  },
+  "stopping_rule": "Preserve all cells and thresholds; any failed mandatory gate stops confirmation under this configuration. No CPU result establishes nonlinear PPO transfer.",
+  "paired_unit": "Seed aggregate over the same 360 public contexts. Fixed-q selection is an analytic public-population oracle, not calibration-outcome selection."
+}

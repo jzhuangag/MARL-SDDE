@@ -1,0 +1,26 @@
+{
+  "experiment": "SEALED-PREFIX-RENEWAL-MARL-DEV-20261016",
+  "tasks": [
+    {"name": "spread", "family": "mpe", "scenario": "simple_spread_v3", "N": 3, "horizon": 25, "training_transitions": 200000},
+    {"name": "reference", "family": "mpe", "scenario": "simple_reference_v3", "horizon": 25, "training_transitions": 200000},
+    {"name": "halfcheetah_2x3", "family": "mamujoco", "scenario": "HalfCheetah", "partition": "2x3", "horizon": 1000, "training_transitions": 1000000}
+  ],
+  "methods": ["fresh_happo_half", "fresh_happo", "fresh_happo_double", "fresh_mappo", "delayed_happo", "online_joint_kl", "joint_ma_trace_adaptation", "defensive_page_pg_adaptation", "fresh_pg", "full", "no_transport", "fixed_allocation", "no_price"],
+  "seeds": [971016103, 971016149, 971016197],
+  "hidden_sizes": [64, 64], "activation": "tanh", "gamma": 0.99,
+  "ppo_epochs": 5, "critic_epochs": 5, "ppo_learning_rate": 0.0005,
+  "pg_base_rate": 0.0003, "pg_rate_cap": 0.003,
+  "evaluation_intervals": 10, "evaluation_episodes": 8, "deterministic_evaluation": false,
+  "vector_width": 16, "calibration_episodes": 8, "source_episodes": 8,
+  "bridge_episodes": [8, 16, 32], "betas": [0.0, 0.5, 1.0],
+  "fixed_bridge_episodes": 16, "fixed_beta": 0.5,
+  "variance_tradeoff": 1.0, "source_fraction": 0.5,
+  "delay_min": 1, "delay_max": 4, "fresh_batch_episodes": 32,
+  "joint_kl_cap": 0.1, "vtrace_rho_cap": 1.0, "vtrace_c_cap": 1.0,
+  "page_refresh_probability": 0.5, "page_refresh_episodes": 32, "page_bridge_episodes": 8,
+  "roles": {"controller": 1001, "evaluation": 1002, "calibration": 1003, "source": 1004, "bridge": 1005, "fresh": 1006, "terminal": 1007},
+  "cpu_seconds_limit": 12000,
+  "profile": {"seed": 971016011, "episodes": 64, "evaluation_intervals": 2, "evaluation_episodes": 2, "cpu_seconds_limit": 3000, "forecast_multiplier": 1.5, "analysis_reserve_seconds": 600},
+  "replay": {"seed_index": 0, "methods": ["fresh_happo", "full"]},
+  "gates": {"native_auc_gain_percent_min": 1.0, "positive_seed_count_min": 2, "final_change_percent_min": -2.0, "strong_control_learning_percent_min": 2.0, "work_ratio_max": 1.5, "logical_byte_ratio_max": 1.5, "normalization_floor": 1.0}
+}

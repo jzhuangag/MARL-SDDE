@@ -1,0 +1,45 @@
+CURRENT MANUSCRIPT — 2026-10-23
+
+Lyapunov Resource Control for Correlated Multi-Agent Markov Learning
+
+Canonical editable source: main.tex in this directory.
+Reading copy: main.pdf (13 pages).
+Complete proofs and retained evidence: supplement.tex / supplement.pdf (32 pages).
+This directory supersedes the older TSP/ and TSP-V3/ drafts; those remain preserved.
+
+Research direction
+Multi-agent correlation changes the useful amount and timing of data. The
+Lyapunov score prices participation, Markov spacing, delay and affordable horizon.
+Paid identification is valuable when learning the covariance regime changes that
+resource choice enough to repay its cost on the continuing learning stream.
+
+New integrated results
+1. Initialization-minimax/state-value characterization now permits regime-specific
+   persistence, rather than requiring a common persistence across regimes.
+2. An explicit two-program Gaussian construction attains strictly positive
+   second-order state value, proving the O(B^-2) order sharp in that class.
+3. A period-free resource-envelope theorem now covers EVERY predetermined
+   schedule over the resource catalogue, including arbitrary nonperiodic words,
+   all stopping prefixes and observation-independent randomized schedules.
+   Direct detector-error analysis now expands the covariance box to theta0
+   [.04,.06],theta1[1.8,2.2],each persistence[.15,.25],prior[.45,.55].
+   At B8192 the unchanged paid rule guarantees >=2.54% risk reduction for the
+   running mean(D8),and >=1.86% for averaged scalar affine TD(0)(D0,mu=.5,
+   eta=.1). The TD extension explicitly bounds the exponential-filter boundary;
+   it is not a general random-Jacobian TD theorem. These are population-risk
+   certificates,not sampled gains. Older narrower-box certificates remain.
+
+Editorial judgment
+Use this as the sole working main draft for a theory-led IEEE TSP submission.
+Its substantive case is paid continuing-risk resource control and constructive
+separation, not a claim that Lyapunov analysis, Bayesian decisions, Gaussian
+contrasts, or information value are themselves new. The finite-model and declared
+comparator classes are part of the theorem, not hidden assumptions.
+Existing resource-matched learning gains remain in the main paper. Earlier
+unfavorable prospective outcomes retain their original interpretation and full
+supplementary evidence; the new construction does not relabel those experiments.
+No new trajectories, seeds, native studies or manuscript submission were used.
+
+Latest derivation and re-review: internal/td_extension_20261023/.
+Period-free envelope derivation: internal/arbitrary_schedule_20261023/.
+Previous derivations remain in internal/strict_tsp_20261023/.

@@ -1,0 +1,83 @@
+\section{Known-Model Population Risk of a Frozen Likelihood Commitment}
+The registered finite-seed result and the known-model population effect answer different questions.
+The latter can be evaluated without new trajectories for the unchanged binary likelihood rule, including its same-stream state dependence and all paid horizons.
+The distributional tool is classical: the positive chi-square mixture is recorded in Solomon, Section2, Eq.(2), with the Gaussian quadratic-form Laplace product in Eq.(3) \maincite{solomon1961quadratic}.
+The derivation below supplies its continuing-risk interface, not a new distribution theorem.
+
+\subsection{Diagonal likelihood event and state moment}
+Let $K_0\prec K_1$ be the two positive definite contrast covariances, with contrast dimension $d=n-1$ and balanced public prior.
+Write $K_0=LL^\top$ and diagonalize
+\[
+L^{-1}K_1L^{-\top}=V\operatorname{diag}(\ell_i)V^\top,\quad \ell_i>1.
+\]
+Under true model $j$, the coordinates of $V^\top L^{-1}Y$ have independent variances $\ell_i^j$.
+With independent standard normal $G_i$, the likelihood rule selects the high model on
+\[
+H=\left\{\sum_i a_{j,i}G_i^2>c\right\},\quad c=\sum_i\log\ell_i,
+\]
+where $a_{0,i}=1-\ell_i^{-1}$ and $a_{1,i}=\ell_i-1$.
+Both weight vectors are strictly positive; this positivity uses the ordered variance models and is not asserted for arbitrary covariance pairs.
+If $m_j(Y)=\sum_i b_{j,i}G_i$, then $s_j^2=\sum_i b_{j,i}^2$.
+Let $p_j=\Pr_j(H)$ and $M_j=\E_j[m_j(Y)^2\mathbf1_H]$.
+Every cross-coordinate term vanishes by changing the sign of one $G_i$ while leaving $H$ unchanged.
+Consequently $M_j=\sum_i b_{j,i}^2\E[G_i^2\mathbf1_H]$.
+
+For the two frozen post-probe programs, write $J_{j,0}^{r},J_{j,1}^{r}$ for the exact paid stationary risks and $k_0,k_1$ for their common-state coefficients.
+The exact worst-initialization model risk is
+\begin{align}
+R_j^{\rm LR}&=J_{j,0}^{r}+(J_{j,1}^{r}-J_{j,0}^{r})p_j\nonumber\\
+&\quad+(k_1^2-k_0^2)(M_j-s_j^2p_j).
+\label{eq:population-lr-risk}
+\end{align}
+The odd initialization term integrates to zero because $H$ is even.
+All horizons and coefficients in Eq.~\eqref{eq:population-lr-risk} are those remaining after payment; there is no independent learning reset.
+The criterion $\sum_j\pi_jR_j^{\rm LR}<I_{\rm full}$ is therefore an exact known-model comparison for this fixed paid two-commitment rule against the complete fixed-prefix benchmark.
+It does not optimize over different probes or all measurable selectors.
+
+\subsection{Positive mixture and explicit series remainder}
+Suppress $j$, let $\beta=\min_i a_i>0$, $r_i=1-\beta/a_i\in[0,1)$, and define
+\begin{align*}
+C(z)&=\prod_i(\beta/a_i)^{1/2}(1-r_iz)^{-1/2}\\
+&=\sum_{k\ge0}c_kz^k.
+\end{align*}
+The coefficients are nonnegative and $C(1)=1$.
+Logarithmic differentiation gives
+\[
+c_0=\prod_i(\beta/a_i)^{1/2},\quad
+c_k=\frac1k\sum_{l=1}^k\left(\frac12\sum_i r_i^l\right)c_{k-l}.
+\]
+Substitute $z=(1+2\beta t)^{-1}$ into the Laplace product $\prod_i(1+2a_it)^{-1/2}$.
+It becomes a probability mixture of the transforms of $\beta\chi^2_{d+2k}$, proving the classical series.
+Define $h_k$ by the nonnegative generating function
+\[
+\sum_{k\ge0}h_kz^k=C(z)\sum_i\frac{b_i^2\beta/a_i}{1-r_iz}.
+\]
+Its coefficient mass is $\sum_kh_k=s^2$.
+Weighting one Gaussian coordinate by $G_i^2$ increases that coordinate's chi-square degrees of freedom from one to three.
+Thus, with $\overline F_v$ the standard chi-square upper-tail function,
+\begin{align*}
+p&=\sum_{k\ge0}c_k\overline F_{d+2k}(c/\beta),\\
+M&=\sum_{k\ge0}h_k\overline F_{d+2+2k}(c/\beta).
+\end{align*}
+For sums retained through $K$, denote the partial values by $p_K,M_K$ and let
+$\epsilon_p=1-\sum_{k\le K}c_k$, $\epsilon_M=s^2-\sum_{k\le K}h_k$.
+In exact arithmetic,
+\[
+p_K\le p\le p_K+\epsilon_p,\quad
+M_K\le M\le M_K+\epsilon_M.
+\]
+The corresponding risk interval width is at most
+\begin{align*}
+&|\Delta J_j-\Delta k^2s_j^2|\epsilon_p+|\Delta k^2|\epsilon_M,\\
+&\Delta J_j=J_{j,1}^{r}-J_{j,0}^{r},\quad \Delta k^2=k_1^2-k_0^2.
+\end{align*}
+Floating-point rounding and special-function error are separate from this exact series-truncation statement.
+
+\subsection{Outcome-known diagnosis of the unchanged gate}
+Deterministic numerical evaluation retains all128 observable-study designs and their original29 admissions and99 fixed fallbacks.
+It approximates the population normalized fixed-minus-gate gain by $0.00875334$, below the registered $0.01$ practical threshold, and the uncertified-probe-minus-gate gain by $0.190124$.
+The maximum normalized omitted-series-mass risk width at the computed coefficients is below $3.7\times10^{-14}$; this is a truncation diagnostic, not a rigorously rounded interval or a sampling confidence limit.
+Scaled chi-square identities and independent two-dimensional quadrature check the probability and selected-state-moment formulas.
+Independent characteristic-function integration checks the actual probe laws separately.
+This outcome-known calculation neither changes an action nor replaces the registered negative finite-seed decision.
+It explains why simply adding seeds is not a principled response to the unmet practical-size target on this grid.

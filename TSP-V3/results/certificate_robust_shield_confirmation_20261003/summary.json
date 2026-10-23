@@ -1,0 +1,150 @@
+{
+  "aggregate": {
+    "correlation_only": {
+      "parameter_auc": 0.3453171785587193,
+      "return_auc": 0.25778677060083305,
+      "terminal_parameter": 0.06081881784005057,
+      "terminal_return": 0.06017968315620691
+    },
+    "finite_horizon": {
+      "parameter_auc": 0.2219856759722935,
+      "return_auc": 0.16339760275889786,
+      "terminal_parameter": 0.02175996672132461,
+      "terminal_return": 0.025138240945267117
+    },
+    "one_step_myopic": {
+      "parameter_auc": 0.22015490402081223,
+      "return_auc": 0.16120990391106055,
+      "terminal_parameter": 0.024782372361271125,
+      "terminal_return": 0.02453919140332778
+    },
+    "shield_moderate": {
+      "parameter_auc": 0.2219856759722935,
+      "return_auc": 0.16339760275889786,
+      "terminal_parameter": 0.02175996672132461,
+      "terminal_return": 0.025138240945267117
+    },
+    "shield_strong": {
+      "parameter_auc": 0.2219856759722935,
+      "return_auc": 0.16339760275889786,
+      "terminal_parameter": 0.02175996672132461,
+      "terminal_return": 0.025138240945267117
+    }
+  },
+  "config_sha256": "28e9990db1d37038b17c22189b3050863226ccb9007f4287f2596b19f7905597",
+  "elapsed_seconds": 91.306096,
+  "experiment_id": "TSP-V3-CERT-SHIELD-002",
+  "gates": {
+    "conservative_99pct_upper_mean_coverage": {
+      "covered": 24,
+      "pass": true,
+      "total": 24
+    },
+    "finite_horizon_vs_correlation_only_terminal_parameter_ratio": 0.3577834541038247,
+    "finite_horizon_vs_myopic_terminal_parameter_ratio": 0.8780421181682425,
+    "moderate_terminal_parameter_ratio": 1.0,
+    "overall_pass": true,
+    "paired_bootstrap_upper_ratio_below_one_for_both_ablations": true,
+    "payload_validity": true,
+    "strong_terminal_parameter_ratio": 1.0,
+    "upper_certificate_stability": true
+  },
+  "git_head": "3b01ed39aeee0a4e02f970490c6d9e3a95807e19",
+  "implementation_sha256": "8e74cabcdf31c0826d664dc4fd026a334da515bda23d2ea97e9456c90259aa57",
+  "num_seeds": 64,
+  "phase": "confirmation",
+  "ratios_to_finite_horizon": {
+    "correlation_only": {
+      "parameter_auc": 1.5555831566439406,
+      "return_auc": 1.5776655608663464,
+      "terminal_parameter": 2.7949867120177427,
+      "terminal_return": 2.3939496517371555
+    },
+    "one_step_myopic": {
+      "parameter_auc": 0.9917527473632588,
+      "return_auc": 0.986611193732962,
+      "terminal_parameter": 1.13889753043531,
+      "terminal_return": 0.9761697907485399
+    },
+    "shield_moderate": {
+      "parameter_auc": 1.0,
+      "return_auc": 1.0,
+      "terminal_parameter": 1.0,
+      "terminal_return": 1.0
+    },
+    "shield_strong": {
+      "parameter_auc": 1.0,
+      "return_auc": 1.0,
+      "terminal_parameter": 1.0,
+      "terminal_return": 1.0
+    }
+  },
+  "rows": 157440,
+  "seeds": [
+    36000001,
+    36000002,
+    36000003,
+    36000004,
+    36000005,
+    36000006,
+    36000007,
+    36000008,
+    36000009,
+    36000010,
+    36000011,
+    36000012,
+    36000013,
+    36000014,
+    36000015,
+    36000016,
+    36000017,
+    36000018,
+    36000019,
+    36000020,
+    36000021,
+    36000022,
+    36000023,
+    36000024,
+    36000025,
+    36000026,
+    36000027,
+    36000028,
+    36000029,
+    36000030,
+    36000031,
+    36000032,
+    36000033,
+    36000034,
+    36000035,
+    36000036,
+    36000037,
+    36000038,
+    36000039,
+    36000040,
+    36000041,
+    36000042,
+    36000043,
+    36000044,
+    36000045,
+    36000046,
+    36000047,
+    36000048,
+    36000049,
+    36000050,
+    36000051,
+    36000052,
+    36000053,
+    36000054,
+    36000055,
+    36000056,
+    36000057,
+    36000058,
+    36000059,
+    36000060,
+    36000061,
+    36000062,
+    36000063,
+    36000064
+  ],
+  "source_sha256": "ef22b041df9c279998ed17172a78661cdb6a02f04ba251d1b112f6c53a78ae35"
+}

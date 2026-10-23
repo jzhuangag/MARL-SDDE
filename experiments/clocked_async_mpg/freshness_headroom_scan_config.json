@@ -1,0 +1,18 @@
+{
+  "experiment_id": "freshness_oracle_headroom_cpu_v1",
+  "horizon": 512,
+  "seeds": [91001, 91002, 91003, 91004, 91005, 91006, 91007, 91008, 91009, 91010, 91011, 91012, 91013, 91014, 91015, 91016, 91017, 91018, 91019, 91020, 91021, 91022, 91023, 91024, 91025, 91026, 91027, 91028, 91029, 91030, 91031, 91032, 91033, 91034, 91035, 91036, 91037, 91038, 91039, 91040, 91041, 91042, 91043, 91044, 91045, 91046, 91047, 91048, 91049, 91050, 91051, 91052, 91053, 91054, 91055, 91056, 91057, 91058, 91059, 91060, 91061, 91062, 91063, 91064],
+  "high_prevalences": [0.1, 0.25, 0.5],
+  "persistence_values": [0.0, 0.8, 0.98],
+  "high_risk_multipliers": [1.0, 2.0, 4.0, 8.0],
+  "fresh_variance_ratios": [0.5, 1.0, 2.0],
+  "refresh_fractions": [0.1, 0.25, 0.5],
+  "gates": {
+    "stationary_max_improvement": 1e-10,
+    "dynamic_max_geometric_ratio": 0.95,
+    "cell_improvement_threshold": 0.05,
+    "minimum_directional_fraction": 0.6,
+    "high_contrast_max_geometric_ratio": 0.9,
+    "persistence_max_geometric_ratio": 0.97
+  }
+}

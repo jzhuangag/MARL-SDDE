@@ -1,0 +1,44 @@
+{
+  "all_gates_pass": true,
+  "artifact_sha256": {
+    "endpoints_jsonl": "1f5710591661eb057fa2c7a78818f8710c7973e85bbaeae7a5dbb1cde831e185",
+    "summary_json": "128a8760834dd21c2dda0e0a307c2716fa5ebd1847c2035ab6debc1d197e5127"
+  },
+  "config_sha256": "36915d80d62344e154181ceef1037753d957131231a35e4d3212a5e89fc5b589",
+  "execution_commit": "57ce613797148fffc475d2c3791214218d2dff0d",
+  "gates": {
+    "S10_confirmation_namespace_disjoint": true,
+    "S11_all_policy_target_coverage_at_least_0_95": true,
+    "S12_byte_exact_reproduction": true,
+    "S1_schema_unique_finite": true,
+    "S2_primary_cell_paired_coverage_at_least_0_95": true,
+    "S3_primary_time_ratio_at_most_0_75": true,
+    "S4_primary_work_ratio_at_most_0_75": true,
+    "S5_at_least_10_of_12_primary_cells_faster": true,
+    "S6_primary_final_gap_ratio_at_most_1_05": true,
+    "S7_certificate_cost_vs_raw_within_registered_limit": true,
+    "S8_transition_accounting_valid": true,
+    "S9_registered_delay_valid": true
+  },
+  "primary_cell_count": 12,
+  "primary_cells_faster": 12,
+  "primary_vs_barrier": {
+    "final_gap_geometric_ratio": 0.9692623241166936,
+    "time_geometric_ratio": 0.43135259304054735,
+    "work_geometric_ratio": 0.42968731907351154
+  },
+  "primary_vs_raw_async": {
+    "registered_cost_limit": 2.0,
+    "time_geometric_ratio": 1.5857576502446527,
+    "work_geometric_ratio": 1.5839871600919324
+  },
+  "reproduction_byte_exact": true,
+  "row_count": 6144,
+  "seed_count": 64,
+  "source_sha256": {
+    "drift": "80c9a3b1a6563d4278a1a2c46f8f6bd1aad9b7d79413ce44d23426ca6259f5c3",
+    "runner": "7446e644a6991a5eceb1099bf2ad1153826321da8d0f1cc8713395354494420f",
+    "simulator": "e109574207de0b99d35a39ea98c57bcf8a50836600be6a1f4b16c17a6d0c8471"
+  },
+  "test_result": "985 passed, 7 skipped in 645.50 s"
+}

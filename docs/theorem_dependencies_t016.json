@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "T-016",
+  "superseded_by": "theorem_dependencies_t017.json",
+  "starting_commit": "00b1b2e2d6492e585ccce1626415ea4a8c9d1d32",
+  "experiment_freeze": {
+    "exp015a_passed_gates": 7,
+    "exp015a_total_gates": 8,
+    "fallback_threshold": 0.8,
+    "observed_fallback": 0.777778,
+    "formal_seeds_allowed": false
+  },
+  "claims": [
+    {
+      "id": "AC-7",
+      "status": "proved",
+      "scope": "stationary Gaussian common factor, known lambda, predictable common action kernel, dual-budget stopped histories",
+      "depends_on": ["spatial reduction", "Kalman innovation factorization", "KL chain rule", "binary data processing"],
+      "verified_by": "test_adaptive_change_of_measure.py"
+    },
+    {
+      "id": "adaptive-pareto-lower-bound",
+      "status": "proved",
+      "scope": "controlled-belief occupation-measure information and opportunity-cost constraint",
+      "depends_on": ["AC-7", "finite dual budgets", "instance-dependent oracle gap"]
+    },
+    {
+      "id": "theorem-derived-fallback",
+      "status": "proved",
+      "scope": "finite stable action catalogue and valid finite-budget risk certificates",
+      "depends_on": ["fixed-design Bhattacharyya bound", "dual-budget accounting", "known mixing"]
+    },
+    {
+      "id": "AC-9",
+      "status": "open",
+      "scope": "universal constant/log matching to adaptive occupation lower bound",
+      "blocking_reason": "no bound relating fixed-block nUB/nLB factor to the controlled-belief optimum uniformly over instances"
+    },
+    {
+      "id": "AC-8",
+      "status": "open_restricted_route_only",
+      "scope": "fully unknown lambda",
+      "blocking_reason": "information saturates at lambda=1 and no uniform composite coverage/matching theorem is proved"
+    },
+    {
+      "id": "AC-12",
+      "status": "open_inherited",
+      "scope": "SDDE-to-discrete approximation"
+    }
+  ],
+  "stop_gates": ["B", "D"],
+  "exp016a_allowed": false,
+  "qualified_wording": "known mixing or separately certified mixing upper bound bounded away from one",
+  "unqualified_unknown_mixing_adaptive_allowed": false
+}

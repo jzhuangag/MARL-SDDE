@@ -1,0 +1,203 @@
+{
+  "cell": [
+    2,
+    971016103,
+    "fresh_happo_double"
+  ],
+  "charge_event_totals": {
+    "benchmark:actor_sampling": {
+      "calls": 8000,
+      "sampling_actor_rows": 64000
+    },
+    "benchmark:native_step": {
+      "calls": 32000,
+      "native_benchmark": 32000
+    },
+    "benchmark:policy_broadcast": {
+      "calls": 4,
+      "messages": 8,
+      "policy_broadcast_bytes": 175040
+    },
+    "benchmark:return_upload": {
+      "calls": 4,
+      "messages": 4,
+      "program_upload_bytes": 256
+    },
+    "critic:fit": {
+      "calls": 10,
+      "critic_adam_calls": 50,
+      "critic_backward_rows": 1600000,
+      "critic_forward_rows": 1600000
+    },
+    "critic:prepare_targets": {
+      "calls": 10,
+      "critic_forward_rows": 320000
+    },
+    "frozen_policy:actor_sampling": {
+      "calls": 8000,
+      "sampling_actor_rows": 64000
+    },
+    "frozen_policy:initial_copy": {
+      "calls": 1,
+      "copy_tensor_bytes": 66440
+    },
+    "frozen_policy:native_step": {
+      "calls": 32000,
+      "native_frozen_policy": 32000
+    },
+    "frozen_policy:policy_broadcast": {
+      "calls": 4,
+      "messages": 8,
+      "policy_broadcast_bytes": 175040
+    },
+    "frozen_policy:return_upload": {
+      "calls": 4,
+      "messages": 4,
+      "program_upload_bytes": 256
+    },
+    "happo:sequential_factor": {
+      "actor_forward_rows": 640000,
+      "calls": 20
+    },
+    "ppo:actual_epochs": {
+      "actor_adam_calls": 100,
+      "actor_backward_rows": 3200000,
+      "actor_forward_rows": 3200000,
+      "calls": 20
+    },
+    "ppo:precommit_logs": {
+      "actor_forward_rows": 640000,
+      "calls": 10
+    },
+    "ppo:prepare_advantages": {
+      "calls": 10,
+      "critic_forward_rows": 320000
+    },
+    "training:actor_sampling": {
+      "calls": 40000,
+      "sampling_actor_rows": 640000
+    },
+    "training:native_step": {
+      "calls": 320000,
+      "native_training": 320000
+    },
+    "training:policy_broadcast": {
+      "calls": 10,
+      "messages": 20,
+      "policy_broadcast_bytes": 437600
+    },
+    "training:program_upload": {
+      "calls": 10,
+      "messages": 30,
+      "program_upload_bytes": 85760000
+    }
+  },
+  "costs": {
+    "actor_adam_calls": 100,
+    "actor_backward_rows": 3200000,
+    "actor_forward_rows": 4480000,
+    "actor_sgd_calls": 0,
+    "copy_tensor_bytes": 66440,
+    "critic_adam_calls": 50,
+    "critic_backward_rows": 1600000,
+    "critic_forward_rows": 2240000,
+    "gradient_storage_bytes": 0,
+    "logical_bytes": 86548192,
+    "messages": 74,
+    "native_benchmark": 32000,
+    "native_frozen_policy": 32000,
+    "native_training": 320000,
+    "policy_broadcast_bytes": 787680,
+    "prefix_scalar_entries": 0,
+    "program_upload_bytes": 85760512,
+    "sampling_actor_rows": 768000,
+    "variance_scalar_entries": 0,
+    "work_rows": 12288000
+  },
+  "cpu_seconds": 344.171875,
+  "launches_completed": 0,
+  "native_budget_events": [
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 8000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 8000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 8000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 8000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 8000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 8000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "fresh_reference_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 8000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 8000
+    }
+  ],
+  "policy_version": 10,
+  "transactions_completed": 10
+}

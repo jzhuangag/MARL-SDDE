@@ -1,0 +1,101 @@
+{
+  "id": "V3-RISK-GATE-DIRECT-8H-20261019",
+  "status": "HUMAN_APPROVED_SOURCE_IMPLEMENTATION_AND_ADMISSION_PENDING",
+  "authority": "Human explicitly replied: 批准独立8 CPU小时, 2026-10-19",
+  "native_cpu_cap_seconds": 28800,
+  "independent_of_sealed_140h": true,
+  "start_condition": "sealed 140h workflow reaches a terminal decision and its native owner exits",
+  "profile_cpu_allocation_seconds": 900,
+  "science_cpu_allocation_seconds": 14400,
+  "full_replay_cpu_allocation_seconds": 10800,
+  "analysis_cpu_allocation_seconds": 2700,
+  "allocations_are_not_measured_forecasts": true,
+  "one_native_worker": true,
+  "restart_or_retry_authorized": false,
+  "shrinkage_authorized": false,
+  "extra_cap_authorized": false,
+  "public_grid": {
+    "Q": [8, 32],
+    "theta_low": 0.05,
+    "theta_high": [0.5, 2.0],
+    "lambda": [0.2, 0.8],
+    "D": [0, 8],
+    "h": 8,
+    "private_variance": 1,
+    "scales": [32, 128, 512, 2048],
+    "message_budget": "(h+Q)*s",
+    "environment_budget": "4*s",
+    "regimes": ["low", "high"],
+    "learners": ["running_mean", "averaged_delayed_affine"],
+    "affine_mu": 0.5,
+    "affine_eta": "0.1/(mu*(D+1))",
+    "terminal_withheld_updates": "D",
+    "physical_startup_charge": 0,
+    "all_scheduled_updates_paid": true,
+    "initial_history": "constant one; unchanged exact program weights"
+  },
+  "probe": {
+    "q": "Q",
+    "b": 1,
+    "n": "smallest integer 1..4096 with exact Gaussian affinity <= 0.025",
+    "directional_error_bound": "exact per-probe affinity under each hypothesis",
+    "likelihood_threshold": 0,
+    "ties": "low",
+    "infeasible_or_unavailable": "no-probe full-budget all-agent fallback"
+  },
+  "downstream_catalogue": {
+    "q": "powers of two from 1 through Q",
+    "b": [1, 2, 4, 8],
+    "program_selection": "minimize exact stationary commitment risk separately under BOTH supplied hypotheses, after paid probe",
+    "tie_break": "lexicographic (q,b)",
+    "freeze_before_probe": true,
+    "observed_outcome_input_to_selection": false
+  },
+  "gate": {
+    "epsilon_primary": 0.1,
+    "high": "U1 < F1",
+    "low": "U0 <= F0+epsilon",
+    "carryover": "sqrt(delta_j)*Gamma_j",
+    "zero_allowance_stress": "public admission diagnostic and saved-branch reconstruction only; no extra scientific trajectories"
+  },
+  "policies": [
+    "risk_corrected_gate",
+    "no_carryover_gate",
+    "information_only",
+    "always_all",
+    "fixed_q2_b1",
+    "known_hypothesis_oracle_evaluation_only"
+  ],
+  "formal_seeds": {"start": 20571001, "count": 128, "end": 20571128},
+  "formal_policy_trajectories": 196608,
+  "shared_potential_observations": "per seed/family/regime/learner, policy-independent and shared over budgets",
+  "analysis": {
+    "all_cells_retained": true,
+    "paired_seed_comparisons": true,
+    "bootstrap_repetitions": 2000,
+    "analysis_rng_seed": 20579901,
+    "interval_level": 0.95,
+    "cell_intervals": "descriptive, not familywise significance or equivalence claims",
+    "primary": "actual terminal squared risk versus fallback, separately by learner/regime/budget",
+    "secondary": "admissions, calibration tightness, adverse cells, likelihood errors, full costs"
+  },
+  "integrity": [
+    "seed non-overlap with all old registries before start",
+    "source/config/runtime lock committed and pushed BEFORE new data",
+    "all 196608 policy trajectories and all infeasibilities preserved",
+    "complete full-suite semantic replay",
+    "two byte-identical analyses excluding declared runtime fields only",
+    "equal initialization and exact paid ledgers",
+    "no true regime input to deployment decisions",
+    "finite outputs and conditional Gaussian/weight identity checks",
+    "all partial/failed work included in independent 8h ledger"
+  ],
+  "stop_rule": "cost-only projected overrun, new scientific/integrity failure, or cumulative CPU cap: stop and preserve; no shrinkage, tuning or retry",
+  "scope_limits": [
+    "known binary Gaussian hypotheses",
+    "fixed probe and linear programs",
+    "not unknown-kernel calibration",
+    "not general neural MARL validation",
+    "not TSP acceptance clearance"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "analytical_script_setup_failure_not_a_scientific_run",
+  "cause": "The first diagnostic incorrectly asserted that every public probe is feasible. Original infeasible designs must be retained, not dropped.",
+  "error": "AssertionError at assert d[feasible]",
+  "tool_wall_seconds": 1.9614433,
+  "cpu_measured": false,
+  "auxiliary_conservative_accounting_charge_seconds": 5,
+  "charge_is_measured_cpu": false,
+  "outputs_written": false,
+  "new_observations_or_trajectories": 0,
+  "remedy": "Keep infeasible designs with explicit null post-probe diagnostics and retain their full-budget fixed-program frontier. Do not change the formal grid or gate."
+}

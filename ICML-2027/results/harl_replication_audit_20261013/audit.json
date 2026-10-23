@@ -1,0 +1,73 @@
+{
+  "role": "synthetic-buffer operational audit; not MARL return evidence",
+  "harl_commit": "b1af98b0dbab72a2eee9d160751cd09aedbb8ce2",
+  "torch_version": "2.6.0+cpu",
+  "device": "cpu",
+  "seed": 61000001,
+  "all_initializations_identical": true,
+  "replication_within_tolerance": true,
+  "tolerance": 1e-05,
+  "rows": [
+    {
+      "q": 1,
+      "base_observations": 200,
+      "stored_rows": 200,
+      "optimizer_steps": 5,
+      "initial_parameters_sha256": "ac68dc2f238f34e722c601a99c1c06b11e2b0459fcb6feb4a3fb71fc4039efa5",
+      "losses": [
+        1.5013149976730347,
+        1.3115359544754028,
+        1.265174388885498,
+        1.2514220476150513,
+        1.244895339012146
+      ],
+      "max_parameter_difference_from_q1": 0.0
+    },
+    {
+      "q": 2,
+      "base_observations": 200,
+      "stored_rows": 400,
+      "optimizer_steps": 5,
+      "initial_parameters_sha256": "ac68dc2f238f34e722c601a99c1c06b11e2b0459fcb6feb4a3fb71fc4039efa5",
+      "losses": [
+        1.5013149976730347,
+        1.3115359544754028,
+        1.265174388885498,
+        1.2514220476150513,
+        1.244895339012146
+      ],
+      "max_parameter_difference_from_q1": 2.9802322387695312e-08
+    },
+    {
+      "q": 4,
+      "base_observations": 200,
+      "stored_rows": 800,
+      "optimizer_steps": 5,
+      "initial_parameters_sha256": "ac68dc2f238f34e722c601a99c1c06b11e2b0459fcb6feb4a3fb71fc4039efa5",
+      "losses": [
+        1.5013149976730347,
+        1.3115359544754028,
+        1.265174388885498,
+        1.2514220476150513,
+        1.244895339012146
+      ],
+      "max_parameter_difference_from_q1": 2.9802322387695312e-08
+    },
+    {
+      "q": 8,
+      "base_observations": 200,
+      "stored_rows": 1600,
+      "optimizer_steps": 5,
+      "initial_parameters_sha256": "ac68dc2f238f34e722c601a99c1c06b11e2b0459fcb6feb4a3fb71fc4039efa5",
+      "losses": [
+        1.5013149976730347,
+        1.3115359544754028,
+        1.265174388885498,
+        1.2514220476150513,
+        1.244895339012146
+      ],
+      "max_parameter_difference_from_q1": 2.9802322387695312e-08
+    }
+  ],
+  "interpretation": "If replication is invariant, a shared-stream interior q optimum cannot be attributed to duplicated batch size improving this critic update alone. Actor dynamics, data differences, normalization history, or finite training horizon must be measured separately."
+}

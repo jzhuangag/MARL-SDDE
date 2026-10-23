@@ -1,0 +1,97 @@
+{
+  "material_passport": {
+    "mode": "run-monitor",
+    "scope": "metadata and CPU costs only; no scientific outcomes interpreted",
+    "authority": "unchanged human-approved140h cap; approved separate V3 8h automatic audited handoff"
+  },
+  "snapshot_cst": "2026-10-20T09:20:23.1174679+08:00",
+  "main": {
+    "completed": 117,
+    "total": 117,
+    "spread": 39,
+    "reference": 39,
+    "halfcheetah": 39
+  },
+  "replay": {
+    "completed": 5,
+    "total": 6,
+    "active": "task2/971016103/full",
+    "active_owner_cpu_since_replay5_progress": 8082.34375,
+    "active_owner_cpu_is_not_exact_payload_cpu": true
+  },
+  "analyses_completed": 0,
+  "analyses_total": 2,
+  "independent_final_audit": "not started; awaits workflow completion AND owner exit",
+  "owner": {
+    "pid": 19816,
+    "alive": true,
+    "cpu_seconds": 159310.96875,
+    "wall_seconds": 164504.465652,
+    "process_cpu_increased_since_previous_hour": true,
+    "duplicate_native_worker": false
+  },
+  "terminal_markers": {
+    "workflow_complete": false,
+    "workflow_failed": false,
+    "failure": false
+  },
+  "budget": {
+    "cap_seconds": 504000,
+    "cumulative_seconds": 303313.640625,
+    "remaining_seconds": 200686.359375,
+    "used_hours": 84.2537890625,
+    "remaining_hours": 55.7462109375
+  },
+  "cost_only_evidence": {
+    "halfcheetah_full_originals_seconds": [
+      3190.234375,
+      9705.21875,
+      1486.5
+    ],
+    "same_method_observed_maximum_seconds": 9705.21875,
+    "previous_matched_and_ratio_estimators_exceeded": true,
+    "cpu_wall_ratio": 0.9684294473015306,
+    "analysis_reserve_seconds": 600
+  },
+  "forecast": {
+    "previous_0810_0840_range_invalidated": true,
+    "native_planning_range_cst": [
+      "2026-10-20T10:00:00+08:00",
+      "2026-10-20T10:40:00+08:00"
+    ],
+    "next_comparison_baseline_cst": "2026-10-20T10:20:00+08:00",
+    "audit_finish_planning_range_cst": [
+      "2026-10-20T11:00:00+08:00",
+      "2026-10-20T13:40:00+08:00"
+    ],
+    "method": "Use largest observed completed same-task/full cell cost and 1.25 times that cost as cost-only planning endpoints; subtract active owner CPU since replay5; add600s analysis reserve; divide by observed CPU/wall ratio.",
+    "unrounded_native_estimates_utc": [
+      "2026-10-20T01:58:38.457Z",
+      "2026-10-20T02:40:23.858Z"
+    ],
+    "projected_native_cumulative_cpu_hours": [
+      84.87125434027777,
+      85.54522786458334
+    ],
+    "audit_allowance": "UNMEASURED1--3wall hours; charge actual audit CPU within140h",
+    "uncertainty": "Last replay has no intermediate step metadata; observed completed CPU costs vary widely. These are provisional planning scenarios, not confidence bounds, a hard deadline, a per-cell timeout, or a guarantee. May shift again.",
+    "material_trigger": "Previous08:25 midpoint exceeded by55minutes, beyond20percent of prior~1.10h remaining estimate.",
+    "suite_gate_source_budget_change": false
+  },
+  "source_lock": {
+    "files_checked": 27,
+    "mismatches": 0
+  },
+  "v3": {
+    "science_completed": 0,
+    "science_total": 196608,
+    "replay_completed": 0,
+    "replay_total": 196608,
+    "analyses_completed": 0,
+    "analyses_total": 2,
+    "charged_cpu_seconds": 86.46875,
+    "remaining_cpu_seconds": 28713.53125,
+    "formal_root_exists": false,
+    "state": "ready and queued; no launch until owner exits AND authentic independent terminal audit receipt exists"
+  }
+}

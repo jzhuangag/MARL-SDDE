@@ -1,0 +1,47 @@
+{
+  "experiment_id": "TSP-V2-MARL-ONLINE-DEV-003",
+  "decision": "stop",
+  "development_pass": false,
+  "confirmation_authorized": false,
+  "manuscript_admission": false,
+  "failure_type": "scientific_performance",
+  "preregistration_commit": "a470a723362047f042b7fcdc586bc718edf4c4c4",
+  "implementation_commit": "a6f6716c388da74255c21f46463a8bba6f596b88",
+  "scratch_root": "/scratch/jzhuangag/MARL-SDDE-TSP-V2-ONLINE-DEV-003",
+  "slurm_arrays": [1919049, 1919185, 1919511, 1920096, 1920675],
+  "runs": 40,
+  "all_exit_codes_zero": true,
+  "project_writes": false,
+  "retries": 0,
+  "analysis_sha256": {
+    "summary_csv": "781ca8974d428785b66cb0193f4b90615a768d8ce104be9fd9ab574289bf5519",
+    "decision_json": "608b1616c35e4fd974b4798602c18e38fd6136de3e5de2979e7e655075a30afb",
+    "stdout": "608b1616c35e4fd974b4798602c18e38fd6136de3e5de2979e7e655075a30afb"
+  },
+  "task_summary": {
+    "pettingzoo_mpe:simple_spread_v2": {
+      "mean_auc_relative_improvement": -0.08909212758046606,
+      "mean_final_relative_improvement": -0.16101777544712562
+    },
+    "mamujoco:HalfCheetah-v2/2x3": {
+      "mean_auc_relative_improvement": -0.2683875133157659,
+      "mean_final_relative_improvement": -0.37768432470940416
+    }
+  },
+  "cell_auc_relative_improvement": {
+    "mpe_independent": -0.18508716262760916,
+    "mpe_shared": 0.00690290746667703,
+    "mamujoco_independent": -0.5216158800795462,
+    "mamujoco_shared": -0.015159146551985603
+  },
+  "gates": {
+    "complete_cells": true,
+    "dual_budget_valid": true,
+    "exact_accounting_audited": true,
+    "no_evaluation_leakage": true,
+    "byte_identical_replay": true,
+    "nondegenerate_online_selection": true,
+    "each_task_auc_gain_at_least_1_percent": false,
+    "each_task_final_noninferior_2_percent": false
+  }
+}

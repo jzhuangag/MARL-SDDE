@@ -1,0 +1,33 @@
+{
+  "artifact_id": "LPC-DEVELOPMENT-HEADROOM-20260903",
+  "decision": "stop_candidate",
+  "frozen_commit": "68592f045999be0044ed8bfbb4c11657ede73a58",
+  "config_sha256": "a141d7142dbf90612b4999e3b71491aab9449418782839d700100826eb13a0a3",
+  "primary_sha256": "aba0ecbc52c66eb0c04c0038cf2d9093baafc3ba43f077e921c641fe87df2214",
+  "reproduction_sha256": "aba0ecbc52c66eb0c04c0038cf2d9093baafc3ba43f077e921c641fe87df2214",
+  "byte_identical_reproduction": true,
+  "scenario_count": 192,
+  "summary": {
+    "oracle_geometric_ratio": 0.9892085034265136,
+    "oracle_five_percent_fraction": 0.057291666666666664,
+    "causal_geometric_ratio": 1.0403754487777388,
+    "causal_five_percent_fraction": 0.0,
+    "causal_median_headroom_retention": 0.2714185469148652,
+    "causal_mean_scale": 0.994269680132942,
+    "causal_mean_terminal_service_debt": 1.59264058616557,
+    "causal_mean_terminal_risk_debt": 0.0
+  },
+  "gates": {
+    "oracle_aggregate_gain_at_least_five_percent": false,
+    "oracle_gain_in_sixty_percent_cells": false,
+    "causal_retains_eighty_percent_oracle_headroom": false,
+    "causal_gain_in_sixty_percent_cells": false,
+    "service_and_risk_debts_finite_nontrivial": false
+  },
+  "authorization": {
+    "sampled_learning": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

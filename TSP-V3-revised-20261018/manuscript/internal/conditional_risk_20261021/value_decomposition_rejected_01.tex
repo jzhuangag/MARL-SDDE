@@ -1,0 +1,48 @@
+% REJECTED BEFORE ADMISSION. Preserved first draft; DO NOT include in the paper.
+% Error: nominal posterior-minimum score was treated as actual continuing risk.
+\section{Separating Identification Value, State Value, and the Paid Horizon}
+The exact initialization-minimax envelope can be compared with the complete
+full-budget fixed catalogue without confusing three distinct effects.
+For one fixed probe, let $I_{\rm full}$ be the best full-budget fixed risk,
+$I_{\rm post}=\min_a\sum_j\pi_jJ_{j,a}^{r}$ the best observation-independent
+program after paying the probe, $R_{\rm marg}=\mathbb E_g\min_aF_a(Y)$,
+and $R_{\rm rob}=\mathbb E_g\min_aL_a(Y)$.
+All post-probe quantities use exactly the same remaining budgets and catalogue,
+including stop.
+Define
+\[
+C=I_{\rm post}-I_{\rm full},\quad
+V_{\rm reg}=I_{\rm post}-R_{\rm marg},\quad
+V_{\rm state}=R_{\rm marg}-R_{\rm rob}.
+\]
+Then
+\[
+I_{\rm full}-R_{\rm rob}=V_{\rm reg}+V_{\rm state}-C.
+\]
+Here $V_{\rm reg},V_{\rm state}\ge0$ by inclusion of the corresponding selector
+classes. The quantity $C$ is the exact, possibly signed, change in the best
+fixed risk caused by the paid remaining horizon; no monotonicity of the affine
+learner in its horizon is assumed.
+This decomposition is an accounting identity using classical decision value,
+not a new general information-value theorem.
+Let $K$ be the finite state-value ceiling proved above, and define
+$I_{\rm oracle}=\sum_j\pi_j\min_aJ_{j,a}^{r}$.
+Because a posterior-weighted average is at least the posterior average of the
+individual regime minima, $R_{\rm marg}\ge I_{\rm oracle}$.
+Consequently
+\[
+0\le V_{\rm state}\le K,\quad
+0\le V_{\rm reg}\le I_{\rm post}-I_{\rm oracle},\quad
+I_{\rm full}-R_{\rm rob}\le I_{\rm full}-I_{\rm oracle}+K.
+\]
+Thus $I_{\rm oracle}-K\ge I_{\rm full}$ rules out any strict improvement by
+any randomized measurable selector following this fixed probe, even if its
+regime inference is optimal.
+For a desired relative gain $\epsilon>0$, the stronger necessary condition is
+$I_{\rm full}-I_{\rm oracle}+K\ge\epsilon I_{\rm full}$.
+Conversely $V_{\rm reg}>C$ suffices for a strict paid improvement, since the
+state-value contribution is nonnegative.
+Neither condition ranges over different probes, estimators, step schedules or
+unknown covariance models.
+These pre-data criteria explain both when identification can matter and when
+more validation seeds cannot rescue a structurally uneconomic probe.

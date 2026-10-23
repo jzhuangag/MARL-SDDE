@@ -1,0 +1,97 @@
+{
+  "date": "2026-08-31",
+  "trigger_utc": "2026-08-31T11:43:06.562Z",
+  "automation_id": "sdde-cpu",
+  "parent_commit": "8a488b84469516cf1250af0ce9d096480b500ef6",
+  "branch": "codex/joint-ms-exp007c",
+  "work_type": "One observable-estimator/controller/proof/cost feasibility package, not an efficacy experiment.",
+  "initial_state": {
+    "worktree_clean": true,
+    "python_processes_running": 0,
+    "completed_T083_audit_reread": true,
+    "old_frozen_files_changed": false
+  },
+  "decisions": {
+    "observable_reference": "qualified under fresh conditional reset-access replicas",
+    "direct_probe_as_final_low_cost_method": "rejected; horizon-dependent unrolling and sensing cost remain",
+    "projection_only_closure": "rejected without invariance/leakage control",
+    "general_impossibility_claim": false,
+    "new_efficacy_pilot_authorized": false,
+    "formal_authorized": false,
+    "gpu_authorized": false
+  },
+  "verification": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments/dependence_delay_linear/test_observable_transfer_reference.py -q",
+      "exit_code": 0,
+      "passed": 20,
+      "seconds": 0.34
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest experiments -q",
+      "exit_code": 0,
+      "passed": 789,
+      "skipped": 7,
+      "seconds": 117.95
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe experiments/dependence_delay_linear/observable_transfer_reference.py",
+      "executions_of_final_source": 2,
+      "exit_codes": [
+        0,
+        0
+      ],
+      "stdout_byte_identical": true
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "qualification": "Exact exhaustive public-model expectations and deterministic interface tests; no sampled efficacy trajectories, pilot seeds, formal seeds, significance tests or empirical coverage claims.",
+  "log_provenance": "Full regression progress and counts were inspected through the task terminal outputs; this record preserves commands/outcomes. No separate raw pytest stdout file was saved.",
+  "json_validation_note": "Ordinary PowerShell ConvertFrom-Json rejected legal case-distinct mean_G/mean_g fields. Revalidation with ConvertFrom-Json -AsHashtable succeeded; no scientific value or field was changed.",
+  "frozen_evidence": {
+    "T083_overall": "FAIL preserved",
+    "F12": "reproduction 2787.0133623s exceeds frozen 2100s",
+    "F13": "strict summary mismatch preserved",
+    "formal_retuning": false,
+    "original_controllers_modified": false
+  },
+  "sources": "observable_transfer_source_verification.json; Hoeffding metadata match in Crossref/OpenAlex with publisher HTTP403 logged; meta-gradient primary Section1 read and metadata rechecked.",
+  "files_sha256": [
+    {
+      "path": "experiments/dependence_delay_linear/observable_transfer_reference.py",
+      "sha256": "e20285c494c7d04188fe18cec3c0051369ed2982ed0e10ce9eb3003859b9d09a"
+    },
+    {
+      "path": "experiments/dependence_delay_linear/test_observable_transfer_reference.py",
+      "sha256": "7ee04fecb0734951b1e1a21b954f56a5c155a4d74e40e8d0b005d3e3b746bf5b"
+    },
+    {
+      "path": "docs/observable_transfer_feasibility.md",
+      "sha256": "c2c521b21892d5052750e488813c6edd946c69f4e7990abf1fe1529d2912b08c"
+    },
+    {
+      "path": "docs/observable_transfer_qualification_results.json",
+      "sha256": "bf0f0e6f10f842c3eb170ff44382b9afdc89a74d04db05f2e022d9cf0aa0d855"
+    },
+    {
+      "path": "docs/observable_transfer_source_verification.json",
+      "sha256": "a8a56ff8aedaaee03ebf60d084afe1a6a5a3462360db11ce59bb397b2221c639"
+    },
+    {
+      "path": "docs/cpu_autonomous_research_plan.md",
+      "sha256": "29d1b30981cac4b4e02df4484e33cb84335033094553ab1a52d672df67f7ede7"
+    }
+  ],
+  "hash_scope": "File bytes for this qualification commit; subsequent plan edits do not rewrite this historical record.",
+  "resource_operations": {
+    "scientific_training_jobs": 0,
+    "gpu_hpc_jobs": 0,
+    "remote_storage_operations": 0,
+    "destructive_cleanup": 0,
+    "final_python_processes_running": 0
+  },
+  "next": "Investigate an actual amortized/directional information-reuse mechanism with a proved context-change/leakage error and full cost; do not revive or tune the rejected direct-probe implementation into a passing pilot."
+}

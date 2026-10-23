@@ -1,0 +1,13 @@
+{
+  "kind": "analytical_output_serialization_failure_not_a_scientific_run",
+  "cause": "NumPy int64 diagnostic count was not JSON serializable with the default encoder.",
+  "tool_wall_seconds": 2.6866049,
+  "cpu_measured": false,
+  "auxiliary_conservative_accounting_charge_seconds": 5,
+  "charge_is_measured_cpu": false,
+  "preserved_outputs": ["design_diagnostics.csv", "fixed_q2_strata.csv", "attempt2_analysis_summary.json.partial (truncated; NOT valid final evidence)"],
+  "original_truncated_filename": "analysis_summary.json",
+  "partial_rename_sha_verified": true,
+  "new_observations_or_trajectories": 0,
+  "remedy": "Normalize NumPy scalar serialization; write to a new complete/ output directory, retaining both old tables and the raw truncated JSON."
+}

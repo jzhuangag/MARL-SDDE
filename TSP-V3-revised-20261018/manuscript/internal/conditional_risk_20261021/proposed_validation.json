@@ -1,0 +1,80 @@
+{
+  "status": "PROPOSAL_ONLY_REQUIRES_HUMAN_APPROVAL_NO_SCIENCE_STARTED",
+  "title": "Paid conditional-risk selection with hidden initialization sign",
+  "reason_new_data_is_needed": "Neither existing audited study executed the new conditional selector. Reusing its observed outcomes as independent confirmation would be invalid. The decisive uncertainty is whether usable state information offsets probe costs without revealing the unknown target/error sign.",
+  "scientific_question": "Under an explicit known binary Gaussian noise model and an observable known calibration signal, does the minimax-initialization conditional selector improve terminal error over all feasible fixed catalogue programs and a posterior regime-only selector?",
+  "not_a_readiness_guarantee": "A positive result would validate this mechanism at its stated scope, not establish unknown-model calibration, general MARL superiority or TSP acceptance. A null/negative mechanism result stops this avenue without automatic tuning or another run.",
+  "model_and_information": {
+    "families": "All 16 original public (Q,theta_high,lambda,D) families, unchanged constants",
+    "budgets": "All 4 original budget scales 32,128,512,2048, with exact message/environment ledgers",
+    "learners": ["running_mean", "averaged_delayed_affine"],
+    "regimes": ["low", "high"],
+    "initial_error": "Evaluator-only e=-1 or +1, shared unknown target across a trajectory; controller sees the learner parameter but neither target nor error sign. Public error radius is exactly 1.",
+    "probe": "Known-zero calibration pilot observing the SAME latent common-noise stream, with independent private measurement noise and original fixed probe schedule. The pilot is observable without subtracting the hidden learner target. Its availability is an explicit experimental condition, not a claim about existing MARL observations.",
+    "probe_cost": "Every pilot observation pays the original h+Q messages and one environment clock; it is not fed into the learner. All post-probe action horizons use remaining budgets, with the same final D withheld updates charged.",
+    "prior": "Public pi=0.5 over regimes, fixed before data; no true-regime input to deployable policies",
+    "catalogue": "Every original affordable (q,b) action at maximal affordable horizon plus an explicit no-update program; all controller/comparator catalogues include that same stop option",
+    "shared_randomness": "Same underlying potential noise stream across policies and both initialization signs within a seed, learner, family and regime; distinct master seeds remain independent",
+    "oracle_limits": "Any comparator using the realized regime or error sign is visibly evaluation-only and cannot establish deployable superiority"
+  },
+  "policies": [
+    "conditional_risk_robust_full_catalogue",
+    "conditional_risk_known_error_evaluation_only",
+    "posterior_regime_marginal_risk_full_catalogue",
+    "legacy_risk_corrected_gate",
+    "legacy_information_only",
+    "always_all",
+    "fixed_q2_b1",
+    "best_balanced_full_budget_fixed_including_stop",
+    "known_regime_full_budget_fixed_evaluation_only"
+  ],
+  "seeds": {
+    "count": 64,
+    "candidate_range": [20581001, 20581064],
+    "status": "Candidate identifiers only; complete historical source/metadata screen and frozen seed map required before registration; any overlap stops admission without changing the range automatically"
+  },
+  "counts": {
+    "formal_policy_trajectories": 294912,
+    "semantic_replay_policy_trajectories": 294912,
+    "calculation": "9 policies * 2 learners * 16 families * 4 budgets * 2 regimes * 2 hidden initialization signs * 64 seeds",
+    "seed_learner_parts": 128,
+    "independent_analyses": 2,
+    "analysis_outputs_required_byte_equal": 7,
+    "all_policy_plots": 4
+  },
+  "primary_estimands": {
+    "unit": "One paired master seed; aggregate all 128 family/learner/budget designs, both regimes and both error signs with equal declared weights. Do not select favourable families, budgets or signs after outcomes.",
+    "normalization": "Divide each paired loss difference by the exact pre-data population risk of that design's best balanced full-budget fixed program, including stop; prove the denominator strictly positive before admission",
+    "co_primary": [
+      "Normalized paired risk improvement: best balanced full-budget fixed minus conditional-risk robust",
+      "Normalized paired risk improvement: posterior-regime marginal selector minus conditional-risk robust"
+    ],
+    "inference": "10000 paired master-seed bootstrap replicates with a separately frozen analysis seed; one-sided 99.5% percentile lower limits for each of two co-primary contrasts (Bonferroni familywise nominal 1%). Treat this as approximate bootstrap inference, not a distribution-free coverage theorem.",
+    "positive_mechanism_rule": "Both lower limits >0 and aggregate mean improvement over best balanced fixed >=1%; report exact values and every negative stratum regardless of decision",
+    "scope_rule": "Unknown-sign gains are the deployable primary claim. A gain confined to the known-error oracle is a negative mechanism outcome.",
+    "secondary": "All 128 design contrasts, 256 regime strata, both sign strata, per-learner means, realized ledgers, classification/action disagreements, robust-versus-known-error gap; no multiplicity-unadjusted secondary significance claims"
+  },
+  "resource_request": {
+    "separate_total_cpu_seconds": 7200,
+    "hours": 2,
+    "includes": ["post-approval implementation and deterministic checks", "source/runtime/seeds/protocol freeze and verification", "imports and process startup", "complete profile seed-part", "all formal science", "ALL semantic replays", "both analyses", "independent scientific/integrity/resource audit", "failed and partial work", "supervisor and auxiliary costs"],
+    "profile": "First complete learner/seed part and its full semantic replay are retained as the science/replay prefix. No outcomes may be inspected to decide admission or modify the design.",
+    "setup_profile_cpu_ceiling": 300,
+    "cost_only_projection": "charge_used + 1.5 * 127 * measured(first complete science part plus its replay) + 900 seconds for remaining analyses/audit must be <=7200",
+    "overrun_or_failure": "Stop, preserve all partial data/logs/costs and audit the failure. No shrinkage, tuning, added cap, scientific retry or automatic replacement experiment.",
+    "execution": "One native CPU worker, exact worker/supervisor CPU accounting, no GPU/HPC/remote storage, no new recurring watcher. Commit/push frozen registration before any scientific trajectory. Preserve separate outer logs and prohibit duplicate owners.",
+    "budget_relationship": "New approval is required. No charge is transferred to either completed 140h or 8h workflow; their unused caps are not standing authority for this study."
+  },
+  "predata_release_checks": [
+    "Independent dense Gaussian identities and direct FIFO learner match for both hidden error signs",
+    "Controller API rejects true regime, error sign, future noise and realized risk inputs",
+    "Pilot law and role separation independently verified, including hidden-target invariance",
+    "All catalogues, paid horizons, stop semantics and exact denominator positivity verified",
+    "All historical seeds excluded; source/runtime/config/constants and study identity locked",
+    "Tiny deterministic fixture gives complete semantic replay and seven byte-identical analysis outputs",
+    "Profile stop, total cap, independent audit reserve and duplicate-owner failure paths verified",
+    "Registration committed and pushed before data; no mutation of old scientific inputs"
+  ],
+  "postexit_audit": "Confirm worker and supervisor exit, workflow marker and CPU read-back, all hashes and expected counts, full semantic replay, all seven analysis bytes, inspect all four complete all-policy plots, record positive/negative/inconclusive decision and all resource charges.",
+  "approval_needed": "Explicit human approval of this separate 2 CPU-hour plan; no experimental command has been launched."
+}

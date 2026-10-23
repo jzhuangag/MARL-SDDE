@@ -1,0 +1,75 @@
+{
+  "adverse_design_mean_counts": {
+    "fixed_minus_robust": 9,
+    "marginal_minus_robust": 20
+  },
+  "all_designs": 128,
+  "decision": "MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD",
+  "inference": "Paired master-seed percentile bootstrap, approximate coverage; two co-primary one-sided99.5% bounds; secondary contrasts descriptive",
+  "manuscript_admission": false,
+  "oracle_only_gains_are_not_deployable_evidence": true,
+  "per_budget": {
+    "32": {
+      "fixed_minus_robust": 0.0,
+      "marginal_minus_robust": 0.4231645274982682,
+      "robust_minus_known_error_oracle": -0.4237618145225448
+    },
+    "128": {
+      "fixed_minus_robust": 0.0,
+      "marginal_minus_robust": 0.22575735090927443,
+      "robust_minus_known_error_oracle": -0.22569679152704875
+    },
+    "512": {
+      "fixed_minus_robust": 0.009897433473203146,
+      "marginal_minus_robust": 0.01759862664704105,
+      "robust_minus_known_error_oracle": -0.01632265942159908
+    },
+    "2048": {
+      "fixed_minus_robust": 0.007874692987002472,
+      "marginal_minus_robust": 0.014317507010327878,
+      "robust_minus_known_error_oracle": -0.013910397470389399
+    }
+  },
+  "per_learner": {
+    "averaged_delayed_affine": {
+      "fixed_minus_robust": 0.00012446161474420446,
+      "marginal_minus_robust": 0.20580503740410191,
+      "robust_minus_known_error_oracle": -0.205238044578058
+    },
+    "running_mean": {
+      "fixed_minus_robust": 0.008761601615358603,
+      "marginal_minus_robust": 0.13461396862835384,
+      "robust_minus_known_error_oracle": -0.134607786892733
+    }
+  },
+  "primary": {
+    "fixed_minus_robust": {
+      "mean": 0.004443031615051404,
+      "one_sided_995_lower": -0.0031772549019110693,
+      "paired_seeds": 64,
+      "percentile_95": [
+        -0.001198549215327572,
+        0.009992496054710717
+      ]
+    },
+    "marginal_minus_robust": {
+      "mean": 0.1702095030162279,
+      "one_sided_995_lower": 0.14812435605369792,
+      "paired_seeds": 64,
+      "percentile_95": [
+        0.15348732398844064,
+        0.18721092084722252
+      ]
+    },
+    "robust_minus_known_error_oracle": {
+      "mean": -0.16992291573539553,
+      "one_sided_995_lower": -0.1930511614744992,
+      "paired_seeds": 64,
+      "percentile_95": [
+        -0.18685489589786364,
+        -0.1532236140175178
+      ]
+    }
+  },
+  "scope": "Known binary Gaussian location/noise model, observable mean-invariant calibration, radius-bounded unknown initialization and fixed linear learners. Prior-weighted guarantee, not unknown-prior/model or unrestricted-estimator dominance. The strongest fixed comparator and backstop include EVERY affordable training prefix for every original(q,b), plus stop, at the SAME frozen learner/step. Post-probe candidate programs remain maximal-affordable-horizon programs plus stop. Not all possible estimators or step schedules."
+}

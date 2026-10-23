@@ -1,0 +1,105 @@
+\section{A Wider Covariance Box and Transfer to Averaged TD}
+\label{sec:td-extension}
+We establish main Theorem~\ref{thm:finite-robust-separation} over $\theta_0\in[0.04,0.06]$, $\theta_1\in[1.8,2.2]$ and $\lambda_j\in[0.15,0.25]$, with prior $\pi\in[0.45,0.55]$.
+The reference detector and its eighteen observations remain fixed.
+
+\subsection{Direct error control for the frozen detector}
+Let $K_0,K_1$ be its reference contrast covariances and $Q=K_0^{-1}-K_1^{-1}\succ0$.
+Their generalized eigenvalues satisfy $\ell_i\ge\ell_*=175/19$ as in Section~\ref{sec:finite-robust}.
+The high decision is $y^\top Qy\ge\sum_i\log\ell_i$.
+Throughout the enlarged box, the true contrast covariances obey
+\[
+\widetilde K_0\preceq c_0K_0,\quad \widetilde K_1\succeq c_1K_1,
+\quad c_0=9/8,\ c_1=4/5.
+\]
+For the low model, the common covariance is at most $4/3$ times its reference: the variance ratio is at most $6/5$ and the spectral ratio at most $10/9$.
+The reference common covariance is bounded by $(3/40)I$, while private noise contributes $I/8$.
+Its fraction of the total covariance is at most $3/8$, giving total factor $1+(1/3)(3/8)=9/8$.
+For the high model, the variance and spectral ratios are each at least $9/10$; adding private noise preserves a total lower factor $81/100>4/5$.
+Congruence by the contrast matrix preserves both comparisons.
+
+The Gaussian quadratic-form transform and Markov's inequality give
+\begin{align*}
+p_0&\le\prod_{i=1}^{17}\ell_i^{-1/4}[1-c_0/2+c_0/(2\ell_i)]^{-1/2},\\
+p_1&\le\prod_{i=1}^{17}\ell_i^{1/8}[1+c_1(\ell_i-1)/4]^{-1/2}.
+\end{align*}
+The exponential parameters are $1/4$ for the outside event and $1/8$ for the inside event.
+Covariance order bounds the positive-quadratic transform in the first case and the negative-quadratic transform in the second.
+The first transform is finite because $1-c_0/2>0$.
+Logarithmic differentiation shows both factors decrease for $\ell\ge175/19$.
+Their fourth and eighth powers at $\ell_*$ satisfy the exact rational inequalities
+\begin{align*}
+\ell_*^{-17}[1-c_0/2+c_0/(2\ell_*)]^{-34}&<(3/100)^4,\\
+\ell_*^{17}[1+c_1(\ell_*-1)/4]^{-68}&<(3/100)^8.
+\end{align*}
+Hence $p_0,p_1<0.03$ throughout the enlarged box.
+This controls the unchanged detector directly instead of adding a total-variation perturbation to its reference error bound.
+
+\subsection{An explicit averaged-TD boundary bound}
+Consider scalar TD(0) with constant feature, discount $\gamma$, $\mu=1-\gamma>0$ and contraction $\beta=1-\eta\mu\in(0,1)$.
+For centered Markov reward noise $\bar X_t$, its critic error satisfies $e_t=\beta e_{t-1}+\eta\bar X_t$.
+The average of the first $N$ iterates has initialization coefficient and noise weights
+\[
+d_N=\frac{\beta(1-\beta^N)}{N(1-\beta)},\quad
+w_t=\frac{1-\beta^{N-t+1}}{\mu N}.
+\]
+Let $C_N$ be the observation covariance, with nonnegative entries and row sums at most $C$.
+One may take $C=1+\theta(1+\lambda)/(1-\lambda)$ for any resource schedule, since participation and physical gaps are at least one.
+Put $z_t=\beta^{N-t+1}$ and $S_N=\mathbf1^\top C_N\mathbf1$.
+Positive semidefiniteness gives
+\begin{align*}
+w^\top C_Nw
+&=\frac{S_N-2z^\top C_N\mathbf1+z^\top C_Nz}{\mu^2N^2}\\
+&\ge\frac{S_N-2C\beta/(1-\beta)}{\mu^2N^2}.
+\end{align*}
+Thus the unweighted resource envelope transfers with an explicit $O(N^{-2})$ correction.
+The upper bound $w_t\le1/(\mu N)$ gives variance at most $v/(\mu^2N)$ for a constant program with long-run noise coefficient $v$.
+
+Use $\mu=1/2$, $\eta=1/10$, $\beta=19/20$ and zero update delay.
+For $N\le512$, monotonicity of $d_N$ bounds worst-initialization risk below by $d_{512}^2$.
+For $N>512$, put $b_*=\beta^2(1-\beta^{512})^2/(1-\beta)^2$, so $N^2d_N^2\ge b_*$.
+Let $v_-(n)$ be the resource-envelope coefficient using the separate lower persistence of each model.
+Set $a_-=2\sum_j\pi_j\theta_j\lambda_{j,-}$ and $C_+=1+\sum_j\pi_j\theta_j(1+\lambda_{j,+})/(1-\lambda_{j,+})$.
+Every predetermined TD schedule has risk at least the minimum of $d_{512}^2$ and
+\[
+\frac{b_*+4\{nv_-(n)-a_--38C_+\}}{n^2},\quad 513\le n\le16B/9.
+\]
+On each resource segment the numerator is affine with positive slope; its ratio to $n^2$ has no interior minimum.
+Evaluating segment endpoints therefore covers all stopping lengths.
+For paid constant-program continuation of length $N$, use
+\[
+u_{j,a}=361/N^2+4v_{j,a}/N,\quad
+\kappa_a=4\rho_a^2/[N^2(1-\rho_a)^2].
+\]
+These bound stationary risk and squared probe-state transfer, respectively.
+Evenness of the detector cancels the unknown-initialization cross term.
+Insert these expressions into the paid upper bound of Section~\ref{sec:finite-robust}, with directional error $0.03$.
+For TD, $N=\min\{\lfloor(16B-288)/(8+q)\rfloor,\lfloor(4B-18)/b\rfloor\}$; for the running mean retain its eight withheld updates.
+
+\subsection{Uniform finite-budget comparisons}
+Partition each persistence interval into sixteen closed intervals of width $1/160$.
+Use lower endpoints in the open-loop covariance envelope and upper endpoints in the paid risk and TD row-sum bound.
+Evaluate both variance endpoints and both prior endpoints in every cell.
+For fixed persistence cell, the lower bound is separately concave in each variance and the prior, being a minimum of affine functions.
+The paid upper bound is separately convex, since it uses maxima of affine branch risks.
+Endpoint inequalities therefore imply the comparison throughout each cell and hence the entire box.
+This is an interval proof over a continuum, not a parameter-grid simulation.
+
+\begin{table}[t]
+\centering
+\caption{Uniform analytical risk-reduction guarantees over the enlarged covariance box, against every predetermined resource schedule.}
+\label{tab:wide-td}
+\begin{tabular}{rrr}
+\toprule
+$B$ & Running mean, $D=8$ & Averaged TD, $D=0$\\
+\midrule
+8192 & $\ge2.54\%$ & $\ge1.86\%$\\
+32768 & $\ge2.75\%$ & $\ge2.58\%$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $B=8192$ the respective unrounded guarantees exceed $0.0254335$ and $0.0186558$.
+Exact rational cross multiplication proves the rounded main-theorem constants.
+The TD result covers a constant-feature affine critic with exponential filtering; general random TD Jacobians require a different weight argument.
+These calculations alter no registered empirical comparison or its decisions.

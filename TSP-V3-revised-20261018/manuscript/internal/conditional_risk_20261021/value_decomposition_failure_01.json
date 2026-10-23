@@ -1,0 +1,11 @@
+{
+  "status": "REJECTED_BEFORE_PROOF_ADMISSION_OR_SCIENTIFIC_USE",
+  "failed_draft": "R_marg was defined as E min_a F_a(Y) and then treated as the actual risk of the posterior-marginal selector. This incorrectly asserted V_state=R_marg-R_rob>=0.",
+  "cause": "The posterior-marginal selector depends on the same probe that controls continuing common-state risk. Its actual risk is E[L_c(Y)], not E[F_c(Y)]. The signed term E[k_c(Y)^2 S(Y)] need not vanish.",
+  "correction": "Retain the signed carry term in a four-term decomposition; define actual state value by E[L_c-L_u].",
+  "formal_proof_claimed": false,
+  "manuscript_changed": false,
+  "scientific_data_used": false,
+  "frozen_experiment_changed": false,
+  "failed_draft_preserved_as_research_evidence": true
+}

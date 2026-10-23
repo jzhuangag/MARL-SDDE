@@ -1,0 +1,1859 @@
+# ICML 2027 learning-value upgrade: persistent plan
+
+## CURRENT TSP V3 WIDER-BOX AND TD THEORY COMPLETE —2026-10-23 18:16CST
+
+Canonical main13pages/supplement32pages. User requested stronger0.43percent
+certificate,wider parameter scope,and TD transfer without seed expansion.
+Integrated direct frozen-detector error bound<.03 overtheta0[.04,.06],theta1
+[1.8,2.2],eachlambda[.15,.25],prior[.45,.55]. AtB8192,the unchanged paid rule
+has>=2.54percent runningmeanD8 and>=1.86percent averaged scalar TD(0)D0
+all-predetermined-schedule risk guarantees. AtB32768,>=2.75/2.58percent.
+Explicit TD exponential-weight row-sum correction is proved;constant-feature,
+deterministic positive contraction scope,not general random-Jacobian TD.
+All older native studies immutable terminal,zero new trajectories/seeds.
+Ordinary analytic work under120CPU-second ceiling;initial loose negative bounds
+and helper syntax correction preserved. New records internal/td_extension_
+20261023/. No retry,cap transfer,watcher or automation. Fresh50references and
+separate IEEE style check,noBib edit. Same-family inline review,not acceptance.
+
+## CURRENT TSP V3 PERIOD-FREE THEORY REPAIR COMPLETE —2026-10-23 16:47CST
+
+Canonical manuscript unchanged location,main13pages/supplement31pages.
+User's strict re-review found period<=3 too narrow for a general predetermined-
+schedule claim. Repaired with a general convex resource envelope over all
+lengths/orders,all prefixes and independent randomization,not more enumeration.
+The unchanged paid rule has reference guarantees1.36/4.89/5.72percent at B512/
+2048/8192;full original parameter-box guarantee0.43percent at B8192. Earlier
+short-cycle1.15percent stays as a sharper supplementary restricted-class bound.
+General lemma/proof integrated; all native studies immutable terminal,zero new
+trajectories/seeds. Deterministic proof checks80028;ordinary proof CPU<120s.
+New records in manuscript/internal/arbitrary_schedule_20261023/. Fresh references
+and separate style check;no new citations/Bib edits. Same-family inline re-review,
+not independent external acceptance. No watcher or new automation.
+
+## CURRENT TSP V3 SUBSTANTIVE MAIN DRAFT UPDATED —2026-10-23
+
+Human requested the latest multi-agent+Lyapunov manuscript, subsequent useful
+research integrated in place, positive contribution-led presentation, and no
+excessive new verification. Canonical editable root remains
+TSP-V3-revised-20261018/manuscript; CURRENT_MANUSCRIPT.txt points to main.tex.
+New title: Lyapunov Resource Control for Correlated Multi-Agent Markov Learning.
+Main13pages/supplement30pages; no new native trajectories, seeds or experiments.
+
+Integrated: arbitrary regime-specific persistence in the conditional theorem;
+strictly positive sharp B^-2 state value; finite-budget paid identification
+against all4368 short-cycle resource programs, every affordable prefix and
+independent mixtures, including a stronger two-period baseline uncovered during
+the analysis. Reference guarantees2.65/5.21/5.81percent at B512/2048/8192;
+uncertainty-box guarantees0.51/1.15percent at B2048/8192. These are constructive
+population bounds, not sampled gains. The box and period<=3 comparator scope
+are explicit. All5budget scales and earlier adverse evidence are preserved.
+
+Only ordinary proof/literature/manuscript computation was used. All old native
+studies and budgets stay immutable terminal; no new watcher or automation.
+Classical ingredients attributed;50references freshly verified with explicit
+metadata resolutions and separate IEEE-style check; noBib edit. New derivations,
+all attempts, before-copies and final artifact hashes are in manuscript/internal/
+strict_tsp_20261023/. Essential checks do not stand in for contribution judgment.
+This version is the theory-focused TSP submission candidate and next research
+baseline, not a stopped author-review task or an acceptance guarantee.
+
+## CURRENT SUBSTANTIVE TSP V3 DRAFT COMPLETE —2026-10-21 16:08CST
+
+Human routine-autonomy authorization is in force; older routine-approval prompts
+are historical. No new watcher/automation was created. All native science and
+independent audits are terminal. Main13pages/supplement28pages, all41 final
+pages visually reviewed; embedded fonts,199 valid links, no overfull/undefined
+references.50freshly checked references with separately documented resolutions
+and IEEE-style audit.13oldformalblocks/oldappendix/3oldBibs byte-preserved.
+FinalPDFSHA main c880f68f54ab772adfb8b579a592886fb666265fe024a91f2f68a4784c3ed3be;
+supplement 3edd4566d7ff1bee288afab4f1943e02f88129cdc77c01f536a4849ab32f3c43.
+
+Defended scope: model-specific paid identification/continuing-risk theory,
+second-order current-state value versus first-order regime separation from
+all affordable fixed prefixes, with explicit conservative budget constants.
+Classical conditional decisions/GLS/minimax/chi-square mixtures are attributed.
+Not general estimator/sequential/MARL optimality or unknown-model calibration.
+Both new studies retain negative registered decisions,294912science/replay
+each and2/2analyses each. Observable fixed-minus-gate mean.00444303,lower-.00317725;
+outcome-known deterministic population diagnostic.00875334 also below.01target.
+All adverse cells/costs/identical ablations remain; no retry/tuning/moreseeds.
+
+Separate2h charge5228.984375s,remaining1971.015625s;1h2506.828125s,remaining
+1093.171875s.140h84.8294140625used/55.1705859375remaining. No budget transfers.
+Outcome-known population computation57.6875measuredchildCPU/300s ordinary bound;
+final metered manuscript phase686.78125s charged including120allocated auxiliary,
+not native CPU. Release-report/Git/UI administration is unmetered ordinary work.
+See manuscript/internal/submission_strengthening_20261021/RELEASE_REVIEW.txt,
+final_source_gate_after_visual.json and final_qa.json for complete judgment.
+Decision SUBMISSION_REVIEW_DRAFT_COMPLETE_SCOPED_AUTHOR_RELEASE_PENDING:
+technical package complete for model-specific TSP submission-oriented author
+review, not acceptance assurance or demonstrated practical fixed superiority.
+Authentic ORCIDs/disclosures/all-author release remain human facts; no submission.
+
+## CURRENT OBSERVABLE1H INDEPENDENT AUDITED TERMINAL —2026-10-21 14:52CST
+
+Science294912/294912,ALLreplay294912/294912,analyses2/2;all7 analysis bytes,
+every256payload hash/mapping,all128 independently scalar-reenumerated strongest
+fixed-prefix normalizers, dense projected affinities, roles/ledgers/runtime and
+all4 visually inspected original all9-policy plots PASS. Native worker25752
+and supervisor21644 exit0; independent scientific/runtime audit17284 exit0;
+extra actual-prefix/error/cost equality audit1696 exit0. All25344 fallback rows
+exactly equal paired strongest-fixed errors/costs, all32768 corrected/no-carryover
+rows identical. Genuine receipt and compact REPORT.txt at
+ICML-2027/internal/v3_observable_gate1h_terminal_20261021, reportSHA
+7402087897431ad2f7461dfe3b0d3509fcd15e09bae43e5455edf9cd5bdc91ae.
+
+Decision MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD. Normalized fixed-minus-
+gate mean.004443031615,one-sided99.5%lower-.003177254902;misses both confidence
+and practical.01 conditions. Uncertified observable LR minus gate mean.1702095030,
+lower.1481243561 is positive for the economic backstop, NOT fixed superiority.
+9/128 adverse fixed designmeans,20/128 adverse LR designmeans.29 admissions,
+99fixed fallbacks,116feasible probes. Raw pooled risks.0506443gate versus.0506405
+fixed do NOT favor gate;different design-normalized weighting retained. No tuning,
+new seeds, retry, subset substitution or cap transfer follows this decision.
+
+Total separate1h charge2506.828125s=.6963411458CPUh;remaining1093.171875s
+=.3036588542h. Includes29.671875measuredprep+60allocatedprepaux, exact worker
+1991.953125,exactfinalsupervisor73.78125,exactindependentaudit235.71875,
+exactextraexecutionaudit70.703125,+45allocatedterminalaux. Allocations are NOT
+claimed measured CPU. All original/partial/cost evidence preserved.
+
+Continue substantive manuscript integration and full PDF/source/citation/visual
+gates. Added explicit conservative all-prefix remainder constants and sufficient
+budget threshold, derived before observable outcomes were read but after2h
+negative was known: do not call it pre-data.72deterministic population models,
+181499checkedprefixes,256paid-rounding/remainder checks PASS,2.828125childCPU;
+zero random draws/seeds/trajectories. These support, not replace, proof.
+Ordinary manuscript operations separately metered, never a native budget retry.
+No TSP-maturity/author-release claim pending final gates and adversarial review.
+
+## CURRENT OBSERVABLE1H NATIVE EXIT / INDEPENDENT AUDIT —2026-10-21 14:44CST
+
+Science294912/294912,ALLreplay294912/294912,analyses2/2. All7 analysis
+outputs byte-identical; supervisor post-exit hash/runtime/source read-back
+complete. Worker25752 and supervisor21644 confirmed absent; both exit0.
+Exact workerCPU1991.953125s; retained Windows supervisor handle confirms exact
+finalCPU73.78125s (not terminal snapshot72.84375). With89.671875prepcharge,
+native+prep exact charged2155.40625s=.59872396h,remaining1444.59375s=.40127604h
+of separate3600 before independent audit. No outcomes interpreted yet.
+Independent frozen scientific audit+terminal runtime read-back now launched
+once, separately preserving stdout/stderr and exact audit-process CPU. Then
+execute extra fixed-prefix/error/cost equality check and visually inspect all4
+all9-policy plots. Last communicated14:40--15:00CST forecast remains applicable.
+No scientific retry, threshold change or source edit is authorized by integrity.
+
+## CURRENT OBSERVABLE1H ALL REPLAY COMPLETE —2026-10-21 14:34CST
+
+Science294912/294912 and ALL replay294912/294912,128/128parts each.
+Replay boundary14:34:21CST charged1594.15625s=.44282118CPUh;remaining
+2005.84375s=.55717882h of3600s. Analyses0/2;native owners still live;
+independent audit not started and outcomes remain unread. Last communicated
+native+audit forecast14:40--15:00CST unchanged, not guarantee. Next require two
+analysis executions, all7bytes equality, supervisor post-exit read-back and
+both native exits before independent scientific/resource/visual audit. No retry.
+
+## CURRENT OBSERVABLE1H SCIENCE COMPLETE —2026-10-21 14:25CST
+
+Science294912/294912,128/128parts completed14:22:19CST. At14:25:01
+replay80640/294912,35/128parts;analyses0/2;independent audit not started.
+Boundary charge1045.1875s=.29032986CPUh;remaining2554.8125s=.70967014h
+of separate3600s. This is a progress-boundary charge, not exact final CPU.
+No outcomes inspected. Both native owners remain live. Last communicated
+14:40--15:00CST native+independent-audit forecast unchanged, not guaranteed.
+Full replay then two analyses and supervisor post-exit read-back must finish;
+both owners must exit before independent audit and scientific interpretation.
+No source/protocol/budget change, retry or new watcher. Main argument now
+distinguishes first-order regime value, second-order state value and the paid
+fixed-prefix backstop; negative predecessor evidence retained in main/supplement.
+
+## CURRENT OBSERVABLE1H NATIVE COST-ADMITTED —2026-10-21 14:12CST
+
+Implementation/tests pushed238356f; registration committed/pushedf19718e BEFORE
+data. LockSHA1317e973fdc4598c40182898f372eb5b2a83e1c604decc0180a7616045d13fd1,
+admissionSHA5c1ebc1290629d943ee5d326e6061a5427238c1fc13f348aa3334595fa74ac59.
+428 historical source/seed metadata files screened,444 physical hashes plus
+428 historical Git hashes, no overlap. Source/runtime/Git read-back passed.
+Supervisor21644 launchedhidden14:04:17CST; sole worker25752 starts only after
+registration read-back and genuine predecessor audit. New formal root created
+by admitted supervisor exactly once. No duplicate, retry, tuning or source edit.
+
+First retained science/replay part5.71875+4.15625CPU seconds,2304rows each.
+Profile charge162.421875s; fixed1.5x127remainingpairs+900analysis/auditreserve
+projects2943.609375s=.81766927CPUh, admitted under3600s. At14:11:33boundary
+science39168/294912(17/128parts),replay2304/294912(1/128),analyses0/2.
+No outcomes inspected.14:12:24liveCPU89.671875prep+32.25sup+178.046875worker
+=299.96875s=.08332465h,remaining3300.03125s=.91667535h.
+Last communicated cost-only forecast14:12CST: native+independent audit around
+14:40--15:00CST, measured part throughput plus analysis/audit planning allowance,
+not guarantee. Compare future material ETA changes against THIS forecast.
+Hold all new frozen source bytes unchanged. Await workflow_complete AND both
+native exits AND supervisor post-exit read-back before outcome audit; inspect
+all4all-policy plots, all hashes and all7 analysis bytes, then independent
+scientific/resource decision. Outer launch session26726 retains final supervisor
+process handle for exact final CPU. No watcher/automation created.
+
+Paper integration now underway, separate from immutable science. All13 prior
+formal blocks(including assumption) and original appendices/Bibs preserved;
+long original proofs moved into supplement. New scalar value/ceiling and
+fixed-prefix separation results plus full proofs added; old negative conditional
+study retained. Fresh49reference check:47rawPASS+2fresh explicit authoritative
+resolutions, original reports unchanged; separate IEEE style has no definite
+errors. Final compile/render/source/visual gates still pending; no readiness
+declaration. PDF edit marker executed exactly once(expected2PDF) before edits;
+eight byte-verified pre-edit source/PDF backups in submission_strengthening_20261021/before.
+
+## CURRENT OBSERVABLE1H DETERMINISTIC PREPARATION PASS —2026-10-21 13:49CST
+
+First and sole new preparation attempt11014/11014PASS,29.671875measured
+test process-treeCPU seconds. With60allocated auxiliary charge,89.671875s
+upfront,3510.328125s=.97509115CPUh remaining of the separate3600s.
+ZERO observable formal trajectories/replays/analyses.128 public designs retain
+29 certificate admissions,99 strongest-fixed-prefix fallbacks;116 feasible
+projected probes; no-carryover also29. Structural identity no-go does not apply,
+so complete unchanged pre-data freeze/push/cost-profile workflow next.
+All original(q,b) affordable fixed training prefixes independently checked
+against direct weights; dense contrast likelihood/state/affinity, hidden-target
+and sign roles, paid ledgers, duplicate owner, hard cap and seven analysis bytes
+checked. Earlier conditional2h is independently audited negative and never retries.
+
+New theory extension43 deterministic algebra/quadrature/rational checks PASS,
+10.03125CPU seconds, no scientific samples. Exact leading margin155047/1996800,
+relative.0771454871, is an asymptotic model witness, not finite-grid validation.
+All classical overlaps and the rejected first nominal decomposition preserved.
+Main/supplement/Bibs/PDFs still unchanged, no submission readiness claimed.
+
+## CURRENT CONDITIONAL2H AUDITED TERMINAL NEGATIVE —2026-10-21 13:45CST
+
+Science294912/294912,replayALL294912/294912,analyses2/2. Worker25564 and
+supervisor25268 exited; independent scientific+runtime audit23500 exit0.
+All256 payload hashes/mappings, all128 independently reenumerated normalizers,
+finite outputs/initialization/paid ledgers/hidden-sign roles, all7 analysis
+bytes and all4 visually inspected original all-policy plots verified.
+Genuine receipt: experiments/v3_conditional2h/results/formal_20261021/
+independent_audited_terminal.json. Report internal/v3_conditional2h_terminal_
+20261021/REPORT.txt (underICML-2027). No automatic integrity==TSP admission.
+
+Decision MECHANISM_NOT_CONFIRMED_AT_REGISTERED_THRESHOLD. Registered normalized
+fixed-minus-robust mean-.9938550309,99.5% lower-1.0211023328; posterior-marginal
+minus robust mean-.00001115968,99.5% lower-.00014160371. Both co-primary
+conditions fail;87/128 adverse fixed-comparison design means. Complete negative
+and favorable2048-scale descriptive evidence retained; no selective new endpoint.
+Diagnosis: optimizing after a feasible paid pilot does not decide whether the
+pilot is worth buying; low-budget lost horizon dominates, and current-state
+selection provides no confirmed incremental value. Stop this avenue; no tuning,
+additional seeds, scientific retry or cap extension.
+
+Final charged5228.984375s=1.45249566CPUh,remaining1971.015625s=.54750434h of
+separate7200s. Includes64.5625measured tests+60allocated prepaux,4775.34375
+exact worker,84.125supervisor CPU snapshot,214.953125exact audit process CPU,
+30allocated audit/exit-tail auxiliary. Allocations are NOT claimed measured.
+
+The separately pre-outcome committed025afee observable-gate1h protocol remains
+untested/unfrozen/unlaunched, with3600s separate cap. It is a different
+observable-target/risk-backstop question with ALL fixed training prefixes,
+not a state-selector retry. Next complete deterministic source checks/tests,
+perform structural identity check, freeze/push before any new data, then
+sequentially launch only if genuinely nontrivial and cost-admitted. Do not ask
+routine approval; no new watcher/automation or unchanged old-workflow reruns.
+
+## CURRENT CONDITIONAL2H REPLAY COMPLETE / ANALYSIS1 —2026-10-21 13:32CST
+
+Science294912/294912,replay294912/294912,analyses1/2; independent final audit
+not started. Worker25564 and supervisor25268 still live. Exact live snapshot
+124.5625prep+4481.671875worker+42.140625supervisor=4648.375CPU seconds,
+1.2912153h used,2551.625s=.7087847h remaining of7200. No outcomes inspected.
+Native+independent audit still expected within last communicated13:30--14:00CST
+window; analysis I/O affects wall time, not an authorization to change the plan.
+
+Prospective observable1h protocol, all-prefix stronger comparison and structural
+no-go rule committed/pushed025afee BEFORE reading conditional2h outcomes.
+No observable tests/registration/data yet. Full source remains separate and
+untested; do not equate prospective protocol commit with formal readiness.
+New pre-outcome theory candidate leading_fixed_separation.tex distinguishes
+first-order covariance-regime resource value from second-order state value,
+including an exact rational sixteen-action witness and all fixed prefixes.
+Proofs/deterministic crosschecks and manuscript integration still pending.
+
+## CURRENT CONDITIONAL2H SCIENCE COMPLETE —2026-10-21 12:56CST
+
+Science294912/294912,128/128 learner-seed parts; replay16128/294912,7/128
+at latest boundary; analyses0/2, independent audit not begun. Sole supervisor
+25268 and worker25564 remain live. Live prep+process CPU approximately2539.16s
+=.70532h,remaining4660.84s=1.29468h of the separate7200s. No outcomes inspected.
+Current cost/progress still supports last communicated13:30--14:00CST native+
+independent audit forecast, not guarantee. Preserve frozen current sources.
+
+Before inspecting any current outcomes, a separate unknown-target observable
+gate follow-up was prospectively specified in experiments/v3_observable_gate1h
+with3600s whole-workflow cap, different question/fresh seeds and full preservation.
+Implementation is being prepared, NOT tested/frozen/launched. It can start only
+after this study exits and receives a genuine independent scientific/resource/
+integrity/visual terminal receipt. Routine autonomy supersedes approval questions.
+If pre-data public design algebra proves its certified gate identically equals
+the strongest fixed baseline on the entire grid, record structural no-go and
+do not collect redundant seeds; do not alter the grid to force admissions.
+
+New proof candidates: observable target-invariant calibration, matrix covariance
+dual/tie caution, finite state-value ceiling, and a signed four-term value
+decomposition. The first decomposition draft omitted actual same-stream carry
+from a nominal posterior score; rejected before proof/manuscript/scientific use,
+preserved in value_decomposition_failure_01.json. Current manuscript/PDF unchanged.
+
+## CURRENT CONDITIONAL2H NATIVE LIVE —2026-10-21 12:16CST
+
+Implementation/tests pushed ba1514b; registration pushed f5f333d BEFORE data.
+Active lock SHA f15783d2866678d529093a8667c7871e9df31d08794919f276f3092c3d95608a;
+admission SHA b16e8cad7010e37c8d233ca29ccdf7315c05144ec386b6c7c3bf52a58f7fd78d.
+Historical419source/seed metadata files screened, no overlap. Latest2880PASS,
+both preparation attempts preserved;64.5625measured process-treeCPU+60charged
+auxiliary=124.5625s upfront. Source/runtime and Git read-back passed at launch.
+SOLE supervisor25268,worker25564,hidden launch,package experiments/v3_conditional2h;
+root results/formal_20261021 created by supervisor at12:14:25CST exactly once.
+No source/protocol edits, retry, resume or duplicate permitted while this study runs.
+
+First formal learner/seed part AND replay cost11.9375+6.0625CPU seconds,
+retained prefixes2304rows each. Cost-only profile admitted at218.625chargedCPU
+seconds;1.5xremaining127pairs+900s analysis/audit reserve projects4547.625s
+=1.263229CPUh total, within7200s. No scientific returns inspected for admission.
+Snapshot science6912/294912(3/128parts),replay2304/294912(1/128parts),analysis0/2,
+independent final audit not started. Live CPU snapshot124.5625prep+39.1875sup+
+95.578125worker=259.328125s=.07203559h,remaining1.92796441h. Progress JSON
+is a boundary snapshot, not a substitute for live process CPU.
+Last communicated cost-only forecast12:16CST: native+independent audit around
+13:30--14:00CST today; early part throughput and approx.0.95CPU/wall ratio,
+plus analysis/audit allowance, NOT guarantee. Re-estimate only from cost/progress
+metadata until workflow_complete AND worker/supervisor exit, then audit all data,
+all hashes, all7analysis bytes and all4plots. Existing hourly heartbeat stays
+retired; continue this active task with bounded waits, no new watcher.
+
+Parallel analytical work (no native computation or new data): matrix_extension.tex
+derives a covariance-dual reduction and shows why strongest fixed random mixtures
+and saddle-consistent tie handling matter for vector initial uncertainty.
+This is a proof candidate, not a matrix-performance claim or a protocol change.
+
+The authorization/preparation entries below are retained as preceding snapshots.
+
+## CURRENT AUTONOMOUS V3 VALIDATION AUTHORITY —2026-10-21
+
+Human explicitly waived routine prior experiment approvals and instructed
+autonomous research through TSP submission maturity, escalating only genuinely
+major decisions. The preceding concrete independent2CPUh conditional-risk plan
+is now authorized and being implemented in experiments/v3_conditional2h.
+Routine approval requests are superseded; old proposed_validation.json remains
+immutable pre-reply provenance, not a live blocker. No automatic cap increase,
+outcome tuning or scientific retry is introduced by this execution.
+
+Latest new non-scientific suite2880/2880PASS, two preserved PASS attempts;
+the second adds explicit feasible-probe AND fallback coverage to the fixture.
+Total64.5625measured process-treeCPU seconds; all tiny fixture outputs preserved.
+60s auxiliary charge is allocated and explicitly NOT measured CPU.
+Pre-data charge124.5625s,remaining7075.4375s of separate7200s.
+Science0/294912,replay0/294912,
+analysis0/2; registration source/runtime/seed lock and commit/push precede data.
+New public deployment APIs exclude true regime, target/error sign and future
+observations. Exact weights match direct FIFO and hidden-target translation;
+best balanced fixed comparison includes the complete catalogue and stop option.
+Both older native workflows remain audited terminal; no old heartbeat restarted.
+
+The analytical-only entry below is retained as the preceding stage.
+
+## CURRENT V3 TSP MATURITY RESEARCH —2026-10-21
+
+Human requires autonomous research toward TSP submission maturity, with the
+existing constraint that new experiments need a concrete plan/budget approval.
+New proof/prototype/prospective protocol: revised manuscript
+internal/conditional_risk_20261021/REPORT.txt,theory.tex,proposed_validation.json.
+Exact conditional-loss and initialization-error minimax envelopes, a two-program
+reflection-loss identity, and a paid two-slot useful/useless boundary derived.
+Known-error example risk0.9287857118 becomes0.9956221561 when error sign is hidden;
+observable centered calibration noise is required, not silently available from
+unknown-target observations. Conditional argmin/general robust JDE are classical,
+including the checked2026 Reinhard/Fauss/Zoubir preprint; no generic novelty claim.
+46deterministic checks+7boundary cases+3exhaustive729-selector fixtures PASS;
+ZERO new science samples/random draws. Main/supplement/Bibs/PDFs and locked
+scientific sources unchanged. This analytical package is NOT submission readiness.
+Separate2CPUh proposal is concrete but NOT APPROVED/NOT LAUNCHED:294912full
+trajectories+ALLreplay,9policies,2learners,16families,4budgets,2regimes,2hidden
+error signs,64candidate fresh seeds; full preparation/profile/partial/failed/
+analysis/audit accounting, no shrinking/tuning/retry. Read proposal before action.
+Both native workflows remain audited terminal; retired heartbeat remains retired.
+
+The completed comparison below is retained as the preceding stage.
+
+## CURRENT V3 PROPOSITION COMPARISON AND INTEGRATION COMPLETE —2026-10-20
+
+Latest human request: distinguish classical versus substantively distinct parts
+of the three candidate propositions using full-text comparison, integrate reliable
+parts, preserve negatives/scope; no new experiment without plan/budget approval.
+Completed in revised manuscript internal/proposition_literature_20261020.
+Read REPORT.md,FULL_TEXT_COMPARISON.md,source_checks.json,final_qa.json first.
+
+P1/P2 combine in ONE model-specific signed ordered-Gaussian continuing-risk
+corollary; symmetry/association/truncated moments are explicitly classical tools.
+P3 is classical finite-action decision theory, instantiated through the paid
+learner/carryover certificate and all128 original full-budget fixed catalogues.
+No new foundational selection/decision theorem or exhaustive priority clearance.
+Four additional primary full texts read at exact technical passages; access-
+blocked Blackwell/Tallis leads remain unread, not passed. All13 prior main formal
+blocks/proofs, old supplement, originalBibs and originalTSP-V3 preserved.
+
+29/128 balanced-prior(pi=.5) separation certificates, all at512/2048;99 cases
+uncertified,0/128 minimax. Signed refinement and original gate both113admissions.
+All low-budget/adverse/identical-ablation/fixedq2-pooled counterevidence remains.
+ZERO new trajectories,seeds,bootstrap samples or scientific source/protocol edits.
+Neither completed workflow restarts; retired heartbeat remains deleted. Any new
+study still requires prospective protocol/budget and renewed human approval.
+
+Main13pages/supplement12pages; all25pages rendered/visually inspected, allfonts
+embedded, no undefined/overfull/invalid destinations.43fresh metadata records:
+41rawPASS plus2explicit primary-source resolutions, four additive Bib entries.
+PDFmainSHA5832e788a34db82076d7d4fafada31f80fad990091d4fb3c8519011b39464e4b;
+suppSHAf2f90f408f94ec6f60db3ad933f80405d36ed2cf81644ceb64d5d608f214c5d0.
+Ordinary paper/literature work454.90625measured child+meterCPU seconds plus120s
+conservative unmetered auxiliary charge=574.90625s; NOT native CPU measurement or
+scientific budget reallocation.140h terminal charge remains84.8294140625CPUh;
+V3 native+audit2721.78125s and earlier combined paper-integration3412.265625s
+snapshots remain immutable. No incremental empirical correction gain/unknown-
+model calibration or IEEE TSP readiness is asserted. Author release inputs remain.
+
+The analytical-only stage below is historical and superseded by this integration.
+
+## CURRENT HUMAN-AUTHORIZED V3 THEORY/MECHANISM ANALYSIS —2026-10-20
+
+Human now explicitly requests substantive strengthening from EXISTING evidence:
+why selection-risk theory is needed, when useful, and irreplacability versus simple
+fixed strategies. No new experiment is authorized; any necessary new study needs
+a specified prospective protocol and budget followed by human approval. Do not
+restart either completed workflow, reuse leftover scientific budget or recreate
+the retired heartbeat. Original V3, revised paper body/PDFs and all formal results
+remain unchanged in this first analytical phase.
+
+Read revised manuscript internal/mechanism_analysis_20261020/THEORY.md,
+ARGUMENT_AND_NEXT_STEP.md,proposed_additions.tex and complete/analysis_summary.json.
+New deterministic analysis generated ZERO trajectories, seeds or bootstrap samples.
+It uses the existing128 public designs and1536-row cell table; frozen core bytes
+unchanged. All results are outcome-known analytical diagnostics, not a new formal
+validation, new registered primary endpoint or publication priority clearance.
+
+-Derived exact even-likelihood symmetry cancellation and signed carryover law.
+120 feasible designs:44 harmful signs,32 beneficial signs,44 zero/same-action;
+8 infeasible retained. Sharper one-sided Gaussian tail-moment bounds have
+delta*log(1/delta)/delta rather than the generic sqrt(delta) order under stated
+centered ordered-covariance/fixed-program conditions. General old bound retained.
+-Analytic Gaussian counterexample proves an independent-mixture risk upper can
+fail despite zero unconditional program-risk gap. NOT a counterexample to both
+sides of the executed gate's AND-admission test; no such stronger claim is made.
+-Original and sign-refined diagnostic admissions both113/128. All44 harmful-sign
+designs were already safely admitted under the old penalty. More seeds on this
+unchanged public grid cannot change deterministic action equality.
+-Best full-budget fixed catalogue comparison: original gate POPULATION certificate
+beats every listed fixed(q,b), including regime-independent randomized mixtures,
+on29/128 designs for EXPLICIT balanced prior pi=1/2; all99 other cases retained.
+Passes by learner/scales32,128,512,2048:runningmean0,0,6,12;affine0,0,2,9.
+Relative certified margins0.1314--7.2032percent, not an averaged empirical effect.
+ZERO minimax certificates; no unknown-prior/general fixed-strategy dominance.
+-Existing gate/fixedq2 stratified sample means favor gate11/16 strata; budgetwise
+average fixed-minus-gate risk is negative at32/128,positive at512/2048. The original
+pooled fixedq2 advantage is preserved, not negated by post-hoc decomposition.
+-Three proof drafts plus9 deterministic quadrature checks and separate original-
+catalogue enumeration. Shared previously audited risk evaluator, NOT an independent
+implementation/expert proof audit. Generic selection bias/VOI are not claimed new.
+New bibliographic leads have explicit fresh resolver/read-scope records; noBib edit
+or new paper citation admitted. Claim-level novelty comparison remains needed.
+-Requested NEW experimental budget at this stage:0. Successful observed analytical
+CPU5.15625s; two setup/output failures retained with unmeasuredCPU and labeled5s
+auxiliary charges each. This does not rewrite either immutable terminal ledger.
+Next safe work is claim-level literature/proof comparison and targeted manuscript
+integration if substantiated, NOT prose-only polish or automatically another run.
+
+## CURRENT ALL AUTHORIZED SCIENCE AND DIRECT-EVIDENCE INTEGRATION COMPLETE —2026-10-20 12:15CST
+
+No native owner, replay, analysis, test, freeze or completed audit may be relaunched.
+Both studies reached independently audited terminal decisions; the separately
+approved direct validation is now honestly integrated into the revised TSP paper.
+Original TSP-V3, native/failure/partial evidence and both immutable terminal CPU
+snapshots remain unchanged. No new scientific retry, expansion or budget reuse.
+
+-140h:main117/117(39each),replay6/6,analyses2/2,independent audit COMPLETE;
+ DEVELOPMENT_NO_GO all3tasks. Charged84.829414h,remaining55.170586h. No manuscript
+ admission or causal/superiority claim from the negative MARL study.
+-V3:science196608/196608,replay196608/196608,analyses2/2(all7files equal),
+ independent audit COMPLETE MIXED. Native terminal+audit0.75605035CPUh; additive
+ paper integration observed630.484375s plus60s conservative paper auxiliary charge
+ =>combined3412.265625s=0.94785156h,remaining7.05214844h. Read additive ledger;
+ these auxiliary charges are not claimed measured whole-machine CPU. No extra run.
+-Main13pages/supplement10pages, all23pages visually checked, all fonts embedded,
+ zero undefined references/overfull.13previous formal blocks,appendices,bothBib
+ files and originalV3 tree unchanged. All old transfer text/figure moved intact
+ to supplement; all16new macro comparisons and all-policy costs/curves included.
+-New known-model validation:113/128 admissions,23/256 adverse cell means,
+ negative low runningmean scale32; all32768corrected/no-carryover rows identical.
+ Incremental carryover benefit UNRESOLVED; fixedq2 lower pooledrisk/environment
+ cost retained. Population risk bounds are not empirical coverage/calibration.
+-Fresh39reference check:38rawPASS plus newly opened authoritative Paulin
+ article-number resolution, resolver outages/conflict retained; noBib edit.
+-Read revised manuscript REVISION_STATUS.md CURRENT and
+ internal/direct_validation_integration_20261020/REPORT.md,source_gate_release.json,
+ citation_resolution.json,resource_ledger.json. Decision is scope-limited author
+ review required, NOT TSP qualification. Authentic ORCIDs, disclosures and all-author
+ release are human inputs; no submission. No additional science is inferred.
+-Both audited-terminal conditions are met. Integration pushed and upstream verified
+ at6ddc45f24a75a3d3cad54e878ef74c17a7faff4a. Existing heartbeat DELETED through
+ the application MCP tool after that push; exact prior config is preserved in
+ direct_validation_integration_20261020/retired_heartbeat_before.toml, and deletion
+ receipt in heartbeat_retirement.json. No new automation or watcher. If an
+ old queued heartbeat arrives, read this TOP and do not restart any work.
+
+## CURRENT BOTH SCIENTIFIC WORKFLOWS AUDITED TERMINAL —2026-10-20 11:34CST
+
+NO NATIVE OWNER IS LIVE. Do NOT relaunch/resume140h or V3, rerun any replay,
+analyzer, tests/freeze or duplicate completed audits. Both formal result roots,
+all old failures and every raw/partial/cost file remain preserved. Original V3
+unchanged. Next authorized work is honest integration of the NEW direct evidence
+into the revised TSP manuscript, not another experiment or an author-only release.
+Use academic-research-suite + ieee-tsp-paper-writing + publishable-academic-writing
+and ieee-bib-style-audit before manuscript changes. A newly requested prose-only
+pass would also require kimi-academic-polish; no new prose-only pass is requested.
+
+-140h study: main117/117 (39/39 each task), replay6/6, analyses2/2 and independent
+ final audit COMPLETE DEVELOPMENT_NO_GO, as fully reported in2385f58. AUC versus
+ strongest ALL9 controls-7.4774%/-26.4076%/-26.4140%; positives0/3,0/3,1/3.
+ Charged84.829414CPUh, remaining55.170586h. No new MARL runs or manuscript admission.
+-V3 independent8h:196608/196608 science and196608/196608 full semantic replay,
+ analyses2/2 ALL7 files byte equal, all4 all-policy plots visually inspected.
+ Science11:18:19, replay11:23:03, analyses11:23:46/11:24:29, workflow11:24:34,
+ supervisor post-exit read-back11:24:54; worker13756 exit0 and supervisor23016
+ confirmed exited. Agent independent auditor ran ONCE,14.25 observedCPU seconds,
+ generated no new trajectories or third bootstrap analysis.256 payloadSHA,
+ source162 hashes, all rows/roles/paid ledgers/FIFO and all1536/96 means verified.
+-Read `internal/v3_risk_gate8h_terminal_20261020/REPORT.md`, checks.json,
+ final_decision.json, stage_boundaries.json. Native charged2707.53125s plus new
+ independent audit14.25s =>2721.78125s=0.75605035CPUh used,26078.21875s=
+ 7.24394965h remaining. Original60s conservative auxiliary charge retained;
+ not claimed exact whole-machine/tail CPU. Later manuscript/render CPU, if charged
+ here, needs ADDITIVE ledger, never overwriting this terminal validation snapshot.
+-SCIENTIFIC MIXED, NOT TSP QUALIFICATION:113/128 corrected admissions, also113/128
+ no-carryover; zero-allowance100/128 NEW designs. All32768 corrected/no-carryover
+ rows have IDENTICAL probe choices/actions/risks: incremental empirical benefit
+ of sqrt(delta)*Gamma is UNRESOLVED, not demonstrated. All8 high-regime macro
+ intervals positive; low running-mean/scale32 NEGATIVE mean-0.00228985,
+ descriptive interval[-0.00322554,-0.00135749].23/256 adverse cell means,
+ 174 positive/9 negative/73 zero-or-inconclusive cell intervals; all retained.
+ Fixedq2 has lower pooled risk than gate; do not claim strongest-control dominance.
+-8192 unique deduplicated probes,13 errors; affinity bounds0.02113902--0.02437995.
+ This new fixed-probe validity does NOT rehabilitate old invalid nominal0.025.
+123 cell sample means exceed MODEL population bounds: NOT sample-wise confidence
+ limits and not unknown-model calibration. Known binary Gaussian/fixed linear
+ learner scope only; all128 paired seeds, no multiplicity significance assertion.
+-Terminal decision DIRECT_FIXED_MODEL_VALIDATION_VERIFIED_MIXED_RESULTS;
+ INCREMENTAL_CARRYOVER_BENEFIT_UNRESOLVED. No further native runs, grid expansion,
+ tuning or unused-budget reallocation without a new explicit protocol/approval.
+ All initial14:00/intermediate12:15 forecasts are superseded by actual completion.
+-Revised manuscript STILL needs these new results integrated with positives,
+ adverse cases, identical no-carryover result and proper certificate scope. Do not
+ merely label it author-metadata pending or automatically TSP-ready. Preserve
+ original/prior revisions. Authentic ORCIDs, disclosures and all-author release
+ remain human inputs; never fabricate/submit. Existing heartbeat may continue
+ for already-authorized manuscript integration, then retire when only genuine
+ human direction/release remains; science monitoring itself is finished.
+
+## CURRENT V3 SCIENCE LIVE —2026-10-20 10:42CST;140h TERMINAL AUDITED
+
+DO NOT LAUNCH AGAIN. Read `internal/v3_risk_gate8h_handoff_20261020_1042.json`.
+140h main117/117, replay6/6, analyses2/2, independent audit COMPLETE NEGATIVE
+DEVELOPMENT_NO_GO, committed/pushed2385f58 with genuine receipt. Full scientific
+diagnosis/all-method costs and positives/negatives are in terminal REPORT below.
+Charged140h total84.829414CPUh, remaining55.170586h; no more MARL runs authorized.
+
+-AUTOMATIC V3 handoff executed ONCE after receipt push/exit/process/root checks.
+ Hidden launcher supervisor23016 started10:37:53CST; admitted sole worker13756
+ started10:40:19CST. Formal root created by supervisor, NOT agent. Outer logs
+ `experiments/v3_risk_gate8h/outer_launch_20261020_1039.{stdout,stderr}.log`
+ (filename label1039 is not actual start time). Actual execution/worker-launch
+ SHA and commands recorded in handoff JSON. Active V2 source/runtime/Git admission
+ verified by launcher, no unchanged tests/freeze/one-shot verification rerun.
+-First FORMAL seed cost-only admission PASSED:1536 rows retained as science prefix,
+ CPU29.21875s; projection12197.8671875s=3.388296CPUh using unchanged1.25 multiplier
+ for remaining255 seed parts and2700s analysis/audit reserve. NO outcome screening.
+-Snapshot10:41:46:science3072/196608 (2/128 complete seed parts), replay0/196608,
+ analyses0/2; final independent audit not started. One native worker plus idle
+ CPU-accounting supervisor, no140h competitor. Do not inspect/rank live returns.
+-Worker earlier-CPU argument134.0s includes preparation/preflight/Git setup;
+ observed workerCPU85.28125s => live worker-ledger estimate219.28125s=0.060911h
+ charged,28580.71875s=7.939089h remaining of separate8h. Subsequent supervisor
+ idle delta is finalized by exact post-exit read-back; last progress201.6875s
+ is NOT live cost. Keep both separate budgets, all partial/failed costs.
+-NEW V3 last-reported finish baseline14:00CST today, planning13:30--15:00,
+ INCLUDING2700s analysis/audit reserve (do not add that twice). One-seed forecast,
+ not a confidence interval/guarantee; phase completion or >=3wall-hour/20percent
+ remaining ETA shift triggers numeric report. No future run beyond28800s authorized.
+-Continue live V3 owner; require workflow_complete, worker EXIT, supervisor
+ post-exit audited_terminal AND supervisor exit before terminal scientific review.
+ Verify every SHA,196608 full replay/all7 analysis files, inspect4 all-policy
+ plots and record independent positive/negative/inconclusive decision. No retry,
+ shrinkage, tuning, cap raise or manuscript admission. Keep existing heartbeat.
+ Old readiness/launch-next entries below are HISTORY; never duplicate live owner.
+
+## CURRENT140h AUDITED TERMINAL —2026-10-20 10:36CST; V3 HANDOFF NEXT
+
+140h study is TERMINAL DEVELOPMENT_NO_GO, not still running. Native owner19816
+exited; workflow_complete written09:50:33CST. Main117/117, tasks39/39 each,
+replays6/6, analyses2/2; all3 all-method figures visually inspected. Independent
+audit source `internal/audit140h_20261020.py` ran ONCE, exit0, no native rollouts
+or frozen-analyzer rerun. Read `internal/sealed_bridge_terminal_audit_20261020/REPORT.md`
+and final_decision.json. Genuine receipt `internal/sealed_bridge_learning_140h_audited_terminal.json`
+now records completed scientific/resource/integrity audit, exact marker/report SHA,
+and confirmed driver exit. Do NOT restart140h, replays or analysis.
+
+-123 payloads/everySHA,80 byte-identical imports/old failure/lost costs, roles/IDs,
+ reservations/events/ledgers, service/version/actual staleness, queue/controller
+ decisions, same-world frozen policies and27 source/runtime locks verified.
+ All6 replay semantic payloads equal except CPU; double-analysis bytes equal;
+ independent scalar AUC and all gates match.556 preserved files inventoried.
+-SCIENTIFIC NEGATIVE: Spread strongest fresh_mappo, AUC-7.4774%, positive0/3,
+ final+2.6473%, work0.42974, bytes1.60277. Reference strongest fresh_happo_double,
+ AUC-26.4076%, positive0/3, final-32.7728%, work0.43318, bytes1.75124.
+ HalfCheetah strongest fresh_happo_double, AUC-26.4140%, positive1/3,
+ final paired+556.2462% (denominator-sensitive; absolute means230.585 vs212.107),
+ work0.50966, bytes1.00912. All controls learn vs frozen. ALL3 task gates fail.
+ Full-mechanism evidence/positive ablation signals/cost disadvantages and bounded
+ design judgment in REPORT; no claim of optimizer superiority, ICML/TSP readiness.
+-Native recorded cumulative305073.015625s=84.742504h; audit observed252.875s;
+ plus60s conservative auxiliary/unobserved-tail CHARGE (NOT measured machine CPU).
+ Total charged305385.890625s=84.829414h, remaining198614.109375s=55.170586h.
+ Exact post-marker native termination CPU is unavailable and explicitly qualified.
+ Remaining140h budget is NOT authorization for another MARL test sequence.
+-V3 separate8h READY0/196608 science,0/196608 replay,0/2 analyses; charged86.46875s,
+ remaining28713.53125s. After this receipt/report is committed/pushed, inspect
+ processes/root then AUTONOMOUSLY launch admitted `launch.py --run` ONCE hidden,
+ separate outer logs, package cwd. No further confirmation. Subsequent CURRENT
+ entry must record real supervisor/worker PIDs and avoid duplicate launch.
+-No manuscript/PDF changes, no140h result imported into V3. Keep hourly heartbeat
+ active for approved V3 validation and its independent terminal audit; ORCIDs do
+ not block science. Prior cost forecasts below are HISTORY, not live forecasts.
+
+## CURRENT LAST-REPORTED FORECAST,2026-10-20 09:20CST update
+
+Read `internal/sealed_bridge_cost_forecast_20261020_0920.json`. Main117/117,
+tasks39/39 each; replay5/6, final HalfCheetah/full still active; analyses0/2;
+independent final audit not started. Sole native PID19816 alive and accumulating
+CPU. All27 locked files match. No workflow_complete, workflow_failed or failure
+marker; no duplicate native worker. No outcomes inspected/ranked or source changes.
+
+- Snapshot09:20:23:303313.640625CPU seconds=84.253789h cumulative used,
+  200686.359375s=55.746211h remaining. Active replay owner CPU since fifth progress
+  8082.34375s (includes driver overhead; not claimed exact payload CPU).
+- Previous08:10--08:40 forecast is INVALIDATED. Matched original3190.234375s
+  and latest same-task ratio estimate both underestimated this final replay.
+  NEW provisional native finish planning scenarios10:00--10:40CST today;
+  independent audit11:00--13:40CST, with UNMEASURED1--3wall-hour audit allowance.
+  Next material-ETA comparison midpoint10:20 supersedes08:25/older saved forecasts.
+- Cost-only scenarios use the maximum of three completed HalfCheetah/full cells
+  (3190.234375,9705.21875,1486.5s), and1.25 times that maximum, less active owner
+  CPU plus600s analysis reserve; CPU/wall0.9684294. Unrounded09:58:38/10:40:24;
+  projected native84.87125--85.54523CPUh. This is NOT a statistical interval,
+  timeout, guarantee or scientific-plan change. No intermediate step metadata
+  exists for this replay, so finish-time uncertainty is larger than prior forecasts.
+  Continue sole owner unchanged; do not restart, shrink or raise either CPU cap.
+- V3 remains READY/QUEUED:0/196608 science,0/196608 replay,0/2 analyses;
+  charged86.46875s;28713.53125s=7.9759809h remaining; formal root absent.
+  Automatically launch only AFTER140h exit AND genuine completed independent
+  scientific/resource/integrity terminal audit receipt. No metadata confirmation needed.
+
+## CURRENT LAST-REPORTED FORECAST,2026-10-20 07:20CST update
+
+Read `internal/sealed_bridge_cost_forecast_20261020_0720.json`. Snapshot07:18:47CST:
+main117/117 (Spread39/39, Reference39/39, HalfCheetah39/39); replay5/6,
+last HalfCheetah/full replay active; analyses0/2; independent final audit not started.
+Sole native PID19816 remains live, no completion/failure marker or duplicate.
+All27 source/resource hashes match. No scientific returns inspected or ranked.
+
+- Live cumulative296250.734375CPU seconds=82.29187h used;207749.265625s=
+  57.70813h remaining of140h. Audit actual CPU must still be charged to this cap.
+- Fifth replay payload CPU9057.109375s versus matched original5618.921875s,
+  ratio1.6118945. Progress delta9057.5s includes0.390625s driver overhead.
+  This higher observed replay cost triggers a material delay report versus07:00.
+- NEW native finish planning range08:10--08:40CST TODAY; midpoint08:25 is the
+  next material-ETA COMPARISON BASELINE, superseding03:13/older saved forecasts.
+  Independent final audit finish09:10--11:40CST, using UNMEASURED1--3wall hours.
+  V3 launch remains strictly after native exit AND authentic completed audit.
+- Cost-only endpoints use the final replay's exact original3190.234375s, or that
+  cost scaled by the latest same-task replay/original ratio; subtract1019.4375s
+  owner CPU since replay5 progress, add600s analysis reserve, CPU/wall0.9684283.
+  Unrounded native estimates08:06:28/08:40:04; projected83.06154--83.60378CPUh.
+  Rounded planning range is NOT a confidence interval or guarantee. One observed
+  scaling ratio is uncertain; no scientific suite, source, gate or cap change.
+- V3 unchanged READY AND QUEUED: science0/196608, replay0/196608, analyses0/2;
+  charged86.46875s, remaining28713.53125s=7.9759809h. Active V2 lock/admission
+  hashes unchanged; formal root absent. Do not rerun tests/freeze or launch early.
+
+## CURRENT STAGE AND LAST-REPORTED FORECAST,2026-10-20 03:13CST snapshot
+
+MAIN PHASE COMPLETE at02:12:13CST:117/117, Spread39/39, Reference39/39,
+HalfCheetah39/39 (80 imported+37 new). This is a phase-completion report, NOT a
+scientific outcome or final audit. Read
+`internal/sealed_bridge_stage_main_complete_20261020_0313.json`.
+
+- Main registered mapping117/117 matches exactly, all117 payload SHA values match
+  the completed science manifest (SHA68a6b5ec16591ed124241c9c3cc1a622dd51a3d39bd2a892b05c1fbf8275a123).
+  All27 source/resource hashes unchanged. These are metadata/digest checks only;
+  no scientific returns ranked or interpreted. Full independent audit still waits
+  for workflow_complete AND driver exit.
+- At03:12:39CST replay1/6: task0/seed971016103/fresh_happo complete;
+  task0/full active; task1/fresh_happo, task1/full, task2/fresh_happo, task2/full
+  queued. Two analyses0/2; plots/final independent audit not started. Same sole
+  native owner PID19816 remains live; no failure/completion marker or duplicate.
+- Live cumulative281837.1875CPU seconds=78.28811h used,222162.8125s=61.71189h
+  remaining of140h. Science-phase completion cumulative278388.109375s.
+- NEW last-reported cost forecast: native workflow approximately07:00CST today;
+  independent final audit08:00--10:00CST, using an UNMEASURED1--3wall-hour audit
+  allowance. This03:13 stage report supersedes the23:05 forecast as the next
+  material-ETA comparison baseline, including saved older heartbeat wording.
+- Remaining five replays use their exact original task/seed/method CPU costs;
+  total14225.265625s less1549.484375 live active-replay CPU gives12675.78125s
+  remaining replay estimate. Analysis reserve600s; CPU/wall0.9676414. Projected
+  native cumulative81.97582CPUh; independent audit actual CPU must still be charged
+  inside140h. Estimates are rough, not confidence bounds or a completion guarantee;
+  cost dispersion remains large. No suite, gate, source or budget change.
+- Independent V3 remains READY AND QUEUED,0/196608 science,0/196608 full replay,
+  0/2 analyses;86.46875CPU seconds charged,28713.53125s=7.9759809h left. Main117
+  alone does NOT authorize its start: require140h owner exit AND authentic completed
+  independent terminal audit/decision/receipt. No new V3 native worker or data root.
+
+## CURRENT LAST-REPORTED NUMERIC FORECAST,2026-10-19 23:05CST snapshot
+
+This is the NEW comparison baseline for future material-ETA reporting, replacing
+the historical20:25 forecast in this file and the saved heartbeat prompt. Read
+`internal/sealed_bridge_cost_forecast_20261019_2305.json` for exact cost metadata.
+
+- Main115/117 (80 imported+35 new), Spread39/39, Reference39/39,
+  HalfCheetah37/39; replay0/6, analyses0/2, independent final audit not started.
+  Sole native PID19816 live; no completion/failure marker or duplicate worker.
+- Snapshot live cumulative267531.515625CPU seconds=74.31431h, remaining
+  236468.484375s=65.68569h of140h. All27 source/resource SHA values match.
+  No incomplete scientific returns inspected or ranked; scientific gates unchanged.
+- Material change: native workflow now approximately2026-10-20 06:30CST,
+  versus previous10:15, advancing about3.8wall hours. Main approximately01:40;
+  final independent audit07:30--09:30, broad planning envelope03:00--16:00.
+  These are COST-ONLY estimates, not guarantees or scientific decisions.
+- Same-task/method other-seed means: fixed_allocation6962.359375CPU seconds
+  (individuals4308.640625,9616.078125), no_price5513.921875
+  (1278.59375,9749.25). Subtract3626.28125s owner CPU since last completed cell
+  for the currently active fixed_allocation cell. Remaining main forecast8850s;
+  all6 replay costs matched to exact original task/seed/method total16224.359375s;
+  analysis reserve600s; CPU/wall ratio0.9682830. Projected native cumulative
+  81.44608CPUh. Independent audit1--3wall hours remains an unmeasured allowance;
+  record its actual CPU inside the unchanged140h cap at terminal audit.
+- Latest full and no_transport cells cost substantially less than their respective
+  earlier other-seed forecasts; only their cost/progress metadata entered this
+  update. Cross-seed cost dispersion is large, so further ETA shifts are possible.
+- V3 separate8h remains READY AND QUEUED:0/196608 science,0/196608 replay,
+  0/2 analyses,86.46875CPU seconds already charged,28713.53125s=7.9759809h left.
+  Do not launch before140h driver EXIT AND authentic completed independent audit.
+  Active V2 locks and automatic handoff below remain unchanged; no new V3 data.
+
+## CURRENT V3 independent8h: implementation/tests/registration READY,2026-10-19 20:57CST
+
+Latest human authority: autonomously finish the isolated implementation, tests and
+pre-data lock now; automatically hand off AFTER140h driver EXIT AND completed
+independent final audit, without another confirmation. This strengthens the older
+exit-only text below. No change to either approved scientific suite or CPU ceiling.
+
+- Active package: `experiments/v3_risk_gate8h`. Unchanged approved protocol SHA
+  `a3e3bcb1a0625b5486a72065ab4a9ca0de9c414c8465b962dc2c3fcdd6bd05ad`.
+  Source/test implementation committed/pushed, latest source commit `1b71068`;
+  ACTIVE v2 registration committed/pushed at `5f4dfa2` BEFORE any formal data.
+- ACTIVE `registration_v2/lock.json` SHA
+  `2542f0749f13095041e0882f82d51210e7f9ae71c7d2e1363fbc43cac75636b3`;
+  matching admission SHA
+  `f3ca683f26c19b3b4200f84498856af1db0851d9a5ad8ebd544e66e81aa2763b`.
+  Post-push `preparation/readiness.json` verifies all162 source/metadata digests,
+  runtime and committed registration bytes;141 historical seed-related files
+  screened, no overlap. The native output root DOES NOT EXIST; no new worker live.
+- Latest deterministic toy suite146/146 PASS, including exact direct FIFO/weight
+  identities, dense Gaussian covariance/likelihood/posterior/affinity comparisons,
+  carryover moment quadrature, public controller roles, ledgers, duplicate-owner
+  rejection, driver-exit AND audit prerequisites, corrupted-source rejection,
+  and all7 analysis artifacts independently reproduced byte-for-byte on toy data.
+  No formal-grid observations or formal-seed trajectories generated by tests.
+- Six immutable toy-test attempts cost26.46875 measured CPU seconds, including
+  first attempt's Windows locale failure. A separate60CPU-second conservative
+  auxiliary charge covers preparation/registration/preflight/agent checks; this
+  is CHARGED allowance, not claimed measured native time. Cumulative8h charge
+ 86.46875s=0.0240191h, remaining28713.53125s=7.9759809h. Actual native worker and
+  supervisor CPU will be measured separately inside the same28800s ceiling.
+- Preserved pre-data failures: first toy attempt hit default Windows GBK reading
+  the authentic Chinese approval; fixed explicit UTF8, all later tests pass.
+  First pushed registration read-back rejected a nonexecuted old seed-provenance
+  source with mixed Windows/Git newlines. Preserve original root lock/admission
+  and `preparation/registration_v1_failure.json`; DO NOT use them as active locks.
+  V2 separately locks exact historical working bytes and committed blobs with
+  newline-only agreement; executed source remains raw-byte exact. No old input,
+  scientific result, probe, gate, seed or protocol was modified for this repair.
+- Formal extent remains196608 science trajectories,196608 full replay trajectories,
+  6policies,2learners,16families,4budgets,128new seeds; now0/196608 science,
+  0/196608 replay,0/2 analyses, no final validation audit. No independent8h ETA is
+  measured yet: the first full seed cost-only profile occurs only after handoff,
+  is retained as science prefix and must admit the COMPLETE suite within8h.
+- Existing heartbeat must complete the140h terminal scientific/resource/integrity
+  decision and independent audit, then create the AUTHENTIC audit receipt at
+  `ICML-2027/internal/sealed_bridge_learning_140h_audited_terminal.json`, following
+  package README schema (all evidence reviewed, decision, root/PID, terminal marker
+  and audit-report paths/digests). Never create a placeholder receipt just to start.
+  Only then automatically launch `D:/anaconda/envs/ust2/python.exe` with
+  `E:/HKUST-study/vin/SDDE/experiments/v3_risk_gate8h/launch.py --run` hidden, after
+  checking processes. No new watcher; the supervisor shares140h's owner mutex.
+  Any existing native root blocks overwrite/resume/retry; preserve all partials.
+- At20:53CST140h metadata112/117 main (39/39,39/39,34/39), replay0/6, analyses0/2;
+  native PID19816 alive. No stage-completion or material-ETA trigger; retain the
+  LAST COMMUNICATED20:25 forecast below as comparison baseline. No returns read.
+- No manuscript body/PDF or old native source/result modified in this preparation.
+  Readiness of implementation is NOT successful experimental evidence or TSP
+  qualification. Unknown-model calibration and broader scope remain open.
+
+## LAST COMMUNICATED NUMERIC FORECAST,2026-10-19 20:25 CST
+
+Main111/117 (80 imported+31 new), Spread39/39, Reference39/39,
+HalfCheetah33/39; replay0/6, analyses0/2, final independent audit not started.
+Sole native PID19816 remains live. Snapshot cumulative71.74455CPU hours used,
+68.25545h left of140h. No completion/failure marker and no incomplete returns read.
+
+Cost-only forecast is now METHOD-MATCHED rather than averaging unlike methods:
+each of the six remaining cells uses the mean CPU of its TWO completed same-task,
+same-method other seeds. Forecast seconds: defensive_page_pg_adaptation1258.1796875,
+fresh_pg2000.6328125, full6447.7265625, no_transport9318.7578125,
+fixed_allocation6962.359375, no_price5513.921875. Subtract actual owner CPU since
+the latest complete cell for the active cell. CPU/wall ratio0.9684764.
+Remaining main estimate8.73528CPUh; all6 replays matched to their actual original
+task/seed/method payload costs4.50677CPUh; analysis reserve600s. Projected native
+cumulative total85.15326CPUh, NOT a cap change or guarantee.
+
+Communicated main finish2026-10-20 05:26CST, native workflow10:15, independent
+audit11:15--13:15, planning envelope06:00--20:00 that day. This advances the prior
+native20:15 forecast by10h and triggers the material-reporting rule. The independent
+audit1--3wall-hour allowance remains unmeasured; same-method costs still vary.
+Compare future ETA triggers to THIS last communicated forecast, not19:46 below.
+
+## CURRENT V3 substantive implementation request,2026-10-19
+
+LATEST HUMAN REPLY: “批准独立8 CPU小时”. The separate V3 validation budget is
+now APPROVED, not merely proposed. Read manuscript/internal/content_strengthening_20261019/
+APPROVAL.md and experiments/v3_risk_gate8h/protocol.json. Prepare/verify/freeze
+the implementation and source/runtime admission, commit/push BEFORE new data;
+then launch one native worker only after the140h owner reaches its terminal
+decision and exits. No new experiment driver is running now. Historical
+“unapproved” statements in the pre-reply audit/proposal are preserved as history.
+
+Human requested actual implementation of full-text nearest-work comparison,
+constructive certificate conditions and direct risk-gate validation, preserving
+the original and asking for a separate budget before new experiments. This
+supersedes the historical V3 author-release-only state, NOT the frozen140h study.
+Read TSP-V3-revised-20261018/manuscript/REVISION_STATUS.md CURRENT section and
+internal/content_strengthening_20261019/{REVIEW.md,release_check.json}.
+
+- Implemented known-finite-model certificate construction/proof and72 deterministic
+  shield witnesses; explicit actual-risk gate/proof and25 pure algebra/boundary tests.
+- Six primary full texts compared at assumption/theorem/proof/algorithm level,
+  including2026 parameter-free TD and adaptive-kernel SA. This is not exhaustive
+  priority clearance or a full proof audit of every appendix.
+- Outcome-known saved-branch reconstruction preserves ALL14,336 old cells/all8
+  policies/all192seeds. Original registered safety allowances give480/896 corrected
+  admissions vs505 without carryover. Zero-slack stress0/896 retained separately.
+  High-instance gains coexist with low-instance mean risk increases and adverse
+  cells; all are reported. No new trajectory/native experiment was launched.
+- Main13pages/supplement6pages; all19pages inspected/fonts embedded, zero
+  undefined/overfull;13 prior main formal blocks and authentic author block intact.
+  Original V3 and prior revised copy preserved. Fresh39-reference verification
+  has38 raw PASS plus freshly resolved Paulin article-number representation.
+- Decision CONSTRUCTIVE_THEORY_AND_RETROSPECTIVE_REPLAY_VERIFIED_NEW_SEED_VALIDATION_PENDING,
+  NOT TSP-ready or merely awaiting ORCIDs. Unknown-model simultaneous calibration,
+  fresh direct validation and broader nonlinear/queue scope remain open.
+- Separate NEW_VALIDATION_PROPOSAL.md requests AT MOST8CPU hours for196,608
+  new trajectories, full replay and double analysis. The human has now explicitly
+  approved that separate budget; it has NOT started. Default launch only after
+  the140h owner terminal, with no competing native worker. Keep140h monitoring
+  alive and complete V3 source/runtime admission before launching new data.
+- Measured algebra/CSV construction11.78125CPU seconds is separate manuscript
+  analysis, not charged to the sealed native owner. No old results/gates changed.
+- At20:19CST read-only metadata shows110/117 main, replay0/6, analyses0/2;
+  sole native PID19816 remains live. This ordinary-cell snapshot is not a newly
+  communicated ETA; compare future material ETA triggers to19:46 below.
+
+## Material Passport
+
+- Origin: academic-research-suite / experiment-agent, authorized autonomous implementation.
+- Date: 2026-10-16 (renewed human authorization).
+- Status: human authorized100 additional CPU hours on2026-10-18, total140h. The40h owner exited on its exact resource cap (144002.671875s), with80 complete cells preserved; no scientific failure. A separate resource-only continuation lock imports the80 cells byte-for-byte and runs the remaining37 plus6 replays/double analysis/plots after commit/push. V3 repair is now separately authorized in TSP-V3-revised-20261018/manuscript; original TSP-V3 stays unchanged. Do not duplicate workers, rank incomplete returns, or alter frozen science.
+
+## Human-approved100h addition and independent V3 repair (2026-10-18)
+
+### Latest numeric ETA revision,2026-10-19 19:46 CST
+
+- Main109/117(80 imported+29 new): Spread39/39, Reference39/39,
+  HalfCheetah31/39. Sole native PID19816 is running the next cell; replay0/6,
+  analyses0/2, plots/final independent audit not started. No completion/failure
+  marker; tracked tree clean before this status update. All27 source/resource
+  SHA values and start lock/admission hashes match. No incomplete returns read.
+- Live CPU at19:46:05:71.1252h used,68.8748h left of140h, including all old
+  profile/stop/lost work. These figures are a snapshot, not a live budget.
+- Material cost-only ETA revision: same rolling7-complete-cell calculation now
+  averages7780.875CPU seconds per HalfCheetah cell, CPU/wall ratio0.970923.
+  The latest two complete cells cost5696.265625s and1106.015625s versus the
+  previous long-cell group near9400--9751s. No performance inference is made.
+  Eight main cells remain, one active: estimated17.22CPU hours main remaining,
+  6.39CPU hours for six replays(four matched MPE costs plus two recent-cost
+  HalfCheetah cells),600s analysis reserve; projected native total94.90CPU hours.
+- Estimated main finish2026-10-20 13:30 CST; native workflow20:15 that day;
+  final independent audit21:00--23:00, retaining a conservative planning envelope
+  through2026-10-21 08:00. These are estimates, NOT bounds or guarantees.
+  Audit1--3wall hours is still unmeasured; cell/method costs vary substantially.
+  The native point estimate advances8h37m versus the last communicated04:52
+  on2026-10-21, triggering the reporting rule. Use this revision as the next
+  comparison baseline; preserve the prior estimate and its evidence below.
+- No native source/config/gate/budget/replay/method/seed change or new run.
+  All science claims remain sealed until workflow_complete AND driver exit
+  and the independent final audit; V3 remains untouched and independent.
+
+### Renewed completion authority and numeric reporting,2026-10-19 19:23 CST
+
+- Human renewed autonomous completion of all117 main cells,6 fixed full-budget
+  replays, double analysis/plots and final independent audit under the SAME140h
+  cumulative ceiling. Preserve every completed/partial/failed result and full
+  costs; no restart, extra cap, scientific change or new retry is authorized.
+- Verified snapshot: sole native PID19816,108/117 complete(80 imported+28 new),
+  Spread39/39, Reference39/39, HalfCheetah30/39; replay0/6, analyses0/2, final
+  independent audit not started. Cumulative254762.359375s=70.7673h;
+  remaining249237.640625s=69.2327h. This is historical metadata, not live CPU.
+- At19:16 the cost-only forecast communicated to the human was103.3CPU hours
+  total: main finish around2026-10-20 21:00 CST, native workflow around2026-10-21
+  04:52 CST, final independent audit around06:00--08:00, planning window03:00--12:00.
+  Basis: latest7 complete HalfCheetah cells averaged9583.35CPU seconds,
+  CPU/wall ratio0.972815, four matched MPE replay costs plus two recent-cost
+  HalfCheetah replays and600s analysis reserve. The1--3wall-hour independent
+  audit allowance is not measured. All estimates are rough, not guarantees;
+  no incomplete scientific returns were inspected or ranked.
+- Existing hourly heartbeat updated, not duplicated. Report concrete main/replay/
+  analysis/audit counts, live used/remaining CPU hours and revised CST estimates
+  at stage completion, failures/final decisions/required action, or material ETA
+  change(at least3wall hours or20% of previously estimated remaining time,
+  relative to the last communicated forecast, or projected cap overrun).
+  These are REPORTING triggers only, never scientific gates. Record the last
+  reported stage/forecast here; do not issue routine no-anomaly messages.
+- V3 technical release remains independently complete/pending authentic author
+  release inputs; no manuscript/proof/citation/render/reanalysis repetition.
+
+### Latest substantive V3 theory--evidence strengthening,2026-10-18
+
+- Human explicitly requested substantive novelty/theory--experiment closure,
+  not further narration alone. The isolated revised copy now adds a same-stream
+  actual-risk enclosure, exact running-mean/averaged-FIFO weights, and the stable
+  averaged delayed learner's1/s risk / second-order selection-carryover interface.
+  Full proof and existing-data table are in supplement.tex/pdf; main stays13pages.
+- New analytical evidence is outcome-known, not new native data or independent
+  confirmation. ALL14,336 old policy cells,8 policies,104/56 scenario families,
+  all budgets/regimes and8 search-censored families are retained. Original V3,
+  original source/results/gates and the live140h benchmark are untouched.
+- IMPORTANT failure retained at2aec1a5: the first new nominal-delta analysis
+  assumed directional0.025, but the frozen old probe helper only certified an
+  equal-prior average0.025. Do not admit internal/same_stream_evidence_20261018.
+  The corrected, separate root is internal/same_stream_directional_evidence_20261018,
+  using each probe's exact affinity as its directional bound(0.03523--0.04975).
+  The old probe/actions/seeds/gates were NOT changed; no scientific payload retry.
+- After both corrections, the ORIGINAL practical intermediate-subset actual
+  mean-risk improvement is enclosed by[0.1607,0.1952] for A and[0.0562,0.0773]
+  for averaged delayed B. Adverse cells101/446 and33/222 remain. The ENTIRE B
+  intermediate mean interval[-0.0049,0.0252] is inconclusive; no universal benefit.
+  Existing empirical means0.1767/0.0726 and all96 original scenario primary means
+  are recovered, not regenerated. Corrected analytical CPU89.03125s, provisional
+  CPU87.671875s; neither is a native learning study.
+- Read revised internal/same_stream_strengthening_review_20261018.md,
+  same_stream_directional_proof_audit_20261018.json and
+  same_stream_release_check_20261018.json for current scope/decision. Historical
+  prose-only invariance gates are NOT applicable to this new theorem addition.
+  All pre-existing formal statements remain intact; complete moved proofs are
+  retained in the supplement. Fresh37-reference/style audit has36 raw passes
+  plus the freshly resolved Paulin article-number representation; preserve raw
+  service outages, no Bib edits. No external priority/plagiarism clearance.
+- This improves the TSP contribution materially through a computable statistical
+  risk-transfer interface, not a new general Lyapunov theorem or a superior MARL
+  optimizer. Current author-release inputs still needed: both authentic ORCIDs,
+  related/prior/concurrent-submission declarations and all-author approval.
+  Do not submit or invent metadata. Do not wait for science to handle supplied
+  metadata, and do not stop science because metadata are pending.
+- At15:10 CST the sole native PID19816 remains in science with87/117 completed
+  (80imported+7new). Live cumulative CPU156066.31s=43.35175h; remaining347933.69s
+  =96.64825h out of140h;6 full-budget replays/double analysis/plots still pending.
+  No workflow_complete/failure marker. This is only a cost/progress snapshot;
+  inspect current process/metadata next time and never inspect incomplete returns
+  or duplicate the owner/replay/analyzers. Source/config/gates/cap stay frozen.
+
+### Latest full-text positioning/prose handoff,2026-10-18 14:16 CST
+
+- The human requested a full V3 assessment of novelty/thesis/narrative/theory/
+  experimental depth/scope and a non-defensive Kimi prose pass. This is complete
+  ONLY in TSP-V3-revised-20261018/manuscript. Latest authoritative review:
+  internal/tsp_positioning_and_prose_review_20261018.md; gate:
+  internal/tsp_narrative_revision_check_20261018.json. Original V3 preserved.
+- Editorial judgment: viable TSP resource-constrained statistical learning/
+  policy-evaluation candidate; novelty/significance and conditional-theory versus
+  implemented-MARL scope remain real review risks. No need for a fictitious
+  communications application, no guaranteed novelty/acceptance or full-algorithm
+  superiority. The140h study is independent and not needed for these prose edits.
+- Native localized patches, not full manuscript regeneration: all inline/display
+  mathematics, entire formal statements, ordered cite/label/ref/eqref commands,
+  author block/Bib/figures matcha667d32; all critical positive/negative statistics
+  remain. Full13-page visual review passes,201-word abstract/five keywords,
+  zero undefined/overfull and fonts embedded. Current PDF SHA
+  289c065ee2d5fc440668724b4751d7d9ae723833caa2c3b1da56ab21eb9de431.
+  Old author-only scope gate is historical and must not be rerun as the current
+  body-unchanged gate. No old proof/evidence/source/gate/native rerun or mutation.
+- Fresh citation/style evidence: tsp_narrative_citation_20261018;35 raw PASS plus
+  Paulin article-number resolution and Perazzone publisher match retaining current
+  Crossref429. No rate-limit bypass or raw-state rewrite. Final citation groups
+  and Bib unchanged; post-lookup local compression/context recorded. No definite
+  IEEE Bib error; no detector-evasion/plagiarism/priority clearance claim.
+- Decision TSP_CANDIDATE_EDITORIAL_REVIEW_NOT_ACCEPTANCE_CLEARANCE. Authentic
+  ORCIDs required by current IEEE instructions, prior/concurrent/related-manuscript
+  disclosures, all-author consent/final release remain human inputs. No submission.
+  Do not repeat this complete review/polish/citation/render pass while unchanged.
+- Science at14:15 CST remains SINGLE PID19816,86/117 science complete;6 replays
+  and analyses pending. Native CPU about8948.23s gives cumulative152950.90s=
+  42.4864h, remaining351049.10s=97.5136h. Snapshot only, no new forecast or outcome
+  inference. No failure/complete marker and no incomplete returns inspected.
+
+### Prior author-metadata handoff,2026-10-18 13:57 CST
+
+- The human supplied the authentic Jialin Zhuang / Vincent K. N. Lau author
+  block, HKUST ECE affiliation, emails, corresponding author and RGC grants.
+  These are inserted ONLY in TSP-V3-revised-20261018/manuscript. The author-only
+  gate compares with3407feb: scientific body/appendix/Bib/all figures unchanged,
+  original V3 hashes unchanged. No native run or new scientific outcome used.
+- Author PDF remains13 pages,218-word abstract/five keywords, zero undefined or
+  overfull items, all13 pages inspected/fonts embedded. Two email nonbreaking
+  boxes prevent display hyphenation; no email content changed. Current PDF SHA
+  7a452b042f6ce8270b33e02648f0c5ded36aa4f457eb98ddc09dbfe19d937ed3.
+  Latest metadata report: internal/author_metadata_release_check_20261018.json;
+  read revised REVISION_STATUS.md current section, not historical pending lists.
+- Fresh37-reference requests are preserved separately in
+  internal/author_metadata_citation_20261018;36 raw PASS + separately resolved
+  article-number representation. No definite IEEE Bib error, keys/bytes unchanged.
+  Metadata check records the exact source-only email wrappers after citation
+  requests. No external review/plagiarism/acceptance clearance is inferred.
+- Decision AUTHOR_METADATA_VERIFIED_SUBMISSION_DECLARATIONS_PENDING. Human
+  prior/concurrent/related-manuscript disclosures, all-author consent/final release
+  and authentic ORCIDs if applicable remain unprovided. Do NOT fabricate or submit.
+  Do not repeat completed metadata/citation/render/proof audits while unchanged.
+- At13:57 CST ownerPID19816 remains live,86/117 science complete (80 imported+6
+  new);6 replays/analyses not yet complete. Native process CPU about7918.45s gives
+  cumulative151921.12s=42.2003h, remaining352078.88s=97.7997h of140h. These are
+  snapshots, not a new forecast. No failure/complete marker; no incomplete returns
+  inspected. Keep the single owner; V3 declarations must not stop its monitoring.
+
+### Prior verified handoff,2026-10-18 13:24 CST
+
+- V3 technical repair/final pre-submission audit is completed in the SEPARATE
+  TSP-V3-revised-20261018/manuscript copy. Authoritative report is
+  internal/technical_repair_review_20261018.md; machine gate is
+  internal/submission_release_check_20261018.json. Original V3 bytes remain
+  unchanged. Do NOT repeat old citation runs or reopen repaired issues solely
+  from historical first/second-pass notes below.
+- The source clock audit distinguishes stale lag D, terminal excluded updates u
+  and physical charge ell; matches1,600 integer cases/all36 saved affine actions,
+  with max coefficient discrepancy1.6941e-21 and no native reruns. Main admission
+  uses ACTUAL pre-probe frozen selected-action certificates; expected Gaussian
+  KL, positive-part histories, mixed-target scope and phase proof are repaired.
+  Old EXP016B remains labeled empirical mechanism evidence rather than direct
+  validation of conditional-theorem hypotheses. Saved gates/results unchanged.
+- Verified PDF:13 pages, official-policy one-inch margins,10pt journal class,
+  abstract218 words/five keywords, zero undefined/overfull items, all13 pages
+  inspected/all fonts embedded. SHA60da714cbd7fc6fb43f3d00b5cfa6c18e9c8d390030b3dcf6b3099a78df84350.
+  All37 identities freshly verified today; raw36 PASS + separate article-number
+  resolution and primary context/access-limit matrix preserved. Not independent
+  external review or full-text plagiarism/priority clearance.
+- Decision TECHNICAL_REPAIRS_VERIFIED_AUTHOR_RELEASE_PENDING. Human author order,
+  affiliations/contact/ORCIDs, funding/prior-submission disclosures and consent
+  are requested, not fabricated. Metadata insertion requires a final page check;
+  no actual journal submission authorized/performed. Do not wait for new science.
+- Science remains a SINGLE live native ownerPID19816. At13:23:59 CST progress is
+  85/117 science (80 imported+5 new),6 fixed replays/double analyses still pending.
+  Live cumulative charged CPU150057.4375s=41.6826h; remaining353942.5625s=98.3174h.
+  No complete/failure marker. All27 locked source/resource file hashes and the
+  lock/admission hashes match; all80 old/imported payload SHA pairs match. No
+  incomplete return was inspected/ranked. No launch/restart/retry is authorized.
+- Continue existing owner through117+6 and complete independent audit within
+  cumulative504000s. Report every control/ablation/cost and unchanged gates.
+  The earlier134h cost forecast is rough, not a completion guarantee. V3's
+  missing human metadata must not stop science monitoring. Keep the heartbeat
+  until both authorized workflows terminate or genuine science direction is needed.
+
+- NEW experiments/sealed_bridge_learning_140h.py, lock/admission/amendment with
+  suffix140h_20261018, root results/sealed_bridge_learning_dev140h_20261018.
+  Only CPU ceiling and explicit resource-continuation semantics change. ALL
+  original tasks/methods/seeds/horizons/native budgets/gates remain unchanged.
+- Old40h root, source locks,80 payloads and exact cap failure stay immutable.
+  Stopped active cell is HalfCheetah/seed971016103/fresh_happo_double; its344.171875
+  CPU seconds and every partial charge stay paid. No recoverable mid-cell state
+  exists. Human-authorized resource-only regeneration affects this unfinished
+  cell, never a completed cell or a scientific failure. Kernel mutex ownership
+  and committed/pushed source/runtime/prefix hashes gate the new owner.
+- The original profile underforecast the first long HalfCheetah cell by7.304x.
+  Revised cost-only whole-workflow forecast is approximately134h, not a guarantee.
+  The140h cap includes original profile, old stop/lost work and all new phases.
+- Continuation admission pushed at03e352dc9a01e99cf2b9e48a4e187581f825dd8a BEFORE
+  launch. New native ownerPID19816 (conda parent13408), started11:38 CST.
+  All80 imported hashes passed a separate SHA check;37 science cells+6 replay
+  remain. Lock SHA819459581a595a407b3e96aae7eae475ec2e30ae77e5c3fb5c0b72f3c8965934.
+- V3 no longer waits for new science. Separate source/figure copy is created;
+  risk denominator, expected-information, compact-domain, positive-part history,
+  certificate-relative safety and calibration-scope repairs are being implemented.
+  This is a WORKING revision, not submission-ready; full proof/claim, fresh
+  citation/BibTeX and compiled PDF gates remain required. Preserve original V3.
+- First working revision compiles successfully with no undefined/overfull items,
+  but is14 pages (target13); pages1/9/14 and corrected risk figure were inspected.
+  Page compression, full-page/proof/estimand audit remain open. Fresh all37 public
+  reference lookups completed:36 raw PASS, one Paulin issue/article-number
+  representation conflict resolved by a fresh institutional record lookup.
+  Preserve raw lookup report and separate resolution. IEEE style has no definite
+  errors under the local standard. Original source/Bib/PDF hashes still match.
+- V3 second-pass repair now reaches13 pages,220-word abstract/five keywords,
+  zero undefined/overfull items and all13 pages visually inspected. It fixes
+  the same-baseline budget decomposition, conditional post-probe proof, explicit
+  phase budget-shift assumptions and MPE/MaMuJoCo estimand definitions. All36
+  saved finite-certificate actions have positive containment margins; this is
+  not a global-solver certificate. See revised manuscript REVISION_STATUS.md
+  and internal/second_pass_repair_review_20261018.md. Release remains OPEN:
+  retained-update versus physical-clock terminal delay, sampling endpoint/mixing
+  clock and scalarized-versus-dual cost mapping need source/evidence alignment;
+  no old code/gates/results may change. Full citation-context/metadata checks
+  also remain. This independent repair does not await the new science.
+
+## Current human-approved40-hour execution (2026-10-16)
+
+- The human explicitly approved40 CPU hours for the complete NEW asynchronous
+  MARL strong-baseline comparison, truthful reporting and no more small tests.
+  V3 stays untouched; its TSP final audit proceeds independently NOW.
+- NEW wrapper experiments/sealed_bridge_learning_40h.py reuses original frozen
+  science117 cells+6 replays/double analyses/plots. The only plan difference is
+  cpu_seconds_limit=144000, including prior1033.421875s profile expenditure.
+  New40h resource lock/admission/preregistration are separate from the unchanged
+  original27cd287 lock and c126a38 RESOURCE_NO_GO evidence. No profile rerun.
+- Freeze/push the amendment and admission before science, then one kernel-mutex
+  owner starts results/sealed_bridge_learning_dev40h_20261016. All9 controls,
+  full/3 ablations,3 tasks,3 seeds,budgets,controller and original gates remain.
+  Do not peek incomplete returns, silently retry or migrate development into V3.
+- Preserve unrelated calibration --watch process and all other untracked files.
+  No GPU/HPC4/remote scope is authorized. The V3 audit is a read-only separate
+  report with fresh citation/bibliography/theory/evidence/PDF checks, not edits
+  or actual submission. Monitoring follows complete science and V3 audit status.
+
+## V3 independent final audit completed — submission not released (2026-10-16)
+
+- All manuscript/PDF/Bib/figure hashes remain unchanged. Fresh primary metadata
+  positively identify all37 references; Paulin article79/issue-none is a resolved
+  representation judgment, not a fabricated reference. Index outages are explicit.
+- All13 PDF pages visually inspected; four figures embed Times New Roman and
+  fraction ticks/subfigure labels are consistent. Isolated draftmode/BibTeX build
+  exits0, no PDF replaced; zero undefined/overfull and four underfull warnings.
+- Definite reporting correction: EXP-016B54.43%/10.85% divide the paired gain by
+  fallback risk, NOT information-only risk. Actual relative reductions versus
+  information-only are35.24%/9.79%, both positive. Fig3 subset values have the same
+  denominator distinction. Do not change saved results, gates or analyzer outputs.
+- Required proof repairs: expected not pointwise Gaussian-KL information bound;
+  nonempty compact certified scalar domain/global solve interface; positive-part
+  sliding envelope plus explicit random-delay/mixed-target history conditions;
+  certificate-relative/coverage-conditional safety. Theory memo has counterexamples
+  to the invalid steps and concrete repair paths; no repaired theorem is claimed.
+- MPE2.319% is mean regime/seed-normalized gain; MaMuJoCo8.341% is paired
+  mixture-first gain. Both reconstruct, but the definitions need explicit prose.
+  Robust-shield and terminal-parameter ablation gains remain supported, not an
+  all-metric/myopic win. Anonymous Authors still requires real submission metadata.
+- V3 repair does NOT require the new experiment. Current authorization preserves
+  V3; only separate audit/report files were created, not an edited manuscript.
+  No clean submission clearance or full plagiarism/context release is claimed.
+- The40h science driver remains independent and live. Next heartbeat monitors
+  its existing owner only; it must not repeat the completed V3 audit or launch
+  duplicate science/replay/analyzers. At science completion apply original gates,
+  report all controls/costs/negative results and commit only verified relevant data.
+
+## Preserved earlier terminal resource decision (2026-10-16)
+
+- See sealed_bridge_learning_resource_decision_20261016.md. Profile ownerPID27472
+  exited0 after39/39 cells,1033.421875 CPU seconds. The start execution.json is
+  immutable; workflow_complete.json is terminal RESOURCE_NO_GO. No active worker.
+- Full forecast110529.41796875s (30.7026h),9.2108x the12000s cap. Every old source,
+  all13 methods/3 tasks/science seeds/gates remain unchanged. Numerical profile
+  returns/gradients were not retained or ranked. No positive learning evidence.
+- Independent nonnative verifier ran twice into new_validation_a/_validation_b
+  roots; integrity.json and decision.json are byte-identical. All39 hashes,
+  mappings, native reservations, charge totals and runtime/source fingerprints
+  pass. All7 old frozen qualification source files and TSP sources are unchanged.
+- This bounded resource registration is stopped. Recommend explicit authorization
+  for a separately registered40-CPU-hour local envelope, keeping one worker and
+  ALL scientific conditions unchanged; or a separately authorized parallel CPU
+  server package. No expansion is assumed. The existing profile must not rerun.
+- The follow-up advance-sealed-bridge-marl-learning is deleted at this terminal
+  decision. No science admission, new qualification, GPU/HPC4 or manuscript edit
+  is authorized from this stop. TSP V3 remains the independent confirmed track.
+
+## Earlier sealed-bridge handoffs (historical; current decision above supersedes status)
+
+- The NEW fail-closed single-owner driver, exact-cost/controller analyzer,
+  semantic replay and all-method plotting path now exist. Prospective profile/
+  development config retains13 methods,3 tasks/two families, fresh science seeds,
+  200k/200k/1m transitions and1000-step official HalfCheetah. Profile39 whole cells
+  only for costs; never rank its outcome-ineligible returns. Separate science
+  admission is required after its frozen conservative CPU forecast passes.
+  Preregistration:sealed_bridge_learning_preregistration_20261016.md;
+  lock:sealed_bridge_learning_lock_20261016.json. No native data yet at freeze.
+- Three new synthetic guard/audit regressions pass, including rejected counter/
+  queue tampering and unauthorized native invocation; this is source validation,
+  NOT another native qualification or learning result. Previous39 route tests
+  were not repeated as the next research deliverable. All old source hashes
+  and manuscripts remain preserved. The NEW sampler uses63-bit role-derived
+  identifiers to avoid long-budget31-bit birthday collisions.
+- At the earlier freeze, the next step was ONLY the registered cost phase, one owner,
+  max3000 active CPU seconds inside the same12000 total envelope. Forecast
+  multiplier1.5 and600s reserve are frozen. A resource failure is a bounded
+  resource decision, NOT scientific failure or evidence of improvement; do not
+  shrink horizons/remove methods/retry. On pass, commit separate science admission.
+- Cost-phase registration was pushed at27cd287 BEFORE native execution. Its one
+  now-completed owner wasPID27472 (originating exec session44508), root
+  results/sealed_bridge_learning_cost_20261016. The driver itself owns all39 cost
+  cells and its forecast; never restart/duplicate it. No scientific117-cell
+  learning or six-cell replay has started. Inspect only protocol/cost/progress
+  while it runs; evaluation/gradient outcomes remain ineligible. Initial native
+  cost cells passed their exact-ledger audit; these are not positive results.
+
+- NEW callable complete learning backend now integrates13 actual server learning
+  methods, batched complete-policy collection, benchmark/frozen-policy evaluation,
+  source service/drain and exact training exhaustion. It remains unregistered
+  and UNTESTED on new native data; no learning driver is live. All13 routes on
+  each of3 tensor fixtures pass real HARL update/ledger verification with native
+  calls forbidden and constant-zero evaluation fixtures. Not MARL evidence.
+- The complete-method audit caught a substantive budget-clock issue before
+  science. Primary control now prices risk/work/bytes per PAID source+bridge
+  exposure, scales SGD steps by that exposure, samples receipts via w_j/n_j,
+  and feeds expected-duration-weighted losses to predictable OGD. Whole-menu
+  maximum bridge reservations and final evaluation AFTER source drain close
+  the finite-budget interface. See sealed_bridge_renewal_learning_design_20261016.md.
+  Gaussian PPO log vectors and source optimizer ownership were audited explicitly.
+- Next: complete ONE source-locked driver/analyzer/replay/cost-only forecast,
+  with meaningful native learning horizons and all9 controls+3 ablations retained,
+  then separately push the scientific preregistration if feasible. No further
+  estimator-only/native outcome-free qualification, old-run restart, manuscript
+  migration or scientific native data is authorized from these software checks.
+
+- Current learning-backend implementation is NEW
+  `experiments/sealed_bridge_learning`, not a change to the qualified source.
+  Exact prefix reward-score transport avoids reweighting early rewards by
+  later likelihood divergence; no total-variance/return dominance is claimed.
+  Scale-adaptive post-feedback OGD has an explicit1.5*D*sqrt(S_T) comparator
+  bound. Native launch/receipt reservations retain source costs, drain in-flight
+  work and declare whole-episode terminal fresh work. See
+  `sealed_bridge_learning_interface_20261016.md` for derivation and remaining
+  complete-backend interfaces. No native data/scientific freeze was started.
+  Next action is all-method complete learning/evaluation/cost integration,
+  NOT another estimator-only qualification. Actor-step calibration, strong
+  baseline adapters and meaningful full-horizon runtime feasibility remain open.
+
+- Read sealed_bridge_complete_design_20261016.md and the source-verification
+  report. Current-gradient transport replaces the old PPO-ray menu. A complete
+  trajectory-level defensive mixture gives bounded joint likelihood weights;
+  one-use independent delayed source cohorts avoid adaptive anchor reuse bias.
+- The complete native implementation includes actual actor/critic networks,
+  server SGD, independent service clocks, source/bridge role separation,
+  pre-data (m,beta), all-option variance feedback, virtual queues and cost ledgers.
+  Ordinary Adam/PPO epochs and same-bank return maximization are not imported.
+- Five algebra/protocol regressions pass. These are not learning evidence.
+  The proof is conditional expected-gradient/stationarity and resource-drift
+  analysis, not separate-trajectory HAPPO superiority or a practical certificate
+  for unknown neural smoothness constants. Source sampling/dual-gradient cost
+  remains a real feasibility question; the equal-policy limit is ordinary pooling.
+- Eight nearest-work records have fresh authoritative arXiv matches; publisher
+  cross-checks exist where listed. Semantic Scholar returned unavailable and is
+  recorded, not faked. Defensive IS/SVRPG/LVR-PG are existing bases/competitors;
+  the new research combination's ICML novelty is not yet established.
+- Official Gymnasium1.2.0/Gymnasium-Robotics1.4.0 were installed in a NEW isolated
+  project runtime, with existing MuJoCo3.3.0. Old pinned runtimes are unchanged.
+  The complete native qualification covers two MPE tasks plus official MaMuJoCo
+  HalfCheetah2x3, not a handmade Gym partition. Its25-step horizon is operational
+  only and cannot become locomotion learning evidence.
+- Qualification source/config/runtime lock must be pushed BEFORE native data;
+  one driver owns6 original+6 replay cells and two byte-identical analyses,
+  one CPU worker,1800 active CPU seconds. No evaluation returns or performance
+  ranking. Any payload failure stops that registration without retry.
+- Only a complete operational pass allows separately frozen development with
+  fresh seeds, sufficiently long task-specific horizons, strongest fresh/online
+  and nearest-method controls, substantive ablations and all-cost return axes.
+  Native AUC>=1%, positive seeds>=2/3, final>=-2%, baseline learning>=2%, replay
+  and full-cost requirements are NOT loosened. No new GPU/HPC4 or manuscript work.
+- Complete operational pass is now recorded in
+  sealed_bridge_native_validation_20261016.md. Driver exited0; all12 payloads,
+  both analysis bytes, whole runtime/source lock and declared ledgers pass.
+  Do not restart its driver/replay/analyzers or rank its outcome-ineligible
+  gradients/returns. All18,600 original+replay native transitions remain paid.
+- Next work must implement the complete equal-budget multi-task learning backend,
+  strong fresh/online/nearest-method references, all ablations, exact reservations
+  and benchmark/frozen-policy evaluation, then a separate prospective freeze.
+  Unknown neural smoothness constants and operational tiny meta/SGD settings
+  are not a practical certificate. Avoidable m costs, scale-adaptive regret and
+  the source tax must be checked as part of the full algorithm, not silently
+  removed or converted into estimator-only positive evidence.
+- Verified design/qualification evidence is pushed at5385aea. The completed
+  native driver has exited; no new scientific training process was started.
+  Follow-up advance-sealed-bridge-marl-learning is ACTIVE on this same thread
+  for the bounded complete-learning implementation/preregistration/development
+  decision, with one CPU worker and a separately frozen<=12000s science cap.
+  It must not restart qualification, tune its outcomes, modify old evidence,
+  expand into GPU/HPC4, or continue an indefinite auxiliary-study chain.
+
+## Amortized native qualification registration (2026-10-16)
+
+- Separate complete algorithm is implemented under experiments/amortized_packet_native;
+  predecessor sources, seeds, raw data and TSP manuscripts are unchanged. One
+  recomputed five-epoch unit PPO block supplies parameter-line variants. The
+  receipt selects current full actual-return scores; meta(m,lambda,geometry),
+  basis and past-only potential precede data. The interaction floor remains.
+- Five non-native controller/geometry/optimizer tests pass. New state-copy,
+  interpolation, geometry-work and eligible-only probe counters join the full
+  program/source/critic/policy ledger. Work units remain declared proxies.
+- Prospective qualification is amortized_packet_native_qualification_preregistration_20261016.md,
+  fresh seed79516031, two tasks, three methods,6 originals+6 replays,1800 CPU
+  seconds and one worker. Hash lock must be committed/pushed BEFORE execution.
+  The single driver owns all cells/replays/two analyses; do not duplicate it.
+- No qualification return may rank/tune candidates or qualify useful learning
+  precision. Operational pass is required but not positive return evidence.
+  Separate development needs a new source/gate/seed freeze and a cost-only
+  runtime estimate, and must jointly test precision, learning and full costs.
+
+## Final amortized complete-development decision (2026-10-16)
+
+- Registered dd27979 driver exited0 after60 complete learning cells,6 fixed
+  replays, two byte-identical analyses and plots. Do NOT restart any of them.
+  Source/runtime/registered-commit hashes and every66 payload/ledger pass the
+  independent audit at results/amortized_packet_development_audit_20261016.
+- Full method fails native AUC/positive-seed/final-return gates in BOTH tasks.
+  Both strongest-baseline learning gates pass (5.21%/8.43%), so lack of learning
+  signal is not the explanation. Spread also fails independent selected-response
+  gates; Reference passes those but still loses full learning to online_kl.
+- Selection training optimism is6.469/2.218 cumulative gain units on task means.
+  All six full policy/action paths are identical to no_price; resource pricing
+  changes zero selected candidates at visited scores. Valid amortization lowers
+  proposal duplication but does not repair update directions or score transfer.
+- All costs retained: logical bytes +17.95%/+22.06% vs strongest control, proxy
+  work -6.06%/+7.63%; actual mean CPU157.55/103.12s vs141.41/96.61s. Proxy saving
+  is not hardware acceleration. Shared message/byte AUC does not reverse loss.
+- Full mechanism report: amortized_packet_development_validation_20261016.md.
+  New derived figures preserve every method and fix the original legend/band
+  presentation without replacing any frozen figure or scientific artifact.
+- Final bounded judgment is NO_GO for this receipt-only exhaustive PPO-ray
+  selector. A future substantive design must alter the joint-version/off-policy
+  update program and have avoidable prospective resource cost. Simply adding a
+  KL cap is not new: online_kl is already a strong registered comparator. This
+  requirement is not a proved novel algorithm or a positive-result promise.
+- No automatic new tests, new seeds, looser gates, environment removal, GPU run,
+  or manuscript migration. Preserve all old studies and TSP sources. Terminate
+  complete-amortized-marl-value-control-development after pushing the audited
+  final package; no scientific process remains active.
+- Complete evidence/diagnosis/derived figures are pushed atc5d7de6. Eight relevant
+  amortized algebra/controller/protocol regression tests pass; all frozen source
+  hashes and derived artifact manifests remain verified. Original figures and
+  all scientific results are preserved, including the failed primary comparison.
+- Terminal follow-up action completed: automation
+  complete-amortized-marl-value-control-development was DELETED through the app
+  after the audited package push. No replacement heartbeat or native run created.
+
+## Complete amortized learning-response development freeze (2026-10-16)
+
+- Qualification driver exited0;6+6 cells and both byte analyses pass at1553cca.
+  Do not restart it or its analyzers. PPO Adam calls now equal the matched
+  eligible-all count on the NEW qualification workload. No return ranked.
+- Implemented the complete development with seven strong fresh/matched online
+  controls, full method, full-vector and no-price ablations; both native MPE
+  tasks, fresh seeds79521001--3,24 banks*20 episodes*25 steps, one CPU worker.
+  This is two tasks within one family, NOT cross-family validation.
+- Each current selection uses a prefix m<=16. A disjoint last4 episode tail
+  checks its selected actual-return contrast AFTER selection and never enters
+  current controller feedback. Tail reads/forwards/messages are fully priced;
+  all future programs remain paid. Same-world benchmark evaluation is separate.
+- Eight algebra/transaction/independent-validation tests pass. Source/plan and
+  all task-level learning/precision/cost gates must be committed/pushed before
+  execution. Cost-only native-volume runtime estimate11879.281808 CPU seconds;
+  hard whole development+6replay+analysis cap12000, never retry a failure.
+- The only authorized driver will be amortized_packet_development/workflow.py
+  at results/amortized_packet_development_20261016, with lock
+  internal/amortized_packet_development_lock_20261016.json. It owns60 cells,
+  six fixed replays, two analyses and plots; no duplicate worker/analyzer.
+- EACH task must show>=1% AUC gain vs strongest of all seven controls,>=2/3
+  positive seeds, final>=-2%, strongest-control learning>=2%, positive independent
+  selection response on mean and>=2/3 seeds,>=4 nonidle receipts/seed, cost ratios
+  <=1.5 and all causal/resource/replay gates. No pooled rescue or outcome tuning.
+- A pass permits only fresh confirmation/wider-family planning. Any scientific
+  failure requires full-mechanism diagnosis and a final bounded design judgment,
+  not another automatic sequence of numbered attempts. No GPU or TSP edits.
+- Separate science source/preregistration is pushed at
+  dd279792735ecf0c91b4bb3e86420c3c7a732736 before launch. The ONE workflow is
+  active at results/amortized_packet_development_20261016, source snapshot matches
+  dd27979, Python PID28264, local execution session92326 if available. Execution
+  confirms estimated CPU11879.281808 and cap12000. Read execution/progress only
+  while incomplete; never start another worker/replay/analyzer. The process owns
+  all60+6 cells, double analysis and plots; require final workflow marker AND exit.
+- Existing heartbeat complete-amortized-marl-value-control-development is updated
+  in place, hourly and quiet on routine unchanged state. It monitors this frozen
+  study, not the completed qualification, and deletes itself at the terminal
+  bounded decision. Preserve active raw outputs without staging partial evidence.
+- Before the scientific freeze, the --freeze import preflight exposed a legacy
+  module-name collision; explicit package-qualified audit/analyzer imports fixed
+  it before any scientific root/data existed. No native payload was retried.
+
+## Decisions
+
+1. Preserve TSP/, TSP-V2/, TSP-V3/, all historical gates and results.
+2. Use the full q={1,2,4,8} catalogue; forbid task-specific q removal.
+3. Avoid V2's clipped one-block reward, nonshrinking sliding-window bonus, and
+   repeated validation tax. Pay one independent calibration stream.
+4. Count both messages and TOTAL actor transitions, with parallel ticks logged
+   separately. Never label parallel-clock ticks as total environment work.
+5. First establish an observable score/true-risk interface in a tractable
+   Markov TD model. The selector cannot access theta or rho.
+6. Use known-mixing Gaussian whitening with exact t/chi-square intervals;
+   do not label a normal approximation as a finite-sample certificate.
+7. Freeze the CPU design in a separate commit before calibration outcomes.
+8. If development passes, freeze a separate confirmation lock with fresh seeds.
+9. After CPU confirmation, qualify the actual MARL learning-response interface
+   before any multi-environment performance run. A controlled CPU pass is not a
+   nonlinear MARL success claim.
+
+## Required CPU outputs
+
+Full-context risk/decision tables, coverage and interval widths, oracle regret,
+interior-q selection, strong fixed comparators, ablations, source/config hashes,
+an independent byte replay, and a complete decision preserving every cell.
+
+## GPU evidence requirements
+
+One frozen controller and complete q catalogue; discrete coordination and
+continuous control; native independent, intermediate, and shared coupling;
+full fixed catalogue plus correlation-only, myopic, and a specified adaptive
+batch baseline; return versus total actor transitions and messages; separate
+wall time and calibration cost; development before fresh confirmation.
+
+No new manuscript claim is admitted until it is supported at the declared scope.
+
+## Completed on 2026-10-13
+
+- Preregistration source: f584d76.
+- Ten targeted tests passed.
+- Development: 360 contexts, 16 fresh seeds, 46,080 method rows; all gates pass.
+- Five scientific files reproduce byte for byte.
+- A separate 64-seed confirmation lock retains the original implementation,
+  population, complete catalogue, and all gates.
+- The myopic comparator is a one-step-then-commit ablation. A strong repeatedly
+  replanning adaptive baseline is still required before an ICML algorithm claim.
+
+## Strengthened learner and acquisition design
+
+- Implemented causal scalar gains from minimizing exact quadratic Lyapunov risk.
+  They attain the Gaussian linear-unbiased information bound in the declared model.
+- Efficient fixed-q opponents use that same stronger learner. A global-single-q
+  positive result was insufficient: the public-budget-wise diagnostic exposed a
+  6.61% loss due to acquisition cost. This diagnostic is preserved.
+- Added a uniform, outcome-free perfect-information futility theorem. It permits
+  skipping acquisition when even the paid oracle cannot improve the full-budget
+  public fallback. Every q remains available.
+- CPU-003: 360 contexts, 16 fresh seeds; all original gates and byte replay pass.
+  The budget-wise efficient-fixed risk ratio is 0.947742; interior selection is
+  99.7024%; 80 contexts correctly skip acquisition without reading the sensor.
+- CPU-003 confirmation: 64 independently locked seeds, 184,320 method rows;
+  every frozen numerical gate and scientific byte replay pass. The budget-wise
+  efficient-fixed risk ratio is 0.947742415 [0.947667792,0.947817043]; interior
+  q selection is 99.7396%. Eighty contexts skip acquisition before sensing.
+- Fresh learning verification: 18 method paths, 2,048 replicas per path,
+  378 checkpoints; exact-risk diagnostics and byte replay pass. Figure checked
+  visually; value-estimation MSE is not relabelled as team return.
+- Independent recurrence audit verifies all actual total charges and horizons.
+  Preserve the diagnostic-oracle prefix-label erratum in a derived sidecar;
+  do not alter raw scientific outputs, frozen code, or any threshold.
+- Relevant regression: 173 passed; existing TSP/V2/V3 evidence preserved.
+- The pinned HARL critic replication audit runs on CPU. TensorBoard logging is
+  unnecessary. A missing PyYAML import was resolved by reading the already
+  installed pure-Python package from the base environment; no environment was
+  installed or upgraded and no experiment payload was retried.
+- HARL critic duplication changes parameters by at most 2.98e-8. The next
+  interface must measure actor/critic response, optimizer work, and transfer,
+  rather than attribute a shared-stream q=2 optimum to critic duplication.
+- A separately frozen 32-payload CPU MAPPO actor audit covers two seeds,
+  discrete/continuous action spaces, tanh/relu, and every q. All payloads are
+  finite and replication-invariant within 1e-5 (maximum 3.28e-7).
+  The audit JSON also reproduces byte for byte in a disjoint execution.
+  Actual independent-data and evolving-policy response remain the next boundary.
+- Next-stage requirements are in marl_response_qualification_plan.md. No new
+  GPU performance study, nonlinear return claim, or manuscript migration is
+  authorized by the Gaussian qualification alone.
+
+## Decision after real-MAPPO response development (2026-10-14)
+
+- The frozen `ICML27-MAPPO-OBSERVABLE-RESPONSE-CPU-001` cross-stage gate failed
+  and is preserved at `marl_response_development_decision.md`; it is not to be
+  rerun, tuned, or presented as return evidence.
+- Do not immediately repeat q-specific fresh sensing: the existing shadow
+  score observes candidate displacements after q-specific data and training,
+  so it is not an executable pre-action controller and probe cost may consume
+  the oracle gap.
+- The candidate has been sharpened after checking the HAPPO/HAML literature:
+  it is not generic asynchronous actor-block scheduling, but certified
+  parallel batching of HAPPO-like sequential updates. One already charged
+  joint rollout supplies per-agent gradient packets; the prospective design
+  variable is the subset of policy blocks applied jointly plus their step
+  sizes. Lyapunov drift would jointly account for message/environment budgets
+  and a certified lower bound on return gain.
+- This is only a candidate. Async MARL, stale-gradient scheduling, gradient
+  conflict, and generic candidate-descent scoring are established prior work.
+  HAPPO/HAML already provide sequential heterogeneous-agent updates and
+  monotonic-improvement theory. The specific novelty hypothesis is a
+  certified condition for parallelizing subsets of those updates under
+  cross-agent interactions and stale packets, with resource-aware drift.
+- CPU kill tests and proof obligations are recorded in
+  `async_policy_block_scheduler_candidate.md`; no new seed, scientific run,
+  experiment number, or GPU task is authorized until the observable path,
+  confidence/certificate, oracle headroom, and charged compute are fully
+  specified outcome-free.
+- An exact small-team optimizer for the proposed concave drift surrogate is
+  implemented in `experiments/async_policy_block_scheduler.py`; its six unit
+  tests and the full 27-test ICML-2027 suite pass in the existing `ust2`
+  environment. This is software verification only, not evidence for MARL
+  return improvement or a valid gradient/curvature certificate.
+
+## HAPPO return-bound audit (2026-10-14)
+
+- Derived a sufficient bridge from the HARL Lemma-19 sequential return bound
+  to a frozen-prefix simultaneous candidate: subtract a uniform pairwise
+  conditional-advantage oscillation remainder
+  `(1-gamma)^(-1) sum_{j before i} omega_ij TV(pi_j, pi'_j)`, a uniform
+  post-selection confidence radius, and a separately justified stale-data
+  bias term.
+- The bridge only certifies non-decrease relative to the old policy when its
+  RHS is nonnegative; it does not certify superiority over HAPPO's resulting
+  policy. A monotonicity lower bound for each method is not a paired method
+  comparison.
+- Exact binary two-agent counterexample: frozen local gains sum to 2 while
+  true simultaneous return change is `2-kappa`; the interaction correction
+  recovers the exact HAPPO prefix term and rejects harmful updates.
+- Novelty audit found existing concurrent/joint monotonic-update work
+  (CoPPO, MAT) and a parallel-pipeline monotonicity proposal (FP3O preprint).
+  The candidate cannot claim first parallel monotonic MARL optimization. The
+  remaining hypothesis is budgeted online selection of policy blocks under a
+  nonvacuous stale-aware return certificate; direct comparison and novelty
+  remain open.
+- Current step is still theorem-interface feasibility, not a scientific run.
+  Do not start MARL learning or GPU experiments until (i) exact finite-sample
+  confidence is uniform over the candidate family, (ii) interaction and
+  staleness terms are computable without evaluation leakage and are
+  nonvacuous, (iii) a relative-to-HAPPO comparison protocol is frozen, and
+  (iv) an outcome-free independent-data CPU headroom screen is preregistered.
+
+## End-to-end CPU decision experiment (2026-10-15)
+
+- The receipt-time subset model was rejected before scientific execution:
+  packets already computed and transmitted have sunk cost, and a subset of
+  agents in a joint game does not remove the other agents' environment steps.
+- `ICML27-HAPPO-ASYNC-BATCH-CPU-001` therefore makes the decision before actor
+  packet launch and charges every native joint trajectory, optimizer row,
+  gradient packet, proxy forward pass, and outcome-aware search trajectory.
+- Stage A compares fresh sequential HAPPO, full-cadence HAPPO, fresh parallel,
+  stale, age-first, causal history-surrogate, and an outcome-aware finite-menu
+  diagnostic on two cooperative MPE tasks. The latter is an empirical
+  opportunity diagnostic rather than a deployable method or formal upper
+  bound.
+- Development and holdout seeds, all actions, costs, replay checks, and gates
+  are fixed in `happo_batch_cpu_preregistration.json`. A task must also show
+  at least 2% fresh-HAPPO learning from initialization so that lack of signal
+  is not misread as lack of allocation value.
+- The final one-worker, 14-payload operational qualification passed every
+  mapping, finite-value, hash, controller-separation, trajectory-identity,
+  and exact-accounting check. A prior two-worker operational attempt stopped
+  on host memory pressure and is retained; no scientific seed was involved.
+- A complete Stage-A pass authorizes only a separately frozen, fresh-seed
+  observable-score and confidence qualification. A failure requires a causal
+  design change tied to the failed mechanism; gates, tasks, and failed seeds
+  remain unchanged.
+- Before reading any scientific return, Amendment 1 corrected a deterministic
+  full-cadence credit-bank defect found during live ledger inspection. The
+  first two unopened payloads are ineligible; every scientific seed was
+  replaced. The amended one-worker qualification passed 14/14 payloads,
+  including exact equal-budget exhaustion by every fixed schedule.
+
+## Final A1 CPU decision and causal redesign (2026-10-15)
+
+- All 80 payloads completed; frozen integrity and supplementary per-block
+  resource recurrences passed. Six registered payloads reproduce all 18
+  scientific files byte for byte, and two complete analyzers produce identical
+  CSV/JSON files.
+- Stage A **fails**: 10/16 scientific gates pass. Against the selected strong
+  control, spread AUC gain is 0.7115% and reference is -0.0334%; both miss the
+  frozen 2% threshold. Stage B and GPU performance work do not follow from A1.
+- Search ranking transfers poorly to independent checkpoints and costs
+  46.17x/11.58x the training joint transitions. The noisy finite-menu selector
+  is not a true oracle ceiling, so this is not a proof that all allocation
+  opportunity is absent.
+- Reference's rolling age stream aliases with its cyclic selection order;
+  nominal stale-cyclic, fresh parallel, age-first, and cyclic HAPPO coincide.
+  Exact accounting passed but did not detect this missing mechanism separation.
+- A substantive successor interface is implemented in
+  `causal_packet_ledger.py`: unique launch jobs, service streams independent of
+  selection clocks, single-use received raw gradients, server optimizer
+  ownership, and permanently charged work/transmission after rejection.
+  The 32-test suite verifies software only.
+- `happo_batch_cpu_a1_decision.md` records the complete decision.
+  `causal_packet_redesign_after_a1.md` derives the conditional receipt-step
+  lower bound and exposes the remaining launch/receipt gap: one-step queue
+  drift does not price a launch's delayed value. A successor scientific
+  preregistration requires causal score, feasible paired precision, uniform
+  return confidence, and multi-step drift together. No task/seed/gate rescue,
+  narrative-only change, or unregistered successor run is authorized by A1.
+
+## Bounded successor-feasibility decision (2026-10-15)
+
+- Closed the conditional launch/receipt timing interface with an in-flight
+  promised-return potential: launching debits future certified progress;
+  completion cancels that debit against the expected actual return increment.
+  The derivation requires independent hidden per-job episode gradients and
+  precommitted SGD steps. It is not a PPO/Adam return guarantee.
+- Derived bounded resource queues and a finite-horizon expected-return credit
+  inequality, including terminal outstanding jobs and confidence failures.
+  This does not prove stationarity or superiority over HAPPO.
+- The implemented distribution-free episode-gradient certificate is
+  **provably vacuous** at 16 episodes: radius/G=1.203441 for 72 simultaneous
+  certificates at delta=0.05. Both receipt and launch rules choose zero step,
+  even before staleness. No successor RL trajectory is justified or launched.
+- Compared fixed-launch steps and two-stage launch/step control and issued one
+  terminal no-go for this certificate. Fresh primary and arXiv checks establish
+  relevant delay-adaptive optimization prior work; a generic step rule is not
+  a sufficient novelty claim.
+- See `launch_receipt_feasibility_decision_20261015.md` and the analytic JSON.
+  A sharper, resource-feasible return estimator is a necessary new design
+  ingredient. The bounded follow-up ends here; do not automatically increase
+  batch size, rerun A1, or launch another performance experiment.
+
+## Variance-sensitive relative-return qualification (2026-10-15)
+
+- User explicitly authorized a substantive variance-sensitive estimator
+  successor. Original A1 MARL performance failure and old bounded-gradient
+  certificate decisions remain unchanged; no old outcomes were reused for tuning.
+- First-disagreement conditional Monte Carlo is unbiased for native team-return
+  contrasts and has a second-moment dominance identity relative to ordinary
+  maximal coupling. Qualification/source locks were committed before outcomes.
+- Exact-identity roundoff caused an operational stop before scientific means
+  were inspected. A separate exact-equality amendment and entirely fresh seeds
+  preserve all old sources and partial ineligible artifacts.
+- Eight amended contexts, 24 candidates, exact accounting, independent roles,
+  source/runtime hashes, byte-identical payload/analyzer replay all pass.
+  Cost-adjusted variance ratios to the better paired estimator are 0.632125
+  (Spread) and 0.259178 (Reference), with 7/8 contexts improving. These are
+  positive estimator-efficiency results, not learning-return superiority.
+- Overall A1 estimator qualification fails its positive independently validated
+  action gate (0/8). The paired validation resolves only 2/24 effects. Known-
+  support simultaneous lower bounds remain nonpositive on all 24 candidates.
+- A prospectively registered shared-bank extension reduces native sampling by
+  ninefold but fails Reference's cost-variance gate (ratio 2.156551; Spread
+  0.543423). Its full replay and both complete analyzer outputs are exact.
+  A serialization-only NumPy-boolean amendment preserves frozen formulas and
+  both partial failed analysis roots. No primary method is post-selected.
+- `relative_return_variance_decision_20261015.md` records all results and the
+  eleven-type statistical interpretation audit. The new mathematical probe-
+  allocation interface in `variance_sensitive_probe_action_interface_20261015.md`
+  is conditional, not queue stability or async-MARL convergence.
+- The substantive next hypothesis is a training-only, remaining-horizon Monte
+  Carlo potential rather than reusing the learner's discounted critic. Fresh
+  seeds, full candidates, independent variance-reduced validation and direct
+  branch controls are registered at `8ba05cb`. Current scientific root:
+  `ICML-2027/results/mc_relative_return_scientific_20261015`. It is now complete:
+  task cost-variance ratios 0.151188/0.432552 both pass, but positive validated
+  action selection is only 2/8 (both Spread, same seed), below the frozen 4/8.
+  Overall NO-GO remains; no cross-environment/seed return superiority is claimed.
+- MC context replay and every analyzer metrics/summary replay are byte-identical;
+  43 relevant tests pass. Source hashes and every independent episode role are
+  verified in `relative_return_complete_validation_20261015.json`.
+- The next bounded task is causal receipt/probe-control feasibility, not another
+  estimator comparison: define the server-owned optimizer candidate and reference,
+  choose probe budget before opening data, price all already-paid work, and
+  account for policy motion while probing and delayed receipt. Test whether the
+  conditional variance-sensitive expected-risk interface can become a useful
+  finite-budget result; an empirical covariance is not a variance upper bound.
+  Freeze a successor learning experiment only after that interface genuinely
+  passes. No GPU, remote storage, TSP manuscript migration or threshold changes.
+- Autonomous bounded continuation is scheduled in this chat as
+  `advance-variance-sensitive-marl-causal-controller`; it starts from verified
+  evidence commit `ee795d7`, stays quiet on unchanged state, and deletes itself
+  after the causal-controller feasibility decision. No scientific run is active
+  at handoff, and no old qualification is authorized for retry.
+
+## Complete-algorithm temporal-recycling successor (2026-10-16)
+
+- Latest human authorization prioritizes a complete cross-task strong-baseline
+  learning result rather than another variance bake-off. Implemented a new
+  causal protocol, not a re-run of any failed study: choose receipt action and
+  scored episode count before the current training bank, then reuse the paid
+  bank only for FUTURE raw-gradient packets and centralized critic learning.
+- Candidate Adam moments are server-owned; every packet has a full joint source
+  version and independent per-actor launch-ordinal service time. Sunk source
+  work, eventual incoming gradients, trajectory uplinks, advantage downlinks,
+  policy broadcasts, proposals, hints and potential fits remain charged.
+- Joint predictable OMD and Lyapunov prices choose both the joint action and m.
+  Unbiased sample variance supplies full-information probe losses, not a fake
+  population upper bound. Derived an expected finite-menu gain/queue inequality
+  and, under explicit uniform moment bounds and idle/probe slack, sublinear
+  resource violation. This does NOT establish separate-trajectory HAPPO
+  dominance, per-step monotonicity or gradient stationarity.
+- Source and outcome-free all-method/two-task qualification were frozen and
+  pushed at `145ed98`. Four interface tests passed. Active one-worker command:
+  `causal_recycle/run.py --lock internal/causal_recycle_qualification_lock_a1_20261016.json
+  --qualification --output results/causal_recycle_qualification_20261016`
+  with paths inside ICML-2027. Run every method, preserve any failure, do not
+  inspect qualification returns to tune. Then replay the complete qualification
+  once and require two byte-identical analyzer decisions/integrity files.
+- Only complete qualification permits a separate scientific development
+  preregistration with fresh seeds: native Spread and Reference, seven strong
+  fixed/online controls (including HAPPO LR grid), full controller and two
+  ablations, forty-round return/resource curves. All gates remain prospective.
+  No GPU, old-controller changes, old-threshold rescue, or manuscript admission.
+
+## Complete-learning development launched (2026-10-16)
+
+- Qualification and all20 semantic replay cells pass at `ce7f2ba`; both analyzer
+  decision/integrity files are byte-identical. Both tasks have genuine version
+  staleness. Current four interface tests pass. No qualification return ranked
+  or tuned a method; these are operational, not positive learning results.
+- Separate science preregistration/source lock is pushed at `d543363`.
+  Active command is `causal_recycle_development/workflow.py --lock
+  internal/causal_recycle_development_lock_20261016.json --qualification-decision
+  results/causal_recycle_qualification_analysis_a_20261016/decision.json --output
+  results/causal_recycle_development_20261016`, all paths under ICML-2027.
+  It owns its60 learning cells,6 selected replay cells, two analyses and all-
+  method native/communication plots. Do NOT start any duplicate worker, replay
+  or analyzer while that workflow process is alive. Local tool session83501.
+- Untouched science seeds79311001--3; all ten methods and both native tasks;
+  controller/constants/catalogue unchanged from qualification. Evaluation-only
+  cadence32 episodes/eight rounds is prospectively frozen for a bounded screen;
+  no old output selected it. Native training transitions remain16000/cell.
+  Whole science/replay CPU limit12000 seconds at cell boundaries, one worker.
+- Primary gates remain strict complete-algorithm gains versus strongest of all
+  seven registered controls in EACH task: mean native AUC>=1%, at least2/3
+  positive seeds, final-return change>=-2%, actual baseline learning>=2%, and
+  complete causal/resource/replay checks. Communication AUC and all costs are
+  mandatory reports, not hidden if native AUC passes. Neither current empirical
+  variance reductions nor interface tests count as learning superiority.
+- Read only execution/progress while running, not incomplete return values.
+  The driver automatically replays and double-analyzes only after all learning
+  cells pass payload checks. It never retries failed scientific or operational
+  payloads. Preserve any failed decision and diagnose the complete mechanism
+  before a separately frozen substantive successor, not small-test accumulation
+  or gate changes. GPU/HPC4 and manuscript migration remain out of this workflow.
+
+## Complete development decision and causal correction (2026-10-16)
+
+- The driver has exited successfully. All60 cells and6 semantic replays pass
+  integrity; both analyses are byte-identical. Actual performance is NO_GO:
+  native AUC -1.149852% Spread and -0.778903% Reference versus strongest HAPPO
+  LR x2; communication AUC also negative. Spread fails the registered learning
+  signal. All frozen gates, seeds, sources and evidence remain unchanged.
+- Full validation and mechanism diagnosis are in
+  `causal_recycle_development_validation_20261016.md`; independent offline audit
+  is `results/causal_recycle_development_audit_20261016`. Whole CPU8675.40625s.
+  Do not restart the old driver or launch its completed replay/analyzers.
+- Full method rejects about two thirds of latest-ready packets although all
+  source gradients, materialized proposals and incoming payloads are paid.
+  Current scores affect future historical patterns, not the current packet.
+  These are structural design issues, not grounds for loosening old gates.
+- Implemented NEW `experiments/current_packet_value_control.py`: m chosen
+  before data, current packet selected after current actual-return scores,
+  explicit expected selection bias and (m,lambda) variance-feedback meta-loss,
+  two full-charge resource queues and frozen policy/commit identities. Four
+  deterministic algebra/interface tests pass; not native performance evidence.
+- Proof/interface is `current_packet_value_design_20261016.md`. It compares
+  current eligible actions at the learner's own states, with an explicit
+  nonvanishing finite-probe error term. No HAPPO trajectory superiority,
+  high-probability certificate, hard budget shield or stationarity is claimed.
+- Next: integrate a standard explicitly accounted multi-epoch server-owned
+  PPO/HAPPO learner and this current-context selector; audit a same-world frozen
+  policy learning control, matched eligible async reference and feasible
+  precision costs. Freeze any new native qualification/development before its
+  data; one CPU worker, no old scientific retry, no GPU/HPC4 or manuscript edits.
+  A learning-return-based admission pilot is development, not outcome-free
+  qualification. A complete useful interface must precede new performance runs.
+- Evidence, corrected prototype and proof were committed and pushed at
+  `38a6689`. The completed-study heartbeat was deleted. The authorized bounded
+  native-integration follow-up is now
+  `qualify-current-packet-marl-value-control-integration`, hourly and quiet on
+  unchanged state. It requires a separate fresh-seed outcome-free source freeze
+  before native qualification (1800 active-CPU seconds including replay, one
+  worker); any learning-return admission is separately registered development.
+  No successor native experiment is currently running or preregistered.
+
+## Native current-packet interface freeze (2026-10-16)
+
+- Implemented `experiments/current_packet_native`: genuine five-epoch HARL PPO
+  loss/gradient recomputation on server-owned proposals, delayed immutable local
+  data/update programs, current-bank action scoring, matched delayed reference,
+  strong fresh sequential HAPPO anchor and same-world frozen-policy evaluation
+  control. This is not repeated Adam on a stored gradient or an imported worker
+  optimizer. All old frozen sources/results remain unchanged.
+- Probe communication is now priced alongside probe computation. The code
+  records every modeled public/advantage/program/probe/policy data path,
+  proposal/backward/optimizer work and actual CPU; row proxies and logical array
+  bytes are not represented as FLOPs, physical wire bytes or wall-clock speedup.
+- Five controller algebra/interface tests and syntax compilation pass before
+  any new native rollout. Preregistration is
+  `current_packet_native_qualification_preregistration_20261016.md`, source lock
+  `current_packet_native_lock_20261016.json`. Fresh seed79416017, two tasks,
+  three methods,8 banks each,6 originals plus all6 semantic replays, one worker,
+ 1800 active CPU seconds total. No qualification return ranking/tuning.
+- Only after source/plan/lock commits are pushed may the single driver run at
+  `results/current_packet_native_qualification_20261016`. It owns its replay and
+  both analyzers. Any failed mandatory payload gate stops without retry. No
+  native performance, precision-usefulness, confirmation or manuscript claim is
+  authorized solely by operational qualification.
+
+## Native integration completed; one amortized correction selected (2026-10-16)
+
+- Source/preregistration d8f1e7a. All6 original native cells and all6 semantic
+  replay cells pass every operational gate; both analyses are byte-identical.
+  Actual whole-driver CPU425.6875s. The process has exited; do NOT restart it,
+  its replay or analyzers. Evidence and full validation are at
+  `results/current_packet_native_qualification_20261016*` and
+  `current_packet_native_qualification_validation_20261016.md`.
+- Five-epoch recomputed PPO, server-owned moments, current-bank selection,
+  independent service/versions, same-world frozen-policy controls and complete
+  charges now work in the real native loop. This is operational GO, not return
+  superiority or numerical precision evidence. No qualification return ranked.
+- Cost-only audit identifies exact3x proposal optimizer work versus the matched
+  ready-packet reference and unnecessary all-actor probe records. Selected ONE
+  substantive correction: amortized packet-response control, not another task
+  switch. `experiments/amortized_packet_value.py` shares a single PPO unit block
+  across line candidates, uses full-versus-basis expected-risk geometry with an
+  explicit interaction remainder, and prices eligible-only early probe records.
+- Proof/feedback/cost interface: `amortized_packet_value_interface_20261016.md`.
+  New three-test algebra/optimizer protocol suite passes; five qualified
+  controller tests pass. Neither is native performance evidence. The amortized
+  helper is not yet an integrated new native controller or registered run.
+- The derived composite Lyapunov function uses actual finite-episode return,
+  not just virtual debt. True own-policy signed gains telescope to final return
+  in a fixed game; the finite-time lower bound keeps estimation, queue and
+  interaction terms. It is not superiority over a separate HAPPO trajectory.
+  Local policy-likelihood smoothness explains the interaction remainder's
+  second-order scale, but no Hessian computation or unknown L upper bound is
+  silently required by the measured residual feedback.
+- Decision: GO to this one complete-loop amortized integration; NO_GO for an
+  immediate broad sweep or confirmation. Freeze a separate new source/plan and
+  fresh seeds before native work. Preserve exact actual costs, selected-score
+  bias, finite-probe/interaction floors, strongest anchors and all old failures.
+  Next development must test precision, learning and cost jointly, not just
+  estimator variance. No GPU/HPC4 or manuscript edits in this bounded stage.
+- Qualification evidence and the amortized prototype are pushed at `0338367`.
+  The completed native-qualification heartbeat has been deleted. Autonomous
+  continuation is now `complete-amortized-marl-value-control-development`,
+  hourly and quiet while unchanged, for this ONE selected complete-loop
+  correction and bounded fresh-seed qualification/development. No new native
+  worker is active at this handoff. All qualification returns remain
+  outcome-ineligible; no positive return result is pending manuscript admission.

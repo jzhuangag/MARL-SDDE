@@ -1,0 +1,60 @@
+{
+  "decision": "mandatory_gate_failure_stop_sampled",
+  "experiment_id": "T-069-recipient-specific-static-baseline-audit",
+  "preregistration_commit": "923787f",
+  "configuration_sha256": "A33AB8E7D3FED00D4033AB909AE844A22CE03F6522E02CDFA3D12F601F978981",
+  "runner_sha256": "22048C53560A0E2C18D101949B6102204C58117BF8BE99449190BC8EC90418F4",
+  "core_sha256": "E425E0EB972FC01AB43C9DB6F8229D18161BEA9219492B6FB64994C80F260250",
+  "source_cells_sha256": "F79F9D34BEA89EEDD243E3DB555E51133CD29227DE2A9CC05D551D0A0DA99BD8",
+  "workload": {
+    "cells": 648,
+    "vectors_per_cell": 1296,
+    "evaluated_risks": 839808
+  },
+  "metrics": {
+    "dynamic_to_recipient_static_geometric_ratio": 0.9799067748621053,
+    "dynamic_aggregate_improvement": 0.020093225137894688,
+    "dynamic_strict_cell_fraction": 0.5895061728395061,
+    "recipient_static_to_scalar_geometric_ratio": 0.9661898680726351,
+    "selected_static_vector_count": 25,
+    "heterogeneity_improvement": {
+      "0.0": 0.029356541989297935,
+      "0.05": 0.008659420213624425,
+      "0.2": 0.01648782410900773,
+      "0.5": 0.025735934475140776
+    },
+    "delay_improvement": {
+      "0": 0.030694245779121054,
+      "1": 0.00015294129586918004,
+      "3": 0.029132604190351907
+    }
+  },
+  "gates": {
+    "Q1": true,
+    "Q2": true,
+    "Q3": true,
+    "Q4": false,
+    "Q5": true,
+    "Q6": true,
+    "Q7": true,
+    "Q8": true,
+    "Q9": true,
+    "Q10": true
+  },
+  "artifacts": {
+    "cells_csv_sha256": "8419990B7398BE30C9B3B6271F8FE54FC68CEEDF7E881FAAD1156056705DE683",
+    "summary_json_sha256": "D8CBB18CBA1E02ECA604C615F7E078D942ED1BE797777FB9995D743C5EE64ED1",
+    "clean_reproduction_byte_identical": true
+  },
+  "tests": {
+    "targeted": "17 T-068/T-069 tests passed in 9.96 s",
+    "full_repository": "590 passed, 7 skipped in 691.72 s"
+  },
+  "authorization": {
+    "nonstationary_theory_design": true,
+    "sampled_pilot": false,
+    "formal": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

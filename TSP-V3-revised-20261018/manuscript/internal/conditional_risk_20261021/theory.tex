@@ -1,0 +1,183 @@
+% Research extension; not included in main.tex or supplement.tex.
+% All new numbered results are local derivations, not cleared priority claims.
+\section{Conditional Terminal Risk for Paid Continuing Programs}
+The objective is terminal squared error after a probe consumes part of the message and environment budgets.
+The subsequent learner is fixed except for one choice from a finite catalogue of programs.
+Conditional-loss minimization is classical Bayesian decision theory; the research question here is the exact loss from classifying a regime instead of using the continuing learner's conditional loss.
+
+\subsection{Model and comparison class}
+Fix the probe length and schedule, the public model laws, the initial error, and every candidate program before seeing the probe.
+For regime $j\in\{0,1\}$, let the probe vector $Y$ have a centered, nonsingular Gaussian density $f_j$.
+Let $C$ be the common state at probe exit and write
+\[
+m_j(y)=\mathbb E_j[C\mid Y=y],\quad
+P_j=\operatorname{Var}_j(C\mid Y),\quad s_j^2=\operatorname{Var}_j(m_j(Y)).
+\]
+For a frozen program $a$, the stationary unconditional risk $J_{j,a}$ includes its exact remaining-budget horizon, private noise, delay and initialization coefficient $d_a$.
+Its coefficient $k_a$ transfers $C$ into the terminal estimate.
+Gaussian conditioning gives the conditional risk
+\begin{equation}
+\ell_{j,a}(y)=J_{j,a}-k_a^2s_j^2+2d_ak_am_j(y)+k_a^2m_j(y)^2.
+\label{eq:research-conditional-loss}
+\end{equation}
+Here $d_a$ already contains the public initial error; it is not an observed error relative to an unknown target.
+The model assumes an evaluable public target/error convention, as in the existing controlled scalar study.
+Eq.~\eqref{eq:research-conditional-loss} is not an implementable exact score for a general learning problem whose target error is unknown.
+Every policy below sees only $Y$, public parameters and the paid budgets; it cannot see the realized regime or future observations.
+Randomized selectors are measurable probability vectors over the same frozen finite catalogue.
+
+\subsection{Attainable lower envelope and the exact price of classification}
+Fix a public prior $\pi\in(0,1)$ and define the mixture density $g=(1-\pi)f_0+\pi f_1$ and posterior probabilities $p_j(y)=\pi_jf_j(y)/g(y)$.
+Let $L_a(y)=\sum_jp_j(y)\ell_{j,a}(y)$.
+For every measurable selector $u$, including randomized selectors,
+\begin{equation}
+R_\pi(u)\ge R_\pi^*:=\mathbb E_g\min_a L_a(Y),\quad
+u^*(y)=\operatorname*{argmin}_aL_a(y).
+\label{eq:research-envelope}
+\end{equation}
+The first action in a fixed catalogue ordering resolves ties.
+Consequently the lower bound is attained, and for any given deterministic classification-to-program rule $c$,
+\begin{equation}
+R_\pi(c)-R_\pi^*=
+\mathbb E_g\{L_{c(Y)}(Y)-\min_aL_a(Y)\}.
+\label{eq:research-classification-gap}
+\end{equation}
+This identity measures a terminal-risk loss, not a hypothesis error probability.
+It is zero exactly when the classifier chooses a conditional-risk minimizer almost surely.
+Proof: condition terminal loss on $Y$ and $j$, then average over the regime posterior.
+A probability-weighted average of finitely many losses is at least their minimum; a measurable first minimizer attains it.
+Integrability follows because a finite maximum of quadratic Gaussian losses is integrable.
+Subtract the attained minimum to obtain the gap and its zero condition.
+These optimization principles are classical; their explicit continued-learning loss in Eq.~\eqref{eq:research-conditional-loss} is the model-specific object.
+
+Let $I_\pi$ be the best full-budget no-probe risk over a stated fixed-program catalogue, including any admitted stop program.
+Then a selector using this fixed probe can beat all such fixed programs if and only if $R_\pi^*<I_\pi$.
+If $R_\pi^*\ge I_\pi$, no measurable or randomized selector following this probe can beat the best fixed program in prior-weighted risk.
+This is a necessary and sufficient criterion for a fixed probe, model and catalogue, not an algorithm-independent impossibility theorem.
+The integral defines an exact theoretical reference; a high-dimensional numerical approximation is not automatically a certified bound.
+
+\subsection{An exact symmetry loss for two continuing programs}
+For two programs write $D(y)=L_1(y)-L_0(y)$ and decompose $D=A+B$, where
+\[
+A(y)=\tfrac12\{D(y)+D(-y)\},\quad
+B(y)=\tfrac12\{D(y)-D(-y)\}.
+\]
+Centered probe laws imply $g(-y)=g(y)$ and $p_j(-y)=p_j(y)$.
+Thus the odd component is explicitly
+\[
+B(y)=2\sum_jp_j(y)(d_1k_1-d_0k_0)m_j(y).
+\]
+Let $R_\pi^{\rm even}$ be the optimal risk among selectors whose action probabilities agree at $y$ and $-y$.
+Then
+\begin{equation}
+R_\pi^{\rm even}-R_\pi^*
+=\tfrac12\mathbb E_g\big[(|B(Y)|-|A(Y)|)_+\big].
+\label{eq:research-even-gap}
+\end{equation}
+In particular any fixed-threshold centered covariance likelihood classifier, followed by the two frozen programs, has at least this much excess risk.
+The bound is strictly positive exactly when $\Pr_g(|B(Y)|>|A(Y)|)>0$.
+Proof: $\min(L_0,L_1)=(L_0+L_1-|D|)/2$.
+For an even selector, pair $y$ with $-y$ before minimizing; the corresponding absolute difference is $|A|$.
+Pairing also gives
+\[
+\tfrac12\{|A+B|+|A-B|\}=\max\{|A|,|B|\}.
+\]
+Subtract the two integrated expressions to obtain Eq.~\eqref{eq:research-even-gap}.
+Randomization cannot improve a linear conditional objective.
+If $d_1k_1=d_0k_0$, then $B=0$ and this particular symmetry obstruction vanishes.
+Zero symmetry loss does not imply the likelihood threshold is optimal: an even risk-based boundary can still differ from a classification boundary.
+The lower bound applies to the specified pair, not automatically to a larger catalogue's optimal even selector.
+
+\subsection{A paid two-slot example with an exact useful/useless boundary}
+Consider the fixed running-mean learner initialized at public error one and a stationary scalar Gaussian stream with
+\[
+\operatorname{Var}(Y_t)=V,\quad \operatorname{Cov}(Y_1,Y_2)=c,\quad 0<c<V.
+\]
+There are two paid observation slots and no spacing or participation choice.
+A full-budget fixed program uses zero, one or two observations and returns respectively $1$, $(1+Y_1)/2$ or $(1+Y_1+Y_2)/3$.
+Their risks are $1$, $(1+V)/4$ and $(1+2V+2c)/9$.
+An adaptive program pays the first slot as a discarded training probe, observes $Y_1$, and chooses whether to use the second slot for one running-mean update.
+It consumes no more than the same two-slot budget on every realization.
+Conditional on the probe, the update risk is
+\[
+q(y)=\tfrac14\{(1+(c/V)y)^2+v\},\quad v=V-c^2/V.
+\]
+If $V\ge3$ and $V+c\ge4$, the best full-budget fixed risk is one.
+Under these conditions the adaptive selector strictly beats every fixed program and every observation-independent randomized mixture if and only if $v<4$.
+Its decision is to update when $|1+(c/V)y|<\sqrt{4-v}$ and to stop otherwise.
+Proof: if $v\ge4$, then $q(y)\ge1$ for every $y$, so the conditional minimum is identically one.
+If $v<4$ and $c>0$, a nonempty interval has $q(y)<1$ and positive Gaussian probability, while stopping bounds the risk elsewhere by one.
+The adaptive risk is therefore strictly below one, which is the minimum of the three fixed risks; a fixed random mixture cannot improve that minimum.
+This proves both directions and charges the probe by losing its training use and retaining at most one subsequent update.
+
+For completeness let $\sigma^2=c^2/V$, $b=\sqrt{4-v}$, $\alpha=(-b-1)/\sigma$ and $\beta=(b-1)/\sigma$ when $v<4$.
+With $P=\Phi(\beta)-\Phi(\alpha)$, $M_1=\sigma\{\varphi(\alpha)-\varphi(\beta)\}$ and $M_2=\sigma^2\{P+\alpha\varphi(\alpha)-\beta\varphi(\beta)\}$, the exact gain over one is
+\[
+G=\tfrac14\{(3-v)P-2M_1-M_2\}>0.
+\]
+The gain is zero at and above $v=4$.
+Taking common-state variance six, private variance one and Markov persistence $0.9$ gives $V=7$, $c=5.4$ and $v=2.834285714\ldots$.
+This is a symbolic mechanism witness, outside the registered 128-design grid; it provides no new empirical performance claim.
+It has a known covariance regime, so its regime-identification opportunity is zero while its state-selection opportunity is positive.
+All comparators retain the same running-mean learner and public target convention; unrestricted estimators could output the known target directly and are not covered.
+
+\subsection{Unknown initialization sign changes the useful region}
+The preceding asymmetric policy uses the known sign of the public initial error.
+This information is consequential rather than a harmless normalization.
+In the two-slot model replace the initial error one by an unknown fixed $e\in[-r,r]$, with public radius $r>0$, independent of the centered probe law.
+Assume the controller can observe the centered noise probe itself, for example through a separate known calibration signal.
+Raw observations of an unknown target do not automatically provide such a centered probe.
+The objective is now $\inf_u\sup_{|e|\le r}R_e(u)$ over randomized probe-measurable selectors that cannot see $e$.
+
+Any selector can be symmetrized by assigning the mean of its action probabilities at $y$ and $-y$.
+The symmetrized selector satisfies
+\[
+R_e(u^{\rm sym})=\tfrac12\{R_e(u)+R_{-e}(u)\}
+\le\sup_{|z|\le r}R_z(u).
+\]
+Thus a minimax-optimal selector can be even; the advantage from observing the probe sign disappears at this minimax information scope.
+The same argument holds for any finite continuing-program catalogue and fixed public regime prior.
+Writing $d_a$ for the coefficient of a unit initial error, define
+\[
+L_a^{\rm rob}(y)=\sum_jp_j(y)\{J_{j,a}+d_a^2(r^2-1)
++k_a^2[m_j(y)^2-s_j^2]\}.
+\]
+Then the exact catalogue minimax risk for unknown initialization error is
+\begin{equation}
+\inf_u\sup_{|e|\le r}R_{\pi,e}(u)
+=\mathbb E_g\min_aL_a^{\rm rob}(Y).
+\label{eq:research-robust-envelope}
+\end{equation}
+For the lower bound, the supremum is at least the average of the risks at $e=r$ and $e=-r$; their cross terms cancel for any selector, giving an average of $L_a^{\rm rob}$ and hence its pointwise minimum.
+Choose a first minimizer of the even scores $L_a^{\rm rob}$ to attain the bound.
+Its odd cross term integrates to zero, and its risk is a nondecreasing affine function of $e^2$ with nonnegative coefficient, so the maximum is attained at the endpoints.
+This is minimax over the initial error, with a fixed prior over regimes; it does not assert minimax optimality over the regime prior or model misspecification.
+For an even selector the cross term vanishes and its risk is nondecreasing in $e^2$.
+It suffices to minimize at $|e|=r$, giving the exact minimax selector
+\[
+u^{\rm rob}(y)=\text{update}\quad\Longleftrightarrow\quad
+(c y/V)^2+v<3r^2.
+\]
+If $V\ge3r^2$ and $V+c\ge4r^2$, every full-budget fixed program has worst-case risk at least $r^2$.
+The paid adaptive minimax risk is strictly below $r^2$ if and only if $v<3r^2$.
+Proof: symmetrization cannot increase the worst-case risk, and an even selector's endpoint conditional costs are $r^2$ and $(r^2+m^2+v)/4$.
+Pointwise minimization attains the lower envelope of these endpoint costs.
+If $v\ge3r^2$, their minimum is identically $r^2$; otherwise a nonempty interval has lower update cost and positive Gaussian probability.
+This also proves optimality among all randomized selectors, not merely among threshold rules.
+
+With $r=1$, the region $3\le v<4$ admits a strict advantage with known error sign but no minimax advantage with unknown sign.
+At $V=7,c=5.4$, the exact robust gain is
+\[
+G_{\rm rob}=\tfrac14\{(3-v)P_0-\sigma^2[P_0-2t\varphi(t)]\},\quad
+t=\sqrt{3-v}/\sigma,\quad P_0=2\Phi(t)-1.
+\]
+The formula applies for $v<3$ and is zero otherwise.
+The stronger known-sign gain must not be presented as evidence for a target-unknown learner.
+These conditions isolate the information needed to implement an advantage; neither a public radius nor observable centered calibration noise is automatically available in general temporal-difference or policy learning.
+
+\subsection{Research admission}
+The conditional Bayes envelope and pointwise action minimization are established principles in joint detection/estimation and observation-driven scheduling.
+The exact symmetry-loss formula and the paid two-slot boundary are the present specialized derivations; their broader priority remains search-bounded.
+They motivate an isolated, prospectively specified conditional-risk controller and mechanism comparison.
+The current manuscript's registered gate, 113 unchanged admissions, 29 balanced-prior certificates, zero minimax certificates, low-budget adverse result and fixed-policy pooled advantage remain valid historical evidence.
+No existing validation has executed the newly proposed selector.

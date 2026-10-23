@@ -1,0 +1,19 @@
+{
+  "id":"ICML27-RELATIVE-RETURN-SHARED-BANK-CPU-001",
+  "prospective_status":"Additional fixed estimator family designed and registered before opening any A1 scientific return. Original A1 gates and outcomes remain separate.",
+  "contexts":"Exactly the A1 frozen policy snapshots; reconstructed training is charged as qualification overhead. New disjoint reference-bank episode seeds. No policy or critic tuning on either score or validation outcomes.",
+  "tasks":[{"name":"spread","scenario":"simple_spread_v3","N":3},{"name":"reference","scenario":"simple_reference_v3"}],
+  "seeds":[75101001,75101002],
+  "stages":[4,16],
+  "candidate_scales":[0.0,0.5,1.5],
+  "bank_samples":64,
+  "bank_role":510,
+  "primary_method":"td_control_variate",
+  "other_methods":["trajectory_is","centered_trajectory_is","per_decision_is"],
+  "primary_target":"Undiscounted native episodic team return difference to the same complete fresh HAPPO reference. No clipping, self-normalization, critic-loss substitution or learned ratio model.",
+  "variance_comparison":"Amortize the one shared native reference bank across all three prespecified candidate scores. Report candidate-marginal cost-adjusted variance and the joint score covariance; do not treat three scores as independent.",
+  "validation":"The already prospectively frozen A1 disjoint validation bank is reused for estimator checking only, after both score roots are complete; no additional validation is called free training data.",
+  "active_cpu_limit_seconds":300,
+  "gates":{"complete_hashes_matched_snapshots_disjoint_bank_and_exact_accounting":true,"byte_identical_analyzer_replay":true,"exact_finite_game_unbiasedness":true,"primary_task_geomean_amortized_cost_variance_ratio_vs_first_disagreement_max":0.8,"primary_estimates_compatible_with_independent_validation_4se":true,"positive_score_and_validation_contexts_min":4},
+  "decision":"Score qualification only. All fixed methods and every context are reported; method selection is not based on the most favorable outcome. A failure retains evidence and triggers a precision/cost diagnosis, not threshold changes. No GPU/controller claim without a separate nonvacuous confidence and causal launch/receipt interface."
+}

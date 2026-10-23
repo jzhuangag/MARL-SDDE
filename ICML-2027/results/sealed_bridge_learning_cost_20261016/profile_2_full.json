@@ -1,0 +1,204 @@
+{
+  "charge_event_totals": {
+    "benchmark:actor_sampling": {
+      "calls": 6000,
+      "sampling_actor_rows": 12000
+    },
+    "benchmark:native_step": {
+      "calls": 6000,
+      "native_benchmark": 6000
+    },
+    "benchmark:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 131280
+    },
+    "benchmark:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "bridge:all_option_variance": {
+      "calls": 1,
+      "variance_scalar_entries": 1575360
+    },
+    "bridge:current_baseline": {
+      "calls": 1,
+      "critic_forward_rows": 16000
+    },
+    "bridge:prefix_pg": {
+      "actor_backward_rows": 64000,
+      "actor_forward_rows": 64000,
+      "calls": 1,
+      "gradient_storage_bytes": 2800640,
+      "prefix_scalar_entries": 32000
+    },
+    "bridge:server_sgd": {
+      "actor_sgd_calls": 2,
+      "calls": 1
+    },
+    "bridge:source_baseline": {
+      "calls": 1,
+      "critic_forward_rows": 16000
+    },
+    "critic:fit": {
+      "calls": 3,
+      "critic_adam_calls": 15,
+      "critic_backward_rows": 280000,
+      "critic_forward_rows": 280000
+    },
+    "critic:prepare_targets": {
+      "calls": 3,
+      "critic_forward_rows": 56000
+    },
+    "frozen_policy:actor_sampling": {
+      "calls": 6000,
+      "sampling_actor_rows": 12000
+    },
+    "frozen_policy:initial_copy": {
+      "calls": 1,
+      "copy_tensor_bytes": 66440
+    },
+    "frozen_policy:native_step": {
+      "calls": 6000,
+      "native_frozen_policy": 6000
+    },
+    "frozen_policy:policy_broadcast": {
+      "calls": 3,
+      "messages": 6,
+      "policy_broadcast_bytes": 131280
+    },
+    "frozen_policy:return_upload": {
+      "calls": 3,
+      "messages": 3,
+      "program_upload_bytes": 48
+    },
+    "source:immutable_snapshot": {
+      "calls": 1,
+      "copy_tensor_bytes": 66440
+    },
+    "source:on_policy_mc_pg": {
+      "actor_backward_rows": 96000,
+      "actor_forward_rows": 96000,
+      "calls": 3,
+      "critic_forward_rows": 48000,
+      "gradient_storage_bytes": 4200960
+    },
+    "terminal:server_fresh_sgd": {
+      "actor_sgd_calls": 2,
+      "calls": 1
+    },
+    "training:actor_sampling": {
+      "calls": 12000,
+      "sampling_actor_rows": 128000
+    },
+    "training:native_step": {
+      "calls": 64000,
+      "native_training": 64000
+    },
+    "training:policy_broadcast": {
+      "calls": 4,
+      "messages": 10,
+      "policy_broadcast_bytes": 218800
+    },
+    "training:program_upload": {
+      "calls": 4,
+      "messages": 12,
+      "program_upload_bytes": 17152000
+    }
+  },
+  "costs": {
+    "actor_adam_calls": 0,
+    "actor_backward_rows": 160000,
+    "actor_forward_rows": 160000,
+    "actor_sgd_calls": 4,
+    "copy_tensor_bytes": 132880,
+    "critic_adam_calls": 15,
+    "critic_backward_rows": 280000,
+    "critic_forward_rows": 416000,
+    "gradient_storage_bytes": 7001600,
+    "logical_bytes": 17633456,
+    "messages": 40,
+    "native_benchmark": 6000,
+    "native_frozen_policy": 6000,
+    "native_training": 64000,
+    "policy_broadcast_bytes": 481360,
+    "prefix_scalar_entries": 32000,
+    "program_upload_bytes": 17152096,
+    "sampling_actor_rows": 152000,
+    "variance_scalar_entries": 1575360,
+    "work_rows": 1168000
+  },
+  "cpu_seconds": 74.171875,
+  "evaluations_checked_for_finiteness_only": true,
+  "finite_payload": true,
+  "full_payload_digest": "9298cdbf756ff01efb3c534060e85b9111cff646ced1e0de8c37b62cdda0be62",
+  "method": "full",
+  "native_budget_events": [
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    },
+    {
+      "kind": "calibration_charge",
+      "transitions": 8000
+    },
+    {
+      "kind": "reserve_launch",
+      "minimum_receipt": 8000,
+      "receipt": 32000,
+      "source": 8000,
+      "source_id": 0
+    },
+    {
+      "kind": "source_charge",
+      "source_id": 0,
+      "transitions": 8000
+    },
+    {
+      "kind": "source_complete",
+      "source_id": 0
+    },
+    {
+      "kind": "receipt_charge",
+      "source_id": 0,
+      "transitions": 16000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    },
+    {
+      "kind": "terminal_fresh_charge",
+      "transitions": 32000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "benchmark",
+      "transitions": 2000
+    },
+    {
+      "kind": "evaluation_charge",
+      "role": "frozen_policy",
+      "transitions": 2000
+    }
+  ],
+  "performance_evidence": false,
+  "return_ranking_performed": false,
+  "seed": 971016011,
+  "task": "halfcheetah_2x3",
+  "task_index": 2,
+  "training_transitions": 64000
+}

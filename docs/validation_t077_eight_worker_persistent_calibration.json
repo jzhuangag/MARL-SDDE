@@ -1,0 +1,34 @@
+{
+  "experiment_id": "T-077-eight-worker-execution-of-frozen-T074-calibration",
+  "verification_status": "COMPUTE_GATE_FAILURE",
+  "decision": "F3_hard_timeout_stop_without_grid_outcome",
+  "provenance": {
+    "frozen_execution_commit": "40d14f4af220558077be3dfc0ed0630ecb2bfa33",
+    "scientific_config_sha256": "BF7EB584B0AFA92D261849B2BBDE2929C4C464C56B91EC120D20AAB5A0819E8C"
+  },
+  "execution": {
+    "workers": 8,
+    "hard_timeout_minutes": 10,
+    "workers_responsive": true,
+    "result_directory_created": false,
+    "partial_outcome_retained": false,
+    "terminated_processes": 10,
+    "worker_cpu_seconds_range": [428.52, 453.95],
+    "worker_rss_bytes_approximately": 35000000
+  },
+  "compute_gates": {
+    "F1": true,
+    "F2": false,
+    "F3": false,
+    "F4": false,
+    "F5": false
+  },
+  "authorization": {
+    "retry_or_expand_workers": false,
+    "new_theory_selected_reduced_workload": true,
+    "scientific_interpretation": false,
+    "new_seed_pilot": false,
+    "gpu": false,
+    "hpc4": false
+  }
+}

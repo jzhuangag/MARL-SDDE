@@ -1,0 +1,21 @@
+{
+  "experiment_id": "TSP-V2-MARL-ONLINE-QUAL-003",
+  "role": "outcome-free_runtime_qualification",
+  "implementation_commit": "a6f6716c388da74255c21f46463a8bba6f596b88",
+  "scratch_root": "/scratch/jzhuangag/MARL-SDDE-TSP-V2-ONLINE-QUAL-003",
+  "runner_sha256": "a27a78dc6a71244c59862fe3f1edddf7588437ef4833ba3d85e56801f7aa1347",
+  "controller_sha256": "0452e7bfdc4e06e1c3c3814b08f58301333f851b972336ac19fef72b7e04562d",
+  "analyzer_sha256": "9754bd054632409eaae9da3cb9f95fd589fbd5c2a0ad6622cee5bc0f3c8f259b",
+  "tasks": [
+    "pettingzoo_mpe:simple_spread_v2",
+    "mamujoco:HalfCheetah-v2/2x3"
+  ],
+  "couplings": ["independent", "shared"],
+  "methods": ["controller", "fixed_q1"],
+  "controller_decisions": 9,
+  "window": 8,
+  "qualification_seed_base": 997101,
+  "performance_interpretation_forbidden": true,
+  "project_writes_forbidden": true,
+  "retry_on_failure_forbidden": true
+}
